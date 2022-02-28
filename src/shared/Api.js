@@ -1,5 +1,4 @@
 import axios from "axios";
-import Category from "../components/Category";
 
 const instance = axios.create({
   baseURL: "http://54.180.137.157/",
