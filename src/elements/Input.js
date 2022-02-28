@@ -65,7 +65,7 @@ Input.defaultProps = {
   _onChange: () => {},
   _onClick: () => {},
   disable: false,
-  bg: '#181818',
+  bg: '#fff',
   _onKeyDown: () => {},
   _ref: () => {},
   _onFocus: () => {},

@@ -26,6 +26,7 @@ const Grid = (props) => {
     borderStyle,
     alignItems,
     flexWrap,
+    textAlign,
   } = props;
 
   const styles = {
@@ -48,6 +49,7 @@ const Grid = (props) => {
     borderStyle,
     alignItems,
     flexWrap,
+    textAlign,
   };
 
   if (is_post_box) {
@@ -114,6 +116,7 @@ const GridBox = styled.div`
   boxsizing: ${(props) => props.boxSizing};
   border-style: ${(props) => props.borderStyle};
   align-items: ${(props) => props.alignItems};
+  text-align: ${(props) => props.textAlign};
 `;
 
 const PostGridBox = styled.div`
