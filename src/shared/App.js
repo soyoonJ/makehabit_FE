@@ -1,19 +1,26 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 import React from "react";
 
 import styled from "styled-components";
 
-import Main from "../pages/Main"
-import Login from "../pages/Login"
-import Signup from "../pages/Signup"
+import Main from "../pages/Main";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import Category from "../pages/Category";
+import PostDetail from "../pages/PostDetail";
+import PostWrite from "../pages/PostWrite";
+import Confirm from "../pages/Confirm";
+import MyChallenge from "../pages/MyChallenge";
+import Mypage from "../pages/Mypage";
+import Character from "../pages/Character";
+import Recommend from "../pages/Recommend";
 
 function App() {
-
   // const dispatch = useDispatch();
   // const is_token = localStorage.getItem("token") ? true : false;
 
@@ -29,13 +36,20 @@ function App() {
       <Container>
         <div id="wrap">
           <ConnectedRouter history={history}>
-          <Route path="/" exact component={Main} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
+            <Route path="/" exact component={Main} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/category/:categoryId" component={Category} />
+            <Route path="/recommend" component={Recommend} />
+            <Route path="/post/:id" component={PostDetail} />
+            <Route path="/postwrite" component={PostWrite} />
+            <Route path="/confirm" component={Confirm} />
+            <Route path="/mychallenge" component={MyChallenge} />
+            <Route path="/mypage" component={Mypage} />
+            <Route path="/character" component={Character} />
           </ConnectedRouter>
         </div>
       </Container>
-      
     </React.Fragment>
   );
 }
