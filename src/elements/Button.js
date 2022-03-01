@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Button = (props) => {
   const {
@@ -48,13 +48,13 @@ Button.defaultProps = {
   _onClick: () => {},
   children: null,
   margin: false,
-  padding: '12px 0px',
+  padding: "12px 0px",
   disable: false,
-  color: '#fff',
-  width: '100%',
-  cursor: 'pointer',
-  bg: '#000000',
-  borderRadius: '5px',
+  color: "#fff",
+  width: "100%",
+  cursor: "pointer",
+  bg: "#000000",
+  borderRadius: "5px",
   position: false,
   fontSize: null,
 };
@@ -63,16 +63,16 @@ const ElButton = styled.button`
   box-sizing: border-box;
   border: none;
   border-radius: ${(props) => props.borderRadius};
-  ${(props) => (props.width ? `width:${props.width};` : '')};
+  ${(props) => (props.width ? `width:${props.width};` : "")};
   background-color: ${(props) => props.bg};
   color: ${(props) => props.color};
   padding: ${(props) => props.padding};
-  ${(props) => (props.margin ? `margin:${props.margin};` : '')};
+  ${(props) => (props.margin ? `margin:${props.margin};` : "")};
   cursor: ${(props) => props.cursor};
   position: ${(props) => props.position};
-  ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : '')};
+  ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : "")};
   align-items: ${(props) => props.alignItems};
-  ${(props) => (props.display ? `display: ${props.display}; ` : '')}
+  ${(props) => (props.display ? `display: ${props.display}; ` : "")}
 `;
 
 export default Button;
