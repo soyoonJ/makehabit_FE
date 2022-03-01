@@ -1,3 +1,7 @@
+// 이미지 클릭 시 업로드 되도록 기본 세팅 수정
+// textarea 우측 마진 안 맞는 부분 수정
+// 모달 배경 클릭 시에도 창 꺼짐 추가
+
 import React from "react";
 
 import { Grid, Text, Input, Image } from "../elements";
