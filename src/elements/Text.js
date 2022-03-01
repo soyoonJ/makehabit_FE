@@ -15,6 +15,7 @@ const Text = (props) => {
     font,
     width,
     justifyContent,
+    alignRight,
   } = props;
 
   const styles = {
@@ -28,6 +29,7 @@ const Text = (props) => {
     alignCenter,
     font,
     width,
+    alignRight,
   };
   return (
     <>
@@ -47,6 +49,7 @@ Text.defaultProps = {
   is_break: false,
   alignCenter: false,
   width: "100%",
+  alignRight: false,
 };
 
 const P = styled.p`
@@ -61,6 +64,7 @@ const P = styled.p`
   ${(props) => (props.alignCenter ? `text-align: center;` : "")}
   ${(props) => (props.font ? `font-family: ${props.font};` : "")}
   justify-content: ${(props) => props.justifyContent};
+  ${(props) => (props.alignRight ? `text-align: right;` : "")}
 `;
 
 export default Text;
