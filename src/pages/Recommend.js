@@ -15,7 +15,7 @@ const Recommend = () => {
           </Text>
         </Header>
         <hr></hr>
-        <Banner src="imges/banner_02.png" alt=""></Banner>
+        <Banner src="images/banner_02.png" alt=""></Banner>
         <CardWrap>
           <CategoryPost></CategoryPost>
           <CategoryPost></CategoryPost>

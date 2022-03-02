@@ -63,9 +63,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background: #d9e3ee;
+  /* background: #d9e3ee; */
   overflow: hidden;
   position: relative;
+  background: url("/images/text.png");
+  background-size: cover;
 
   #wrap {
     width: 100%;

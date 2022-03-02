@@ -9,7 +9,7 @@ const CategoryPost = () => {
   return (
     <React.Fragment>
       <Card>
-        <Img src="imges/Recommend_test.png"></Img>
+        <Img src="images/Recommend_test.png"></Img>
         <Text margin="7% 5%">타이틀이 들어가나용</Text>
         <Tag>
           <Text size="10px" margin="8% auto" alignCenter>
