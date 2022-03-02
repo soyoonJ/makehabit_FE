@@ -42,17 +42,41 @@ const MyChallenge = () => {
         </div>
       ) : (
         <ImageContainer>
-          <Image
-            width="50%"
-            _onClick={() => {
-              // feed 아이디로 들어갈 수 있게 해줘야 함
-              history.replace("/myfeed");
+          <Img
+            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
+            alt=""
+            onClick={() => {
+              history.push("/myfeed/:id");
             }}
-            shape="ConfirmHistory"
-          />
-          <Image shape="ConfirmHistory" />
-          <Image shape="ConfirmHistory" />
-          <Image shape="ConfirmHistory" />
+          ></Img>
+          <Img
+            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
+            alt=""
+            onClick={() => {
+              history.push("/myfeed/:id");
+            }}
+          ></Img>
+          <Img
+            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
+            alt=""
+            onClick={() => {
+              history.push("/myfeed/:id");
+            }}
+          ></Img>
+          <Img
+            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
+            alt=""
+            onClick={() => {
+              history.push("/myfeed/:id");
+            }}
+          ></Img>
+          <Img
+            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
+            alt=""
+            onClick={() => {
+              history.push("/myfeed/:id");
+            }}
+          ></Img>
         </ImageContainer>
       )}
     </React.Fragment>
@@ -63,13 +87,22 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   text-align: center;
+  margin-bottom: 10px;
 `;
 
 const ImageContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  column-count: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 16px;
+`;
+
+const Img = styled.img`
+  width: 90%;
+  height: 90%;
+  padding: 8px;
+  cursor: pointer;
 `;
 
 export default MyChallenge;
