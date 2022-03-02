@@ -47,12 +47,32 @@ const PostWrite = () => {
   const offset = new Date().getTimezoneOffset() * 60000;
   let todayDate = new Date(Date.now() - offset).toISOString().split("T")[0];
 
-  // 오늘 날짜+999일 YYYY-MM-DD형식으로 추출
-  const startDate = React.useRef(null);
-  console.log(startDate);
-  const now = new Date();
+  //선택한 날짜 가져오기
+  const [date, setDate] = useState("1993-07-04");
+  const onChange = (e) => {
+    console.log(e.target); //이벤트가 발생한 타겟의 요소를 출력
+    console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
+    setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
+  };
+
+  const onReset = () => {
+    setDate(""); // onClick함수 발생시 ''으로 {text} 변경
+  };
+  // 오늘 날짜+30일 YYYY-MM-DD형식으로 추출
+
+  console.log(date);
+  const now = new Date(date);
   let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
+
+  //content내용 받아오기
+  const desc = React.useRef(null);
+  const method = React.useRef(null);
+
+  const complete = () => {
+    console.log(desc.current.value);
+    console.log(method.current.value);
+  };
   return (
     <Grid>
       {/* 타이틀 */}
@@ -92,9 +112,22 @@ const PostWrite = () => {
           type="date"
           name="theday"
           min={todayDate}
-          ref={startDate}
+          onChange={onChange}
         ></StartDate>
-        <Text>{todayPlus30}</Text>
+      </Grid>
+      <Grid>
+        <Text>예상 종료일 : {todayPlus30}</Text>
+      </Grid>
+      <Grid padding="5%">
+        <Text>챌린지 설명</Text>
+        <Contents placeholder="내용을 입력해주세요" ref={desc}></Contents>
+      </Grid>
+      <Grid padding="5%">
+        <Text>챌린지 인증 방법</Text>
+        <Contents placeholder="내용을 입력해주세요" ref={method}></Contents>
+      </Grid>
+      <Grid padding="5%">
+        <Button _onClick={complete}>개설 완료</Button>
       </Grid>
     </Grid>
   );
@@ -108,12 +141,22 @@ const ImageInput = styled.input`
 const StartDate = styled.input`
   box-sizing: border-box;
   border-radius: 10px;
-  background-color: #000;
+  background-color: #9dcabf;
   color: white;
   padding: 16px 10px;
   text-align: center;
   margin-right: 3px;
   border: none;
+`;
+
+const Contents = styled.textarea`
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid #9dcabf;
+  width: 100%;
+  padding: 15px;
+  height: 30vh;
+  resize: none;
 `;
 
 export default PostWrite;
