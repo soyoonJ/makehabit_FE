@@ -19,6 +19,7 @@ import MyChallenge from "../pages/MyChallenge";
 import Mypage from "../pages/Mypage";
 import Character from "../pages/Character";
 import Recommend from "../pages/Recommend";
+import MyFeed from "../components/MyFeed";
 
 function App() {
   // const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
             <Route path="/mychallenge" component={MyChallenge} />
             <Route path="/mypage" component={Mypage} />
             <Route path="/character" component={Character} />
+            <Route path="/myfeed" component={MyFeed} />
           </ConnectedRouter>
         </div>
       </Container>

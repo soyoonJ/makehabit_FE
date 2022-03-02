@@ -3,11 +3,12 @@ import React from "react";
 
 import { Grid, Text, Input, Image } from "../elements";
 import ConfirmPost from "../components/ConfirmPost";
+import { history } from "../redux/configureStore";
 
 import styled from "styled-components";
 
 const MyChallenge = () => {
-  const [defaultTab, setTab] = React.useState("false");
+  const [defaultTab, setTab] = React.useState(false);
 
   return (
     <React.Fragment>
@@ -41,10 +42,15 @@ const MyChallenge = () => {
         </div>
       ) : (
         <ImageContainer>
+          <Image
+            _onClick={() => {
+              history.replace("/myfeed");
+            }}
+            shape="ConfirmHistory"
+          />
+          {/* <Image shape="ConfirmHistory" />
           <Image shape="ConfirmHistory" />
-          <Image shape="ConfirmHistory" />
-          <Image shape="ConfirmHistory" />
-          <Image shape="ConfirmHistory" />
+          <Image shape="ConfirmHistory" /> */}
         </ImageContainer>
       )}
     </React.Fragment>
