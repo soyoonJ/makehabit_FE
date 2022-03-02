@@ -43,11 +43,13 @@ const Confirm = () => {
         </Example>
 
         <CommentTitle>코멘트</CommentTitle>
-        <div>예쁘게 어쩌구~~</div>
+        <div>예쁘게 어쩌구~~예쁘게 어쩌구~~</div>
         <Textarea rows="8"></Textarea>
       </Grid>
 
-      <Button>인증완료하기</Button>
+      <Grid>
+        <Button>인증완료하기</Button>
+      </Grid>
 
       {modalOpen ? (
         <Modal>
@@ -98,13 +100,16 @@ const CommentTitle = styled.div`
 const Textarea = styled.textarea`
   width: 100%;
   resize: none;
+  margin-bottom: 100px;
 `;
 const Button = styled.button`
   position: absolute;
+  bottom: 0px;
+
   width: 100%;
   height: 80px;
   border: none;
-  bottom: 0px;
+
   color: white;
   background: orange;
 `;

@@ -48,7 +48,7 @@ function App() {
             <Route path="/mychallenge" component={MyChallenge} />
             <Route path="/mypage" component={Mypage} />
             <Route path="/character" component={Character} />
-            <Route path="/myfeed" component={MyFeed} />
+            <Route path="/myfeed/:id" component={MyFeed} />
           </ConnectedRouter>
         </div>
       </Container>
