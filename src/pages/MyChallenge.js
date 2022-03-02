@@ -43,14 +43,16 @@ const MyChallenge = () => {
       ) : (
         <ImageContainer>
           <Image
+            width="50%"
             _onClick={() => {
+              // feed 아이디로 들어갈 수 있게 해줘야 함
               history.replace("/myfeed");
             }}
             shape="ConfirmHistory"
           />
-          {/* <Image shape="ConfirmHistory" />
           <Image shape="ConfirmHistory" />
-          <Image shape="ConfirmHistory" /> */}
+          <Image shape="ConfirmHistory" />
+          <Image shape="ConfirmHistory" />
         </ImageContainer>
       )}
     </React.Fragment>
@@ -65,11 +67,9 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
   width: 100%;
-  padding: 16px;
-  //   display: flex;
-  //   flex-wrap: wrap;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  column-count: 2;
 `;
 
 export default MyChallenge;

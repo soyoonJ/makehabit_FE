@@ -2,13 +2,15 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { shape, src, size, padding, margin, _onClick } = props;
+  const { shape, src, size, padding, margin, _onClick, height, width } = props;
 
   const styles = {
     src: src,
     size: size,
     padding,
     margin,
+    height,
+    width,
   };
 
   if (shape === "circle") {
@@ -55,7 +57,6 @@ const ImageDefault = styled.div`
 `;
 
 const HistoryImage = styled.div`
-  // width: 50%;
   min-width: 250px;
   _onClick: () => {},
 `;
@@ -63,6 +64,7 @@ const HistoryImage = styled.div`
 const AspectOutter = styled.div`
   width: 100%;
   min-width: 250px;
+  ${(props) => (props.height ? `height:${props.height};` : "")};
 `;
 
 const AspectInner = styled.div`
@@ -71,6 +73,7 @@ const AspectInner = styled.div`
   overflow: hidden;
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  ${(props) => (props.width ? `width:${props.width};` : "")};
 `;
 
 const ImageCircle = styled.div`
