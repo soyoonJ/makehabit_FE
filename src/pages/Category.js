@@ -4,7 +4,7 @@ import { Button, Input, Text, Image, Grid } from "../elements";
 
 import CategoryPost from "../components/CategoryPost";
 
-const Category = () => {
+const Category = (props) => {
   return (
     <Container>
       <Text alignCenter size="20px" bold>
@@ -17,6 +17,7 @@ const Category = () => {
         <CategoryButton>공부</CategoryButton>
       </Header>
       <CardWrap>
+        <CategoryPost></CategoryPost>
         <CategoryPost></CategoryPost>
         <CategoryPost></CategoryPost>
       </CardWrap>
@@ -44,8 +45,29 @@ const CategoryButton = styled.button`
 `;
 
 const CardWrap = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
 `;
 
+//categorypost
+const Card = styled.div`
+  margin: 10px 0px;
+`;
+
+const Img = styled.img`
+  padding: 0% 4%;
+  size: 20px;
+`;
+
+const Tag = styled.div`
+  display: inline-flex;
+  background-color: beige;
+  margin: 0% 3%;
+  width: 90px;
+  height: 20px;
+  border-radius: 5px;
+  align-items: center;
+`;
 export default Category;

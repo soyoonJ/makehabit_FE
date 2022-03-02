@@ -3,9 +3,6 @@ import styled from "styled-components";
 import { Button, Input, Text, Image, Grid } from "../elements";
 import { history } from "../redux/configureStore";
 
-// 캐러셀부분
-import BannerSlide from "../components/BannerSlide";
-
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
 const Main = () => {
@@ -21,12 +18,15 @@ const Main = () => {
           <Image size="40" src="images/search.png" alt=""></Image>
         </Header>
         <Banner1 />
-        <BannerSlide></BannerSlide>
+
         <Text margin="5% 5%" bold>
           카테고리
         </Text>
         <CategoryWrap>
-          <Img src="images/category_test.png"></Img>
+          <Img
+            src="images/category_test.png"
+            onClick={() => history.push("/category/1")}
+          />
           <Img src="images/category_test.png"></Img>
           <Img src="images/category_test.png"></Img>
           <Img src="images/category_test.png"></Img>
@@ -42,6 +42,8 @@ const Main = () => {
             <Text bold>추천 작심삼일</Text>
             <Text>더보기</Text>
           </RecommendTitle>
+          <Img src="images/Recommend_test.png"></Img>
+          <Img src="images/Recommend_test.png"></Img>
           <Img src="images/Recommend_test.png"></Img>
           <Img src="images/Recommend_test.png"></Img>
           <RecommendTitle>
