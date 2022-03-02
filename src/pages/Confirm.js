@@ -1,14 +1,27 @@
-// 이미지 클릭 시 업로드 되도록 기본 세팅 수정
+// 이미지 클릭 시 미리보기 업로드 되도록 기본 세팅 수정
 // textarea 우측 마진 안 맞는 부분 수정
 // 모달 배경 클릭 시에도 창 꺼짐 추가
 
 import React from "react";
 
 import { Grid, Text, Input, Image } from "../elements";
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 
 const Confirm = () => {
+  const dispatch = useDispatch();
+  // const preview = useSelector((state) => state.image.preview);
+  const [preview, setPreview] = React.useState(
+    "https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-file-upload-icon-image_1344393.jpg"
+  );
+
+  const handlePreview = (e) => {
+    const file = e.target.files[0];
+    const newUrl = URL.createObjectURL(file);
+    setPreview(newUrl);
+  };
+
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -27,8 +40,14 @@ const Confirm = () => {
           오늘의 도전을 성공하신 oo님! 인증사진을 올리고 포인트?
         </SubTitle>
 
-        <input type="file"></input>
-        <Image shape="rectangle"></Image>
+        <input
+          accept="image/*"
+          capture="camera"
+          type="file"
+          onChange={handlePreview}
+        ></input>
+
+        <Image shape="rectangle" src={preview}></Image>
 
         <Example>
           챌린지 인증 예시가 궁금하다면?
