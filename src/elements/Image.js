@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { shape, src, size, padding, margin } = props;
+  const { shape, src, size, padding, margin, _onClick } = props;
 
   const styles = {
     src: src,
@@ -25,7 +25,7 @@ const Image = (props) => {
 
   if (shape === "ConfirmHistory") {
     return (
-      <HistoryImage>
+      <HistoryImage onClick={_onClick}>
         <AspectInner {...styles}></AspectInner>
       </HistoryImage>
     );
@@ -55,8 +55,9 @@ const ImageDefault = styled.div`
 `;
 
 const HistoryImage = styled.div`
-  width: 50%;
+  // width: 50%;
   min-width: 250px;
+  _onClick: () => {},
 `;
 
 const AspectOutter = styled.div`

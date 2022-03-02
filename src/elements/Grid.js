@@ -27,6 +27,7 @@ const Grid = (props) => {
     alignItems,
     flexWrap,
     textAlign,
+    pointer,
   } = props;
 
   const styles = {
@@ -50,6 +51,7 @@ const Grid = (props) => {
     alignItems,
     flexWrap,
     textAlign,
+    pointer,
   };
 
   if (is_post_box) {
@@ -91,10 +93,12 @@ Grid.defaultProps = {
   position: false,
   justifyContent: "space-between",
   flexWrap: null,
+  pointer:'',
 };
 
 const GridBox = styled.div`
   box-sizing: border-box;
+  ${(props) => (props.pointer ? `cursor: pointer;` : "")}
 
   width: ${(props) => props.width};
   height: ${(props) => props.height};

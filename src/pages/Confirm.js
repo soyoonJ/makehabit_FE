@@ -104,7 +104,6 @@ const Button = styled.button`
   width: 100%;
   height: 80px;
   border: none;
-  position: fixed;
   bottom: 0px;
   color: white;
   background: orange;
