@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, Input, Text, Image, Grid } from "../elements";
+import { history } from "../redux/configureStore";
+
+import ButtonNavigation from "../components/ButtonNavigation";
 
 const Main = () => {
   return (
@@ -36,19 +39,26 @@ const Main = () => {
             <Text>더보기</Text>
           </RecommendTitle>
           <Img src="imges/Recommend_test.png"></Img>
+          <Img src="imges/Recommend_test.png"></Img>
           <RecommendTitle>
             <Text bold>캐릭터 갤러리</Text>
             <Text>더보기</Text>
           </RecommendTitle>
           <Img src="imges/Recommend_test.png"></Img>
+          <Img src="imges/Recommend_test.png"></Img>
+          <Img src="imges/Recommend_test.png"></Img>
+          <Img src="imges/Recommend_test.png"></Img>
+          <Img src="imges/Recommend_test.png"></Img>
+          <Img src="imges/Recommend_test.png"></Img>
         </RecommendWrap>
+        <ButtonNavigation></ButtonNavigation>
       </Container>
     </React.Fragment>
   );
 };
 
 const Container = styled.div`
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   margin: 0% 3% 0% 3%;
 `;
 

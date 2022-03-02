@@ -40,7 +40,7 @@ function App() {
             <Route path="/" exact component={Main} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/category/:categoryId" component={Category} />
+            <Route path="/category/" component={Category} />
             <Route path="/recommend" component={Recommend} />
             <Route path="/post/:id" component={PostDetail} />
             <Route path="/postwrite" component={PostWrite} />
