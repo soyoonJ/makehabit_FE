@@ -73,6 +73,10 @@ const PostWrite = () => {
     console.log(desc.current.value);
     console.log(method.current.value);
   };
+
+  //모달창 닫히게
+  const outSection = React.useRef();
+
   return (
     <Grid>
       {/* 타이틀 */}
@@ -88,6 +92,7 @@ const PostWrite = () => {
         <Button _onClick={openModal}>
           {categoryValue ? categoryValue : "카테고리 선택"}
         </Button>
+
         <CategoryModal
           open={modalopen}
           close={closeModal}

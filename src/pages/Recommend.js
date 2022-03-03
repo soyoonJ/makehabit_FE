@@ -29,12 +29,11 @@ const Recommend = () => {
 
 const Container = styled.div`
   overflow-x: hidden;
-  // margin 좌우 다른건 의도하신건가용?
-  margin: 0% 3% 0% 2%;
+  margin: 0% 3%;
 `;
 
 const Header = styled.div`
-  margin: 3% 0% 2% 0%;
+  margin: 3% 0%;
   display: flex;
   justify-content: space-around;
   text-align: center;
