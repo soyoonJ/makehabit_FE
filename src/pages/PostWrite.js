@@ -12,6 +12,7 @@ const PostWrite = () => {
 
   const getData = (categoryValue) => {
     setCategoryValue(categoryValue);
+    console.log(categoryValue);
   };
 
   //카테고리 팝업
@@ -84,7 +85,9 @@ const PostWrite = () => {
       </Grid>
       {/* 카테고리 선택 */}
       <Grid>
-        <Button _onClick={openModal}>카테고리 선택</Button>
+        <Button _onClick={openModal}>
+          {categoryValue ? categoryValue : "카테고리 선택"}
+        </Button>
         <CategoryModal
           open={modalopen}
           close={closeModal}

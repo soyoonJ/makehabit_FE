@@ -20,6 +20,7 @@ import Mypage from "../pages/Mypage";
 import Character from "../pages/Character";
 import Recommend from "../pages/Recommend";
 import MyFeed from "../components/MyFeed";
+import Chat from "../pages/Chat";
 
 function App() {
   // const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function App() {
             <Route path="/mypage" component={Mypage} />
             <Route path="/character" component={Character} />
             <Route path="/myfeed/:id" component={MyFeed} />
+            <Route path="/chat/:id" component={Chat} />
           </ConnectedRouter>
         </div>
       </Container>

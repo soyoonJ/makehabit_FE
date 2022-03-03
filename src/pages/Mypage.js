@@ -4,11 +4,15 @@ import { Grid, Text, Input, Button } from "../elements";
 
 import ProgressBar from "../components/ProgressBar";
 import NicknameModal from "../components/NicknameModal";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
 
 import { HiOutlinePencil } from "react-icons/hi";
+
 const Mypage = () => {
+  const dispatch = useDispatch();
   //닉네임 변경 모달 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
   const [nicknameValue, setNicknameValue] = useState("");
 
@@ -71,8 +75,7 @@ const Mypage = () => {
       <Grid padding="2% 5%">
         <Button
           _onClick={() => {
-            // mychallenge로 갔을 때 '나의기록보기'가 나와야 함
-            // setTab(false);
+            dispatch(postActions.setTab(null));
             history.push("/mychallenge");
           }}
         >
