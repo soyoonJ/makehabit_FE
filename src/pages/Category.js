@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Input, Text, Image, Grid } from "../elements";
 
 import CategoryPost from "../components/CategoryPost";
+import ButtonNavigation from "../components/ButtonNavigation";
 
 const Category = (props) => {
   return (
@@ -21,13 +22,13 @@ const Category = (props) => {
         <CategoryPost></CategoryPost>
         <CategoryPost></CategoryPost>
       </CardWrap>
+      <ButtonNavigation />
     </Container>
   );
 };
 
 const Container = styled.div`
   overflow-x: hidden;
-  margin: 0% 3% 0% 3%;
 `;
 
 const Header = styled.div`
@@ -49,6 +50,7 @@ const CardWrap = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
+  padding: 0% 3% 0% 3%;
 `;
 
 //categorypost

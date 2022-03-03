@@ -15,6 +15,7 @@ const Button = (props) => {
     cursor,
     borderRadius,
     position,
+    bottom,
     fontSize,
     alignItems,
     display,
@@ -41,6 +42,7 @@ const Button = (props) => {
     cursor,
     borderRadius,
     position,
+    bottom,
     fontSize,
     alignItems,
     display,
@@ -82,6 +84,7 @@ const ElButton = styled.button`
   ${(props) => (props.margin ? `margin:${props.margin};` : "")};
   cursor: ${(props) => props.cursor};
   position: ${(props) => props.position};
+  ${(props) => (props.bottom ? `bottom:${props.bottom};` : "")};
   ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : "")};
   align-items: ${(props) => props.alignItems};
   ${(props) => (props.display ? `display: ${props.display}; ` : "")}

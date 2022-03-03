@@ -38,8 +38,10 @@ const ButtonNavigation = () => {
 };
 
 const Footer = styled.div`
-  position: relative;
-  transform: translateY(-100%);
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  max-width: 420px;
 `;
 
 const ButtonWrap = styled.div`
@@ -48,7 +50,6 @@ const ButtonWrap = styled.div`
   align-items: center;
   margin-left: auto;
   width: 100%;
-
   background-color: gray;
 `;
 

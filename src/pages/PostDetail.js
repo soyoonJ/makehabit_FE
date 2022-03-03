@@ -50,7 +50,7 @@ const PostDetail = () => {
     }
   };
   return (
-    <Grid>
+    <Grid padding="0 0 50px 0">
       <Grid>
         <TitleImage src="https://cdn.mindgil.com/news/photo/202004/69099_2922_1716.jpg" />
       </Grid>
@@ -139,11 +139,11 @@ const Tag = styled.p`
 `;
 
 const Join = styled.button`
-  position: realtive;
+  position: fixed;
   bottom: 0;
-  left: 0;
   height: 50px;
   width: 100%;
+  max-width: 420px;
   background-color: #ddd;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
