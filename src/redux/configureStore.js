@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import User from "./modules/user";
+import Post from "./modules/post";
 
 // 히스토리 객체 만들기
 export const history = createBrowserHistory();
@@ -12,6 +13,7 @@ export const history = createBrowserHistory();
 // redux에 있는 모듈들 합하기
 const rootReducer = combineReducers({
   user: User,
+  post: Post,
   // 만든 history랑 라우터를 연결시켜 줌
   router: connectRouter(history),
 });
