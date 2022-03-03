@@ -30,7 +30,8 @@ const Confirm = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
-
+  // 모달창 닫히게
+  const outSection = React.useRef();
   return (
     <React.Fragment>
       <Grid padding="16px" position="relative">
@@ -72,7 +73,15 @@ const Confirm = () => {
       </Grid>
 
       {modalOpen ? (
-        <Modal>
+        <Modal
+          ref={outSection}
+          onClick={(e) => {
+            if (outSection.current === e.target) {
+              console.log("close modal!");
+              closeModal();
+            }
+          }}
+        >
           <section>
             <div onClick={closeModal}>X</div>
             <Grid padding="30px 30px 0px 30px">
