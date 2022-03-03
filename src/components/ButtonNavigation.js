@@ -1,11 +1,15 @@
 import React from "react";
 
 import { Grid, Text, Input, Image, Button } from "../elements";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
 
 const ButtonNavigation = () => {
+  const dispatch = useDispatch();
+
   return (
     <React.Fragment>
       <Footer>
@@ -14,7 +18,14 @@ const ButtonNavigation = () => {
           <ButtonIcon onClick={() => history.push("/postwrite")}>
             개설
           </ButtonIcon>
-          <ButtonIcon onClick={() => history.push("/confirm")}>인증</ButtonIcon>
+          <ButtonIcon
+            onClick={() => {
+              dispatch(postActions.setTab("navi"));
+              history.push("/mychallenge");
+            }}
+          >
+            인증
+          </ButtonIcon>
           {/* 채팅 추가 연결 필요 */}
           <ButtonIcon onClick={() => history.push("/")}>채팅</ButtonIcon>
           <ButtonIcon onClick={() => history.push("/mypage")}>

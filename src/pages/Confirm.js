@@ -42,7 +42,7 @@ const Confirm = () => {
 
         <input
           accept="image/*"
-          capture="camera"
+          capture="camera, gallery"
           type="file"
           onChange={handlePreview}
         ></input>
