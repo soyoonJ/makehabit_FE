@@ -2,7 +2,9 @@
 import React from "react";
 
 import { Grid, Text, Input, Image } from "../elements";
+import ButtonNavigation from "../components/ButtonNavigation";
 import ConfirmPost from "../components/ConfirmPost";
+
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,6 +12,7 @@ import styled from "styled-components";
 
 const MyChallenge = () => {
   const currentPage = useSelector((state) => state.post.page);
+  console.log("지금", currentPage);
 
   // 인증하기 페이지 클릭하면 리덕스에 이벤트 저장해놓고 true면 true, false면 false
   const [defaultTab, setTab] = React.useState(currentPage ? true : false);
@@ -84,6 +87,7 @@ const MyChallenge = () => {
           ></Img>
         </ImageContainer>
       )}
+      <ButtonNavigation />
     </React.Fragment>
   );
 };

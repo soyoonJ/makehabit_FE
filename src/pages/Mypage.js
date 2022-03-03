@@ -11,6 +11,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { HiOutlinePencil } from "react-icons/hi";
+import ButtonNavigation from "../components/ButtonNavigation";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -97,6 +98,7 @@ const Mypage = () => {
       <Grid padding="2% 5%">
         <Button>로그아웃</Button>
       </Grid>
+      <ButtonNavigation />
     </Grid>
   );
 };

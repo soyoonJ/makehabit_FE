@@ -1,6 +1,4 @@
-// 이미지 클릭 시 미리보기 업로드 되도록 기본 세팅 수정
 // textarea 우측 마진 안 맞는 부분 수정
-// 모달 배경 클릭 시에도 창 꺼짐 추가
 
 import React from "react";
 
@@ -34,8 +32,7 @@ const Confirm = () => {
         </SubTitle>
 
         <input
-          accept="image/*"
-          capture="camera, gallery"
+          accept=".png , .jpg , .png, .jpeg"
           type="file"
           onChange={handlePreview}
         ></input>
@@ -113,53 +110,14 @@ const Textarea = styled.textarea`
   margin-bottom: 100px;
 `;
 const Button = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 0px;
-
   width: 100%;
+  max-width: 420px;
   height: 80px;
   border: none;
-
   color: white;
   background: orange;
 `;
-
-// const Modal = styled.div`
-//   position: absolute;
-//   top: 0px;
-//   right: 0px;
-//   bottom: 0px;
-//   left: 0px;
-//   background: rgba(0, 0, 0, 0.6);
-//   z-index: 99;
-//   display: flex;
-
-//   section {
-//     width: 80%;
-//     height: 50%;
-//     margin: auto;
-//     align-self: center;
-//     background: #fff;
-//     border-radius: 10px;
-//   }
-
-//   section > div {
-//     &:nth-child(1) {
-//       cursor: pointer;
-//       text-align: right;
-//       margin: 20px;
-//       font-size: 1.3rem;
-//     }
-//   }
-
-//   section > div > div {
-//     &:nth-child(1) {
-//       font-weight: bold;
-//       margin-bottom: 20px;
-//     }
-//     &:nth-child(2) {
-//     }
-//   }
-// `;
 
 export default Confirm;

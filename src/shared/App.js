@@ -71,7 +71,16 @@ const Container = styled.div`
   background: url("/images/text.png");
   background-size: cover;
 
+  @media screen and (min-width: 420px) {
+    max-height: 100vh;
+  }
+
   #wrap {
+    scrollbar-width: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
     width: 100%;
     max-width: 420px;
     height: 100%;
