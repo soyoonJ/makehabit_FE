@@ -14,7 +14,12 @@ const CategoryPost = (props) => {
   const Img01 = process.env.PUBLIC_URL + "/images";
   return (
     <React.Fragment>
-      <Card>
+      {/* 클릭 시 이동 일단 임의로 설정 */}
+      <Card
+        onClick={() => {
+          history.push("/post/1");
+        }}
+      >
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={Img01}></Img> */}
@@ -36,6 +41,7 @@ CategoryPost.defaultProps = {
 
 const Card = styled.div`
   margin: 10px 0px;
+  cursor: pointer;
 `;
 
 const Img = styled.img`

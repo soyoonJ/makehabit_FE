@@ -5,6 +5,8 @@ import { Grid, Text, Input, Button } from "../elements";
 import ProgressBar from "../components/ProgressBar";
 import NicknameModal from "../components/NicknameModal";
 
+import { history } from "../redux/configureStore";
+
 import { HiOutlinePencil } from "react-icons/hi";
 const Mypage = () => {
   //닉네임 변경 모달 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
@@ -69,7 +71,15 @@ const Mypage = () => {
         <Button>문의 FAQ</Button>
       </Grid>
       <Grid padding="2% 5%">
-        <Button>나의 기록보기</Button>
+        <Button
+          _onClick={() => {
+            // mychallenge로 갔을 때 '나의기록보기'가 나와야 함
+            // setTab(false);
+            history.push("/mychallenge");
+          }}
+        >
+          나의 기록보기
+        </Button>
       </Grid>
       <Grid padding="2% 5%">
         <Button>로그아웃</Button>

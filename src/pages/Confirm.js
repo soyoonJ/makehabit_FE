@@ -67,6 +67,7 @@ const Confirm = () => {
       </Grid>
 
       <Grid>
+        {/* 인증완료하기 버튼 클릭 시 어떤 페이지로 넘어갈 지 정해야 함 */}
         <Button>인증완료하기</Button>
       </Grid>
 

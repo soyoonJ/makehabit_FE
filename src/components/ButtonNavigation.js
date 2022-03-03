@@ -11,10 +11,15 @@ const ButtonNavigation = () => {
       <Footer>
         <ButtonWrap>
           <ButtonIcon onClick={() => history.push("/")}>홈</ButtonIcon>
-          <ButtonIcon>개설</ButtonIcon>
-          <ButtonIcon>인증</ButtonIcon>
-          <ButtonIcon>채팅</ButtonIcon>
-          <ButtonIcon>Mypage</ButtonIcon>
+          <ButtonIcon onClick={() => history.push("/postwrite")}>
+            개설
+          </ButtonIcon>
+          <ButtonIcon onClick={() => history.push("/confirm")}>인증</ButtonIcon>
+          {/* 채팅 추가 연결 필요 */}
+          <ButtonIcon onClick={() => history.push("/")}>채팅</ButtonIcon>
+          <ButtonIcon onClick={() => history.push("/mypage")}>
+            Mypage
+          </ButtonIcon>
         </ButtonWrap>
       </Footer>
     </React.Fragment>
