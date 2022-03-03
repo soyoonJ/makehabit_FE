@@ -19,6 +19,7 @@ const CategoryModal = (props) => {
               onClick={() => {
                 close();
                 setData("공부");
+                console.log(setData);
               }}
             >
               공부
