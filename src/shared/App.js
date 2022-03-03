@@ -21,6 +21,7 @@ import Character from "../pages/Character";
 import Recommend from "../pages/Recommend";
 import MyFeed from "../components/MyFeed";
 import Chat from "../pages/Chat";
+import NotFound from "../pages/NotFound";
 
 function App() {
   // const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
             <Route path="/character" component={Character} />
             <Route path="/myfeed/:id" component={MyFeed} />
             <Route path="/chat/:id" component={Chat} />
+            <Route path={"*"} exact component={NotFound} />
           </ConnectedRouter>
         </div>
       </Container>
@@ -62,14 +64,18 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; // 아이템이 세로방향으로 흐릴 수 있도록(상>하)
   justify-content: flex-start;
   align-items: center;
   /* background: #d9e3ee; */
   overflow: hidden;
-  position: relative;
+  position: relative; //absolute를 쓸때 영역을 잡아주는 역할
   background: url("/images/text.png");
   background-size: cover;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   #wrap {
     width: 100%;
@@ -82,13 +88,16 @@ const Container = styled.div`
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     position: relative;
+
     @media screen and (min-width: 1024px) {
+      // 최소 min-width 값이상이면 아래 조건을 실행
       position: relative;
       left: 15%;
       top: 0%;
-      overflow: auto;
+      overflow: auto; //컨텐츠 양에 따라 스코롤바 추가할지 자동으로 결정
     }
   }
+
   @media screen and (min-width: 1200px) {
     background-size: 100% 100vh;
   }
