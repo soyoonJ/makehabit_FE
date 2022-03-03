@@ -82,7 +82,7 @@ const Banner1 = () => {
         icon={faAngleLeft}
         style={{
           position: "absolute",
-          left: "40px",
+          left: "10px",
           zIndex: 1,
           cursor: "pointer",
         }}
@@ -91,33 +91,41 @@ const Banner1 = () => {
         {circleArray.map((e, i) => (
           <ContentBox style={{ display: "flex" }} index={i} key={i}>
             <Content style={{ display: "flex" }}>
-              <TextBox style={{ marginRight: i === 0 ? null : "120px" }}>
+              <TextBox>
                 <h2
                   style={{
+                    width: "100%",
+                    textAlign: "left",
                     fontFamily: "gmarketBold",
                     fontSize: "38px",
-                    marginTop: "40px",
+                    margin: "60px 0 0 0",
                     color: i === 1 ? "#fff8ca" : i === 3 ? "white" : "black",
                   }}
                 >
                   {bannerMent[i][0]}
                 </h2>
-                <p style={{ fontSize: "20px", margin: " 0px 70px 10px 0px " }}>
+                <p style={{ fontSize: "20px", margin: " 0px 10px 10px 0px " }}>
                   {bannerMent[i][1]}
                 </p>
-                <Button
-                  width="250px"
-                  _onClick={() => {
-                    // console.log("Click! onclick")
-                    // dispatch(postActions.getPostDB(bannerMent[i][3]));
-                  }}
-                >
-                  {" "}
-                  {bannerMent[i][2]}
-                </Button>
+                <ButtonBox>
+                  <Button
+                    // style={{ position: "absolute", left: "200px" }}
+                    style={{
+                      justifyContent: "center",
+                    }}
+                    width="250px"
+                    _onClick={() => {
+                      // console.log("Click! onclick")
+                      // dispatch(postActions.getPostDB(bannerMent[i][3]));
+                    }}
+                  >
+                    {" "}
+                    {bannerMent[i][2]}
+                  </Button>
+                </ButtonBox>
               </TextBox>
               <Img imgURL={imgURL[i]} index={i}></Img>
-              {i === 0 && (
+              {/* {i === 0 && (
                 <h1
                   style={{
                     fontFamily: "tvnBold",
@@ -129,7 +137,7 @@ const Banner1 = () => {
                     ? `Hi! ${loginUserName} 롷`
                     : "Let's study Eng 롷"}
                 </h1>
-              )}
+              )} */}
             </Content>
           </ContentBox>
         ))}
@@ -152,7 +160,7 @@ const Banner1 = () => {
       <FontAwesomeIcon
         onClick={clickNext}
         icon={faAngleRight}
-        style={{ position: "absolute", right: "0px", cursor: "pointer" }}
+        style={{ position: "absolute", right: "10px", cursor: "pointer" }}
       />
     </Container>
   );
@@ -160,7 +168,8 @@ const Banner1 = () => {
 
 // 컨테이너에서 화살표색, 배경색 지정
 const Container = styled.div`
-  width: 420px;
+  width: 100%;
+  max-width: 420px;
   height: 350px;
   background: black;
   font-size: 70px;
@@ -171,37 +180,47 @@ const Container = styled.div`
   color: #e9e9e9;
   justify-content: center;
   align-items: flex-start;
-  left: -50px;
+  /* left: -30px; */
+  position: relative;
   //   @media only screen and (max-width: 1100px) {
   //     display: none;
   //   }
-  position: relative;
 `;
 const Carousel = styled.div`
   display: flex;
   transform: translate(
     ${(props) => {
-      return -(props.bannerIndex * 100) + "vw";
+      return -(props.bannerIndex * 420) + "px";
     }}
   );
+  @media only screen and (min-width: 420px) {
+  }
+
+  @media (max-width: 420px) {
+  }
+
   transition: all 0.2s;
 `;
 const ContentBox = styled.div`
   font-size: 22px;
-  width: 100vw;
+  width: 420px;
   height: 300px;
   font-weight: 700;
   line-height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
   color: ${(props) => ([1, 3].includes(props.index) ? "white" : "black")};
   background-color: ${(props) =>
     props.index === 1 ? "#3b5892;" : props.index === 3 ? "#dfc6b2" : null};
 `;
-const TextBox = styled.div``;
-const Content = styled.div``;
+const TextBox = styled.div`
+  z-index: 5;
+  width: 100%;
+`;
+const Content = styled.div`
+  position: relative;
+  width: 100%;
+  padding: 0px 20px;
+`;
 const CircleBox = styled.div`
   width: auto;
   display: flex;
@@ -221,9 +240,23 @@ const Circle = styled.div`
 
 const Img = styled.div`
   background-image: url(${(props) => props.imgURL});
-  width: 420px;
-  height: 255px;
+  width: 200px;
+
+  height: 200px;
   background-size: cover;
   background-position: center;
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  z-index: 2;
+`;
+
+const ButtonBox = styled.div`
+  /* position: absolute; 
+  left: 80px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
 `;
 export default Banner1;

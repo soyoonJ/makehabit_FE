@@ -65,7 +65,8 @@ const Main = () => {
 
 const Container = styled.div`
   /* overflow-x: hidden; */
-  margin: 0% 3% 0% 3%;
+  /* margin: 0% 3% 0% 3%; */
+  margin: 0%;
   padding-bottom: 50px;
 `;
 
