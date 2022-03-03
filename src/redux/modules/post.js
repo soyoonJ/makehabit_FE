@@ -1,10 +1,6 @@
 // 액션 만들어주는 것들
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { apis } from "../../shared/Api";
-import axios from "axios";
-
-import { useDispatch } from "react-redux";
 
 // actions
 const SET_TAB = "SET_TAB";
