@@ -4,6 +4,7 @@ import { Grid, Text, Input, Button } from "../elements";
 
 import ProgressBar from "../components/ProgressBar";
 import NicknameModal from "../components/NicknameModal";
+import Modal from "../components/Modal";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import { history } from "../redux/configureStore";
@@ -13,26 +14,9 @@ import { HiOutlinePencil } from "react-icons/hi";
 
 const Mypage = () => {
   const dispatch = useDispatch();
-  //닉네임 변경 모달 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
-  const [nicknameValue, setNicknameValue] = useState("");
 
-  const getData = (nicknameValue) => {
-    setNicknameValue(nicknameValue);
-  };
-
-  //카테고리 팝업
-  let [modalopen, setModalopen] = React.useState(false);
-  //카테고리 팝업 열기
-  const openModal = () => {
-    setModalopen(true);
-  };
-
-  //카테고리 팝업 닫기
-  const closeModal = () => {
-    setModalopen(false);
-  };
-  //모달 창 외부 클릭시 닫히게
-  const outSection = useRef();
+  //자식 함수 접근하는 Ref
+  const childRef = useRef();
   return (
     <Grid>
       <Grid is_flex justifyContent="center" padding="100px 0 0 0">
@@ -47,11 +31,39 @@ const Mypage = () => {
       </Grid>
       {/* 닉네임 / 닉네임 변경 */}
       <Grid is_flex textAlign="center" justifyContent="center" padding="2% 5%">
-        <Button _onClick={openModal}>
+        <Button
+          _onClick={() => {
+            console.log("onClick!", childRef, childRef.current);
+            childRef.current.openModal();
+          }}
+        >
           닉네임 &nbsp;&nbsp;&nbsp;
           <HiOutlinePencil />
         </Button>
-        <NicknameModal />
+
+        <Modal ref={childRef}>
+          <Grid>
+            <Grid is_flex height="50px">
+              <Input></Input>
+              <Button width="70px">중복확인</Button>
+            </Grid>
+            <Grid is_flex height="50px" justifyContent="center">
+              <Button width="70px" padding="3%" margin="3%">
+                확인
+              </Button>
+              <Button
+                width="70px"
+                padding="3%"
+                margin="3%"
+                _onClick={() => {
+                  childRef.current.closeModal();
+                }}
+              >
+                취소
+              </Button>
+            </Grid>
+          </Grid>
+        </Modal>
       </Grid>
 
       {/* 레벨 / 남은 경험치*/}

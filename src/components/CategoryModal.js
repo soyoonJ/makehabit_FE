@@ -9,9 +9,25 @@ const CategoryModal = (props) => {
     getData(categoryName);
   };
 
+  //추가내용 (상봉님내용)
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const outSection = React.useRef();
+
   if (open) {
     return (
-      <OpenModal>
+      <OpenModal
+        ref={outSection}
+        onClick={(e) => {
+          if (outSection.current === e.target) {
+            console.log("close modal!");
+            closeModal();
+          }
+        }}
+      >
         <Section>
           <ModalHeader>카테고리</ModalHeader>
           <ModalContent>

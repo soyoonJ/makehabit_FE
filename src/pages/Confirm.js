@@ -8,8 +8,10 @@ import { Grid, Text, Input, Image } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
+import Modal from "../components/Modal";
 
 const Confirm = () => {
+  const childRef = React.useRef();
   const dispatch = useDispatch();
   // const preview = useSelector((state) => state.image.preview);
   const [preview, setPreview] = React.useState(
@@ -22,16 +24,6 @@ const Confirm = () => {
     setPreview(newUrl);
   };
 
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-  // 모달창 닫히게
-  const outSection = React.useRef();
   return (
     <React.Fragment>
       <Grid padding="16px" position="relative">
@@ -56,7 +48,9 @@ const Confirm = () => {
             style={{
               cursor: "pointer",
             }}
-            onClick={openModal}
+            onClick={() => {
+              childRef.current.openModal();
+            }}
           >
             [아이콘]
           </span>
@@ -72,30 +66,17 @@ const Confirm = () => {
         <Button>인증완료하기</Button>
       </Grid>
 
-      {modalOpen ? (
-        <Modal
-          ref={outSection}
-          onClick={(e) => {
-            if (outSection.current === e.target) {
-              console.log("close modal!");
-              closeModal();
-            }
-          }}
-        >
-          <section>
-            <div onClick={closeModal}>X</div>
-            <Grid padding="30px 30px 0px 30px">
-              <div>챌린지 인증예시</div>
-              <div>
-                호스트가 챌린지 개설 시 작성한 인증방법 호스트가 챌린지 개설 시
-                작성한 인증방법 호스트가 챌린지 개설 시 작성한 인증방법 호스트가
-                챌린지 개설 시 작성한 인증방법 호스트가 챌린지 개설 시 작성한
-                인증방법 호스트가 챌린지 개설 시 작성한 인증방법
-              </div>
-            </Grid>
-          </section>
-        </Modal>
-      ) : null}
+      <Modal ref={childRef}>
+        <Grid padding="30px 30px 0px 30px">
+          <div>챌린지 인증예시</div>
+          <div>
+            호스트가 챌린지 개설 시 작성한 인증방법 호스트가 챌린지 개설 시
+            작성한 인증방법 호스트가 챌린지 개설 시 작성한 인증방법 호스트가
+            챌린지 개설 시 작성한 인증방법 호스트가 챌린지 개설 시 작성한
+            인증방법 호스트가 챌린지 개설 시 작성한 인증방법
+          </div>
+        </Grid>
+      </Modal>
     </React.Fragment>
   );
 };
@@ -143,42 +124,42 @@ const Button = styled.button`
   background: orange;
 `;
 
-const Modal = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 99;
-  display: flex;
+// const Modal = styled.div`
+//   position: absolute;
+//   top: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   left: 0px;
+//   background: rgba(0, 0, 0, 0.6);
+//   z-index: 99;
+//   display: flex;
 
-  section {
-    width: 80%;
-    height: 50%;
-    margin: auto;
-    align-self: center;
-    background: #fff;
-    border-radius: 10px;
-  }
+//   section {
+//     width: 80%;
+//     height: 50%;
+//     margin: auto;
+//     align-self: center;
+//     background: #fff;
+//     border-radius: 10px;
+//   }
 
-  section > div {
-    &:nth-child(1) {
-      cursor: pointer;
-      text-align: right;
-      margin: 20px;
-      font-size: 1.3rem;
-    }
-  }
+//   section > div {
+//     &:nth-child(1) {
+//       cursor: pointer;
+//       text-align: right;
+//       margin: 20px;
+//       font-size: 1.3rem;
+//     }
+//   }
 
-  section > div > div {
-    &:nth-child(1) {
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    &:nth-child(2) {
-    }
-  }
-`;
+//   section > div > div {
+//     &:nth-child(1) {
+//       font-weight: bold;
+//       margin-bottom: 20px;
+//     }
+//     &:nth-child(2) {
+//     }
+//   }
+// `;
 
 export default Confirm;
