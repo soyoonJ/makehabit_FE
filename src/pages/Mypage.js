@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { Grid, Text, Input, Button } from "../elements";
 
@@ -27,6 +27,8 @@ const Mypage = () => {
   const closeModal = () => {
     setModalopen(false);
   };
+  //모달 창 외부 클릭시 닫히게
+  const outSection = useRef();
   return (
     <Grid>
       <Grid is_flex justifyContent="center" padding="100px 0 0 0">
@@ -45,11 +47,7 @@ const Mypage = () => {
           닉네임 &nbsp;&nbsp;&nbsp;
           <HiOutlinePencil />
         </Button>
-        <NicknameModal
-          open={modalopen}
-          close={closeModal}
-          getData={getData}
-        ></NicknameModal>
+        <NicknameModal />
       </Grid>
 
       {/* 레벨 / 남은 경험치*/}
