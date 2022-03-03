@@ -57,8 +57,8 @@ const Main = () => {
           <Img src="images/Recommend_test.png"></Img>
           <Img src="images/Recommend_test.png"></Img>
         </RecommendWrap>
-        <ButtonNavigation></ButtonNavigation>
       </Container>
+      <ButtonNavigation />
     </React.Fragment>
   );
 };

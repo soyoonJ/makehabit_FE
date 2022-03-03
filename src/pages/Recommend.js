@@ -8,26 +8,28 @@ import ButtonNavigation from "../components/ButtonNavigation";
 const Recommend = () => {
   return (
     <React.Fragment>
+      <Header>
+        <Text alignCenter size="20px" bold>
+          추천 작심삼일
+        </Text>
+      </Header>
+      <hr></hr>
       <Container>
-        <Header>
-          <Text alignCenter size="20px" bold>
-            추천 작심삼일
-          </Text>
-        </Header>
-        <hr></hr>
         <Banner src="images/banner_02.png" alt=""></Banner>
         <CardWrap>
           <CategoryPost></CategoryPost>
           <CategoryPost></CategoryPost>
+          <CategoryPost></CategoryPost>
         </CardWrap>
-        <ButtonNavigation></ButtonNavigation>
       </Container>
+      <ButtonNavigation />
     </React.Fragment>
   );
 };
 
 const Container = styled.div`
   overflow-x: hidden;
+  // margin 좌우 다른건 의도하신건가용?
   margin: 0% 3% 0% 2%;
 `;
 
@@ -44,9 +46,13 @@ const Banner = styled.img`
 `;
 
 const CardWrap = styled.div`
-  display: flex;
-  margin: 0% 3% 0% 2%;
-  justify-content: space-around;
+  // display: flex;
+  // margin: 0% 3% 0% 2%;
+  // justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
 `;
 
 export default Recommend;

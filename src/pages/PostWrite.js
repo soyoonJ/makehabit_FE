@@ -25,7 +25,6 @@ const PostWrite = () => {
   const closeModal = () => {
     setModalopen(false);
   };
-  console.log("postWrite", categoryValue);
 
   //이미지 업로드
   const [fileImage, setFileImage] = React.useState(
@@ -115,7 +114,7 @@ const PostWrite = () => {
           onChange={onChange}
         ></StartDate>
       </Grid>
-      <Grid>
+      <Grid padding="0 5%">
         <Text>예상 종료일 : {todayPlus30}</Text>
       </Grid>
       <Grid padding="5%">

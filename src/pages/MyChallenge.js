@@ -8,7 +8,8 @@ import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
 const MyChallenge = () => {
-  const [defaultTab, setTab] = React.useState(false);
+  // 인증하기 페이지 클릭하면 리덕스에 이벤트 저장해놓고 true면 true, false면 false
+  const [defaultTab, setTab] = React.useState(true);
 
   return (
     <React.Fragment>
@@ -24,6 +25,7 @@ const MyChallenge = () => {
         >
           내가 참여한 챌린지
         </Grid>
+
         <Grid
           pointer
           _onClick={() => {

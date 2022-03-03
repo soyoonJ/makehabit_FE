@@ -102,7 +102,9 @@ const PostDetail = () => {
         <Text>챌린지 인증방법</Text>
         <Text>사진을 업로드 하세요</Text>
       </Grid>
-
+      <Grid>
+        <Button is_float>+</Button>
+      </Grid>
       <Grid>
         {isJoin ? (
           <Join onClick={clickJoin}>참여하기</Join>
