@@ -71,7 +71,7 @@ export const apis = {
     content,
     howtoContent,
     tag
-  ) =
+  ) =>
     instance.post(`/api/challenges`, {
       title,
       category,
