@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Grid, Text, Input, Button } from "../elements";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+
 import CategoryModal from "../components/CategoryModal";
 
 import styled from "styled-components";
 
 const PostWrite = () => {
+  const dispatch = useDispatch();
   //카테고리 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
   const [categoryValue, setCategoryValue] = useState(0);
 
@@ -134,7 +137,15 @@ const PostWrite = () => {
         <Contents placeholder="내용을 입력해주세요" ref={method}></Contents>
       </Grid>
       <Grid padding="5%">
-        <Button _onClick={complete}>개설 완료</Button>
+        <Button
+          _onClick={() => {
+            complete();
+            dispatch(postActions.uploadImageDB());
+            dispatch(postActions.addPostDB());
+          }}
+        >
+          개설 완료
+        </Button>
       </Grid>
     </Grid>
   );

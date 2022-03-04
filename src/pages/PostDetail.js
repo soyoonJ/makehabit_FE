@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Grid, Text, Input, Button } from "../elements";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+
 import styled from "styled-components";
 
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 const PostDetail = () => {
+  const dispatch = useDispatch();
+
   //좋아요 버튼 on/off
   let [isLike, setIsLike] = React.useState(false);
 
@@ -57,9 +61,23 @@ const PostDetail = () => {
       <Grid is_flex padding="5%" borderBottom="1px solid">
         <Text>매일 3시간 공부</Text>
         {isLike ? (
-          <FcLike color="#000" size="25" onClick={clickLike} />
+          <FcLike
+            color="#000"
+            size="25"
+            onClick={() => {
+              clickLike();
+              dispatch(postActions.dislikeDB());
+            }}
+          />
         ) : (
-          <FcLikePlaceholder color="#000" size="25" onClick={clickLike} />
+          <FcLikePlaceholder
+            color="#000"
+            size="25"
+            onClick={() => {
+              clickLike();
+              dispatch(postActions.likeDB());
+            }}
+          />
         )}
       </Grid>
       <Grid is_flex>
@@ -107,9 +125,23 @@ const PostDetail = () => {
       </Grid>
       <Grid>
         {isJoin ? (
-          <Join onClick={clickJoin}>참여하기</Join>
+          <Join
+            onClick={() => {
+              clickJoin();
+              dispatch(postActions.joinDB());
+            }}
+          >
+            참여하기
+          </Join>
         ) : (
-          <Join onClick={clickJoin}>참여대기중</Join>
+          <Join
+            onClick={() => {
+              clickJoin();
+              dispatch(postActions.joinCancelDB());
+            }}
+          >
+            참여대기중
+          </Join>
         )}
       </Grid>
     </Grid>
