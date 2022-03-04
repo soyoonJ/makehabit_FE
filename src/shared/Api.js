@@ -17,7 +17,7 @@ const instance = axios.create({
 //user.js ------------------------------------------------------------------------------------------------------------------------------------------
 export const apis = {
   //회원가입
-  signup: (nickname, email, password, confirmPassword) =>
+  signup: (email, nickname, password, confirmPassword) =>
     instance.post("/api/users/signup", {
       nickname,
       email,
@@ -99,12 +99,12 @@ export const apis = {
   //상세페이지 채팅버튼 (보류)
 
   // 인증페이지 -------------------------------------------------------------------------------------------------------
-  // 인증페이지 조회
-  setConfirm: (challengeId) =>
-    instance.get(`/api/challenges/${challengeId}/auth`),
+  // 인증하기 페이지 조회
+  getConfirm: (challengeId) =>
+    instance.get(`/api/proofshot/${challengeId}/auth`),
   // 인증업로드
   confirm: (challengeId, imgUrl, challengeTitle, comment) =>
-    instance.post(`/api/challenges/${challengeId}/proof`, {
+    instance.post(`/api/proofshot/${challengeId}/proof`, {
       imgUrl,
       challengeTitle,
       comment,
@@ -112,11 +112,11 @@ export const apis = {
 
   // 챌린지 전체 보기 -------------------------------------------------------------------------------------------------------
   // 하단네비 > 인증(내 챌린지보기)
-  naviChallenge: (challengeId) => instance.get("/api/mypage/challenge"),
+  naviChallenge: () => instance.get("/api/mypage/challenge"),
   // 마이페이지 > 인증(내 기록보기)
   myChallenge: () => instance.get("/api/mypage/proofShot"),
   // 나의 기록보기 상세 조회 (피드/스토리 형식)
-  history: (proofShotId) =>
+  oneHistory: (proofShotId) =>
     instance.get(`/api/mypage/proofShot/${proofShotId}`),
 
   //캐릭터 -------------------------------------------------------------------------------------------------------
@@ -131,21 +131,22 @@ export const apis = {
   //마이페이지-아이템구매 (아이템미확정으로 보완작업필요!)
   CharacterBuy: (item, hair, characterPoint, itemPrice) =>
     instance.post(`/api/mypage/character/${item}`, {
-      hair: hair,
-      characterPoint: characterPoint,
-      itemPrice: itemPrice,
+      hair,
+      characterPoint,
+      itemPrice,
     }),
 
   //마이페이지- 내캐릭터꾸민내용 저장하기
   CharacterSave: (hair, eye, wing) =>
     instance.post("/api/mypage/character", {
-      hair: hair,
-      eye: eye,
-      wing: wing,
+      hair,
+      eye,
+      wing,
     }),
 
-  //내 챌린지 보기
-  myChallenge: (status) => instance.get(`/api/mypage/mychallenge/${status}`),
+  //내 챌린지 보기 > 필터
+  challengeFilter: (status) =>
+    instance.get(`/api/mypage/mychallenge/${status}`),
 };
 
 export default instance;

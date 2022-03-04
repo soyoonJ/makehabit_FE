@@ -184,6 +184,8 @@ const actionCreators = {
   logOut,
   loginDB,
   signupDB,
+  emailCheckDB,
+  nicknameCheckDB,
   loginCheckDB,
   getKakaoProfile,
 };

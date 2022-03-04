@@ -5,7 +5,7 @@ import { Grid, Text, Input, Button } from "../elements";
 import ProgressBar from "../components/ProgressBar";
 import NicknameModal from "../components/NicknameModal";
 import Modal from "../components/Modal";
-import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -88,7 +88,7 @@ const Mypage = () => {
       <Grid padding="2% 5%">
         <Button
           _onClick={() => {
-            dispatch(postActions.setTab(null));
+            dispatch(challengeActions.setTab(null));
             history.push("/mychallenge");
           }}
         >
