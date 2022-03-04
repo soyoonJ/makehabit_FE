@@ -71,7 +71,7 @@ export const apis = {
     content,
     howtoContent,
     tag
-  ) =>
+  ) =
     instance.post(`/api/challenges`, {
       title,
       category,
@@ -96,7 +96,7 @@ export const apis = {
     instance.delete(`/api/challenges/${challengId}/join`),
   // 상세페이지-찜하기 버튼&취소버튼
   like: (challengeId) => instance.post(`/api/challenges/${challengeId}/like`),
-  notLike: (challengeId) =>
+  dislike: (challengeId) =>
     instance.delete(`/api/challenges/${challengeId}/like`),
 
   //상세페이지 채팅버튼 (보류)
