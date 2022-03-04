@@ -16,6 +16,7 @@ const Confirm = (props) => {
   // console.log(challengeId);
 
   const childRef = React.useRef();
+  const fileInput = React.useRef();
   const dispatch = useDispatch();
   // const preview = useSelector((state) => state.image.preview);
   const [preview, setPreview] = React.useState(
@@ -26,6 +27,27 @@ const Confirm = (props) => {
     const file = e.target.files[0];
     const newUrl = URL.createObjectURL(file);
     setPreview(newUrl);
+  };
+
+  const [comment, setComment] = React.useState(null);
+
+  const onChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const confirm = () => {
+    // challengeId, imgUrl, challengeTitle, comment;
+    // 타이틀 props로 가져온거 넣어주기
+    const imageForm = new FormData();
+    // console.log("newFormData 확인", imageForm);
+    // console.log("fileInput ref확인", fileInput);
+    let image = fileInput.current.files[0];
+    imageForm.append("image", image);
+    console.log("최종imageFomr확인", imageForm);
+
+    dispatch(
+      challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
+    );
   };
 
   React.useEffect(() => {
@@ -46,6 +68,7 @@ const Confirm = (props) => {
           accept=".png , .jpg , .png, .jpeg"
           type="file"
           onChange={handlePreview}
+          ref={fileInput}
         ></input>
 
         <Image shape="rectangle" src={preview}></Image>
@@ -66,15 +89,16 @@ const Confirm = (props) => {
 
         <CommentTitle>코멘트</CommentTitle>
         <div>예쁘게 어쩌구~~예쁘게 어쩌구~~</div>
-        <Textarea rows="8"></Textarea>
+        <Textarea rows="8" onChange={onChange}></Textarea>
       </Grid>
 
       <Grid>
         {/* 인증완료하기 버튼 클릭 시 어떤 페이지로 넘어갈 지 정해야 함 */}
         <Button
-          onClick={() => {
-            dispatch(postActions.uploadImageDB());
-          }}
+          // onClick={() => {
+          //   dispatch(postActions.uploadImageDB());
+          // }}
+          onClick={confirm}
         >
           인증완료하기
         </Button>

@@ -119,7 +119,7 @@ export const apis = {
   // 마이페이지 > 인증(내 기록보기)
   myChallenge: () => instance.get("/api/mypage/proofShot"),
   // 나의 기록보기 상세 조회 (피드/스토리 형식)
-  oneHistory: (proofShotId) =>
+  oneFeed: (proofShotId) =>
     instance.get(`/api/mypage/proofShot/${proofShotId}`),
 
   //캐릭터 -------------------------------------------------------------------------------------------------------
