@@ -5,6 +5,8 @@ import React from "react";
 import { Grid, Text, Input, Image } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+
 import styled from "styled-components";
 import Modal from "../components/Modal";
 
@@ -60,7 +62,13 @@ const Confirm = () => {
 
       <Grid>
         {/* 인증완료하기 버튼 클릭 시 어떤 페이지로 넘어갈 지 정해야 함 */}
-        <Button>인증완료하기</Button>
+        <Button
+          onClick={() => {
+            dispatch(postActions.uploadImageDB());
+          }}
+        >
+          인증완료하기
+        </Button>
       </Grid>
 
       <Modal ref={childRef}>
