@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Grid, Text, Input, Image, Button } from "../elements";
-import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
@@ -20,7 +20,7 @@ const ButtonNavigation = () => {
           </ButtonIcon>
           <ButtonIcon
             onClick={() => {
-              dispatch(postActions.setTab("navi"));
+              dispatch(challengeActions.setTab("navi"));
               history.push("/mychallenge");
             }}
           >
