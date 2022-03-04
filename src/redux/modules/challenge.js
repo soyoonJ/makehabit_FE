@@ -31,15 +31,16 @@ const initialState = {
 // 인증기록하기 페이지 조회
 const getConfirmDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
-    apis
-      .getConfirm(challengeId)
-      .then(function (res) {
-        console.log(res);
-        // dispatch(setConfirm(res.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(challengeId);
+    // apis
+    //   .getConfirm(challengeId)
+    //   .then(function (res) {
+    //     console.log(res);
+    //     // dispatch(setConfirm(res.data));
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 };
 
@@ -62,30 +63,32 @@ const confirmDB = (challengeId, imgUrl, challengeTitle, comment) => {
 // 하단네비 > 인증 > 내 챌린지보기
 const naviChallengeDB = () => {
   return function (dispatch, getState, { history }) {
-    apis
-      .naviChallenge()
-      .then(function (res) {
-        console.log(res);
-        // dispatch(setChallenge(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    console.log("인증, naviChallengeDB");
+    // apis
+    //   .naviChallenge()
+    //   .then(function (res) {
+    //     console.log(res);
+    //     // dispatch(setChallenge(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   };
 };
 
 // 마이페이지 > 내 기록보기
 const myChallengeDB = () => {
   return function (dispatch, getState, { history }) {
-    apis
-      .myChallenge()
-      .then(function (res) {
-        console.log(res);
-        // dispatch(setChallenge(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log("마이페이지 myChallenge");
+    // apis
+    //   .myChallenge()
+    //   .then(function (res) {
+    //     console.log(res);
+    //     // dispatch(setChallenge(res.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 };
 

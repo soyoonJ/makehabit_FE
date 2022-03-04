@@ -9,8 +9,12 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
 import Modal from "../components/Modal";
+import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
-const Confirm = () => {
+const Confirm = (props) => {
+  const challengeId = props.match.params.id;
+  // console.log(challengeId);
+
   const childRef = React.useRef();
   const dispatch = useDispatch();
   // const preview = useSelector((state) => state.image.preview);
@@ -24,10 +28,15 @@ const Confirm = () => {
     setPreview(newUrl);
   };
 
+  React.useEffect(() => {
+    dispatch(challengeActions.getConfirmDB(challengeId));
+  }, []);
+
   return (
     <React.Fragment>
       <Grid padding="16px" position="relative">
         <ConfirmText>인증하기</ConfirmText>
+        {/* useSelector 해서 타이틀 가져오기 */}
         <Title>뷰 페이지 다 만들기</Title>
         <SubTitle>
           오늘의 도전을 성공하신 oo님! 인증사진을 올리고 포인트?
