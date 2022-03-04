@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  Switch,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,20 +44,22 @@ function App() {
       <Container>
         <div id="wrap">
           <ConnectedRouter history={history}>
-            <Route path="/" exact component={Main} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/category" component={Category} />
-            <Route path="/recommend" component={Recommend} />
-            <Route path="/post/:id" component={PostDetail} />
-            <Route path="/postwrite" component={PostWrite} />
-            <Route path="/confirm" component={Confirm} />
-            <Route path="/mychallenge" component={MyChallenge} />
-            <Route path="/mypage" component={Mypage} />
-            <Route path="/character" component={Character} />
-            <Route path="/myfeed/:id" component={MyFeed} />
-            <Route path="/chat/:id" component={Chat} />
-            <Route path={"*"} exact component={NotFound} />
+            <Switch>
+              <Route path="/" exact component={Main} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/category" component={Category} />
+              <Route path="/recommend" component={Recommend} />
+              <Route path="/post/:id" component={PostDetail} />
+              <Route path="/postwrite" component={PostWrite} />
+              <Route path="/confirm/:id" component={Confirm} />
+              <Route path="/mychallenge" component={MyChallenge} />
+              <Route path="/mypage" component={Mypage} />
+              <Route path="/character" component={Character} />
+              <Route path="/myfeed/:id" component={MyFeed} />
+              <Route path="/chat/:id" component={Chat} />
+              <Route path="*" exact component={NotFound} />
+            </Switch>
           </ConnectedRouter>
         </div>
       </Container>

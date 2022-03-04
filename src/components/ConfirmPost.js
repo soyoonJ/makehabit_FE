@@ -5,7 +5,7 @@ import { Grid, Text, Input, Image, Button } from "../elements";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
-const ConfirmPost = () => {
+const ConfirmPost = (props) => {
   return (
     <React.Fragment>
       <Grid padding="16px">
@@ -19,6 +19,7 @@ const ConfirmPost = () => {
             width="6rem"
             _onClick={() => {
               history.replace("/confirm");
+              // history.replace("/confirm/${props.id}");
             }}
           >
             오늘의 인증

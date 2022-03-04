@@ -20,7 +20,11 @@ const MyChallenge = () => {
   const [defaultTab, setTab] = React.useState(currentPage ? true : false);
 
   React.useEffect(() => {
-    dispatch(challengeActions.setChallenge());
+    if (currentPage) {
+      dispatch(challengeActions.naviChallengeDB());
+    } else {
+      dispatch(challengeActions.myChallengeDB());
+    }
   }, []);
 
   return (
