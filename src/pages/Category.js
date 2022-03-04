@@ -4,8 +4,18 @@ import { Button, Input, Text, Image, Grid } from "../elements";
 
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
+import { useDispatch } from "react-redux";
+
+import { actionCreators as mainActions } from "../redux/modules/main";
 
 const Category = (props) => {
+  //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
+  //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    // dispatch(mainActions.categoryDB("안녕하세여"));
+  }, []);
+
   return (
     <Container>
       <Text alignCenter size="20px" bold>

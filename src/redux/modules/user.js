@@ -88,6 +88,7 @@ const loginDB = (email, password) => {
       .then((res) => {
         console.log(res);
         // localStorage.setItem("token", res.data.token);
+        // 서버에서 받아온 정보를 리덕스에 저장해주는 액션
         // dispatch(setUser({
         //     email,
         //     nickname: res.data.user.nickname,
@@ -155,6 +156,7 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user.email = action.payload.user.email;
+        // draft.user.nickname = action.payload.user.nickname;
         draft.is_login = true;
       }),
 

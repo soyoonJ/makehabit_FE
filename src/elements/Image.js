@@ -46,6 +46,7 @@ Image.defaultProps = {
   size: "60",
   padding: "0 20px",
   margin: "0",
+  _onClick: () => {},
 };
 
 const ImageDefault = styled.div`
@@ -58,7 +59,6 @@ const ImageDefault = styled.div`
 
 const HistoryImage = styled.div`
   min-width: 250px;
-  _onClick: () => {},
 `;
 
 const AspectOutter = styled.div`

@@ -2,20 +2,37 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Button, Input, Text, Image, Grid } from "../elements";
 import { history } from "../redux/configureStore";
+import { actionCreators as mainActions } from "../redux/modules/main";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
+import { useDispatch } from "react-redux";
+
 const Main = () => {
+  //메인헤더 검색 키워드를 서버 보내주기 위한 작업
+  //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
+  //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
+  const dispatch = useDispatch();
+  const search = React.useRef(null);
+
   return (
     <React.Fragment>
       <Container>
         <Header>
           <Image size="40" src="images/logoEx.png" alt=""></Image>
           <Input
+            _ref={search}
             placeholder="도전하고 싶은 습관을 검색해보세요!"
             width="65%"
           ></Input>
-          <Image size="40" src="images/search.png" alt=""></Image>
+          <Img
+            style={{ width: "20px" }}
+            src="images/search.png"
+            alt=""
+            onClick={() => {
+              dispatch(mainActions.getSearchDB(search.current.value));
+            }}
+          ></Img>
         </Header>
         <Banner1 />
 
@@ -25,9 +42,18 @@ const Main = () => {
         <CategoryWrap>
           <Img
             src="images/category_test.png"
-            onClick={() => history.push("/category/1")}
+            onClick={() => {
+              dispatch(mainActions.categoryDB("공부"));
+              history.push("/category/공부");
+            }}
           />
-          <Img src="images/category_test.png"></Img>
+          <Img
+            src="images/category_test.png"
+            onClick={() => {
+              dispatch(mainActions.categoryDB("운동"));
+              history.push("/category/운동");
+            }}
+          ></Img>
           <Img src="images/category_test.png"></Img>
           <Img src="images/category_test.png"></Img>
         </CategoryWrap>
@@ -90,6 +116,7 @@ const CategoryWrap = styled.div`
 const Img = styled.img`
   padding: 0% 4%;
   size: 20px;
+  cursor: pointer;
 `;
 
 //추천 작심삼일

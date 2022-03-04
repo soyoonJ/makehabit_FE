@@ -114,7 +114,7 @@ const PostWrite = () => {
           ></ImageInput>
         </Grid>
         <Grid>
-          <img width="100%" height="100%" src={previewImg} alt="" />
+          <img width="100%" height="100%" src={previewImg} alt=""></img>
         </Grid>
       </Grid>
       <Grid is_flex justifyContent="center">
@@ -140,7 +140,6 @@ const PostWrite = () => {
         <Button
           _onClick={() => {
             complete();
-            dispatch(postActions.uploadImageDB());
             dispatch(postActions.addPostDB());
           }}
         >
@@ -153,7 +152,6 @@ const PostWrite = () => {
 
 const ImageInput = styled.input`
   // display: none;
-  accpet: .png, .jpg, .jpeg;
 `;
 
 const StartDate = styled.input`

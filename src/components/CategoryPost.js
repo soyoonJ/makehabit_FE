@@ -16,6 +16,9 @@ import { useDispatch } from "react-redux";
 const CategoryPost = (props) => {
   const dispatch = useDispatch();
   const Img01 = process.env.PUBLIC_URL + "/images";
+
+  // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
+  // const {img, title,tags } = props;
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
@@ -29,10 +32,10 @@ const CategoryPost = (props) => {
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={Img01}></Img> */}
         <Img src={Img01 + "/Recommend_test.png"}></Img>
-        <Text margin="2% 5%">타이틀이 들어가나용</Text>
+        <Text margin="2% 5%">"타이틀 변수로 변경해라"</Text>
         <Tag>
           <Text size="10px" alignCenter>
-            작심삼일1일차
+            "태그도 변수로 변경해라"
           </Text>
         </Tag>
       </Card>
