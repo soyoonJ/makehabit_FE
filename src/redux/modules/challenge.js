@@ -44,9 +44,20 @@ const getConfirmDB = (challengeId) => {
 };
 
 // 인증 업로드
-// const confirmDB = () => {
-
-// }
+const confirmDB = (challengeId, imgUrl, challengeTitle, comment) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .confirm(challengeId, imgUrl, challengeTitle, comment)
+      .then(function (res) {
+        console.log(res);
+        // 인증완료 후 넘겨지는 페이지에서 get 할거로 연결
+        // dispatch(reducer(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
 
 // 하단네비 > 인증 > 내 챌린지보기
 const naviChallengeDB = () => {
@@ -121,6 +132,7 @@ export default handleActions(
 const actionCreators = {
   setConfirm,
   getConfirmDB,
+  confirmDB,
   setTab,
   setChallenge,
   naviChallengeDB,
