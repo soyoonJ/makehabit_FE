@@ -7,7 +7,7 @@ import axios from "axios";
 // actions
 const SET_CHALLENGE = "SET_CHALLENGE";
 const SET_TAB = "SET_TAB";
-const SET_ONE = "SET_ONE";
+const SET_FEED = "SET_FEED";
 const SET_CONFIRM = "SET_CONFIRM";
 
 // action creators
@@ -15,7 +15,7 @@ const setChallenge = createAction(SET_CHALLENGE, (challenge_list) => ({
   challenge_list,
 }));
 const setTab = createAction(SET_TAB, (page) => ({ page }));
-const setOne = createAction(SET_ONE, (one_history) => ({ one_history }));
+const setFeed = createAction(SET_FEED, (feed_list) => ({ feed_list }));
 const setConfirm = createAction(SET_CONFIRM, (challenge_info) => ({
   challenge_info,
 }));
@@ -25,7 +25,7 @@ const initialState = {
   challenge_info: null,
   page: null,
   challenge_list: null,
-  one_history: null,
+  feed_list: null,
 };
 
 // 인증기록하기 페이지 조회
@@ -47,16 +47,17 @@ const getConfirmDB = (challengeId) => {
 // 인증 업로드
 const confirmDB = (challengeId, imgUrl, challengeTitle, comment) => {
   return function (dispatch, getState, { history }) {
-    apis
-      .confirm(challengeId, imgUrl, challengeTitle, comment)
-      .then(function (res) {
-        console.log(res);
-        // 인증완료 후 넘겨지는 페이지에서 get 할거로 연결
-        // dispatch(reducer(res.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log("인증업로드", challengeId, imgUrl, challengeTitle, comment);
+    // apis
+    //   .confirm(challengeId, imgUrl, challengeTitle, comment)
+    //   .then(function (res) {
+    //     console.log(res);
+    //     // 인증완료 후 넘겨지는 페이지에서 get 할거로 연결
+    //     // dispatch(reducer(res.data));
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 };
 
@@ -93,17 +94,18 @@ const myChallengeDB = () => {
 };
 
 // 내 기록보기 > 사진 하나 클릭 시 상세
-const historyDB = (proofShotId) => {
+const myfeedDB = (proofShotId) => {
   return function (dispatch, getState, { history }) {
-    apis
-      .oneHistory(proofShotId)
-      .then(function (res) {
-        console.log(res);
-        // dispatch(setOne(res.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log("myfeedDB");
+    // apis
+    //   .oneFeed(proofShotId)
+    //   .then(function (res) {
+    //     console.log(res);
+    //     // dispatch(setFeed(res.data));
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 };
 
@@ -124,9 +126,9 @@ export default handleActions(
       produce(state, (draft) => {
         draft.challenge_list = action.payload.challenge_list;
       }),
-    [SET_ONE]: (state, action) =>
+    [SET_FEED]: (state, action) =>
       produce(state, (draft) => {
-        draft.one_history = action.payload.one_history;
+        draft.feed_list = action.payload.feed_list;
       }),
   },
   initialState
@@ -140,8 +142,8 @@ const actionCreators = {
   setChallenge,
   naviChallengeDB,
   myChallengeDB,
-  setOne,
-  historyDB,
+  setFeed,
+  myfeedDB,
 };
 
 export { actionCreators };

@@ -1,11 +1,19 @@
 import React from "react";
 
 import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { Grid, Text, Input, Image } from "../elements";
 
 import styled from "styled-components";
 
 const MyFeed = (props) => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(challengeActions.myfeedDB());
+  }, []);
+
   return (
     <React.Fragment>
       <Container>
