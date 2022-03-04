@@ -24,6 +24,7 @@ const addPostDB = (
   tag
 ) => {
   return function (dispatch, useState, { history }) {
+    console.log("게시물 등록");
     apis
       .createChallenge(
         title,
@@ -46,6 +47,7 @@ const addPostDB = (
 //이미지 업로드
 const uploadImageDB = (challengeId, imgUrl, challengeTitle, comment) => {
   return function (dispatch, useState, { history }) {
+    console.log("이미지 업로드");
     apis
       .confirm(challengeId, imgUrl, challengeTitle, comment)
       .then((response) => {
@@ -60,6 +62,7 @@ const uploadImageDB = (challengeId, imgUrl, challengeTitle, comment) => {
 //상세페이지 불러오기
 const getDetailPostDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
+    console.log("상세페이지");
     apis
       .detail(challengeId)
       .then((response) => {
@@ -74,6 +77,7 @@ const getDetailPostDB = (challengeId) => {
 //참여하기
 const joinDB = (challengId) => {
   return function (dispatch, getState, { history }) {
+    console.log("참여하기");
     apis
       .join(challengId)
       .then((response) => {
@@ -88,6 +92,7 @@ const joinDB = (challengId) => {
 //참여취소하기
 const joinCancelDB = (challengId) => {
   return function (dispatch, getState, { history }) {
+    console.log("참여취소하기");
     apis
       .joinCancel(challengId)
       .then((response) => {
@@ -102,10 +107,11 @@ const joinCancelDB = (challengId) => {
 //찜하기
 const likeDB = (challengId) => {
   return function (dispatch, getState, { history }) {
+    console.log("좋아요");
     apis
       .like(challengId)
       .then((response) => {
-        console.log("찜하기");
+        console.log("좋아요");
       })
       .catch(function (error) {
         console.log(error);
@@ -116,10 +122,11 @@ const likeDB = (challengId) => {
 //찜하기 취소하기
 const dislikeDB = (challengId) => {
   return function (dispatch, getState, { history }) {
+    console.log("싫어요");
     apis
       .dislike(challengId)
       .then((response) => {
-        console.log("찜하기");
+        console.log("싫어요");
       })
       .catch(function (error) {
         console.log(error);

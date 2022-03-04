@@ -2,8 +2,11 @@ import React from "react";
 
 import { Grid, Text, Input, Image, Button } from "../elements";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { useDispatch } from "react-redux";
 // import Img01 from "../img/Recommend_test.png";
 // import Img01 from "../img/Recommend_test";
 // import Img01 from "./images/category_test";
@@ -11,6 +14,7 @@ import { history } from "../redux/configureStore";
 // import Img01 from "/images";
 
 const CategoryPost = (props) => {
+  const dispatch = useDispatch();
   const Img01 = process.env.PUBLIC_URL + "/images";
   return (
     <React.Fragment>
@@ -18,6 +22,7 @@ const CategoryPost = (props) => {
       <Card
         onClick={() => {
           history.push("/post/1");
+          dispatch(postActions.getDetailPostDB());
         }}
       >
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
