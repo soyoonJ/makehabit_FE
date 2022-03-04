@@ -16,8 +16,11 @@ const instance = axios.create({
 //참고
 //user.js ------------------------------------------------------------------------------------------------------------------------------------------
 export const apis = {
-  //회원가입
-  signup: (email, nickname, password, confirmPassword) =>
+  // user.js
+  login: (email, password) =>
+    instance.post("/api/users/login", { email, password }),
+  loginKakao: (email) => instance.post("/api/users/loginKakao", { email }),
+  signup: (nickname, email, password, confirmPassword) =>
     instance.post("/api/users/signup", {
       nickname,
       email,
