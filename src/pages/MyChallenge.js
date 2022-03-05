@@ -18,6 +18,7 @@ const MyChallenge = () => {
 
   // 인증하기 페이지 클릭하면 리덕스에 이벤트 저장해놓고 true면 true, false면 false
   const [defaultTab, setTab] = React.useState(currentPage ? true : false);
+  // const [clickedTab, changeTab] = React.useState(currentPage ? true : false);
 
   React.useEffect(() => {
     if (currentPage) {
@@ -38,6 +39,7 @@ const MyChallenge = () => {
           _onClick={() => {
             setTab(true);
           }}
+          bg={currentPage ? "orange" : "null"}
         >
           내가 참여한 챌린지
         </Grid>
@@ -47,6 +49,7 @@ const MyChallenge = () => {
           _onClick={() => {
             setTab(false);
           }}
+          bg={!currentPage ? "orange" : "null"}
         >
           나의 기록보기
         </Grid>
