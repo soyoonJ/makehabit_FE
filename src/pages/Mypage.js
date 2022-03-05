@@ -21,7 +21,7 @@ const Mypage = () => {
   return (
     <Grid>
       <Grid is_flex justifyContent="center" padding="100px 0 0 0">
-        {/* <canvas width="150px" height="150px"> */}
+        {/* <canvas width="100%" height="150px"> */}
         <img
           src="https://media.istockphoto.com/vectors/man-face-character-people-work-profile-image-vector-id931879564"
           width="150px"
