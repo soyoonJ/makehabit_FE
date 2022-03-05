@@ -180,6 +180,7 @@ const Container = styled.div`
   color: #e9e9e9;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: hidden;
   /* left: -30px; */
   position: relative;
   //   @media only screen and (max-width: 1100px) {
@@ -188,25 +189,38 @@ const Container = styled.div`
 `;
 const Carousel = styled.div`
   display: flex;
-  transform: translate(
-    ${(props) => {
-      return -(props.bannerIndex * 420) + "px";
-    }}
-  );
+
   @media only screen and (min-width: 420px) {
+    transform: translate(
+      ${(props) => {
+        return -(props.bannerIndex * 420) + "px";
+      }}
+    );
   }
 
   @media (max-width: 420px) {
+    transform: translate(
+      ${(props) => {
+        return -(props.bannerIndex * 100) + "vw";
+      }}
+    );
   }
 
   transition: all 0.2s;
 `;
 const ContentBox = styled.div`
   font-size: 22px;
-  width: 420px;
   height: 300px;
   font-weight: 700;
   line-height: 60px;
+
+  @media (min-width: 420px) {
+    width: 420px;
+  }
+
+  @media (max-width: 420px) {
+    width: 100vw;
+  }
 
   color: ${(props) => ([1, 3].includes(props.index) ? "white" : "black")};
   background-color: ${(props) =>

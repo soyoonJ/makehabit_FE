@@ -36,7 +36,7 @@ const Main = () => {
         </Header>
         <Banner1 />
 
-        <Text margin="5% 5%" bold>
+        <Text padding="5% 0 5% 5%" bold borderBox>
           카테고리
         </Text>
         <CategoryWrap>
