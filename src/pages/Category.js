@@ -7,12 +7,22 @@ import ButtonNavigation from "../components/ButtonNavigation";
 import { useDispatch } from "react-redux";
 
 import { actionCreators as mainActions } from "../redux/modules/main";
-
+import { history } from "../redux/configureStore";
+import { useParams } from "react-router-dom";
 const Category = (props) => {
+  // 카테고리 클릭시 색 변하게 하는 부분
+  const [currentClick, setCurrentClick] = React.useState(null);
+  const [prevClick, setPrevClick] = React.useState(null);
+  const category = useParams();
+
+  const GetClick = (category) => {
+    setCurrentClick(category);
+    console.log(category);
+  };
+
   //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
   //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
-
-  React.useEffect(() => {
+  React.useEffect((e) => {
     // dispatch(mainActions.categoryDB("안녕하세여"));
   }, []);
   const dispatch = useDispatch();
@@ -22,12 +32,69 @@ const Category = (props) => {
       <Text alignCenter size="20px" bold>
         전체보기
       </Text>
-      <Header>
-        <CategoryButton>전체보기</CategoryButton>
-        <CategoryButton>인기</CategoryButton>
-        <CategoryButton>신규</CategoryButton>
-        <CategoryButton>공부</CategoryButton>
-      </Header>
+      <HeaderContainer>
+        <CategoryBar>
+          <CategoryButton
+            id="all"
+            onClick={() => {
+              GetClick("all");
+              dispatch(mainActions.categoryDB("all"));
+              history.push("/category/all");
+            }}
+          >
+            전체보기
+          </CategoryButton>
+          <CategoryButton
+            onClick={() => {
+              dispatch(mainActions.categoryDB("popular"));
+              history.push("/category/popularll");
+            }}
+          >
+            인기
+          </CategoryButton>
+          <CategoryButton
+            onClick={() => {
+              dispatch(mainActions.categoryDB("new"));
+              history.push("/category/new");
+            }}
+          >
+            신규
+          </CategoryButton>
+          <CategoryButton
+            onClick={() => {
+              dispatch(mainActions.categoryDB("study"));
+              history.push("/category/study");
+            }}
+          >
+            공부
+          </CategoryButton>
+          <CategoryButton
+            onClick={() => {
+              dispatch(mainActions.categoryDB("exercise"));
+              history.push("/category/exercise");
+            }}
+          >
+            운동
+          </CategoryButton>
+          <CategoryButton
+            onClick={() => {
+              dispatch(mainActions.categoryDB("self-development"));
+              history.push("/category/self-development");
+            }}
+          >
+            자기계발
+          </CategoryButton>
+          <CategoryButton
+            onClick={() => {
+              dispatch(mainActions.categoryDB("living_habit"));
+              history.push("/category/living_habi");
+            }}
+          >
+            생활습관
+          </CategoryButton>
+        </CategoryBar>
+      </HeaderContainer>
+      <hr></hr>
       <CardWrap>
         <CategoryPost></CategoryPost>
         <CategoryPost></CategoryPost>
@@ -42,18 +109,21 @@ const Container = styled.div`
   overflow-x: hidden;
 `;
 
-const Header = styled.div`
+const HeaderContainer = styled.div`
   margin: 5% 0% 2% 0%;
   display: flex;
   justify-content: space-around;
-  text-align: center;
+`;
+
+const CategoryBar = styled.div`
+  width: auto;
 `;
 
 const CategoryButton = styled.button`
   border: 0;
   outline: 0;
   background-color: white;
-  margin-bottom: 7%;
+  margin: 1% 1%;
 `;
 
 const CardWrap = styled.div`
@@ -64,23 +134,4 @@ const CardWrap = styled.div`
   padding: 0% 3% 0% 3%;
 `;
 
-//categorypost
-const Card = styled.div`
-  margin: 10px 0px;
-`;
-
-const Img = styled.img`
-  padding: 0% 4%;
-  size: 20px;
-`;
-
-const Tag = styled.div`
-  display: inline-flex;
-  background-color: beige;
-  margin: 0% 3%;
-  width: 90px;
-  height: 20px;
-  border-radius: 5px;
-  align-items: center;
-`;
 export default Category;
