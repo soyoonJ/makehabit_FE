@@ -8,9 +8,26 @@ const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
 
+//참여하기
+const EDIT_JOIN = "EDIT_JOIN";
+
+//좋아요
+const EDIT_LIKE = "EDIT_LIKE";
+
+const editJoin = createAction(EDIT_JOIN, (challengId, isPush) => ({
+  challengId,
+  isPush,
+}));
+
+const editLike = createAction(EDIT_LIKE, (challengeId, isPush) => ({
+  challengeId,
+  isPush,
+}));
+
 // initialState
 const initialState = {
   page: null,
+  challengId: "_id",
 };
 
 //게시물 등록
@@ -105,13 +122,14 @@ const joinCancelDB = (challengId) => {
 };
 
 //찜하기
-const likeDB = (challengId) => {
+const likeDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
     console.log("좋아요");
     apis
-      .like(challengId)
+      .like(challengeId)
       .then((response) => {
         console.log("좋아요");
+        dispatch(editLike(challengeId, true));
       })
       .catch(function (error) {
         console.log(error);
@@ -120,13 +138,14 @@ const likeDB = (challengId) => {
 };
 
 //찜하기 취소하기
-const dislikeDB = (challengId) => {
+const dislikeDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
     console.log("싫어요");
     apis
-      .dislike(challengId)
+      .dislike(challengeId)
       .then((response) => {
         console.log("싫어요");
+        dispatch(editLike(challengeId, false));
       })
       .catch(function (error) {
         console.log(error);
@@ -142,6 +161,20 @@ export default handleActions(
     //     // console.log(action.payload.page);
     //     draft.page = action.payload.page;
     //   }),
+    [EDIT_JOIN]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("EDITJOIN ENTER!");
+        let idx = draft.list.findIndex(
+          (e) => e.challengId === action.payload.challengId
+        );
+      }),
+    [EDIT_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("EDITLIKE ENTER!");
+        let idx = draft.list.findIndex(
+          (e) => e.challengId === action.payload.challengId
+        );
+      }),
   },
   initialState
 );
@@ -150,8 +183,10 @@ const actionCreators = {
   addPostDB,
   uploadImageDB,
   getDetailPostDB,
+  editJoin,
   joinDB,
   joinCancelDB,
+  editLike,
   likeDB,
   dislikeDB,
 };
