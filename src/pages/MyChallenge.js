@@ -27,7 +27,7 @@ const MyChallenge = () => {
       dispatch(challengeActions.myChallengeDB());
     }
   }, []);
-
+  console.log("MyChallenge", defaultTab);
   return (
     <React.Fragment>
       <div style={{ textAlign: "center" }}>작심삼일 인증</div>

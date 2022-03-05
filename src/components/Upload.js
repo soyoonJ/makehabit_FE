@@ -3,7 +3,8 @@ import { Text, Grid } from "../elements";
 import styled from "styled-components";
 
 const Upload = forwardRef((props, ref) => {
-  const { _onClick } = props;
+  const { _onClick, _ref } = props;
+  console.log("upload", ref, props, _ref);
   useImperativeHandle(ref, () => ({
     //div창 클릭시 이미지 인풋 클릭
     upload() {
@@ -33,6 +34,7 @@ const Upload = forwardRef((props, ref) => {
         type="file"
         accept=".png , .jpg , .png, .jpeg"
         onChange={saveFileImage}
+        ref={_ref}
         cursor="pointer"
       ></ImageInput>
     </ImageBox>
