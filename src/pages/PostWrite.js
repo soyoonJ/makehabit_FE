@@ -30,28 +30,13 @@ const PostWrite = () => {
     setModalopen(false);
   };
 
-  //이미지 업로드
-  const [fileImage, setFileImage] = React.useState(
-    "https://user-images.githubusercontent.com/82128525/154899930-6333a730-9e2c-4123-a3b7-760d9e61b43f.png"
-  );
-
-  const [previewImg, setPreviewImg] = React.useState(
-    "https://user-images.githubusercontent.com/82128525/154899930-6333a730-9e2c-4123-a3b7-760d9e61b43f.png"
-  );
-
-  const saveFileImage = (e) => {
-    const img = e.target.files[0];
-    setFileImage(img);
-    setPreviewImg(URL.createObjectURL(e.target.files[0]));
-  };
-
   //날짜 인풋박스 시작일 선택 제한 (오늘 이전의 날짜 선택 불가하게, 너무 오래된 날짜 선택 불가능하게)
   // 오늘 날짜 YYYY-MM-DD형식으로 추출
   const offset = new Date().getTimezoneOffset() * 60000;
   let todayDate = new Date(Date.now() - offset).toISOString().split("T")[0];
 
   //선택한 날짜 가져오기
-  const [date, setDate] = useState("1993-07-04");
+  const [date, setDate] = useState(null);
   const onChange = (e) => {
     console.log(e.target); //이벤트가 발생한 타겟의 요소를 출력
     console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
@@ -59,7 +44,7 @@ const PostWrite = () => {
   };
 
   const onReset = () => {
-    setDate(""); // onClick함수 발생시 ''으로 {text} 변경
+    setDate(null); // onClick함수 발생시 ''으로 {text} 변경
   };
   // 오늘 날짜+30일 YYYY-MM-DD형식으로 추출
 
@@ -77,9 +62,20 @@ const PostWrite = () => {
     console.log(method.current.value);
   };
 
-  //모달창 닫히게
-  const outSection = React.useRef();
+  //이미지 업로드
+  const [previewImg, setPreviewImg] = React.useState(
+    "https://user-images.githubusercontent.com/82128525/154899930-6333a730-9e2c-4123-a3b7-760d9e61b43f.png"
+  );
 
+  const saveFileImage = (e) => {
+    setPreviewImg(URL.createObjectURL(e.target.files[0]));
+  };
+
+  //div창 클릭시 이미지 인풋 클릭
+  const onClickUpload = () => {
+    let myInput = document.getElementById("thumnail");
+    myInput.click();
+  };
   return (
     <Grid>
       {/* 타이틀 */}
@@ -103,20 +99,20 @@ const PostWrite = () => {
         ></CategoryModal>
       </Grid>
       {/* 이미지 첨부 */}
-      <Grid>
-        <Grid is_flex justifyContent="center">
-          <ImageInput
-            id="input_img"
-            type="file"
-            accept=".png , .jpg , .png, .jpeg"
-            onChange={saveFileImage}
-            cursor="pointer"
-          ></ImageInput>
-        </Grid>
-        <Grid>
-          <img width="100%" height="100%" src={previewImg} alt=""></img>
-        </Grid>
-      </Grid>
+      <ImageBox
+        onClick={onClickUpload}
+        style={{
+          backgroundImage: `url(${previewImg})`,
+        }}
+      >
+        <ImageInput
+          id="thumnail"
+          type="file"
+          accept=".png , .jpg , .png, .jpeg"
+          onChange={saveFileImage}
+          cursor="pointer"
+        ></ImageInput>
+      </ImageBox>
       <Grid is_flex justifyContent="center">
         <StartDate
           type="date"
@@ -126,7 +122,12 @@ const PostWrite = () => {
         ></StartDate>
       </Grid>
       <Grid padding="0 5%">
-        <Text>예상 종료일 : {todayPlus30}</Text>
+        <Text>
+          예상 종료일 :{" "}
+          {todayPlus30 > todayDate
+            ? todayPlus30
+            : "예상 종료일은 30일 뒤 입니다."}
+        </Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 설명</Text>
@@ -150,10 +151,6 @@ const PostWrite = () => {
   );
 };
 
-const ImageInput = styled.input`
-  // display: none;
-`;
-
 const StartDate = styled.input`
   box-sizing: border-box;
   border-radius: 10px;
@@ -175,4 +172,25 @@ const Contents = styled.textarea`
   resize: none;
 `;
 
+const ImageBox = styled.div`
+  display: flex;
+
+  margin: auto;
+  max-width: 420px;
+  width: 100%;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-size: 100% 100%;
+`;
+
+const ImageInput = styled.input`
+  display: none;
+  // ::file-selector-button {
+  //   display: none;
+  // }
+  width: 100%;
+  height: 100%;
+`;
 export default PostWrite;
