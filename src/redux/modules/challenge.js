@@ -45,19 +45,25 @@ const getConfirmDB = (challengeId) => {
 };
 
 // 인증 업로드
-const confirmDB = (challengeId, imgUrl, challengeTitle, comment) => {
+const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
   return function (dispatch, getState, { history }) {
-    console.log("인증업로드", challengeId, imgUrl, challengeTitle, comment);
-    // apis
-    //   .confirm(challengeId, imgUrl, challengeTitle, comment)
-    //   .then(function (res) {
-    //     console.log(res);
-    //     // 인증완료 후 넘겨지는 페이지에서 get 할거로 연결
-    //     // dispatch(reducer(res.data));
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    console.log("인증업로드", challengeId, imgForm, challengeTitle, comment);
+
+    // apis.imageUpload(imgForm).then(function (res) {
+    //   console.log("업로드된 이미지", res);
+
+    //   // imageURL 들어가는 부분 데이터 한번 보고 수정해야하면 수정하기
+    //   apis
+    //     .confirm(challengeId, res.data, challengeTitle, comment)
+    //     .then(function (res) {
+    //       console.log(res);
+    //       // 인증완료 후 넘겨지는 페이지에서 get 할거로 연결
+    //       // dispatch(reducer(res.data));
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // });
   };
 };
 

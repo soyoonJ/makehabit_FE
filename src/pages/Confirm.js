@@ -23,14 +23,21 @@ const Confirm = (props) => {
     "https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-file-upload-icon-image_1344393.jpg"
   );
 
+  // 이미지 미리보기 세팅하기 위함
   const handlePreview = (e) => {
     const file = e.target.files[0];
     const newUrl = URL.createObjectURL(file);
     setPreview(newUrl);
   };
+  // 파일업로드버튼+이미지 합치기 위한 작업
+  // 기본이미지 클릭 시 파일업로드 버튼 클릭되도록!!
+  const onClickUpload = () => {
+    let myInput = document.getElementById("thumnail");
+    myInput.click();
+  };
 
+  // 코멘트 값 받아오기
   const [comment, setComment] = React.useState(null);
-
   const onChange = (e) => {
     setComment(e.target.value);
   };
@@ -43,7 +50,7 @@ const Confirm = (props) => {
     // console.log("fileInput ref확인", fileInput);
     let image = fileInput.current.files[0];
     imageForm.append("image", image);
-    console.log("최종imageFomr확인", imageForm);
+    console.log("최종imageForm확인", imageForm);
 
     dispatch(
       challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
@@ -64,14 +71,20 @@ const Confirm = (props) => {
           오늘의 도전을 성공하신 oo님! 인증사진을 올리고 포인트?
         </SubTitle>
 
-        <input
-          accept=".png , .jpg , .png, .jpeg"
-          type="file"
-          onChange={handlePreview}
-          ref={fileInput}
-        ></input>
-
-        <Image shape="rectangle" src={preview}></Image>
+        <ImageBox
+          onClick={onClickUpload}
+          style={{
+            backgroundImage: `url(${preview})`,
+          }}
+        >
+          <input
+            accept=".png , .jpg , .png, .jpeg"
+            type="file"
+            onChange={handlePreview}
+            ref={fileInput}
+            id="thumnail"
+          ></input>
+        </ImageBox>
 
         <Example>
           챌린지 인증 예시가 궁금하다면?
@@ -134,6 +147,22 @@ const Title = styled.div`
 `;
 const SubTitle = styled.div`
   margin-bottom: 10px;
+`;
+
+// 이미지
+const ImageBox = styled.div`
+  width: 100%;
+  max-width: 420px;
+  height: 300px;
+  // background-size: 100% 100%;
+  background-size: cover;
+  cursor: pointer;
+
+  input {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 // 챌린지 예시 도움말
