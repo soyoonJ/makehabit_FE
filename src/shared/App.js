@@ -85,6 +85,7 @@ const Container = styled.div`
 
   @media screen and (min-width: 420px) {
     max-height: 100vh;
+    // overflow: auto;
   }
 
   #wrap {
@@ -93,6 +94,7 @@ const Container = styled.div`
       display: none;
     }
 
+    overflow-y: scroll;
     width: 100%;
     max-width: 420px;
     height: 100%;

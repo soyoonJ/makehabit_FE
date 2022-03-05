@@ -39,7 +39,7 @@ const MyChallenge = () => {
           _onClick={() => {
             setTab(true);
           }}
-          bg={currentPage ? "orange" : "null"}
+          borderBottom={defaultTab ? "3px solid orange" : "null"}
         >
           내가 참여한 챌린지
         </Grid>
@@ -49,7 +49,7 @@ const MyChallenge = () => {
           _onClick={() => {
             setTab(false);
           }}
-          bg={!currentPage ? "orange" : "null"}
+          borderBottom={!defaultTab ? "3px solid orange" : "null"}
         >
           나의 기록보기
         </Grid>
