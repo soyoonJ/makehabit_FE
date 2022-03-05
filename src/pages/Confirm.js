@@ -3,8 +3,8 @@
 import React from "react";
 
 import { Grid, Text, Input, Image } from "../elements";
+import Upload from "../components/Upload";
 import { useDispatch, useSelector } from "react-redux";
-
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
@@ -15,7 +15,12 @@ const Confirm = (props) => {
   const challengeId = props.match.params.id;
   // console.log(challengeId);
 
-  const childRef = React.useRef();
+  //modal에 접근하는 ref
+  const modalRef = React.useRef();
+
+  //업로드에 함수 접근하는 Ref
+  const uploadRef = React.useRef();
+
   const fileInput = React.useRef();
   const dispatch = useDispatch();
   // const preview = useSelector((state) => state.image.preview);
@@ -48,9 +53,20 @@ const Confirm = (props) => {
     const imageForm = new FormData();
     // console.log("newFormData 확인", imageForm);
     // console.log("fileInput ref확인", fileInput);
+    // console.log("uploadRef ref확인", uploadRef);
     let image = fileInput.current.files[0];
+    console.log("image", image);
+    // let image2 = uploadRef.current.files[0];
     imageForm.append("image", image);
     console.log("최종imageForm확인", imageForm);
+
+    for (var key of imageForm.keys()) {
+      console.log("key", key);
+    }
+
+    for (var value of imageForm.values()) {
+      console.log("value", value);
+    }
 
     dispatch(
       challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
@@ -71,7 +87,7 @@ const Confirm = (props) => {
           오늘의 도전을 성공하신 oo님! 인증사진을 올리고 포인트?
         </SubTitle>
 
-        <ImageBox
+        {/* <ImageBox
           onClick={onClickUpload}
           style={{
             backgroundImage: `url(${preview})`,
@@ -84,7 +100,16 @@ const Confirm = (props) => {
             ref={fileInput}
             id="thumnail"
           ></input>
-        </ImageBox>
+        </ImageBox> */}
+        {/* 이미지 첨부 */}
+        <Upload
+          ref={uploadRef}
+          _ref={fileInput}
+          _onClick={() => {
+            console.log(uploadRef);
+            uploadRef.current.upload();
+          }}
+        />
 
         <Example>
           챌린지 인증 예시가 궁금하다면?
@@ -93,7 +118,7 @@ const Confirm = (props) => {
               cursor: "pointer",
             }}
             onClick={() => {
-              childRef.current.openModal();
+              modalRef.current.openModal();
             }}
           >
             [아이콘]
@@ -117,7 +142,7 @@ const Confirm = (props) => {
         </Button>
       </Grid>
 
-      <Modal ref={childRef}>
+      <Modal ref={modalRef}>
         <Grid padding="30px 30px 0px 30px">
           <div>챌린지 인증예시</div>
           <div>

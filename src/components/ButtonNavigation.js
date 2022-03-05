@@ -13,6 +13,7 @@ const ButtonNavigation = () => {
   return (
     <React.Fragment>
       <Footer>
+        <GradientBox />
         <ButtonWrap>
           <ButtonIcon onClick={() => history.push("/")}>홈</ButtonIcon>
           <ButtonIcon onClick={() => history.push("/postwrite")}>
@@ -62,4 +63,19 @@ const ButtonIcon = styled.button`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
+
+const GradientBox = styled.div`
+  width: 100%;
+  max-width: 420px;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 139, 55, 0) 10%,
+    rgba(255, 139, 55, 0.1) 25%,
+    rgba(255, 139, 55, 0.3) 50%,
+    rgba(255, 139, 55, 0.5) 80%,
+    rgba(255, 139, 55, 0.8) 100%
+  );
+`;
+
 export default ButtonNavigation;
