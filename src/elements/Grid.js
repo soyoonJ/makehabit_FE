@@ -93,7 +93,7 @@ Grid.defaultProps = {
   position: false,
   justifyContent: "space-between",
   flexWrap: null,
-  pointer:'',
+  pointer: "",
 };
 
 const GridBox = styled.div`

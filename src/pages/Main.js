@@ -40,28 +40,89 @@ const Main = () => {
           카테고리
         </Text>
         <CategoryWrap>
-          <Img
-            src="images/category_test.png"
-            onClick={() => {
-              dispatch(mainActions.categoryDB("공부"));
-              history.push("/category/공부");
-            }}
-          />
-          <Img
-            src="images/category_test.png"
-            onClick={() => {
-              dispatch(mainActions.categoryDB("운동"));
-              history.push("/category/운동");
-            }}
-          ></Img>
-          <Img src="images/category_test.png"></Img>
-          <Img src="images/category_test.png"></Img>
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("all"));
+                history.push("/category/all");
+              }}
+            />
+            <Text alignCenter>전체보기</Text>
+          </Category>
+
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("popular"));
+                history.push("/category/popular");
+              }}
+            ></Img>
+            <Text alignCenter>인기</Text>
+          </Category>
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("new"));
+                history.push("/category/new");
+              }}
+            ></Img>
+            <Text alignCenter>신규</Text>
+          </Category>
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("study"));
+                history.push("/category/study");
+              }}
+            ></Img>
+            <Text alignCenter>공부</Text>
+          </Category>
         </CategoryWrap>
         <CategoryWrap>
-          <Img src="images/category_test.png"></Img>
-          <Img src="images/category_test.png"></Img>
-          <Img src="images/category_test.png"></Img>
-          <Img src="images/category_test.png"></Img>
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("exercise"));
+                history.push("/category/exercise");
+              }}
+            ></Img>
+            <Text alignCenter>운동</Text>
+          </Category>
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("self-development"));
+                history.push("/category/self-development");
+              }}
+            ></Img>
+            <Text alignCenter>자기계발</Text>
+          </Category>
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("living habit"));
+                history.push("/category/living habit");
+              }}
+            ></Img>
+            <Text alignCenter>생활습관</Text>
+          </Category>
+          <Category>
+            <Img
+              src="images/category_test.png"
+              onClick={() => {
+                dispatch(mainActions.categoryDB("echo"));
+                history.push("/category/echo");
+              }}
+            ></Img>
+            <Text alignCenter>에코</Text>
+          </Category>
         </CategoryWrap>
         <RecommendWrap>
           <RecommendTitle>
@@ -69,6 +130,7 @@ const Main = () => {
             <Text>더보기</Text>
           </RecommendTitle>
           <Img src="images/Recommend_test.png"></Img>
+
           <Img src="images/Recommend_test.png"></Img>
           <Img src="images/Recommend_test.png"></Img>
           <Img src="images/Recommend_test.png"></Img>
@@ -110,11 +172,15 @@ const Banner = styled.img`
 const CategoryWrap = styled.div`
   margin-top: 2%;
   display: flex;
+  justify-content: space-around;
+`;
+
+const Category = styled.div`
+  display: grid;
   justify-content: center;
 `;
 
 const Img = styled.img`
-  padding: 0% 4%;
   size: 20px;
   cursor: pointer;
 `;

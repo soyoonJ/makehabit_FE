@@ -30,11 +30,6 @@ const getSearchDB = (searchWord) => {
       .mainSearch(searchWord) // 메인페이지에서 dispatch 값 데이터
       .then(function (res) {
         console.log(res);
-        // dispatch(getSearch({
-        // searchWord,
-        // challengeId : res.data.user.challengeId ,
-        // participants : res.data.user.participants ,
-        // }));
       })
       .catch((error) => {
         console.log(error);

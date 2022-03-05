@@ -18,7 +18,7 @@ const CategoryPost = (props) => {
   const Img01 = process.env.PUBLIC_URL + "/images";
 
   // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
-  // const {img, title,tags } = props;
+  const { img, title, tags } = props;
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
@@ -32,10 +32,11 @@ const CategoryPost = (props) => {
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={Img01}></Img> */}
         <Img src={Img01 + "/Recommend_test.png"}></Img>
-        <Text margin="2% 5%">"타이틀 변수로 변경해라"</Text>
+        {/* <Img>{img}</Img> */}
+        <Text margin="2% 5%">{title}</Text>
         <Tag>
           <Text size="10px" alignCenter>
-            "태그도 변수로 변경해라"
+            {tags}
           </Text>
         </Tag>
       </Card>
@@ -44,7 +45,9 @@ const CategoryPost = (props) => {
 };
 
 CategoryPost.defaultProps = {
-  Img: "images/Recommend_test.png",
+  img: "ihttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw8iLInSA0YTMGUXPAGcrG4ZvLC8PGrs8lZloBXFYYxI3DNCV7nVLmM83ojgAxMkQaA8&usqp=CAU",
+  title: "타이틀 변수로 변경해라",
+  tags: "작심삼일이다",
 };
 
 const Card = styled.div`
