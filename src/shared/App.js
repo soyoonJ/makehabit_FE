@@ -74,7 +74,6 @@ const Container = styled.div`
   flex-direction: column; // 아이템이 세로방향으로 흐릴 수 있도록(상>하)
   justify-content: flex-start;
   align-items: center;
-  /* background: #d9e3ee; */
   overflow: hidden;
   position: relative; //absolute를 쓸때 영역을 잡아주는 역할
   background: url("/images/text.png");
