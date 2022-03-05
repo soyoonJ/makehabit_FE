@@ -107,8 +107,8 @@ const Main = () => {
             <Img
               src="images/category_test.png"
               onClick={() => {
-                dispatch(mainActions.categoryDB("living habit"));
-                history.push("/category/living habit");
+                dispatch(mainActions.categoryDB("living_habit"));
+                history.push("/category/living_habi");
               }}
             ></Img>
             <Text alignCenter>생활습관</Text>
