@@ -5,6 +5,7 @@ import { Grid, Text, Input, Button } from "../elements";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import CategoryModal from "../components/CategoryModal";
+import Upload from "../components/Upload";
 
 import styled from "styled-components";
 
@@ -62,20 +63,9 @@ const PostWrite = () => {
     console.log(method.current.value);
   };
 
-  //이미지 업로드
-  const [previewImg, setPreviewImg] = React.useState(
-    "https://user-images.githubusercontent.com/82128525/154899930-6333a730-9e2c-4123-a3b7-760d9e61b43f.png"
-  );
+  //자식 함수 접근하는 Ref
+  const childRef = React.useRef();
 
-  const saveFileImage = (e) => {
-    setPreviewImg(URL.createObjectURL(e.target.files[0]));
-  };
-
-  //div창 클릭시 이미지 인풋 클릭
-  const onClickUpload = () => {
-    let myInput = document.getElementById("thumnail");
-    myInput.click();
-  };
   return (
     <Grid>
       {/* 타이틀 */}
@@ -99,20 +89,12 @@ const PostWrite = () => {
         ></CategoryModal>
       </Grid>
       {/* 이미지 첨부 */}
-      <ImageBox
-        onClick={onClickUpload}
-        style={{
-          backgroundImage: `url(${previewImg})`,
+      <Upload
+        ref={childRef}
+        _onClick={() => {
+          childRef.current.upload();
         }}
-      >
-        <ImageInput
-          id="thumnail"
-          type="file"
-          accept=".png , .jpg , .png, .jpeg"
-          onChange={saveFileImage}
-          cursor="pointer"
-        ></ImageInput>
-      </ImageBox>
+      />
       <Grid is_flex justifyContent="center">
         <StartDate
           type="date"
