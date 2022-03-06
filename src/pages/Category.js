@@ -6,18 +6,20 @@ import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
 import { useDispatch } from "react-redux";
 
-import { actionCreators as mainActions } from "../redux/modules/main";
 import { history } from "../redux/configureStore";
 import { useParams } from "react-router-dom";
+import { actionCreators as mainActions } from "../redux/modules/main";
+import CategoryBar from "../components/CategoryBar";
+
 const Category = (props) => {
   // 카테고리 클릭시 색 변하게 하는 부분
   const [currentClick, setCurrentClick] = React.useState(null);
   const [prevClick, setPrevClick] = React.useState(null);
   const category = useParams();
 
-  const GetClick = (category) => {
-    setCurrentClick(category);
-    console.log(category);
+  const GetClick = (e) => {
+    setCurrentClick(e.target);
+    console.log(e.target);
   };
 
   //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
@@ -33,6 +35,10 @@ const Category = (props) => {
         전체보기
       </Text>
       <HeaderContainer>
+        <CategoryBar></CategoryBar>
+      </HeaderContainer>
+
+      {/* <HeaderContainer>
         <CategoryBar>
           <CategoryButton
             id="all"
@@ -94,7 +100,7 @@ const Category = (props) => {
           </CategoryButton>
         </CategoryBar>
       </HeaderContainer>
-      <hr></hr>
+      <hr></hr> */}
       <CardWrap>
         <CategoryPost></CategoryPost>
         <CategoryPost></CategoryPost>
@@ -115,9 +121,9 @@ const HeaderContainer = styled.div`
   justify-content: space-around;
 `;
 
-const CategoryBar = styled.div`
-  width: auto;
-`;
+// const CategoryBar = styled.div`
+//   width: auto;
+// `;
 
 const CategoryButton = styled.button`
   border: 0;

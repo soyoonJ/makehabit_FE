@@ -11,9 +11,13 @@ const GET_CATEGOTY = "GET_CATEGOTY";
 const getSearch = createAction(GET_SEARCH, (searchWord_list) => ({
   searchWord_list,
 }));
-const getCategory = createAction(GET_CATEGOTY, (category_list) => ({
-  category_list,
-}));
+const getCategory = createAction(
+  GET_CATEGOTY,
+  (category_list, checkLoadAll) => ({
+    category_list,
+    checkLoadAll,
+  })
+);
 
 // initialState
 const initialState = {
@@ -86,6 +90,7 @@ export default handleActions(
       produce(state, (draft) => {
         // console.log(action.payload.keyword);
         draft.category_list = action.payload.category_list;
+        draft.checkLoadAll = action.payload.checkLoadAll;
       }),
   },
 

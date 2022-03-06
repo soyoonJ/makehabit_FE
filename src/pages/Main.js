@@ -130,7 +130,6 @@ const Main = () => {
             <Text>더보기</Text>
           </RecommendTitle>
           <Img src="images/Recommend_test.png"></Img>
-
           <Img src="images/Recommend_test.png"></Img>
           <Img src="images/Recommend_test.png"></Img>
           <Img src="images/Recommend_test.png"></Img>
