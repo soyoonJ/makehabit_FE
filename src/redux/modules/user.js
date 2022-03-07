@@ -95,13 +95,14 @@ const loginDB = (email, password) => {
       .login(email, password)
       .then((res) => {
         console.log(res);
-        console.log(res.data.token);
+        // console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
         // 서버에서 받아온 정보를 리덕스에 저장해주는 액션
         dispatch(
           setUser({
             email,
-            password,
+            nickname: res.data.nickname,
+            // token: res.data.token,
           })
         );
 
@@ -148,10 +149,14 @@ const loginCheckDB = () => {
     apis
       .loginCheck()
       .then((res) => {
-        // console.log(res);
-        if (res.data.user) {
+        // console.log("로그인체크", res);
+        if (res.data) {
           dispatch(
-            setUser({ email: res.data.email, nickname: res.data.nickname })
+            setUser({
+              email: res.data.email,
+              nickname: res.data.nickname,
+              // token: localStorage.getItem("token"),
+            })
           );
         } else {
           dispatch(logOut());
@@ -165,12 +170,23 @@ const loginCheckDB = () => {
   };
 };
 
+// 로그아웃
+const logoutDB = () => {
+  return function (dispatch, getState, { history }) {
+    dispatch(logOut());
+    history.replace("/");
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
+        // localStorage.setItem("token", action.payload.user.token);
         draft.user = action.payload.user;
+        // console.log(action.payload.user);
+        // console.log(draft.user);
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
@@ -196,6 +212,7 @@ export default handleActions(
 // action creator export
 const actionCreators = {
   setUser,
+  logoutDB,
   logOut,
   loginDB,
   signupDB,
