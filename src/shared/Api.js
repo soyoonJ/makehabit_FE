@@ -3,13 +3,13 @@ import axios from "axios";
 const instance = axios.create({
   baseURL: "http://52.79.227.179/",
   // timeout: 1000,
-  // headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
   headers: {
     Authorization: "Bearer " + localStorage.getItem("token"),
-    "content-type": "application/json;charset=UTF-8",
-    accept: "application/json, text/plain,*/*",
+    // "content-type": "application/json;charset=UTF-8",
+    // accept: "application/json, text/plain,*/*",
   },
 });
+// console.log('몰라요', insta)
 
 // const res = { data: "어쩌구"}
 // res.data
@@ -84,7 +84,7 @@ export const apis = {
     }),
 
   //이미지업로드
-  imageUpload: (image) => instance.post("/api/image", { image }),
+  imageUpload: (image) => instance.post("/api/image", image),
 
   // 상세페이지 -------------------------------------------------------------------------------------------------------
   //상세페이지 조회
