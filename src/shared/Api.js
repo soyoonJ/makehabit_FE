@@ -9,6 +9,7 @@ const instance = axios.create({
     // accept: "application/json, text/plain,*/*",
   },
 });
+// console.log('몰라요', insta)
 
 // const res = { data: "어쩌구"}
 // res.data

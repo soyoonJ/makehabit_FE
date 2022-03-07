@@ -78,7 +78,7 @@ const naviChallengeDB = () => {
       .naviChallenge()
       .then(function (res) {
         console.log(res);
-        // dispatch(setChallenge(res.data);
+        dispatch(setChallenge(res.data.challenges));
       })
       .catch((error) => {
         console.error(error);
