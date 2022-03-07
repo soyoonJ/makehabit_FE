@@ -2,7 +2,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/Api";
-import axios from "axios";
 
 // actions
 const SET_CHALLENGE = "SET_CHALLENGE";
@@ -29,15 +28,14 @@ const initialState = {
 };
 
 // 인증기록하기 페이지 조회
-// 주현님 robo3T 조회하는거 알아오기
 const getConfirmDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
-    console.log(challengeId);
+    // console.log(challengeId);
     apis
       .getConfirm(challengeId)
       .then(function (res) {
-        console.log(res);
-        // dispatch(setConfirm(res.data));
+        // console.log(res);
+        dispatch(setConfirm(res.data));
       })
       .catch((error) => {
         console.log(error);
@@ -50,21 +48,25 @@ const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
   return function (dispatch, getState, { history }) {
     console.log("인증업로드", challengeId, imgForm, challengeTitle, comment);
 
-    // apis.imageUpload(imgForm).then(function (res) {
-    //   console.log("업로드된 이미지", res);
+    apis
+      .imageUpload(imgForm)
+      .then(function (res) {
+        console.log("업로드된 이미지", res);
 
-    //   // imageURL 들어가는 부분 데이터 한번 보고 수정해야하면 수정하기
-    //   apis
-    //     .confirm(challengeId, res.data, challengeTitle, comment)
-    //     .then(function (res) {
-    //       console.log(res);
-    //       // 인증완료 후 넘겨지는 페이지에서 get 할거로 연결
-    //       // dispatch(reducer(res.data));
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // });
+        apis
+          .confirm(challengeId, res.data.imgUrl, challengeTitle, comment)
+          .then(function (res) {
+            console.log(res);
+            // 인증완료 후 새로생기는 페이지로 연결
+            // history.push('/인증완료페이지')
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 
@@ -72,15 +74,15 @@ const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
 const naviChallengeDB = () => {
   return function (dispatch, getState, { history }) {
     console.log("인증, naviChallengeDB");
-    // apis
-    //   .naviChallenge()
-    //   .then(function (res) {
-    //     console.log(res);
-    //     // dispatch(setChallenge(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    apis
+      .naviChallenge()
+      .then(function (res) {
+        console.log(res);
+        dispatch(setChallenge(res.data.challenges));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 };
 

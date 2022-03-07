@@ -69,7 +69,7 @@ const categoryDB = (categoryId) => {
       .category(categoryId) //
       .then(function (res) {
         console.log("잘 들어가느냐!!!", res);
-        dispatch(getCategory(res.data));
+        // dispatch(getCategory(res.data));
       })
       .catch((error) => {
         console.log(error);
