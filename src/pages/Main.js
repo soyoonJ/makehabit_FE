@@ -88,7 +88,7 @@ const Main = () => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("exercise"));
-                history.push("/category/exercise");
+                // history.push("/category/exercise");
               }}
             ></Img>
             <Text alignCenter>운동</Text>

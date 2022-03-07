@@ -73,6 +73,9 @@ const categoryDB = (categoryId) => {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .then(function (res) {
+        history.push(`/category/${categoryId}`);
       });
   };
 };
@@ -86,11 +89,14 @@ export default handleActions(
         draft.searchWord_list = action.payload.searchWord_list;
       }),
 
-    //카테고리 목록 조회
+    //카테고리 목록 가져오는 부분
     [GET_CATEGOTY]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.keyword);
-        draft.category_list = action.payload.category_list;
+        console.log("카테고리 목록 조회", action.payload);
+        // draft는 복사본 만드는 느낌
+        //action.payload 는 서버에서 응답 받아온 값
+        // 여기 list.challenges로 적은 이유는 map 돌리는 부분에서 간소화하기위함
+        draft.category_list = action.payload.category_list.challenges;
         draft.checkLoadAll = action.payload.checkLoadAll;
       }),
   },

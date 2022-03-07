@@ -14,12 +14,13 @@ import CategoryBar from "../components/CategoryBar";
 const Category = (props) => {
   const dispatch = useDispatch();
   const category_list = useSelector((state) => state.main.category_list);
-  console.log(category_list);
+  console.log("카테고리리스트", category_list);
 
   //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
   //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
   React.useEffect(() => {
-    dispatch(mainActions.categoryDB());
+    console.log("호호호호호");
+    // dispatch(mainActions.categoryDB(""));
   }, []);
 
   return (
@@ -30,11 +31,10 @@ const Category = (props) => {
       <HeaderContainer>
         <CategoryBar></CategoryBar>
       </HeaderContainer>
-
       <CardWrap>
-        {/* <CategoryPost></CategoryPost> */}
-        {category_list.map((p, idx) => {
-          return <CategoryPost key={p.id} {...p} />;
+        {category_list?.map((p, idx) => {
+          console.log("피ㅏ1!!!", p);
+          return <CategoryPost key={p._id} {...p} />;
         })}
       </CardWrap>
 

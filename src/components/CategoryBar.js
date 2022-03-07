@@ -9,13 +9,13 @@ const CategoryBar = () => {
   const checkLoadAll = useSelector((state) => state.main.checkLoadAll);
 
   const categoryList = [
-    "전체",
-    "인기",
-    "신규",
-    "공부",
-    "운동",
-    "자기계발",
-    "생활습관",
+    ["all", "전체"],
+    ["popular", "인기"],
+    ["new", "신규"],
+    ["study", "공부"],
+    ["exercise", "운동"],
+    ["self-development", "자기계발"],
+    ["living-habit", "생활습관"],
   ];
 
   // 메인헤더 클릭시에도 디폴트값으로 인덱스0번째인 "전체"가 색칠돼어있어야함
@@ -32,17 +32,17 @@ const CategoryBar = () => {
           key={i}
           onClick={() => {
             changeClicked(i);
-            console.log(i);
+            console.log("카테고리바!!!!!!!!!!!!!!!", e[0], i);
 
             i === 0
               ? dispatch(mainActions.categoryDB())
-              : dispatch(mainActions.categoryDB(e));
+              : dispatch(mainActions.categoryDB(e[0]));
           }}
           style={{
             borderBottomColor: i === clickedCategory ? "#ff8b37" : "#ffffff",
           }}
         >
-          {e}
+          {e[1]}
         </CategoryCircle>
       ))}
     </CategoryBox>
