@@ -149,7 +149,7 @@ const loginCheckDB = () => {
       .loginCheck()
       .then((res) => {
         // console.log(res);
-        if (res.data.user) {
+        if (res.data) {
           dispatch(
             setUser({ email: res.data.email, nickname: res.data.nickname })
           );
