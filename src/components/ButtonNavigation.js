@@ -9,6 +9,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ButtonNavigation = () => {
   const dispatch = useDispatch();
+  const is_login = useSelector((state) => state.user.is_login);
+  const confirmPage = () => {
+    if (is_login) {
+      dispatch(challengeActions.setTab("navi"));
+      history.push("/mychallenge");
+    } else {
+      window.alert("로그인 후 인증 해주세요!");
+      history.push("/login");
+    }
+  };
 
   return (
     <React.Fragment>
@@ -19,14 +29,7 @@ const ButtonNavigation = () => {
           <ButtonIcon onClick={() => history.push("/postwrite")}>
             개설
           </ButtonIcon>
-          <ButtonIcon
-            onClick={() => {
-              dispatch(challengeActions.setTab("navi"));
-              history.push("/mychallenge");
-            }}
-          >
-            인증
-          </ButtonIcon>
+          <ButtonIcon onClick={confirmPage}>인증</ButtonIcon>
           {/* 채팅 추가 연결 필요 */}
           <ButtonIcon onClick={() => history.push("/character")}>
             캐릭터꾸미기

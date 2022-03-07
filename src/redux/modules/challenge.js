@@ -8,11 +8,13 @@ const SET_CHALLENGE = "SET_CHALLENGE";
 const SET_TAB = "SET_TAB";
 const SET_FEED = "SET_FEED";
 const SET_CONFIRM = "SET_CONFIRM";
+const SET_PROOF = "SET_PROOF";
 
 // action creators
 const setChallenge = createAction(SET_CHALLENGE, (challenge_list) => ({
   challenge_list,
 }));
+const setProofshots = createAction(SET_PROOF, (proof_list) => ({ proof_list }));
 const setTab = createAction(SET_TAB, (page) => ({ page }));
 const setFeed = createAction(SET_FEED, (feed_list) => ({ feed_list }));
 const setConfirm = createAction(SET_CONFIRM, (challenge_info) => ({
@@ -24,6 +26,7 @@ const initialState = {
   challenge_info: null,
   page: null,
   challenge_list: null,
+  proof_list: null,
   feed_list: null,
 };
 
@@ -90,15 +93,15 @@ const naviChallengeDB = () => {
 const myChallengeDB = () => {
   return function (dispatch, getState, { history }) {
     console.log("마이페이지 myChallenge");
-    // apis
-    //   .myChallenge()
-    //   .then(function (res) {
-    //     console.log(res);
-    //     // dispatch(setChallenge(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    apis
+      .myChallenge()
+      .then(function (res) {
+        console.log(res);
+        dispatch(setProofshots(res.data.proofShots));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 
@@ -135,6 +138,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.challenge_list = action.payload.challenge_list;
       }),
+    [SET_PROOF]: (state, action) =>
+      produce(state, (draft) => {
+        draft.proof_list = action.payload.proof_list;
+      }),
     [SET_FEED]: (state, action) =>
       produce(state, (draft) => {
         draft.feed_list = action.payload.feed_list;
@@ -150,6 +157,7 @@ const actionCreators = {
   setTab,
   setChallenge,
   naviChallengeDB,
+  setProofshots,
   myChallengeDB,
   setFeed,
   myfeedDB,

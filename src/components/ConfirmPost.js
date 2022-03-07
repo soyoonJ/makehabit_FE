@@ -6,14 +6,15 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
 const ConfirmPost = (props) => {
+  const { thumbnail, title, round } = props;
   return (
     <React.Fragment>
       <Grid padding="16px">
-        <PostImage></PostImage>
+        <PostImage src={thumbnail}></PostImage>
         <TextContainer>
           <div>
-            <div>매일 15시간 공부</div>
-            <Badge>도전 1회차</Badge>
+            <div>{title}</div>
+            <Badge>도전 {round}회차</Badge>
           </div>
           <Button
             width="6rem"
@@ -30,10 +31,11 @@ const ConfirmPost = (props) => {
   );
 };
 
-const PostImage = styled.div`
+const PostImage = styled.img`
   width: 100%;
   height: 100px;
   border-radius: 10px;
+  border: none;
   background: #eee;
   margin-bottom: 10px;
 `;
