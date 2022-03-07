@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Input, Text } from "../elements";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Login = () => {
@@ -12,6 +12,7 @@ const Login = () => {
   const changeEmail = (e) => {
     setEmail(e.target.value);
   };
+
   //password
   const [user_pwd, setPwd] = useState("");
   const changePwd = (e) => {
@@ -32,13 +33,13 @@ const Login = () => {
       </Text>
       <div>
         <Text size="20px" bold margin="6% 10% 2%">
-          아이디
+          이메일
         </Text>
         <InputBox>
           <Input
             width="80%"
             bg="white"
-            placeholder="아이디를 입력해주세요"
+            placeholder="이메일 입력해주세요"
             _onChange={changeEmail}
           ></Input>
         </InputBox>

@@ -22,6 +22,8 @@ const nicknameCheck = createAction(NICKNAME_CHECK, (result) => ({ result }));
 const initialState = {
   user: { email: null, nickname: null },
   is_login: false,
+  emailCheck: false,
+  nicknameCheck: false,
 };
 
 // 회원가입
@@ -31,10 +33,14 @@ const signupDB = (email, nickname, password, confirmPassword) => {
     apis
       .signup(email, nickname, password, confirmPassword)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+        window.alert(res.data.message);
+        history.push("/login");
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.response.data.message);
+        window.alert(error.response.data.message);
+        // console.log(error.message);
       });
   };
 };
@@ -45,16 +51,17 @@ const emailCheckDB = (email) => {
     apis
       .emailCheck(email)
       .then((response) => {
-        console.log(response);
-        //   dispatch(emailCheck({ response }))
-        //   window.alert("사용 가능한 아이디 입니다.")
+        console.log("emailCheckDB", response);
+        dispatch(emailCheck(true));
+        // window.alert("사용 가능한 아이디 입니다.")
       })
       .catch((error) => {
-        console.log(error);
-        //   const error_message = error.response.data.result
-        //   if (error_message === "false") {
-        //     window.alert("사용 중인 아이디 입니다!")
-        //   }
+        console.log("emailcheckdberror", error);
+        dispatch(emailCheck(false));
+        const error_message = error.response.data.result;
+        if (error_message === "false") {
+          window.alert("사용 중인 아이디 입니다!");
+        }
       });
   };
 };
@@ -66,11 +73,12 @@ const nicknameCheckDB = (nickname) => {
       .nicknameCheck(nickname)
       .then((response) => {
         console.log(response);
-        //   dispatch(nicknameCheck(response))
+        dispatch(nicknameCheck(true));
         //   window.alert("사용 가능한 닉네임 입니다.")
       })
       .catch((error) => {
         console.log(error);
+        dispatch(nicknameCheck(false));
         //   const error_message = error.response.data.result
         //   if (error_message === "false") {
         //     window.alert("사용 중인 닉네임 입니다!")
@@ -87,14 +95,17 @@ const loginDB = (email, password) => {
       .login(email, password)
       .then((res) => {
         console.log(res);
-        // localStorage.setItem("token", res.data.token);
+        console.log(res.data.token);
+        localStorage.setItem("token", res.data.token);
         // 서버에서 받아온 정보를 리덕스에 저장해주는 액션
-        // dispatch(setUser({
-        //     email,
-        //     nickname: res.data.user.nickname,
-        // }));
+        dispatch(
+          setUser({
+            email,
+            password,
+          })
+        );
 
-        // history.push('/');
+        history.push("/");
       })
       .catch(function (error) {
         // console.log(error);
@@ -137,12 +148,16 @@ const loginCheckDB = () => {
     apis
       .loginCheck()
       .then((res) => {
-        console.log(res);
-        //   if(res.data.user) {
-        //     dispatch(setUser({ email: res.data.email, nickname: res.data.nickname }));
-        //   } else {
-        //       dispatch(logOut());
-        //   }
+        // console.log(res);
+        if (res.data.user) {
+          dispatch(
+            setUser({ email: res.data.email, nickname: res.data.nickname })
+          );
+        } else {
+          dispatch(logOut());
+          window.alert("로그인 정보가 없습니다. 다시 로그인 해주세요");
+          history.push("/login");
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -155,11 +170,9 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.user.email = action.payload.user.email;
-        // draft.user.nickname = action.payload.user.nickname;
+        draft.user = action.payload.user;
         draft.is_login = true;
       }),
-
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         localStorage.removeItem("token");
@@ -168,12 +181,12 @@ export default handleActions(
       }),
     [EMAIL_CHECK]: (state, action) =>
       produce(state, (draft) => {
-        draft.idCheck = true;
+        draft.emailCheck = action.payload.result;
         draft.is_loaded = true;
       }),
     [NICKNAME_CHECK]: (state, action) =>
       produce(state, (draft) => {
-        draft.nicknameCheck = true;
+        draft.nicknameCheck = action.payload.result;
         draft.is_loaded = true;
       }),
   },

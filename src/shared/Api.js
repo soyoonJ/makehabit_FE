@@ -21,10 +21,10 @@ export const apis = {
   login: (email, password) =>
     instance.post("/api/users/login", { email, password }),
   loginKakao: (email) => instance.post("/api/users/loginKakao", { email }),
-  signup: (nickname, email, password, confirmPassword) =>
+  signup: (email, nickname, password, confirmPassword) =>
     instance.post("/api/users/signup", {
-      nickname,
       email,
+      nickname,
       password,
       confirmPassword,
     }),

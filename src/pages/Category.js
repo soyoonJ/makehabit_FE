@@ -4,7 +4,7 @@ import { Button, Input, Text, Image, Grid } from "../elements";
 
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { history } from "../redux/configureStore";
 import { useParams } from "react-router-dom";
@@ -12,22 +12,15 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 import CategoryBar from "../components/CategoryBar";
 
 const Category = (props) => {
-  // 카테고리 클릭시 색 변하게 하는 부분
-  const [currentClick, setCurrentClick] = React.useState(null);
-  const [prevClick, setPrevClick] = React.useState(null);
-  const category = useParams();
-
-  const GetClick = (e) => {
-    setCurrentClick(e.target);
-    console.log(e.target);
-  };
+  const dispatch = useDispatch();
+  const category_list = useSelector((state) => state.main.category_list);
+  console.log(category_list);
 
   //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
   //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
-  React.useEffect((e) => {
-    // dispatch(mainActions.categoryDB("안녕하세여"));
+  React.useEffect(() => {
+    dispatch(mainActions.categoryDB());
   }, []);
-  const dispatch = useDispatch();
 
   return (
     <Container>
@@ -38,74 +31,13 @@ const Category = (props) => {
         <CategoryBar></CategoryBar>
       </HeaderContainer>
 
-      {/* <HeaderContainer>
-        <CategoryBar>
-          <CategoryButton
-            id="all"
-            onClick={() => {
-              GetClick("all");
-              dispatch(mainActions.categoryDB("all"));
-              history.push("/category/all");
-            }}
-          >
-            전체보기
-          </CategoryButton>
-          <CategoryButton
-            onClick={() => {
-              dispatch(mainActions.categoryDB("popular"));
-              history.push("/category/popularll");
-            }}
-          >
-            인기
-          </CategoryButton>
-          <CategoryButton
-            onClick={() => {
-              dispatch(mainActions.categoryDB("new"));
-              history.push("/category/new");
-            }}
-          >
-            신규
-          </CategoryButton>
-          <CategoryButton
-            onClick={() => {
-              dispatch(mainActions.categoryDB("study"));
-              history.push("/category/study");
-            }}
-          >
-            공부
-          </CategoryButton>
-          <CategoryButton
-            onClick={() => {
-              dispatch(mainActions.categoryDB("exercise"));
-              history.push("/category/exercise");
-            }}
-          >
-            운동
-          </CategoryButton>
-          <CategoryButton
-            onClick={() => {
-              dispatch(mainActions.categoryDB("self-development"));
-              history.push("/category/self-development");
-            }}
-          >
-            자기계발
-          </CategoryButton>
-          <CategoryButton
-            onClick={() => {
-              dispatch(mainActions.categoryDB("living_habit"));
-              history.push("/category/living_habi");
-            }}
-          >
-            생활습관
-          </CategoryButton>
-        </CategoryBar>
-      </HeaderContainer>
-      <hr></hr> */}
       <CardWrap>
-        <CategoryPost></CategoryPost>
-        <CategoryPost></CategoryPost>
-        <CategoryPost></CategoryPost>
+        {/* <CategoryPost></CategoryPost> */}
+        {category_list.map((p, idx) => {
+          return <CategoryPost key={p.id} {...p} />;
+        })}
       </CardWrap>
+
       <ButtonNavigation />
     </Container>
   );

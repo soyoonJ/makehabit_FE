@@ -29,15 +29,16 @@ import Chat from "../pages/Chat";
 import NotFound from "../pages/NotFound";
 
 function App() {
-  // const dispatch = useDispatch();
-  // const is_token = localStorage.getItem("token") ? true : false;
+  const dispatch = useDispatch();
+  const is_token = localStorage.getItem("token") ? true : false;
+  // console.log("토큰확인", is_token);
 
-  // React.useEffect(()=>{
-  //   // 로그인 후 새로고침하면 리덕스 데이터 날라감 > loginCheck 작업 필요!
-  //   if (is_token){
-  //     // dispatch(userActions.loginCheckFB());
-  //   }
-  // }, []);
+  React.useEffect(() => {
+    // 로그인 후 새로고침하면 리덕스 데이터 날라감 > loginCheck 작업 필요!
+    if (is_token) {
+      dispatch(userActions.loginCheckDB());
+    }
+  }, []);
 
   return (
     <React.Fragment>
