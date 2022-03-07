@@ -9,9 +9,11 @@ import styled from "styled-components";
 
 const MyFeed = (props) => {
   const dispatch = useDispatch();
+  const proofShotId = props.match.params.proofShotId;
+  console.log(proofShotId);
 
   React.useEffect(() => {
-    dispatch(challengeActions.myfeedDB());
+    dispatch(challengeActions.myfeedDB(proofShotId));
   }, []);
 
   return (
@@ -19,7 +21,7 @@ const MyFeed = (props) => {
       <Container>
         <Back
           onClick={() => {
-            history.replace("/mychallenge");
+            history.goBack();
           }}
         >
           뒤로

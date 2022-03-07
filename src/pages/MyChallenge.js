@@ -14,11 +14,13 @@ import styled from "styled-components";
 const MyChallenge = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.challenge.page);
-  console.log("지금", currentPage);
+  // console.log("지금", currentPage);
+  const challenge_list = useSelector((state) => state.challenge.challenge_list);
+  const proof_list = useSelector((state) => state.challenge.proof_list);
+  // console.log("갤러리", proof_list[0]);
 
   // 인증하기 페이지 클릭하면 리덕스에 이벤트 저장해놓고 true면 true, false면 false
   const [defaultTab, setTab] = React.useState(currentPage ? true : false);
-  // const [clickedTab, changeTab] = React.useState(currentPage ? true : false);
 
   React.useEffect(() => {
     if (currentPage) {
@@ -27,7 +29,8 @@ const MyChallenge = () => {
       dispatch(challengeActions.myChallengeDB());
     }
   }, []);
-  console.log("MyChallenge", defaultTab);
+  // console.log("MyChallenge", defaultTab);
+
   return (
     <React.Fragment>
       <div style={{ textAlign: "center" }}>작심삼일 인증</div>
@@ -57,47 +60,24 @@ const MyChallenge = () => {
 
       {defaultTab ? (
         <div>
-          <ConfirmPost />
-          <ConfirmPost />
-          <ConfirmPost />
+          {challenge_list?.map((e, i) => {
+            return <ConfirmPost key={i} {...e} />;
+          })}
         </div>
       ) : (
         <ImageContainer>
-          <Img
-            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
-            alt=""
-            onClick={() => {
-              history.push("/myfeed/:id");
-            }}
-          ></Img>
-          <Img
-            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
-            alt=""
-            onClick={() => {
-              history.push("/myfeed/:id");
-            }}
-          ></Img>
-          <Img
-            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
-            alt=""
-            onClick={() => {
-              history.push("/myfeed/:id");
-            }}
-          ></Img>
-          <Img
-            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
-            alt=""
-            onClick={() => {
-              history.push("/myfeed/:id");
-            }}
-          ></Img>
-          <Img
-            src="https://news.imaeil.com/photos/2018/11/04/2018110420391224907_m.jpg"
-            alt=""
-            onClick={() => {
-              history.push("/myfeed/:id");
-            }}
-          ></Img>
+          {proof_list?.map((e, i) => {
+            return (
+              <Img
+                src={e.imgUrl}
+                alt=""
+                key={i}
+                onClick={() => {
+                  history.push(`/myfeed/${e._id}`);
+                }}
+              />
+            );
+          })}
         </ImageContainer>
       )}
       <ButtonNavigation />
