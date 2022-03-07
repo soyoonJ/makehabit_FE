@@ -32,8 +32,7 @@ const CategoryBar = () => {
           key={i}
           onClick={() => {
             changeClicked(i);
-            console.log("카테고리바!!!!!!!!!!!!!!!", e[0], i);
-
+            // console.log("카테고리바!!!!!!!!!!!!!!!", e[0], i);
             i === 0
               ? dispatch(mainActions.categoryDB())
               : dispatch(mainActions.categoryDB(e[0]));

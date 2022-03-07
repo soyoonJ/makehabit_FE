@@ -4,6 +4,8 @@ import { Grid, Text, Input, Image, Button } from "../elements";
 import styled from "styled-components";
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
+import { actionCreators as mainActions } from "../redux/modules/main";
+import CategoryBar from "../components/CategoryBar";
 
 const Recommend = () => {
   return (
