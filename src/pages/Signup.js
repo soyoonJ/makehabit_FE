@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text, Input, Button } from "../elements";
 
 import styled from "styled-components";
 
 import { actionCreators as userActions } from "../redux/modules/user";
+
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -13,12 +15,17 @@ const Signup = () => {
   const changeEmail = (e) => {
     setEmail(e.target.value);
   };
+  //emailCheck
+  const emailCheck = useSelector((state) => state.user.emailCheck);
 
   //nickname
   const [user_nickname, setNickname] = useState("");
   const changeNickname = (e) => {
     setNickname(e.target.value);
   };
+  //nicknameChcek
+  const nicknameCheck = useSelector((state) => state.user.nicknameCheck);
+
   let [confirmNickname, setConfirmNickname] = useState(true);
 
   //password
@@ -48,11 +55,28 @@ const Signup = () => {
       window.alert("비밀번호와 비밀번호 재입력의 값이 다릅니다!");
       return;
     }
-    // dispatch(
-    //   userActions.signupDB(user_email, user_nickname, user_pwd, user_pwdcheck)
-    // );
+    dispatch(
+      userActions.signupDB(user_email, user_nickname, user_pwd, user_pwdcheck)
+    );
   };
+  //input box 비밀번호 보기 / 끄기
+  //이모티콘 스위칭
+  let [isHidden, setIsHidden] = React.useState(true);
 
+  //type형태
+  let [pwdMode, setPwdMode] = React.useState("text");
+
+  React.useEffect(() => {
+    if (isHidden === false) {
+      setPwdMode("text");
+    } else {
+      setPwdMode("password");
+    }
+  }, [isHidden]);
+
+  const changeBool = () => {
+    setIsHidden(!isHidden);
+  };
   return (
     <React.Fragment>
       <Container>
@@ -66,26 +90,89 @@ const Signup = () => {
             label="이메일"
             placeholder="이메일을 입력해주세요"
             _onChange={changeEmail}
+            _onBlur={() => {
+              console.log("포커스 아웃 됨!");
+              dispatch(userActions.emailCheckDB(user_email));
+              console.log(emailCheck);
+            }}
           />
+          {user_email ? (
+            emailCheck ? (
+              <Text margin="0" color="green">
+                사용 가능한 이메일
+              </Text>
+            ) : (
+              // <Text color="red">이미 사용 중인 이메일입니다</Text>
+              <Text margin="0" color="red">
+                사용 불가한 이메일입니다
+              </Text>
+            )
+          ) : (
+            <Text margin="0" color="white">
+              기본값
+            </Text>
+          )}
         </Grid>
         <Grid padding="2%">
           <Input
             label="닉네임"
-            placeholder="닉네임을 입력해주세요"
+            placeholder="3~15자의 영어,한글,숫자만 사용가능합니다"
             _onChange={changeNickname}
+            _onBlur={() => {
+              console.log("포커스 아웃 됨!");
+              dispatch(userActions.nicknameCheckDB(user_nickname));
+              console.log(emailCheck);
+            }}
           />
+          {user_nickname ? (
+            nicknameCheck ? (
+              <Text margin="0" color="green">
+                사용 가능한 닉네임입니다
+              </Text>
+            ) : (
+              // <Text color="red">이미 사용중인 닉네임입니다</Text>
+              <Text margin="0" color="red">
+                사용 불가한 닉네임입니다
+              </Text>
+            )
+          ) : (
+            <Text margin="0" color="white">
+              기본값
+            </Text>
+          )}
         </Grid>
         <Grid padding="2%">
           <Input
-            type="password"
+            type={pwdMode}
             label="비밀번호"
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="8~16자, 문자/숫자/특수문자를 모두 포함하여 사용해주세요."
             _onChange={changePwd}
           />
         </Grid>
         <Grid padding="2%">
+          {isHidden ? (
+            <AiFillEye
+              onClick={changeBool}
+              style={{
+                position: "absolute",
+                right: "20px",
+                top: "331px",
+                cursor: "pointer",
+              }}
+            />
+          ) : (
+            <AiFillEyeInvisible
+              onClick={changeBool}
+              style={{
+                position: "absolute",
+                right: "20px",
+                top: "331px",
+                cursor: "pointer",
+              }}
+            />
+          )}
           <Input
-            type="password"
+            type={pwdMode}
             label="비밀번호 확인"
             placeholder="비밀번호를 다시 입력해주세요"
             _onChange={changePwdcheck}

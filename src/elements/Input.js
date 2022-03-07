@@ -1,6 +1,6 @@
-import React from 'react';
-import styled, { withTheme } from 'styled-components';
-import { Text } from '.';
+import React from "react";
+import styled, { withTheme } from "styled-components";
+import { Text } from ".";
 
 const Input = (props) => {
   const {
@@ -26,6 +26,7 @@ const Input = (props) => {
     margin,
     color,
     _onKeyPress,
+    _onBlur,
   } = props;
 
   const styles = {
@@ -51,6 +52,7 @@ const Input = (props) => {
         ref={_ref}
         onFocus={_onFocus}
         onKeyPress={_onKeyPress}
+        onBlur={_onBlur}
       />
     </>
   );
@@ -59,13 +61,13 @@ const Input = (props) => {
 Input.defaultProps = {
   multiLine: false,
   label: false,
-  placeholder: '텍스트를 입력해주세요.',
-  type: 'text',
-  width: '100%',
+  placeholder: "텍스트를 입력해주세요.",
+  type: "text",
+  width: "100%",
   _onChange: () => {},
   _onClick: () => {},
   disable: false,
-  bg: '#fff',
+  bg: "#fff",
   _onKeyDown: () => {},
   _ref: () => {},
   _onFocus: () => {},
@@ -75,8 +77,8 @@ Input.defaultProps = {
 
 const ElInput = styled.input`
   width: ${(props) => props.width};
-  ${(props) => (props.margin ? `margin: ${props.margin};` : '')}
-  ${(props) => (props.color ? `color: ${props.color};` : '')}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+  ${(props) => (props.color ? `color: ${props.color};` : "")}
   padding: 12px 4px;
   box-sizing: border-box;
   border: 1px solid #adb5bd;

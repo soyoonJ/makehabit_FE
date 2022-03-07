@@ -31,7 +31,7 @@ const CategoryPost = (props) => {
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={Img01}></Img> */}
-        <Img src={Img01 + "/Recommend_test.png"}></Img>
+        {/* <Img src={Img01 + "/Recommend_test.png"}></Img> */}
         {/* <Img>{img}</Img> */}
         <Text margin="2% 5%">{title}</Text>
         <Tag>

@@ -45,7 +45,7 @@ const Main = () => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("all"));
-                history.push("/category/all");
+                history.push("/category");
               }}
             />
             <Text alignCenter>전체보기</Text>
@@ -66,7 +66,7 @@ const Main = () => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("new"));
-                history.push("/category/new");
+                history.push("/category/");
               }}
             ></Img>
             <Text alignCenter>신규</Text>

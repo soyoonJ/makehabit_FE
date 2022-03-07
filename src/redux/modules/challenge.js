@@ -29,18 +29,19 @@ const initialState = {
 };
 
 // 인증기록하기 페이지 조회
+// 주현님 robo3T 조회하는거 알아오기
 const getConfirmDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
     console.log(challengeId);
-    // apis
-    //   .getConfirm(challengeId)
-    //   .then(function (res) {
-    //     console.log(res);
-    //     // dispatch(setConfirm(res.data));
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    apis
+      .getConfirm(challengeId)
+      .then(function (res) {
+        console.log(res);
+        // dispatch(setConfirm(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 

@@ -64,11 +64,12 @@ const RecommendDB = () => {
 const categoryDB = (categoryId) => {
   return function (dispatch, getState, { history }) {
     console.log("렌더링이 되었느냐!", categoryId);
+
     apis
       .category(categoryId) //
       .then(function (res) {
-        console.log(res);
-        // dispatch(getCategory(res.data.콘솔찍어봐서 값 가져오기));
+        console.log("잘 들어가느냐!!!", res);
+        dispatch(getCategory(res.data));
       })
       .catch((error) => {
         console.log(error);

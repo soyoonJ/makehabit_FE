@@ -66,10 +66,11 @@ const CategoryBox = styled.div`
     padding-bottom: 0px;
   }
 
-  #CardWrap::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
-  }
+  } */
 `;
+
 const CategoryCircle = styled.p`
   margin: 2%;
   font-size: 17px;
