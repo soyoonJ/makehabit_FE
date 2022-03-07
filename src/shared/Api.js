@@ -1,15 +1,52 @@
 import axios from "axios";
 
+let token = "";
+
 const instance = axios.create({
   baseURL: "http://52.79.227.179/",
-  // timeout: 1000,
+  timeout: 1000,
   headers: {
-    Authorization: "Bearer " + localStorage.getItem("token"),
-    // "content-type": "application/json;charset=UTF-8",
-    // accept: "application/json, text/plain,*/*",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json, text/plain,*/*",
   },
 });
-// console.log('몰라요', insta)
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const {
+      config,
+      response: { status },
+    } = error;
+    if (status === 401) {
+      if (error.response.data.message === "TokenExpiredError") {
+        const originalRequest = config;
+        const refreshToken = await localStorage.getItem("refreshToken");
+        // token refresh 요청
+        const { data } = await axios.post(
+          `http://localhost:3000/refresh/token`, // token refresh api
+          {
+            refreshToken,
+          }
+        );
+        // 새로운 토큰 저장
+        const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+          data;
+        await localStorage.multiSet([
+          ["accessToken", newAccessToken],
+          ["refreshToken", newRefreshToken],
+        ]);
+        axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
+        return axios(originalRequest);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 // const res = { data: "어쩌구"}
 // res.data
