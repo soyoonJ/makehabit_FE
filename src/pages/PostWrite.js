@@ -129,7 +129,7 @@ const PostWrite = () => {
         <Button
           _onClick={() => {
             complete();
-            dispatch(userAction.loginCheckDB(loginCheck.email));
+            // dispatch(userAction.loginCheckDB(loginCheck.email));
             // postActions.addPostDB(title, category, thumnail, todayDate)
           }}
         >
