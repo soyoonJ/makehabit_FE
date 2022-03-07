@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text, Input, Button } from "../elements";
 
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as userAction } from "../redux/modules/user";
 
 import CategoryModal from "../components/CategoryModal";
 import Upload from "../components/Upload";
@@ -55,6 +56,8 @@ const PostWrite = () => {
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
 
   //content내용 받아오기
+  const title = React.useRef(null);
+  const category = React.useRef(null);
   const desc = React.useRef(null);
   const method = React.useRef(null);
 
@@ -65,7 +68,9 @@ const PostWrite = () => {
 
   //자식 함수 접근하는 Ref
   const childRef = React.useRef();
-
+  //userId 가져오기
+  const loginCheck = useSelector((state) => state.user.user);
+  console.log("loginCheck", loginCheck);
   return (
     <Grid>
       {/* 타이틀 */}
@@ -74,7 +79,7 @@ const PostWrite = () => {
       </Grid>
       {/* 제목 */}
       <Grid borderBottom="1px solid">
-        <Text>챌린지 제목</Text>
+        <Input placeholder="챌린지 제목" ref={title} />
       </Grid>
       {/* 카테고리 선택 */}
       <Grid>
@@ -86,6 +91,7 @@ const PostWrite = () => {
           open={modalopen}
           close={closeModal}
           getData={getData}
+          ref={category}
         ></CategoryModal>
       </Grid>
       {/* 이미지 첨부 */}
@@ -123,7 +129,8 @@ const PostWrite = () => {
         <Button
           _onClick={() => {
             complete();
-            dispatch(postActions.addPostDB());
+            dispatch(userAction.loginCheckDB(loginCheck.email));
+            // postActions.addPostDB(title, category, thumnail, todayDate)
           }}
         >
           개설 완료

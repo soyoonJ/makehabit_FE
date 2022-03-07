@@ -153,7 +153,6 @@ const loginCheckDB = () => {
     apis
       .loginCheck()
       .then((res) => {
-        // console.log("로그인체크", res);
         if (res.data) {
           dispatch(
             setUser({
