@@ -59,7 +59,10 @@ const Card = styled.div`
 
 const Img = styled.img`
   padding: 0% 4%;
-  size: 20px;
+  width: auto;
+  height: auto;
+  max-width: 230px;
+  max-height: 100px;
 `;
 
 const Tag = styled.div`

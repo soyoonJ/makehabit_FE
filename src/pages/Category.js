@@ -20,7 +20,7 @@ const Category = (props) => {
   //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
   React.useEffect(() => {
     console.log("호호호호호");
-    // dispatch(mainActions.categoryDB(""));
+    dispatch(mainActions.categoryDB(""));
   }, []);
 
   return (
@@ -33,11 +33,10 @@ const Category = (props) => {
       </HeaderContainer>
       <CardWrap>
         {category_list?.map((p, idx) => {
-          console.log("피ㅏ1!!!", p);
+          console.log("피", p);
           return <CategoryPost key={p._id} {...p} />;
         })}
       </CardWrap>
-
       <ButtonNavigation />
     </Container>
   );

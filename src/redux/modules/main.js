@@ -7,7 +7,7 @@ import { apis } from "../../shared/Api";
 const GET_SEARCH = "GET_SEARCH";
 const GET_CATEGOTY = "GET_CATEGOTY";
 
-// action creators (스토어에 )
+// action creators
 const getSearch = createAction(GET_SEARCH, (searchWord_list) => ({
   searchWord_list,
 }));
@@ -69,7 +69,7 @@ const categoryDB = (categoryId) => {
       .category(categoryId) //
       .then(function (res) {
         console.log("잘 들어가느냐!!!", res);
-        // dispatch(getCategory(res.data));
+        dispatch(getCategory(res.data));
       })
       .catch((error) => {
         console.log(error);

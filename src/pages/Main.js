@@ -7,6 +7,7 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
 import { useDispatch } from "react-redux";
+import Recommend from "./Recommend";
 
 const Main = () => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
@@ -88,7 +89,7 @@ const Main = () => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("exercise"));
-                // history.push("/category/exercise");
+                history.push("/category/exercise");
               }}
             ></Img>
             <Text alignCenter>운동</Text>
@@ -127,22 +128,28 @@ const Main = () => {
         <RecommendWrap>
           <RecommendTitle>
             <Text bold>추천 작심삼일</Text>
-            <Text>더보기</Text>
+            <PlusButton>더보기</PlusButton>
           </RecommendTitle>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
+          <RecommendImg>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+          </RecommendImg>
+
           <RecommendTitle>
             <Text bold>캐릭터 갤러리</Text>
-            <Text>더보기</Text>
+            <PlusButton>더보기</PlusButton>
           </RecommendTitle>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
+          <RecommendImg>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+          </RecommendImg>
         </RecommendWrap>
       </Container>
       <ButtonNavigation />
@@ -187,13 +194,32 @@ const Img = styled.img`
 //추천 작심삼일
 const RecommendWrap = styled.div`
   margin-top: 4%;
-  justify-content: center;
+
+  /* justify-content: center; */
 `;
 
 const RecommendTitle = styled.div`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-around; */
   margin: 0% 5% 0% 5%;
+`;
+
+const RecommendImg = styled.div`
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: -10px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+`;
+const PlusButton = styled.button`
+  width: 40%;
+  border: 0;
+  background-color: white;
+  text-align: right;
 `;
 
 export default Main;
