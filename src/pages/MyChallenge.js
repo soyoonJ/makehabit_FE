@@ -21,7 +21,6 @@ const MyChallenge = () => {
 
   // 인증하기 페이지 클릭하면 리덕스에 이벤트 저장해놓고 true면 true, false면 false
   const [defaultTab, setTab] = React.useState(currentPage ? true : false);
-  // const [clickedTab, changeTab] = React.useState(currentPage ? true : false);
 
   React.useEffect(() => {
     if (currentPage) {
@@ -30,7 +29,8 @@ const MyChallenge = () => {
       dispatch(challengeActions.myChallengeDB());
     }
   }, []);
-  console.log("MyChallenge", defaultTab);
+  // console.log("MyChallenge", defaultTab);
+
   return (
     <React.Fragment>
       <div style={{ textAlign: "center" }}>작심삼일 인증</div>
@@ -69,11 +69,11 @@ const MyChallenge = () => {
           {proof_list?.map((e, i) => {
             return (
               <Img
-                src={proof_list.imgUrl}
+                src={e.imgUrl}
                 alt=""
                 key={i}
                 onClick={() => {
-                  history.push(`/myfeed/${proof_list._id}`);
+                  history.push(`/myfeed/${e._id}`);
                 }}
               />
             );

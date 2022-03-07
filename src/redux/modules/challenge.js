@@ -109,15 +109,15 @@ const myChallengeDB = () => {
 const myfeedDB = (proofShotId) => {
   return function (dispatch, getState, { history }) {
     console.log("myfeedDB");
-    // apis
-    //   .oneFeed(proofShotId)
-    //   .then(function (res) {
-    //     console.log(res);
-    //     // dispatch(setFeed(res.data));
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    apis
+      .oneFeed(proofShotId)
+      .then(function (res) {
+        console.log(res);
+        // dispatch(setFeed(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 };
 
