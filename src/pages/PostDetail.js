@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import { Grid, Text, Input, Button } from "../elements";
 
 import { actionCreators as postActions } from "../redux/modules/post";
+import { history } from "../redux/configureStore";
+
+import GoBack from "../components/GoBack";
 
 import styled from "styled-components";
 
@@ -56,6 +59,8 @@ const PostDetail = () => {
   return (
     <Grid padding="0 0 50px 0">
       <Grid>
+        <GoBack />
+
         <TitleImage src="https://cdn.mindgil.com/news/photo/202004/69099_2922_1716.jpg" />
       </Grid>
       <Grid is_flex padding="5%" borderBottom="1px solid">
@@ -180,4 +185,5 @@ const Join = styled.button`
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 `;
+
 export default PostDetail;

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://서버아이피주소/",
+  baseURL: "http://52.79.227.179/",
   // timeout: 1000,
   // headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
   headers: {
