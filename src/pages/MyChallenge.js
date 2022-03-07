@@ -73,7 +73,7 @@ const MyChallenge = () => {
                 alt=""
                 key={i}
                 onClick={() => {
-                  history.push(`/myfeed/${e._id}`);
+                  history.push(`/myfeed/${e.proofShotId}`);
                 }}
               />
             );

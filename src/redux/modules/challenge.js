@@ -16,7 +16,7 @@ const setChallenge = createAction(SET_CHALLENGE, (challenge_list) => ({
 }));
 const setProofshots = createAction(SET_PROOF, (proof_list) => ({ proof_list }));
 const setTab = createAction(SET_TAB, (page) => ({ page }));
-const setFeed = createAction(SET_FEED, (feed_list) => ({ feed_list }));
+const setFeed = createAction(SET_FEED, (feed) => ({ feed }));
 const setConfirm = createAction(SET_CONFIRM, (challenge_info) => ({
   challenge_info,
 }));
@@ -27,7 +27,7 @@ const initialState = {
   page: null,
   challenge_list: null,
   proof_list: null,
-  feed_list: null,
+  feed: null,
 };
 
 // 인증기록하기 페이지 조회
@@ -113,7 +113,7 @@ const myfeedDB = (proofShotId) => {
       .oneFeed(proofShotId)
       .then(function (res) {
         console.log(res);
-        // dispatch(setFeed(res.data));
+        dispatch(setFeed(res.data.proofShot));
       })
       .catch((error) => {
         console.log(error);
@@ -144,7 +144,7 @@ export default handleActions(
       }),
     [SET_FEED]: (state, action) =>
       produce(state, (draft) => {
-        draft.feed_list = action.payload.feed_list;
+        draft.feed = action.payload.feed;
       }),
   },
   initialState
