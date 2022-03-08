@@ -16,7 +16,6 @@ import { useDispatch } from "react-redux";
 const CategoryPost = (props) => {
   const dispatch = useDispatch();
   const Img01 = process.env.PUBLIC_URL + "/images";
-
   // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
   const { thumbnail, title, tags } = props;
   console.log("카테고리포스트", props);
@@ -26,8 +25,8 @@ const CategoryPost = (props) => {
       {/* 클릭 시 이동 일단 임의로 설정 */}
       <Card
         onClick={() => {
-          history.push("/post/1");
-          dispatch(postActions.getDetailPostDB());
+          // history.push("/challenge/1");
+          dispatch(postActions.getDetailPostDB("62234963b51335cde2c90f38"));
         }}
       >
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
