@@ -14,14 +14,14 @@ const CompleteConfirm = () => {
 
         <div>인증 보상</div>
         <GiftBox>
-          <div>
-            <span>100</span>
-            <span>포인트와</span>
-          </div>
-          <div>
-            <span>100</span>
-            <span>경험치를 획득했어요!</span>
-          </div>
+          {/* <div> */}
+          <span>100</span>
+          <span>포인트와</span>
+          {/* </div>
+          <div> */}
+          <span>100</span>
+          <span>경험치를 획득했어요!</span>
+          {/* </div> */}
         </GiftBox>
 
         <Button
@@ -57,6 +57,8 @@ const GiftBox = styled.div`
   height: 10%;
   background: #fff1e7;
   border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `;
 
 export default CompleteConfirm;
