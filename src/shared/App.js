@@ -29,6 +29,7 @@ import Recommend from "../pages/Recommend";
 import MyFeed from "../components/MyFeed";
 import Chat from "../pages/Chat";
 import NotFound from "../pages/NotFound";
+import Search from "../pages/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/category" component={Category} />
+              <Route path="/search" component={Search} />
               <Route path="/recommend" component={Recommend} />
               <Route path="/challenges/:id" component={PostDetail} />
               <Route path="/postwrite" component={PostWrite} />

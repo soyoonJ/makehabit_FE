@@ -5,7 +5,7 @@ import styled from "styled-components";
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as mainActions } from "../redux/modules/main";
-import CategoryBar from "../components/CategoryBar";
+
 import { useDispatch, useSelector } from "react-redux";
 
 const Recommend = (props) => {

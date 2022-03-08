@@ -33,9 +33,7 @@ const CategoryBar = () => {
           onClick={() => {
             changeClicked(i);
             // console.log("카테고리바!!!!!!!!!!!!!!!", e[0], i);
-            i === 0
-              ? dispatch(mainActions.categoryDB())
-              : dispatch(mainActions.categoryDB(e[0]));
+            dispatch(mainActions.categoryDB(e[0]));
           }}
           style={{
             borderBottomColor: i === clickedCategory ? "#ff8b37" : "#ffffff",
@@ -67,7 +65,7 @@ const CategoryBox = styled.div`
 
   /* ::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
-  } */
+  /* } */
 `;
 
 const CategoryCircle = styled.p`

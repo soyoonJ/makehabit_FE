@@ -41,6 +41,7 @@ const Main = (props) => {
             alt=""
             onClick={() => {
               dispatch(mainActions.getSearchDB(search.current.value));
+              history.push(`/search`);
             }}
           ></Img>
         </Header>
@@ -55,7 +56,7 @@ const Main = (props) => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("all"));
-                history.push("/category");
+                // history.push("/category");
               }}
             />
             <Text alignCenter>전체보기</Text>
@@ -66,7 +67,7 @@ const Main = (props) => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("popular"));
-                history.push("/category/popular");
+                // history.push("/category/popular");
               }}
             ></Img>
             <Text alignCenter>인기</Text>
@@ -76,7 +77,7 @@ const Main = (props) => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("new"));
-                history.push("/category/new");
+                // history.push("/category/new");
               }}
             ></Img>
             <Text alignCenter>신규</Text>
@@ -86,7 +87,7 @@ const Main = (props) => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("study"));
-                history.push("/category/study");
+                // history.push("/category/study");
               }}
             ></Img>
             <Text alignCenter>공부</Text>
@@ -108,7 +109,7 @@ const Main = (props) => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("self-development"));
-                history.push("/category/self-development");
+                // history.push("/category/self-development");
               }}
             ></Img>
             <Text alignCenter>자기계발</Text>
@@ -118,7 +119,7 @@ const Main = (props) => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("living-habit"));
-                history.push("/category/living-habit");
+                // history.push("/category/living-habit");
               }}
             ></Img>
             <Text alignCenter>생활습관</Text>
@@ -128,7 +129,7 @@ const Main = (props) => {
               src="images/category_test.png"
               onClick={() => {
                 dispatch(mainActions.categoryDB("eco"));
-                history.push("/category/eco");
+                // history.push("/category/eco");
               }}
             ></Img>
             <Text alignCenter>에코</Text>

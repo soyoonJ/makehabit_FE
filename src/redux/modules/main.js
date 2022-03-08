@@ -39,7 +39,8 @@ const getSearchDB = (searchWord) => {
     apis
       .mainSearch(searchWord) // 메인페이지에서 dispatch 값 데이터
       .then(function (res) {
-        console.log(res);
+        console.log("검색데이타!!!!", res.data);
+        dispatch(getSearch(res.data));
       })
       .catch((error) => {
         console.log(error);
@@ -65,9 +66,8 @@ const RecommendDB = () => {
 //카테고리 목록조회
 const categoryDB = (categoryId) => {
   return function (dispatch, getState, { history }) {
-    console.log("렌더링이 되었느냐!", categoryId);
-
     apis
+
       .category(categoryId) //
       .then(function (res) {
         console.log("잘 들어가느냐!!!", res);
@@ -75,6 +75,7 @@ const categoryDB = (categoryId) => {
       })
       .catch((error) => {
         console.log(error);
+        return;
       })
       .then(function (res) {
         history.push(`/category/${categoryId}`);
@@ -88,7 +89,7 @@ export default handleActions(
     [GET_SEARCH]: (state, action) =>
       produce(state, (draft) => {
         // console.log(action.payload.keyword);
-        draft.searchWord_list = action.payload.searchWord_list;
+        draft.searchWord_list = action.payload.searchWord_list.challenges;
       }),
 
     //카테고리 목록 가져오는 부분
