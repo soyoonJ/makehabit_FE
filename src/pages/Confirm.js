@@ -3,6 +3,7 @@
 import React from "react";
 
 import { Grid, Text, Input, Image } from "../elements";
+import GoBack from "../components/GoBack";
 import Upload from "../components/Upload";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
@@ -82,13 +83,15 @@ const Confirm = (props) => {
   return (
     <React.Fragment>
       <Grid padding="16px" position="relative">
-        <ConfirmText>인증하기</ConfirmText>
+        <ConfirmText>
+          <GoBack color="black" />
+          <span>인증하기</span>
+        </ConfirmText>
         {/* useSelector 해서 타이틀 가져오기 */}
-        <Title>{challenge_info?.title}</Title>
+        <Title>{challenge_info?.challengeTitle}</Title>
         <SubTitle>
           오늘의 도전을 성공하신 oo님! 인증사진을 올리고 포인트?
         </SubTitle>
-
         {/* <ImageBox
           onClick={onClickUpload}
           style={{
@@ -112,7 +115,6 @@ const Confirm = (props) => {
             uploadRef.current.upload();
           }}
         />
-
         <Example>
           챌린지 인증 예시가 궁금하다면?
           <span
@@ -126,7 +128,6 @@ const Confirm = (props) => {
             [아이콘]
           </span>
         </Example>
-
         <CommentTitle>코멘트</CommentTitle>
         <div>예쁘게 어쩌구~~예쁘게 어쩌구~~</div>
         <Textarea rows="8" onChange={onChange}></Textarea>

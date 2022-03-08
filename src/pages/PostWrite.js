@@ -8,6 +8,7 @@ import { actionCreators as userAction } from "../redux/modules/user";
 import CategoryModal from "../components/CategoryModal";
 import Upload from "../components/Upload";
 
+import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
 const PostWrite = () => {
@@ -129,6 +130,7 @@ const PostWrite = () => {
         <Button
           _onClick={() => {
             complete();
+            history.push("/completeopen");
             // dispatch(userAction.loginCheckDB(loginCheck.email));
             // postActions.addPostDB(title, category, thumnail, todayDate)
           }}

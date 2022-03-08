@@ -5,7 +5,9 @@ import styled from "styled-components";
 
 import { IoIosArrowBack } from "react-icons/io";
 
-const GoBack = () => {
+const GoBack = (props) => {
+  const { color, padding } = props;
+
   return (
     <Back
       onClick={() => {
@@ -17,11 +19,16 @@ const GoBack = () => {
   );
 };
 
+GoBack.defaultProps = {
+  color: "white",
+  padding: "10px",
+};
+
 const Back = styled.div`
   cursor: pointer;
   z-index: 10;
-  padding: 10px;
-  color: white;
+  padding: ${(props) => props.padding};
+  color: ${(props) => props.color};
   position: absolute;
 `;
 

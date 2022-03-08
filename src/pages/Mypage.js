@@ -6,6 +6,7 @@ import ProgressBar from "../components/ProgressBar";
 import NicknameModal from "../components/NicknameModal";
 import Modal from "../components/Modal";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -95,8 +96,18 @@ const Mypage = () => {
           나의 기록보기
         </Button>
       </Grid>
-      <Grid padding="2% 5%">
-        <Button>로그아웃</Button>
+      <Grid padding="2% 5% 50px 5%">
+        <Button
+          _onClick={() => {
+            window.confirm(
+              "로그아웃 하시면 캐릭터 꾸미기나 챌린지 참여가 제한됩니다😢\n정말 로그아웃 하시겠어요?"
+            )
+              ? dispatch(userActions.logoutDB())
+              : console.log("취소");
+          }}
+        >
+          로그아웃
+        </Button>
       </Grid>
       <ButtonNavigation />
     </Grid>
