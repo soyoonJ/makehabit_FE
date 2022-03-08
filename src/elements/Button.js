@@ -7,7 +7,9 @@ const Button = (props) => {
     _onClick,
     children,
     margin,
+    height,
     width,
+    maxWidth,
     padding,
     disable,
     bg,
@@ -18,6 +20,7 @@ const Button = (props) => {
     position,
     bottom,
     fontSize,
+    fontWeight,
     alignItems,
     display,
     is_float,
@@ -36,8 +39,10 @@ const Button = (props) => {
 
   const styles = {
     margin,
-    width,
     padding,
+    height,
+    width,
+    maxWidth,
     color,
     bg,
     cursor,
@@ -48,6 +53,7 @@ const Button = (props) => {
     fontSize,
     alignItems,
     display,
+    fontWeight,
   };
 
   return (
@@ -67,20 +73,25 @@ Button.defaultProps = {
   padding: "12px 0px",
   disable: false,
   color: "#fff",
+  height: "",
   width: "100%",
+  maxWidth: "",
   cursor: "pointer",
   bg: "#000000",
   border: "none",
   borderRadius: "5px",
   position: false,
   fontSize: null,
+  fontWeight: null,
 };
 
 const ElButton = styled.button`
   box-sizing: border-box;
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
+  ${(props) => (props.height ? `height:${props.height};` : "")};
   ${(props) => (props.width ? `width:${props.width};` : "")};
+  ${(props) => (props.maxWidth ? `max-width:${props.maxWidth};` : "")};
   background-color: ${(props) => props.bg};
   color: ${(props) => props.color};
   padding: ${(props) => props.padding};
@@ -89,6 +100,7 @@ const ElButton = styled.button`
   position: ${(props) => props.position};
   ${(props) => (props.bottom ? `bottom:${props.bottom};` : "")};
   ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : "")};
+  ${(props) => (props.fontWeight ? `font-weight:${props.fontWeight};` : "")};
   align-items: ${(props) => props.alignItems};
   ${(props) => (props.display ? `display: ${props.display}; ` : "")}
 `;
