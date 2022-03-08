@@ -1,77 +1,44 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text, Input, Button } from "../elements";
 
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
-
 import GoBack from "../components/GoBack";
 
 import styled from "styled-components";
 
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
-const PostDetail = () => {
+const PostDetail = (props) => {
   const dispatch = useDispatch();
-
+  const post = useSelector((state) => state.post.post);
+  const nickname = useSelector((state) => state.user.user.nickname);
+  const challengeId = props.match.params.id;
+  console.log("POSTEDETAIL:", nickname, challengeId);
   //좋아요 버튼 on/off
   let [isLike, setIsLike] = React.useState(false);
 
-  const clickLike = () => {
-    // 로그인 유저가 아닌 경우 참여하기 불가
-    // if (loginUser === null) {
-    //   window.alert(
-    //     '회원이 아닌 경우, 참여하기가 불가능합니다. 로그인 해주세요~!'
-    //   );
-    //   history.replace('/login');
-    //   return;
-    // }
+  React.useEffect(() => {
+    dispatch(userActions.loginCheckDB());
+    dispatch(postActions.getDetailPostDB(challengeId));
+  }, []);
 
-    // 클릭시 isLike여부 토글 트루일때 좋아요취소_삭제
-    setIsLike(!isLike);
-    if (isLike) {
-      // dispatch(postActions.deleteLikeDB(postId));
-    } else {
-      // dispatch(postActions.addLikeDB(postId));
-    }
-  };
-
-  //참여 버튼 on/off
-  let [isJoin, setIsJoin] = React.useState(false);
-
-  const clickJoin = () => {
-    // 로그인 유저가 아닌 경우 참여하기 불가
-    // if (loginUser === null) {
-    //   window.alert(
-    //     '회원이 아닌 경우, 참여하기가 불가능합니다. 로그인 해주세요~!'
-    //   );
-    //   history.replace('/login');
-    //   return;
-    // }
-
-    // 클릭시 isLike여부 토글 트루일때 좋아요취소_삭제
-    setIsJoin(!isJoin);
-    if (isJoin) {
-      // dispatch(postActions.deleteLikeDB(postId));
-    } else {
-      // dispatch(postActions.addLikeDB(postId));
-    }
-  };
   return (
     <Grid padding="0 0 50px 0">
       <Grid>
         <GoBack />
 
-        <TitleImage src="https://cdn.mindgil.com/news/photo/202004/69099_2922_1716.jpg" />
+        <TitleImage src={post.thumbnail} />
       </Grid>
       <Grid is_flex padding="5%" borderBottom="1px solid">
-        <Text>매일 3시간 공부</Text>
-        {isLike ? (
+        <Text>{post.title}</Text>
+        {post.isLike ? (
           <FcLike
             color="#000"
             size="25"
             onClick={() => {
-              clickLike();
-              dispatch(postActions.dislikeDB());
+              dispatch(postActions.dislikeDB(challengeId));
             }}
           />
         ) : (
@@ -79,73 +46,79 @@ const PostDetail = () => {
             color="#000"
             size="25"
             onClick={() => {
-              clickLike();
-              dispatch(postActions.likeDB());
+              dispatch(postActions.likeDB(challengeId));
             }}
           />
         )}
       </Grid>
       <Grid is_flex>
-        <Tag>작심삼일 1회차</Tag>
-        <Text>10명</Text>
+        <Tag>작심삼일 {post.round}회차</Tag>
+        <Text>{post.participants}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>이런 챌린지에요</Text>
-        <Text>매일 3시간 공부해서 갓생을 살아봅시다.</Text>
+        <Text>{post.content}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 진행</Text>
-        <Text>0월 0일부터 진행</Text>
+        <Text>{post.startAt}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>사진을 업로드 하세요</Text>
+        <Text>{post.howtoContent}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>사진을 업로드 하세요</Text>
+        <Text>{post.howtoContent}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>사진을 업로드 하세요</Text>
+        <Text>{post.howtoContent}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>사진을 업로드 하세요</Text>
+        <Text>{post.howtoContent}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>사진을 업로드 하세요</Text>
+        <Text>{post.howtoContent}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>사진을 업로드 하세요</Text>
+        <Text>{post.howtoContent}</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>사진을 업로드 하세요</Text>
+        <Text>{post.howtoContent}</Text>
+      </Grid>
+      <Grid padding="5%">
+        <Text>챌린지 인증방법</Text>
+        <Text>{post.howtoContent}</Text>
+      </Grid>
+      <Grid padding="5%">
+        <Text>챌린지 인증방법</Text>
+        <Text>{post.howtoContent}</Text>
+      </Grid>
+      <Grid padding="5%">
+        <Text>챌린지 인증방법</Text>
+        <Text>{post.howtoContent}</Text>
       </Grid>
       <Grid>
-        <Button is_float>+</Button>
-      </Grid>
-      <Grid>
-        {isJoin ? (
+        {post.isParticipate ? (
           <Join
             onClick={() => {
-              clickJoin();
-              dispatch(postActions.joinDB());
+              dispatch(postActions.joinCancelDB(challengeId));
             }}
           >
-            참여하기
+            참여대기중
           </Join>
         ) : (
           <Join
             onClick={() => {
-              clickJoin();
-              dispatch(postActions.joinCancelDB());
+              dispatch(postActions.joinDB(challengeId));
             }}
           >
-            참여대기중
+            참여하기
           </Join>
         )}
       </Grid>

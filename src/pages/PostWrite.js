@@ -57,21 +57,74 @@ const PostWrite = () => {
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
 
   //content내용 받아오기
-  const title = React.useRef(null);
-  const category = React.useRef(null);
-  const desc = React.useRef(null);
-  const method = React.useRef(null);
+  const [title, setTitle] = React.useState(null);
+  const [desc, setDesc] = React.useState(null);
+  const [method, setMethod] = React.useState(null);
+
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+  const onChangeDesc = (e) => {
+    setDesc(e.target.value);
+  };
+  const onChangeMethod = (e) => {
+    setMethod(e.target.value);
+  };
 
   const complete = () => {
     console.log(desc.current.value);
     console.log(method.current.value);
   };
 
-  //자식 함수 접근하는 Ref
-  const childRef = React.useRef();
+  //업로드에 함수 접근하는 Ref
+  const uploadRef = React.useRef();
+
+  const fileInput = React.useRef();
   //userId 가져오기
   const loginCheck = useSelector((state) => state.user.user);
-  console.log("loginCheck", loginCheck);
+
+  const confirm = () => {
+    // challengeId, imgUrl, challengeTitle, comment;
+    // 타이틀 props로 가져온거 넣어주기
+    const imageForm = new FormData();
+    // console.log("newFormData 확인", imageForm);
+    // console.log("fileInput ref확인", fileInput);
+    // console.log("uploadRef ref확인", uploadRef);
+    let image = fileInput.current.files[0];
+    // console.log("image", image);
+    // let image2 = uploadRef.current.files[0];
+    imageForm.append("image", image);
+    // console.log("최종imageForm확인", imageForm);
+
+    for (var key of imageForm.keys()) {
+      console.log("key", key);
+    }
+
+    for (var value of imageForm.values()) {
+      console.log("value", value);
+    }
+    console.log(
+      "datinwirte",
+      title,
+      categoryValue,
+      imageForm,
+      date,
+      desc,
+      method,
+      "tags"
+    );
+    dispatch(
+      postActions.addPostDB(
+        title,
+        categoryValue,
+        imageForm,
+        date,
+        desc,
+        method,
+        "tags"
+      )
+    );
+  };
   return (
     <Grid>
       {/* 타이틀 */}
@@ -80,7 +133,7 @@ const PostWrite = () => {
       </Grid>
       {/* 제목 */}
       <Grid borderBottom="1px solid">
-        <Input placeholder="챌린지 제목" ref={title} />
+        <Input placeholder="챌린지 제목" _onChange={onChangeTitle} />
       </Grid>
       {/* 카테고리 선택 */}
       <Grid>
@@ -92,14 +145,14 @@ const PostWrite = () => {
           open={modalopen}
           close={closeModal}
           getData={getData}
-          ref={category}
         ></CategoryModal>
       </Grid>
       {/* 이미지 첨부 */}
       <Upload
-        ref={childRef}
+        ref={uploadRef}
+        _ref={fileInput}
         _onClick={() => {
-          childRef.current.upload();
+          uploadRef.current.upload();
         }}
       />
       <Grid is_flex justifyContent="center">
@@ -120,16 +173,22 @@ const PostWrite = () => {
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 설명</Text>
-        <Contents placeholder="내용을 입력해주세요" ref={desc}></Contents>
+        <Contents
+          placeholder="내용을 입력해주세요"
+          onChange={onChangeDesc}
+        ></Contents>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증 방법</Text>
-        <Contents placeholder="내용을 입력해주세요" ref={method}></Contents>
+        <Contents
+          placeholder="내용을 입력해주세요"
+          onChange={onChangeMethod}
+        ></Contents>
       </Grid>
       <Grid padding="5%">
         <Button
           _onClick={() => {
-            complete();
+            confirm();
             history.push("/completeopen");
             // dispatch(userAction.loginCheckDB(loginCheck.email));
             // postActions.addPostDB(title, category, thumnail, todayDate)

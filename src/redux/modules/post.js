@@ -7,15 +7,15 @@ import { apis } from "../../shared/Api";
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
-
+const DETAIL_POST = "DETAIL_POST";
 //참여하기
 const EDIT_JOIN = "EDIT_JOIN";
 
 //좋아요
 const EDIT_LIKE = "EDIT_LIKE";
 
-const editJoin = createAction(EDIT_JOIN, (challengId, isPush) => ({
-  challengId,
+const editJoin = createAction(EDIT_JOIN, (nickname, isPush) => ({
+  nickname,
   isPush,
 }));
 
@@ -24,17 +24,22 @@ const editLike = createAction(EDIT_LIKE, (challengeId, isPush) => ({
   isPush,
 }));
 
+const getDetailPost = createAction(DETAIL_POST, (post) => ({
+  post,
+}));
+
 // initialState
 const initialState = {
   page: null,
   challengId: "_id",
+  post: [],
 };
 
 //게시물 등록
 const addPostDB = (
   title,
   category,
-  thumnail,
+  thumbnail,
   startAt,
   content,
   howtoContent,
@@ -43,19 +48,37 @@ const addPostDB = (
   return function (dispatch, useState, { history }) {
     console.log("게시물 등록");
     apis
-      .createChallenge(
-        title,
-        category,
-        thumnail,
-        startAt,
-        content,
-        howtoContent,
-        tag
-      )
-      .then((response) => {
-        console.log("게시물 등록");
+      .imageUpload(thumbnail)
+      .then(function (response) {
+        console.log("업로드된 이미지", response);
+        console.log(
+          "dat",
+          title,
+          category,
+          response.data.imgUrl,
+          startAt,
+          content,
+          howtoContent,
+          tag
+        );
+        apis
+          .createChallenge(
+            title,
+            category,
+            response.data.imgUrl,
+            startAt,
+            content,
+            howtoContent,
+            tag
+          )
+          .then((response) => {
+            console.log("게시물 등록");
+          })
+          .catch(function (error) {
+            console.log("addpostDB_error", error);
+          });
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -83,7 +106,9 @@ const getDetailPostDB = (challengeId) => {
     apis
       .detail(challengeId)
       .then((response) => {
-        console.log("상세페이지");
+        console.log("상세페이지", response);
+        dispatch(getDetailPost(response.data));
+        history.push(`/challenges/${challengeId}`);
       })
       .catch(function (error) {
         console.log(error);
@@ -92,31 +117,39 @@ const getDetailPostDB = (challengeId) => {
 };
 
 //참여하기
-const joinDB = (challengId) => {
+const joinDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
     console.log("참여하기");
     apis
-      .join(challengId)
+      .join(challengeId)
       .then((response) => {
         console.log("참여하기");
+        dispatch(editJoin(challengeId, true));
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .then(() => {
+        dispatch(getDetailPostDB(challengeId));
       });
   };
 };
 
 //참여취소하기
-const joinCancelDB = (challengId) => {
+const joinCancelDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
     console.log("참여취소하기");
     apis
-      .joinCancel(challengId)
+      .joinCancel(challengeId)
       .then((response) => {
         console.log("참여취소하기");
+        dispatch(editJoin(challengeId, false));
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .then(() => {
+        dispatch(getDetailPostDB(challengeId));
       });
   };
 };
@@ -133,6 +166,9 @@ const likeDB = (challengeId) => {
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .then(() => {
+        dispatch(getDetailPostDB(challengeId));
       });
   };
 };
@@ -149,6 +185,9 @@ const dislikeDB = (challengeId) => {
       })
       .catch(function (error) {
         console.log(error);
+      })
+      .then(() => {
+        dispatch(getDetailPostDB(challengeId));
       });
   };
 };
@@ -161,19 +200,20 @@ export default handleActions(
     //     // console.log(action.payload.page);
     //     draft.page = action.payload.page;
     //   }),
+    [DETAIL_POST]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("Detail_post", action.payload);
+        draft.post = action.payload.post;
+        draft.is_loaded = true;
+        // draft.post.comments = action.payload.comments;
+      }),
     [EDIT_JOIN]: (state, action) =>
       produce(state, (draft) => {
         console.log("EDITJOIN ENTER!");
-        let idx = draft.list.findIndex(
-          (e) => e.challengId === action.payload.challengId
-        );
       }),
     [EDIT_LIKE]: (state, action) =>
       produce(state, (draft) => {
         console.log("EDITLIKE ENTER!");
-        let idx = draft.list.findIndex(
-          (e) => e.challengId === action.payload.challengId
-        );
       }),
   },
   initialState
@@ -182,6 +222,7 @@ export default handleActions(
 const actionCreators = {
   addPostDB,
   uploadImageDB,
+  getDetailPost,
   getDetailPostDB,
   editJoin,
   joinDB,
