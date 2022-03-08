@@ -6,15 +6,24 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Recommend from "./Recommend";
+import CategoryPost from "../components/CategoryPost";
 
-const Main = () => {
+const Main = (props) => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
   const dispatch = useDispatch();
   const search = React.useRef(null);
+
+  React.useEffect(() => {
+    dispatch(mainActions.RecommendDB());
+  }, []);
+
+  //추천작심삼일 리스트 가져오기
+  const recommend_list = useSelector((state) => state.main.recommend_list);
+  console.log("useSelector 썻는데!!!!", recommend_list);
 
   return (
     <React.Fragment>
@@ -128,14 +137,19 @@ const Main = () => {
         <RecommendWrap>
           <RecommendTitle>
             <Text bold>추천 작심삼일</Text>
-            <PlusButton>더보기</PlusButton>
+            <PlusButton
+              onClick={() => {
+                dispatch(mainActions.RecommendDB());
+                history.push("/recommend");
+              }}
+            >
+              더보기
+            </PlusButton>
           </RecommendTitle>
           <RecommendImg>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
+            {recommend_list?.map((p, idx) => {
+              return <CategoryPost key={p._id} {...p} />;
+            })}
           </RecommendImg>
 
           <RecommendTitle>
