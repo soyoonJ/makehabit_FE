@@ -105,16 +105,12 @@ const loginDB = (email, password) => {
             // token: res.data.token,
           })
         );
-        // history.push("/");
+        history.push("/");
         // window.location.href = "/";
       })
       .catch(function (error) {
         // console.log(error);
         alert("아이디 또는 비밀번호를 확인해주세요.");
-      })
-      .then(() => {
-        console.log(localStorage.getItem("token"));
-        history.push("/");
       });
   };
 };

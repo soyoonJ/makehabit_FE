@@ -3,7 +3,7 @@ import { Text } from "../elements";
 import styled from "styled-components";
 
 const CategoryModal = (props) => {
-  const { open, close, getData } = props;
+  const { open, close, getData, _onChange } = props;
 
   const setData = (categoryName) => {
     getData(categoryName);
@@ -27,6 +27,7 @@ const CategoryModal = (props) => {
             closeModal();
           }
         }}
+        onChange={_onChange}
       >
         <Section>
           <ModalHeader>카테고리</ModalHeader>

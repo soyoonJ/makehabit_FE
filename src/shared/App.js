@@ -51,7 +51,7 @@ function App() {
               <Route path="/signup" component={Signup} />
               <Route path="/category" component={Category} />
               <Route path="/recommend" component={Recommend} />
-              <Route path="/post/:id" component={PostDetail} />
+              <Route path="/challenges/:id" component={PostDetail} />
               <Route path="/postwrite" component={PostWrite} />
               <Route path="/confirm/:id" component={Confirm} />
               <Route path="/mychallenge" component={MyChallenge} />

@@ -11,38 +11,26 @@ const instance = axios.create({
     accept: "application/json, text/plain,*/*",
   },
 });
+// instance token refresh
 instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  async (error) => {
+  (error) => {
+    console.log("error", error.config, error.response);
     const {
       config,
       response: { status },
     } = error;
+
+    const originalRequest = config;
+
     if (status === 401) {
-      if (error.response.data.message === "TokenExpiredError") {
-        const originalRequest = config;
-        const refreshToken = await localStorage.getItem("refreshToken");
-        // token refresh 요청
-        const { data } = await axios.post(
-          `http://localhost:3000/refresh/token`, // token refresh api
-          {
-            refreshToken,
-          }
-        );
-        // 새로운 토큰 저장
-        const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-          data;
-        await localStorage.multiSet([
-          ["accessToken", newAccessToken],
-          ["refreshToken", newRefreshToken],
-        ]);
-        axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
-        return axios(originalRequest);
-      }
+      const refreshToken = `Bearer ${localStorage.getItem("token")}`;
+
+      originalRequest.headers = { Authorization: refreshToken };
+      console.log("I'mIN!!!!!", originalRequest, originalRequest.headers);
+      return axios(originalRequest);
     }
     return Promise.reject(error);
   }
@@ -104,7 +92,7 @@ export const apis = {
   createChallenge: (
     title,
     category,
-    thumnail,
+    thumbnail,
     startAt,
     content,
     howtoContent,
@@ -113,7 +101,7 @@ export const apis = {
     instance.post(`/api/challenges`, {
       title,
       category,
-      thumnail,
+      thumbnail,
       startAt,
       content,
       howtoContent,
@@ -125,7 +113,7 @@ export const apis = {
 
   // 상세페이지 -------------------------------------------------------------------------------------------------------
   //상세페이지 조회
-  detail: (challengId) => instance.get(`/api/mychallenges/${challengId}`),
+  detail: (challengId) => instance.get(`/api/challenges/${challengId}`),
 
   //상세페이지-참여하기버튼
   join: (challengId) => instance.post(`/api/challenges/${challengId}/join`),
