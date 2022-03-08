@@ -37,7 +37,7 @@ const getConfirmDB = (challengeId) => {
     apis
       .getConfirm(challengeId)
       .then(function (res) {
-        // console.log(res);
+        console.log("인증조회", res);
         dispatch(setConfirm(res.data));
       })
       .catch((error) => {
@@ -60,8 +60,7 @@ const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
           .confirm(challengeId, res.data.imgUrl, challengeTitle, comment)
           .then(function (res) {
             console.log(res);
-            // 인증완료 후 새로생기는 페이지로 연결
-            // history.push('/인증완료페이지')
+            history.push("/completeconfirm");
           })
           .catch((error) => {
             console.log(error);

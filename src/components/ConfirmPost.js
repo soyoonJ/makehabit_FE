@@ -10,7 +10,12 @@ const ConfirmPost = (props) => {
   return (
     <React.Fragment>
       <Grid padding="16px">
-        <PostImage src={thumbnail}></PostImage>
+        <PostImage
+          src={thumbnail}
+          onClick={() => {
+            history.push(`/post/${props.challengeId}`);
+          }}
+        ></PostImage>
         <TextContainer>
           <div>
             <div>{title}</div>
@@ -19,7 +24,7 @@ const ConfirmPost = (props) => {
           <Button
             width="6rem"
             _onClick={() => {
-              history.replace("/confirm");
+              history.replace(`/confirm/${props.challengeId}`);
               // history.replace("/confirm/${props.id}");
             }}
           >

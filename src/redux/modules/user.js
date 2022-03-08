@@ -173,7 +173,8 @@ const loginCheckDB = () => {
 const logoutDB = () => {
   return function (dispatch, getState, { history }) {
     dispatch(logOut());
-    history.replace("/");
+    alert("다음에 또 만나요!");
+    history.push("/");
   };
 };
 
