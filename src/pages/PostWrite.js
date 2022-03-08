@@ -57,8 +57,8 @@ const PostWrite = () => {
 
   //content내용 받아오기
   const [title, setTitle] = React.useState(null);
-  const [desc, setDesc] = React.useState(null);
-  const [method, setMethod] = React.useState(null);
+  const [desc, setDesc] = React.useState("");
+  const [method, setMethod] = React.useState("");
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -176,6 +176,7 @@ const PostWrite = () => {
           placeholder="내용을 입력해주세요"
           onChange={onChangeDesc}
         ></Contents>
+        <Text>{desc.length ? desc.length : "0"}/500자</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증 방법</Text>
@@ -183,6 +184,7 @@ const PostWrite = () => {
           placeholder="내용을 입력해주세요"
           onChange={onChangeMethod}
         ></Contents>
+        <Text>{method.length ? method.length : "0"}/500자</Text>
       </Grid>
       <Grid padding="5%">
         <Button
