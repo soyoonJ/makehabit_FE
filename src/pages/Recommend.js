@@ -6,8 +6,16 @@ import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as mainActions } from "../redux/modules/main";
 import CategoryBar from "../components/CategoryBar";
+import { useDispatch, useSelector } from "react-redux";
 
-const Recommend = () => {
+const Recommend = (props) => {
+  const recommend_list = useSelector((state) => state.main.recommend_list);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    console.log("호호호호호");
+    dispatch(mainActions.RecommendDB(""));
+  }, []);
+
   return (
     <React.Fragment>
       <Header>
@@ -19,9 +27,11 @@ const Recommend = () => {
       <Container>
         <Banner src="images/banner_02.png" alt=""></Banner>
         <CardWrap>
-          <CategoryPost></CategoryPost>
-          <CategoryPost></CategoryPost>
-          <CategoryPost></CategoryPost>
+          {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
+          {recommend_list?.map((p, idx) => {
+            console.log("피", p);
+            return <CategoryPost key={p._id} {...p} />;
+          })}
         </CardWrap>
       </Container>
       <ButtonNavigation />

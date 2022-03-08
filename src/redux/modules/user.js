@@ -105,7 +105,7 @@ const loginDB = (email, password) => {
             // token: res.data.token,
           })
         );
-        // history.push("/");
+        history.push("/");
         // window.location.href = "/";
       })
       .catch(function (error) {
@@ -114,7 +114,7 @@ const loginDB = (email, password) => {
       })
       .then(() => {
         console.log(localStorage.getItem("token"));
-        history.push("/");
+        // history.push("/");
       });
   };
 };
