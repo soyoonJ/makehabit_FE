@@ -9,8 +9,9 @@ import styled from "styled-components";
 
 const MyFeed = (props) => {
   const dispatch = useDispatch();
-  const proofShotId = props.match.params.proofShotId;
-  console.log(proofShotId);
+  const proofShotId = props.match.params.id;
+  // console.log(proofShotId);
+  const feed = useSelector((state) => state.challenge.feed);
 
   React.useEffect(() => {
     dispatch(challengeActions.myfeedDB(proofShotId));
@@ -28,16 +29,15 @@ const MyFeed = (props) => {
         </Back>
 
         <div style={{ display: "flex" }}>
-          <Img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWmH9kAbB1WcW1bZn30ACcK1KUDOeWZkzyng&usqp=CAU"
-            alt="인증이미지"
-          ></Img>
+          <Img src={feed?.imgUrl} alt="인증이미지" />
         </div>
-
-        <Comment>
-          <div>타이틀</div>
-          <div>코멘트</div>
-        </Comment>
+        {feed && (
+          <Comment>
+            <div>{feed.challengeTitle}</div>
+            <div>{feed.comment}</div>
+            <div>{feed.createdAt.slice(0, 10)}</div>
+          </Comment>
+        )}
       </Container>
     </React.Fragment>
   );

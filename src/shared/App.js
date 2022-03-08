@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 import React from "react";
-
+import "./App.css";
 import styled from "styled-components";
 
 import Main from "../pages/Main";
@@ -19,7 +19,9 @@ import Signup from "../pages/Signup";
 import Category from "../pages/Category";
 import PostDetail from "../pages/PostDetail";
 import PostWrite from "../pages/PostWrite";
+import CompleteOpen from "../pages/CompleteOpen";
 import Confirm from "../pages/Confirm";
+import CompleteConfirm from "../pages/CompleteConfirm";
 import MyChallenge from "../pages/MyChallenge";
 import Mypage from "../pages/Mypage";
 import Character from "../pages/Character";
@@ -53,7 +55,9 @@ function App() {
               <Route path="/recommend" component={Recommend} />
               <Route path="/post/:id" component={PostDetail} />
               <Route path="/postwrite" component={PostWrite} />
+              <Route path="/completeopen" component={CompleteOpen} />
               <Route path="/confirm/:id" component={Confirm} />
+              <Route path="/completeconfirm" component={CompleteConfirm} />
               <Route path="/mychallenge" component={MyChallenge} />
               <Route path="/mypage" component={Mypage} />
               <Route path="/character" component={Character} />

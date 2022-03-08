@@ -13,6 +13,7 @@ const Button = (props) => {
     bg,
     color,
     cursor,
+    border,
     borderRadius,
     position,
     bottom,
@@ -40,6 +41,7 @@ const Button = (props) => {
     color,
     bg,
     cursor,
+    border,
     borderRadius,
     position,
     bottom,
@@ -68,6 +70,7 @@ Button.defaultProps = {
   width: "100%",
   cursor: "pointer",
   bg: "#000000",
+  border: "none",
   borderRadius: "5px",
   position: false,
   fontSize: null,
@@ -75,7 +78,7 @@ Button.defaultProps = {
 
 const ElButton = styled.button`
   box-sizing: border-box;
-  border: none;
+  border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
   ${(props) => (props.width ? `width:${props.width};` : "")};
   background-color: ${(props) => props.bg};
