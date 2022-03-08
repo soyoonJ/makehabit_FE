@@ -23,7 +23,8 @@ const PostDetail = (props) => {
     dispatch(userActions.loginCheckDB());
     dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
-
+  let date = new Date(post.startAt);
+  // console.log("POSTDTAIL", post.startAt.subString(0, 10));
   return (
     <Grid padding="0 0 50px 0">
       <Grid>

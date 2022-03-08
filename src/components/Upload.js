@@ -32,7 +32,7 @@ const Upload = forwardRef((props, ref) => {
       <ImageInput
         id="thumnail"
         type="file"
-        accept=".png , .jpg , .png, .jpeg"
+        accept=".png , .jpg , .png, .jpeg, .gif"
         onChange={saveFileImage}
         ref={_ref}
         cursor="pointer"
