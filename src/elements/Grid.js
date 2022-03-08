@@ -27,6 +27,7 @@ const Grid = (props) => {
     alignItems,
     flexWrap,
     textAlign,
+    letterSpacing,
     pointer,
   } = props;
 
@@ -51,6 +52,7 @@ const Grid = (props) => {
     alignItems,
     flexWrap,
     textAlign,
+    letterSpacing,
     pointer,
   };
 
@@ -94,6 +96,7 @@ Grid.defaultProps = {
   justifyContent: "space-between",
   flexWrap: null,
   pointer: "",
+  letterSpacing: "",
 };
 
 const GridBox = styled.div`
@@ -121,6 +124,8 @@ const GridBox = styled.div`
   border-style: ${(props) => props.borderStyle};
   align-items: ${(props) => props.alignItems};
   text-align: ${(props) => props.textAlign};
+  ${(props) =>
+    props.letterSpacing ? `letter-spacing: ${props.letterSpacing};` : ""}
   ${(props) => (props.borderTop ? `border-top: ${props.borderTop};` : "")}
   ${(props) =>
     props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
