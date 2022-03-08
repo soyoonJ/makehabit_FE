@@ -32,7 +32,7 @@ const ButtonNavigation = () => {
           <ButtonIcon onClick={confirmPage}>인증</ButtonIcon>
           {/* 채팅 추가 연결 필요 */}
           <ButtonIcon onClick={() => history.push("/character")}>
-            캐릭터꾸미기
+            캐릭터샵
           </ButtonIcon>
           <ButtonIcon onClick={() => history.push("/mypage")}>
             Mypage
