@@ -6,6 +6,7 @@ import { apis } from "../../shared/Api";
 // import axios from "axios"
 const GET_SEARCH = "GET_SEARCH";
 const GET_CATEGOTY = "GET_CATEGOTY";
+const GET_RECOMMEND = "GET_RECOMMEND";
 
 // action creators
 const getSearch = createAction(GET_SEARCH, (searchWord_list) => ({
@@ -19,10 +20,15 @@ const getCategory = createAction(
   })
 );
 
+const getRecommend = createAction(GET_RECOMMEND, (recommend_list) => ({
+  recommend_list,
+}));
+
 // initialState
 const initialState = {
   searchWord_list: [],
   category_list: [],
+  recommend_list: [],
 };
 
 // 미들웨어
@@ -47,12 +53,8 @@ const RecommendDB = () => {
     apis
       .mainRecommend()
       .then(function (res) {
-        console.log(res);
-        // dispatch(getSearch({
-        // searchWord,
-        // challengeId : res.data.searchWord.challengeId ,
-        // participants : res.data.searchWord.participants ,
-        // }));
+        console.log("추천삼일모듈", res.data.challenges);
+        dispatch(getRecommend(res.data.challenges));
       })
       .catch((error) => {
         console.log(error);
@@ -99,6 +101,12 @@ export default handleActions(
         draft.category_list = action.payload.category_list.challenges;
         draft.checkLoadAll = action.payload.checkLoadAll;
       }),
+
+    [GET_RECOMMEND]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("추천!!!목록!!리스트!!!", action.payload.recommend_list);
+        draft.recommend_list = action.payload.recommend_list;
+      }),
   },
 
   initialState
@@ -110,6 +118,7 @@ const actionCreators = {
   RecommendDB,
   categoryDB,
   getCategory,
+  getRecommend,
 };
 
 export { actionCreators };

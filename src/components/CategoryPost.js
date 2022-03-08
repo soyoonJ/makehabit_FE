@@ -61,8 +61,8 @@ const Img = styled.img`
   padding: 0% 4%;
   width: auto;
   height: auto;
-  max-width: 230px;
-  max-height: 100px;
+  max-width: 150px;
+  max-height: 150px;
 `;
 
 const Tag = styled.div`
