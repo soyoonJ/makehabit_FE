@@ -32,6 +32,44 @@ const PostDetail = (props) => {
     moment(post.startAt).day()
   );
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
+
+  //로그인 체크
+  const is_login = useSelector((state) => state.user.is_login);
+  //찜하기 (좋아요) 기능
+  const like = () => {
+    if (is_login) {
+      dispatch(postActions.likeDB(challengeId));
+    } else {
+      window.alert("로그인 후 인증 해주세요!");
+      history.push("/login");
+    }
+  };
+  //찜하기 해제 기능
+  const disLike = () => {
+    if (is_login) {
+      dispatch(postActions.disLikeDB(challengeId));
+    } else {
+      window.alert("로그인 후 인증 해주세요!");
+      history.push("/login");
+    }
+  };
+  //인증하기 기능
+  const confirmPage = () => {
+    if (is_login) {
+      history.push(`/confirm/${challengeId}`);
+    } else {
+      window.alert("로그인 후 인증 해주세요!");
+      history.push("/login");
+    }
+  };
+  const join = () => {
+    if (is_login) {
+      dispatch(postActions.joinDB(challengeId));
+    } else {
+      window.alert("로그인 후 인증 해주세요!");
+      history.push("/login");
+    }
+  };
   return (
     <Grid padding="0 0 50px 0">
       <Grid>
@@ -45,7 +83,7 @@ const PostDetail = (props) => {
             color="#000"
             size="25"
             onClick={() => {
-              dispatch(postActions.dislikeDB(challengeId));
+              disLike();
             }}
           />
         ) : (
@@ -53,7 +91,7 @@ const PostDetail = (props) => {
             color="#000"
             size="25"
             onClick={() => {
-              dispatch(postActions.likeDB(challengeId));
+              like();
             }}
           />
         )}
@@ -97,55 +135,19 @@ const PostDetail = (props) => {
           <Text>{post.howtoContent}</Text>
         </ColorBox>
       </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
-      </Grid>
       <Grid>
         {post.isParticipate ? (
           <Join
             onClick={() => {
-              dispatch(postActions.joinCancelDB(challengeId));
+              confirmPage();
             }}
           >
-            참여대기중
+            인증하기
           </Join>
         ) : (
           <Join
             onClick={() => {
-              dispatch(postActions.joinDB(challengeId));
+              join();
             }}
           >
             참여하기

@@ -132,7 +132,10 @@ const PostWrite = () => {
   };
   //자식 함수 접근하는 Ref
   const childRef = useRef();
-
+  //글자수 제한
+  const checkLength = (string) => {
+    const maxLength = 500;
+  };
   return (
     <Container>
       <Grid>
@@ -221,7 +224,14 @@ const PostWrite = () => {
             placeholder="ex) 매일 책 한 권 읽는 챌린지"
             onChange={onChangeDesc}
           ></Contents>
-          <Text textAlign="right">{desc.length ? desc.length : "0"}/500자</Text>
+          <Text
+            textAlign="right"
+            onKeyUp={() => {
+              fn_checkByte(this);
+            }}
+          >
+            {desc.length ? desc.length : "0"}/500자
+          </Text>
         </Grid>
         <Grid padding="5%">
           <Grid>

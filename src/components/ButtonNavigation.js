@@ -10,10 +10,19 @@ import { useDispatch, useSelector } from "react-redux";
 const ButtonNavigation = () => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
+  console.log("button", is_login);
   const confirmPage = () => {
     if (is_login) {
       // dispatch(challengeActions.setTab("navi"));
       history.push(`/mychallenge/navi`);
+    } else {
+      window.alert("로그인 후 인증 해주세요!");
+      history.push("/login");
+    }
+  };
+  const writePage = () => {
+    if (is_login) {
+      history.push(`postwrite`);
     } else {
       window.alert("로그인 후 인증 해주세요!");
       history.push("/login");
@@ -26,9 +35,7 @@ const ButtonNavigation = () => {
         <GradientBox />
         <ButtonWrap>
           <ButtonIcon onClick={() => history.push("/")}>홈</ButtonIcon>
-          <ButtonIcon onClick={() => history.push("/postwrite")}>
-            개설
-          </ButtonIcon>
+          <ButtonIcon onClick={() => writePage()}>개설</ButtonIcon>
           <ButtonIcon onClick={confirmPage}>인증</ButtonIcon>
           {/* 채팅 추가 연결 필요 */}
           <ButtonIcon onClick={() => history.push("/character")}>
