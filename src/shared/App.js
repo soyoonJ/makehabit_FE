@@ -57,7 +57,7 @@ function App() {
               <Route path="/challenges/:id" component={PostDetail} />
               <Route path="/postwrite" component={PostWrite} />
               <Route path="/confirm/:id" component={Confirm} />
-              <Route path="/mychallenge" component={MyChallenge} />
+              <Route path="/mychallenge/:id" component={MyChallenge} />
               <Route path="/mypage" component={Mypage} />
               <Route path="/character" component={Character} />
               <Route path="/myfeed/:id" component={MyFeed} />
