@@ -52,7 +52,7 @@ function App() {
               <Route path="/" exact component={Main} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
-              <Route path="/category" component={Category} />
+              <Route path="/category/:id" component={Category} />
               <Route path="/search" component={Search} />
               <Route path="/recommend" component={Recommend} />
               <Route path="/challenges/:id" component={PostDetail} />

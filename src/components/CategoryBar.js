@@ -26,6 +26,7 @@ const CategoryBar = () => {
     }
   }, [checkLoadAll]);
   return (
+    // <Horizontable>
     <CategoryBox>
       {categoryList.map((e, i) => (
         <CategoryCircle
@@ -43,29 +44,29 @@ const CategoryBar = () => {
         </CategoryCircle>
       ))}
     </CategoryBox>
+    // </Horizontable>
   );
 };
 
 const CategoryBox = styled.div`
   height: 10vh;
-  max-width: 100%;
+  max-width: 420px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   flex-wrap: nowrap;
   margin-bottom: -10px;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: hidden;
 
   @media only screen and (max-width: 768px) {
     margin-bottom: 0%;
     padding-bottom: 0px;
   }
 
-  /* ::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  /* } */
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const CategoryCircle = styled.p`
