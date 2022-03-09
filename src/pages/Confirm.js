@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Grid, Text, Input, Image } from "../elements";
+import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
 import GoBack from "../components/GoBack";
 import Upload from "../components/Upload";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,22 +46,17 @@ const Confirm = (props) => {
 
   // 코멘트 값 받아오기
   const [comment, setComment] = React.useState(null);
+  const [commentLength, setLength] = React.useState(0);
   const onChange = (e) => {
     setComment(e.target.value);
+    setLength(e.target.value.length);
   };
 
   const confirm = () => {
-    // challengeId, imgUrl, challengeTitle, comment;
-    // 타이틀 props로 가져온거 넣어주기
     const imageForm = new FormData();
-    // console.log("newFormData 확인", imageForm);
-    // console.log("fileInput ref확인", fileInput);
-    // console.log("uploadRef ref확인", uploadRef);
     let image = fileInput.current.files[0];
-    // console.log("image", image);
     // let image2 = uploadRef.current.files[0];
     imageForm.append("image", image);
-    // console.log("최종imageForm확인", imageForm);
 
     for (var key of imageForm.keys()) {
       console.log("key", key);
@@ -74,7 +69,6 @@ const Confirm = (props) => {
     dispatch(
       challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
     );
-
     dispatch(challengeActions.setComplete("confirm"));
   };
 
@@ -84,7 +78,7 @@ const Confirm = (props) => {
 
   return (
     <React.Fragment>
-      <Grid padding="16px" position="relative">
+      <ContainerGrid>
         <ConfirmText>
           <GoBack color="black" />
           <span>인증하기</span>
@@ -132,19 +126,14 @@ const Confirm = (props) => {
         </Example>
         <CommentTitle>코멘트</CommentTitle>
         <div>예쁘게 어쩌구~~예쁘게 어쩌구~~</div>
-        <Textarea rows="8" onChange={onChange}></Textarea>
-      </Grid>
+        <Textarea rows="8" onChange={onChange} maxLength="300"></Textarea>
+        <div style={{ marginBottom: "100px", textAlign: "end" }}>
+          {commentLength}/300자
+        </div>
+      </ContainerGrid>
 
       <Grid>
-        {/* 인증완료하기 버튼 클릭 시 어떤 페이지로 넘어갈 지 정해야 함 */}
-        <Button
-          // onClick={() => {
-          //   dispatch(postActions.uploadImageDB());
-          // }}
-          onClick={confirm}
-        >
-          인증완료하기
-        </Button>
+        <Button onClick={confirm}>인증완료하기</Button>
       </Grid>
 
       <Modal ref={modalRef}>
@@ -179,7 +168,6 @@ const ImageBox = styled.div`
   width: 100%;
   max-width: 420px;
   height: 300px;
-  // background-size: 100% 100%;
   background-size: cover;
   cursor: pointer;
 
@@ -202,7 +190,7 @@ const CommentTitle = styled.div`
 const Textarea = styled.textarea`
   width: 100%;
   resize: none;
-  margin-bottom: 100px;
+  box-sizing: border-box;
 `;
 const Button = styled.button`
   position: fixed;
