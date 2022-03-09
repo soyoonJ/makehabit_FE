@@ -32,7 +32,7 @@ const CategoryPost = (props) => {
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={Img01}></Img> */}
-        {/* <Img src={Img01 + "/Recommend_test.png"}></Img> */}
+        <Img src={Img01 + "/Recommend_test.png"}></Img>
         <Img src={thumbnail} />
         <Text margin="2% 5%">{title}</Text>
         <Tag>
@@ -47,13 +47,19 @@ const CategoryPost = (props) => {
 
 CategoryPost.defaultProps = {
   img: "ihttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw8iLInSA0YTMGUXPAGcrG4ZvLC8PGrs8lZloBXFYYxI3DNCV7nVLmM83ojgAxMkQaA8&usqp=CAU",
-  title: "타이틀 변수로 변경해라",
+  title:
+    "타이틀 변수로 변경해라, 이거 길어지면 어떻게 나오닝?너 지금 뭐하고 있니?",
   tags: "작심삼일이다",
 };
 
 const Card = styled.div`
   margin: 10px 0px;
   cursor: pointer;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 160px;
 `;
 
 const Img = styled.img`
@@ -73,4 +79,5 @@ const Tag = styled.div`
   border-radius: 5px;
   align-items: center;
 `;
+
 export default CategoryPost;

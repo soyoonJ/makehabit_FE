@@ -135,36 +135,33 @@ const Main = (props) => {
             <Text alignCenter>에코</Text>
           </Category>
         </CategoryWrap>
-        <RecommendWrap>
-          <RecommendTitle>
-            <Text bold>추천 작심삼일</Text>
-            <PlusButton
-              onClick={() => {
-                dispatch(mainActions.RecommendDB());
-                history.push("/recommend");
-              }}
-            >
-              더보기
-            </PlusButton>
-          </RecommendTitle>
-          <RecommendImg>
-            {recommend_list?.map((p, idx) => {
-              return <CategoryPost key={p._id} {...p} />;
-            })}
-          </RecommendImg>
 
-          <RecommendTitle>
-            <Text bold>캐릭터 갤러리</Text>
-            <PlusButton>더보기</PlusButton>
-          </RecommendTitle>
-          <RecommendImg>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-            <Img src="images/Recommend_test.png"></Img>
-          </RecommendImg>
+        <RecommendTitle>
+          <Text bold>추천 작심삼일</Text>
+          <PlusButton
+            onClick={() => {
+              dispatch(mainActions.RecommendDB());
+              history.push("/recommend");
+            }}
+          >
+            더보기
+          </PlusButton>
+        </RecommendTitle>
+        <RecommendWrap>
+          <CategoryPost></CategoryPost>
+          <CategoryPost></CategoryPost>
+          {/* {recommend_list?.map((p, idx) => {
+              return <CategoryPost key={p._id} {...p} />;
+            })} */}
+        </RecommendWrap>
+
+        <RecommendTitle>
+          <Text bold>캐릭터 갤러리</Text>
+          <PlusButton>더보기</PlusButton>
+        </RecommendTitle>
+        <RecommendWrap>
+          <Img src="images/Recommend_test.png"></Img>
+          <Img src="images/Recommend_test.png"></Img>
         </RecommendWrap>
       </Container>
       <ButtonNavigation />
@@ -209,26 +206,22 @@ const Img = styled.img`
 //추천 작심삼일
 const RecommendWrap = styled.div`
   margin-top: 4%;
-
-  /* justify-content: center; */
+  display: flex;
+  justify-content: space-around;
 `;
 
 const RecommendTitle = styled.div`
   display: flex;
-  /* justify-content: space-around; */
   margin: 0% 5% 0% 5%;
 `;
 
 const RecommendImg = styled.div`
   max-width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: nowrap;
   margin-bottom: -10px;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
 `;
 const PlusButton = styled.button`
   width: 40%;

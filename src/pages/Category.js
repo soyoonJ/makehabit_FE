@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, Input, Text, Image, Grid } from "../elements";
 
@@ -16,11 +16,16 @@ const Category = (props) => {
   const category_list = useSelector((state) => state.main.category_list);
   console.log("카테고리리스트", category_list);
 
+  // 새로고침 해도 현재카테고리를 보여 줄 수 있도록
+  const categoryId = props.match.params.id;
   //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
   //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
+
   React.useEffect(() => {
     console.log("호호호호호");
-    dispatch(mainActions.categoryDB(""));
+    //   setLoading(false);
+    // }, [id])
+    dispatch(mainActions.categoryDB(categoryId));
   }, []);
 
   return (
@@ -51,10 +56,6 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-around;
 `;
-
-// const CategoryBar = styled.div`
-//   width: auto;
-// `;
 
 const CategoryButton = styled.button`
   border: 0;
