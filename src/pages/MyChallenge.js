@@ -1,7 +1,7 @@
 // 내 챌린지 이름 바뀌면 파일명도 바꾸기
 import React from "react";
 
-import { Grid, Text, Input, Image } from "../elements";
+import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
 import ButtonNavigation from "../components/ButtonNavigation";
 import ConfirmPost from "../components/ConfirmPost";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
@@ -28,7 +28,7 @@ const MyChallenge = (props) => {
 
   return (
     <React.Fragment>
-      <div style={{ textAlign: "center" }}>작심삼일 인증</div>
+      <div style={{ textAlign: "center" }}>참여 챌린지</div>
       <hr />
 
       <Container>
@@ -53,28 +53,30 @@ const MyChallenge = (props) => {
         </Grid>
       </Container>
 
-      {currentPage === "navi" ? (
-        <div>
-          {challenge_list?.map((e, i) => {
-            return <ConfirmPost key={i} {...e} />;
-          })}
-        </div>
-      ) : (
-        <ImageContainer>
-          {proof_list?.map((e, i) => {
-            return (
-              <Img
-                src={e.imgUrl}
-                alt=""
-                key={i}
-                onClick={() => {
-                  history.push(`/myfeed/${e.proofShotId}`);
-                }}
-              />
-            );
-          })}
-        </ImageContainer>
-      )}
+      <ContainerGrid>
+        {currentPage === "navi" ? (
+          <div>
+            {challenge_list?.map((e, i) => {
+              return <ConfirmPost key={i} {...e} />;
+            })}
+          </div>
+        ) : (
+          <ImageContainer>
+            {proof_list?.map((e, i) => {
+              return (
+                <Img
+                  src={e.imgUrl}
+                  alt=""
+                  key={i}
+                  onClick={() => {
+                    history.push(`/myfeed/${e.proofShotId}`);
+                  }}
+                />
+              );
+            })}
+          </ImageContainer>
+        )}
+      </ContainerGrid>
       <ButtonNavigation />
     </React.Fragment>
   );
