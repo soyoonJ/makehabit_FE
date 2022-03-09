@@ -12,8 +12,8 @@ const ButtonNavigation = () => {
   const is_login = useSelector((state) => state.user.is_login);
   const confirmPage = () => {
     if (is_login) {
-      dispatch(challengeActions.setTab("navi"));
-      history.push("/mychallenge");
+      // dispatch(challengeActions.setTab("navi"));
+      history.push(`/mychallenge/navi`);
     } else {
       window.alert("로그인 후 인증 해주세요!");
       history.push("/login");

@@ -11,16 +11,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 
-const MyChallenge = () => {
+const MyChallenge = (props) => {
   const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.challenge.page);
+  // const naviClick = useSelector((state) => state.challenge.page);
   // console.log("지금", currentPage);
+  const currentPage = props.match.params.id;
   const challenge_list = useSelector((state) => state.challenge.challenge_list);
   const proof_list = useSelector((state) => state.challenge.proof_list);
   // console.log("갤러리", proof_list[0]);
-
   // 인증하기 페이지 클릭하면 리덕스에 이벤트 저장해놓고 true면 true, false면 false
-  const [defaultTab, setTab] = React.useState(currentPage ? true : false);
+  const [defaultTab, setTab] = React.useState(
+    currentPage === "navi" ? true : false
+  );
 
   React.useEffect(() => {
     if (defaultTab) {
@@ -28,7 +30,7 @@ const MyChallenge = () => {
     } else {
       dispatch(challengeActions.myChallengeDB());
     }
-  }, [defaultTab]);
+  }, [defaultTab || currentPage]);
   // console.log("MyChallenge", defaultTab);
 
   return (

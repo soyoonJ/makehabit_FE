@@ -4,6 +4,7 @@ import { Grid, Text, Input, Button } from "../elements";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userAction } from "../redux/modules/user";
+import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import CategoryModal from "../components/CategoryModal";
 import CategoryModal1 from "../components/CategoryModal1";
@@ -127,6 +128,7 @@ const PostWrite = () => {
         "tags"
       )
     );
+    dispatch(challengeActions.setComplete("confirm"));
   };
   //자식 함수 접근하는 Ref
   const childRef = useRef();

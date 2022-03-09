@@ -90,7 +90,7 @@ const Mypage = () => {
         <Button
           _onClick={() => {
             dispatch(challengeActions.setTab(null));
-            history.push("/mychallenge");
+            history.push("/mychallenge/feed");
           }}
         >
           나의 기록보기
