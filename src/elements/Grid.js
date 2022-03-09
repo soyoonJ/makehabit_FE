@@ -5,6 +5,7 @@ const Grid = (props) => {
   const {
     is_flex,
     width,
+    maxWidth,
     padding,
     margin,
     bg,
@@ -34,6 +35,7 @@ const Grid = (props) => {
   const styles = {
     is_flex,
     width,
+    maxWidth,
     height,
     padding,
     margin,
@@ -83,6 +85,7 @@ Grid.defaultProps = {
   children: null,
   is_flex: false,
   width: "100%",
+  maxWidth: "",
   height: "100%",
   padding: false,
   margin: false,
@@ -104,6 +107,7 @@ const GridBox = styled.div`
   ${(props) => (props.pointer ? `cursor: pointer;` : "")}
 
   width: ${(props) => props.width};
+  ${(props) => (props.maxWidth ? `max-width: ${props.maxWidth};` : "")}
   height: ${(props) => props.height};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}

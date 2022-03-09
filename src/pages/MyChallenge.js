@@ -13,25 +13,18 @@ import styled from "styled-components";
 
 const MyChallenge = (props) => {
   const dispatch = useDispatch();
-  // const naviClick = useSelector((state) => state.challenge.page);
-  // console.log("지금", currentPage);
   const currentPage = props.match.params.id;
+  // console.log("지금", currentPage);
   const challenge_list = useSelector((state) => state.challenge.challenge_list);
   const proof_list = useSelector((state) => state.challenge.proof_list);
-  // console.log("갤러리", proof_list[0]);
-  // 인증하기 페이지 클릭하면 리덕스에 이벤트 저장해놓고 true면 true, false면 false
-  const [defaultTab, setTab] = React.useState(
-    currentPage === "navi" ? true : false
-  );
 
   React.useEffect(() => {
-    if (defaultTab) {
+    if (currentPage === "navi") {
       dispatch(challengeActions.naviChallengeDB());
     } else {
       dispatch(challengeActions.myChallengeDB());
     }
-  }, [defaultTab || currentPage]);
-  // console.log("MyChallenge", defaultTab);
+  }, [currentPage]);
 
   return (
     <React.Fragment>
@@ -42,9 +35,9 @@ const MyChallenge = (props) => {
         <Grid
           pointer
           _onClick={() => {
-            setTab(true);
+            history.push("/mychallenge/navi");
           }}
-          borderBottom={defaultTab ? "3px solid orange" : "null"}
+          borderBottom={currentPage === "navi" ? "3px solid orange" : "null"}
         >
           내가 참여한 챌린지
         </Grid>
@@ -52,15 +45,15 @@ const MyChallenge = (props) => {
         <Grid
           pointer
           _onClick={() => {
-            setTab(false);
+            history.push("/mychallenge/feed");
           }}
-          borderBottom={!defaultTab ? "3px solid orange" : "null"}
+          borderBottom={currentPage === "feed" ? "3px solid orange" : "null"}
         >
           나의 기록보기
         </Grid>
       </Container>
 
-      {defaultTab ? (
+      {currentPage === "navi" ? (
         <div>
           {challenge_list?.map((e, i) => {
             return <ConfirmPost key={i} {...e} />;
