@@ -89,7 +89,7 @@ const Mypage = () => {
       <Grid padding="2% 5%">
         <Button
           _onClick={() => {
-            dispatch(challengeActions.setTab(null));
+            // dispatch(challengeActions.setTab("feed"));
             history.push("/mychallenge/feed");
           }}
         >

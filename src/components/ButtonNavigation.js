@@ -13,6 +13,7 @@ const ButtonNavigation = () => {
   const confirmPage = () => {
     if (is_login) {
       // dispatch(challengeActions.setTab("navi"));
+      // dispatch(challengeActions.naviChallengeDB());
       history.push(`/mychallenge/navi`);
     } else {
       window.alert("로그인 후 인증 해주세요!");
