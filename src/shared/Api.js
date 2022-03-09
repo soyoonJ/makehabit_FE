@@ -1,7 +1,5 @@
 import axios from "axios";
 
-let token = "";
-
 const instance = axios.create({
   baseURL: "http://52.79.227.179/",
   timeout: 1000,

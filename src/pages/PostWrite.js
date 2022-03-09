@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text, Input, Button } from "../elements";
 
@@ -6,10 +6,13 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userAction } from "../redux/modules/user";
 
 import CategoryModal from "../components/CategoryModal";
+import CategoryModal1 from "../components/CategoryModal1";
 import Upload from "../components/Upload";
 
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
+
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const PostWrite = () => {
   const dispatch = useDispatch();
@@ -125,84 +128,128 @@ const PostWrite = () => {
       )
     );
   };
-  return (
-    <Grid>
-      {/* 타이틀 */}
-      <Grid textAlign="center">
-        <Text>챌린지 개설</Text>
-      </Grid>
-      {/* 제목 */}
-      <Grid borderBottom="1px solid">
-        <Input placeholder="챌린지 제목" _onChange={onChangeTitle} />
-      </Grid>
-      {/* 카테고리 선택 */}
-      <Grid>
-        <Button _onClick={openModal}>
-          {categoryValue ? categoryValue : "카테고리 선택"}
-        </Button>
+  //자식 함수 접근하는 Ref
+  const childRef = useRef();
 
-        <CategoryModal
-          open={modalopen}
-          close={closeModal}
-          getData={getData}
-        ></CategoryModal>
+  return (
+    <Container>
+      <Grid>
+        {/* 타이틀 */}
+        <Grid textAlign="center" borderBottom="solid 1px #e0e0e0">
+          <Text>챌린지 개설</Text>
+        </Grid>
+
+        {/* 이미지 업로드 */}
+        <Grid>
+          <Upload
+            ref={uploadRef}
+            _ref={fileInput}
+            _onClick={() => {
+              uploadRef.current.upload();
+            }}
+          />
+        </Grid>
+
+        {/* 제목 */}
+        <Grid padding="10px">
+          <Text>챌린지 제목</Text>
+          <TitleInput
+            placeholder="제목을 입력해주세요."
+            onChange={onChangeTitle}
+          />
+        </Grid>
+        {/* 카테고리 선택 */}
+        <Grid>
+          <CategoryButton
+            onClick={() => {
+              childRef.current.openModal();
+            }}
+          >
+            {categoryValue ? (
+              categoryValue
+            ) : (
+              <Grid is_flex justifyContent="center">
+                <Grid>
+                  <Text style={{ padding: "100px" }}>카테고리 선택</Text>
+                </Grid>
+                <Grid style={{ textAlign: "right" }}>
+                  <MdOutlineKeyboardArrowDown />
+                </Grid>
+              </Grid>
+            )}
+          </CategoryButton>
+
+          <CategoryModal1 ref={childRef}></CategoryModal1>
+        </Grid>
+        {/* 이미지 첨부 */}
+
+        <Grid is_flex justifyContent="center">
+          <Grid>
+            <Text>챌린지 시작일</Text>
+          </Grid>
+          <Grid>
+            <StartDate
+              type="date"
+              name="theday"
+              min={todayDate}
+              onChange={onChange}
+            ></StartDate>
+          </Grid>
+        </Grid>
+        <Grid padding="0 5%">
+          <Text>3일간 10번씩 도전해봐요!</Text>
+        </Grid>
+        {/* 예상 종료일 */}
+        <ColorBox>
+          <Text color="white">
+            예상 종료일 :{" "}
+            {todayPlus30 > todayDate
+              ? todayPlus30
+              : "예상 종료일은 30일 뒤 입니다."}
+          </Text>
+        </ColorBox>
+        <Grid padding="5%">
+          <Grid>
+            <Text>챌린지 설명 작성</Text>
+          </Grid>
+          <Grid>
+            <Text>무얼 도전해볼까요? 챌린지에 대해 설명해주세요.</Text>
+          </Grid>
+          <Contents
+            placeholder="ex) 매일 책 한 권 읽는 챌린지"
+            onChange={onChangeDesc}
+          ></Contents>
+          <Text textAlign="right">{desc.length ? desc.length : "0"}/500자</Text>
+        </Grid>
+        <Grid padding="5%">
+          <Grid>
+            <Text>챌린지 인증 방법</Text>
+          </Grid>
+          <Grid>
+            <Text>달성을 인증할 수 있는 방법에 대해 설명해주세요.</Text>
+          </Grid>
+          <Contents
+            placeholder="ex) 오늘 날짜가 적힌 메모와 책 페이지를 찍어주세요."
+            onChange={onChangeMethod}
+          ></Contents>
+          <Text textAlign="right">
+            {method.length ? method.length : "0"}/500자
+          </Text>
+        </Grid>
+        <Grid padding="5%">
+          <CreateButton
+            _onClick={() => {
+              confirm();
+            }}
+          >
+            개설 완료
+          </CreateButton>
+        </Grid>
       </Grid>
-      {/* 이미지 첨부 */}
-      <Upload
-        ref={uploadRef}
-        _ref={fileInput}
-        _onClick={() => {
-          uploadRef.current.upload();
-        }}
-      />
-      <Grid is_flex justifyContent="center">
-        <StartDate
-          type="date"
-          name="theday"
-          min={todayDate}
-          onChange={onChange}
-        ></StartDate>
-      </Grid>
-      <Grid padding="0 5%">
-        <Text>
-          예상 종료일 :{" "}
-          {todayPlus30 > todayDate
-            ? todayPlus30
-            : "예상 종료일은 30일 뒤 입니다."}
-        </Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 설명</Text>
-        <Contents
-          placeholder="내용을 입력해주세요"
-          onChange={onChangeDesc}
-        ></Contents>
-        <Text>{desc.length ? desc.length : "0"}/500자</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>챌린지 인증 방법</Text>
-        <Contents
-          placeholder="내용을 입력해주세요"
-          onChange={onChangeMethod}
-        ></Contents>
-        <Text>{method.length ? method.length : "0"}/500자</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Button
-          _onClick={() => {
-            confirm();
-            history.push("/completeopen");
-            // dispatch(userAction.loginCheckDB(loginCheck.email));
-            // postActions.addPostDB(title, category, thumnail, todayDate)
-          }}
-        >
-          개설 완료
-        </Button>
-      </Grid>
-    </Grid>
+    </Container>
   );
 };
-
+const Container = styled.div``;
 const StartDate = styled.input`
   box-sizing: border-box;
   border-radius: 10px;
@@ -217,32 +264,46 @@ const StartDate = styled.input`
 const Contents = styled.textarea`
   box-sizing: border-box;
   border-radius: 10px;
-  border: 2px solid #9dcabf;
   width: 100%;
   padding: 15px;
   height: 30vh;
+  background: #f7f7f7;
   resize: none;
 `;
 
-const ImageBox = styled.div`
-  display: flex;
-
-  margin: auto;
-  max-width: 420px;
+const CategoryButton = styled.button`
   width: 100%;
-  height: 300px;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-size: 100% 100%;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: white;
 `;
 
-const ImageInput = styled.input`
-  display: none;
-  // ::file-selector-button {
-  //   display: none;
-  // }
+const ColorBox = styled.div`
   width: 100%;
-  height: 100%;
+  height: 40px;
+  background-color: #ff8b37;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`;
+
+const TitleInput = styled.input`
+  width: 100%;
+  background-color: #f7f7f7;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+`;
+
+const CreateButton = styled.button`
+  width: 100%;
+  height: 60px;
+  cursor: pointer;
+  background-color: #ff8b37;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
 `;
 export default PostWrite;

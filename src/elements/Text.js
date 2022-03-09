@@ -17,6 +17,7 @@ const Text = (props) => {
     justifyContent,
     alignRight,
     borderBox,
+    textAlign,
   } = props;
 
   const styles = {
@@ -32,6 +33,7 @@ const Text = (props) => {
     width,
     alignRight,
     borderBox,
+    textAlign,
   };
   return (
     <>
@@ -69,6 +71,7 @@ const P = styled.p`
   justify-content: ${(props) => props.justifyContent};
   ${(props) => (props.alignRight ? `text-align: right;` : "")};
   ${(props) => (props.borderBox ? `box-sizing: border-box;` : "")};
+  ${(props) => (props.textAlign ? `text-align: ${props.textAlign};` : "")}
 `;
 
 export default Text;

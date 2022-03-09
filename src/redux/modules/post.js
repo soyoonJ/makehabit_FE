@@ -76,6 +76,10 @@ const addPostDB = (
           })
           .catch(function (error) {
             console.log("addpostDB_error", error);
+            return;
+          })
+          .then(() => {
+            history.push("/completeopen");
           });
       })
       .catch((error) => {
