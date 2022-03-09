@@ -149,7 +149,7 @@ const Main = (props) => {
           </RecommendTitle>
           <RecommendWrap>
             {/* <CategoryPost></CategoryPost>
-          <CategoryPost></CategoryPost> */}
+            <CategoryPost></CategoryPost> */}
             {recommend_list?.map((p, idx) => {
               return <CategoryPost key={p._id} {...p} />;
             })}
