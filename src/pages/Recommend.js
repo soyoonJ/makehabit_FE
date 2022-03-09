@@ -13,7 +13,7 @@ const Recommend = (props) => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     console.log("호호호호호");
-    dispatch(mainActions.RecommendDB(""));
+    dispatch(mainActions.RecommendDB(10));
   }, []);
 
   return (

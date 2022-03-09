@@ -227,7 +227,7 @@ const PostWrite = () => {
           <Text
             textAlign="right"
             onKeyUp={() => {
-              fn_checkByte(this);
+              // fn_checkByte(this);
             }}
           >
             {desc.length ? desc.length : "0"}/500자

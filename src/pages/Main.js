@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Button, Input, Text, Image, Grid } from "../elements";
+import { Button, Input, Text, Image, Grid, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
 import { actionCreators as mainActions } from "../redux/modules/main";
 
@@ -18,7 +18,7 @@ const Main = (props) => {
   const search = React.useRef(null);
 
   React.useEffect(() => {
-    dispatch(mainActions.RecommendDB());
+    dispatch(mainActions.RecommendDB(2));
   }, []);
 
   //추천작심삼일 리스트 가져오기
@@ -46,123 +46,124 @@ const Main = (props) => {
           ></Img>
         </Header>
         <Banner1 />
+        <ContainerGrid>
+          <Text padding="5% 0 5% 5%" bold borderBox>
+            카테고리
+          </Text>
+          <CategoryWrap>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("all"));
+                  // history.push("/category");
+                }}
+              />
+              <Text alignCenter>전체보기</Text>
+            </Category>
 
-        <Text padding="5% 0 5% 5%" bold borderBox>
-          카테고리
-        </Text>
-        <CategoryWrap>
-          <Category>
-            <Img
-              src="images/category_test.png"
-              onClick={() => {
-                dispatch(mainActions.categoryDB("all"));
-                // history.push("/category");
-              }}
-            />
-            <Text alignCenter>전체보기</Text>
-          </Category>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("popular"));
+                  // history.push("/category/popular");
+                }}
+              ></Img>
+              <Text alignCenter>인기</Text>
+            </Category>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("new"));
+                  // history.push("/category/new");
+                }}
+              ></Img>
+              <Text alignCenter>신규</Text>
+            </Category>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("study"));
+                  // history.push("/category/study");
+                }}
+              ></Img>
+              <Text alignCenter>공부</Text>
+            </Category>
+          </CategoryWrap>
+          <CategoryWrap>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("exercise"));
+                  // history.push("/category/exercise");
+                }}
+              ></Img>
+              <Text alignCenter>운동</Text>
+            </Category>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("self-development"));
+                  // history.push("/category/self-development");
+                }}
+              ></Img>
+              <Text alignCenter>자기계발</Text>
+            </Category>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("living-habit"));
+                  // history.push("/category/living-habit");
+                }}
+              ></Img>
+              <Text alignCenter>생활습관</Text>
+            </Category>
+            <Category>
+              <Img
+                src="images/category_test.png"
+                onClick={() => {
+                  dispatch(mainActions.categoryDB("eco"));
+                  // history.push("/category/eco");
+                }}
+              ></Img>
+              <Text alignCenter>에코</Text>
+            </Category>
+          </CategoryWrap>
 
-          <Category>
-            <Img
-              src="images/category_test.png"
+          <RecommendTitle>
+            <Text bold>추천 작심삼일</Text>
+            <PlusButton
               onClick={() => {
-                dispatch(mainActions.categoryDB("popular"));
-                // history.push("/category/popular");
+                dispatch(mainActions.RecommendDB(10));
+                history.push("/recommend");
               }}
-            ></Img>
-            <Text alignCenter>인기</Text>
-          </Category>
-          <Category>
-            <Img
-              src="images/category_test.png"
-              onClick={() => {
-                dispatch(mainActions.categoryDB("new"));
-                // history.push("/category/new");
-              }}
-            ></Img>
-            <Text alignCenter>신규</Text>
-          </Category>
-          <Category>
-            <Img
-              src="images/category_test.png"
-              onClick={() => {
-                dispatch(mainActions.categoryDB("study"));
-                // history.push("/category/study");
-              }}
-            ></Img>
-            <Text alignCenter>공부</Text>
-          </Category>
-        </CategoryWrap>
-        <CategoryWrap>
-          <Category>
-            <Img
-              src="images/category_test.png"
-              onClick={() => {
-                dispatch(mainActions.categoryDB("exercise"));
-                // history.push("/category/exercise");
-              }}
-            ></Img>
-            <Text alignCenter>운동</Text>
-          </Category>
-          <Category>
-            <Img
-              src="images/category_test.png"
-              onClick={() => {
-                dispatch(mainActions.categoryDB("self-development"));
-                // history.push("/category/self-development");
-              }}
-            ></Img>
-            <Text alignCenter>자기계발</Text>
-          </Category>
-          <Category>
-            <Img
-              src="images/category_test.png"
-              onClick={() => {
-                dispatch(mainActions.categoryDB("living-habit"));
-                // history.push("/category/living-habit");
-              }}
-            ></Img>
-            <Text alignCenter>생활습관</Text>
-          </Category>
-          <Category>
-            <Img
-              src="images/category_test.png"
-              onClick={() => {
-                dispatch(mainActions.categoryDB("eco"));
-                // history.push("/category/eco");
-              }}
-            ></Img>
-            <Text alignCenter>에코</Text>
-          </Category>
-        </CategoryWrap>
-
-        <RecommendTitle>
-          <Text bold>추천 작심삼일</Text>
-          <PlusButton
-            onClick={() => {
-              dispatch(mainActions.RecommendDB());
-              history.push("/recommend");
-            }}
-          >
-            더보기
-          </PlusButton>
-        </RecommendTitle>
-        <RecommendWrap>
-          <CategoryPost></CategoryPost>
-          <CategoryPost></CategoryPost>
-          {/* {recommend_list?.map((p, idx) => {
+            >
+              더보기
+            </PlusButton>
+          </RecommendTitle>
+          <RecommendWrap>
+            {/* <CategoryPost></CategoryPost>
+          <CategoryPost></CategoryPost> */}
+            {recommend_list?.map((p, idx) => {
               return <CategoryPost key={p._id} {...p} />;
-            })} */}
-        </RecommendWrap>
+            })}
+          </RecommendWrap>
 
-        <RecommendTitle>
-          <Text bold>캐릭터 갤러리</Text>
-          <PlusButton>더보기</PlusButton>
-        </RecommendTitle>
-        <RecommendWrap>
-          <Img src="images/Recommend_test.png"></Img>
-          <Img src="images/Recommend_test.png"></Img>
-        </RecommendWrap>
+          <RecommendTitle>
+            <Text bold>캐릭터 갤러리</Text>
+            <PlusButton>더보기</PlusButton>
+          </RecommendTitle>
+          <RecommendWrap>
+            <Img src="images/Recommend_test.png"></Img>
+            <Img src="images/Recommend_test.png"></Img>
+          </RecommendWrap>
+        </ContainerGrid>
       </Container>
       <ButtonNavigation />
     </React.Fragment>
@@ -179,12 +180,6 @@ const Container = styled.div`
 const Header = styled.div`
   margin: 10% 0% 2% 0%;
   display: flex;
-`;
-
-//슬라이드 배너 작업
-const Banner = styled.img`
-  display: block;
-  margin: 8% auto;
 `;
 
 const CategoryWrap = styled.div`

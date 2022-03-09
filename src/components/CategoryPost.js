@@ -20,6 +20,10 @@ const CategoryPost = (props) => {
   const { thumbnail, title, tags, challengeId } = props;
   console.log("카테고리포스트", props);
 
+  //글자수체크
+  let titleLength = title.length;
+  console.log(titleLength);
+
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
@@ -32,9 +36,9 @@ const CategoryPost = (props) => {
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={Img01}></Img> */}
-        <Img src={Img01 + "/Recommend_test.png"}></Img>
+        {/* <Img src={Img01 + "/Recommend_test.png"}></Img> */}
         <Img src={thumbnail} />
-        <Text margin="2% 5%">{title}</Text>
+        <Text margin="2% 5%">{title} </Text>
         <Tag>
           <Text size="10px" alignCenter>
             {tags}
@@ -53,7 +57,7 @@ CategoryPost.defaultProps = {
 };
 
 const Card = styled.div`
-  margin: 10px 0px;
+  /* margin: 10px 0px; */
   cursor: pointer;
   display: block;
   overflow: hidden;
@@ -63,9 +67,9 @@ const Card = styled.div`
 `;
 
 const Img = styled.img`
-  padding: 0% 4%;
-  width: auto;
-  height: auto;
+  /* padding: 0% 4%; */
+  width: 167px;
+  height: 167px;
   max-width: 150px;
   max-height: 150px;
 `;

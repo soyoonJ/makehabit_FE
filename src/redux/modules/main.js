@@ -49,10 +49,10 @@ const getSearchDB = (searchWord) => {
 };
 
 //메인-추천삼일(보류보류보류)
-const RecommendDB = () => {
+const RecommendDB = (recommendLength) => {
   return function (dispatch, getState, { history }) {
     apis
-      .mainRecommend()
+      .mainRecommend(recommendLength)
       .then(function (res) {
         console.log("추천삼일모듈", res.data.challenges);
         dispatch(getRecommend(res.data.challenges));

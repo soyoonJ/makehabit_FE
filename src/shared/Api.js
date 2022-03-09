@@ -75,7 +75,9 @@ export const apis = {
   // 메인-추천작심삼일
   // ()안에는 변수로 받아오는 값이 있을 때 추가! (위에꺼 참고하기)
   // "length=3" 이부분은 메인에서 swap 넘길 때의 갯수인지 백분들과 확인
-  mainRecommend: () => instance.get("api/main/recommendation?length=3"),
+
+  mainRecommend: (recommendLength) =>
+    instance.get(`api/main/recommendation?length=${recommendLength}`),
 
   // 카테고리 -------------------------------------------------------------------------------------------------------
 
