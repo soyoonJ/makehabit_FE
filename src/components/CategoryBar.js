@@ -6,7 +6,9 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 const CategoryBar = () => {
   const dispatch = useDispatch();
   const [clickedCategory, changeClicked] = React.useState(0);
-  const checkLoadAll = useSelector((state) => state.main.checkLoadAll);
+  const checkLoadAll = useSelector(
+    (state) => state.main.category_list[0].category
+  );
 
   const categoryList = [
     ["all", "전체"],
@@ -25,6 +27,9 @@ const CategoryBar = () => {
       changeClicked(0);
     }
   }, [checkLoadAll]);
+
+  console.log("카테고리색상변경", checkLoadAll);
+
   return (
     // <Horizontable>
     <CategoryBox>
