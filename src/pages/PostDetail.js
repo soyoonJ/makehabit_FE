@@ -9,13 +9,16 @@ import GoBack from "../components/GoBack";
 
 import styled from "styled-components";
 
+import moment from "moment";
+
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+import { BsFillPersonFill } from "react-icons/bs";
 const PostDetail = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.post);
   const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
-  console.log("POSTEDETAIL:", nickname, challengeId);
+  console.log("POSTEDETAIL:", post);
   //좋아요 버튼 on/off
   let [isLike, setIsLike] = React.useState(false);
 
@@ -23,16 +26,19 @@ const PostDetail = (props) => {
     dispatch(userActions.loginCheckDB());
     dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
-  let date = new Date(post.startAt);
   // console.log("POSTDTAIL", post.startAt.subString(0, 10));
+  console.log(
+    moment(post.startAt).utc().format("YYYY.MM.DD"),
+    moment(post.startAt).day()
+  );
+  const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   return (
     <Grid padding="0 0 50px 0">
       <Grid>
         <GoBack />
-
         <TitleImage src={post.thumbnail} />
       </Grid>
-      <Grid is_flex padding="5%" borderBottom="1px solid">
+      <Grid is_flex padding="0 5%">
         <Text>{post.title}</Text>
         {post.isLike ? (
           <FcLike
@@ -52,21 +58,44 @@ const PostDetail = (props) => {
           />
         )}
       </Grid>
-      <Grid is_flex>
-        <Tag>작심삼일 {post.round}회차</Tag>
-        <Text>{post.participants}</Text>
-      </Grid>
-      <Grid padding="5%">
-        <Text>이런 챌린지에요</Text>
+      <Grid padding="0 5%">
         <Text>{post.content}</Text>
       </Grid>
+      <Grid is_flex borderBottom="1px solid" alignItems="center">
+        <Tag>작심삼일 {post.round}회차</Tag>
+        <BsFillPersonFill size={30} />
+        <Text>{post.participants}명과 함께 도전중이에요!</Text>
+      </Grid>
       <Grid padding="5%">
-        <Text>챌린지 진행</Text>
-        <Text>{post.startAt}</Text>
+        <Text>나의 참여도</Text>
+        <Text>3번씩 10세트면 한 달 습관 성공! 꾸준히 도전해봐요!</Text>
+      </Grid>
+      <Grid padding="5%">
+        <ColorBox>
+          <Text>{}바퀴 진행중</Text>
+        </ColorBox>
+      </Grid>
+      <Grid padding="5%">
+        <Text>챌린지 기간</Text>
+        <Grid is_flex>
+          <Text color="#ff8b37">
+            {moment(post.startAt).utc().format("YYYY.MM.DD")}(
+            {dayArray[moment(post.startAt).day()]})
+          </Text>
+          <Text>부터</Text>
+          <Text color="#ff8b37">
+            {moment(post.startAt).add(30, "days").utc().format("YYYY.MM.DD")}(
+            {dayArray[moment(post.startAt).add(30, "days").day()]})
+          </Text>
+          <Text>까지</Text>
+        </Grid>
+        <Text>3번씩 10세트면 한 달 습관 성공! 꾸준히 도전해봐요!</Text>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
-        <Text>{post.howtoContent}</Text>
+        <ColorBox>
+          <Text>{post.howtoContent}</Text>
+        </ColorBox>
       </Grid>
       <Grid padding="5%">
         <Text>챌린지 인증방법</Text>
@@ -134,10 +163,10 @@ const TitleImage = styled.img`
 
 const Tag = styled.p`
   margin: 10px;
-  font-size: 17px;
+  font-size: 10px;
   padding: 5px 15px;
 
-  background-color: #303030;
+  background-color: #ff8b37;
   border-radius: 30px;
   //   @media only screen and (max-width: 768px) {
   //     padding: 9px 9px;
@@ -145,7 +174,7 @@ const Tag = styled.p`
   //   }
   cursor: pointer;
   color: #ffffff;
-  width: 180px;
+  width: 100px;
   text-align: center;
 `;
 
@@ -155,9 +184,21 @@ const Join = styled.button`
   height: 50px;
   width: 100%;
   max-width: 420px;
-  background-color: #ddd;
+  background-color: #ff8b37;
+  color: white;
+  border: none;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
+`;
+
+const ColorBox = styled.div`
+  width: 100%;
+  height: 40px;
+  background-color: #fff1e7;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 `;
 
 export default PostDetail;
