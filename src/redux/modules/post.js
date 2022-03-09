@@ -79,7 +79,7 @@ const addPostDB = (
             return;
           })
           .then(() => {
-            history.push("/completeopen");
+            history.push("/completed/open");
           });
       })
       .catch((error) => {
@@ -129,6 +129,7 @@ const joinDB = (challengeId) => {
       .then((response) => {
         console.log("참여하기");
         dispatch(editJoin(challengeId, true));
+        history.push("/completed/participate");
       })
       .catch(function (error) {
         console.log(error);

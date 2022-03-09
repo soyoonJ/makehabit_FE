@@ -19,14 +19,13 @@ import Signup from "../pages/Signup";
 import Category from "../pages/Category";
 import PostDetail from "../pages/PostDetail";
 import PostWrite from "../pages/PostWrite";
-import CompleteOpen from "../pages/CompleteOpen";
 import Confirm from "../pages/Confirm";
-import CompleteConfirm from "../pages/CompleteConfirm";
 import MyChallenge from "../pages/MyChallenge";
 import Mypage from "../pages/Mypage";
 import Character from "../pages/Character";
 import Recommend from "../pages/Recommend";
 import MyFeed from "../components/MyFeed";
+import Completed from "../pages/Completed";
 import Chat from "../pages/Chat";
 import NotFound from "../pages/NotFound";
 import Search from "../pages/Search";
@@ -57,13 +56,12 @@ function App() {
               <Route path="/recommend" component={Recommend} />
               <Route path="/challenges/:id" component={PostDetail} />
               <Route path="/postwrite" component={PostWrite} />
-              <Route path="/completeopen" component={CompleteOpen} />
               <Route path="/confirm/:id" component={Confirm} />
-              <Route path="/completeconfirm" component={CompleteConfirm} />
               <Route path="/mychallenge" component={MyChallenge} />
               <Route path="/mypage" component={Mypage} />
               <Route path="/character" component={Character} />
               <Route path="/myfeed/:id" component={MyFeed} />
+              <Route path="/completed/:id" component={Completed} />
               <Route path="/chat/:id" component={Chat} />
               <Route path="*" exact component={NotFound} />
             </Switch>

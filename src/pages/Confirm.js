@@ -74,6 +74,8 @@ const Confirm = (props) => {
     dispatch(
       challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
     );
+
+    dispatch(challengeActions.setComplete("confirm"));
   };
 
   React.useEffect(() => {
