@@ -22,7 +22,8 @@ const CategoryPost = (props) => {
 
   //글자수체크
   let titleLength = title.length;
-  console.log(titleLength);
+  let subtitle = title.substring(0, 7);
+  console.log(subtitle);
 
   return (
     <React.Fragment>
