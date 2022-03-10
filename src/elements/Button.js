@@ -8,6 +8,7 @@ const Button = (props) => {
     children,
     margin,
     height,
+    lineHeight,
     width,
     maxWidth,
     padding,
@@ -25,6 +26,8 @@ const Button = (props) => {
     alignItems,
     display,
     is_float,
+    centerFlex,
+    alignSelf,
     disabled,
   } = props;
 
@@ -42,6 +45,7 @@ const Button = (props) => {
     margin,
     padding,
     height,
+    lineHeight,
     width,
     maxWidth,
     color,
@@ -54,6 +58,8 @@ const Button = (props) => {
     right,
     fontSize,
     alignItems,
+    alignSelf,
+    centerFlex,
     display,
     fontWeight,
   };
@@ -86,6 +92,7 @@ Button.defaultProps = {
   fontSize: null,
   fontWeight: null,
   right: null,
+  centerFlex: null,
 };
 
 const ElButton = styled.button`
@@ -93,6 +100,7 @@ const ElButton = styled.button`
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
   ${(props) => (props.height ? `height:${props.height};` : "")};
+  ${(props) => (props.lineHeight ? `line-height:${props.lineHeight};` : "")};
   ${(props) => (props.width ? `width:${props.width};` : "")};
   ${(props) => (props.maxWidth ? `max-width:${props.maxWidth};` : "")};
   background-color: ${(props) => props.bg};
@@ -106,7 +114,12 @@ const ElButton = styled.button`
   ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : "")};
   ${(props) => (props.fontWeight ? `font-weight:${props.fontWeight};` : "")};
   align-items: ${(props) => props.alignItems};
+  ${(props) => (props.alignSelf ? `align-self: ${props.alignSelf}; ` : "")}
   ${(props) => (props.display ? `display: ${props.display}; ` : "")}
+  ${(props) =>
+    props.centerFlex
+      ? `display: flex; justify-content: center; align-items:center `
+      : ""}
 `;
 
 // 동그라미 버튼

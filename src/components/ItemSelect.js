@@ -3,37 +3,54 @@ import React from "react";
 import styled from "styled-components";
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 
+import ItemBox from "../components/ItemBox";
+import ItemCircle from "../components/ItemCircle";
+
 const ItemSelect = () => {
-  const Item = process.env.PUBLIC_URL + "/items";
+  //   const Item = process.env.PUBLIC_URL + "/items";
+  const ItemCategory = ["컬러", "배경", "표정", "의상", "악세사리"];
+  const [clickedCate, changeCate] = React.useState(0);
+
   return (
     <React.Fragment>
       <Navi>
-        <naviButton>컬러</naviButton>
-        <naviButton>컬러</naviButton>
-        <naviButton>컬러</naviButton>
-        <naviButton>컬러</naviButton>
-        <naviButton>컬러</naviButton>
-        {/* <img src={Item + "/캐릭터_분홍.png"} alt="body"></img> */}
+        <NaviButton>
+          {ItemCategory.map((e, i) => (
+            <button
+              onClick={() => {
+                changeCate(i);
+              }}
+            >
+              {e}
+            </button>
+          ))}
+        </NaviButton>
       </Navi>
       {/* 동그라미 */}
-      <ContainerGrid bg="#f7f7f7">
-        <ItemBox></ItemBox>
-      </ContainerGrid>
+      {clickedCate === 0 ? <ItemCircle /> : <ItemBox />}
       {/* 아이템 */}
     </React.Fragment>
   );
 };
 
 const Navi = styled.div`
-  width: 100%;
-  height: 7v;
+  border-bottom: 1.5px solid #e0e0e0;
 `;
-const naviButton = styled.button`
-  border: none;
-`;
-const ItemBox = styled.div`
-  width: 100%;
-  height: 44.5vh;
+
+const NaviButton = styled.div`
+  height: 3.813rem;
+  white-space: nowrap;
+  display: flex;
+
+  button {
+    width: auto;
+    all: unset;
+    margin: 0 5.5%;
+    font-size: 1.25rem;
+    font-weight: 400;
+    // font-weight: 700;
+    color: #9c9c9c;
+  }
 `;
 
 export default ItemSelect;
