@@ -22,8 +22,9 @@ const ButtonNavigation = () => {
     }
   };
   const writePage = () => {
+    console.log("writePage", is_login);
     if (is_login) {
-      history.push(`postwrite`);
+      history.push(`/postwrite`);
     } else {
       window.alert("로그인 후 인증 해주세요!");
       history.push("/login");

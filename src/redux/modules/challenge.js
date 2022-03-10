@@ -47,6 +47,7 @@ const getConfirmDB = (challengeId) => {
       })
       .catch((error) => {
         console.log(error);
+        return;
       });
   };
 };
@@ -70,6 +71,9 @@ const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
           .catch((error) => {
             console.log(error);
             alert(error.response.data.message);
+          })
+          .then(() => {
+            history.push("/completed/confirm");
           });
       })
       .catch((error) => {
