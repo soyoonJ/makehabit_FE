@@ -109,7 +109,7 @@ const GridBox = styled.div`
 const ImageContainer = styled.div`
   width: 100%;
   height: 15vh;
-  grid-column: 1/1;
+  grid-column: 1/2;
 `;
 const PostImage = styled.img`
   width: 100%;
@@ -121,7 +121,7 @@ const PostImage = styled.img`
 const Completed = styled.div`
   width: 100%;
   height: 15vh;
-  grid-column: 1/1;
+  grid-column: 1/2;
   border-radius: 10px;
   background-color: #000;
   position: absolute;
