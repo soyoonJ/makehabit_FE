@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Input, Text } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -29,49 +30,78 @@ const Login = () => {
   };
   return (
     <React.Fragment>
-      <Text size="24px" bold alignCenter margin="30% 0% 10%">
-        로그인
+      <Text color="#FF8B37" size="24px" bold alignCenter margin="30% 0% 10%">
+        브랜드로고
       </Text>
       <div>
-        <Text size="20px" bold margin="6% 10% 2%">
+        {/* <Text size="20px" bold margin="6% 10% 2%">
           이메일
-        </Text>
+        </Text> */}
         <InputBox>
           <Input
+            borderRadius="5px"
             width="80%"
             bg="white"
-            placeholder="이메일 입력해주세요"
+            placeholder="이메일"
             _onChange={changeEmail}
           ></Input>
         </InputBox>
-        <Text size="20px" bold margin="6% 10% 2%">
+        {/* <Text size="20px" bold margin="6% 10% 2%">
           비밀번호
-        </Text>
+        </Text> */}
         <InputBox>
           <Input
+            margin="5% 0%"
+            borderRadius="5px"
             type="password"
             width="80%"
             bg="white"
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="패스워드"
             _onChange={changePwd}
           ></Input>
         </InputBox>
       </div>
-      <Button width="50%" margin="5% 25%" _onClick={login}>
-        로그인
-      </Button>
-      <Text alignCenter>
-        계정이 없으신가요?&nbsp;<a href={"/signup"}>회원가입</a>
-      </Text>
-      <Text size="20px" bold margin="6% 10% 2%">
-        소셜로그인
-      </Text>
+      <ButtonBox>
+        <Button bg="#FF8B37" width="80%" margin="3% 0%" _onClick={login}>
+          로그인
+        </Button>
+        <Text color="gray" alignCenter>
+          (브랜드네임)&nbsp;<a href={"/signup"}>회원가입 하러가기</a>
+        </Text>
+        <Button
+          bg="#FF8B37"
+          width="80%"
+          _onClick={() => {
+            history.push(`/`);
+          }}
+        >
+          로그인 없이 둘러보기
+        </Button>
+        <Button
+          bg="#FAE100"
+          color="black"
+          width="80%"
+          margin="3% 0%"
+          _onClick={() => {
+            // history.push(`/`);
+          }}
+        >
+          카카오톡 계정으로 시작
+        </Button>
+      </ButtonBox>
     </React.Fragment>
   );
 };
 
 const InputBox = styled.div`
   text-align: center;
+`;
+
+const ButtonBox = styled.div`
+  display: block;
+  align-items: center;
+  text-align: center;
+  margin: 5% 0%;
 `;
 
 export default Login;
