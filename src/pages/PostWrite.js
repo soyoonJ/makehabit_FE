@@ -184,7 +184,7 @@ const PostWrite = () => {
             )}
           </CategoryButton>
 
-          <CategoryModal1 ref={childRef}></CategoryModal1>
+          <CategoryModal1 ref={childRef} getData={getData}></CategoryModal1>
         </Grid>
         {/* 이미지 첨부 */}
 

@@ -45,12 +45,11 @@ const Modal = forwardRef((props, ref) => {
         <section>
           <ModalHeader>카테고리</ModalHeader>
           <ModalContent>
-            <Grid borderBottom="3px solid #f7f7f7" margin="0">
+            <Grid borderBottom="3px solid #f7f7f7">
               <Button
                 onClick={() => {
-                  close();
-                  setData("공부");
-                  console.log(setData);
+                  closeModal();
+                  setData("study");
                 }}
               >
                 공부
@@ -59,7 +58,7 @@ const Modal = forwardRef((props, ref) => {
             <Grid borderBottom="3px solid #f7f7f7">
               <Button
                 onClick={() => {
-                  close();
+                  closeModal();
                   setData("운동");
                 }}
               >
@@ -70,7 +69,7 @@ const Modal = forwardRef((props, ref) => {
             <Grid borderBottom="3px solid #f7f7f7">
               <Button
                 onClick={() => {
-                  close();
+                  closeModal();
                   setData("자기계발");
                 }}
               >
@@ -81,7 +80,7 @@ const Modal = forwardRef((props, ref) => {
             <Grid borderBottom="3px solid #f7f7f7">
               <Button
                 onClick={() => {
-                  close();
+                  closeModal();
                   setData("생활습관");
                 }}
               >
@@ -92,7 +91,7 @@ const Modal = forwardRef((props, ref) => {
             <Grid borderBottom="3px solid #f7f7f7">
               <Button
                 onClick={() => {
-                  close();
+                  closeModal();
                   setData("에코");
                 }}
               >
@@ -117,6 +116,7 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
   max-width: 420px;
+
   background: rgba(0, 0, 0, 0.6);
   z-index: 99;
   display: flex;
@@ -125,7 +125,8 @@ const Container = styled.div`
     width: 100%;
     // height: 50%;
     align-self: end;
-    background: #fff;
+    // background: #fff;
+    background-color: transparent !important;
   }
 
   section > div {
@@ -187,7 +188,8 @@ const ModalHeader = styled.header`
   background-color: #f1f1f1;
   color: #ff8b37;
   text-align: center;
-  border-radius: 100px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
 `;
 
 const Section = styled.section`
