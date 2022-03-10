@@ -152,17 +152,13 @@ export const apis = {
   //마이페이지-캐릭터정보조회
   mypageCharacter: () => instance.get("/api/mypage/character"),
 
-  //마이페이지-아이템목록받기 (미정)
+  //캐릭터샵-아이템목록받기
+  getItemList: () => instance.get("/api/character"),
 
-  //마이페이지-내캐릭터꾸미기 (아이템별로 변수처리 필요여부 여쭤보기!)
-  CharacterDeco: () => instance.get("/api/mypage/characterItem"),
-
-  //마이페이지-아이템구매 (아이템미확정으로 보완작업필요!)
-  CharacterBuy: (item, hair, characterPoint, itemPrice) =>
-    instance.post(`/api/mypage/character/${item}`, {
-      hair,
-      characterPoint,
-      itemPrice,
+  saveCharacter: (totalPrice, items) =>
+    instance.post("/api/character", {
+      totalPrice,
+      items,
     }),
 
   //마이페이지- 내캐릭터꾸민내용 저장하기
