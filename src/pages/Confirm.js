@@ -70,11 +70,11 @@ const Confirm = (props) => {
         console.log("value", value);
       }
 
-      dispatch(
-        challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
-      );
-      dispatch(challengeActions.setComplete("confirm"));
-    }
+
+    dispatch(
+      challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
+    );
+
   };
 
   React.useEffect(() => {
