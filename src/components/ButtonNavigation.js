@@ -6,19 +6,25 @@ import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
+import LoginModal from "./LoginModal";
 
 const ButtonNavigation = () => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   console.log("button", is_login);
+
+  //모달창에 접근하는 ref
+  const modalRef = React.useRef();
+  console.log("모달ref!!!", modalRef);
+
   const confirmPage = () => {
     if (is_login) {
       // dispatch(challengeActions.setTab("navi"));
       // dispatch(challengeActions.naviChallengeDB());
       history.push(`/mychallenge/navi`);
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
+      console.log("로그인");
+      modalRef.current.openModal();
     }
   };
   const writePage = () => {
@@ -47,6 +53,13 @@ const ButtonNavigation = () => {
           </ButtonIcon>
         </ButtonWrap>
       </Footer>
+
+      <LoginModal ref={modalRef}>
+        <Grid padding="30px 30px 0px 30px">
+          <div>앗 로그인이 필요해요!</div>
+          <Button onClick={() => history.push("/login")}></Button>;
+        </Grid>
+      </LoginModal>
     </React.Fragment>
   );
 };
