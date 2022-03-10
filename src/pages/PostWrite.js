@@ -14,15 +14,26 @@ import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { GoCalendar } from "react-icons/go";
+
+import moment from "moment";
 
 const PostWrite = () => {
   const dispatch = useDispatch();
   //카테고리 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
   const [categoryValue, setCategoryValue] = useState(0);
-
-  const getData = (categoryValue) => {
-    setCategoryValue(categoryValue);
-    console.log(categoryValue);
+  const [sendCategory, setSendCategory] = useState(null);
+  //모달 리스트
+  const modalList = [
+    ["study", "공부"],
+    ["exercise", "운동"],
+    ["self-development", "자기계발"],
+    ["living-habit", "생활습관"],
+  ];
+  const getData = (idx) => {
+    setCategoryValue(modalList[idx][1]);
+    setSendCategory(modalList[idx][0]);
+    console.log(idx, modalList[idx][0], modalList[idx][1]);
   };
 
   //카테고리 팝업
@@ -75,11 +86,6 @@ const PostWrite = () => {
     setMethod(e.target.value);
   };
 
-  const complete = () => {
-    console.log(desc.current.value);
-    console.log(method.current.value);
-  };
-
   //업로드에 함수 접근하는 Ref
   const uploadRef = React.useRef();
 
@@ -88,39 +94,42 @@ const PostWrite = () => {
   const loginCheck = useSelector((state) => state.user.user);
 
   const confirm = () => {
-    // challengeId, imgUrl, challengeTitle, comment;
-    // 타이틀 props로 가져온거 넣어주기
     const imageForm = new FormData();
-    // console.log("newFormData 확인", imageForm);
-    // console.log("fileInput ref확인", fileInput);
-    // console.log("uploadRef ref확인", uploadRef);
     let image = fileInput.current.files[0];
-    // console.log("image", image);
-    // let image2 = uploadRef.current.files[0];
     imageForm.append("image", image);
-    // console.log("최종imageForm확인", imageForm);
+    console.log("들어왔나?", date, desc, method);
 
-    for (var key of imageForm.keys()) {
-      console.log("key", key);
+    if (image === undefined) {
+      alert("썸네일 이미지가 없습니다!");
+      return;
     }
 
-    for (var value of imageForm.values()) {
-      console.log("value", value);
+    if (title === null) {
+      alert("챌린지 제목이 없습니다!");
+      return;
     }
-    console.log(
-      "datinwirte",
-      title,
-      categoryValue,
-      imageForm,
-      date,
-      desc,
-      method,
-      "tags"
-    );
+
+    if (sendCategory === null) {
+      alert("카테고리를 설정하지 않았습니다!");
+      return;
+    }
+
+    if (date === null) {
+      alert("시작일이 입력되지 않았습니다.");
+      return;
+    }
+    if (desc === "") {
+      alert("챌린지 설명을 쓰지 않았습니다.");
+      return;
+    }
+    if (method === "") {
+      alert("챌린지 인증 방법을 쓰지 않았습니다");
+      return;
+    }
     dispatch(
       postActions.addPostDB(
         title,
-        categoryValue,
+        sendCategory,
         imageForm,
         date,
         desc,
@@ -128,14 +137,14 @@ const PostWrite = () => {
         "tags"
       )
     );
-    dispatch(challengeActions.setComplete("confirm"));
   };
   //자식 함수 접근하는 Ref
   const childRef = useRef();
-  //글자수 제한
-  const checkLength = (string) => {
-    const maxLength = 500;
-  };
+
+  //moment 변환
+  const startDay = moment(date);
+  const transformDay = startDay.format("YYYY년 MM월 DD일");
+
   return (
     <Container>
       <Grid>
@@ -192,10 +201,19 @@ const PostWrite = () => {
           <Grid>
             <Text>챌린지 시작일</Text>
           </Grid>
-          <Grid>
+          <Grid is_flex>
+            {/* <GoCalendar
+                onClick={() => {
+                  calendar();
+                }}
+                style={{ cursor: "pointer" }}
+              /> */}
+            <Text color="#FF8B37">
+              {date ? transformDay : "2022년 00월 00일"}
+            </Text>
             <StartDate
+              id="inputCalendar"
               type="date"
-              name="theday"
               min={todayDate}
               onChange={onChange}
             ></StartDate>
@@ -223,15 +241,9 @@ const PostWrite = () => {
           <Contents
             placeholder="ex) 매일 책 한 권 읽는 챌린지"
             onChange={onChangeDesc}
+            maxLength="500"
           ></Contents>
-          <Text
-            textAlign="right"
-            onKeyUp={() => {
-              // fn_checkByte(this);
-            }}
-          >
-            {desc.length ? desc.length : "0"}/500자
-          </Text>
+          <Text textAlign="right">{desc.length ? desc.length : "0"}/500자</Text>
         </Grid>
         <Grid padding="5%">
           <Grid>
@@ -243,6 +255,7 @@ const PostWrite = () => {
           <Contents
             placeholder="ex) 오늘 날짜가 적힌 메모와 책 페이지를 찍어주세요."
             onChange={onChangeMethod}
+            maxLength="500"
           ></Contents>
           <Text textAlign="right">
             {method.length ? method.length : "0"}/500자
@@ -250,7 +263,7 @@ const PostWrite = () => {
         </Grid>
         <Grid padding="5%">
           <CreateButton
-            _onClick={() => {
+            onClick={() => {
               confirm();
             }}
           >
@@ -263,14 +276,22 @@ const PostWrite = () => {
 };
 const Container = styled.div``;
 const StartDate = styled.input`
-  box-sizing: border-box;
-  border-radius: 10px;
-  background-color: #9dcabf;
+  // box-sizing: border-box;
+  // border-radius: 10px;
+  // background-color: #9dcabf;
   color: white;
-  padding: 16px 10px;
+  // padding: 16px 10px;
   text-align: center;
-  margin-right: 3px;
+  // margin-right: 3px;
   border: none;
+  ::-webkit-datetime-edit {
+    display: none;
+  }
+  ::-webkit-calendar-picker-indicator {
+    font-size: 30px;
+    margin: auto;
+  }
+  cursor: pointer;
 `;
 
 const Contents = styled.textarea`

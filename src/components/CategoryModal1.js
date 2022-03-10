@@ -49,7 +49,7 @@ const Modal = forwardRef((props, ref) => {
               <Button
                 onClick={() => {
                   closeModal();
-                  setData("study");
+                  setData(0);
                 }}
               >
                 공부
@@ -59,7 +59,7 @@ const Modal = forwardRef((props, ref) => {
               <Button
                 onClick={() => {
                   closeModal();
-                  setData("운동");
+                  setData(1);
                 }}
               >
                 운동
@@ -70,7 +70,7 @@ const Modal = forwardRef((props, ref) => {
               <Button
                 onClick={() => {
                   closeModal();
-                  setData("자기계발");
+                  setData(2);
                 }}
               >
                 자기계발
@@ -81,7 +81,7 @@ const Modal = forwardRef((props, ref) => {
               <Button
                 onClick={() => {
                   closeModal();
-                  setData("생활습관");
+                  setData(3);
                 }}
               >
                 생활습관
@@ -205,6 +205,7 @@ const Section = styled.section`
 `;
 
 const ModalContent = styled.div`
+  height: 50%;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
 `;
