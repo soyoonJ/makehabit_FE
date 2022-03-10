@@ -23,7 +23,7 @@ const CategoryModal = (props) => {
         ref={outSection}
         onClick={(e) => {
           if (outSection.current === e.target) {
-            console.log("close modal!");
+            // console.log("close modal!");
             closeModal();
           }
         }}
@@ -36,7 +36,7 @@ const CategoryModal = (props) => {
               onClick={() => {
                 close();
                 setData("공부");
-                console.log(setData);
+                // console.log(setData);
               }}
             >
               공부

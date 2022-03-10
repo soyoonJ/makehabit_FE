@@ -18,7 +18,7 @@ const PostDetail = (props) => {
   const post = useSelector((state) => state.post.post);
   const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
-  console.log("POSTEDETAIL:", post);
+  // console.log("POSTEDETAIL:", post);
   //좋아요 버튼 on/off
   let [isLike, setIsLike] = React.useState(false);
 
@@ -27,10 +27,10 @@ const PostDetail = (props) => {
     dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
   // console.log("POSTDTAIL", post.startAt.subString(0, 10));
-  console.log(
-    moment(post.startAt).utc().format("YYYY.MM.DD"),
-    moment(post.startAt).day()
-  );
+  // console.log(
+  //   moment(post.startAt).utc().format("YYYY.MM.DD"),
+  //   moment(post.startAt).day()
+  // );
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
   //로그인 체크

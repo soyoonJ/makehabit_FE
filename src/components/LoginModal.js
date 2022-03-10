@@ -37,7 +37,7 @@ const LoginModal = forwardRef((props, ref) => {
         ref={outSection}
         onClick={(e) => {
           if (outSection.current === e.target) {
-            console.log("close modal!");
+            // console.log("close modal!");
             closeModal();
           }
         }}

@@ -18,12 +18,12 @@ const CategoryPost = (props) => {
   const Img01 = process.env.PUBLIC_URL + "/images";
   // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
   const { thumbnail, title, tags, challengeId, puls } = props;
-  console.log("카테고리포스트", props);
+  // console.log("카테고리포스트", props);
 
   //글자수체크
   let titleLength = title.length;
   let subtitle = title.substring(0, 7);
-  console.log(subtitle);
+  // console.log(subtitle);
 
   return (
     <React.Fragment>

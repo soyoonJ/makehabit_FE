@@ -91,9 +91,9 @@ const Signup = () => {
             placeholder="이메일을 입력해주세요"
             _onChange={changeEmail}
             _onBlur={() => {
-              console.log("포커스 아웃 됨!");
+              // console.log("포커스 아웃 됨!");
               dispatch(userActions.emailCheckDB(user_email));
-              console.log(emailCheck);
+              // console.log(emailCheck);
             }}
           />
           {user_email ? (
@@ -119,9 +119,9 @@ const Signup = () => {
             placeholder="3~15자의 영어,한글,숫자만 사용가능합니다"
             _onChange={changeNickname}
             _onBlur={() => {
-              console.log("포커스 아웃 됨!");
+              // console.log("포커스 아웃 됨!");
               dispatch(userActions.nicknameCheckDB(user_nickname));
-              console.log(emailCheck);
+              // console.log(emailCheck);
             }}
           />
           {user_nickname ? (

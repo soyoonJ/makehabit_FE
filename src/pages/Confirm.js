@@ -62,19 +62,18 @@ const Confirm = (props) => {
       // let image2 = uploadRef.current.files[0];
       imageForm.append("image", image);
 
-      for (var key of imageForm.keys()) {
-        console.log("key", key);
-      }
+      // for (var key of imageForm.keys()) {
+      //   console.log("key", key);
+      // }
 
-      for (var value of imageForm.values()) {
-        console.log("value", value);
-      }
+      // for (var value of imageForm.values()) {
+      //   console.log("value", value);
+      // }
 
-
-    dispatch(
-      challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
-    );
-
+      dispatch(
+        challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
+      );
+    }
   };
 
   React.useEffect(() => {

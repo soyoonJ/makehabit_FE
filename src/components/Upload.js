@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Upload = forwardRef((props, ref) => {
   const { _onClick, _ref } = props;
-  console.log("upload", ref, props, _ref);
+  // console.log("upload", ref, props, _ref);
   useImperativeHandle(ref, () => ({
     //div창 클릭시 이미지 인풋 클릭
     upload() {
