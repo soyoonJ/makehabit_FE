@@ -19,6 +19,7 @@ const Button = (props) => {
     borderRadius,
     position,
     bottom,
+    right,
     fontSize,
     fontWeight,
     alignItems,
@@ -50,6 +51,7 @@ const Button = (props) => {
     borderRadius,
     position,
     bottom,
+    right,
     fontSize,
     alignItems,
     display,
@@ -83,6 +85,7 @@ Button.defaultProps = {
   position: false,
   fontSize: null,
   fontWeight: null,
+  right: null,
 };
 
 const ElButton = styled.button`
@@ -99,6 +102,7 @@ const ElButton = styled.button`
   cursor: ${(props) => props.cursor};
   position: ${(props) => props.position};
   ${(props) => (props.bottom ? `bottom:${props.bottom};` : "")};
+  ${(props) => (props.right ? `right:${props.right};` : "")};
   ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : "")};
   ${(props) => (props.fontWeight ? `font-weight:${props.fontWeight};` : "")};
   align-items: ${(props) => props.alignItems};

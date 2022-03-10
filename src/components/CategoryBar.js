@@ -7,7 +7,9 @@ const CategoryBar = () => {
   const dispatch = useDispatch();
   const [clickedCategory, changeClicked] = React.useState(0);
   const checkLoadAll = useSelector(
-    (state) => state.main.category_list[0].category
+    // 카테고리 클릭시, 색상 변경하려고 아래코드 넣었는데 우선순위 뒤로감
+    // (state) => state.main.category_list[0].category
+    (state) => state.main.checkLoadAll
   );
 
   const categoryList = [
@@ -62,7 +64,7 @@ const CategoryBox = styled.div`
   flex-wrap: nowrap;
   margin-bottom: -10px;
   white-space: nowrap;
-  overflow-x: hidden;
+  overflow-x: auto;
 
   @media only screen and (max-width: 768px) {
     margin-bottom: 0%;

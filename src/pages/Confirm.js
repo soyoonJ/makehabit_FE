@@ -53,22 +53,28 @@ const Confirm = (props) => {
   };
 
   const confirm = () => {
-    const imageForm = new FormData();
-    let image = fileInput.current.files[0];
-    // let image2 = uploadRef.current.files[0];
-    imageForm.append("image", image);
+    if (fileInput.current.files[0] === undefined || comment === null) {
+      window.alert("이미지와 코멘트 작성란을 모두 채워주세요");
+      return;
+    } else {
+      const imageForm = new FormData();
+      let image = fileInput.current.files[0];
+      // let image2 = uploadRef.current.files[0];
+      imageForm.append("image", image);
 
-    for (var key of imageForm.keys()) {
-      console.log("key", key);
-    }
+      for (var key of imageForm.keys()) {
+        console.log("key", key);
+      }
 
-    for (var value of imageForm.values()) {
-      console.log("value", value);
-    }
+      for (var value of imageForm.values()) {
+        console.log("value", value);
+      }
+
 
     dispatch(
       challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
     );
+
   };
 
   React.useEffect(() => {
