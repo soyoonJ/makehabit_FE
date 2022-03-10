@@ -33,7 +33,7 @@ const PostWrite = () => {
   const getData = (idx) => {
     setCategoryValue(modalList[idx][1]);
     setSendCategory(modalList[idx][0]);
-    console.log(idx, modalList[idx][0], modalList[idx][1]);
+    // console.log(idx, modalList[idx][0], modalList[idx][1]);
   };
 
   //카테고리 팝업
@@ -56,8 +56,8 @@ const PostWrite = () => {
   //선택한 날짜 가져오기
   const [date, setDate] = useState(null);
   const onChange = (e) => {
-    console.log(e.target); //이벤트가 발생한 타겟의 요소를 출력
-    console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
+    // console.log(e.target); //이벤트가 발생한 타겟의 요소를 출력
+    // console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
     setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
   };
 
@@ -66,7 +66,7 @@ const PostWrite = () => {
   };
   // 오늘 날짜+30일 YYYY-MM-DD형식으로 추출
 
-  console.log(date);
+  // console.log(date);
   const now = new Date(date);
   let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
@@ -97,7 +97,7 @@ const PostWrite = () => {
     const imageForm = new FormData();
     let image = fileInput.current.files[0];
     imageForm.append("image", image);
-    console.log("들어왔나?", date, desc, method);
+    // console.log("들어왔나?", date, desc, method);
 
     if (image === undefined) {
       alert("썸네일 이미지가 없습니다!");

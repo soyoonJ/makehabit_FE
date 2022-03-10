@@ -12,7 +12,7 @@ const Recommend = (props) => {
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    console.log("호호호호호");
+    // console.log("호호호호호");
     dispatch(mainActions.RecommendDB(10));
   }, []);
 
@@ -29,7 +29,7 @@ const Recommend = (props) => {
         <CardWrap>
           {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
           {recommend_list?.map((p, idx) => {
-            console.log("피", p);
+            // console.log("피", p);
             return <CategoryPost key={p._id} {...p} />;
           })}
         </CardWrap>

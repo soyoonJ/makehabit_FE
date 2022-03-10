@@ -30,7 +30,7 @@ const CategoryBar = () => {
     }
   }, [checkLoadAll]);
 
-  console.log("카테고리색상변경", checkLoadAll);
+  // console.log("카테고리색상변경", checkLoadAll);
 
   return (
     // <Horizontable>

@@ -23,7 +23,7 @@ const Main = (props) => {
 
   //추천작심삼일 리스트 가져오기
   const recommend_list = useSelector((state) => state.main.recommend_list);
-  console.log("useSelector 썻는데!!!!", recommend_list);
+  // console.log("useSelector 썻는데!!!!", recommend_list);
 
   return (
     <React.Fragment>

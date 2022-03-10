@@ -35,7 +35,7 @@ const Mypage = () => {
       <Grid is_flex textAlign="center" justifyContent="center" padding="2% 5%">
         <Button
           _onClick={() => {
-            console.log("onClick!", childRef, childRef.current);
+            // console.log("onClick!", childRef, childRef.current);
             childRef.current.openModal();
           }}
         >

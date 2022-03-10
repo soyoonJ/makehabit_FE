@@ -25,7 +25,7 @@ const Login = () => {
       window.alert("아이디 혹은 비밀번호를 입력해주세요");
       return;
     }
-    console.log("userEmail, pwd", user_email, user_pwd);
+    // console.log("userEmail, pwd", user_email, user_pwd);
     dispatch(userActions.loginDB(user_email, user_pwd));
   };
   return (

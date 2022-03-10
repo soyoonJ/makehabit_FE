@@ -11,11 +11,11 @@ import LoginModal from "./LoginModal";
 const ButtonNavigation = () => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
-  console.log("button", is_login);
+  // console.log("button", is_login);
 
   //모달창에 접근하는 ref
   const modalRef = React.useRef();
-  console.log("모달ref!!!", modalRef);
+  // console.log("모달ref!!!", modalRef);
 
   const confirmPage = () => {
     if (is_login) {
@@ -23,12 +23,12 @@ const ButtonNavigation = () => {
       // dispatch(challengeActions.naviChallengeDB());
       history.push(`/mychallenge/navi`);
     } else {
-      console.log("로그인");
+      // console.log("로그인");
       modalRef.current.openModal();
     }
   };
   const writePage = () => {
-    console.log("writePage", is_login);
+    // console.log("writePage", is_login);
     if (is_login) {
       history.push(`/postwrite`);
     } else {
