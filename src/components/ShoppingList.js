@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 
-import { actionCreators as characterActions } from "../redux/modules/character_sb";
+import { actionCreators as characterActions } from "../redux/modules/character";
 import GridContainer from "../elements/ContainerGrid";
 const ShoppingList = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(characterActions.getItemList("acc"));
+    dispatch(characterActions.getItemDB());
   }, []);
   const itemList = useSelector((state) => state.character_sb.itemList);
   //카테고리에 따른 필터
@@ -19,7 +19,7 @@ const ShoppingList = () => {
   //       (e, i) => itemList2[i].category === category
   //     )
   //   );
-  console.log("shoppingLis", DataTransferItemList);
+  console.log("shoppingLis", itemList);
   return (
     <Container>
       <Grid borderTop="3px solid #f7f7f7">

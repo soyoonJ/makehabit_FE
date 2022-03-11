@@ -6,10 +6,24 @@ import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 import ItemBox from "../components/ItemBox";
 import ItemCircle from "../components/ItemCircle";
 
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as characterActions } from "../redux/modules/character";
+
 const ItemSelect = () => {
+  const dispatch = useDispatch();
   //   const Item = process.env.PUBLIC_URL + "/items";
-  const ItemCategory = ["컬러", "배경", "표정", "의상", "악세사리"];
+  const ItemCategory = [
+    ["컬러", "color"],
+    ["배경", "background"],
+    ["표정", "emotion"],
+    ["의상", "clothes"],
+    ["악세사리", "acc"],
+  ];
   const [clickedCate, changeCate] = React.useState(0);
+
+  React.useEffect(() => {
+    dispatch(characterActions.getItemDB(ItemCategory[clickedCate][1]));
+  }, [clickedCate]);
 
   return (
     <React.Fragment>
@@ -22,7 +36,7 @@ const ItemSelect = () => {
                 changeCate(i);
               }}
             >
-              {e}
+              {e[0]}
             </button>
           ))}
         </NaviButton>
