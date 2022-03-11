@@ -17,6 +17,7 @@ const ItemSelect = () => {
         <NaviButton>
           {ItemCategory.map((e, i) => (
             <button
+              key={i}
               onClick={() => {
                 changeCate(i);
               }}
