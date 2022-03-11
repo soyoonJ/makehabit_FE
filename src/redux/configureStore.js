@@ -7,6 +7,7 @@ import User from "./modules/user";
 import Post from "./modules/post";
 import Challenge from "./modules/challenge";
 import Main from "./modules/main";
+import Character_sb from "./modules/character_sb";
 import Character from "./modules/character";
 
 // 히스토리 객체 만들기

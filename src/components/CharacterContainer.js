@@ -5,6 +5,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
+
 import { actionCreators as characterActions } from "../redux/modules/character";
 
 const CharacterContainer = () => {
@@ -67,6 +68,10 @@ const CharacterContainer = () => {
         alignSelf="end"
         fontWeight="600"
         centerFlex
+        _onClick={() => {
+          console.log("클릭 됐나?");
+          history.push("/shoppingBasket");
+        }}
       >
         구매 및 저장
       </Button>

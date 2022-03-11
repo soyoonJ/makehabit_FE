@@ -172,6 +172,12 @@ export const apis = {
   //내 챌린지 보기 > 필터
   challengeFilter: (status) =>
     instance.get(`/api/mypage/mychallenge/${status}`),
+
+  //캐릭터 샵 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  //아이템 목록 받기
+  ShopItemList: () => instance.get("/api/character"),
+  //아이템 구매 및 저장하기
+  PurchaseItem: () => instance.post(`/api/character`),
 };
 
 export default instance;
