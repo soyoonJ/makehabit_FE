@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
+import { useDispatch, useSelector } from "react-redux";
 
 const ItemBox = () => {
+  const itemList = useSelector((state) => state.character.itemList);
+  console.log("아이템리스트", itemList);
+
+  const Item = process.env.PUBLIC_URL + "/items/small";
+
   return (
     <ItemContainer>
-      <OneItem>
-        <div></div>
-        <div>100</div>
-      </OneItem>
-      <OneItem>
-        <div></div>
-        <div>100</div>
-      </OneItem>
-      <OneItem>
-        <div></div>
-        <div>100</div>
-      </OneItem>
+      {itemList.map((e, i) => (
+        <OneItem>
+          <div>
+            <img src={Item + "/캐릭터_분홍.png"} alt="캐릭터_분홍.png"></img>
+          </div>
+          <div>{e.price}</div>
+        </OneItem>
+      ))}
     </ItemContainer>
   );
 };
@@ -44,6 +46,9 @@ const OneItem = styled.div`
       height: 19vh;
       background: #fff;
       border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &:nth-child(2) {
@@ -51,6 +56,10 @@ const OneItem = styled.div`
       font-weight: 700;
       margin-top: 1rem;
     }
+  }
+
+  img {
+    height: 100%;
   }
 `;
 export default ItemBox;

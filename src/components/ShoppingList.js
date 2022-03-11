@@ -11,7 +11,7 @@ const ShoppingList = () => {
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
   }, []);
-  const itemList = useSelector((state) => state.character.itemList);
+  const itemList = useSelector((state) => state.character_sb.itemList);
   //카테고리에 따른 필터
 
   //   const itemList = useSelector((state) =>
