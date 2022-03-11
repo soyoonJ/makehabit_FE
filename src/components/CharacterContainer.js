@@ -50,6 +50,11 @@ const CharacterContainer = () => {
   const [viewAcc, setAcc] = useState();
   // const [viewEmotion, setEmotion] = useState();
 
+  console.log("뷰", viewBg);
+  console.log("뷰", viewBody);
+  console.log("뷰", viewClothes);
+  console.log("뷰", viewAcc);
+
   console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
 
   // React.useEffect(()=>{
@@ -63,12 +68,14 @@ const CharacterContainer = () => {
   // console.log(selectedBody.current.alt);
 
   const sendItems = () => {
-    // const background = selectedBg.current.alt;
-    // const body = selectedBody.current.alt;
+    const background = selectedBg.current.alt;
+    const body = selectedBody.current.alt;
     const clothes = selectedClothes.current.alt;
-    // const acc = selectedAcc.current.alt;//
-    // const selectedItems = { background, body, clothes, acc };
+    const acc = selectedAcc.current.alt; //
+    const selectedItems = { background, body, clothes, acc };
+    console.log("구매및저장아이템", selectedItems);
     // dispatch(characterActions.selectedItems(selectedItems));
+    // 모달로 데이터 넘겨주기
   };
 
   //자식 함수 접근하는 Ref
@@ -85,13 +92,14 @@ const CharacterContainer = () => {
   React.useEffect(() => {
     if (previewColor) {
       setBody(previewColor);
-      // dispatch(characterActions.getItemDB());
-      // console.log("!@#!@#!@#", preview, previewColor);
-    } else if (previewBg) {
-      setBg(previewBg);
-    } else if (previewClothes) {
+    }
+    if (previewClothes) {
       setClothes(previewClothes);
-    } else if (previewAcc) {
+    }
+    if (previewBg) {
+      setBg(previewBg);
+    }
+    if (previewAcc) {
       setAcc(previewAcc);
     }
   }, [preview]);
