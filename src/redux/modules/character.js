@@ -42,7 +42,6 @@ export default handleActions(
     [ITEM_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
         draft.item = action.payload.item;
-        console.log("아이템바뀌니?", action.payload.item);
       }),
     [SELECTED_ITEMS]: (state, action) =>
       produce(state, (draft) => {
