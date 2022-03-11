@@ -148,32 +148,17 @@ export const apis = {
   oneFeed: (proofShotId) =>
     instance.get(`/api/mypage/proofShot/${proofShotId}`),
 
-  //캐릭터 -------------------------------------------------------------------------------------------------------
+  //내 챌린지 보기 > 필터
+  challengeFilter: (status) =>
+    instance.get(`/api/mypage/mychallenge/${status}`),
+
+  //캐릭터 샵 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   //마이페이지-캐릭터정보조회
   mypageCharacter: () => instance.get("/api/mypage/character"),
 
   //캐릭터샵-아이템목록받기
   getItemList: () => instance.get("/api/character"),
 
-  saveCharacter: (totalPrice, items) =>
-    instance.post("/api/character", {
-      totalPrice,
-      items,
-    }),
-
-  //마이페이지- 내캐릭터꾸민내용 저장하기
-  CharacterSave: (hair, eye, wing) =>
-    instance.post("/api/mypage/character", {
-      hair,
-      eye,
-      wing,
-    }),
-
-  //내 챌린지 보기 > 필터
-  challengeFilter: (status) =>
-    instance.get(`/api/mypage/mychallenge/${status}`),
-
-  //캐릭터 샵 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   //아이템 목록 받기
   ShopItemList: () => instance.get("/api/character"),
   //아이템 구매 및 저장하기

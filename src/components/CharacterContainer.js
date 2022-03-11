@@ -5,7 +5,6 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
-
 import { actionCreators as characterActions } from "../redux/modules/character";
 
 const CharacterContainer = () => {
@@ -13,8 +12,13 @@ const CharacterContainer = () => {
 
   // 여러개 만들어야 하나?
   const preview = useSelector((state) => state.character?.item);
-  // 사용할 때 preview!==undefined 조건 넣어야할듯!
-  console.log("바디 프리뷰", preview);
+  // console.log("바디 프리뷰", preview);
+
+  // const [body, setBody] = React.useState(사용자초기값)
+
+  // React.useEffect(()=>{
+  //   setBody(preview)
+  // },[preview])
 
   const selectedBody = React.useRef();
   const selectedAcc = React.useRef();
@@ -68,10 +72,6 @@ const CharacterContainer = () => {
         alignSelf="end"
         fontWeight="600"
         centerFlex
-        _onClick={() => {
-          console.log("클릭 됐나?");
-          history.push("/shoppingBasket");
-        }}
       >
         구매 및 저장
       </Button>
