@@ -50,6 +50,11 @@ const CharacterContainer = () => {
   const [viewAcc, setAcc] = useState();
   // const [viewEmotion, setEmotion] = useState();
 
+  console.log("뷰", viewBg);
+  console.log("뷰", viewBody);
+  console.log("뷰", viewClothes);
+  console.log("뷰", viewAcc);
+
   console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
 
   // React.useEffect(()=>{
@@ -85,16 +90,32 @@ const CharacterContainer = () => {
   React.useEffect(() => {
     if (previewColor) {
       setBody(previewColor);
-      // dispatch(characterActions.getItemDB());
-      // console.log("!@#!@#!@#", preview, previewColor);
-    } else if (previewBg) {
+    }
+  }, [preview]);
+
+  React.useEffect(() => {
+    if (previewBg) {
       setBg(previewBg);
-    } else if (previewClothes) {
+    }
+  }, [preview]);
+
+  React.useEffect(() => {
+    if (previewClothes) {
       setClothes(previewClothes);
-    } else if (previewAcc) {
+    }
+  }, [preview]);
+
+  React.useEffect(() => {
+    if (previewAcc) {
       setAcc(previewAcc);
     }
   }, [preview]);
+
+  // React.useEffect(() => {
+  //   if (previewEmotion) {
+  //     setEmotion(previewEmotion);
+  //   }
+  // }, [preview]);
 
   return (
     <Container>
