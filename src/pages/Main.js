@@ -28,23 +28,32 @@ const Main = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Header>
-          <Image size="40" src="images/logoEx.png" alt=""></Image>
-          <Input
-            _ref={search}
-            placeholder="도전하고 싶은 습관을 검색해보세요!"
-            width="65%"
-          ></Input>
-          <Img
-            style={{ width: "20px" }}
-            src="images/search.png"
-            alt=""
-            onClick={() => {
-              dispatch(mainActions.getSearchDB(search.current.value));
-              history.push(`/search`);
-            }}
-          ></Img>
-        </Header>
+        <ContainerGrid>
+          <Header>
+            {/*로고 */}
+            {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
+            <Text width="30%" size="22px" bold color="#FF8B37">
+              로고부분
+            </Text>
+            {/* <ContainerInput> */}
+            <InputBox
+              _ref={search}
+              placeholder="도전하고 싶은 습관을 검색해보세요!"
+              width="65%"
+            ></InputBox>
+            <ImgBox
+              style={{ width: "10px" }}
+              src="images/search.png"
+              alt=""
+              onClick={() => {
+                dispatch(mainActions.getSearchDB(search.current.value));
+                history.push(`/search`);
+              }}
+            ></ImgBox>
+            {/* </ContainerInput> */}
+          </Header>
+        </ContainerGrid>
+
         <Banner1 />
         <ContainerGrid>
           <Text padding="5% 0 5% 5%" bold borderBox>
@@ -180,6 +189,33 @@ const Container = styled.div`
 const Header = styled.div`
   margin: 10% 0% 2% 0%;
   display: flex;
+`;
+
+// const ContainerInput = styled.div`
+//   margin-top: 21px;
+//   width: 70%;
+//   height: 29px;
+//   border-radius: 5px;
+//   background-color: #f7f7f7;
+//   align-items: center;
+// `;
+
+const InputBox = styled.input`
+  position: relative;
+  margin-top: 21px;
+  width: 70%;
+  height: 29px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+`;
+
+const ImgBox = styled.img`
+  position: absolute;
+  width: 17px;
+  top: 10px;
+  right: 12px;
+  margin: 0;
 `;
 
 const CategoryWrap = styled.div`
