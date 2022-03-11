@@ -29,6 +29,7 @@ const Button = (props) => {
     centerFlex,
     alignSelf,
     disabled,
+    zIndex,
   } = props;
 
   if (is_float) {
@@ -62,6 +63,7 @@ const Button = (props) => {
     centerFlex,
     display,
     fontWeight,
+    zIndex,
   };
 
   return (
@@ -115,6 +117,7 @@ const ElButton = styled.button`
   ${(props) => (props.fontWeight ? `font-weight:${props.fontWeight};` : "")};
   align-items: ${(props) => props.alignItems};
   ${(props) => (props.alignSelf ? `align-self: ${props.alignSelf}; ` : "")}
+  ${(props) => (props.zIndex ? `z-index: ${props.zIndex}; ` : "")}
   ${(props) => (props.display ? `display: ${props.display}; ` : "")}
   ${(props) =>
     props.centerFlex
