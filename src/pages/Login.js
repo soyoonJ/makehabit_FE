@@ -4,6 +4,7 @@ import { Button, Input, Text } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
+import { KAKAO_AUTH_URL, NAVER_AUTH_URL } from "../shared/Auth";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -77,13 +78,17 @@ const Login = () => {
         >
           로그인 없이 둘러보기
         </Button>
+        {/* <a href={KAKAO_AUTH_URL}> */}
         <Button
           bg="#FAE100"
           color="black"
           width="80%"
           margin="3% 0%"
           _onClick={() => {
-            // history.push(`/`);
+            console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
+            window.location.href = KAKAO_AUTH_URL;
+            // dispatch(Kakao.kakaoLogin());
+            // dispatch(userActions.getKakaoProfile());
           }}
         >
           카카오톡 계정으로 시작

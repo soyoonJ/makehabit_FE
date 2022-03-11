@@ -48,7 +48,7 @@ const Category = (props) => {
 };
 
 const Container = styled.div`
-  overflow-x: hidden;
+  overflow-x: auto;
 `;
 
 const HeaderContainer = styled.div`

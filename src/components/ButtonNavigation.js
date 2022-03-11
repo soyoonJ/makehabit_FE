@@ -36,6 +36,24 @@ const ButtonNavigation = () => {
     }
   };
 
+  const characterPage = () => {
+    // console.log("writePage", is_login);
+    if (is_login) {
+      history.push(`/character`);
+    } else {
+      modalRef.current.openModal();
+    }
+  };
+
+  const myPage = () => {
+    // console.log("writePage", is_login);
+    if (is_login) {
+      history.push(`/mypage`);
+    } else {
+      modalRef.current.openModal();
+    }
+  };
+
   return (
     <React.Fragment>
       <Footer>
@@ -45,12 +63,8 @@ const ButtonNavigation = () => {
           <ButtonIcon onClick={() => writePage()}>개설</ButtonIcon>
           <ButtonIcon onClick={confirmPage}>인증</ButtonIcon>
           {/* 채팅 추가 연결 필요 */}
-          <ButtonIcon onClick={() => history.push("/character")}>
-            캐릭터샵
-          </ButtonIcon>
-          <ButtonIcon onClick={() => history.push("/mypage")}>
-            Mypage
-          </ButtonIcon>
+          <ButtonIcon onClick={characterPage}>캐릭터샵</ButtonIcon>
+          <ButtonIcon onClick={myPage}>Mypage</ButtonIcon>
         </ButtonWrap>
       </Footer>
 

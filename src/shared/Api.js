@@ -63,7 +63,7 @@ export const apis = {
   login: (email, password) =>
     instance.post("/api/users/login", { email, password }),
   //소셜로그인
-  loginKakao: (email) => instance.post("/api/users/loginKakao", { email }),
+  loginKakao: () => instance.get("/api/users/kakao"),
   //로그인 상태체크
   loginCheck: () => instance.get("/api/users/checkLogin"),
 

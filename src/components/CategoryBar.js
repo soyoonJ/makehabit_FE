@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Horizontable from "./Horizontable";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../redux/modules/main";
@@ -33,25 +34,25 @@ const CategoryBar = () => {
   // console.log("카테고리색상변경", checkLoadAll);
 
   return (
-    // <Horizontable>
     <CategoryBox>
-      {categoryList.map((e, i) => (
-        <CategoryCircle
-          key={i}
-          onClick={() => {
-            changeClicked(i);
-            // console.log("카테고리바!!!!!!!!!!!!!!!", e[0], i);
-            dispatch(mainActions.categoryDB(e[0]));
-          }}
-          style={{
-            borderBottomColor: i === clickedCategory ? "#ff8b37" : "#ffffff",
-          }}
-        >
-          {e[1]}
-        </CategoryCircle>
-      ))}
+      <Horizontable>
+        {categoryList.map((e, i) => (
+          <CategoryCircle
+            key={e._id}
+            onClick={() => {
+              changeClicked(i);
+              // console.log("카테고리바!!!!!!!!!!!!!!!", e[0], i);
+              dispatch(mainActions.categoryDB(e[0]));
+            }}
+            style={{
+              borderBottomColor: i === clickedCategory ? "#ff8b37" : "#ffffff",
+            }}
+          >
+            {e[1]}
+          </CategoryCircle>
+        ))}
+      </Horizontable>
     </CategoryBox>
-    // </Horizontable>
   );
 };
 
@@ -61,18 +62,19 @@ const CategoryBox = styled.div`
   display: flex;
   /* justify-content: center;
   align-items: center; */
-  flex-wrap: nowrap;
-  margin-bottom: -10px;
+  /* flex-wrap: nowrap; */
+  /* margin-bottom: -10px; */
+  overflow-x: hidden;
   white-space: nowrap;
-  overflow-x: auto;
+  flex-direction: column;
 
   @media only screen and (max-width: 768px) {
     margin-bottom: 0%;
     padding-bottom: 0px;
   }
 
-  ::-webkit-scrollbar {
-    display: none;
+  div {
+    display: inline-block;
   }
 `;
 
@@ -83,6 +85,9 @@ const CategoryCircle = styled.p`
   color: #000;
   background-color: none;
   border-bottom: #ff8b37 solid;
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
 
   @media only screen and (max-width: 768px) {
     padding: 9px 9px;

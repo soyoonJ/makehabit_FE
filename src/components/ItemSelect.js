@@ -8,6 +8,7 @@ import ItemCircle from "../components/ItemCircle";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
+import Horizontable from "./Horizontable";
 
 const ItemSelect = () => {
   const dispatch = useDispatch();
@@ -18,28 +19,32 @@ const ItemSelect = () => {
     ["표정", "emotion"],
     ["의상", "clothes"],
     ["악세사리", "acc"],
+    // ["기타", "기타"],
   ];
   const [clickedCate, changeCate] = React.useState(0);
 
   React.useEffect(() => {
+    // dispatch(characterActions.getItemDB(ItemCategory[clickedCate][1]));
     dispatch(characterActions.getItemDB(ItemCategory[clickedCate][1]));
   }, [clickedCate]);
 
   return (
     <React.Fragment>
       <Navi>
-        <NaviButton>
-          {ItemCategory.map((e, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                changeCate(i);
-              }}
-            >
-              {e[0]}
-            </button>
-          ))}
-        </NaviButton>
+        <Horizontable>
+          <NaviButton>
+            {ItemCategory.map((e, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  changeCate(i);
+                }}
+              >
+                {e[0]}
+              </button>
+            ))}
+          </NaviButton>
+        </Horizontable>
       </Navi>
       {/* 동그라미 */}
       {clickedCate === 0 ? <ItemCircle /> : <ItemBox />}

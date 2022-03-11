@@ -16,7 +16,7 @@ const Main = (props) => {
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
   const dispatch = useDispatch();
   const search = React.useRef(null);
-
+  // console.log("서치", search.current.value);
   React.useEffect(() => {
     dispatch(mainActions.RecommendDB(2));
   }, []);
@@ -35,22 +35,24 @@ const Main = (props) => {
             <Text width="30%" size="22px" bold color="#FF8B37">
               로고부분
             </Text>
-            {/* <ContainerInput> */}
-            <InputBox
-              _ref={search}
-              placeholder="도전하고 싶은 습관을 검색해보세요!"
-              width="65%"
-            ></InputBox>
-            <ImgBox
-              style={{ width: "10px" }}
-              src="images/search.png"
-              alt=""
-              onClick={() => {
-                dispatch(mainActions.getSearchDB(search.current.value));
-                history.push(`/search`);
-              }}
-            ></ImgBox>
-            {/* </ContainerInput> */}
+            <ContainerInput>
+              <InputBox
+                ref={search}
+                placeholder="도전하고 싶은 습관을 검색해보세요!"
+                width="65%"
+              ></InputBox>
+
+              <ImgBox
+                style={{ width: "10px" }}
+                src="images/search.png"
+                alt=""
+                onClick={() => {
+                  console.log("클릭되니");
+                  dispatch(mainActions.getSearchDB(search.current.value));
+                  history.push(`/search`);
+                }}
+              ></ImgBox>
+            </ContainerInput>
           </Header>
         </ContainerGrid>
 
@@ -191,18 +193,16 @@ const Header = styled.div`
   display: flex;
 `;
 
-// const ContainerInput = styled.div`
-//   margin-top: 21px;
-//   width: 70%;
-//   height: 29px;
-//   border-radius: 5px;
-//   background-color: #f7f7f7;
-//   align-items: center;
-// `;
+const ContainerInput = styled.div`
+  margin-top: 21px;
+  width: 70%;
+  height: 29px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  align-items: center;
+`;
 
 const InputBox = styled.input`
-  position: relative;
-  margin-top: 21px;
   width: 70%;
   height: 29px;
   border: none;
@@ -211,11 +211,9 @@ const InputBox = styled.input`
 `;
 
 const ImgBox = styled.img`
-  position: absolute;
   width: 17px;
   top: 10px;
-  right: 12px;
-  margin: 0;
+  margin-left: 20%;
 `;
 
 const CategoryWrap = styled.div`

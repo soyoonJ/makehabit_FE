@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
@@ -7,14 +7,50 @@ import { useDispatch, useSelector } from "react-redux";
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 import { actionCreators as characterActions } from "../redux/modules/character";
 
+import ShoppingBasket1 from "../components/ShoppingBasket1";
+
 const CharacterContainer = () => {
   const dispatch = useDispatch();
 
-  // 여러개 만들어야 하나?
-  const preview = useSelector((state) => state.character?.item);
-  // console.log("바디 프리뷰", preview);
+  const Item = process.env.PUBLIC_URL + "/items/large";
 
-  // const [body, setBody] = React.useState(사용자초기값)
+  const currentPoint = useSelector((state) => state.character.currentPoint);
+
+  const isEquip = useSelector((state) => state.character?.isEquip);
+  const equipBg = isEquip?.find((e) => e.category === "background");
+  const equipColor = isEquip?.find((e) => e.category === "color");
+  const equipClothes = isEquip?.find((e) => e.category === "clothes");
+  const equipAcc = isEquip?.find((e) => e.category === "acc");
+  const equipEmotion = isEquip?.find((e) => e.category === "emotion");
+  // console.log("isEquip", isEquip);
+  console.log(
+    "equip확인",
+    isEquip,
+    equipAcc?.itemImgUrl,
+    equipBg?.itemImgUrl,
+    equipClothes?.itemImgUrl,
+    equipColor?.itemImgUrl
+  );
+
+  // 여러개 만들어야 하나?
+  const preview = useSelector((state) => state.character);
+  const previewBg = useSelector((state) => state.character?.backgroundItem);
+  const previewColor = useSelector((state) => state.character?.colorItem);
+  const previewClothes = useSelector((state) => state.character?.clothesItem);
+  const previewAcc = useSelector((state) => state.character?.accItem);
+
+  console.log("프리뷰", previewBg);
+  console.log("프리뷰", previewColor);
+  console.log("프리뷰", previewClothes);
+  console.log("프리뷰", previewAcc);
+  //Item 변경 할때 사용 하는 useState
+  const [viewBg, setBg] = useState();
+  const [viewBody, setBody] = useState();
+  const [viewClothes, setClothes] = useState();
+  const [viewAcc, setAcc] = useState();
+  // const [viewEmotion, setEmotion] = useState();
+
+  console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
 
   // React.useEffect(()=>{
   //   setBody(preview)
@@ -27,45 +63,67 @@ const CharacterContainer = () => {
   // console.log(selectedBody.current.alt);
 
   const sendItems = () => {
-    const background = selectedBg.current.alt;
-    const body = selectedBody.current.alt;
-    const acc = selectedAcc.current.alt;
+    // const background = selectedBg.current.alt;
+    // const body = selectedBody.current.alt;
     const clothes = selectedClothes.current.alt;
-
-    const selectedItems = { body, acc, clothes };
-    // dispatch(characterActions.selectedItems(selectedItems))
-    // history.push('/장바구니페이지')
+    // const acc = selectedAcc.current.alt;//
+    // const selectedItems = { background, body, clothes, acc };
+    // dispatch(characterActions.selectedItems(selectedItems));
   };
 
-  const Item = process.env.PUBLIC_URL + "/items/large";
+  //자식 함수 접근하는 Ref
+  const modalRef = useRef();
+  React.useEffect(() => {
+    // dispatch(characterActions.getItemDB());
+    setBg(equipBg?.itemImgUrl);
+    setBody(equipColor?.itemImgUrl);
+    setClothes(equipClothes?.itemImgUrl);
+    setAcc(equipAcc?.itemImgUrl);
+    // setEmotion(equipEmotion?.itemImgUrl);
+  }, [equipBg?.itemImgUrl]);
+
+  React.useEffect(() => {
+    if (previewColor) {
+      setBody(previewColor);
+      // dispatch(characterActions.getItemDB());
+      // console.log("!@#!@#!@#", preview, previewColor);
+    } else if (previewBg) {
+      setBg(previewBg);
+    } else if (previewClothes) {
+      setClothes(previewClothes);
+    } else if (previewAcc) {
+      setAcc(previewAcc);
+    }
+  }, [preview]);
 
   return (
     <Container>
-      <Point>505050</Point>
-      <ImgContainer>
-        <ItemImg
-          src={Item + "/background_01.png"}
-          ref={selectedBg}
-          alt="/background_01.png"
-        ></ItemImg>
-        <ItemImg
-          src={Item + "/color_01.png"}
-          ref={selectedBody}
-          alt="/color_01.png"
-        ></ItemImg>
-        <ItemImg
-          src={Item + "/acc_02.png"}
-          ref={selectedAcc}
-          alt="/acc_01.png"
-        ></ItemImg>
-        <ItemImg
-          src={Item + "/clothes_02.png"}
-          ref={selectedClothes}
-          alt="/clothes_02.png"
-        ></ItemImg>
-      </ImgContainer>
+      <Point>{currentPoint}</Point>
+      {viewBg && (
+        <ImgContainer>
+          <ItemImg src={Item + viewBg} ref={selectedBg} alt={viewBg}></ItemImg>
+          <ItemImg
+            src={Item + viewBody}
+            ref={selectedBody}
+            alt={viewBody}
+          ></ItemImg>
+          <ItemImg
+            src={Item + viewClothes}
+            ref={selectedClothes}
+            alt={viewClothes}
+          ></ItemImg>
+          <ItemImg
+            src={Item + viewAcc}
+            ref={selectedAcc}
+            alt={viewAcc}
+          ></ItemImg>
+        </ImgContainer>
+      )}
       <Button
-        _onClick={sendItems}
+        _onClick={() => {
+          // sendItems();
+          modalRef.current.openModal();
+        }}
         position="absolute"
         bottom="0"
         margin="0 5% 2vh 0"
@@ -83,6 +141,7 @@ const CharacterContainer = () => {
       >
         구매 및 저장
       </Button>
+      <ShoppingBasket1 ref={modalRef} />
     </Container>
   );
 };

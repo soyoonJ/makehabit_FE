@@ -15,17 +15,17 @@ const ItemCircle = () => {
 
   React.useEffect(() => {
     // console.log("유즈이펙트", item);
-    dispatch(characterActions.itemPreview(item));
+    dispatch(characterActions.colorPreview(item));
   }, [item]);
 
   const color = [
-    ["orange", "#FF954D"],
-    ["pink", "#FFC0C0"],
-    ["yellow", "#FFF16C"],
+    ["/color_01.png", "#FFF16C"],
+    ["/color_02.png", "#C7FFE0"],
+    ["/color_03.png", "#D7C5FF"],
+    ["/color_04.png", "#FFC0C0"],
+    ["/color_05.png", "#FF954D"],
+    ["/color_06.png", "#8CD6F4"],
     ["gray", "#9C9C9C"],
-    ["purple", "#D7C5FF"],
-    ["blue", "#8CD6F4"],
-    ["green", "#C7FFE0"],
     ["gray", "#9C9C9C"],
   ];
 
@@ -42,15 +42,6 @@ const ItemCircle = () => {
               }}
             />
           ))}
-
-          {/* <div style={{ background: "#FF954D" }}></div>
-          <div style={{ background: "#FFC0C0" }}></div>
-          <div style={{ background: "#FFF16C" }}></div>
-          <div style={{ background: "#9C9C9C" }}></div>
-          <div style={{ background: "#D7C5FF" }}></div>
-          <div style={{ background: "#8CD6F4" }}></div>
-          <div style={{ background: "#C7FFE0" }}></div>
-          <div style={{ background: "#9C9C9C" }}></div> */}
         </ItemContainer>
       </Grid>
     </ContainerGrid>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Input, Text, Image, Grid } from "../elements";
-
+import { Button, Input, Text, Image, Grid, ContainerGrid } from "../elements";
+import { history } from "../redux/configureStore";
 import ButtonNavigation from "../components/ButtonNavigation";
 import CategoryPost from "../components/CategoryPost";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,22 +18,34 @@ const Search = () => {
   return (
     <React.Fragment>
       <Container>
-        <Header>
-          <Image size="40" src="images/logoEx.png" alt=""></Image>
-          <Input
-            _ref={search}
-            placeholder="도전하고 싶은 습관을 검색해보세요!"
-            width="65%"
-          ></Input>
-          <Img
-            style={{ width: "20px" }}
-            src="images/search.png"
-            alt=""
-            onClick={() => {
-              dispatch(mainActions.getSearchDB(search.current.value));
-            }}
-          ></Img>
-        </Header>
+        <ContainerGrid>
+          <Header>
+            {/*로고 */}
+            {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
+            <Text width="30%" size="22px" bold color="#FF8B37">
+              로고부분
+            </Text>
+            <ContainerInput>
+              <InputBox
+                ref={search}
+                placeholder="도전하고 싶은 습관을 검색해보세요!"
+                width="65%"
+              ></InputBox>
+
+              <ImgBox
+                style={{ width: "10px" }}
+                src="images/search.png"
+                alt=""
+                onClick={() => {
+                  console.log("클릭되니");
+                  dispatch(mainActions.getSearchDB(search.current.value));
+                  history.push(`/search`);
+                }}
+              ></ImgBox>
+            </ContainerInput>
+          </Header>
+        </ContainerGrid>
+
         {/*검색된 포스팅카드 불러오기 */}
         <CardWrap>
           {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
@@ -58,6 +70,12 @@ const Header = styled.div`
   display: flex;
 `;
 
+const ImgBox = styled.img`
+  width: 17px;
+  top: 10px;
+  margin-left: 20%;
+`;
+
 const Img = styled.img`
   size: 20px;
   cursor: pointer;
@@ -70,5 +88,22 @@ const CardWrap = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
+`;
+
+const ContainerInput = styled.div`
+  margin-top: 21px;
+  width: 70%;
+  height: 29px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  align-items: center;
+`;
+
+const InputBox = styled.input`
+  width: 70%;
+  height: 29px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f7f7f7;
 `;
 export default Search;

@@ -18,6 +18,8 @@ const logOut = createAction(LOG_OUT, () => ({}));
 const emailCheck = createAction(EMAIL_CHECK, (result) => ({ result }));
 const nicknameCheck = createAction(NICKNAME_CHECK, (result) => ({ result }));
 
+// let authorization_code = new URL(window.location.href).searchParams.get("code");
+
 // initialState
 const initialState = {
   user: { email: null, nickname: null },
@@ -116,27 +118,33 @@ const loginDB = (email, password) => {
 };
 
 // 카카오 API
-const getKakaoProfile = () => {
+const getKakaoProfile = (code) => {
   return function (dispatch, getState, { history }) {
-    window.Kakao.API.request({
-      url: "/v2/user/me",
-    })
-      .then(function (res) {
-        // console.log('코멘트전체확인',res.data.comments);
-        // 코멘트리스트 불러오기
-        const email = res.id;
+    // window.Kakao.API.request({
+    //   // url: "/v2/user/me",
+    //   url: "http://52.79.227.179/api/users/kakao",
+    // })
+    // .then((res) => {
+    //   // console.log('코멘트전체확인',res.data.comments);
+    //   // 코멘트리스트 불러오기
+    //   console.log(res); // 토큰 넘어오는지 확인
 
-        apis.loginKakao(email).then((res) => {
-          console.log(res);
-          //   if (!res.data.result) {
-          //     alert("회원정보가 올바르지 않습니다.");
-          //     return;
-          //   }
-          //   localStorage.setItem("token", res.data.token);
-          //   dispatch(setUser({ email: email }));
-        });
+    // apis
+    //   .loginKakao()
+    axios
+      .get(`http://52.79.227.179/api/users/kakao/callback?code${code}`)
+      .then((res) => {
+        console.log("카카오오오", res);
+        const token = res.data.token;
+
+        //   if (!res.data.result) {
+        //     alert("회원정보가 올바르지 않습니다.");
+        //     return;
+        //   }
+        //   localStorage.setItem("token", res.data.token);
+        //   dispatch(setUser({ email: email }));
       })
-
+      // })
       .catch(function (error) {
         console.log(error);
       });
