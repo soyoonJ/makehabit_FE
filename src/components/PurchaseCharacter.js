@@ -2,38 +2,20 @@ import React from "react";
 
 import styled from "styled-components";
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
-import { history } from "../redux/configureStore";
-const CharacterContainer = () => {
+
+import GoBack from "./GoBack";
+
+const PurchaseCharacter = () => {
   const Item = process.env.PUBLIC_URL + "/items";
   return (
     <Container>
-      <Point>505050</Point>
+      <GoBack />
+      <Point>Point</Point>
       <ImgContainer>
         <ItemImg src={Item + "/캐릭터_분홍.png"} alt="바디컬러"></ItemImg>
         <ItemImg src={Item + "/악세사리_화분.png"} alt="악세사리"></ItemImg>
         <ItemImg src={Item + "/의상_가드닝룩.png"} alt="의상"></ItemImg>
       </ImgContainer>
-      <Button
-        position="absolute"
-        bottom="0"
-        margin="0 5% 2vh 0"
-        bg="#6825D6"
-        color="#fff"
-        width="7.25rem"
-        height="2.5rem"
-        lineHeight="1.5rem"
-        borderRadius="3.125rem"
-        fontSize="1.125rem"
-        alignSelf="end"
-        fontWeight="600"
-        centerFlex
-        _onClick={() => {
-          console.log("클릭 됐나?");
-          history.push("/shoppingBasket");
-        }}
-      >
-        구매 및 저장
-      </Button>
     </Container>
   );
 };
@@ -69,4 +51,4 @@ const ItemImg = styled.img`
   position: absolute;
   z-index: 1;
 `;
-export default CharacterContainer;
+export default PurchaseCharacter;

@@ -7,6 +7,7 @@ import User from "./modules/user";
 import Post from "./modules/post";
 import Challenge from "./modules/challenge";
 import Main from "./modules/main";
+import Character from "./modules/character_sb";
 
 // 히스토리 객체 만들기
 export const history = createBrowserHistory();
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   post: Post,
   challenge: Challenge,
   main: Main,
+  character: Character,
   // 만든 history랑 라우터를 연결시켜 줌
   router: connectRouter(history),
 });

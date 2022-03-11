@@ -29,6 +29,7 @@ import Completed from "../pages/Completed";
 import Chat from "../pages/Chat";
 import NotFound from "../pages/NotFound";
 import Search from "../pages/Search";
+import ShoppingBasket from "../pages/ShoppingBasket";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ function App() {
               <Route path="/mychallenge/:id" component={MyChallenge} />
               <Route path="/mypage" component={Mypage} />
               <Route path="/character" component={Character} />
+              <Route path="/shoppingBasket" component={ShoppingBasket} />
               <Route path="/myfeed/:id" component={MyFeed} />
               <Route path="/completed/:id" component={Completed} />
               <Route path="/chat/:id" component={Chat} />
