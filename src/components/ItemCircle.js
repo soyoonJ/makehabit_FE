@@ -10,6 +10,8 @@ const ItemCircle = () => {
   const dispatch = useDispatch();
 
   const [item, setItem] = React.useState(null);
+  const itemList = useSelector((state) => state.character.itemList);
+  console.log("아이템리스트", itemList);
 
   React.useEffect(() => {
     // console.log("유즈이펙트", item);

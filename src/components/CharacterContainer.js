@@ -35,7 +35,7 @@ const CharacterContainer = () => {
     // history.push('/장바구니페이지')
   };
 
-  const Item = process.env.PUBLIC_URL + "/items";
+  const Item = process.env.PUBLIC_URL + "/items/large";
 
   return (
     <Container>
