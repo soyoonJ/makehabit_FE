@@ -118,21 +118,10 @@ const loginDB = (email, password) => {
 };
 
 // 카카오 API
-const getKakaoProfile = (code) => {
+const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
-    // window.Kakao.API.request({
-    //   // url: "/v2/user/me",
-    //   url: "http://52.79.227.179/api/users/kakao",
-    // })
-    // .then((res) => {
-    //   // console.log('코멘트전체확인',res.data.comments);
-    //   // 코멘트리스트 불러오기
-    //   console.log(res); // 토큰 넘어오는지 확인
-
-    // apis
-    //   .loginKakao()
     axios
-      .get(`http://52.79.227.179/api/users/kakao/callback?code${code}`)
+      .get(`http://52.79.227.179:3000/api/users/kakao/callback?code${code}`)
       .then((res) => {
         console.log("카카오오오", res);
         const token = res.data.token;
@@ -227,7 +216,7 @@ const actionCreators = {
   emailCheckDB,
   nicknameCheckDB,
   loginCheckDB,
-  getKakaoProfile,
+  kakaoLogin,
 };
 
 export { actionCreators };
