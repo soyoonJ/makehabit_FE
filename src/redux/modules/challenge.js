@@ -9,7 +9,7 @@ const SET_TAB = "SET_TAB";
 const SET_FEED = "SET_FEED";
 const SET_CONFIRM = "SET_CONFIRM";
 const SET_PROOF = "SET_PROOF";
-const SET_COMPLETE = "SET_COMPLETE";
+// const SET_COMPLETE = "SET_COMPLETE";
 
 // action creators
 const setChallenge = createAction(SET_CHALLENGE, (challenge_list) => ({
