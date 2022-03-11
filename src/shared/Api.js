@@ -175,7 +175,7 @@ export const apis = {
 
   //캐릭터 샵 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   //아이템 목록 받기
-  ShopItemList: () => instance.get("/api/character"),
+  GetItemList: () => instance.get("/api/character"),
   //아이템 구매 및 저장하기
   PurchaseItem: () => instance.post(`/api/character`),
 };

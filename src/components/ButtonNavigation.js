@@ -32,8 +32,7 @@ const ButtonNavigation = () => {
     if (is_login) {
       history.push(`/postwrite`);
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
+      modalRef.current.openModal();
     }
   };
 
@@ -57,8 +56,12 @@ const ButtonNavigation = () => {
 
       <LoginModal ref={modalRef}>
         <Grid padding="30px 30px 0px 30px">
-          <div>앗 로그인이 필요해요!</div>
-          <Button onClick={() => history.push("/login")}></Button>;
+          <Text size="20" bold alignCenter>
+            앗 로그인이 필요해요!
+          </Text>
+          <Button margin="10px 0px" _onClick={() => history.push("/login")}>
+            로그인하러가기
+          </Button>
         </Grid>
       </LoginModal>
     </React.Fragment>
