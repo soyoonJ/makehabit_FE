@@ -14,7 +14,7 @@ const ItemBox = () => {
       {itemList.map((e, i) => (
         <OneItem>
           <div>
-            <img src={Item + "/캐릭터_분홍.png"} alt="캐릭터_분홍.png"></img>
+            <img src={Item + "/clothes_01.png"} alt="/clothes_01.png"></img>
           </div>
           <div>{e.price}</div>
         </OneItem>
@@ -31,8 +31,7 @@ const ItemContainer = styled.div`
 `;
 
 const OneItem = styled.div`
-  width: 100%;
-  min-width: 140px;
+  width: 36%;
   display: flex;
   flex-direction: column;
   align-items: center;

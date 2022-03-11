@@ -20,12 +20,14 @@ const CharacterContainer = () => {
   //   setBody(preview)
   // },[preview])
 
+  const selectedBg = React.useRef();
   const selectedBody = React.useRef();
   const selectedAcc = React.useRef();
   const selectedClothes = React.useRef();
   // console.log(selectedBody.current.alt);
 
   const sendItems = () => {
+    const background = selectedBg.current.alt;
     const body = selectedBody.current.alt;
     const acc = selectedAcc.current.alt;
     const clothes = selectedClothes.current.alt;
@@ -42,19 +44,24 @@ const CharacterContainer = () => {
       <Point>505050</Point>
       <ImgContainer>
         <ItemImg
-          src={Item + "/캐릭터_분홍.png"}
+          src={Item + "/background_01.png"}
+          ref={selectedBg}
+          alt="/background_01.png"
+        ></ItemImg>
+        <ItemImg
+          src={Item + "/color_01.png"}
           ref={selectedBody}
-          alt="캐릭터_분홍.png"
+          alt="/color_01.png"
         ></ItemImg>
         <ItemImg
-          src={Item + "/악세사리_화분.png"}
+          src={Item + "/acc_02.png"}
           ref={selectedAcc}
-          alt="악세사리_화분.png"
+          alt="/acc_01.png"
         ></ItemImg>
         <ItemImg
-          src={Item + "/의상_가드닝룩.png"}
+          src={Item + "/clothes_02.png"}
           ref={selectedClothes}
-          alt="의상_가드닝룩.png"
+          alt="/clothes_02.png"
         ></ItemImg>
       </ImgContainer>
       <Button
@@ -72,6 +79,7 @@ const CharacterContainer = () => {
         alignSelf="end"
         fontWeight="600"
         centerFlex
+        zIndex="5"
       >
         구매 및 저장
       </Button>
@@ -95,6 +103,10 @@ const Point = styled.div`
   font-weight: 600;
   font-size: 1rem;
   border-radius: 3.125rem;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ImgContainer = styled.div`
