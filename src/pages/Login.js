@@ -87,8 +87,6 @@ const Login = () => {
           _onClick={() => {
             console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
             window.location.href = KAKAO_AUTH_URL;
-            // dispatch(Kakao.kakaoLogin());
-            // dispatch(userActions.getKakaoProfile());
           }}
         >
           카카오톡 계정으로 시작
