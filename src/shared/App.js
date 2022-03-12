@@ -66,10 +66,7 @@ function App() {
               <Route path="/myfeed/:id" component={MyFeed} />
               <Route path="/completed/:id" component={Completed} />
               <Route path="/chat/:id" component={Chat} />
-              <Route
-                path="/api/users/kakao/callback"
-                component={Auth2RedirectHandler}
-              ></Route>
+              <Route path="/kakao" component={Auth2RedirectHandler}></Route>
 
               <Route path="*" exact component={NotFound} />
             </Switch>

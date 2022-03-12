@@ -55,17 +55,17 @@ const getConfirmDB = (challengeId) => {
 // 인증 업로드
 const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
   return function (dispatch, getState, { history }) {
-    console.log("인증업로드", challengeId, imgForm, challengeTitle, comment);
+    // console.log("인증업로드", challengeId, imgForm, challengeTitle, comment);
 
     apis
       .imageUpload(imgForm)
       .then(function (res) {
-        console.log("업로드된 이미지", res);
+        // console.log("업로드된 이미지", res);
 
         apis
           .confirm(challengeId, res.data.imgUrl, challengeTitle, comment)
           .then(function (res) {
-            console.log(res);
+            // console.log(res);
             history.push("/completed/confirm");
           })
           .catch((error) => {
@@ -85,7 +85,7 @@ const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
 // 하단네비 > 인증 > 내 챌린지보기
 const naviChallengeDB = () => {
   return function (dispatch, getState, { history }) {
-    console.log("인증, naviChallengeDB");
+    // console.log("인증, naviChallengeDB");
     apis
       .naviChallenge()
       .then(function (res) {

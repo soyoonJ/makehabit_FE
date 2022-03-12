@@ -45,11 +45,8 @@ Upload.defaultProps = {};
 
 const ImageBox = styled.div`
   display: flex;
-
   margin: auto;
-  max-width: 420px;
-  width: 100%;
-  height: 300px;
+  height: 21vh;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -61,8 +58,8 @@ const ImageInput = styled.input`
   // ::file-selector-button {
   //   display: none;
   // }
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
 `;
 
 export default Upload;
