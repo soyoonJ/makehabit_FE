@@ -8,7 +8,6 @@ import Post from "./modules/post";
 import Challenge from "./modules/challenge";
 import Main from "./modules/main";
 import Character from "./modules/character";
-import Kakao from "../shared/social/Kakao";
 
 // 히스토리 객체 만들기
 export const history = createBrowserHistory();
