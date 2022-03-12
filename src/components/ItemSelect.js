@@ -33,20 +33,22 @@ const ItemSelect = () => {
       <Navi>
         <Horizontable>
           <NaviButton>
-            {ItemCategory.map((e, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  changeCate(i);
-                }}
-                style={{
-                  color: i === clickedCate ? "#FF8B37" : "#9c9c9c",
-                  fontWeight: i === clickedCate ? "700" : "400",
-                }}
-              >
-                {e[0]}
-              </button>
-            ))}
+            <NaviGrid>
+              {ItemCategory.map((e, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    changeCate(i);
+                  }}
+                  style={{
+                    color: i === clickedCate ? "#FF8B37" : "#9c9c9c",
+                    fontWeight: i === clickedCate ? "700" : "400",
+                  }}
+                >
+                  {e[0]}
+                </button>
+              ))}
+            </NaviGrid>
           </NaviButton>
         </Horizontable>
       </Navi>
@@ -62,15 +64,22 @@ const Navi = styled.div`
 `;
 
 const NaviButton = styled.div`
-  height: 3.813rem;
+  height: 1.625rem;
   white-space: nowrap;
   display: flex;
+  margin: 1.063rem 1.875rem;
+`;
+
+const NaviGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 
   button {
     width: auto;
     all: unset;
-    margin: 0 5.5%;
+    // margin: 0 5.5%;
     font-size: 1.25rem;
+    line-height: 1.625rem;
   }
 `;
 

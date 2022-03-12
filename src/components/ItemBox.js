@@ -37,15 +37,18 @@ const ItemBox = () => {
         {itemList.map((e, i) => (
           <OneItem key={i}>
             <div>
-              <img
-                src={Item + itemList[i].itemImgUrl}
-                onClick={() => {
-                  setItem(e.itemImgUrl);
-                }}
-                alt={itemList[i].itemImgUrl}
-              ></img>
+              <div>
+                <img
+                  src={Item + itemList[i].itemImgUrl}
+                  onClick={() => {
+                    setItem(e.itemImgUrl);
+                  }}
+                  alt={itemList[i].itemImgUrl}
+                ></img>
+              </div>
+              <div>{e.itemName}</div>
+              <div>{e.price}</div>
             </div>
-            <div>{e.price}</div>
           </OneItem>
         ))}
       </Horizontable>
@@ -61,7 +64,7 @@ const ItemContainer = styled.div`
   overflow-x: scroll;
   white-space: nowrap;
 
-  div {
+  & > div {
     display: inline-block;
   }
 `;
@@ -73,7 +76,13 @@ const OneItem = styled.div`
   align-items: center;
   margin: 4vh 3%;
 
-  div {
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  & > div > div {
     &:nth-child(1) {
       // 자물쇠 아이콘 대비 - relative
       position: relative;
@@ -87,9 +96,17 @@ const OneItem = styled.div`
     }
 
     &:nth-child(2) {
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.5rem;
+      color: #707070;
+      margin-top: 0.625rem;
+    }
+
+    &:nth-child(3) {
       font-size: 1.25rem;
       font-weight: 700;
-      margin-top: 1rem;
+      margin-top: 0.625rem;
     }
   }
 
