@@ -4,7 +4,7 @@ import { Button, Input, Text } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
-import { KAKAO_AUTH_URL, NAVER_AUTH_URL } from "../shared/Auth";
+import { KAKAO_AUTH_URL } from "../shared/Auth";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -66,11 +66,9 @@ const Login = () => {
         <Button bg="#FF8B37" width="80%" margin="3% 0%" _onClick={login}>
           로그인
         </Button>
-        <Text color="gray" alignCenter>
-          (브랜드네임)&nbsp;<a href={"/signup"}>회원가입 하러가기</a>
-        </Text>
         <Button
-          bg="#FF8B37"
+          bg="white"
+          color="#9C9C9C"
           width="80%"
           _onClick={() => {
             history.push(`/`);
@@ -78,12 +76,27 @@ const Login = () => {
         >
           로그인 없이 둘러보기
         </Button>
-        {/* <a href={KAKAO_AUTH_URL}> */}
+        <Text color="gray" alignCenter>
+          <Button
+            border="1.5px solid #ff8b37"
+            color="#9C9C9C"
+            bg="white"
+            width="80%"
+            margin="3% 0%"
+            onClick={() => {
+              history.push(`/signup`);
+            }}
+          >
+            <span style={{ color: "#FF8B37" }}>브랜드 로고 회원가입</span>
+          </Button>
+        </Text>
+
         <Button
+          href={KAKAO_AUTH_URL}
           bg="#FAE100"
           color="black"
           width="80%"
-          margin="3% 0%"
+          // s
           _onClick={() => {
             console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
             window.location.href = KAKAO_AUTH_URL;

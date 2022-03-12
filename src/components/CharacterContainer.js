@@ -49,6 +49,10 @@ const CharacterContainer = () => {
   const [viewClothes, setClothes] = useState();
   const [viewAcc, setAcc] = useState();
   // const [viewEmotion, setEmotion] = useState();
+  // console.log("뷰", viewBg);
+  // console.log("뷰", viewBody);
+  // console.log("뷰", viewClothes);
+  // console.log("뷰", viewAcc);
 
   console.log("뷰", viewBg);
   console.log("뷰", viewBody);

@@ -70,6 +70,7 @@ function App() {
                 path="/api/users/kakao/callback"
                 component={Auth2RedirectHandler}
               ></Route>
+
               <Route path="*" exact component={NotFound} />
             </Switch>
           </ConnectedRouter>

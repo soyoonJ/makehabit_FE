@@ -223,7 +223,7 @@ const actionCreators = {
   emailCheckDB,
   nicknameCheckDB,
   loginCheckDB,
-  kakaoLogin,
+  // kakaoLogin,
 };
 
 export { actionCreators };
