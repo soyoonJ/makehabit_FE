@@ -120,22 +120,29 @@ const loginDB = (email, password) => {
 // 카카오 API
 const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
-    axios
-      .get(`http://52.79.227.179:3000/api/users/kakao/callback?code${code}`)
+    console.log("I'mINNNN");
+    // Kakao.API.request({
+    //   url: '/v1/user/unlink',
+    //   success: function(response) {
+    //     console.log(response);
+    //   },
+    //   fail: function(error) {
+    //     console.log(error);
+    //   },
+    // });
+    axios({
+      method: "GET",
+      url: `http://52.79.227.179/api/users/kakao/callback?code=${code}`,
+    })
       .then((res) => {
         console.log("카카오오오", res);
         const token = res.data.token;
-
-        //   if (!res.data.result) {
-        //     alert("회원정보가 올바르지 않습니다.");
-        //     return;
-        //   }
-        //   localStorage.setItem("token", res.data.token);
-        //   dispatch(setUser({ email: email }));
+        localStorage.setItem("token", token); //예시로 로컬에 저장
+        dispatch(setUser());
+        history.push("/");
       })
-      // })
       .catch(function (error) {
-        console.log(error);
+        console.log("kakaoLogin", error);
       });
   };
 };

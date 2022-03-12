@@ -11,7 +11,7 @@ const ShoppingList = () => {
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
   }, []);
-  const itemList = useSelector((state) => state.character_sb.itemList);
+  const itemList = useSelector((state) => state.character.itemList);
   //카테고리에 따른 필터
 
   //   const itemList = useSelector((state) =>
@@ -24,8 +24,8 @@ const ShoppingList = () => {
     <Container>
       <Grid borderTop="3px solid #f7f7f7">
         {itemList?.map((e, i) => (
-          <GridContainer>
-            <GridBox key={e._id}>
+          <GridContainer key={e._id}>
+            <GridBox>
               <ImageContainer style={{ position: "relative" }}>
                 <PostImage src={itemList && itemList[i].itemImgUrl}></PostImage>
               </ImageContainer>

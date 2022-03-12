@@ -5,12 +5,12 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 const Auth2RedirectHandler = (props) => {
   const dispatch = useDispatch();
-
   // 인가코드
   let code = new URL(window.location.href).searchParams.get("code");
   // let state = new URL(window.location.href).searchParams.get("state");
 
   React.useEffect(() => {
+    console.log("Auth2RedirectHandler", code);
     dispatch(userActions.kakaoLogin(code));
     // dispatch(userActions.naverLogin(code, state));
   }, []);
