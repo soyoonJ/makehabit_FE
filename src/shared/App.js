@@ -30,7 +30,7 @@ import Chat from "../pages/Chat";
 import NotFound from "../pages/NotFound";
 import Search from "../pages/Search";
 import ShoppingBasket from "../pages/ShoppingBasket";
-import Kakao from "./social/Kakao";
+import Auth2RedirectHandler from "./Auth2RedirectHandler";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,7 +66,11 @@ function App() {
               <Route path="/myfeed/:id" component={MyFeed} />
               <Route path="/completed/:id" component={Completed} />
               <Route path="/chat/:id" component={Chat} />
-              <Route path="/api/users/kakao/callback" component={Kakao}></Route>
+              <Route
+                path="/api/users/kakao/callback"
+                component={Auth2RedirectHandler}
+              ></Route>
+
               <Route path="*" exact component={NotFound} />
             </Switch>
           </ConnectedRouter>
