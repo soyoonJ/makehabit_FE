@@ -10,11 +10,12 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
 import Modal from "../components/Modal";
+import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 const Confirm = (props) => {
   const challengeId = props.match.params.id;
-  // console.log(challengeId);
+  console.log("파라미터값", challengeId);
   // 챌린지 조회 정보
   const challenge_info = useSelector((state) => state.challenge.challenge_info);
   // console.log("챌린지정보", challenge_info);
@@ -88,10 +89,8 @@ const Confirm = (props) => {
           <span>인증하기</span>
         </ConfirmText>
         {/* useSelector 해서 타이틀 가져오기 */}
-        <Title>{challenge_info?.challengeTitle}</Title>
-        <SubTitle>
-          오늘의 도전을 성공하신 oo님! 인증사진을 올리고 포인트?
-        </SubTitle>
+        <Title>{challenge_info?.title}</Title>
+        <SubTitle>오늘의 도전에 성공한 순간을 사진으로 기록해보세요.</SubTitle>
         {/* <ImageBox
           onClick={onClickUpload}
           style={{
@@ -116,7 +115,7 @@ const Confirm = (props) => {
           }}
         />
         <Example>
-          챌린지 인증 예시가 궁금하다면?
+          자세한 인증 예시가 궁금하다면?
           <span
             style={{
               cursor: "pointer",
@@ -128,17 +127,30 @@ const Confirm = (props) => {
             [아이콘]
           </span>
         </Example>
-        <CommentTitle>코멘트</CommentTitle>
-        <div>예쁘게 어쩌구~~예쁘게 어쩌구~~</div>
-        <Textarea rows="8" onChange={onChange} maxLength="300"></Textarea>
-        <div style={{ marginBottom: "100px", textAlign: "end" }}>
+        <CommentTitle>코멘트 남기기</CommentTitle>
+        <div>오늘의 도전과 함께 기록해보세요.</div>
+        <Textarea
+          rows="8"
+          onChange={onChange}
+          maxLength="300"
+          placeholder="인증과 함께 소감을 남겨보세요."
+        ></Textarea>
+        <div
+          style={{
+            marginBottom: "3vh",
+            textAlign: "end",
+            marginTop: "0.438em",
+            color: "#9C9C9C",
+            lineHeight: "1.313em",
+          }}
+        >
           {commentLength}/300자
         </div>
+
+        <Button onClick={confirm}>인증 완료하기</Button>
       </ContainerGrid>
 
-      <Grid>
-        <Button onClick={confirm}>인증완료하기</Button>
-      </Grid>
+      <ButtonNavigation />
 
       <Modal ref={modalRef}>
         <Grid padding="30px 30px 0px 30px">
@@ -155,56 +167,83 @@ const ConfirmText = styled.div`
   text-align: center;
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 30px;
+  margin: 1.313em 0 4.7vh 0;
 `;
 
 // 타이틀
 const Title = styled.div`
-  font-weight: bold;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 1.375rem;
+  color: #ff8b37;
+  line-height: 1.813rem;
+  letter-spacing: -0.005em;
 `;
 const SubTitle = styled.div`
-  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.313rem;
+  color: #1d1b1b;
+  margin: 0.5rem 0 1.5rem 0;
 `;
 
 // 이미지
-const ImageBox = styled.div`
-  width: 100%;
-  max-width: 420px;
-  height: 300px;
-  background-size: cover;
-  cursor: pointer;
+// const ImageBox = styled.div`
+//   width: 100%;
+//   max-width: 420px;
+//   height: 300px;
+//   background-size: cover;
+//   cursor: pointer;
 
-  input {
-    display: none;
-    width: 100%;
-    height: 100%;
-  }
-`;
+//   input {
+//     display: none;
+//     width: 100%;
+//     height: 100%;
+//   }
+// `;
 
 // 챌린지 예시 도움말
 const Example = styled.div`
   text-align: right;
+  color: #707070;
+  font-weight: 400;
+  font-size: 0.813rem;
+  line-height: 1.063rem;
+  margin-top: 0.75rem;
 `;
 
 // 코멘트 작성란
 const CommentTitle = styled.div`
-  margin-top: 20px;
+  margin: 1.25rem 0 0.375rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.625rem;
+  color: #1d1b1b;
+
+  & > div {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.313rem;
+    color: #1d1b1b;
+  }
 `;
 const Textarea = styled.textarea`
   width: 100%;
   resize: none;
   box-sizing: border-box;
+  margin-top: 1rem;
+  background: #f7f7f7;
+  border: none;
 `;
 const Button = styled.button`
-  position: fixed;
-  bottom: 0px;
   width: 100%;
-  max-width: 420px;
-  height: 80px;
+  height: 4.125rem;
   border: none;
+  border-radius: 5px;
+  background: #ff8b37;
   color: white;
-  background: orange;
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.813rem;
 `;
 
 export default Confirm;
