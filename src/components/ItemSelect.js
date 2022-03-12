@@ -39,6 +39,10 @@ const ItemSelect = () => {
                 onClick={() => {
                   changeCate(i);
                 }}
+                style={{
+                  color: i === clickedCate ? "#FF8B37" : "#9c9c9c",
+                  fontWeight: i === clickedCate ? "700" : "400",
+                }}
               >
                 {e[0]}
               </button>
@@ -67,9 +71,6 @@ const NaviButton = styled.div`
     all: unset;
     margin: 0 5.5%;
     font-size: 1.25rem;
-    font-weight: 400;
-    // font-weight: 700;
-    color: #9c9c9c;
   }
 `;
 

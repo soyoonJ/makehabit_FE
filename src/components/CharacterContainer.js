@@ -39,10 +39,10 @@ const CharacterContainer = () => {
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
 
-  console.log("프리뷰", previewBg);
-  console.log("프리뷰", previewColor);
-  console.log("프리뷰", previewClothes);
-  console.log("프리뷰", previewAcc);
+  // console.log("프리뷰", previewBg);
+  // console.log("프리뷰", previewColor);
+  // console.log("프리뷰", previewClothes);
+  // console.log("프리뷰", previewAcc);
   //Item 변경 할때 사용 하는 useState
   const [viewBg, setBg] = useState();
   const [viewBody, setBody] = useState();
@@ -50,12 +50,12 @@ const CharacterContainer = () => {
   const [viewAcc, setAcc] = useState();
   // const [viewEmotion, setEmotion] = useState();
 
-  console.log("뷰", viewBg);
-  console.log("뷰", viewBody);
-  console.log("뷰", viewClothes);
-  console.log("뷰", viewAcc);
+  // console.log("뷰", viewBg);
+  // console.log("뷰", viewBody);
+  // console.log("뷰", viewClothes);
+  // console.log("뷰", viewAcc);
 
-  console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
+  // console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
 
   // React.useEffect(()=>{
   //   setBody(preview)
