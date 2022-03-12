@@ -29,30 +29,34 @@ const MyChallenge = (props) => {
 
   return (
     <React.Fragment>
-      <div style={{ textAlign: "center" }}>참여 챌린지</div>
-      <hr />
+      <PageTitle style={{ textAlign: "center" }}>참여 챌린지</PageTitle>
 
       <Container>
-        <Grid
-          pointer
-          _onClick={() => {
-            history.push("/mychallenge/navi");
-          }}
-          borderBottom={currentPage === "navi" ? "3px solid orange" : "null"}
-        >
-          내가 참여한 챌린지
-        </Grid>
+        <div>
+          <TabName
+            onClick={() => {
+              history.push("/mychallenge/navi");
+            }}
+            style={{ color: currentPage === "navi" ? "#1D1B1B" : "#707070" }}
+          >
+            내가 참여한 챌린지
+          </TabName>
+          {currentPage === "navi" ? <Highlight style={{ left: "0" }} /> : ""}
+        </div>
 
-        <Grid
-          pointer
-          _onClick={() => {
-            history.push("/mychallenge/feed");
-          }}
-          borderBottom={currentPage === "feed" ? "3px solid orange" : "null"}
-        >
-          나의 기록보기
-        </Grid>
+        <div>
+          <TabName
+            onClick={() => {
+              history.push("/mychallenge/feed");
+            }}
+            style={{ color: currentPage === "feed" ? "#1D1B1B" : "#707070" }}
+          >
+            나의 기록보기
+          </TabName>
+          {currentPage === "feed" ? <Highlight style={{ right: "0" }} /> : ""}
+        </div>
       </Container>
+      <hr style={{ margin: "0 0 2vh 0", outline: "none" }} />
 
       <ContainerGrid>
         {currentPage === "navi" ? (
@@ -65,14 +69,16 @@ const MyChallenge = (props) => {
           <ImageContainer>
             {proof_list?.map((e, i) => {
               return (
-                <Img
-                  src={e.imgUrl}
-                  alt=""
-                  key={i}
-                  onClick={() => {
-                    history.push(`/myfeed/${e.proofShotId}`);
-                  }}
-                />
+                <div>
+                  <Img
+                    src={e.imgUrl}
+                    alt=""
+                    key={i}
+                    onClick={() => {
+                      history.push(`/myfeed/${e.proofShotId}`);
+                    }}
+                  />
+                </div>
               );
             })}
           </ImageContainer>
@@ -83,26 +89,55 @@ const MyChallenge = (props) => {
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
+const PageTitle = styled.div`
   text-align: center;
-  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 1.313em 0 4.7vh 0;
+`;
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  position: relative;
+`;
+
+const Highlight = styled.hr`
+  position: absolute;
+  height: 3px;
+  width: 50%;
+  border: none;
+  border-radius: 20px;
+  background-color: #ff8b37;
+  z-index: 10;
+  bottom: 0;
+  margin: 0px;
+`;
+const TabName = styled.div`
+  cursor: pointer;
+  margin-bottom: 0.875em;
 `;
 
 const ImageContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 0.9vh;
   justify-items: center;
   align-items: center;
-  padding: 16px;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 5.5px;
+  }
 `;
 
 const Img = styled.img`
-  width: 90%;
-  height: 90%;
-  padding: 8px;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5.5px;
 `;
 
 export default MyChallenge;
