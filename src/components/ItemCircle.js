@@ -35,6 +35,7 @@ const ItemCircle = () => {
         <ItemContainer>
           {color.map((e, i) => (
             <div
+              id="multiBorder"
               style={{ background: e[1] }}
               key={i}
               onClick={() => {
@@ -63,6 +64,18 @@ const ItemContainer = styled.div`
     height: 7vh;
     border-radius: 50%;
     border: 4px solid #fff;
+    position: relative;
+    z-index: 1;
+  }
+  // #multiBorder:after {
+  //     position: absolute;
+  //     z-index: -1;
+  //     top: 4px;
+  //     left: 4px;
+  //     bottom: 4px;
+  //     right: 4px;
+  //     border: 4px solid #6825d6;
+  // }
   }
 `;
 
