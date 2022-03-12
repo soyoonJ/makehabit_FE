@@ -50,20 +50,6 @@ const initialState = {
   accItem: null,
 };
 
-// const getAllDB = () => {
-//   return function (dispatch, getState, { history }) {
-//     apis
-//       .GetItemList()
-//       .then(function (res) {
-//         console.log(res);
-//         dispatch(setItems(res.data));
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   };
-// };
-
 //캐릭터 아이템 목록받기
 const getItemDB = (category) => {
   return function (dispatch, getState, { history }) {
@@ -96,15 +82,6 @@ const purchaseItemList = () => {
 
 export default handleActions(
   {
-    // [SET_ALL]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     // console.log("프리뷰넘어오니", action.payload.allList);
-    //     draft.currentPoint = action.payload.itemList.characterCurrentPoint;
-    //     draft.isEquip = action.payload.allList.items.filter(
-    //       (e) => e.isEquip === true
-    //     );
-    //   }),
-
     [SET_ITEMS]: (state, action) =>
       produce(state, (draft) => {
         console.log("GETLIST", action.payload);
