@@ -50,7 +50,7 @@ const ItemSelect = () => {
                 {i === clickedCate ? (
                   <hr
                     style={{
-                      width: i === 4 ? "" : "5.688rem",
+                      width: i === 4 ? "8rem" : "5.688rem",
                     }}
                   />
                 ) : (
@@ -91,7 +91,6 @@ const NaviButton = styled.div`
 
     hr {
       position: absolute;
-      // width: 5.688rem;
       height: 3px;
       background-color: #ff8b37;
       border: none;

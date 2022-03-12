@@ -14,10 +14,12 @@ const ItemBox = () => {
   const category = itemList[0].category;
   // console.log("아이템리스트", itemList);
   console.log("카테고리", category);
-
-  const [item, setItem] = React.useState(null);
+  // const isEquip = itemList?.find((e) => e.isEquip === true);
+  // const equiped = isEquip?.itemImgUrl;
+  // console.log(equiped);
 
   const Item = process.env.PUBLIC_URL + "/items/small";
+  const [item, setItem] = React.useState(null);
 
   React.useEffect(() => {
     if (category === "background") {
@@ -37,7 +39,14 @@ const ItemBox = () => {
         {itemList.map((e, i) => (
           <OneItem key={i}>
             <div>
-              <div>
+              <div
+                style={{
+                  border:
+                    e.itemImgUrl === item
+                      ? "5px solid #6825D6"
+                      : "5px solid #f7f7f7",
+                }}
+              >
                 <img
                   src={Item + itemList[i].itemImgUrl}
                   onClick={() => {
@@ -112,6 +121,8 @@ const OneItem = styled.div`
 
   img {
     height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
   }
 `;
 export default ItemBox;
