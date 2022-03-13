@@ -44,7 +44,7 @@ const Modal = forwardRef((props, ref) => {
       >
         <section>
           <div onClick={closeModal}>X</div>
-          <Grid padding="30px 30px 0px 30px">{children}</Grid>
+          <SectionContainer>{children}</SectionContainer>
         </section>
       </Container>
     );
@@ -67,29 +67,36 @@ const Container = styled.div`
   display: flex;
 
   section {
-    width: 80%;
-    height: 50%;
+    position: relative;
+    width: 79.4%;
+    height: auto;
     margin: auto;
     align-self: center;
     background: #fff;
     border-radius: 10px;
-  }
 
-  section > div {
-    &:nth-child(1) {
-      cursor: pointer;
-      text-align: right;
-      margin: 20px;
-      font-size: 1.3rem;
+    & > div {
+      &:nth-child(1) {
+        position: absolute;
+        right: 0;
+        padding: 1.375rem;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
     }
   }
+`;
 
-  section > div > div {
+const SectionContainer = styled.div`
+  padding: 3rem 2.875em 3.125rem 2.875em;
+
+  & > div {
     &:nth-child(1) {
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    &:nth-child(2) {
+      color: #1d1b1b;
+      font-weight: 700;
+      font-size: 1.375rem;
+      line-height: 1.813rem;
+      letter-spacing: -0.005rem;
     }
   }
 `;
