@@ -11,6 +11,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 import React from "react";
 import "./App.css";
+import useNetwork from "./useNetwork";
 import styled from "styled-components";
 
 import Main from "../pages/Main";
@@ -33,6 +34,11 @@ import ShoppingBasket from "../pages/ShoppingBasket";
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
 
 function App() {
+  const handleNetworkChange = (online) => {
+    console.log(online ? "온라인" : "오프라인");
+  };
+  const onLine = useNetwork(handleNetworkChange);
+
   const dispatch = useDispatch();
   const is_token = localStorage.getItem("token") ? true : false;
   // console.log("토큰확인", is_token);
@@ -47,6 +53,7 @@ function App() {
   return (
     <React.Fragment>
       <Container>
+        {onLine ? "" : alert("인터넷 연결상태를 확인해주세요")}
         <div id="wrap">
           <ConnectedRouter history={history}>
             <Switch>
