@@ -153,10 +153,29 @@ const Confirm = (props) => {
       <ButtonNavigation />
 
       <Modal ref={modalRef}>
-        <Grid padding="30px 30px 0px 30px">
-          <div>챌린지 인증예시</div>
-          <div>{challenge_info?.howtoContent}</div>
-        </Grid>
+        <div>챌린지 인증예시</div>
+        <div
+          style={{
+            margin: "0.563rem 0 3.063rem 0",
+            fontWeight: "600",
+            lineHeight: "1.5rem",
+            fontSize: "1.125rem",
+            color: "#FF8B37",
+            letterSpacing: "-0.005rem",
+          }}
+        >
+          <span>[체크]</span> 이렇게 인증해주세요!
+        </div>
+        <div
+          style={{
+            lineHeight: "1.875em",
+            fontSize: "1.25rem",
+            color: "#1D1B1B",
+            letterSpacing: "-0.005rem",
+          }}
+        >
+          {challenge_info?.howtoContent}
+        </div>
       </Modal>
     </React.Fragment>
   );
