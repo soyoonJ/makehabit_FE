@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
 import Horizontable from "./Horizontable";
 
-const ItemSelect = () => {
+const ItemSelect = (props) => {
   const dispatch = useDispatch();
   //   const Item = process.env.PUBLIC_URL + "/items";
   const ItemCategory = [

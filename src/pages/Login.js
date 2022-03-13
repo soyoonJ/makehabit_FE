@@ -83,7 +83,7 @@ const Login = () => {
             bg="white"
             width="80%"
             margin="3% 0%"
-            onClick={() => {
+            _onClick={() => {
               history.push(`/signup`);
             }}
           >

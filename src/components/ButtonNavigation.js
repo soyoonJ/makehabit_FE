@@ -11,6 +11,7 @@ import LoginModal from "./LoginModal";
 const ButtonNavigation = () => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
+  const Img01 = process.env.PUBLIC_URL + "/images";
   // console.log("button", is_login);
 
   const [clickedTab, changeTab] = React.useState("home");
@@ -71,7 +72,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              아이콘
+              <img src="images/icon_home.svg" alt="" />
             </div>
             <div
               style={{
@@ -93,7 +94,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "open" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              아이콘
+              <img src="images/icon_write.svg" alt="" />
             </div>
             <div
               style={{
@@ -115,7 +116,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "confirm" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              아이콘
+              <img src=" images/icon_flag.svg" alt="" />
             </div>
             <div
               style={{
@@ -138,7 +139,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "character" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              아이콘
+              <img src="images/icon_shop.svg" alt="" />
             </div>
             <div
               style={{
@@ -160,7 +161,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              아이콘
+              <img src="images/icon_mypage.svg" alt="" />
             </div>
             <div
               style={{

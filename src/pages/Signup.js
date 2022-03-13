@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Text, Input, Button } from "../elements";
+import { Grid, Text, Input, Button, ContainerGrid } from "../elements";
 
 import styled from "styled-components";
 
@@ -79,115 +79,141 @@ const Signup = () => {
   };
   return (
     <React.Fragment>
-      <Container>
-        <Grid textAlign="center">
-          <Text size="32px" bold>
-            회원가입
-          </Text>
-        </Grid>
-        <Grid padding="2%">
-          <Input
-            label="이메일"
-            placeholder="이메일을 입력해주세요"
-            _onChange={changeEmail}
-            _onBlur={() => {
-              // console.log("포커스 아웃 됨!");
-              dispatch(userActions.emailCheckDB(user_email));
-              // console.log(emailCheck);
-            }}
-          />
-          {user_email ? (
-            emailCheck ? (
-              <Text margin="0" color="green">
-                사용 가능한 이메일
-              </Text>
-            ) : (
-              // <Text color="red">이미 사용 중인 이메일입니다</Text>
-              <Text margin="0" color="red">
-                사용 불가한 이메일입니다
-              </Text>
-            )
-          ) : (
-            <Text margin="0" color="white">
-              기본값
+      <ContainerGrid>
+        <Container>
+          <Grid textAlign="center">
+            <Text size="22px" bold>
+              회원가입
             </Text>
-          )}
-        </Grid>
-        <Grid padding="2%">
-          <Input
-            label="닉네임"
-            placeholder="3~15자의 영어,한글,숫자만 사용가능합니다"
-            _onChange={changeNickname}
-            _onBlur={() => {
-              // console.log("포커스 아웃 됨!");
-              dispatch(userActions.nicknameCheckDB(user_nickname));
-              // console.log(emailCheck);
-            }}
-          />
-          {user_nickname ? (
-            nicknameCheck ? (
-              <Text margin="0" color="green">
-                사용 가능한 닉네임입니다
-              </Text>
-            ) : (
-              // <Text color="red">이미 사용중인 닉네임입니다</Text>
-              <Text margin="0" color="red">
-                사용 불가한 닉네임입니다
-              </Text>
-            )
-          ) : (
-            <Text margin="0" color="white">
-              기본값
+          </Grid>
+          <Grid>
+            <Text margin="34px 0px 0px 2px" size="22px" bold>
+              <span style={{ color: "#FF8B37" }}>함께 도전하며,</span>
             </Text>
-          )}
-        </Grid>
-        <Grid padding="2%">
-          <Input
-            type={pwdMode}
-            label="비밀번호"
-            placeholder="8~16자, 문자/숫자/특수문자를 모두 포함하여 사용해주세요."
-            _onChange={changePwd}
-          />
-        </Grid>
-        <Grid padding="2%">
-          {isHidden ? (
-            <AiFillEye
-              onClick={changeBool}
-              style={{
-                position: "absolute",
-                right: "20px",
-                top: "331px",
-                cursor: "pointer",
+            <Text margin="2px 0px 0px 2px" size="22px" bold>
+              <span style={{ color: "#FF8B37" }}> 새로운 습관</span>을
+              만나보세요.
+            </Text>
+          </Grid>
+          <Grid padding="2%" margin="5% 0% 0% 0%">
+            <Text bold size="18px">
+              "아이디(이메일)"
+            </Text>
+            <InputBox
+              placeholder="이메일 주소를 입력해주세요"
+              onChange={changeEmail}
+              onBlur={() => {
+                // console.log("포커스 아웃 됨!");
+                dispatch(userActions.emailCheckDB(user_email));
+                // console.log(emailCheck);
               }}
             />
-          ) : (
-            <AiFillEyeInvisible
-              onClick={changeBool}
-              style={{
-                position: "absolute",
-                right: "20px",
-                top: "331px",
-                cursor: "pointer",
+            {user_email ? (
+              emailCheck ? (
+                <Text margin="0" color="green">
+                  사용 가능한 이메일
+                </Text>
+              ) : (
+                // <Text color="red">이미 사용 중인 이메일입니다</Text>
+                <Text margin="0" color="red">
+                  사용 불가한 이메일입니다
+                </Text>
+              )
+            ) : (
+              <Text margin="0" color="white">
+                기본값
+              </Text>
+            )}
+          </Grid>
+          <Grid padding="2%">
+            <Text bold size="18px">
+              비밀번호
+            </Text>
+            <InputBox
+              type={pwdMode}
+              placeholder="8~16자, 문자/숫자/특수문자를 모두 포함하여 사용해주세요."
+              onChange={changePwd}
+            />
+          </Grid>
+          <Grid padding="2%">
+            {isHidden ? (
+              <AiFillEye
+                onClick={changeBool}
+                style={{
+                  position: "absolute",
+                  right: "20px",
+                  top: "331px",
+                  cursor: "pointer",
+                }}
+              />
+            ) : (
+              <AiFillEyeInvisible
+                onClick={changeBool}
+                style={{
+                  position: "absolute",
+                  right: "20px",
+                  top: "331px",
+                  cursor: "pointer",
+                }}
+              />
+            )}
+            <Text bold size="18px">
+              비밀번호 확인
+            </Text>
+            <InputBox
+              type={pwdMode}
+              label="비밀번호 확인"
+              placeholder="비밀번호를 다시 입력해주세요"
+              onChange={changePwdcheck}
+            />
+          </Grid>
+          <Grid padding="2%">
+            <Text bold size="18px">
+              마지막으로 닉네임을 알려주세요!
+            </Text>
+            <InputBox
+              placeholder="3~15자의 영어,한글,숫자만 사용가능합니다"
+              onChange={changeNickname}
+              onBlur={() => {
+                // console.log("포커스 아웃 됨!");
+                dispatch(userActions.nicknameCheckDB(user_nickname));
+                // console.log(emailCheck);
               }}
             />
-          )}
-          <Input
-            type={pwdMode}
-            label="비밀번호 확인"
-            placeholder="비밀번호를 다시 입력해주세요"
-            _onChange={changePwdcheck}
-          />
+            {user_nickname ? (
+              nicknameCheck ? (
+                <Text margin="0" color="green">
+                  사용 가능한 닉네임입니다
+                </Text>
+              ) : (
+                // <Text color="red">이미 사용중인 닉네임입ㄴ니다</Text>
+                <Text margin="0" color="red">
+                  사용 불가한 닉네임입니다
+                </Text>
+              )
+            ) : (
+              <Text margin="0" color="white">
+                기본값
+              </Text>
+            )}
+          </Grid>
+          <Grid padding="2%" textAlign="center">
+            <Text>
+              계정이 있으신가요? &nbsp;
+              <a href={"/login"}>로그인</a>
+            </Text>
+          </Grid>
+        </Container>
+      </ContainerGrid>
+
+      {/*회원가입 버튼 */}
+      <Footer>
+        <Grid>
+          <Button bg="#FF8B37" width="100%" _onClick={signup}>
+            시작하기
+          </Button>
         </Grid>
-        <Grid padding="2%">
-          <Button _onClick={signup}>회원가입</Button>
-        </Grid>
-        <Grid padding="2%" textAlign="center">
-          <Text>
-            계정이 있으신가요? &nbsp;
-            <a href={"/login"}>로그인</a>
-          </Text>
-        </Grid>
-      </Container>
+      </Footer>
     </React.Fragment>
   );
 };
@@ -198,4 +224,22 @@ const Container = styled.div`
   align-items: center;
   margin: 0;
 `;
+
+const InputBox = styled.input`
+  border: none;
+  border-bottom: 1px solid #9c9c9c;
+  width: 100%;
+  padding-bottom: 6px;
+  color: #9c9c9c;
+  size: 16px;
+`;
+
+const Footer = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  align-items: center;
+`;
+
 export default Signup;

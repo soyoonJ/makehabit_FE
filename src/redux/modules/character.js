@@ -80,6 +80,22 @@ const purchaseItemList = () => {
   };
 };
 
+// 마이페이지 캐릭터
+const mypageCharacterList = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .mypageCharacter()
+      .then(function (res) {
+        // console.log("내캐릭터", res.data.character.equippedItems);
+        dispatch(selectedItems(res.data.character.equippedItems));
+      })
+      .catch((error) => {
+        console.log(error);
+        return;
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_ITEMS]: (state, action) =>
@@ -146,6 +162,7 @@ const actionCreators = {
 
   selectedItems,
   purchaseItemList,
+  mypageCharacterList,
 };
 
 export { actionCreators };
