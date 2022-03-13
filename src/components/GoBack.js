@@ -7,21 +7,30 @@ import { IoIosArrowBack } from "react-icons/io";
 
 const GoBack = (props) => {
   const { color, padding } = props;
+  const styles = { color, padding };
 
   return (
     <Back
+      {...styles}
       onClick={() => {
         history.goBack();
       }}
     >
-      <IoIosArrowBack />
+      <IoIosArrowBack
+        style={{
+          width: "30",
+          height: "30",
+          color: "white",
+          size: "10px",
+        }}
+      />
     </Back>
   );
 };
 
 GoBack.defaultProps = {
   color: "white",
-  padding: "10px",
+  padding: "1.912em 5%",
 };
 
 const Back = styled.div`
