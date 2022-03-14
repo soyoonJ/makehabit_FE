@@ -20,7 +20,6 @@ const PageBack = (props) => {
         style={{
           width: "30",
           height: "30",
-          color: "white",
           size: "10px",
         }}
       />
@@ -30,7 +29,8 @@ const PageBack = (props) => {
 
 PageBack.defaultProps = {
   color: "#FF8B37",
-  padding: "1.912em 5%",
+  padding: null,
+  // padding: "1.912em 5%",
 };
 
 const Back = styled.div`

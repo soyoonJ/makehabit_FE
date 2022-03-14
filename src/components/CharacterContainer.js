@@ -11,7 +11,7 @@ import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
-  // const {} = props;
+
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   const currentPoint = useSelector((state) => state.character.currentPoint);
@@ -51,7 +51,7 @@ const CharacterContainer = () => {
   // console.log("프리뷰", previewColor);
   // console.log("프리뷰", previewClothes);
   // console.log("프리뷰", previewAcc);
-  
+
   //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
   const [viewBg, setBg] = useState();
@@ -99,6 +99,7 @@ const CharacterContainer = () => {
       setAcc(previewAcc);
     }
   }, [preview]);
+
   return (
     <Container>
       <Point>{currentPoint}</Point>

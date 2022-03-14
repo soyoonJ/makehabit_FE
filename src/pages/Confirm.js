@@ -3,7 +3,7 @@
 import React from "react";
 
 import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
-import GoBack from "../components/GoBack";
+import PageBack from "../components/PageBack";
 import Upload from "../components/Upload";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
@@ -85,7 +85,7 @@ const Confirm = (props) => {
     <React.Fragment>
       <ContainerGrid>
         <ConfirmText>
-          <GoBack color="black" />
+          <PageBack color="black" />
           <span>인증하기</span>
         </ConfirmText>
         {/* useSelector 해서 타이틀 가져오기 */}
