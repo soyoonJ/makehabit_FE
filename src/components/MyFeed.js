@@ -4,7 +4,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
-import GoBack from "../components/GoBack";
+import PageBack from "../components/PageBack";
 
 import styled from "styled-components";
 
@@ -20,7 +20,7 @@ const MyFeed = (props) => {
 
   return (
     <React.Fragment>
-      <GoBack />
+      <PageBack />
 
       <ImageContainer>
         <Img src={feed?.imgUrl} alt="인증이미지" />

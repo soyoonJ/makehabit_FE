@@ -5,7 +5,7 @@ import { Grid, Text, Input, Button } from "../elements";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
-import GoBack from "../components/GoBack";
+import GoBack from "../components/PageBack";
 
 import styled from "styled-components";
 
@@ -47,7 +47,7 @@ const PostDetail = (props) => {
   //찜하기 해제 기능
   const disLike = () => {
     if (is_login) {
-      dispatch(postActions.disLikeDB(challengeId));
+      dispatch(postActions.dislikeDB(challengeId));
     } else {
       window.alert("로그인 후 인증 해주세요!");
       history.push("/login");
