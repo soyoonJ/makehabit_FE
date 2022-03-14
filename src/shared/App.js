@@ -31,6 +31,7 @@ import Chat from "../pages/Chat";
 import NotFound from "../pages/NotFound";
 import Search from "../pages/Search";
 import ShoppingBasket from "../pages/ShoppingBasket";
+import CharacterSave from "../pages/CharacterSave";
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
               <Route path="/myfeed/:id" component={MyFeed} />
               <Route path="/completed/:id" component={Completed} />
               <Route path="/chat/:id" component={Chat} />
+              <Route path="/charactersave" component={CharacterSave} />
               <Route path="/kakao" component={Auth2RedirectHandler}></Route>
 
               <Route path="*" exact component={NotFound} />
