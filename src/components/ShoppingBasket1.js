@@ -66,7 +66,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
 
   const outSection = React.useRef();
   // ----------------------------------------
-  const Item = process.env.PUBLIC_URL + "/items/large";
+  const Item = process.env.PUBLIC_URL + "/items/small";
 
   // 장착 리스트
   const previewBg = useSelector((state) => state.character?.backgroundItem);

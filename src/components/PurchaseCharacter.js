@@ -3,13 +3,13 @@ import React from "react";
 import styled from "styled-components";
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 
-import GoBack from "./GoBack";
+import PageBack from "./PageBack";
 
 const PurchaseCharacter = () => {
   const Item = process.env.PUBLIC_URL + "/items";
   return (
     <Container>
-      <GoBack />
+      <PageBack />
       <Point>Point</Point>
       <ImgContainer>
         <ItemImg src={Item + "/캐릭터_분홍.png"} alt="바디컬러"></ItemImg>
