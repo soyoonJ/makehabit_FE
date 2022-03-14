@@ -11,11 +11,11 @@ import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
-  // const {} = props;
+
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   const currentPoint = useSelector((state) => state.character.currentPoint);
-  console.log(currentPoint);
+  // console.log(currentPoint);
 
   const isEquip = useSelector((state) => state.character?.isEquip);
   const equipColor = isEquip?.find((e) => e.category === "color");
@@ -35,44 +35,29 @@ const CharacterContainer = () => {
 
   // 미리보기
   const preview = useSelector((state) => state.character);
+  console.log("미리보기", preview);
   const previewColor = useSelector((state) => state.character?.colorItem);
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
 
-  const itemList = useSelector((state) => state.character.itemList);
-  // console.log(
-  //   "프리뷰",
-  //   preview.shopList,
-  //   itemList,
-  //   itemList?.filter((e) => e.itemImgUrl === "/clothes_01.png")
-  // );
-  // console.log("프리뷰", previewBg);
-  // console.log("프리뷰", previewColor);
-  // console.log("프리뷰", previewClothes);
-  // console.log("프리뷰", previewAcc);
-  
   //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
   const [viewBg, setBg] = useState();
   const [viewClothes, setClothes] = useState();
   const [viewAcc, setAcc] = useState();
   // const [viewEmotion, setEmotion] = useState();
-
   // console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
 
-  const selectedBg = React.useRef();
-  const selectedBody = React.useRef();
-  const selectedAcc = React.useRef();
-  const selectedClothes = React.useRef();
-  // console.log(selectedBody.current.alt);
+  const allList = useSelector((state) => state.character.allList);
+  // console.log("리스트?", allList);
 
-  // const background = selectedBg?.current.alt;
-  // const body = selectedBody?.current.alt;
-  // const clothes = selectedClothes?.current.alt;
-  // const acc = selectedAcc?.current.alt; //
-  // const selectedItems = { background, body, clothes, acc };
-  // console.log("구매및저장아이템", selectedItems);
+  // 저장하기 눌렀을 때 선택되어있는 아이템 전체정보
+  const selectedBg = allList.find((e) => e.itemImgUrl === viewBg);
+  const selectedBody = allList.find((e) => e.itemImgUrl === viewBody);
+  const selectedAcc = allList.find((e) => e.itemImgUrl === viewClothes);
+  const selectedClothes = allList.find((e) => e.itemImgUrl === viewAcc);
+  // console.log("현재바디", selectedBody);
 
   //자식 함수 접근하는 Ref
   const modalRef = useRef();
@@ -99,35 +84,37 @@ const CharacterContainer = () => {
       setAcc(previewAcc);
     }
   }, [preview]);
+
+
+  const saveButton = () => {
+    // sendItems();
+    if (
+      selectedBg.isOwned &&
+      selectedBody.isOwned &&
+      selectedAcc.isOwned &&
+      selectedClothes.isOwned
+    ) {
+      history.push("/charactersave");
+    } else {
+      modalRef.current.account();
+      modalRef.current.openModal();
+    }
+  };
+
+
   return (
     <Container>
       <Point>{currentPoint}</Point>
       {viewBg && (
         <ImgContainer>
-          <ItemImg src={Item + viewBg} ref={selectedBg} alt={viewBg}></ItemImg>
-          <ItemImg
-            src={Item + viewBody}
-            ref={selectedBody}
-            alt={viewBody}
-          ></ItemImg>
-          <ItemImg
-            src={Item + viewClothes}
-            ref={selectedClothes}
-            alt={viewClothes}
-          ></ItemImg>
-          <ItemImg
-            src={Item + viewAcc}
-            ref={selectedAcc}
-            alt={viewAcc}
-          ></ItemImg>
+          <ItemImg src={Item + viewBg} alt={viewBg}></ItemImg>
+          <ItemImg src={Item + viewBody} alt={viewBody}></ItemImg>
+          <ItemImg src={Item + viewClothes} alt={viewClothes}></ItemImg>
+          <ItemImg src={Item + viewAcc} alt={viewAcc}></ItemImg>
         </ImgContainer>
       )}
       <Button
-        _onClick={() => {
-          // sendItems();
-          modalRef.current.account();
-          modalRef.current.openModal();
-        }}
+        _onClick={saveButton}
         position="absolute"
         bottom="0"
         margin="0 5% 2vh 0"
@@ -143,7 +130,12 @@ const CharacterContainer = () => {
         centerFlex
         zIndex="5"
       >
-        구매 및 저장
+        {selectedBg?.isOwned &&
+        selectedBody?.isOwned &&
+        selectedAcc?.isOwned &&
+        selectedClothes?.isOwned
+          ? "저장하기"
+          : "구매 및 저장"}
       </Button>
       <ShoppingBasket1 ref={modalRef} />
     </Container>

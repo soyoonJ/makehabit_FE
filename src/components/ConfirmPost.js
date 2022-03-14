@@ -1,17 +1,23 @@
 import React from "react";
 
 import { Grid, Text, Input, Image, Button } from "../elements";
+import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { useDispatch } from "react-redux";
 
 const ConfirmPost = (props) => {
-  const { thumbnail, title, round, content, status, startAt } = props;
+  // console.log("챌린지리스트", props);
+  const dispatch = useDispatch();
+  const { thumbnail, title, round, content, status, startAt, isUpload } = props;
 
+  // console.log("아이디", challengeId);
   // 버튼 텍스트, 우측 상단 진행상태 텍스트 달기 위한 조건
   const statusText = [
     { progress: "진행예정", buttonText: `${startAt.slice(0, 10)} 시작` },
     { progress: "종료", buttonText: "종료된 챌린지" },
+    { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
   ];
 
   let statusContent = "";
@@ -19,11 +25,13 @@ const ConfirmPost = (props) => {
     statusContent = statusText[0];
   } else if (status === 2) {
     statusContent = statusText[1];
+  } else if (status === 0 || isUpload) {
+    statusContent = statusText[2];
   }
 
   return (
     <GridBox>
-      {/* 완료된 챌린지 */}
+      {/* 좌측 이미지 - 완료된 챌린지 */}
       {status === 2 ? (
         <ImageContainer style={{ position: "relative" }}>
           <Completed>완료</Completed>
@@ -44,6 +52,8 @@ const ConfirmPost = (props) => {
           ></PostImage>
         </ImageContainer>
       )}
+
+      {/* 우측 텍스트 부분 */}
       <TextContainer>
         <div>
           <Title>{title}</Title>
@@ -64,15 +74,8 @@ const ConfirmPost = (props) => {
         >
           {content}
         </Content>
-        {/* <Content
-          style={{ color: "#707070", fontSize: "0.8rem", lineHeight: "150%" }}
-        >
-          글자수테스트를 해볼거예요 신나겠죠? 글자수테스트를 해볼거예요
-          신나겠죠? 글자수테스트를 해볼거예요 신나겠죠? 글자수테스트를
-          해볼거예요 신나겠죠?
-        </Content> */}
 
-        {status === 1 || status === 2 ? (
+        {status === 1 || status === 2 || isUpload ? (
           <Button
             width="100%"
             bg="#ddd"
