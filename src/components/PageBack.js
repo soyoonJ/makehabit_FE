@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { IoIosArrowBack } from "react-icons/io";
 
-const GoBack = (props) => {
+const PageBack = (props) => {
   const { color, padding } = props;
   const styles = { color, padding };
 
@@ -28,8 +28,8 @@ const GoBack = (props) => {
   );
 };
 
-GoBack.defaultProps = {
-  color: "white",
+PageBack.defaultProps = {
+  color: "#FF8B37",
   padding: "1.912em 5%",
 };
 
@@ -41,4 +41,4 @@ const Back = styled.div`
   position: absolute;
 `;
 
-export default GoBack;
+export default PageBack;

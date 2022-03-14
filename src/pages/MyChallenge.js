@@ -60,7 +60,7 @@ const MyChallenge = (props) => {
 
       <ContainerGrid>
         {currentPage === "navi" ? (
-          <div>
+          <div style={{ marginBottom: "14.6vh" }}>
             {challenge_list?.map((e, i) => {
               return <ConfirmPost key={i} {...e} />;
             })}
