@@ -1,5 +1,6 @@
 // 내 챌린지 이름 바뀌면 파일명도 바꾸기
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
 import ButtonNavigation from "../components/ButtonNavigation";
@@ -16,12 +17,14 @@ const MyChallenge = (props) => {
   const currentPage = props.match.params.id;
   // console.log("지금", currentPage);
   const challenge_list = useSelector((state) => state.challenge.challenge_list);
-  console.log(challenge_list);
   const proof_list = useSelector((state) => state.challenge.proof_list);
+  // console.log("챌린지리스트", challenge_list);
+  // console.log("피드길이", proof_list?.length);
 
   React.useEffect(() => {
     if (currentPage === "navi") {
       dispatch(challengeActions.naviChallengeDB());
+      dispatch(challengeActions.myChallengeDB());
     } else {
       dispatch(challengeActions.myChallengeDB());
     }
@@ -37,7 +40,10 @@ const MyChallenge = (props) => {
             onClick={() => {
               history.push("/mychallenge/navi");
             }}
-            style={{ color: currentPage === "navi" ? "#1D1B1B" : "#707070" }}
+            style={{
+              color: currentPage === "navi" ? "#1D1B1B" : "#707070",
+              fontWeight: currentPage === "navi" ? "600" : "400",
+            }}
           >
             내가 참여한 챌린지
           </TabName>
@@ -49,7 +55,10 @@ const MyChallenge = (props) => {
             onClick={() => {
               history.push("/mychallenge/feed");
             }}
-            style={{ color: currentPage === "feed" ? "#1D1B1B" : "#707070" }}
+            style={{
+              color: currentPage === "feed" ? "#1D1B1B" : "#707070",
+              fontWeight: currentPage === "feed" ? "600" : "400",
+            }}
           >
             나의 기록보기
           </TabName>
@@ -58,6 +67,7 @@ const MyChallenge = (props) => {
       </Container>
       <hr style={{ margin: "0 0 2vh 0", outline: "none" }} />
 
+      {/* 참여챌린지 */}
       <ContainerGrid>
         {currentPage === "navi" ? (
           <div style={{ marginBottom: "14.6vh" }}>
@@ -67,17 +77,18 @@ const MyChallenge = (props) => {
           </div>
         ) : (
           <ImageContainer>
+            {/* 나의 기록보기 페이지 */}
             {proof_list?.map((e, i) => {
               return (
                 <div>
-                  <Img
-                    src={e.imgUrl}
-                    alt=""
-                    key={i}
-                    onClick={() => {
-                      history.push(`/myfeed/${e.proofShotId}`);
+                  <Link
+                    to={{
+                      pathname: `/myfeed/${e.proofShotId}`,
+                      state: { length: proof_list?.length, order: i },
                     }}
-                  />
+                  >
+                    <Img src={e.imgUrl} alt="" key={i} />
+                  </Link>
                 </div>
               );
             })}
@@ -128,7 +139,7 @@ const ImageContainer = styled.div`
 
   & > div {
     width: 100%;
-    height: 100%;
+    height: 19.7vh;
     border-radius: 5.5px;
   }
 `;

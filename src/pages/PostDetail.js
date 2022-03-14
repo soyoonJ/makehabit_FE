@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Text, Input, Button } from "../elements";
+import { Link } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
+
+import { Grid, Text, Input, Button } from "../elements";
 import PageBack from "../components/PageBack";
 
 import styled from "styled-components";
@@ -145,13 +147,20 @@ const PostDetail = (props) => {
             인증하기
           </Join>
         ) : (
-          <Join
-            onClick={() => {
-              join();
+          <Link
+            to={{
+              pathname: "/completed/participate",
+              state: { startAt: post.startAt },
             }}
           >
-            참여하기
-          </Join>
+            <Join
+              onClick={() => {
+                join();
+              }}
+            >
+              참여하기
+            </Join>
+          </Link>
         )}
       </Grid>
     </Grid>

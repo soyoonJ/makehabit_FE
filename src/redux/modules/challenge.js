@@ -139,7 +139,6 @@ export default handleActions(
       }),
     [SET_TAB]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.page);
         draft.page = action.payload.page;
       }),
 

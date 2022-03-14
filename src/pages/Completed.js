@@ -4,9 +4,22 @@ import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+
+import moment from "moment";
 
 const Completed = (props) => {
   const page = props.match.params.id;
+  const location = useLocation();
+
+  const startAt = location.state?.startAt;
+  console.log("시작날짜", startAt);
+
+  const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
+
+  const startDate = moment(startAt);
+  const transformDate = startDate.format("YYYY년 MM월 DD일");
+  const transformDay = dayArray[moment(startDate).day()];
 
   const contents = [
     {
@@ -92,7 +105,7 @@ const Completed = (props) => {
             <InfoText>
               <div>
                 <span style={{ color: "#FF8B37", fontWeight: "bold" }}>
-                  2022년 00월 00일 월요일
+                  {transformDate} {transformDay}요일
                 </span>
                 <span>부터</span>
               </div>

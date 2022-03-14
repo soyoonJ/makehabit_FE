@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Text, Input, Button } from "../elements";
+import { Link } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userAction } from "../redux/modules/user";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
+import { Grid, Text, Input, Button } from "../elements";
 import CategoryModal from "../components/CategoryModal";
 import CategoryModal1 from "../components/CategoryModal1";
 import Upload from "../components/Upload";
@@ -263,13 +264,20 @@ const PostWrite = () => {
           </Text>
         </Grid>
         <Grid padding="5%">
-          <CreateButton
-            onClick={() => {
-              confirm();
+          <Link
+            to={{
+              pathname: "/completed/open",
+              state: { startAt: date },
             }}
           >
-            개설 완료
-          </CreateButton>
+            <CreateButton
+              onClick={() => {
+                confirm();
+              }}
+            >
+              개설 완료
+            </CreateButton>
+          </Link>
         </Grid>
       </Grid>
     </Container>
