@@ -30,7 +30,7 @@ const ConfirmPost = (props) => {
           <PostImage
             src={thumbnail}
             onClick={() => {
-              history.push(`/post/${props.challengeId}`);
+              history.push(`/challenges/${props.challengeId}`);
             }}
           ></PostImage>
         </ImageContainer>
@@ -39,7 +39,7 @@ const ConfirmPost = (props) => {
           <PostImage
             src={thumbnail}
             onClick={() => {
-              history.push(`/post/${props.challengeId}`);
+              history.push(`/challenges/${props.challengeId}`);
             }}
           ></PostImage>
         </ImageContainer>

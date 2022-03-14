@@ -29,7 +29,7 @@ const PageBack = (props) => {
 };
 
 PageBack.defaultProps = {
-  color: "white",
+  color: "#FF8B37",
   padding: "1.912em 5%",
 };
 
