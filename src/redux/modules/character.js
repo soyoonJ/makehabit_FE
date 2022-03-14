@@ -86,7 +86,7 @@ const mypageCharacterList = () => {
     apis
       .mypageCharacter()
       .then(function (res) {
-        // console.log("내캐릭터", res.data.character.equippedItems);
+        console.log("내캐릭터", res.data.character.equippedItems);
         dispatch(selectedItems(res.data.character.equippedItems));
       })
       .catch((error) => {

@@ -17,20 +17,19 @@ import CharacterContainer from "../components/CharacterContainer";
 import Character from "../redux/modules/character";
 import styled from "styled-components";
 import { actionCreators as characterActions } from "../redux/modules/character";
-const Mypage = () => {
+const Mypage = (props) => {
   const dispatch = useDispatch();
+
   const mypageCharacter = useSelector((state) => state.character?.selected);
   console.log("하잇", mypageCharacter);
+  React.useEffect(() => {
+    dispatch(characterActions.mypageCharacterList());
+    console.log("오냐냐냐냐냐");
+  }, []);
 
-  // React.useEffect(() => {
-  //   // console.log("호호호호호");
-  //   //   setLoading(false);
-  //   // }, [id])
-  //   dispatch(characterActions.mypageCharacterList());
-  //   console.log("오냐냐냐냐냐");
-  // }, []);
-
-  const [color, setColor] = useState("yellow");
+  React.useEffect(() => {
+    console.log("하잇", mypageCharacter);
+  }, [mypageCharacter]);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
@@ -38,7 +37,7 @@ const Mypage = () => {
     <div>
       <ContainerGrid>
         <Grid margin="10% 0%">
-          <CharacterWrap>{mypageCharacter}</CharacterWrap>
+          <CharacterWrap></CharacterWrap>
 
           {/* 닉네임 / 닉네임 변경 */}
           <Grid
@@ -93,6 +92,7 @@ const Mypage = () => {
           <Grid is_flex justifyContent="center" padding="5%">
             <ProgressBar />
           </Grid>
+
           <Grid>
             <Button
               margin="1px 0px"

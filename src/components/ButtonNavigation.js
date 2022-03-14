@@ -8,7 +8,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
-const ButtonNavigation = () => {
+const ButtonNavigation = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const Img01 = process.env.PUBLIC_URL + "/images";
@@ -71,9 +71,8 @@ const ButtonNavigation = () => {
               style={{
                 color: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
               }}
-            >
-              <img src="images/icon_home.svg" alt="" />
-            </div>
+            ></div>
+            <img src="images/icon_home.svg" alt="" />
             <div
               style={{
                 color: clickedTab === "home" ? "#1D1B1B" : "#9C9C9C",
@@ -89,13 +88,14 @@ const ButtonNavigation = () => {
               changeTab("open");
             }}
           >
-            <div
+            <img
+              src="images/icon_write.svg"
+              alt=""
               style={{
                 color: clickedTab === "open" ? "#FF8B37" : "#9C9C9C",
               }}
-            >
-              <img src="images/icon_write.svg" alt="" />
-            </div>
+            />
+
             <div
               style={{
                 color: clickedTab === "open" ? "#1D1B1B" : "#9C9C9C",

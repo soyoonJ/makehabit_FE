@@ -11,10 +11,11 @@ import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
-
+  // const {} = props;
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   const currentPoint = useSelector((state) => state.character.currentPoint);
+  console.log(currentPoint);
 
   const isEquip = useSelector((state) => state.character?.isEquip);
   const equipColor = isEquip?.find((e) => e.category === "color");
@@ -22,7 +23,7 @@ const CharacterContainer = () => {
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
-  // console.log("isEquip", isEquip);
+  console.log("isEquip", isEquip);
   console.log(
     "equip확인",
     isEquip,
