@@ -7,15 +7,22 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 
+import moment from "moment";
+
 const ConfirmPost = (props) => {
   // console.log("챌린지리스트", props);
   const dispatch = useDispatch();
   const { thumbnail, title, round, content, status, startAt, isUpload } = props;
-
+  const date = new Date(startAt);
+  const koStartAt = date.toLocaleString();
+  // console.log("koStartAt", koStartAt);
+  const spiltDate = koStartAt.split(". ");
+  const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
   // console.log("아이디", challengeId);
   // 버튼 텍스트, 우측 상단 진행상태 텍스트 달기 위한 조건
   const statusText = [
-    { progress: "진행예정", buttonText: `${startAt.slice(0, 10)} 시작` },
+    // { progress: "진행예정", buttonText: `${koStartAt.slice(0, 11)} 시작` },
+    { progress: "진행예정", buttonText: `${stringDate} 시작` },
     { progress: "종료", buttonText: "종료된 챌린지" },
     { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
   ];
@@ -25,7 +32,7 @@ const ConfirmPost = (props) => {
     statusContent = statusText[0];
   } else if (status === 2) {
     statusContent = statusText[1];
-  } else if (status === 0 || isUpload) {
+  } else if (status === 0 && isUpload) {
     statusContent = statusText[2];
   }
 
