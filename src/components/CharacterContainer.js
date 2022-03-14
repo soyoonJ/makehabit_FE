@@ -40,6 +40,18 @@ const CharacterContainer = () => {
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
 
+  const itemList = useSelector((state) => state.character.itemList);
+  // console.log(
+  //   "프리뷰",
+  //   preview.shopList,
+  //   itemList,
+  //   itemList?.filter((e) => e.itemImgUrl === "/clothes_01.png")
+  // );
+  // console.log("프리뷰", previewBg);
+  // console.log("프리뷰", previewColor);
+  // console.log("프리뷰", previewClothes);
+  // console.log("프리뷰", previewAcc);
+  
   //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
   const [viewBg, setBg] = useState();
@@ -87,7 +99,6 @@ const CharacterContainer = () => {
       setAcc(previewAcc);
     }
   }, [preview]);
-
   return (
     <Container>
       <Point>{currentPoint}</Point>
@@ -114,6 +125,7 @@ const CharacterContainer = () => {
       <Button
         _onClick={() => {
           // sendItems();
+          modalRef.current.account();
           modalRef.current.openModal();
         }}
         position="absolute"

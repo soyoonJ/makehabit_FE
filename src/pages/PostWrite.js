@@ -9,7 +9,7 @@ import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import CategoryModal from "../components/CategoryModal";
 import CategoryModal1 from "../components/CategoryModal1";
 import Upload from "../components/Upload";
-
+import GoBack from "../components/GoBack";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
@@ -147,6 +147,7 @@ const PostWrite = () => {
 
   return (
     <Container>
+      <GoBack />
       <Grid>
         {/* 타이틀 */}
         <Grid textAlign="center" borderBottom="solid 1px #e0e0e0">

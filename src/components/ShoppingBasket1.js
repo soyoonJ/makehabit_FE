@@ -1,4 +1,9 @@
-import React, { useRef, forwardRef, useImperativeHandle } from "react";
+import React, {
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { Text, Grid } from "../elements";
 import styled from "styled-components";
 
@@ -15,13 +20,34 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     closeModal() {
       setModalOpen(false);
     },
+    account() {
+      setTotalPoint(0);
+      if (shopBg?.price && !shopBg.isOwned && !isNaN(shopBg?.price)) {
+        setTotalPoint((totalPoint) => totalPoint + shopBg?.price);
+      }
+      if (shopColor?.price && !shopColor.isOwned && !isNaN(shopColor?.price)) {
+        setTotalPoint((totalPoint) => totalPoint + shopColor?.price);
+      }
+      if (
+        shopClothes?.price &&
+        !shopClothes.isOwned &&
+        !isNaN(shopClothes?.price)
+      ) {
+        setTotalPoint((totalPoint) => totalPoint + shopClothes?.price);
+      }
+      if (shopAcc?.price && !shopAcc.isOwned && !isNaN(shopAcc?.price)) {
+        setTotalPoint((totalPoint) => totalPoint + shopAcc?.price);
+      }
+      // if(shopEmotion?.price && !shopEmotion.isOwned && !isNaN(shopEmotion?.price)) {
+      //   setTotalPoint((totalPoint) => totalPoint + shopEmotion?.price)
+      // }
+    },
   }));
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(characterActions.getItemDB("background"));
-  }, []);
-  const itemList = useSelector((state) => state.character.itemList);
 
+  const itemList = useSelector((state) => state.character.itemList);
+  const category = itemList[0]?.category;
+  const shopList = useSelector((state) => state.character.shopList);
   const { open, close, getData } = props;
 
   const setData = (categoryName) => {
@@ -41,6 +67,187 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const outSection = React.useRef();
   // ----------------------------------------
   const Item = process.env.PUBLIC_URL + "/items/large";
+
+  // 장착 리스트
+  const previewBg = useSelector((state) => state.character?.backgroundItem);
+  const previewColor = useSelector((state) => state.character?.colorItem);
+  const previewClothes = useSelector((state) => state.character?.clothesItem);
+  const previewAcc = useSelector((state) => state.character?.accItem);
+
+  let itemBg = itemList?.find((e) => e.itemImgUrl === previewBg);
+  let itemColor = itemList?.find((e) => e.itemImgUrl === previewColor);
+  let itemClothes = itemList?.find((e) => e.itemImgUrl === previewClothes);
+  let itemAcc = itemList?.find((e) => e.itemImgUrl === previewAcc);
+
+  //Item 변경 할때 사용 하는 useState
+  const [shopBg, setBg] = useState();
+  const [shopColor, setColor] = useState();
+  const [shopClothes, setClothes] = useState();
+  const [shopAcc, setAcc] = useState();
+
+  const [totalPoint, setTotalPoint] = useState(0);
+  const [add, setAdd] = useState(false);
+
+  React.useEffect(() => {
+    //필터 리스트
+
+    if (itemBg) {
+      setBg(itemBg);
+    }
+    if (itemColor) {
+      setColor(itemColor);
+    }
+    if (itemClothes) {
+      setClothes(itemClothes);
+    }
+    if (itemAcc) {
+      setAcc(itemAcc);
+    }
+    // account();
+  }, [shopList]);
+  // const account = () => {
+  //   console.log("account", itemColor, shopColor, category);
+  //   if (itemBg) {
+  //     if (shopBg && itemBg?.price && !isNaN(itemBg?.price)) {
+  //       setTotalPoint(totalPoint - 1000);
+  //     }
+  //     if (!itemBg?.isOwned && itemBg?.price && !isNaN(itemBg?.price)) {
+  //       setTotalPoint(totalPoint + 1000);
+  //     }
+  //   }
+  //   if (itemColor) {
+  //     if (shopColor?.isOwned) {
+  //       if (
+  //         !itemColor?.isOwned &&
+  //         itemColor?.price &&
+  //         !isNaN(itemColor?.price)
+  //       ) {
+  //         console.log("++++++++++++++++++22222");
+  //         setTotalPoint((totalPoint) => totalPoint + itemColor?.price);
+  //         return;
+  //       }
+  //     }
+  //     if (itemColor?.isOwned) {
+  //     }
+  //     if (
+  //       category === "color" &&
+  //       shopColor &&
+  //       shopColor?.price &&
+  //       !isNaN(shopColor?.price)
+  //     ) {
+  //       console.log("shopColor1111");
+  //       setTotalPoint((totalPoint) => totalPoint - shopColor?.price);
+  //     }
+  //     if (!itemColor?.isOwned && itemColor?.price && !isNaN(itemColor?.price)) {
+  //       console.log("++++++++++++++++++");
+  //       setTotalPoint((totalPoint) => totalPoint + itemColor?.price);
+  //     }
+  //   }
+  //   if (itemClothes) {
+  //     if (shopClothes?.isOwned) {
+  //       if (
+  //         !itemClothes?.isOwned &&
+  //         itemClothes?.price &&
+  //         !isNaN(itemClothes?.price)
+  //       ) {
+  //         console.log("++++++++++++++++++22222");
+  //         // setTotalPoint((totalPoint) => totalPoint + itemClothes?.price);
+  //         setTotalPoint((totalPoint) => totalPoint + 10);
+  //         return;
+  //       }
+  //     }
+  //     if (shopClothes && shopClothes?.price && !isNaN(shopClothes?.price)) {
+  //       console.log("clothes");
+  //       // setTotalPoint((totalPoint) => totalPoint - shopClothes?.price);
+  //       setTotalPoint((totalPoint) => totalPoint - 10);
+  //     }
+  //     if (
+  //       !itemClothes?.isOwned &&
+  //       itemClothes?.price &&
+  //       !isNaN(itemClothes?.price)
+  //     ) {
+  //       setTotalPoint((totalPoint) => totalPoint + 10);
+  //     }
+  //   }
+  //   if (itemAcc) {
+  //     if (shopAcc?.isOwned) {
+  //       if (!itemAcc?.isOwned && itemAcc?.price && !isNaN(itemAcc?.price)) {
+  //         console.log("++++++++++++++++++22222");
+  //         // setTotalPoint((totalPoint) => totalPoint + itemAcc?.price);
+  //         setTotalPoint((totalPoint) => totalPoint + 1);
+  //         return;
+  //       }
+  //     }
+  //     if (shopAcc && shopAcc?.price && !isNaN(shopAcc?.price)) {
+  //       console.log("shopAcc!");
+  //       // setTotalPoint((totalPoint) => totalPoint - shopAcc?.price);
+  //       setTotalPoint((totalPoint) => totalPoint - 1);
+  //     }
+  //     if (!itemAcc?.isOwned && itemAcc?.price && !isNaN(itemAcc?.price)) {
+  //       setTotalPoint((totalPoint) => totalPoint + 1);
+  //     }
+  //   }
+  // };
+  const account = (item) => {
+    console.log(
+      "accoutn 실행됨?",
+      shopList,
+      shopBg,
+      shopColor,
+      shopClothes,
+      shopAcc
+    );
+    if (item === "bg") {
+      setTotalPoint((totalPoint) => totalPoint - shopBg?.price);
+    }
+    if (item === "color") {
+      setTotalPoint((totalPoint) => totalPoint - shopColor?.price);
+    }
+    if (item === "clothes") {
+      setTotalPoint((totalPoint) => totalPoint - shopClothes?.price);
+    }
+    if (item === "acc") {
+      setTotalPoint((totalPoint) => totalPoint - shopAcc?.price);
+    }
+    // if(shopEmotion?.price && !shopEmotion.isOwned && !isNaN(shopEmotion?.price)) {
+    //   setTotalPoint((totalPoint) => totalPoint + shopEmotion?.price)
+    // }
+  };
+  // React.useEffect(() => {
+  //   if (itemColor) {
+  //     if (!shopColor?.isOwned && shopColor?.price && !isNaN(shopColor?.price)) {
+  //       setTotalPoint(totalPoint + 10);
+  //     }
+  //   }
+
+  //   if (itemClothes) {
+  //     if (
+  //       !shopClothes?.isOwned &&
+  //       shopClothes?.price &&
+  //       !isNaN(shopClothes?.price)
+  //     ) {
+  //       setTotalPoint(totalPoint + 1);
+  //     }
+  //   }
+  // }, [shopColor, shopClothes]);
+  React.useEffect(() => {
+    console.log(
+      "totalPoint change!",
+      totalPoint,
+      shopList,
+      shopBg,
+      shopColor,
+      shopClothes,
+      shopAcc
+    );
+  }, [totalPoint]);
+
+  const purchase = () => {
+    let items = [];
+    if (shopBg) {
+      // items.push(shopBg.)
+    }
+  };
   if (modalOpen) {
     return (
       <Container
@@ -55,6 +262,112 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
         <section>
           <ModalHeader>내가 담은 목록</ModalHeader>
           <ModalContent>
+            {shopBg && !shopBg.isOwned ? (
+              <GridContainer>
+                <GridBox>
+                  <ImageContainer style={{ position: "relative" }}>
+                    <PostImage src={Item + shopBg.itemImgUrl}></PostImage>
+                  </ImageContainer>
+                  <ItemName>{shopBg.itemName}</ItemName>
+                  <ItemPrice>{shopBg.price}</ItemPrice>
+                  <ItemCancel
+                    onClick={() => {
+                      setBg("");
+                      account("bg");
+                    }}
+                  >
+                    X
+                  </ItemCancel>
+                </GridBox>
+              </GridContainer>
+            ) : (
+              ""
+            )}
+            {shopColor && !shopColor.isOwned ? (
+              <GridContainer>
+                <GridBox>
+                  <ImageContainer style={{ position: "relative" }}>
+                    <PostImage src={Item + shopColor.itemImgUrl}></PostImage>
+                  </ImageContainer>
+                  <ItemName>{shopColor.itemName}</ItemName>
+                  <ItemPrice>{shopColor.price}</ItemPrice>
+                  <ItemCancel
+                    onClick={() => {
+                      setColor("");
+                      account("color");
+                    }}
+                  >
+                    X
+                  </ItemCancel>
+                </GridBox>
+              </GridContainer>
+            ) : (
+              ""
+            )}
+            {shopClothes && !shopClothes.isOwned ? (
+              <GridContainer>
+                <GridBox>
+                  <ImageContainer style={{ position: "relative" }}>
+                    <PostImage src={Item + shopClothes.itemImgUrl}></PostImage>
+                  </ImageContainer>
+                  <ItemName>{shopClothes.itemName}</ItemName>
+                  <ItemPrice>{shopClothes.price}</ItemPrice>
+                  <ItemCancel
+                    onClick={() => {
+                      setClothes("");
+                      account("clothes");
+                    }}
+                  >
+                    X
+                  </ItemCancel>
+                </GridBox>
+              </GridContainer>
+            ) : (
+              ""
+            )}
+            {shopAcc && !shopAcc.isOwned ? (
+              <GridContainer>
+                <GridBox>
+                  <ImageContainer style={{ position: "relative" }}>
+                    <PostImage src={Item + shopAcc.itemImgUrl}></PostImage>
+                  </ImageContainer>
+                  <ItemName>{shopAcc.itemName}</ItemName>
+                  <ItemPrice>{shopAcc.price}</ItemPrice>
+                  <ItemCancel
+                    onClick={() => {
+                      setAcc(null);
+                      account("acc");
+                    }}
+                  >
+                    X
+                  </ItemCancel>
+                </GridBox>
+              </GridContainer>
+            ) : (
+              ""
+            )}
+          </ModalContent>
+          {/* <ModalContent>
+            {shopList.map((item, i) => (
+              <GridContainer>
+                <GridBox key={i}>
+                  <ImageContainer style={{ position: "relative" }}>
+                    <PostImage src={Item + item}></PostImage>
+                  </ImageContainer>
+                  <ItemName>
+                    {console.log(
+                      // "itemList?.filter((e) => e.itemImgUrl === item)[0].itemName",
+                      // itemList?.filter((e) => e.itemImgUrl === item)[0],
+                      // itemList?.filter((e) => e.itemImgUrl === item)[0].itemName
+                    )}
+                  </ItemName>
+                  <ItemPrice>
+                    {itemList?.filter((e) => e.itemImgUrl === item)[0].price}
+                  </ItemPrice>
+                  <ItemCancel>X</ItemCancel>
+                </GridBox>
+              </GridContainer>
+            ))}
             {itemList?.map((e, i) => (
               <GridContainer>
                 <GridBox key={e._id}>
@@ -73,9 +386,16 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                 </GridBox>
               </GridContainer>
             ))}
-          </ModalContent>
+          </ModalContent> */}
           <ButtonBox>
-            <Button>P로 구매하고 저장</Button>
+            <Button
+              onClick={() => {
+                purchase();
+              }}
+            >
+              {totalPoint}
+              P로 구매하고 저장
+            </Button>
           </ButtonBox>
         </section>
       </Container>
