@@ -42,7 +42,7 @@ const initialState = {
   selected: null,
   currentPoint: null,
   isEquip: null,
-
+  shopList: ["color_01.png"],
   backgroundItem: null,
   colorItem: null,
   emotionItem: null,
@@ -133,24 +133,41 @@ export default handleActions(
     [BACKGROUND_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
         draft.backgroundItem = action.payload.backgroundItem;
+        draft.shopList = draft.shopList.filter((e) => e !== null);
+        draft.shopList = draft.shopList.filter(
+          (e) => !e?.includes("background")
+        );
+        draft.shopList.push(action.payload.backgroundItem);
         // console.log("배경", action.payload.backgroundItem);
       }),
     [COLOR_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
         draft.colorItem = action.payload.colorItem;
+        draft.shopList = draft.shopList.filter((e) => e !== null);
+        draft.shopList = draft.shopList.filter((e) => !e?.includes("color"));
+        draft.shopList.push(action.payload.colorItem);
       }),
     [EMOTION_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
         draft.emotionItem = action.payload.emotionItem;
+        draft.shopList = draft.shopList.filter((e) => e !== null);
+        draft.shopList = draft.shopList.filter((e) => !e?.includes("emotion"));
+        draft.shopList.push(action.payload.emotionItem);
       }),
     [CLOTHES_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
         draft.clothesItem = action.payload.clothesItem;
+        draft.shopList = draft.shopList.filter((e) => e !== null);
+        draft.shopList = draft.shopList.filter((e) => !e?.includes("clothes"));
+        draft.shopList.push(action.payload.clothesItem);
         // console.log("옷", action.payload.clothesItem);
       }),
     [ACC_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
         draft.accItem = action.payload.accItem;
+        draft.shopList = draft.shopList.filter((e) => e !== null);
+        draft.shopList = draft.shopList.filter((e) => !e?.includes("acc"));
+        draft.shopList.push(action.payload.accItem);
         // console.log("악세사리", action.payload.accItem);
       }),
   },

@@ -39,6 +39,13 @@ const CharacterContainer = () => {
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
 
+  const itemList = useSelector((state) => state.character.itemList);
+  // console.log(
+  //   "프리뷰",
+  //   preview.shopList,
+  //   itemList,
+  //   itemList?.filter((e) => e.itemImgUrl === "/clothes_01.png")
+  // );
   // console.log("프리뷰", previewBg);
   // console.log("프리뷰", previewColor);
   // console.log("프리뷰", previewClothes);
@@ -85,7 +92,7 @@ const CharacterContainer = () => {
   //자식 함수 접근하는 Ref
   const modalRef = useRef();
   React.useEffect(() => {
-    // dispatch(characterActions.getItemDB());
+    dispatch(characterActions.getItemDB());
     setBg(equipBg?.itemImgUrl);
     setBody(equipColor?.itemImgUrl);
     setClothes(equipClothes?.itemImgUrl);
@@ -107,7 +114,6 @@ const CharacterContainer = () => {
       setAcc(previewAcc);
     }
   }, [preview]);
-
   return (
     <Container>
       <Point>{currentPoint}</Point>
@@ -134,6 +140,7 @@ const CharacterContainer = () => {
       <Button
         _onClick={() => {
           // sendItems();
+          modalRef.current.account();
           modalRef.current.openModal();
         }}
         position="absolute"
