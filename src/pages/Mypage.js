@@ -17,19 +17,37 @@ import CharacterContainer from "../components/CharacterContainer";
 import Character from "../redux/modules/character";
 import styled from "styled-components";
 import { actionCreators as characterActions } from "../redux/modules/character";
+
 const Mypage = (props) => {
   const dispatch = useDispatch();
 
-  const mypageCharacter = useSelector((state) => state.character?.selected);
-  console.log("하잇", mypageCharacter);
   React.useEffect(() => {
-    dispatch(characterActions.mypageCharacterList());
+    dispatch(characterActions.getItemDB());
+
     console.log("오냐냐냐냐냐");
   }, []);
 
-  React.useEffect(() => {
-    console.log("하잇", mypageCharacter);
-  }, [mypageCharacter]);
+  const isEquip = useSelector((state) => state.character?.isEquip);
+  const equipColor = isEquip?.find((e) => e.category === "color");
+  const equipBg = isEquip?.find((e) => e.category === "background");
+  const equipClothes = isEquip?.find((e) => e.category === "clothes");
+  const equipAcc = isEquip?.find((e) => e.category === "acc");
+  const equipEmotion = isEquip?.find((e) => e.category === "emotion");
+
+  console.log(
+    "equip확인",
+    isEquip,
+    equipBg?.itemImgUrl,
+    equipColor?.itemImgUrl,
+    equipClothes?.itemImgUrl,
+    equipAcc?.itemImgUrl
+  );
+
+  const Item = process.env.PUBLIC_URL + "/items/large";
+
+  //닉네임 가져오기
+  const nickName = useSelector((state) => state.user?.user.nickname);
+  console.log("닉네임", nickName);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
@@ -37,7 +55,24 @@ const Mypage = (props) => {
     <div>
       <ContainerGrid>
         <Grid margin="10% 0%">
-          <CharacterWrap></CharacterWrap>
+          <CharacterWrap>
+            <ImgContainer>
+              <ItemImg src={Item + equipBg?.itemImgUrl} />
+              <ItemImg src={Item + equipColor?.itemImgUrl} />
+              <ItemImg src={Item + equipClothes?.itemImgUrl} />
+              <ItemImg src={Item + equipAcc?.itemImgUrl} />
+            </ImgContainer>
+
+            {/* {viewBg && (
+              <ImgContainer>
+                <ItemImg
+                  src={Item + viewBg}
+                  ref={selectedBg}
+                  alt={viewBg}
+                ></ItemImg>
+              </ImgContainer>
+            )} */}
+          </CharacterWrap>
 
           {/* 닉네임 / 닉네임 변경 */}
           <Grid
@@ -54,7 +89,7 @@ const Mypage = (props) => {
                 childRef.current.openModal();
               }}
             >
-              닉네임 &nbsp;&nbsp;&nbsp;
+              {nickName} &nbsp;&nbsp;&nbsp;
               <HiOutlinePencil />
             </Button>
 
@@ -94,16 +129,7 @@ const Mypage = (props) => {
           </Grid>
 
           <Grid>
-            <Button
-              margin="1px 0px"
-              fontSize="1.25rem"
-              height="4.188rem"
-              alignItems
-              bg="#FF8B37"
-              borderRadius="0px"
-            >
-              당신의 캐릭터를 자랑해보세요!
-            </Button>
+            <ShareBox>나만의 캐릭터를 자랑해보세요!</ShareBox>
           </Grid>
           <Grid>
             <Button
@@ -180,4 +206,23 @@ const CharacterWrap = styled.div`
   margin: auto;
 `;
 
+const ImgContainer = styled.div`
+  width: 300px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+`;
+const ItemImg = styled.img`
+  height: 100%;
+  position: absolute;
+  /* z-index: 1; */
+  border-radius: 5px;
+`;
+
+const ShareBox = styled.div`
+  margin: "1px 0px";
+  height: "200px";
+  background-color: #ff8b37;
+`;
 export default Mypage;

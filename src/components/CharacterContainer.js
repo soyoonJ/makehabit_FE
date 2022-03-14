@@ -11,7 +11,7 @@ import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
-  // const {} = props;
+
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   const currentPoint = useSelector((state) => state.character.currentPoint);
@@ -85,6 +85,7 @@ const CharacterContainer = () => {
     }
   }, [preview]);
 
+
   const saveButton = () => {
     // sendItems();
     if (
@@ -99,6 +100,7 @@ const CharacterContainer = () => {
       modalRef.current.openModal();
     }
   };
+
 
   return (
     <Container>

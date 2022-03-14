@@ -57,7 +57,7 @@ const getItemDB = (category) => {
     apis
       .GetItemList()
       .then(function (res) {
-        console.log(res);
+        console.log("아이템", res);
         dispatch(setItems(res.data, category));
       })
       .catch((error) => {
