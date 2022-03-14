@@ -36,6 +36,7 @@ const clothesPreview = createAction(CLOTHES_PREVIEW, (clothesItem) => ({
 const accPreview = createAction(ACC_PREVIEW, (accItem) => ({ accItem }));
 
 const initialState = {
+  allList: [],
   itemList: [],
   // allList: [],
   item: null,
@@ -101,6 +102,8 @@ export default handleActions(
     [SET_ITEMS]: (state, action) =>
       produce(state, (draft) => {
         console.log("GETLIST", action.payload);
+        draft.allList = action.payload.itemList.items
+
         if (action.payload.category === undefined) {
           draft.itemList = action.payload.itemList.items;
           draft.currentPoint = action.payload.itemList.characterCurrentPoint;
