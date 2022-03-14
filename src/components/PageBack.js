@@ -6,8 +6,8 @@ import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
 
 const PageBack = (props) => {
-  const { color, padding } = props;
-  const styles = { color, padding };
+  const { color, padding, left } = props;
+  const styles = { color, padding, left };
 
   return (
     <Back
@@ -30,6 +30,7 @@ const PageBack = (props) => {
 PageBack.defaultProps = {
   color: "#FF8B37",
   padding: null,
+  left: null,
   // padding: "1.912em 5%",
 };
 
@@ -39,6 +40,7 @@ const Back = styled.div`
   padding: ${(props) => props.padding};
   color: ${(props) => props.color};
   position: absolute;
+  ${(props) => (props.left ? `left: 0;` : "")};
 `;
 
 export default PageBack;

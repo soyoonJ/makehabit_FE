@@ -85,8 +85,8 @@ const Confirm = (props) => {
     <React.Fragment>
       <ContainerGrid>
         <ConfirmText>
-          <PageBack color="black" />
-          <span>인증하기</span>
+          <PageBack color="#707070" left padding="0 0 0 1.063rem" />
+          <span>오늘의 인증하기</span>
         </ConfirmText>
         {/* useSelector 해서 타이틀 가져오기 */}
         <Title>{challenge_info?.title}</Title>
@@ -130,15 +130,14 @@ const Confirm = (props) => {
         <CommentTitle>코멘트 남기기</CommentTitle>
         <div>오늘의 도전과 함께 기록해보세요.</div>
         <Textarea
-          rows="8"
           onChange={onChange}
           maxLength="300"
           placeholder="인증과 함께 소감을 남겨보세요."
         ></Textarea>
         <div
           style={{
-            marginBottom: "3vh",
             textAlign: "end",
+            marginBottom: "12.5vh",
             marginTop: "0.438em",
             color: "#9C9C9C",
             lineHeight: "1.313em",
@@ -150,13 +149,11 @@ const Confirm = (props) => {
         <Button onClick={confirm}>인증 완료하기</Button>
       </ContainerGrid>
 
-      <ButtonNavigation />
-
       <Modal ref={modalRef}>
         <div>챌린지 인증예시</div>
         <div
           style={{
-            margin: "0.563rem 0 3.063rem 0",
+            margin: "0.563rem 0 2rem 0",
             fontWeight: "600",
             lineHeight: "1.5rem",
             fontSize: "1.125rem",
@@ -184,9 +181,16 @@ const Confirm = (props) => {
 // 인증하기 텍스트
 const ConfirmText = styled.div`
   text-align: center;
-  font-weight: bold;
-  font-size: 20px;
   margin: 1.313em 0 4.7vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > span {
+    font-size: 1.375rem;
+    font-weight: bold;
+    line-height: 1.813rem;
+  }
 `;
 
 // 타이틀
@@ -247,11 +251,18 @@ const CommentTitle = styled.div`
 `;
 const Textarea = styled.textarea`
   width: 100%;
+  height: 8.125rem;
   resize: none;
   box-sizing: border-box;
   margin-top: 1rem;
   background: #f7f7f7;
   border: none;
+  font-size: 1rem;
+  padding: 1.25rem 1.625rem;
+
+  ::placeholder {
+    color: #9c9c9c;
+  }
 `;
 const Button = styled.button`
   width: 100%;
@@ -263,6 +274,7 @@ const Button = styled.button`
   font-weight: 700;
   font-size: 1.375rem;
   line-height: 1.813rem;
+  margin: 0 0 5% 0;
 `;
 
 export default Confirm;
