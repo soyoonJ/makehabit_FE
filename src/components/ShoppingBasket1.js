@@ -67,8 +67,21 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const outSection = React.useRef();
   // ----------------------------------------
   const Item = process.env.PUBLIC_URL + "/items/small";
-
   // 장착 리스트
+  const isEquip = useSelector((state) => state.character?.isEquip);
+  const equipColor = isEquip?.find((e) => e.category === "color");
+  const equipBg = isEquip?.find((e) => e.category === "background");
+  const equipClothes = isEquip?.find((e) => e.category === "clothes");
+  const equipAcc = isEquip?.find((e) => e.category === "acc");
+  const equipEmotion = isEquip?.find((e) => e.category === "emotion");
+
+  //Item 변경 할때 사용 하는 useState
+  const [fitBg, setFitBg] = useState();
+  const [fitColor, setFitColor] = useState();
+  const [fitClothes, setFitClothes] = useState();
+  const [fitAcc, setFitAcc] = useState();
+
+  // 미리보기 리스트
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewColor = useSelector((state) => state.character?.colorItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
@@ -105,6 +118,15 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     }
     // account();
   }, [shopList]);
+
+  React.useEffect(() => {
+    // dispatch(characterActions.getItemDB());
+    setFitBg(equipBg?.itemImgUrl);
+    setFitColor(equipColor?.itemImgUrl);
+    setFitClothes(equipClothes?.itemImgUrl);
+    setFitAcc(equipAcc?.itemImgUrl);
+    // setEmotion(equipEmotion?.itemImgUrl);
+  }, [equipColor?.itemImgUrl]);
   // const account = () => {
   //   console.log("account", itemColor, shopColor, category);
   //   if (itemBg) {
@@ -245,8 +267,26 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const purchase = () => {
     let items = [];
     if (shopBg) {
-      // items.push(shopBg.)
+      items.push({ _id: shopBg.itemId });
+    } else {
+      items.push({ _id: equipBg?.itemId });
     }
+    if (shopColor) {
+      items.push({ _id: shopColor.itemId });
+    } else {
+      items.push({ _id: equipColor?.itemId });
+    }
+    if (shopClothes) {
+      items.push({ _id: shopClothes.itemId });
+    } else {
+      items.push({ _id: equipClothes?.itemId });
+    }
+    if (shopAcc) {
+      items.push({ _id: shopAcc.itemId });
+    } else {
+      items.push({ _id: equipAcc?.itemId });
+    }
+    dispatch(characterActions.purchaseItemList(totalPoint, items));
   };
   if (modalOpen) {
     return (
