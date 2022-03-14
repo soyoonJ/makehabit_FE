@@ -76,7 +76,7 @@ const MyChallenge = (props) => {
             })}
           </div>
         ) : (
-          <ImageContainer>
+          <ImageContainer style={{ marginBottom: "14.6vh" }}>
             {/* 나의 기록보기 페이지 */}
             {proof_list?.map((e, i) => {
               return (

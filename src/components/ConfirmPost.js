@@ -7,8 +7,6 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 
-import moment from "moment";
-
 const ConfirmPost = (props) => {
   // console.log("챌린지리스트", props);
   const dispatch = useDispatch();
@@ -62,25 +60,25 @@ const ConfirmPost = (props) => {
 
       {/* 우측 텍스트 부분 */}
       <TextContainer>
-        <div>
-          <Title>{title}</Title>
+        <div style={{ marginBottom: "0.813rem" }}>
+          <TextGrid>
+            <Title>{title}</Title>
 
-          <Round>
-            {/* 진행예정인 챌린지 */}
-            {status === 1 || status === 2 ? (
-              <div>{statusContent.progress}</div>
-            ) : (
-              <>
-                <span>{round}세트</span> 진행중
-              </>
-            )}
-          </Round>
+            <Round>
+              {/* 진행예정인 챌린지 */}
+              {status === 1 || status === 2 ? (
+                <div>{statusContent.progress}</div>
+              ) : (
+                <>
+                  <span>{round}세트</span> 진행중
+                </>
+              )}
+            </Round>
+          </TextGrid>
         </div>
-        <Content
-          style={{ color: "#707070", fontSize: "0.8rem", lineHeight: "150%" }}
-        >
-          {content}
-        </Content>
+        <div style={{ height: "100%" }}>
+          <Content>{content}</Content>
+        </div>
 
         {status === 1 || status === 2 || isUpload ? (
           <Button
@@ -118,7 +116,8 @@ const GridBox = styled.div`
 `;
 const ImageContainer = styled.div`
   width: 100%;
-  height: 15vh;
+  height: 15.4vh;
+  min-height: 130px;
   grid-column: 1/2;
 `;
 const PostImage = styled.img`
@@ -150,43 +149,42 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  & > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+`;
+const TextGrid = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
 `;
 
 const Title = styled.div`
+  width: 100%;
   font-size: 1.25rem;
   font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
-
 const Round = styled.div`
   font-weight: 600;
   font-size: 0.875rem;
   & > span {
     color: #ff8b37;
   }
+  text-align: end;
 `;
 
 const Content = styled.div`
-  // display: -webkit-box;
-  // display: block;
-  // width: 250px;
-  // word-wrap: break-word;
-  // line-height: 1.2em;
-  // height: 3.6em;
-  // text-overflow: ellipsis;
-  // overflow: hidden;
-  // text-align: left;
-  // -webkit-line-clamp: 2;
-  // -webkit-box-orient: vertical;
+  font-size: 0.8rem;
+  line-height: 150%;
+  font-weight: 400;
+  color: #707070;
+
   width: 100%;
-  overflow: hidden;
+
   text-overflow: ellipsis;
-  line-height: 1.2em;
-  max-height: 2.4em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 export default ConfirmPost;
