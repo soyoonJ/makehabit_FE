@@ -66,12 +66,12 @@ const getItemDB = (category) => {
 };
 
 // 캐릭터 샵 아이템 구매 및 저장
-const purchaseItemList = () => {
+const purchaseItemList = (totalPrice, items) => {
   return function (dispatch, getState, { history }) {
     apis
-      .PurchaseItem()
+      .PurchaseItem(totalPrice, items)
       .then(function (response) {
-        // console.log("아이템 구매 및 저장", response);
+        console.log("아이템 구매 및 저장", response);
       })
       .catch((error) => {
         console.log(error);

@@ -5,7 +5,7 @@ import { Grid, Text, Input, Button } from "../elements";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
-import GoBack from "../components/PageBack";
+import PageBack from "../components/PageBack";
 
 import styled from "styled-components";
 
@@ -73,7 +73,7 @@ const PostDetail = (props) => {
   return (
     <Grid padding="0 0 50px 0">
       <Grid>
-        <GoBack />
+        <PageBack />
         <TitleImage src={post.thumbnail} />
       </Grid>
       <Grid is_flex padding="0 5%">

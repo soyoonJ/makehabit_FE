@@ -162,7 +162,8 @@ export const apis = {
   //아이템 목록 받기
   GetItemList: () => instance.get("/api/character"),
   //아이템 구매 및 저장하기
-  PurchaseItem: () => instance.post(`/api/character`),
+  PurchaseItem: (totalPrice, items) =>
+    instance.post(`/api/character`, { totalPrice, items }),
 };
 
 export default instance;
