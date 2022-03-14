@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Text, Input, Image, Button } from "../elements";
+import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,70 +44,72 @@ const Completed = (props) => {
 
   return (
     <React.Fragment>
-      <Grid padding="5%" letterSpacing="-0.005rem">
-        <Grid padding="6%">
-          <div style={{ fontSize: "7.500em" }}>{content.icon}</div>
-          <Title>{content.title}</Title>
-          <SubTitle>{content.subTitle}</SubTitle>
+      <ContainerGrid>
+        <TopBox>
+          <div>{content.icon}</div>
+          <div>{content.title}</div>
+          <div>{content.subTitle}</div>
+        </TopBox>
+        <div
+          style={{
+            fontSize: "1.25rem",
+            fontWeight: "bold",
+            marginBottom: "0.875rem",
+          }}
+        >
+          {content.boxTitle}
+        </div>
+        {page === "confirm" ? (
+          <Grid>
+            <GiftBox>
+              <Content>
+                <Num>100</Num>
+                <span style={{ paddingBottom: "2vh" }}>포인트와</span>
 
-          <div style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
-            {content.boxTitle}
-          </div>
+                <Num>100</Num>
+                <span>경험치를 획득했어요!</span>
+              </Content>
+            </GiftBox>
 
-          {page === "confirm" ? (
-            <Grid>
-              <GiftBox>
-                <Content>
-                  <Num>100</Num>
-                  <span style={{ paddingBottom: "2vh" }}>포인트와</span>
-
-                  <Num>100</Num>
-                  <span>경험치를 획득했어요!</span>
-                </Content>
-              </GiftBox>
-
-              <Button
-                borderRadius="5px"
-                border="1px solid #FF8B37"
-                height="5vh"
-                padding="2.5%"
-                color="rgba(255, 139, 55, 1)"
-                fontSize="1.125rem"
-                fontWeight="600"
-                bg="#fff"
-                _onClick={() => {
-                  history.push("/character");
-                }}
-              >
-                포인트로 내 캐릭터 꾸미기
-              </Button>
-            </Grid>
-          ) : (
-            <InfoBox>
-              <InfoText>
-                <div>
-                  <span style={{ color: "#FF8B37", fontWeight: "bold" }}>
-                    2022년 00월 00일 월요일
-                  </span>
-                  <span>부터</span>
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>3일씩 10바퀴</span>
-                  <span>가 진행 될 예정이에요.</span>
-                </div>
-                <div>완주하는 그 날까지 힘내요!</div>
-              </InfoText>
-            </InfoBox>
-          )}
-        </Grid>
-
+            <Button
+              borderRadius="5px"
+              border="1px solid #FF8B37"
+              height="5vh"
+              padding="2.5%"
+              color="rgba(255, 139, 55, 1)"
+              fontSize="1.125rem"
+              fontWeight="600"
+              bg="#fff"
+              _onClick={() => {
+                history.push("/character");
+              }}
+            >
+              포인트로 내 캐릭터 꾸미기
+            </Button>
+          </Grid>
+        ) : (
+          <InfoBox>
+            <InfoText>
+              <div>
+                <span style={{ color: "#FF8B37", fontWeight: "bold" }}>
+                  2022년 00월 00일 월요일
+                </span>
+                <span>부터</span>
+              </div>
+              <div>
+                <span style={{ fontWeight: "bold" }}>3일씩 10바퀴</span>
+                <span>가 진행 될 예정이에요.</span>
+              </div>
+              <div>완주하는 그 날까지 힘내요!</div>
+            </InfoText>
+          </InfoBox>
+        )}
         <Button
           fontSize="1.375rem"
           fontWeight="bold"
-          height="8vh"
-          maxWidth="380px"
-          position="absolute"
-          bottom="5vh"
+          height="4.125rem"
+          width="100%"
+          margin="17.4vh 0 4.8vh"
           bg="rgba(255, 139, 55, 1)"
           _onClick={() => {
             history.goBack();
@@ -115,53 +117,74 @@ const Completed = (props) => {
         >
           {content.buttonText}
         </Button>
-      </Grid>
+      </ContainerGrid>
     </React.Fragment>
   );
 };
 
-const Title = styled.div`
-  font-size: 1.375rem;
-  font-weight: bold;
+const TopBox = styled.div`
+  margin: 14.4vh 1.5rem 6.7vh 1.5rem;
+
+  & > div {
+    &:nth-child(1) {
+      margin-bottom: 1.688rem;
+      font-size: 7.5rem;
+    }
+
+    &:nth-child(2) {
+      font-size: 1.375rem;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+    }
+
+    &:nth-child(3) {
+      font-size: 1.25rem;
+    }
+  }
 `;
-const SubTitle = styled.div`
+
+// 개설/참여완료 주황색 info 박스
+const InfoBox = styled.div`
+  width: 100%;
+  height: 9.625rem;
+  background: #fff1e7;
+  border-radius: 5px;
+`;
+const InfoText = styled.div`
+  padding: 1.813rem 8%;
   font-size: 1.25rem;
+  letter-spacing: -0.005rem;
+  line-height: 1.625rem;
+
+  & > div {
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-bottom: 0.563rem;
+    }
+  }
 `;
+
+// 인증완료 보상 info 박스
 const GiftBox = styled.div`
   width: 100%;
-  height: 15vh;
+  height: 8rem;
   background: #fff1e7;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 4vh auto;
+  margin-bottom: 4vh;
 `;
 const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
   font-size: 1.25rem;
   font-weight: bold;
-  padding: 3vh 10%;
+  padding: 1.75rem 10%;
 `;
 const Num = styled.span`
   text-align: right;
   color: #ff8b37;
   padding-right: 17px;
-`;
-
-const InfoBox = styled.div`
-  width: 100%;
-  height: 17vh;
-  background: #fff1e7;
-  border-radius: 5px;
-  margin: 0 auto 4vh auto;
-`;
-const InfoText = styled.div`
-  padding: 3vh 8%;
-  margin: auto;
-  font-size: 1.25rem;
-  letter-spacing: -0.005rem;
-  line-height: 1.625rem;
 `;
 export default Completed;

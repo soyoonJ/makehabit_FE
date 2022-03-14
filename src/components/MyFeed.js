@@ -3,7 +3,8 @@ import React from "react";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
-import { Grid, Text, Input, Image } from "../elements";
+import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
+import GoBack from "../components/GoBack";
 
 import styled from "styled-components";
 
@@ -19,18 +20,12 @@ const MyFeed = (props) => {
 
   return (
     <React.Fragment>
-      <Container>
-        <Back
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          뒤로
-        </Back>
+      <GoBack />
 
-        <div style={{ display: "flex" }}>
-          <Img src={feed?.imgUrl} alt="인증이미지" />
-        </div>
+      <ImageContainer>
+        <Img src={feed?.imgUrl} alt="인증이미지" />
+      </ImageContainer>
+      <ContainerGrid>
         {feed && (
           <Comment>
             <div>{feed.challengeTitle}</div>
@@ -38,35 +33,44 @@ const MyFeed = (props) => {
             <div>{feed.createdAt.slice(0, 10)}</div>
           </Comment>
         )}
-      </Container>
+      </ContainerGrid>
     </React.Fragment>
   );
 };
 
-const Container = styled.div`
-  height: 100vh;
-  background: black;
-`;
-const Back = styled.div`
-  cursor: pointer;
-  z-index: 10;
-  padding: 10px;
-  color: white;
-  position: absolute;
+const ImageContainer = styled.div`
+  height: 54.5vh;
+  margin-bottom: 2.75rem;
 `;
 const Img = styled.img`
   width: 100%;
-  height: auto;
-  z-index: 0;
-  display: block;
-  margin: auto;
+  height: 100%;
+  object-fit: cover;
 `;
 const Comment = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 10px;
-  color: white;
+  & > div {
+    &:nth-child(1) {
+      font-size: 1.375rem;
+      font-weight: 700;
+      line-height: 1.813rem;
+      letter-spacing: -0.005rem;
+      color: #1d1b1b;
+      margin-bottom: 2.125rem;
+    }
+    &:nth-child(2) {
+      font-size: 1.25rem;
+      line-height: 1.625rem;
+      letter-spacing: -0.005rem;
+      color: #1d1b1b;
+      margin-bottom: 4.25rem;
+    }
+    &:nth-child(3) {
+      font-size: 0.813rem;
+      line-height: 1.063rem;
+      letter-spacing: -0.005rem;
+      color: #1d1b1b;
+    }
+  }
 `;
 
 export default MyFeed;

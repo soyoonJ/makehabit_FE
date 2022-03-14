@@ -14,10 +14,12 @@ const ItemBox = () => {
   const category = itemList[0].category;
   // console.log("아이템리스트", itemList);
   console.log("카테고리", category);
-
-  const [item, setItem] = React.useState(null);
+  // const isEquip = itemList?.find((e) => e.isEquip === true);
+  // const equiped = isEquip?.itemImgUrl;
+  // console.log(equiped);
 
   const Item = process.env.PUBLIC_URL + "/items/small";
+  const [item, setItem] = React.useState(null);
 
   React.useEffect(() => {
     if (category === "background") {
@@ -37,15 +39,25 @@ const ItemBox = () => {
         {itemList.map((e, i) => (
           <OneItem key={i}>
             <div>
-              <img
-                src={Item + itemList[i].itemImgUrl}
-                onClick={() => {
-                  setItem(e.itemImgUrl);
+              <div
+                style={{
+                  border:
+                    e.itemImgUrl === item
+                      ? "5px solid #6825D6"
+                      : "5px solid #f7f7f7",
                 }}
-                alt={itemList[i].itemImgUrl}
-              ></img>
+              >
+                <img
+                  src={Item + itemList[i].itemImgUrl}
+                  onClick={() => {
+                    setItem(e.itemImgUrl);
+                  }}
+                  alt={itemList[i].itemImgUrl}
+                ></img>
+              </div>
+              <div>{e.itemName}</div>
+              <div>{e.price}</div>
             </div>
-            <div>{e.price}</div>
           </OneItem>
         ))}
       </Horizontable>
@@ -61,7 +73,7 @@ const ItemContainer = styled.div`
   overflow-x: scroll;
   white-space: nowrap;
 
-  div {
+  & > div {
     display: inline-block;
   }
 `;
@@ -73,7 +85,13 @@ const OneItem = styled.div`
   align-items: center;
   margin: 4vh 3%;
 
-  div {
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  & > div > div {
     &:nth-child(1) {
       // 자물쇠 아이콘 대비 - relative
       position: relative;
@@ -87,14 +105,24 @@ const OneItem = styled.div`
     }
 
     &:nth-child(2) {
+      font-size: 1.125rem;
+      font-weight: 600;
+      line-height: 1.5rem;
+      color: #707070;
+      margin-top: 0.625rem;
+    }
+
+    &:nth-child(3) {
       font-size: 1.25rem;
       font-weight: 700;
-      margin-top: 1rem;
+      margin-top: 0.625rem;
     }
   }
 
   img {
     height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
   }
 `;
 export default ItemBox;

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
 import Horizontable from "./Horizontable";
 
-const ItemSelect = () => {
+const ItemSelect = (props) => {
   const dispatch = useDispatch();
   //   const Item = process.env.PUBLIC_URL + "/items";
   const ItemCategory = [
@@ -41,18 +41,29 @@ const ItemSelect = () => {
         <Horizontable>
           <NaviButton>
             {ItemCategory.map((e, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  changeCate(i);
-                }}
-                style={{
-                  color: i === clickedCate ? "#FF8B37" : "#9c9c9c",
-                  fontWeight: i === clickedCate ? "700" : "400",
-                }}
-              >
-                {e[0]}
-              </button>
+              <div>
+                <button
+                  key={i}
+                  onClick={() => {
+                    changeCate(i);
+                  }}
+                  style={{
+                    color: i === clickedCate ? "#FF8B37" : "#9c9c9c",
+                    fontWeight: i === clickedCate ? "700" : "400",
+                  }}
+                >
+                  {e[0]}
+                </button>
+                {i === clickedCate ? (
+                  <hr
+                    style={{
+                      width: i === 4 ? "8rem" : "5.688rem",
+                    }}
+                  />
+                ) : (
+                  ""
+                )}
+              </div>
             ))}
           </NaviButton>
         </Horizontable>
@@ -69,15 +80,33 @@ const Navi = styled.div`
 `;
 
 const NaviButton = styled.div`
-  height: 3.813rem;
+  height: 1.625rem;
   white-space: nowrap;
   display: flex;
+  margin: 1.063rem 0 1.063rem 1.875rem;
 
-  button {
-    width: auto;
-    all: unset;
-    margin: 0 5.5%;
-    font-size: 1.25rem;
+  & > div {
+    position: relative;
+
+    button {
+      width: auto;
+      all: unset;
+      margin-right: 2.688rem;
+      font-size: 1.25rem;
+      line-height: 1.625rem;
+    }
+
+    hr {
+      position: absolute;
+      height: 3px;
+      background-color: #ff8b37;
+      border: none;
+      z-index: 10;
+      bottom: -1.063rem;
+      left: -1.875rem;
+      right: -0.813rem;
+      margin: 0px;
+    }
   }
 `;
 

@@ -8,11 +8,13 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
-const ButtonNavigation = () => {
+const ButtonNavigation = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
+  const Img01 = process.env.PUBLIC_URL + "/images";
   // console.log("button", is_login);
 
+  const [clickedTab, changeTab] = React.useState("home");
   //모달창에 접근하는 ref
   const modalRef = React.useRef();
   // console.log("모달ref!!!", modalRef);
@@ -59,12 +61,117 @@ const ButtonNavigation = () => {
       <Footer>
         <GradientBox />
         <ButtonWrap>
-          <ButtonIcon onClick={() => history.push("/")}>홈</ButtonIcon>
-          <ButtonIcon onClick={() => writePage()}>개설</ButtonIcon>
-          <ButtonIcon onClick={confirmPage}>인증</ButtonIcon>
+          <ButtonIcon
+            onClick={() => {
+              history.push("/");
+              changeTab("home");
+            }}
+          >
+            <div
+              style={{
+                color: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
+              }}
+            ></div>
+            <img src="images/icon_home.svg" alt="" />
+            <div
+              style={{
+                color: clickedTab === "home" ? "#1D1B1B" : "#9C9C9C",
+                fontWeight: clickedTab === "home" ? "600" : "400",
+              }}
+            >
+              홈
+            </div>
+          </ButtonIcon>
+          <ButtonIcon
+            onClick={() => {
+              writePage();
+              changeTab("open");
+            }}
+          >
+            <img
+              src="images/icon_write.svg"
+              alt=""
+              style={{
+                color: clickedTab === "open" ? "#FF8B37" : "#9C9C9C",
+              }}
+            />
+
+            <div
+              style={{
+                color: clickedTab === "open" ? "#1D1B1B" : "#9C9C9C",
+                fontWeight: clickedTab === "open" ? "600" : "400",
+              }}
+            >
+              개설
+            </div>
+          </ButtonIcon>
+          <ButtonIcon
+            onClick={() => {
+              confirmPage();
+              changeTab("confirm");
+            }}
+          >
+            <div
+              style={{
+                color: clickedTab === "confirm" ? "#FF8B37" : "#9C9C9C",
+              }}
+            >
+              <img src=" images/icon_flag.svg" alt="" />
+            </div>
+            <div
+              style={{
+                color: clickedTab === "confirm" ? "#1D1B1B" : "#9C9C9C",
+                fontWeight: clickedTab === "confirm" ? "600" : "400",
+              }}
+            >
+              인증
+            </div>
+          </ButtonIcon>
           {/* 채팅 추가 연결 필요 */}
-          <ButtonIcon onClick={characterPage}>캐릭터샵</ButtonIcon>
-          <ButtonIcon onClick={myPage}>Mypage</ButtonIcon>
+          <ButtonIcon
+            onClick={() => {
+              characterPage();
+              changeTab("character");
+            }}
+          >
+            <div
+              style={{
+                color: clickedTab === "character" ? "#FF8B37" : "#9C9C9C",
+              }}
+            >
+              <img src="images/icon_shop.svg" alt="" />
+            </div>
+            <div
+              style={{
+                color: clickedTab === "character" ? "#1D1B1B" : "#9C9C9C",
+                fontWeight: clickedTab === "character" ? "600" : "400",
+              }}
+            >
+              캐릭터샵
+            </div>
+          </ButtonIcon>
+          <ButtonIcon
+            onClick={() => {
+              myPage();
+              changeTab("mypage");
+            }}
+          >
+            <div
+              style={{
+                color: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
+              }}
+            >
+              <img src="images/icon_mypage.svg" alt="" />
+            </div>
+            <div
+              style={{
+                color: clickedTab === "mypage" ? "#1D1B1B" : "#9C9C9C",
+                fontWeight: clickedTab === "mypage" ? "600" : "400",
+              }}
+            >
+              내 페이지
+            </div>
+          </ButtonIcon>
         </ButtonWrap>
       </Footer>
 
@@ -89,35 +196,43 @@ const Footer = styled.div`
   max-width: 420px;
 `;
 
+const GradientBox = styled.div`
+  width: 100%;
+  max-width: 420px;
+  height: 2.72vh;
+  background: linear-gradient(
+    360deg,
+    rgba(222, 222, 222, 0.43) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+`;
+
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-left: auto;
   width: 100%;
-  background-color: gray;
+  height: 11.84vh;
+  background-color: #fff;
 `;
 
 const ButtonIcon = styled.button`
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: white;
-  width: 70px;
-  height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
-`;
 
-const GradientBox = styled.div`
-  width: 100%;
-  max-width: 420px;
-  height: 50px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 139, 55, 0) 10%,
-    rgba(255, 139, 55, 0.1) 25%,
-    rgba(255, 139, 55, 0.3) 50%,
-    rgba(255, 139, 55, 0.5) 80%,
-    rgba(255, 139, 55, 0.8) 100%
-  );
+  & > div {
+    &:nth-child(2) {
+      font-size: 0.813rem;
+      line-height: 1.063rem;
+      letter-spacing: -0.005rem;
+    }
+  }
 `;
 
 export default ButtonNavigation;
