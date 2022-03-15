@@ -9,6 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
 const ButtonNavigation = () => {
+  //버튼아이콘
+  const home = process.env.PUBLIC_URL + "/images/icon_home.svg";
+  const write = process.env.PUBLIC_URL + "/images/icon_write.svg";
+  const flag = process.env.PUBLIC_URL + "/images/icon_flag.svg";
+  const shop = process.env.PUBLIC_URL + "/images/icon_shop.svg";
+  const mypage = process.env.PUBLIC_URL + "/images/icon_mypage.svg";
+
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const Img01 = process.env.PUBLIC_URL + "/images";
@@ -69,7 +76,7 @@ const ButtonNavigation = () => {
           >
             <div>
               <img
-                src="images/icon_home.svg"
+                src={home}
                 alt=""
                 style={{
                   color: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
@@ -94,7 +101,7 @@ const ButtonNavigation = () => {
           >
             <div>
               <img
-                src="images/icon_write.svg"
+                src={write}
                 alt=""
                 style={{
                   color: clickedTab === "open" ? "#FF8B37" : "#9C9C9C",
@@ -122,7 +129,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "confirm" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              <img src=" images/icon_flag.svg" alt="" />
+              <img src={flag} alt="" />
             </div>
             <div
               style={{
@@ -145,7 +152,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "character" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              <img src="images/icon_shop.svg" alt="" />
+              <img src={shop} alt="" />
             </div>
             <div
               style={{
@@ -167,7 +174,7 @@ const ButtonNavigation = () => {
                 color: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
               }}
             >
-              <img src="images/icon_mypage.svg" alt="" />
+              <img src={mypage} alt="" />
             </div>
             <div
               style={{

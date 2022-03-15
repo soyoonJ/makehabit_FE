@@ -25,6 +25,9 @@ const CategoryPost = (props) => {
   let subtitle = title.substring(0, 7);
   // console.log(subtitle);
 
+  //이미지경로
+  const Item = process.env.PUBLIC_URL + "/images/icon_outlineheart.svg";
+
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
@@ -38,11 +41,15 @@ const CategoryPost = (props) => {
         {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
         {/* <Img src={Img01}></Img> */}
         {/* <Img src={Img01 + "/Recommend_test.png"}></Img> */}
-        <Img src={thumbnail} />
-        <Text margin="2% 5%">
+        <ThumbnailBox>
+          <Img src={thumbnail} />
+          <Like src={Item}></Like>
+        </ThumbnailBox>
+
+        <Title>
           {title}
-          {titleLength > 10 ? puls : ""}
-        </Text>
+          {/* {titleLength > 10 ? puls : ""} */}
+        </Title>
         <Tag>
           <Text size="10px" alignCenter>
             {tags}
@@ -65,18 +72,29 @@ const Card = styled.div`
   /* margin: 10px 0px; */
   cursor: pointer;
   display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
   width: 160px;
+`;
+
+const ThumbnailBox = styled.div`
+  width: 167px;
+  height: 167px;
+  position: relative;
 `;
 
 const Img = styled.img`
   /* padding: 0% 4%; */
-  width: 167px;
-  height: 167px;
-  max-width: 150px;
-  max-height: 150px;
+  width: 100%;
+  height: 100%;
+  /* max-width: 150px;
+  max-height: 150px; */
+`;
+
+const Like = styled.img`
+  size: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 `;
 
 const Tag = styled.div`
@@ -88,5 +106,12 @@ const Tag = styled.div`
   border-radius: 5px;
   align-items: center;
 `;
-
+const Title = styled.div`
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
 export default CategoryPost;
