@@ -42,6 +42,30 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       //   setTotalPoint((totalPoint) => totalPoint + shopEmotion?.price)
       // }
     },
+    purchase() {
+      let items = [];
+      if (shopBg) {
+        items.push({ _id: shopBg.itemId });
+      } else {
+        items.push({ _id: equipBg?.itemId });
+      }
+      if (shopColor) {
+        items.push({ _id: shopColor.itemId });
+      } else {
+        items.push({ _id: equipColor?.itemId });
+      }
+      if (shopClothes) {
+        items.push({ _id: shopClothes.itemId });
+      } else {
+        items.push({ _id: equipClothes?.itemId });
+      }
+      if (shopAcc) {
+        items.push({ _id: shopAcc.itemId });
+      } else {
+        items.push({ _id: equipAcc?.itemId });
+      }
+      dispatch(characterActions.purchaseItemList(totalPoint, items));
+    },
   }));
   const dispatch = useDispatch();
 
@@ -63,6 +87,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  const currentPoint = useSelector((state) => state.character.currentPoint);
 
   const outSection = React.useRef();
   // ----------------------------------------
@@ -300,7 +325,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
         }}
       >
         <section>
-          <ModalHeader>내가 담은 목록</ModalHeader>
+          <ModalHeader>{<Text>내가 담은 목록{currentPoint}</Text>}</ModalHeader>
           <ModalContent>
             {shopBg && !shopBg.isOwned ? (
               <GridContainer>

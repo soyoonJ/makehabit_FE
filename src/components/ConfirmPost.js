@@ -26,14 +26,17 @@ const ConfirmPost = (props) => {
   ];
 
   let statusContent = "";
+  //시작전
   if (status === 1) {
     statusContent = statusText[0];
-  } else if (status === 2) {
+  }
+  //종료
+  else if (status === 2) {
     statusContent = statusText[1];
   } else if (status === 0 && isUpload) {
     statusContent = statusText[2];
   }
-
+  console.log("ConfimrPost", status, statusContent);
   return (
     <GridBox>
       {/* 좌측 이미지 - 완료된 챌린지 */}
