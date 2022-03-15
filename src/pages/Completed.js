@@ -12,37 +12,64 @@ const Completed = (props) => {
   const page = props.match.params.id;
   const location = useLocation();
 
-  const startAt = location.state?.startAt;
-  const challengeId = location.state?.challengeId;
-  console.log("시작날짜", startAt);
+  const openStartAt = location.state?.openStart;
+  const participateStartAt = location.state?.participateStart;
+  const participateId = location.state?.challengeId;
+  const participateTitle = location.state?.title;
+  console.log("participateId", participateId);
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
-  const startDate = moment(startAt);
-  const transformDate = startDate.format("YYYY년 MM월 DD일");
-  const transformDay = dayArray[moment(startDate).day()];
+  let openStartDate = "";
+  let openTransformDate = "";
+  let openTransformDay = "";
+  if (openStartAt !== undefined) {
+    openStartDate = moment(openStartAt);
+    openTransformDate = openStartDate.format("YYYY년 MM월 DD일");
+    openTransformDay = dayArray[moment(openStartDate).day()];
+  }
+
+  const partStartDate = moment(participateStartAt);
+  const partTransformDate = partStartDate.format("YYYY년 MM월 DD일");
+  const partTransformDay = dayArray[moment(partStartDate).day()];
+
+  console.log(
+    "open시작일자",
+    openStartAt,
+    openStartDate,
+    openTransformDate,
+    openTransformDay
+  );
 
   const contents = [
     {
       icon: "👏",
       title: "챌린지 개설을 완료했어요",
-      subTitle: "새로운 습관이 시작되는 곳이군요!",
+      subTitle1: "새로운 습관이 시작되는 곳이군요!",
+      subTitle2: "",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
+      // API response 오면 moveTo 넣기
+      // 하단 수정 필요
+      moveTo: "/mychallenge/navi",
     },
     {
       icon: "👏",
-      title: "챌린지에 참여했어요!",
-      subTitle: "새로운 습관 만들기가 곧 시작됩니다!",
+      title: participateTitle,
+      subTitle1: "챌린지에 참여하신 걸 축하해요!",
+      subTitle2: "완주까지 함께 도전해봐요.",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
+      moveTo: `/challenges/${participateId}`,
     },
     {
       icon: "👍",
       title: "목표 인증 완료!",
-      subTitle: "오늘의 도전은 멋진 습관이 될 거예요.",
+      subTitle1: "오늘의 도전은 멋진 습관이 될 거예요.",
+      subTitle2: "",
       boxTitle: "인증 보상",
       buttonText: "확인",
+      moveTo: "/mychallenge/navi",
     },
   ];
 
@@ -62,7 +89,8 @@ const Completed = (props) => {
         <TopBox>
           <div>{content.icon}</div>
           <div>{content.title}</div>
-          <div>{content.subTitle}</div>
+          <div>{content.subTitle1}</div>
+          <div>{content.subTitle2}</div>
         </TopBox>
         <div
           style={{
@@ -106,7 +134,15 @@ const Completed = (props) => {
             <InfoText>
               <div>
                 <span style={{ color: "#FF8B37", fontWeight: "bold" }}>
-                  {transformDate} {transformDay}요일
+                  {page === "open" ? (
+                    <>
+                      {openTransformDate} {openTransformDay}요일
+                    </>
+                  ) : (
+                    <>
+                      {partTransformDate} {partTransformDay}요일
+                    </>
+                  )}
                 </span>
                 <span>부터</span>
               </div>
@@ -126,7 +162,7 @@ const Completed = (props) => {
           margin="17.4vh 0 4.8vh"
           bg="rgba(255, 139, 55, 1)"
           _onClick={() => {
-            history.goBack();
+            history.push(content.moveTo);
           }}
         >
           {content.buttonText}
@@ -149,10 +185,13 @@ const TopBox = styled.div`
       font-size: 1.375rem;
       font-weight: bold;
       margin-bottom: 0.75rem;
+      text-align: center;
     }
 
-    &:nth-child(3) {
+    &:nth-child(3),
+    &:nth-child(4) {
       font-size: 1.25rem;
+      text-align: center;
     }
   }
 `;

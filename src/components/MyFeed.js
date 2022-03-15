@@ -27,7 +27,7 @@ const MyFeed = (props) => {
     <React.Fragment>
       <PageBack padding="5%" color="#707070" />
       <FeedNum>
-        {order}/{length}
+        {order + 1}/{length}
       </FeedNum>
       <ImageContainer>
         <Img src={feed?.imgUrl} alt="인증이미지" />

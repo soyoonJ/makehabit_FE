@@ -267,7 +267,7 @@ const PostWrite = () => {
           <Link
             to={{
               pathname: "/completed/open",
-              state: { startAt: date },
+              state: { openStart: date },
             }}
           >
             <CreateButton

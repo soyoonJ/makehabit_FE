@@ -8,19 +8,62 @@ import { useDispatch, useSelector } from "react-redux";
 import Horizontable from "./Horizontable";
 
 const ItemBox = () => {
+  const Icons = process.env.PUBLIC_URL + "/images";
+
   const dispatch = useDispatch();
 
-  const itemList = useSelector((state) => state.character.itemList);
-  const category = itemList[0]?.category;
+  const itemList = useSelector((state) => state.character?.itemList);
+  const category = itemList[0].category;
   // console.log("아이템리스트", itemList);
-  console.log("카테고리", category);
-  // const isEquip = itemList?.find((e) => e.isEquip === true);
-  // const equiped = isEquip?.itemImgUrl;
-  // console.log(equiped);
+  // console.log("카테고리", category);
+
+  // 현재 장착중인 아이템
+  const isEquipAll = useSelector((state) => state.character?.isEquip);
+  const isEquip = isEquipAll.find((e) => e.category === category);
+  // 미리보기
+  const preview = useSelector((state) => state.character);
+  console.log("미리보기", preview);
+  const previewBg = useSelector((state) => state.character?.backgroundItem);
+  const previewClothes = useSelector((state) => state.character?.clothesItem);
+  const previewAcc = useSelector((state) => state.character?.accItem);
+  // const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
   const Item = process.env.PUBLIC_URL + "/items/small";
   const [item, setItem] = React.useState(null);
 
+  // 카테고리 바뀔 때마다 아이템 세팅
+  React.useEffect(() => {
+    if (category === "clothes") {
+      if (preview.clothesItem === null) {
+        setItem(isEquip?.itemImgUrl);
+      } else {
+        setItem(previewClothes);
+      }
+    }
+    if (category === "background") {
+      if (preview.backgroundItem === null) {
+        setItem(isEquip?.itemImgUrl);
+      } else {
+        setItem(previewBg);
+      }
+    }
+    if (category === "acc") {
+      if (preview.accItem === null) {
+        setItem(isEquip?.itemImgUrl);
+      } else {
+        setItem(previewAcc);
+      }
+    }
+    // if (category === "emotion") {
+    //   if (preview.emotionItem === null) {
+    //     setItem(isEquip?.itemImgUrl);
+    //   } else {
+    //     setItem(previewEmotion);
+    //   }
+    // }
+  }, [category]);
+
+  // CharacterContainer에 반영하기 위한 작업
   React.useEffect(() => {
     if (category === "background") {
       dispatch(characterActions.backgroundPreview(item));
@@ -39,8 +82,10 @@ const ItemBox = () => {
         {itemList.map((e, i) => (
           <OneItem key={i}>
             <div>
+              {/* 아이템 이미지 박스 */}
               <div
                 style={{
+                  position: "relative",
                   border:
                     e.itemImgUrl === item
                       ? "5px solid #6825D6"
@@ -54,6 +99,23 @@ const ItemBox = () => {
                   }}
                   alt={itemList[i].itemImgUrl}
                 ></img>
+
+                {e.isOwned ? (
+                  ""
+                ) : (
+                  <img
+                    src={Icons + "/icon_lock.svg"}
+                    alt="잠금아이콘"
+                    style={{
+                      position: "absolute",
+                      top: "9px",
+                      right: "9px",
+                      width: "2.37vh",
+                      height: "2.37vh",
+                      color: "gray",
+                    }}
+                  />
+                )}
               </div>
               <div>{e.itemName}</div>
               <div>{e.price}</div>
