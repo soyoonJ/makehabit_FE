@@ -79,7 +79,7 @@ const ButtonNavigation = () => {
                 src={home}
                 alt=""
                 style={{
-                  color: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
+                  fill: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
                 }}
               />
             </div>
@@ -164,16 +164,15 @@ const ButtonNavigation = () => {
             </div>
           </ButtonIcon>
           <ButtonIcon
+            style={{
+              color: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
+            }}
             onClick={() => {
               myPage();
               changeTab("mypage");
             }}
           >
-            <div
-              style={{
-                color: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
-              }}
-            >
+            <div>
               <img src={mypage} alt="" />
             </div>
             <div
