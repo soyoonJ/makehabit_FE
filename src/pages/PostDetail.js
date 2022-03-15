@@ -151,7 +151,11 @@ const PostDetail = (props) => {
           <Link
             to={{
               pathname: "/completed/participate",
-              state: { startAt: post.startAt, challengeId: challengeId },
+              state: {
+                startAt: post.startAt,
+                challengeId: challengeId,
+                title: post.title,
+              },
             }}
           >
             <Join

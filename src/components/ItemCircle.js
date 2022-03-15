@@ -11,10 +11,11 @@ const ItemCircle = () => {
 
   const itemList = useSelector((state) => state.character.itemList);
   const category = itemList[0]?.category;
+  // console.log("카테고리", category);
 
   const isEquipAll = useSelector((state) => state.character?.isEquip);
-  console.log("컬러리스트", isEquipAll);
-  const isEquip = isEquipAll?.find((e) => e.category === "color");
+  // console.log("컬러리스트", isEquipAll);
+  const isEquip = isEquipAll?.find((e) => e.category === category);
   console.log("컬러", isEquip);
 
   const preview = useSelector((state) => state.character);
@@ -24,15 +25,15 @@ const ItemCircle = () => {
   const [item, setItem] = React.useState(null);
   // console.log("아이템리스트", itemList);
 
-  // React.useEffect(() => {
-  //   if (category === "color") {
-  //     if (preview?.colorItem === null) {
-  //       setItem(isEquip?.itemImgUrl);
-  //     } else {
-  //       setItem(previewColor);
-  //     }
-  //   }
-  // }, [category]);
+  React.useEffect(() => {
+    if (category) {
+      if (previewColor === null) {
+        setItem(isEquip?.itemImgUrl);
+      } else {
+        setItem(previewColor);
+      }
+    }
+  }, [category]);
 
   React.useEffect(() => {
     // console.log("유즈이펙트", item);

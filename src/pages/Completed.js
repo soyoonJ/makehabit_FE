@@ -14,7 +14,8 @@ const Completed = (props) => {
 
   const startAt = location.state?.startAt;
   const challengeId = location.state?.challengeId;
-  console.log("시작날짜", startAt);
+  const participateTitle = location.state?.title;
+  console.log("participateTitle", participateTitle);
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -26,15 +27,17 @@ const Completed = (props) => {
     {
       icon: "👏",
       title: "챌린지 개설을 완료했어요",
-      subTitle: "새로운 습관이 시작되는 곳이군요!",
+      subTitle1: "새로운 습관이 시작되는 곳이군요!",
+      subTitle2: "",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
       // API response 오면 moveTo 넣기
     },
     {
       icon: "👏",
-      title: "챌린지에 참여했어요!",
-      subTitle: "새로운 습관 만들기가 곧 시작됩니다!",
+      title: participateTitle,
+      subTitle1: "챌린지에 참여하신 걸 축하해요!",
+      subTitle2: "완주까지 함께 도전해봐요.",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
       moveTo: `/mychallenge/${challengeId}`,
@@ -42,7 +45,8 @@ const Completed = (props) => {
     {
       icon: "👍",
       title: "목표 인증 완료!",
-      subTitle: "오늘의 도전은 멋진 습관이 될 거예요.",
+      subTitle1: "오늘의 도전은 멋진 습관이 될 거예요.",
+      subTitle2: "",
       boxTitle: "인증 보상",
       buttonText: "확인",
       moveTo: "/mychallenge/navi",
@@ -65,7 +69,8 @@ const Completed = (props) => {
         <TopBox>
           <div>{content.icon}</div>
           <div>{content.title}</div>
-          <div>{content.subTitle}</div>
+          <div>{content.subTitle1}</div>
+          <div>{content.subTitle2}</div>
         </TopBox>
         <div
           style={{
@@ -152,10 +157,13 @@ const TopBox = styled.div`
       font-size: 1.375rem;
       font-weight: bold;
       margin-bottom: 0.75rem;
+      text-align: center;
     }
 
-    &:nth-child(3) {
+    &:nth-child(3),
+    &:nth-child(4) {
       font-size: 1.25rem;
+      text-align: center;
     }
   }
 `;
