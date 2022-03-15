@@ -40,6 +40,7 @@ const CharacterContainer = () => {
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
+  // const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
   //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
@@ -57,6 +58,7 @@ const CharacterContainer = () => {
   const selectedBody = allList.find((e) => e.itemImgUrl === viewBody);
   const selectedAcc = allList.find((e) => e.itemImgUrl === viewClothes);
   const selectedClothes = allList.find((e) => e.itemImgUrl === viewAcc);
+  // const selectedEmotion = allList.find((e) => e.itemImgUrl === viewEmotion);
   // console.log("현재바디", selectedBody);
 
   //자식 함수 접근하는 Ref
@@ -83,6 +85,9 @@ const CharacterContainer = () => {
     if (previewAcc) {
       setAcc(previewAcc);
     }
+    // if (previewEmotion) {
+    //   setAcc(previewEmotion);
+    // }
   }, [preview]);
 
   const saveButton = () => {
@@ -91,6 +96,7 @@ const CharacterContainer = () => {
       selectedBg?.isOwned &&
       selectedBody?.isOwned &&
       selectedAcc?.isOwned &&
+      // selectedEmotion?.isOwned &&
       selectedClothes?.isOwned
     ) {
       // history.push("/charactersave");
@@ -108,6 +114,7 @@ const CharacterContainer = () => {
         <ImgContainer>
           <ItemImg src={Item + viewBg} alt={viewBg}></ItemImg>
           <ItemImg src={Item + viewBody} alt={viewBody}></ItemImg>
+          {/* <ItemImg src={Item + viewEmotion} alt={viewEmotion}></ItemImg> */}
           <ItemImg src={Item + viewClothes} alt={viewClothes}></ItemImg>
           <ItemImg src={Item + viewAcc} alt={viewAcc}></ItemImg>
         </ImgContainer>
@@ -131,6 +138,7 @@ const CharacterContainer = () => {
       >
         {selectedBg?.isOwned &&
         selectedBody?.isOwned &&
+        // selectedEmotion?.isOwned &&
         selectedAcc?.isOwned &&
         selectedClothes?.isOwned
           ? "저장하기"

@@ -29,6 +29,7 @@ const Completed = (props) => {
       subTitle: "새로운 습관이 시작되는 곳이군요!",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
+      // API response 오면 moveTo 넣기
     },
     {
       icon: "👏",
@@ -36,7 +37,7 @@ const Completed = (props) => {
       subTitle: "새로운 습관 만들기가 곧 시작됩니다!",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
-      // moveTo: `/mychallenge/${challengeId}`,
+      moveTo: `/mychallenge/${challengeId}`,
     },
     {
       icon: "👍",

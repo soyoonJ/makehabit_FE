@@ -26,6 +26,7 @@ const ItemBox = () => {
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
+  // const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
   const Item = process.env.PUBLIC_URL + "/items/small";
   const [item, setItem] = React.useState(null);
@@ -53,6 +54,13 @@ const ItemBox = () => {
         setItem(previewAcc);
       }
     }
+    // if (category === "emotion") {
+    //   if (preview.emotionItem === null) {
+    //     setItem(isEquip?.itemImgUrl);
+    //   } else {
+    //     setItem(previewEmotion);
+    //   }
+    // }
   }, [category]);
 
   // CharacterContainer에 반영하기 위한 작업
