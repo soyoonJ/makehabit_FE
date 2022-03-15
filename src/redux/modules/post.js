@@ -73,18 +73,15 @@ const addPostDB = (
           )
           .then((response) => {
             console.log("게시물 등록");
+            history.push("/completed/open");
           })
           .catch(function (error) {
             console.log("addpostDB_error", error);
-            return;
           });
       })
       .catch((error) => {
         console.log(error);
         return;
-      })
-      .then(() => {
-        history.push("/completed/open");
       });
   };
 };
