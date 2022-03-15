@@ -93,7 +93,8 @@ const CharacterContainer = () => {
       selectedAcc?.isOwned &&
       selectedClothes?.isOwned
     ) {
-      history.push("/charactersave");
+      // history.push("/charactersave");
+      modalRef.current.purchase();
     } else {
       modalRef.current.account();
       modalRef.current.openModal();

@@ -89,8 +89,9 @@ const Mypage = (props) => {
                 childRef.current.openModal();
               }}
             >
-              {nickName} &nbsp;&nbsp;&nbsp;
-              <HiOutlinePencil />
+              <Text bold size="22px">
+                {nickName}
+              </Text>
             </Button>
 
             <Modal ref={childRef}>
@@ -128,8 +129,33 @@ const Mypage = (props) => {
             <ProgressBar />
           </Grid>
 
-          <Grid>
-            <ShareBox>나만의 캐릭터를 자랑해보세요!</ShareBox>
+          <Grid size="">
+            <ShareBox>
+              <Grid>
+                <Text
+                  alignLeft
+                  margin="10px 0px 5px 12px"
+                  bold
+                  color="white"
+                  size="20px"
+                >
+                  나만의 캐릭터를 자랑해보세요!
+                </Text>
+                <Text
+                  alignLeft
+                  margin="10px 0px 5px 12px"
+                  color="white"
+                  size="13px"
+                >
+                  내 캐릭터의 이미지를 저장할 수 있어요
+                </Text>
+              </Grid>
+              <ShareButton>
+                <Text bold alignCenter color="white">
+                  공유하기
+                </Text>
+              </ShareButton>
+            </ShareBox>
           </Grid>
           <Grid>
             <Button
@@ -220,9 +246,29 @@ const ItemImg = styled.img`
   border-radius: 5px;
 `;
 
-const ShareBox = styled.div`
-  margin: "1px 0px";
-  height: "200px";
+const ShareBox = styled.button`
+  margin: "3px 0px";
+  width: 100%;
+  height: "4.188rem";
   background-color: #ff8b37;
+  box-sizing: border-box;
+  padding: 3px;
+  align-items: center;
+  display: flex;
+  border: none;
 `;
+
+const ShareButton = styled.div`
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  width: 120px;
+  height: 40px;
+  background-color: #6825d6;
+  margin-right: 5px;
+  text-align: center;
+`;
+
 export default Mypage;

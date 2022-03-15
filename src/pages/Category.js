@@ -14,7 +14,7 @@ import CategoryBar from "../components/CategoryBar";
 const Category = (props) => {
   const dispatch = useDispatch();
   const category_list = useSelector((state) => state.main.category_list);
-  console.log("카테고리리스트", category_list);
+  // console.log("카테고리리스트", category_list);
 
   // 새로고침 해도 현재카테고리를 보여 줄 수 있도록
   const categoryId = props.match.params.id;
@@ -38,7 +38,7 @@ const Category = (props) => {
       </HeaderContainer>
       <CardWrap>
         {category_list?.map((p, idx) => {
-          console.log("피", p);
+          // console.log("피", p);
           return <CategoryPost key={p._id} {...p} />;
         })}
       </CardWrap>
@@ -55,13 +55,6 @@ const HeaderContainer = styled.div`
   margin: 5% 0% 2% 0%;
   display: flex;
   justify-content: space-around;
-`;
-
-const CategoryButton = styled.button`
-  border: 0;
-  outline: 0;
-  background-color: white;
-  margin: 1% 1%;
 `;
 
 const CardWrap = styled.div`

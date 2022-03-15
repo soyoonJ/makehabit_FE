@@ -45,7 +45,7 @@ const Modal = forwardRef((props, ref) => {
         <section>
           <ModalHeader>카테고리</ModalHeader>
           <ModalContent>
-            <Grid borderBottom="3px solid #f7f7f7">
+            <Grid borderBottom="3px solid #f7f7f7" margin="0">
               <Button
                 onClick={() => {
                   closeModal();
@@ -141,7 +141,7 @@ const Container = styled.div`
   section > div > div {
     &:nth-child(1) {
       font-weight: bold;
-      margin-bottom: 20px;
+      // margin-bottom: 20px;
     }
     &:nth-child(2) {
     }

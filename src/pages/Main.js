@@ -43,11 +43,10 @@ const Main = (props) => {
               ></InputBox>
 
               <ImgBox
-                style={{ width: "10px" }}
-                src="images/search.png"
+                style={{ width: "15px" }}
+                src="images/icon_search.svg"
                 alt=""
                 onClick={() => {
-                  console.log("클릭되니");
                   dispatch(mainActions.getSearchDB(search.current.value));
                   history.push(`/search`);
                 }}
@@ -64,7 +63,8 @@ const Main = (props) => {
           <CategoryWrap>
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_all.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("all"));
                   // history.push("/category");
@@ -75,7 +75,8 @@ const Main = (props) => {
 
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_best.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("popular"));
                   // history.push("/category/popular");
@@ -85,7 +86,8 @@ const Main = (props) => {
             </Category>
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_new.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("new"));
                   // history.push("/category/new");
@@ -95,7 +97,8 @@ const Main = (props) => {
             </Category>
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_book.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("study"));
                   // history.push("/category/study");
@@ -107,7 +110,8 @@ const Main = (props) => {
           <CategoryWrap>
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_sport.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("exercise"));
                   // history.push("/category/exercise");
@@ -117,7 +121,8 @@ const Main = (props) => {
             </Category>
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_lifestyle.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("self-development"));
                   // history.push("/category/self-development");
@@ -127,7 +132,8 @@ const Main = (props) => {
             </Category>
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_sun.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("living-habit"));
                   // history.push("/category/living-habit");
@@ -137,7 +143,8 @@ const Main = (props) => {
             </Category>
             <Category>
               <Img
-                src="images/category_test.png"
+                width="76px"
+                src="images/icon_forest.svg"
                 onClick={() => {
                   dispatch(mainActions.categoryDB("eco"));
                   // history.push("/category/eco");
@@ -195,8 +202,8 @@ const Header = styled.div`
 
 const ContainerInput = styled.div`
   margin-top: 21px;
-  width: 70%;
-  height: 29px;
+  width: 100%;
+  height: 32px;
   border-radius: 5px;
   background-color: #f7f7f7;
   align-items: center;
@@ -204,15 +211,17 @@ const ContainerInput = styled.div`
 
 const InputBox = styled.input`
   width: 70%;
-  height: 29px;
+  height: 27px;
   border: none;
   border-radius: 5px;
   background-color: #f7f7f7;
+  outline: none;
 `;
 
 const ImgBox = styled.img`
-  width: 17px;
-  top: 10px;
+  height: 20px;
+  width: 20px;
+
   margin-left: 20%;
 `;
 
