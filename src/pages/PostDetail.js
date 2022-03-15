@@ -13,6 +13,8 @@ import styled from "styled-components";
 
 import moment from "moment";
 
+import ButtonNavigation from "../components/ButtonNavigation";
+
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { BsFillPersonFill } from "react-icons/bs";
 const PostDetail = (props) => {
@@ -20,6 +22,7 @@ const PostDetail = (props) => {
   const post = useSelector((state) => state.post.post);
   const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
+  console.log("POSTDETAIL", post);
   // console.log("POSTEDETAIL:", post);
   //좋아요 버튼 on/off
   let [isLike, setIsLike] = React.useState(false);
@@ -66,13 +69,40 @@ const PostDetail = (props) => {
   };
   const join = () => {
     if (is_login) {
-      console.log("skdfsdnjfksdjnfk", is_login);
-      dispatch(postActions.joinDB(challengeId));
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
     }
   };
+
+  //인증하기 버튼 방어 코드
+  const date = new Date(post?.startAt);
+  const koStartAt = date.toLocaleString();
+  console.log("koStartAt", koStartAt);
+  const spiltDate = koStartAt.split(". ");
+  const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
+  // console.log("아이디", challengeId);
+  // 버튼 텍스트, 우측 상단 진행상태 텍스트 달기 위한 조건
+  const statusText = [
+    // { progress: "진행예정", buttonText: `${koStartAt.slice(0, 11)} 시작` },
+    { progress: "진행예정", buttonText: `${stringDate} 시작` },
+    { progress: "종료", buttonText: "종료된 챌린지" },
+    { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
+  ];
+
+  let statusContent = "";
+  //시작전
+  if (post.status === 1) {
+    statusContent = statusText[0];
+  }
+  //종료
+  else if (post.status === 2) {
+    statusContent = statusText[1];
+  } else if (post.status === 0 && post.isUpload) {
+    statusContent = statusText[2];
+  }
+
+  //몇 바퀴인지 표시
+  const currentRound = parseInt(post?.proofCount - 1 / 3) + 1;
+  const Item = process.env.PUBLIC_URL + "/images";
   return (
     <Grid padding="0 0 50px 0">
       <Grid>
@@ -102,6 +132,9 @@ const PostDetail = (props) => {
       <Grid padding="0 5%">
         <Text>{post.content}</Text>
       </Grid>
+      <Grid>
+        <JoinBox></JoinBox>
+      </Grid>
       <Grid is_flex borderBottom="1px solid" alignItems="center">
         <Tag>작심삼일 {post.round}회차</Tag>
         <BsFillPersonFill size={30} />
@@ -113,20 +146,39 @@ const PostDetail = (props) => {
       </Grid>
       <Grid padding="5%">
         <ColorBox>
-          <Text>{}바퀴 진행중</Text>
+          <Text>{currentRound}바퀴 진행중</Text>
         </ColorBox>
       </Grid>
+      <JoinContainer>
+        <JoinBox>
+          <Text>{(currentRound - 1) * 3 + 1}번째</Text>
+          <Img width="34px" src={Item + "/icon_coin.svg"} />
+          <Text>인증 하면 10P</Text>
+        </JoinBox>
+        <JoinBox>
+          <Text>{(currentRound - 1) * 3 + 2}번째</Text>
+          <Img width="34px" src={Item + "/icon_coin.svg"} />
+          <Text>인증 하면 10P</Text>
+        </JoinBox>
+        <JoinBox>
+          <Text>{(currentRound - 1) * 3 + 3}번째</Text>
+          <Img width="34px" src={Item + "/icon_coin.svg"} />
+          <Text>인증 하면 10P</Text>
+        </JoinBox>
+      </JoinContainer>
       <Grid padding="5%">
         <Text>챌린지 기간</Text>
         <Grid is_flex>
           <Text color="#ff8b37">
-            {moment(post.startAt).utc().format("YYYY.MM.DD")}(
-            {dayArray[moment(post.startAt).day()]})
+            {moment(koStartAt, "YYYY.MM.DD").format("YYYY.MM.DD")}(
+            {dayArray[moment(koStartAt, "YYYY.MM.DD").day()]})
           </Text>
           <Text>부터</Text>
           <Text color="#ff8b37">
-            {moment(post.startAt).add(30, "days").utc().format("YYYY.MM.DD")}(
-            {dayArray[moment(post.startAt).add(30, "days").day()]})
+            {moment(koStartAt, "YYYY.MM.DD")
+              .add(30, "days")
+              .format("YYYY.MM.DD")}
+            ({dayArray[moment(koStartAt, "YYYY.MM.DD").add(30, "days").day()]})
           </Text>
           <Text>까지</Text>
         </Grid>
@@ -139,14 +191,32 @@ const PostDetail = (props) => {
         </ColorBox>
       </Grid>
       <Grid>
+        {/* 참여 했을때 */}
         {post.isParticipate ? (
-          <Join
-            onClick={() => {
-              confirmPage();
-            }}
-          >
-            인증하기
-          </Join>
+          post.status === 1 || post.status === 2 || post.isUpload ? (
+            <Button
+              width="100%"
+              bg="#ddd"
+              fontSize="1rem"
+              fontWeight="600"
+              cursor="default"
+            >
+              {statusContent.buttonText}
+            </Button>
+          ) : (
+            <Button
+              width="100%"
+              bg="#FF8B37"
+              fontSize="1rem"
+              fontWeight="600"
+              _onClick={() => {
+                confirmPage();
+                // history.push(`/confirm/${props.challengeId}`);
+              }}
+            >
+              오늘의 인증하기
+            </Button>
+          ) // 참여 안했을 때 + 로그인 되어있을 때
         ) : is_login ? (
           <Link
             to={{
@@ -156,16 +226,18 @@ const PostDetail = (props) => {
           >
             <Join
               onClick={() => {
-                join();
+                dispatch(postActions.joinDB(challengeId));
               }}
             >
               참여하기
             </Join>
           </Link>
         ) : (
+          // 참여 안했을 때 + 로그인 안되어 있을 때
           <Join
             onClick={() => {
-              join();
+              window.alert("로그인 후 인증 해주세요!");
+              history.push("/login");
             }}
           >
             참여하기
@@ -220,5 +292,25 @@ const ColorBox = styled.div`
   justify-content: center;
   text-align: center;
 `;
+const JoinContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4%;
+  margin: 0 20px;
+`;
 
+const JoinBox = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 4%;
+  // margin: 5vh 0;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  place-items: center;
+  text-align: center;
+`;
+
+const Img = styled.img`
+  size: 40px;
+`;
 export default PostDetail;
