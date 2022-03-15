@@ -103,18 +103,24 @@ const ItemBox = () => {
                 {e.isOwned ? (
                   ""
                 ) : (
-                  <img
-                    src={Icons + "/icon_lock.svg"}
-                    alt="잠금아이콘"
+                  <svg
+                    width="2.37vh"
+                    height="2.37vh"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                     style={{
                       position: "absolute",
                       top: "9px",
                       right: "9px",
-                      width: "2.37vh",
-                      height: "2.37vh",
-                      color: "gray",
                     }}
-                  />
+                  >
+                    <path
+                      d="M18 8H17V6C17 3.24 14.76 1 12 1C9.24 1 7 3.24 7 6V8H6C4.9 8 4 8.9 4 10V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V10C20 8.9 19.1 8 18 8ZM9 6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V8H9V6ZM18 20H6V10H18V20Z"
+                      fill="#707070"
+                    />
+                    <path d="M18 20H6V10H18V20Z" fill="#707070" />
+                  </svg>
                 )}
               </div>
               <div>{e.itemName}</div>
