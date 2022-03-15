@@ -19,6 +19,8 @@ import { GoCalendar } from "react-icons/go";
 
 import moment from "moment";
 
+import ButtonNavigation from "../components/ButtonNavigation";
+
 const PostWrite = () => {
   const dispatch = useDispatch();
   //카테고리 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
@@ -263,7 +265,7 @@ const PostWrite = () => {
             {method.length ? method.length : "0"}/500자
           </Text>
         </Grid>
-        <Grid padding="5%">
+        <Grid padding="5%" margin="0 0 150px 0">
           <Link
             to={{
               pathname: "/completed/open",
@@ -280,6 +282,8 @@ const PostWrite = () => {
           </Link>
         </Grid>
       </Grid>
+
+      <ButtonNavigation />
     </Container>
   );
 };
