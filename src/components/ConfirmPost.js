@@ -17,7 +17,7 @@ const ConfirmPost = (props) => {
   const koStartAt = date.toLocaleString();
   const dDay = moment(koStartAt, "YYYY.MM.DD").fromNow();
   const startDate = dDay.split(" ")[1];
-  console.log("디데이", startDate);
+  // console.log("디데이", startDate);
   // console.log("koStartAt", koStartAt);
   // const spiltDate = koStartAt.split(". ");
   // const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
@@ -41,7 +41,7 @@ const ConfirmPost = (props) => {
   } else if (status === 0 && isUpload) {
     statusContent = statusText[2];
   }
-  console.log("ConfimrPost", status, statusContent);
+  // console.log("ConfimrPost", status, statusContent);
   return (
     <GridBox>
       {/* 좌측 이미지 - 완료된 챌린지 */}

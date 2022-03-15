@@ -12,16 +12,34 @@ const Completed = (props) => {
   const page = props.match.params.id;
   const location = useLocation();
 
-  const startAt = location.state?.startAt;
-  const challengeId = location.state?.challengeId;
+  const openStartAt = location.state?.openStart;
+  const participateStartAt = location.state?.participateStart;
+  const participateId = location.state?.challengeId;
   const participateTitle = location.state?.title;
-  console.log("participateTitle", participateTitle);
+  console.log("participateId", participateId);
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
-  const startDate = moment(startAt);
-  const transformDate = startDate.format("YYYY년 MM월 DD일");
-  const transformDay = dayArray[moment(startDate).day()];
+  let openStartDate = "";
+  let openTransformDate = "";
+  let openTransformDay = "";
+  if (openStartAt !== undefined) {
+    openStartDate = moment(openStartAt);
+    openTransformDate = openStartDate.format("YYYY년 MM월 DD일");
+    openTransformDay = dayArray[moment(openStartDate).day()];
+  }
+
+  const partStartDate = moment(participateStartAt);
+  const partTransformDate = partStartDate.format("YYYY년 MM월 DD일");
+  const partTransformDay = dayArray[moment(partStartDate).day()];
+
+  console.log(
+    "open시작일자",
+    openStartAt,
+    openStartDate,
+    openTransformDate,
+    openTransformDay
+  );
 
   const contents = [
     {
@@ -32,6 +50,8 @@ const Completed = (props) => {
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
       // API response 오면 moveTo 넣기
+      // 하단 수정 필요
+      moveTo: "/mychallenge/navi",
     },
     {
       icon: "👏",
@@ -40,7 +60,7 @@ const Completed = (props) => {
       subTitle2: "완주까지 함께 도전해봐요.",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
-      moveTo: `/mychallenge/${challengeId}`,
+      moveTo: `/challenges/${participateId}`,
     },
     {
       icon: "👍",
@@ -114,7 +134,15 @@ const Completed = (props) => {
             <InfoText>
               <div>
                 <span style={{ color: "#FF8B37", fontWeight: "bold" }}>
-                  {transformDate} {transformDay}요일
+                  {page === "open" ? (
+                    <>
+                      {openTransformDate} {openTransformDay}요일
+                    </>
+                  ) : (
+                    <>
+                      {partTransformDate} {partTransformDay}요일
+                    </>
+                  )}
                 </span>
                 <span>부터</span>
               </div>
@@ -134,7 +162,7 @@ const Completed = (props) => {
           margin="17.4vh 0 4.8vh"
           bg="rgba(255, 139, 55, 1)"
           _onClick={() => {
-            history.goBack();
+            history.push(content.moveTo);
           }}
         >
           {content.buttonText}

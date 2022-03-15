@@ -152,7 +152,7 @@ const PostDetail = (props) => {
             to={{
               pathname: "/completed/participate",
               state: {
-                startAt: post.startAt,
+                participateStart: post.startAt,
                 challengeId: challengeId,
                 title: post.title,
               },
