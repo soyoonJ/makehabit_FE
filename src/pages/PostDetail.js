@@ -66,6 +66,7 @@ const PostDetail = (props) => {
   };
   const join = () => {
     if (is_login) {
+      console.log("skdfsdnjfksdjnfk", is_login);
       dispatch(postActions.joinDB(challengeId));
     } else {
       window.alert("로그인 후 인증 해주세요!");
@@ -146,11 +147,11 @@ const PostDetail = (props) => {
           >
             인증하기
           </Join>
-        ) : (
+        ) : is_login ? (
           <Link
             to={{
               pathname: "/completed/participate",
-              state: { startAt: post.startAt },
+              state: { startAt: post.startAt, challengeId: challengeId },
             }}
           >
             <Join
@@ -161,6 +162,14 @@ const PostDetail = (props) => {
               참여하기
             </Join>
           </Link>
+        ) : (
+          <Join
+            onClick={() => {
+              join();
+            }}
+          >
+            참여하기
+          </Join>
         )}
       </Grid>
     </Grid>
