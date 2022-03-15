@@ -13,6 +13,7 @@ const Completed = (props) => {
   const location = useLocation();
 
   const startAt = location.state?.startAt;
+  const challengeId = location.state?.challengeId;
   console.log("시작날짜", startAt);
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
