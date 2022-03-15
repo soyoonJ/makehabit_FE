@@ -9,9 +9,30 @@ import { actionCreators as characterActions } from "../redux/modules/character";
 const ItemCircle = () => {
   const dispatch = useDispatch();
 
-  const [item, setItem] = React.useState(null);
   const itemList = useSelector((state) => state.character.itemList);
-  console.log("아이템리스트", itemList);
+  const category = itemList[0]?.category;
+
+  const isEquipAll = useSelector((state) => state.character?.isEquip);
+  console.log("컬러리스트", isEquipAll);
+  const isEquip = isEquipAll?.find((e) => e.category === "color");
+  console.log("컬러", isEquip);
+
+  const preview = useSelector((state) => state.character);
+  const previewColor = useSelector((state) => state.character?.colorItem);
+  console.log("프리뷰컬러", previewColor);
+
+  const [item, setItem] = React.useState(null);
+  // console.log("아이템리스트", itemList);
+
+  // React.useEffect(() => {
+  //   if (category === "color") {
+  //     if (preview?.colorItem === null) {
+  //       setItem(isEquip?.itemImgUrl);
+  //     } else {
+  //       setItem(previewColor);
+  //     }
+  //   }
+  // }, [category]);
 
   React.useEffect(() => {
     // console.log("유즈이펙트", item);
@@ -69,20 +90,8 @@ const ItemContainer = styled.div`
     width: 7vh;
     height: 7vh;
     border-radius: 50%;
-    // border: 4px solid #fff;
-    // box-shadow: 0 0 0 4px #fff, 0 0 0 8px #6825D6;
     position: relative;
     z-index: 1;
-  }
-  // #multiBorder:after {
-  //     position: absolute;
-  //     z-index: -1;
-  //     top: 4px;
-  //     left: 4px;
-  //     bottom: 4px;
-  //     right: 4px;
-  //     border: 4px solid #6825d6;
-  // }
   }
 `;
 
