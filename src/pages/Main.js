@@ -32,18 +32,23 @@ const Main = (props) => {
           <Header>
             {/*로고 */}
             {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
-            <Text width="30%" size="22px" bold color="#FF8B37">
+            <Text
+              width="30%"
+              size="20px"
+              bold
+              color="#FF8B37"
+              margin="22px 10px 0px 0px"
+            >
               로고부분
             </Text>
             <ContainerInput>
               <InputBox
                 ref={search}
                 placeholder="도전하고 싶은 습관을 검색해보세요!"
-                width="65%"
               ></InputBox>
 
               <ImgBox
-                style={{ width: "15px" }}
+                style={{ width: "20px" }}
                 src="images/icon_search.svg"
                 alt=""
                 onClick={() => {
@@ -57,7 +62,7 @@ const Main = (props) => {
 
         <Banner1 />
         <ContainerGrid>
-          <Text padding="5% 0 5% 5%" bold borderBox>
+          <Text size="20px" padding="5% 0 5% 5%" bold borderBox>
             카테고리
           </Text>
           <CategoryWrap>
@@ -155,7 +160,9 @@ const Main = (props) => {
           </CategoryWrap>
 
           <RecommendTitle>
-            <Text bold>추천 작심삼일</Text>
+            <Text size="20px" bold>
+              추천 작심삼일
+            </Text>
             <PlusButton
               onClick={() => {
                 dispatch(mainActions.RecommendDB(10));
@@ -193,10 +200,11 @@ const Container = styled.div`
   /* margin: 0% 3% 0% 3%; */
   margin: 0%;
   padding-bottom: 50px;
+  margin-bottom: 100px;
 `;
 
 const Header = styled.div`
-  margin: 10% 0% 2% 0%;
+  margin: 1.625em 0;
   display: flex;
 `;
 
@@ -207,22 +215,27 @@ const ContainerInput = styled.div`
   border-radius: 5px;
   background-color: #f7f7f7;
   align-items: center;
+  display: flex;
 `;
 
 const InputBox = styled.input`
-  width: 70%;
+  width: 16.188em;
   height: 27px;
   border: none;
   border-radius: 5px;
   background-color: #f7f7f7;
   outline: none;
+  size: 5px;
+  ::placeholder {
+    font-size: 12px;
+    margin-left: 10px;
+  }
 `;
 
 const ImgBox = styled.img`
   height: 20px;
-  width: 20px;
-
-  margin-left: 20%;
+  width: 10%;
+  margin-left: 8%;
 `;
 
 const CategoryWrap = styled.div`
@@ -266,6 +279,8 @@ const PlusButton = styled.button`
   border: 0;
   background-color: white;
   text-align: right;
+  font-size: 20px;
+  color: #707070;
 `;
 
 export default Main;
