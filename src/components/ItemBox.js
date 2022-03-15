@@ -10,7 +10,7 @@ import Horizontable from "./Horizontable";
 const ItemBox = () => {
   const dispatch = useDispatch();
 
-  const itemList = useSelector((state) => state.character.itemList);
+  const itemList = useSelector((state) => state.character?.itemList);
   const category = itemList[0].category;
   // console.log("아이템리스트", itemList);
   console.log("카테고리", category);

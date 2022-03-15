@@ -88,10 +88,10 @@ const CharacterContainer = () => {
   const saveButton = () => {
     // sendItems();
     if (
-      selectedBg.isOwned &&
-      selectedBody.isOwned &&
-      selectedAcc.isOwned &&
-      selectedClothes.isOwned
+      selectedBg?.isOwned &&
+      selectedBody?.isOwned &&
+      selectedAcc?.isOwned &&
+      selectedClothes?.isOwned
     ) {
       history.push("/charactersave");
     } else {

@@ -102,7 +102,7 @@ export default handleActions(
     [SET_ITEMS]: (state, action) =>
       produce(state, (draft) => {
         console.log("GETLIST", action.payload);
-        draft.allList = action.payload.itemList.items
+        draft.allList = action.payload.itemList.items;
 
         if (action.payload.category === undefined) {
           draft.itemList = action.payload.itemList.items;
