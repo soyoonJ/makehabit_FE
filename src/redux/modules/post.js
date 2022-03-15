@@ -77,13 +77,14 @@ const addPostDB = (
           .catch(function (error) {
             console.log("addpostDB_error", error);
             return;
-          })
-          .then(() => {
-            history.push("/completed/open");
           });
       })
       .catch((error) => {
         console.log(error);
+        return;
+      })
+      .then(() => {
+        history.push("/completed/open");
       });
   };
 };
