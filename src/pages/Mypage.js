@@ -52,7 +52,7 @@ const Mypage = (props) => {
   //자식 함수 접근하는 Ref
   const childRef = useRef();
   return (
-    <div>
+    <Container>
       <ContainerGrid>
         <Grid margin="10% 0%">
           <CharacterWrap>
@@ -219,9 +219,17 @@ const Mypage = (props) => {
         </Grid>
       </ContainerGrid>
       <ButtonNavigation />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  /* overflow-x: hidden; */
+  /* margin: 0% 3% 0% 3%; */
+  /* margin: 0%;
+  padding-bottom: 50px; */
+  margin-bottom: 150px;
+`;
 
 const CharacterWrap = styled.div`
   width: 300px;

@@ -14,7 +14,8 @@ import CategoryBar from "../components/CategoryBar";
 const Category = (props) => {
   const dispatch = useDispatch();
   const category_list = useSelector((state) => state.main.category_list);
-  // console.log("카테고리리스트", category_list);
+
+  console.log("카테고리리스트", category_list);
 
   // 새로고침 해도 현재카테고리를 보여 줄 수 있도록
   const categoryId = props.match.params.id;
