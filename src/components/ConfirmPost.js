@@ -38,7 +38,7 @@ const ConfirmPost = (props) => {
     <GridBox>
       {/* 좌측 이미지 - 완료된 챌린지 */}
       {status === 2 ? (
-        <ImageContainer style={{ position: "relative" }}>
+        <ImageContainer>
           <Completed>완료</Completed>
           <PostImage
             src={thumbnail}
@@ -119,6 +119,7 @@ const ImageContainer = styled.div`
   height: 15.4vh;
   min-height: 130px;
   grid-column: 1/2;
+  position: relative;
 `;
 const PostImage = styled.img`
   width: 100%;

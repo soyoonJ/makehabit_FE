@@ -85,7 +85,6 @@ const CharacterContainer = () => {
     }
   }, [preview]);
 
-
   const saveButton = () => {
     // sendItems();
     if (
@@ -100,7 +99,6 @@ const CharacterContainer = () => {
       modalRef.current.openModal();
     }
   };
-
 
   return (
     <Container>
