@@ -20,8 +20,6 @@ const Search = () => {
       <Container>
         <ContainerGrid>
           <Header>
-            {/*로고 */}
-            {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
             <Text width="30%" size="22px" bold color="#FF8B37">
               로고부분
             </Text>
@@ -33,11 +31,10 @@ const Search = () => {
               ></InputBox>
 
               <ImgBox
-                style={{ width: "10px" }}
-                src="images/search.png"
+                style={{ width: "15px" }}
+                src="images/icon_search.svg"
                 alt=""
                 onClick={() => {
-                  console.log("클릭되니");
                   dispatch(mainActions.getSearchDB(search.current.value));
                   history.push(`/search`);
                 }}
@@ -71,8 +68,9 @@ const Header = styled.div`
 `;
 
 const ImgBox = styled.img`
-  width: 17px;
-  top: 10px;
+  height: 20px;
+  width: 20px;
+
   margin-left: 20%;
 `;
 
@@ -105,5 +103,6 @@ const InputBox = styled.input`
   border: none;
   border-radius: 5px;
   background-color: #f7f7f7;
+  outline: none;
 `;
 export default Search;

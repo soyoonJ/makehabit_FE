@@ -38,7 +38,7 @@ const Category = (props) => {
       </HeaderContainer>
       <CardWrap>
         {category_list?.map((p, idx) => {
-          console.log("피", p);
+          // console.log("피", p);
           return <CategoryPost key={p._id} {...p} />;
         })}
       </CardWrap>
@@ -55,13 +55,6 @@ const HeaderContainer = styled.div`
   margin: 5% 0% 2% 0%;
   display: flex;
   justify-content: space-around;
-`;
-
-const CategoryButton = styled.button`
-  border: 0;
-  outline: 0;
-  background-color: white;
-  margin: 1% 1%;
 `;
 
 const CardWrap = styled.div`
