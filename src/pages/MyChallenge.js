@@ -68,7 +68,7 @@ const MyChallenge = (props) => {
       <hr style={{ margin: "0 0 2vh 0", outline: "none" }} />
 
       {/* 참여챌린지 */}
-      <ContainerGrid>
+      <ContainerGrid margin="0 0 14.6vh">
         {currentPage === "navi" ? (
           <div style={{ marginBottom: "14.6vh" }}>
             {challenge_list?.map((e, i) => {
@@ -76,7 +76,7 @@ const MyChallenge = (props) => {
             })}
           </div>
         ) : (
-          <ImageContainer style={{ marginBottom: "14.6vh" }}>
+          <ImageContainer>
             {/* 나의 기록보기 페이지 */}
             {proof_list?.map((e, i) => {
               return (
@@ -140,6 +140,7 @@ const ImageContainer = styled.div`
   & > div {
     width: 100%;
     height: 19.7vh;
+    min-height: 165px;
     border-radius: 5.5px;
   }
 `;
