@@ -61,6 +61,7 @@ const Mypage = (props) => {
               <ItemImg src={Item + equipColor?.itemImgUrl} />
               <ItemImg src={Item + equipClothes?.itemImgUrl} />
               <ItemImg src={Item + equipAcc?.itemImgUrl} />
+              <ItemImg src={Item + equipEmotion?.itemImgUrl} />
             </ImgContainer>
 
             {/* {viewBg && (
