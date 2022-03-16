@@ -26,6 +26,9 @@ const Upload = forwardRef((props, ref) => {
     setPreviewImg(URL.createObjectURL(e.target.files[0]));
     dispatch(postActions.imgExist(true));
   };
+  React.useEffect(() => {
+    dispatch(postActions.imgExist(false));
+  }, []);
   return (
     <ImageBox
       style={{
