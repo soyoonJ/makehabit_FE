@@ -17,6 +17,7 @@ const Completed = (props) => {
   const participateId = location.state?.challengeId;
   const participateTitle = location.state?.title;
   console.log("participateId", participateId);
+  console.log("openStartAt", openStartAt);
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 

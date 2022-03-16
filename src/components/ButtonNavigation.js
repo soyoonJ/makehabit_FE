@@ -10,8 +10,7 @@ import { useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
 import { ReactComponent as HomeImg } from "../img/icon_home.svg";
-// /public/images/icon_home.svg";
-//
+
 const ButtonNavigation = () => {
   //버튼아이콘
   // const home = process.env.PUBLIC_URL + "/images/icon_home.svg";
@@ -25,11 +24,11 @@ const ButtonNavigation = () => {
   // const Img01 = process.env.PUBLIC_URL + "/images";
   // console.log("button", is_login);
 
-  const [clickedTab, changeTab] = React.useState("home");
+  const [clickedTab, changeTab] = React.useState();
   //모달창에 접근하는 ref
   const modalRef = React.useRef();
   // console.log("모달ref!!!", modalRef);
-
+  console.log("clickTab", clickedTab, clickedTab === "home");
   const confirmPage = () => {
     if (is_login) {
       // dispatch(challengeActions.setTab("navi"));
@@ -88,7 +87,11 @@ const ButtonNavigation = () => {
                 }}
                 fill="orange"
               /> */}
-              <HomeImg fill="blue" />
+              {clickedTab === "home" ? (
+                <HomeImg fill="red" />
+              ) : (
+                <HomeImg fill="orange" />
+              )}
             </div>
 
             <div
@@ -175,8 +178,8 @@ const ButtonNavigation = () => {
               color: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
             }}
             onClick={() => {
-              myPage();
               changeTab("mypage");
+              myPage();
             }}
           >
             <div>
