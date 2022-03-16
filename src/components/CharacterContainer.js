@@ -85,7 +85,7 @@ const CharacterContainer = () => {
       setAcc(previewAcc);
     }
     if (previewEmotion) {
-      setAcc(previewEmotion);
+      setEmotion(previewEmotion);
     }
   }, [preview]);
 
