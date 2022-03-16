@@ -204,7 +204,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  margin: 1.625em 0;
+  /* margin: 26px 0; */
   display: flex;
 `;
 
@@ -220,7 +220,7 @@ const ContainerInput = styled.div`
 
 const InputBox = styled.input`
   width: 16.188em;
-  height: 27px;
+  height: 29px;
   border: none;
   border-radius: 5px;
   background-color: #f7f7f7;

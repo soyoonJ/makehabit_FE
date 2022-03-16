@@ -44,6 +44,7 @@ const ButtonNavigation = () => {
   const writePage = () => {
     // console.log("writePage", is_login);
     if (is_login) {
+      // changeTab("open");
       history.push(`/postwrite`);
     } else {
       modalRef.current.openModal();

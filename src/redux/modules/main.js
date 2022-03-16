@@ -70,7 +70,7 @@ const categoryDB = (categoryId) => {
 
       .category(categoryId) //
       .then(function (res) {
-        console.log("잘 들어가느냐!!!", res.data);
+        // console.log("잘 들어가느냐!!!", res.data);
         dispatch(getCategory(res.data));
       })
       .catch((error) => {
