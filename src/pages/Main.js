@@ -225,6 +225,7 @@ const InputBox = styled.input`
   border-radius: 5px;
   background-color: #f7f7f7;
   outline: none;
+  padding-left: 10px;
   size: 5px;
   ::placeholder {
     font-size: 12px;

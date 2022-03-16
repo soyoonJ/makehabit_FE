@@ -107,15 +107,18 @@ const ButtonNavigation = () => {
               confirmPage();
             }}
           >
-            <FlagImg
-              style={{
-                fill:
-                  pathname === "/mychallenge/navi" ||
-                  pathname === "/mychallenge/feed"
-                    ? "#FF8B37"
-                    : "#9C9C9C",
-              }}
-            ></FlagImg>
+            <div>
+              <FlagImg
+                style={{
+                  fill:
+                    pathname === "/mychallenge/navi" ||
+                    pathname === "/mychallenge/feed"
+                      ? "#FF8B37"
+                      : "#9C9C9C",
+                }}
+              ></FlagImg>
+            </div>
+
             <IconText
               selected={
                 pathname === "/mychallenge/navi" ||
@@ -131,11 +134,14 @@ const ButtonNavigation = () => {
               characterPage();
             }}
           >
-            <ShopImg
-              style={{
-                fill: pathname === "/character" ? "#FF8B37" : "#9C9C9C",
-              }}
-            ></ShopImg>
+            <div>
+              <ShopImg
+                style={{
+                  fill: pathname === "/character" ? "#FF8B37" : "#9C9C9C",
+                }}
+              ></ShopImg>
+            </div>
+
             <IconText selected={pathname === "/character"}>캐릭터샵</IconText>
           </ButtonIcon>
           <ButtonIcon
