@@ -10,6 +10,10 @@ import moment from "moment";
 
 const Completed = (props) => {
   const page = props.match.params.id;
+  const openId = useSelector((state) => state.post.challengeId);
+  // console.log("openId", openId);
+  const totalCnt = useSelector((state) => state.challenge.totalCnt);
+
   const location = useLocation();
 
   const openStartAt = location.state?.openStart;
@@ -47,7 +51,7 @@ const Completed = (props) => {
       buttonText: "챌린지 보러가기",
       // API response 오면 moveTo 넣기
       // 하단 수정 필요
-      moveTo: "/mychallenge/navi",
+      moveTo: `/challenges/${openId}`,
     },
     {
       icon: "👏",
@@ -61,7 +65,7 @@ const Completed = (props) => {
     {
       icon: "👍",
       title: "목표 인증 완료!",
-      subTitle1: "오늘의 도전은 멋진 습관이 될 거예요.",
+      subTitle1: `${totalCnt}번째 도전`,
       subTitle2: "",
       boxTitle: "인증 보상",
       buttonText: "확인",
@@ -82,7 +86,7 @@ const Completed = (props) => {
   return (
     <React.Fragment>
       <ContainerGrid>
-        <TopBox>
+        {/* <TopBox>
           <div>{content.icon}</div>
           <div>{content.title}</div>
           <div>{content.subTitle1}</div>
@@ -96,16 +100,20 @@ const Completed = (props) => {
           }}
         >
           {content.boxTitle}
-        </div>
+        </div> */}
         {page === "confirm" ? (
           <Grid>
+            <TopBox>
+              <div>{content.icon}</div>
+              <div>{content.title}</div>
+              <div style={{ fontWeight: "700" }}>
+                <span style={{ color: "#FF8B37" }}>{content.subTitle1}</span>을
+                성공했어요.
+              </div>
+            </TopBox>
             <GiftBox>
               <Content>
-                <Num>100</Num>
-                <span style={{ paddingBottom: "2vh" }}>포인트와</span>
-
-                <Num>100</Num>
-                <span>경험치를 획득했어요!</span>
+                성공보상<span style={{ color: "#FF8B37" }}> 10P</span>
               </Content>
             </GiftBox>
 
@@ -126,29 +134,46 @@ const Completed = (props) => {
             </Button>
           </Grid>
         ) : (
-          <InfoBox>
-            <InfoText>
-              <div>
-                <span style={{ color: "#FF8B37", fontWeight: "bold" }}>
-                  {page === "open" ? (
-                    <>
-                      {openTransformDate} {openTransformDay}요일
-                    </>
-                  ) : (
-                    <>
-                      {partTransformDate} {partTransformDay}요일
-                    </>
-                  )}
-                </span>
-                <span>부터</span>
-              </div>
-              <div>
-                <span style={{ fontWeight: "bold" }}>3일씩 10바퀴</span>
-                <span>가 진행 될 예정이에요.</span>
-              </div>
-              <div>완주하는 그 날까지 힘내요!</div>
-            </InfoText>
-          </InfoBox>
+          <>
+            <TopBox>
+              <div>{content.icon}</div>
+              <div>{content.title}</div>
+              <div>{content.subTitle1}</div>
+              <div>{content.subTitle2}</div>
+            </TopBox>
+            <div
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: "bold",
+                marginBottom: "0.875rem",
+              }}
+            >
+              {content.boxTitle}
+            </div>
+            <InfoBox>
+              <InfoText>
+                <div>
+                  <span style={{ color: "#FF8B37", fontWeight: "bold" }}>
+                    {page === "open" ? (
+                      <>
+                        {openTransformDate} {openTransformDay}요일
+                      </>
+                    ) : (
+                      <>
+                        {partTransformDate} {partTransformDay}요일
+                      </>
+                    )}
+                  </span>
+                  <span>부터</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: "bold" }}>3일씩 10바퀴</span>
+                  <span>가 진행 될 예정이에요.</span>
+                </div>
+                <div>완주하는 그 날까지 힘내요!</div>
+              </InfoText>
+            </InfoBox>
+          </>
         )}
         <Button
           fontSize="1.375rem"
@@ -216,24 +241,16 @@ const InfoText = styled.div`
 // 인증완료 보상 info 박스
 const GiftBox = styled.div`
   width: 100%;
-  height: 8rem;
+  height: 6.125rem;
   background: #fff1e7;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 4vh;
+  margin-bottom: 1.188rem;
 `;
 const Content = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  font-size: 1.25rem;
+  font-size: 1.563rem;
   font-weight: bold;
-  padding: 1.75rem 10%;
-`;
-const Num = styled.span`
-  text-align: right;
-  color: #ff8b37;
-  padding-right: 17px;
 `;
 export default Completed;
