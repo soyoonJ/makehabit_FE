@@ -38,9 +38,13 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       if (shopAcc?.price && !shopAcc.isOwned && !isNaN(shopAcc?.price)) {
         setTotalPoint((totalPoint) => totalPoint + shopAcc?.price);
       }
-      // if(shopEmotion?.price && !shopEmotion.isOwned && !isNaN(shopEmotion?.price)) {
-      //   setTotalPoint((totalPoint) => totalPoint + shopEmotion?.price)
-      // }
+      if (
+        shopEmotion?.price &&
+        !shopEmotion.isOwned &&
+        !isNaN(shopEmotion?.price)
+      ) {
+        setTotalPoint((totalPoint) => totalPoint + shopEmotion?.price);
+      }
     },
     purchase() {
       let items = [];
@@ -303,6 +307,27 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                   </ImageContainer>
                   <ItemName>{shopAcc.itemName}</ItemName>
                   <ItemPrice>{shopAcc.price}</ItemPrice>
+                  <ItemCancel
+                    onClick={() => {
+                      setAcc(null);
+                      account("acc");
+                    }}
+                  >
+                    X
+                  </ItemCancel>
+                </GridBox>
+              </GridContainer>
+            ) : (
+              ""
+            )}
+            {shopEmotion && !shopEmotion.isOwned ? (
+              <GridContainer>
+                <GridBox>
+                  <ImageContainer style={{ position: "relative" }}>
+                    <PostImage src={Item + shopEmotion.itemImgUrl}></PostImage>
+                  </ImageContainer>
+                  <ItemName>{shopEmotion.itemName}</ItemName>
+                  <ItemPrice>{shopEmotion.price}</ItemPrice>
                   <ItemCancel
                     onClick={() => {
                       setAcc(null);

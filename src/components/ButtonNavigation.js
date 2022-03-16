@@ -18,7 +18,6 @@ import { ReactComponent as MypageImg } from "../img/icon_mypage.svg";
 
 const ButtonNavigation = () => {
   const is_login = useSelector((state) => state.user.is_login);
-
   const [clickedTab, changeTab] = React.useState("home");
 
   console.log("버튼", clickedTab);
@@ -38,7 +37,7 @@ const ButtonNavigation = () => {
     }
   };
   const writePage = () => {
-    // console.log("writePage", is_login);
+    console.log("writePage", is_login, clickedTab);
     if (is_login) {
       history.push(`/postwrite`);
     } else {
@@ -63,7 +62,6 @@ const ButtonNavigation = () => {
       modalRef.current.openModal();
     }
   };
-
   return (
     <React.Fragment>
       <Footer>
@@ -71,7 +69,6 @@ const ButtonNavigation = () => {
         <ButtonWrap>
           <ButtonIcon
             onClick={() => {
-              changeTab("home");
               history.push("/");
             }}
           >
@@ -94,7 +91,6 @@ const ButtonNavigation = () => {
           </ButtonIcon>
           <ButtonIcon
             onClick={() => {
-              changeTab("open");
               writePage();
             }}
           >
@@ -119,8 +115,6 @@ const ButtonNavigation = () => {
           <ButtonIcon
             onClick={() => {
               confirmPage();
-
-              changeTab("confirm");
             }}
           >
             <FlagImg
@@ -140,7 +134,6 @@ const ButtonNavigation = () => {
           {/* 채팅 추가 연결 필요 */}
           <ButtonIcon
             onClick={() => {
-              changeTab("character");
               characterPage();
             }}
           >
@@ -160,7 +153,6 @@ const ButtonNavigation = () => {
           </ButtonIcon>
           <ButtonIcon
             onClick={() => {
-              changeTab("mypage");
               myPage();
             }}
           >
