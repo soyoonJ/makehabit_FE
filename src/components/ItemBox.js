@@ -1,11 +1,12 @@
 // 아이템 선택창 - 네모박스
 import React from "react";
 import styled from "styled-components";
-import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 import { actionCreators as characterActions } from "../redux/modules/character";
 
 import { useDispatch, useSelector } from "react-redux";
 import Horizontable from "./Horizontable";
+
+// import { ReactComponent as LockImg } from "../public/images/icon_lock.svg";
 
 const ItemBox = () => {
   const Icons = process.env.PUBLIC_URL + "/images";
@@ -103,24 +104,19 @@ const ItemBox = () => {
                 {e.isOwned ? (
                   ""
                 ) : (
-                  <svg
-                    width="2.37vh"
-                    height="2.37vh"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <img
+                    src={Icons + "/icon_lock.svg"}
+                    alt="잠금아이콘"
                     style={{
                       position: "absolute",
                       top: "9px",
                       right: "9px",
+                      width: "2.37vh",
+                      height: "2.37vh",
+                      // color: "gray",
                     }}
-                  >
-                    <path
-                      d="M18 8H17V6C17 3.24 14.76 1 12 1C9.24 1 7 3.24 7 6V8H6C4.9 8 4 8.9 4 10V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V10C20 8.9 19.1 8 18 8ZM9 6C9 4.34 10.34 3 12 3C13.66 3 15 4.34 15 6V8H9V6ZM18 20H6V10H18V20Z"
-                      fill="#707070"
-                    />
-                    <path d="M18 20H6V10H18V20Z" fill="#707070" />
-                  </svg>
+                  />
+                  // <LockImg />
                 )}
               </div>
               <div>{e.itemName}</div>

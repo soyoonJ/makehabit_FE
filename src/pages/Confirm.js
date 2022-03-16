@@ -2,15 +2,15 @@
 
 import React from "react";
 
-import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
+import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
 import Upload from "../components/Upload";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
+// import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
 import Modal from "../components/Modal";
-import ButtonNavigation from "../components/ButtonNavigation";
+// import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 const Confirm = (props) => {

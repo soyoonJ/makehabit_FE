@@ -1,31 +1,31 @@
 import React from "react";
 
-import { Grid, Text, Input, Image, Button } from "../elements";
+import { Text } from "../elements";
 
-import post, { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
-import { FcLikePlaceholder, FcLike } from "react-icons/fc";
-import { ContactSupportOutlined } from "@material-ui/icons";
+// import { FcLikePlaceholder, FcLike } from "react-icons/fc";
+// import { ContactSupportOutlined } from "@material-ui/icons";
 const CategoryPost = (props) => {
   //좋아요 버튼 on/off
   // let [isLike, setIsLike] = React.useState(false);
 
   const dispatch = useDispatch();
-  const post = useSelector((state) => state.main.category_list);
+  // const post = useSelector((state) => state.main.category_list);
   // console.log("정신차려라", post);
 
-  const Img01 = process.env.PUBLIC_URL + "/images";
+  // const Img01 = process.env.PUBLIC_URL + "/images";
   // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
   const { thumbnail, title, tags, challengeId, puls, isLike } = props;
   // console.log("카테고리포스트", props);
 
   //글자수체크
-  let titleLength = title.length;
-  let subtitle = title.substring(0, 7);
+  // let titleLength = title.length;
+  // let subtitle = title.substring(0, 7);
   // console.log(subtitle);
 
   //이미지경로
