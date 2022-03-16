@@ -24,14 +24,14 @@ const CharacterContainer = () => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
   console.log("isEquip", isEquip);
-  console.log(
-    "equip확인",
-    isEquip,
-    equipBg?.itemImgUrl,
-    equipColor?.itemImgUrl,
-    equipClothes?.itemImgUrl,
-    equipAcc?.itemImgUrl
-  );
+  // console.log(
+  //   "equip확인",
+  //   isEquip,
+  //   equipBg?.itemImgUrl,
+  //   equipColor?.itemImgUrl,
+  //   equipClothes?.itemImgUrl,
+  //   equipAcc?.itemImgUrl
+  // );
 
   // 미리보기
   const preview = useSelector((state) => state.character);
@@ -40,14 +40,14 @@ const CharacterContainer = () => {
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
-  // const previewEmotion = useSelector((state) => state.character?.emotionItem);
+  const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
   //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
   const [viewBg, setBg] = useState();
   const [viewClothes, setClothes] = useState();
   const [viewAcc, setAcc] = useState();
-  // const [viewEmotion, setEmotion] = useState();
+  const [viewEmotion, setEmotion] = useState();
   // console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
 
   const allList = useSelector((state) => state.character.allList);
@@ -58,18 +58,17 @@ const CharacterContainer = () => {
   const selectedBody = allList.find((e) => e.itemImgUrl === viewBody);
   const selectedAcc = allList.find((e) => e.itemImgUrl === viewClothes);
   const selectedClothes = allList.find((e) => e.itemImgUrl === viewAcc);
-  // const selectedEmotion = allList.find((e) => e.itemImgUrl === viewEmotion);
+  const selectedEmotion = allList.find((e) => e.itemImgUrl === viewEmotion);
   // console.log("현재바디", selectedBody);
 
   //자식 함수 접근하는 Ref
   const modalRef = useRef();
   React.useEffect(() => {
-    // dispatch(characterActions.getItemDB());
     setBody(equipColor?.itemImgUrl);
     setBg(equipBg?.itemImgUrl);
     setClothes(equipClothes?.itemImgUrl);
     setAcc(equipAcc?.itemImgUrl);
-    // setEmotion(equipEmotion?.itemImgUrl);
+    setEmotion(equipEmotion?.itemImgUrl);
   }, [equipColor?.itemImgUrl]);
 
   React.useEffect(() => {
@@ -85,9 +84,9 @@ const CharacterContainer = () => {
     if (previewAcc) {
       setAcc(previewAcc);
     }
-    // if (previewEmotion) {
-    //   setAcc(previewEmotion);
-    // }
+    if (previewEmotion) {
+      setAcc(previewEmotion);
+    }
   }, [preview]);
 
   const saveButton = () => {
@@ -96,10 +95,9 @@ const CharacterContainer = () => {
       selectedBg?.isOwned &&
       selectedBody?.isOwned &&
       selectedAcc?.isOwned &&
-      // selectedEmotion?.isOwned &&
+      selectedEmotion?.isOwned &&
       selectedClothes?.isOwned
     ) {
-      // history.push("/charactersave");
       modalRef.current.purchase();
     } else {
       modalRef.current.account();
@@ -114,9 +112,9 @@ const CharacterContainer = () => {
         <ImgContainer>
           <ItemImg src={Item + viewBg} alt={viewBg}></ItemImg>
           <ItemImg src={Item + viewBody} alt={viewBody}></ItemImg>
-          {/* <ItemImg src={Item + viewEmotion} alt={viewEmotion}></ItemImg> */}
           <ItemImg src={Item + viewClothes} alt={viewClothes}></ItemImg>
           <ItemImg src={Item + viewAcc} alt={viewAcc}></ItemImg>
+          <ItemImg src={Item + viewEmotion} alt={viewEmotion}></ItemImg>
         </ImgContainer>
       )}
       <Button
@@ -138,7 +136,7 @@ const CharacterContainer = () => {
       >
         {selectedBg?.isOwned &&
         selectedBody?.isOwned &&
-        // selectedEmotion?.isOwned &&
+        selectedEmotion?.isOwned &&
         selectedAcc?.isOwned &&
         selectedClothes?.isOwned
           ? "저장하기"
