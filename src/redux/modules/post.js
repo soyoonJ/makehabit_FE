@@ -14,6 +14,8 @@ const EDIT_JOIN = "EDIT_JOIN";
 //좋아요
 const EDIT_LIKE = "EDIT_LIKE";
 
+const addPost = createAction(ADD_POST, (challengeId) => ({ challengeId }));
+
 const editJoin = createAction(EDIT_JOIN, (nickname, isPush) => ({
   nickname,
   isPush,
@@ -31,7 +33,7 @@ const getDetailPost = createAction(DETAIL_POST, (post) => ({
 // initialState
 const initialState = {
   page: null,
-  challengId: "_id",
+  challengId: "",
   post: [],
 };
 
@@ -73,6 +75,7 @@ const addPostDB = (
           )
           .then((response) => {
             console.log("게시물 등록", response);
+            dispatch(addPost(response.data.challengeId));
           })
           .catch(function (error) {
             console.log("addpostDB_error", error);
@@ -199,6 +202,10 @@ export default handleActions(
     //     // console.log(action.payload.page);
     //     draft.page = action.payload.page;
     //   }),
+    [ADD_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.challengeId = action.payload.challengeId;
+      }),
     [DETAIL_POST]: (state, action) =>
       produce(state, (draft) => {
         console.log("Detail_post", action.payload);

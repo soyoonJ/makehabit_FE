@@ -9,7 +9,7 @@ const SET_TAB = "SET_TAB";
 const SET_FEED = "SET_FEED";
 const SET_CONFIRM = "SET_CONFIRM";
 const SET_PROOF = "SET_PROOF";
-// const SET_COMPLETE = "SET_COMPLETE";
+const SET_COMPLETE = "SET_COMPLETE";
 
 // action creators
 const setChallenge = createAction(SET_CHALLENGE, (challenge_list) => ({
@@ -21,9 +21,9 @@ const setFeed = createAction(SET_FEED, (feed) => ({ feed }));
 const setConfirm = createAction(SET_CONFIRM, (challenge_info) => ({
   challenge_info,
 }));
-// const setComplete = createAction(SET_COMPLETE, (completed_page) => ({
-//   completed_page,
-// }));
+const setComplete = createAction(SET_COMPLETE, (totalCnt) => ({
+  totalCnt,
+}));
 
 // initialState
 const initialState = {
@@ -32,7 +32,7 @@ const initialState = {
   challenge_list: null,
   proof_list: null,
   feed: null,
-  // completed_page: null,
+  totalCnt: null,
 };
 
 // 인증기록하기 페이지 조회
@@ -65,7 +65,7 @@ const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
         apis
           .confirm(challengeId, res.data.imgUrl, challengeTitle, comment)
           .then(function (res) {
-            // console.log(res);
+            dispatch(setComplete(res.data.totalCnt));
             history.push("/completed/confirm");
           })
           .catch((error) => {
@@ -151,10 +151,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.feed = action.payload.feed;
       }),
-    // [SET_COMPLETE]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.completed_page = action.payload.completed_page;
-    //   }),
+    [SET_COMPLETE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.totalCnt = action.payload.totalCnt;
+      }),
   },
   initialState
 );
@@ -170,7 +170,7 @@ const actionCreators = {
   myChallengeDB,
   setFeed,
   myfeedDB,
-  // setComplete,
+  setComplete,
 };
 
 export { actionCreators };
