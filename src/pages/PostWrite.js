@@ -95,10 +95,10 @@ const PostWrite = () => {
   const fileInput = React.useRef();
   //userId 가져오기
   const loginCheck = useSelector((state) => state.user.user);
-
+  let image;
   const confirm = () => {
     const imageForm = new FormData();
-    let image = fileInput.current.files[0];
+    image = fileInput.current.files[0];
     imageForm.append("image", image);
     // console.log("들어왔나?", date, desc, method);
 
@@ -266,12 +266,22 @@ const PostWrite = () => {
           </Text>
         </Grid>
         <Grid padding="5%" margin="0 0 150px 0">
-          <Link
-            to={{
-              pathname: "/completed/open",
-              state: { openStart: date },
-            }}
-          >
+          {image && title && sendCategory && date && desc && method ? (
+            <Link
+              to={{
+                pathname: "/completed/open",
+                state: { openStart: date },
+              }}
+            >
+              <CreateButton
+                onClick={() => {
+                  confirm();
+                }}
+              >
+                개설 완료
+              </CreateButton>
+            </Link>
+          ) : (
             <CreateButton
               onClick={() => {
                 confirm();
@@ -279,7 +289,7 @@ const PostWrite = () => {
             >
               개설 완료
             </CreateButton>
-          </Link>
+          )}
         </Grid>
       </Grid>
 
