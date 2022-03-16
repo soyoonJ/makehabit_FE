@@ -15,7 +15,8 @@ import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 const Confirm = (props) => {
   const challengeId = props.match.params.id;
-  console.log("파라미터값", challengeId);
+  // console.log("파라미터값", challengeId);
+  // const Item = process.env.PUBLIC_URL + "/images/open_base";
   // 챌린지 조회 정보
   const challenge_info = useSelector((state) => state.challenge.challenge_info);
   // console.log("챌린지정보", challenge_info);
@@ -29,7 +30,7 @@ const Confirm = (props) => {
   const dispatch = useDispatch();
   // const preview = useSelector((state) => state.image.preview);
   const [preview, setPreview] = React.useState(
-    "https://png.pngtree.com/element_our/20190601/ourlarge/pngtree-file-upload-icon-image_1344393.jpg"
+    process.env.PUBLIC_URL + "/images/open_base"
   );
 
   // 이미지 미리보기 세팅하기 위함
@@ -107,6 +108,7 @@ const Confirm = (props) => {
         </ImageBox> */}
         {/* 이미지 첨부 */}
         <Upload
+          currentPage="confirm"
           ref={uploadRef}
           _ref={fileInput}
           _onClick={() => {
