@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
-import { actionCreators as userAction } from "../redux/modules/user";
-import { actionCreators as challengeActions } from "../redux/modules/challenge";
+// import { actionCreators as userAction } from "../redux/modules/user";
+// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
-import { Grid, Text, Input, Button } from "../elements";
-import CategoryModal from "../components/CategoryModal";
+import { Grid, Text } from "../elements";
+// import CategoryModal from "../components/CategoryModal";
 import CategoryModal1 from "../components/CategoryModal1";
 import Upload from "../components/Upload";
 import PageBack from "../components/PageBack";
-import { history } from "../redux/configureStore";
+// import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { GoCalendar } from "react-icons/go";
+// import { GoCalendar } from "react-icons/go";
 
 import moment from "moment";
 
@@ -40,16 +40,16 @@ const PostWrite = () => {
   };
 
   //카테고리 팝업
-  let [modalopen, setModalopen] = React.useState(false);
+  // let [modalopen, setModalopen] = React.useState(false);
   //카테고리 팝업 열기
-  const openModal = () => {
-    setModalopen(true);
-  };
+  // const openModal = () => {
+  //   setModalopen(true);
+  // };
 
-  //카테고리 팝업 닫기
-  const closeModal = () => {
-    setModalopen(false);
-  };
+  // //카테고리 팝업 닫기
+  // const closeModal = () => {
+  //   setModalopen(false);
+  // };
 
   //날짜 인풋박스 시작일 선택 제한 (오늘 이전의 날짜 선택 불가하게, 너무 오래된 날짜 선택 불가능하게)
   // 오늘 날짜 YYYY-MM-DD형식으로 추출
@@ -64,9 +64,9 @@ const PostWrite = () => {
     setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
   };
 
-  const onReset = () => {
-    setDate(null); // onClick함수 발생시 ''으로 {text} 변경
-  };
+  // const onReset = () => {
+  //   setDate(null); // onClick함수 발생시 ''으로 {text} 변경
+  // };
   // 오늘 날짜+30일 YYYY-MM-DD형식으로 추출
 
   // console.log(date);
@@ -94,13 +94,13 @@ const PostWrite = () => {
 
   const fileInput = React.useRef();
   //userId 가져오기
-  const loginCheck = useSelector((state) => state.user.user);
+  // const loginCheck = useSelector((state) => state.user.user);
   let image;
   const confirm = () => {
     const imageForm = new FormData();
     image = fileInput.current.files[0];
     imageForm.append("image", image);
-    // console.log("들어왔나?", date, desc, method);
+    console.log("들어왔나?", date, desc, method);
 
     if (image === undefined) {
       alert("썸네일 이미지가 없습니다!");
@@ -141,6 +141,14 @@ const PostWrite = () => {
       )
     );
   };
+
+  // const imageForm = new FormData();
+
+  // React.useEffect(() => {
+  //   image = fileInput.current.files[0];
+  //   imageForm.append("image", image);
+  // }, [fileInput]);
+
   //자식 함수 접근하는 Ref
   const childRef = useRef();
 
@@ -266,6 +274,15 @@ const PostWrite = () => {
           </Text>
         </Grid>
         <Grid padding="5%" margin="0 0 150px 0">
+          {console.log(
+            "데이터",
+            image,
+            title,
+            sendCategory,
+            date,
+            desc,
+            method
+          )}
           {image && title && sendCategory && date && desc && method ? (
             <Link
               to={{
@@ -275,6 +292,7 @@ const PostWrite = () => {
             >
               <CreateButton
                 onClick={() => {
+                  console.log("아무거나");
                   confirm();
                 }}
               >

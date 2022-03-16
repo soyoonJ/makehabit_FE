@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Input, Image } from "../elements";
+import { Input } from "../elements";
 const CategoryModal = (props) => {
   const { open, close, getData } = props;
 

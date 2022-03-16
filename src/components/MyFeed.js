@@ -1,10 +1,10 @@
 import React from "react";
 
 import { useLocation } from "react-router-dom";
-import { history } from "../redux/configureStore";
+// import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
-import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
+import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
 
 import styled from "styled-components";

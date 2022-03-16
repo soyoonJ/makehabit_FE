@@ -1,11 +1,12 @@
 import React from "react";
 
-import { Grid, Text, Input, Image, Button } from "../elements";
-import { actionCreators as challengeActions } from "../redux/modules/challenge";
+import { Grid, Text, Button } from "../elements";
+// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
 import { ReactComponent as HomeImg } from "../img/icon_home.svg";
@@ -13,15 +14,15 @@ import { ReactComponent as HomeImg } from "../img/icon_home.svg";
 //
 const ButtonNavigation = () => {
   //버튼아이콘
-  const home = process.env.PUBLIC_URL + "/images/icon_home.svg";
+  // const home = process.env.PUBLIC_URL + "/images/icon_home.svg";
   const write = process.env.PUBLIC_URL + "/images/icon_write.svg";
   const flag = process.env.PUBLIC_URL + "/images/icon_flag.svg";
   const shop = process.env.PUBLIC_URL + "/images/icon_shop.svg";
   const mypage = process.env.PUBLIC_URL + "/images/icon_mypage.svg";
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
-  const Img01 = process.env.PUBLIC_URL + "/images";
+  // const Img01 = process.env.PUBLIC_URL + "/images";
   // console.log("button", is_login);
 
   const [clickedTab, changeTab] = React.useState("home");

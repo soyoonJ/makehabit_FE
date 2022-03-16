@@ -72,8 +72,7 @@ const addPostDB = (
             tag
           )
           .then((response) => {
-            console.log("게시물 등록");
-            history.push("/completed/open");
+            console.log("게시물 등록", response);
           })
           .catch(function (error) {
             console.log("addpostDB_error", error);
