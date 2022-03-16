@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
+// import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
-import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
+import { ContainerGrid, Grid } from "../elements";
 import { actionCreators as characterActions } from "../redux/modules/character";
 
 const ItemCircle = () => {
@@ -18,7 +18,7 @@ const ItemCircle = () => {
   const isEquip = isEquipAll?.find((e) => e.category === category);
   console.log("컬러", isEquip);
 
-  const preview = useSelector((state) => state.character);
+  // const preview = useSelector((state) => state.character);
   const previewColor = useSelector((state) => state.character?.colorItem);
   console.log("프리뷰컬러", previewColor);
 

@@ -1,11 +1,12 @@
 // 아이템 선택창 - 네모박스
 import React from "react";
 import styled from "styled-components";
-import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 import { actionCreators as characterActions } from "../redux/modules/character";
 
 import { useDispatch, useSelector } from "react-redux";
 import Horizontable from "./Horizontable";
+
+// import { ReactComponent as LockImg } from "../public/images/icon_lock.svg";
 
 const ItemBox = () => {
   const Icons = process.env.PUBLIC_URL + "/images";
@@ -112,9 +113,10 @@ const ItemBox = () => {
                       right: "9px",
                       width: "2.37vh",
                       height: "2.37vh",
-                      color: "gray",
+                      // color: "gray",
                     }}
                   />
+                  // <LockImg />
                 )}
               </div>
               <div>{e.itemName}</div>

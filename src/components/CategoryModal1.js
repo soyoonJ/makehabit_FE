@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from "react";
-import { Text, Grid } from "../elements";
+import { Grid } from "../elements";
 import styled from "styled-components";
 
 const Modal = forwardRef((props, ref) => {

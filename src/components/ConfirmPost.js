@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Text, Input, Image, Button } from "../elements";
+import { Button } from "../elements";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
