@@ -236,6 +236,9 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
         <section>
           <ModalHeader>{<Text>내가 담은 목록{currentPoint}</Text>}</ModalHeader>
           <ModalContent>
+            {!shopBg && !shopColor && !shopClothes && !shopAcc && !shopEmotion
+              ? closeModal()
+              : ""}
             {shopBg && !shopBg.isOwned ? (
               <GridContainer>
                 <GridBox>
@@ -342,46 +345,6 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
               ""
             )}
           </ModalContent>
-          {/* <ModalContent>
-            {shopList.map((item, i) => (
-              <GridContainer>
-                <GridBox key={i}>
-                  <ImageContainer style={{ position: "relative" }}>
-                    <PostImage src={Item + item}></PostImage>
-                  </ImageContainer>
-                  <ItemName>
-                    {console.log(
-                      // "itemList?.filter((e) => e.itemImgUrl === item)[0].itemName",
-                      // itemList?.filter((e) => e.itemImgUrl === item)[0],
-                      // itemList?.filter((e) => e.itemImgUrl === item)[0].itemName
-                    )}
-                  </ItemName>
-                  <ItemPrice>
-                    {itemList?.filter((e) => e.itemImgUrl === item)[0].price}
-                  </ItemPrice>
-                  <ItemCancel>X</ItemCancel>
-                </GridBox>
-              </GridContainer>
-            ))}
-            {itemList?.map((e, i) => (
-              <GridContainer>
-                <GridBox key={e._id}>
-                  <ImageContainer style={{ position: "relative" }}>
-                    <PostImage
-                      src={itemList && Item + itemList[i].itemImgUrl}
-                    ></PostImage>
-                  </ImageContainer>
-                  <ItemName>{itemList && itemList[i].itemName}</ItemName>
-                  <ItemPrice>
-                    {itemList && itemList[i].isOwned
-                      ? "구매함"
-                      : itemList[i].price}
-                  </ItemPrice>
-                  <ItemCancel>X</ItemCancel>
-                </GridBox>
-              </GridContainer>
-            ))}
-          </ModalContent> */}
           <ButtonBox>
             <Button
               onClick={() => {

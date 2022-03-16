@@ -40,7 +40,7 @@ const ButtonNavigation = () => {
     }
   };
   const writePage = () => {
-    console.log("writePage", is_login, clickedTab);
+    // console.log("writePage", is_login, clickedTab);
     if (is_login) {
       history.push(`/postwrite`);
     } else {
