@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
+// import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
-import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
-import { actionCreators as characterActions } from "../redux/modules/character";
+import { Button } from "../elements";
+// import { actionCreators as characterActions } from "../redux/modules/character";
 
 import ShoppingBasket1 from "../components/ShoppingBasket1";
 
