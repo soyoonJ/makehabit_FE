@@ -13,8 +13,6 @@ import styled from "styled-components";
 
 import moment from "moment";
 
-import ButtonNavigation from "../components/ButtonNavigation";
-
 import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { BsFillPersonFill } from "react-icons/bs";
 const PostDetail = (props) => {
@@ -101,7 +99,8 @@ const PostDetail = (props) => {
   }
 
   //몇 바퀴인지 표시
-  const currentRound = parseInt(post?.proofCount - 1 / 3) + 1;
+  const currentRound = parseInt((post?.proofCount - 1) / 3) + 1;
+  console.log("바퀴", currentRound, (currentRound - 1) * 3 + 2);
   const Item = process.env.PUBLIC_URL + "/images";
   return (
     <Grid padding="0 0 50px 0">
@@ -150,21 +149,45 @@ const PostDetail = (props) => {
         </ColorBox>
       </Grid>
       <JoinContainer>
-        <JoinBox>
-          <Text>{(currentRound - 1) * 3 + 1}번째</Text>
-          <Img width="34px" src={Item + "/icon_coin.svg"} />
-          <Text>인증 하면 10P</Text>
-        </JoinBox>
-        <JoinBox>
-          <Text>{(currentRound - 1) * 3 + 2}번째</Text>
-          <Img width="34px" src={Item + "/icon_coin.svg"} />
-          <Text>인증 하면 10P</Text>
-        </JoinBox>
-        <JoinBox>
-          <Text>{(currentRound - 1) * 3 + 3}번째</Text>
-          <Img width="34px" src={Item + "/icon_coin.svg"} />
-          <Text>인증 하면 10P</Text>
-        </JoinBox>
+        {post.proofCount >= (currentRound - 1) * 3 + 1 ? (
+          <JoinBox style={{ backgroundColor: "orange" }}>
+            <Text>{(currentRound - 1) * 3 + 1}번째</Text>
+            <Img width="34px" src={Item + "/icon_coin.svg"} />
+            <Text>인증 하면 10P</Text>
+          </JoinBox>
+        ) : (
+          <JoinBox>
+            <Text>{(currentRound - 1) * 3 + 1}번째</Text>
+            <Img width="34px" src={Item + "/icon_coin.svg"} />
+            <Text>인증 하면 10P</Text>
+          </JoinBox>
+        )}
+        {post.proofCount >= (currentRound - 1) * 3 + 2 ? (
+          <JoinBox style={{ backgroundColor: "orange" }}>
+            <Text>{(currentRound - 1) * 3 + 2}번째</Text>
+            <Img width="34px" src={Item + "/icon_coin.svg"} />
+            <Text>인증 하면 10P</Text>
+          </JoinBox>
+        ) : (
+          <JoinBox>
+            <Text>{(currentRound - 1) * 3 + 2}번째</Text>
+            <Img width="34px" src={Item + "/icon_coin.svg"} />
+            <Text>인증 하면 10P</Text>
+          </JoinBox>
+        )}
+        {post.proofCount >= (currentRound - 1) * 3 + 3 ? (
+          <JoinBox style={{ backgroundColor: "orange" }}>
+            <Text>{(currentRound - 1) * 3 + 3}번째</Text>
+            <Img width="34px" src={Item + "/icon_coin.svg"} />
+            <Text>인증 하면 10P</Text>
+          </JoinBox>
+        ) : (
+          <JoinBox>
+            <Text>{(currentRound - 1) * 3 + 3}번째</Text>
+            <Img width="34px" src={Item + "/icon_coin.svg"} />
+            <Text>인증 하면 10P</Text>
+          </JoinBox>
+        )}
       </JoinContainer>
       <Grid padding="5%">
         <Text>챌린지 기간</Text>

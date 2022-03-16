@@ -8,6 +8,9 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
+import { ReactComponent as HomeImg } from "../img/icon_home.svg";
+// /public/images/icon_home.svg";
+//
 const ButtonNavigation = () => {
   //버튼아이콘
   const home = process.env.PUBLIC_URL + "/images/icon_home.svg";
@@ -75,13 +78,16 @@ const ButtonNavigation = () => {
             }}
           >
             <div>
-              <img
+              {/* <img
                 src={home}
                 alt=""
                 style={{
-                  fill: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
+                  // color: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
+                  fill: "orange",
                 }}
-              />
+                fill="orange"
+              /> */}
+              <HomeImg fill="blue" />
             </div>
 
             <div
