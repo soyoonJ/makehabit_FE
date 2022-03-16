@@ -64,6 +64,11 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       } else {
         items.push({ _id: equipAcc?.itemId });
       }
+      if (shopEmotion) {
+        items.push({ _id: shopEmotion.itemId });
+      } else {
+        items.push({ _id: equipEmotion?.itemId });
+      }
       dispatch(characterActions.purchaseItemList(totalPoint, items));
     },
   }));
@@ -105,23 +110,27 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const [fitColor, setFitColor] = useState();
   const [fitClothes, setFitClothes] = useState();
   const [fitAcc, setFitAcc] = useState();
+  const [fitEmotion, setFitEmotion] = useState();
 
   // 미리보기 리스트
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewColor = useSelector((state) => state.character?.colorItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
+  const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
   let itemBg = itemList?.find((e) => e.itemImgUrl === previewBg);
   let itemColor = itemList?.find((e) => e.itemImgUrl === previewColor);
   let itemClothes = itemList?.find((e) => e.itemImgUrl === previewClothes);
   let itemAcc = itemList?.find((e) => e.itemImgUrl === previewAcc);
+  let itemEmotion = itemList?.find((e) => e.itemImgUrl === previewEmotion);
 
   //Item 변경 할때 사용 하는 useState
   const [shopBg, setBg] = useState();
   const [shopColor, setColor] = useState();
   const [shopClothes, setClothes] = useState();
   const [shopAcc, setAcc] = useState();
+  const [shopEmotion, setEmotion] = useState();
 
   const [totalPoint, setTotalPoint] = useState(0);
   const [add, setAdd] = useState(false);
@@ -141,100 +150,19 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     if (itemAcc) {
       setAcc(itemAcc);
     }
+    if (itemEmotion) {
+      setEmotion(itemEmotion);
+    }
     // account();
   }, [shopList]);
 
-  React.useEffect(() => {
-    // dispatch(characterActions.getItemDB());
-    setFitBg(equipBg?.itemImgUrl);
-    setFitColor(equipColor?.itemImgUrl);
-    setFitClothes(equipClothes?.itemImgUrl);
-    setFitAcc(equipAcc?.itemImgUrl);
-    // setEmotion(equipEmotion?.itemImgUrl);
-  }, [equipColor?.itemImgUrl]);
-  // const account = () => {
-  //   console.log("account", itemColor, shopColor, category);
-  //   if (itemBg) {
-  //     if (shopBg && itemBg?.price && !isNaN(itemBg?.price)) {
-  //       setTotalPoint(totalPoint - 1000);
-  //     }
-  //     if (!itemBg?.isOwned && itemBg?.price && !isNaN(itemBg?.price)) {
-  //       setTotalPoint(totalPoint + 1000);
-  //     }
-  //   }
-  //   if (itemColor) {
-  //     if (shopColor?.isOwned) {
-  //       if (
-  //         !itemColor?.isOwned &&
-  //         itemColor?.price &&
-  //         !isNaN(itemColor?.price)
-  //       ) {
-  //         console.log("++++++++++++++++++22222");
-  //         setTotalPoint((totalPoint) => totalPoint + itemColor?.price);
-  //         return;
-  //       }
-  //     }
-  //     if (itemColor?.isOwned) {
-  //     }
-  //     if (
-  //       category === "color" &&
-  //       shopColor &&
-  //       shopColor?.price &&
-  //       !isNaN(shopColor?.price)
-  //     ) {
-  //       console.log("shopColor1111");
-  //       setTotalPoint((totalPoint) => totalPoint - shopColor?.price);
-  //     }
-  //     if (!itemColor?.isOwned && itemColor?.price && !isNaN(itemColor?.price)) {
-  //       console.log("++++++++++++++++++");
-  //       setTotalPoint((totalPoint) => totalPoint + itemColor?.price);
-  //     }
-  //   }
-  //   if (itemClothes) {
-  //     if (shopClothes?.isOwned) {
-  //       if (
-  //         !itemClothes?.isOwned &&
-  //         itemClothes?.price &&
-  //         !isNaN(itemClothes?.price)
-  //       ) {
-  //         console.log("++++++++++++++++++22222");
-  //         // setTotalPoint((totalPoint) => totalPoint + itemClothes?.price);
-  //         setTotalPoint((totalPoint) => totalPoint + 10);
-  //         return;
-  //       }
-  //     }
-  //     if (shopClothes && shopClothes?.price && !isNaN(shopClothes?.price)) {
-  //       console.log("clothes");
-  //       // setTotalPoint((totalPoint) => totalPoint - shopClothes?.price);
-  //       setTotalPoint((totalPoint) => totalPoint - 10);
-  //     }
-  //     if (
-  //       !itemClothes?.isOwned &&
-  //       itemClothes?.price &&
-  //       !isNaN(itemClothes?.price)
-  //     ) {
-  //       setTotalPoint((totalPoint) => totalPoint + 10);
-  //     }
-  //   }
-  //   if (itemAcc) {
-  //     if (shopAcc?.isOwned) {
-  //       if (!itemAcc?.isOwned && itemAcc?.price && !isNaN(itemAcc?.price)) {
-  //         console.log("++++++++++++++++++22222");
-  //         // setTotalPoint((totalPoint) => totalPoint + itemAcc?.price);
-  //         setTotalPoint((totalPoint) => totalPoint + 1);
-  //         return;
-  //       }
-  //     }
-  //     if (shopAcc && shopAcc?.price && !isNaN(shopAcc?.price)) {
-  //       console.log("shopAcc!");
-  //       // setTotalPoint((totalPoint) => totalPoint - shopAcc?.price);
-  //       setTotalPoint((totalPoint) => totalPoint - 1);
-  //     }
-  //     if (!itemAcc?.isOwned && itemAcc?.price && !isNaN(itemAcc?.price)) {
-  //       setTotalPoint((totalPoint) => totalPoint + 1);
-  //     }
-  //   }
-  // };
+  // React.useEffect(() => {
+  //   setFitBg(equipBg?.itemImgUrl);
+  //   setFitColor(equipColor?.itemImgUrl);
+  //   setFitClothes(equipClothes?.itemImgUrl);
+  //   setFitAcc(equipAcc?.itemImgUrl);
+  //   setFitEmotion(equipEmotion?.itemImgUrl)
+  // }, [equipColor?.itemImgUrl]);
   const account = (item) => {
     console.log(
       "accoutn 실행됨?",
@@ -256,38 +184,10 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     if (item === "acc") {
       setTotalPoint((totalPoint) => totalPoint - shopAcc?.price);
     }
-    // if(shopEmotion?.price && !shopEmotion.isOwned && !isNaN(shopEmotion?.price)) {
-    //   setTotalPoint((totalPoint) => totalPoint + shopEmotion?.price)
-    // }
+    if (item === "emotion") {
+      setTotalPoint((totalPoint) => totalPoint - shopEmotion?.price);
+    }
   };
-  // React.useEffect(() => {
-  //   if (itemColor) {
-  //     if (!shopColor?.isOwned && shopColor?.price && !isNaN(shopColor?.price)) {
-  //       setTotalPoint(totalPoint + 10);
-  //     }
-  //   }
-
-  //   if (itemClothes) {
-  //     if (
-  //       !shopClothes?.isOwned &&
-  //       shopClothes?.price &&
-  //       !isNaN(shopClothes?.price)
-  //     ) {
-  //       setTotalPoint(totalPoint + 1);
-  //     }
-  //   }
-  // }, [shopColor, shopClothes]);
-  React.useEffect(() => {
-    console.log(
-      "totalPoint change!",
-      totalPoint,
-      shopList,
-      shopBg,
-      shopColor,
-      shopClothes,
-      shopAcc
-    );
-  }, [totalPoint]);
 
   const purchase = () => {
     let items = [];
@@ -310,6 +210,11 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       items.push({ _id: shopAcc.itemId });
     } else {
       items.push({ _id: equipAcc?.itemId });
+    }
+    if (shopEmotion) {
+      items.push({ _id: shopEmotion.itemId });
+    } else {
+      items.push({ _id: equipEmotion?.itemId });
     }
     dispatch(characterActions.purchaseItemList(totalPoint, items));
   };
