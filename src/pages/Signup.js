@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Text, Input, Button, ContainerGrid } from "../elements";
+import { Grid, Text, Button, ContainerGrid } from "../elements";
 
 import styled from "styled-components";
 
@@ -26,7 +26,7 @@ const Signup = () => {
   //nicknameChcek
   const nicknameCheck = useSelector((state) => state.user.nicknameCheck);
 
-  let [confirmNickname, setConfirmNickname] = useState(true);
+  // let [confirmNickname, setConfirmNickname] = useState(true);
 
   //password
   const [user_pwd, setPwd] = useState("");

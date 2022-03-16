@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "../elements";
+// import { Text } from "../elements";
 import styled from "styled-components";
 
 const CategoryModal = (props) => {
@@ -145,10 +145,10 @@ const ModalContent = styled.div`
   border-top: 1px solid #dee2e6;
 `;
 
-const Footer = styled.footer`
-  padding: 12px 16px;
-  text-align: right;
-`;
+// const Footer = styled.footer`
+//   padding: 12px 16px;
+//   text-align: right;
+// `;
 
 const Button = styled.button`
   width: 100%;

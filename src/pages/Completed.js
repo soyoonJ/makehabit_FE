@@ -20,14 +20,9 @@ const Completed = (props) => {
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
-  let openStartDate = "";
-  let openTransformDate = "";
-  let openTransformDay = "";
-  if (openStartAt !== undefined) {
-    openStartDate = moment(openStartAt);
-    openTransformDate = openStartDate.format("YYYY년 MM월 DD일");
-    openTransformDay = dayArray[moment(openStartDate).day()];
-  }
+  const openStartDate = moment(openStartAt);
+  const openTransformDate = openStartDate.format("YYYY년 MM월 DD일");
+  const openTransformDay = dayArray[moment(openStartDate).day()];
 
   const partStartDate = moment(participateStartAt);
   const partTransformDate = partStartDate.format("YYYY년 MM월 DD일");

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Text, Input, Image, Button } from "../elements";
+import { Text } from "../elements";
 
 import styled from "styled-components";
 import CategoryPost from "../components/CategoryPost";
