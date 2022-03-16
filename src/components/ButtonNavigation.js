@@ -1,11 +1,12 @@
 import React from "react";
 
-import { Grid, Text, Input, Image, Button } from "../elements";
-import { actionCreators as challengeActions } from "../redux/modules/challenge";
+import { Grid, Text, Button } from "../elements";
+// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
 //버튼아이콘 Import
@@ -16,7 +17,6 @@ import { ReactComponent as ShopImg } from "../img/icon_shop.svg";
 import { ReactComponent as MypageImg } from "../img/icon_mypage.svg";
 
 const ButtonNavigation = () => {
-  const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
 
   const [clickedTab, changeTab] = React.useState("home");
@@ -25,7 +25,7 @@ const ButtonNavigation = () => {
   //모달창에 접근하는 ref
   const modalRef = React.useRef();
   // console.log("모달ref!!!", modalRef);
-
+  console.log("clickTab", clickedTab, clickedTab === "home");
   const confirmPage = () => {
     if (is_login) {
       // dispatch(challengeActions.setTab("navi"));

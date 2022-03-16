@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, Input, Text, Image, Grid, ContainerGrid } from "../elements";
+import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
 import ButtonNavigation from "../components/ButtonNavigation";
 import CategoryPost from "../components/CategoryPost";

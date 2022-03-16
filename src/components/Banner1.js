@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../elements";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
 const Banner1 = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   //
   // 로컬스토리지에서 유저네임 가져오기
-  const loginUserName = localStorage.getItem("loginUserName");
+  // const loginUserName = localStorage.getItem("loginUserName");
 
   // 배너인덱스를 useState로 관리
   const [bannerIndex, setBannerIndex] = React.useState(0);
