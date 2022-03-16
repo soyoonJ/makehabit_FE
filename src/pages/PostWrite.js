@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { actionCreators as postActions } from "../redux/modules/post";
 // import { actionCreators as userAction } from "../redux/modules/user";
 // import { actionCreators as challengeActions } from "../redux/modules/challenge";
-
 import { Grid, Text } from "../elements";
 // import CategoryModal from "../components/CategoryModal";
 import CategoryModal1 from "../components/CategoryModal1";
@@ -97,9 +96,6 @@ const PostWrite = () => {
   // const loginCheck = useSelector((state) => state.user.user);
   //이미지 여부 확인
   const imgExist = useSelector((state) => state.post.imgExist);
-  React.useEffect(() => {
-    console.log("imgExist", imgExist);
-  }, [imgExist]);
 
   const confirm = () => {
     const imageForm = new FormData();
