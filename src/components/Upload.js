@@ -2,11 +2,15 @@ import React, { useRef, forwardRef, useImperativeHandle } from "react";
 import { Text, Grid } from "../elements";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 
 const Upload = forwardRef((props, ref) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  console.log("현재위치", location.pathname);
   const { _onClick, _ref } = props;
   // console.log("upload", ref, props, _ref);
   useImperativeHandle(ref, () => ({
@@ -17,9 +21,13 @@ const Upload = forwardRef((props, ref) => {
     },
   }));
 
+  // console.log("페이지링크", props.match.params);
+
   //이미지 업로드
   const [previewImg, setPreviewImg] = React.useState(
-    "https://user-images.githubusercontent.com/82128525/154899930-6333a730-9e2c-4123-a3b7-760d9e61b43f.png"
+    location.pathname === "/postwrite"
+      ? process.env.PUBLIC_URL + "/images/open_base.png"
+      : process.env.PUBLIC_URL + "/images/confirm_base.png"
   );
 
   const saveFileImage = (e) => {
