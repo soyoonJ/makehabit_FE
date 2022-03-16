@@ -8,6 +8,7 @@ const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
 const DETAIL_POST = "DETAIL_POST";
+const IMG_EXIST = "IMG_EXIST";
 //참여하기
 const EDIT_JOIN = "EDIT_JOIN";
 
@@ -15,7 +16,7 @@ const EDIT_JOIN = "EDIT_JOIN";
 const EDIT_LIKE = "EDIT_LIKE";
 
 const addPost = createAction(ADD_POST, (challengeId) => ({ challengeId }));
-
+const imgExist = createAction(IMG_EXIST, (imgExist) => ({ imgExist }));
 const editJoin = createAction(EDIT_JOIN, (nickname, isPush) => ({
   nickname,
   isPush,
@@ -32,6 +33,7 @@ const getDetailPost = createAction(DETAIL_POST, (post) => ({
 
 // initialState
 const initialState = {
+  imgExist: false,
   page: null,
   challengId: "",
   post: [],
@@ -221,6 +223,10 @@ export default handleActions(
       produce(state, (draft) => {
         console.log("EDITLIKE ENTER!");
       }),
+    [IMG_EXIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.imgExist = action.payload.imgExist;
+      }),
   },
   initialState
 );
@@ -236,6 +242,7 @@ const actionCreators = {
   editLike,
   likeDB,
   dislikeDB,
+  imgExist,
 };
 
 export { actionCreators };

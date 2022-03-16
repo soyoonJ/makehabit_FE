@@ -9,31 +9,28 @@ import { history } from "../redux/configureStore";
 import { useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
 
+//버튼아이콘 Import
 import { ReactComponent as HomeImg } from "../img/icon_home.svg";
-// /public/images/icon_home.svg";
-//
-const ButtonNavigation = () => {
-  //버튼아이콘
-  // const home = process.env.PUBLIC_URL + "/images/icon_home.svg";
-  const write = process.env.PUBLIC_URL + "/images/icon_write.svg";
-  const flag = process.env.PUBLIC_URL + "/images/icon_flag.svg";
-  const shop = process.env.PUBLIC_URL + "/images/icon_shop.svg";
-  const mypage = process.env.PUBLIC_URL + "/images/icon_mypage.svg";
+import { ReactComponent as WriteImg } from "../img/icon_write.svg";
+import { ReactComponent as FlagImg } from "../img/icon_flag.svg";
+import { ReactComponent as ShopImg } from "../img/icon_shop.svg";
+import { ReactComponent as MypageImg } from "../img/icon_mypage.svg";
 
-  // const dispatch = useDispatch();
+const ButtonNavigation = () => {
   const is_login = useSelector((state) => state.user.is_login);
-  // const Img01 = process.env.PUBLIC_URL + "/images";
-  // console.log("button", is_login);
 
   const [clickedTab, changeTab] = React.useState("home");
+
+  console.log("버튼", clickedTab);
   //모달창에 접근하는 ref
   const modalRef = React.useRef();
   // console.log("모달ref!!!", modalRef);
-
+  console.log("clickTab", clickedTab, clickedTab === "home");
   const confirmPage = () => {
     if (is_login) {
       // dispatch(challengeActions.setTab("navi"));
       // dispatch(challengeActions.naviChallengeDB());
+
       history.push(`/mychallenge/navi`);
     } else {
       // console.log("로그인");
@@ -74,21 +71,16 @@ const ButtonNavigation = () => {
         <ButtonWrap>
           <ButtonIcon
             onClick={() => {
-              history.push("/");
               changeTab("home");
+              history.push("/");
             }}
           >
             <div>
-              {/* <img
-                src={home}
-                alt=""
+              <HomeImg
                 style={{
-                  // color: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
-                  fill: "orange",
+                  fill: clickedTab === "home" ? "#FF8B37" : "#9C9C9C",
                 }}
-                fill="orange"
-              /> */}
-              <HomeImg fill="blue" />
+              />
             </div>
 
             <div
@@ -102,16 +94,14 @@ const ButtonNavigation = () => {
           </ButtonIcon>
           <ButtonIcon
             onClick={() => {
-              writePage();
               changeTab("open");
+              writePage();
             }}
           >
             <div>
-              <img
-                src={write}
-                alt=""
+              <WriteImg
                 style={{
-                  color: clickedTab === "open" ? "#FF8B37" : "#9C9C9C",
+                  fill: clickedTab === "open" ? "#FF8B37" : "#9C9C9C",
                 }}
               />
             </div>
@@ -125,19 +115,19 @@ const ButtonNavigation = () => {
               개설
             </div>
           </ButtonIcon>
+
           <ButtonIcon
             onClick={() => {
               confirmPage();
+
               changeTab("confirm");
             }}
           >
-            <div
+            <FlagImg
               style={{
-                color: clickedTab === "confirm" ? "#FF8B37" : "#9C9C9C",
+                fill: clickedTab === "confirm" ? "#FF8B37" : "#9C9C9C",
               }}
-            >
-              <img src={flag} alt="" />
-            </div>
+            ></FlagImg>
             <div
               style={{
                 color: clickedTab === "confirm" ? "#1D1B1B" : "#9C9C9C",
@@ -150,17 +140,15 @@ const ButtonNavigation = () => {
           {/* 채팅 추가 연결 필요 */}
           <ButtonIcon
             onClick={() => {
-              characterPage();
               changeTab("character");
+              characterPage();
             }}
           >
-            <div
+            <ShopImg
               style={{
-                color: clickedTab === "character" ? "#FF8B37" : "#9C9C9C",
+                fill: clickedTab === "character" ? "#FF8B37" : "#9C9C9C",
               }}
-            >
-              <img src={shop} alt="" />
-            </div>
+            ></ShopImg>
             <div
               style={{
                 color: clickedTab === "character" ? "#1D1B1B" : "#9C9C9C",
@@ -171,17 +159,19 @@ const ButtonNavigation = () => {
             </div>
           </ButtonIcon>
           <ButtonIcon
-            style={{
-              color: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
-            }}
             onClick={() => {
-              myPage();
               changeTab("mypage");
+              myPage();
             }}
           >
             <div>
-              <img src={mypage} alt="" />
+              <MypageImg
+                style={{
+                  fill: clickedTab === "mypage" ? "#FF8B37" : "#9C9C9C",
+                }}
+              ></MypageImg>
             </div>
+
             <div
               style={{
                 color: clickedTab === "mypage" ? "#1D1B1B" : "#9C9C9C",

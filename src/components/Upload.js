@@ -1,8 +1,12 @@
 import React, { useRef, forwardRef, useImperativeHandle } from "react";
 import { Text, Grid } from "../elements";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Upload = forwardRef((props, ref) => {
+  const dispatch = useDispatch();
   const { _onClick, _ref } = props;
   // console.log("upload", ref, props, _ref);
   useImperativeHandle(ref, () => ({
@@ -20,8 +24,11 @@ const Upload = forwardRef((props, ref) => {
 
   const saveFileImage = (e) => {
     setPreviewImg(URL.createObjectURL(e.target.files[0]));
+    dispatch(postActions.imgExist(true));
   };
-
+  React.useEffect(() => {
+    dispatch(postActions.imgExist(false));
+  }, []);
   return (
     <ImageBox
       style={{

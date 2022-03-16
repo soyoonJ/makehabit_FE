@@ -95,10 +95,15 @@ const PostWrite = () => {
   const fileInput = React.useRef();
   //userId 가져오기
   // const loginCheck = useSelector((state) => state.user.user);
-  let image;
+  //이미지 여부 확인
+  const imgExist = useSelector((state) => state.post.imgExist);
+  React.useEffect(() => {
+    console.log("imgExist", imgExist);
+  }, [imgExist]);
+
   const confirm = () => {
     const imageForm = new FormData();
-    image = fileInput.current.files[0];
+    let image = fileInput.current.files[0];
     imageForm.append("image", image);
     console.log("들어왔나?", date, desc, method);
 
@@ -143,11 +148,12 @@ const PostWrite = () => {
   };
 
   // const imageForm = new FormData();
-
-  // React.useEffect(() => {
-  //   image = fileInput.current.files[0];
-  //   imageForm.append("image", image);
-  // }, [fileInput]);
+  console.log("이미지 파일 바뀌었다!", fileInput);
+  React.useEffect(() => {
+    console.log("이미지 파일 바뀌었다!");
+    // image = fileInput.current.files[0];
+    // imageForm.append("image", image);
+  }, [fileInput]);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
@@ -274,16 +280,7 @@ const PostWrite = () => {
           </Text>
         </Grid>
         <Grid padding="5%" margin="0 0 150px 0">
-          {console.log(
-            "데이터",
-            image,
-            title,
-            sendCategory,
-            date,
-            desc,
-            method
-          )}
-          {image && title && sendCategory && date && desc && method ? (
+          {imgExist && title && sendCategory && date && desc && method ? (
             <Link
               to={{
                 pathname: "/completed/open",
