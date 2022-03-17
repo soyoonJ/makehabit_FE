@@ -58,7 +58,7 @@ const CategoryBar = () => {
 };
 
 const CategoryBox = styled.div`
-  height: 10vh;
+  height: 8vh;
   max-width: 420px;
   display: flex;
   /* justify-content: center;
@@ -69,10 +69,10 @@ const CategoryBox = styled.div`
   white-space: nowrap;
   flex-direction: column;
 
-  @media only screen and (max-width: 768px) {
+  /* @media only screen and (max-width: 768px) {
     margin-bottom: 0%;
     padding-bottom: 0px;
-  }
+  } */
 
   div {
     display: inline-block;
@@ -89,6 +89,7 @@ const CategoryCircle = styled.p`
   display: inline-block;
   flex-direction: column;
   align-items: center;
+  border-bottom: 2px black solid;
 
   @media only screen and (max-width: 768px) {
     padding: 9px 9px;

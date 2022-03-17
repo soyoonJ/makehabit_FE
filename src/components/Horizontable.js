@@ -5,6 +5,7 @@ const style = {
   overflow: "hidden",
   cursor: "pointer",
   // display: "flex",
+  margin: "0px",
 };
 
 const Horizontable = ({ children }) => {

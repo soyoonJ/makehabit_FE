@@ -78,9 +78,10 @@ const Mypage = (props) => {
           {/* 닉네임 / 닉네임 변경 */}
           <Grid
             is_flex
+            // margin="3px"
             textAlign="center"
             justifyContent="center"
-            padding="2% 5%"
+            // padding="2% 5%"
           >
             <Button
               bg="white"
@@ -225,34 +226,30 @@ const Mypage = (props) => {
 };
 
 const Container = styled.div`
-  /* overflow-x: hidden; */
-  /* margin: 0% 3% 0% 3%; */
-  /* margin: 0%;
-  padding-bottom: 50px; */
   margin-bottom: 150px;
 `;
 
 const CharacterWrap = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   /* background-color: aqua; */
-  display: flex;
+  /* display: flex; */
   align-items: center;
   margin: auto;
+  display: flex;
+  justify-content: center;
 `;
 
 const ImgContainer = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 210px;
+  height: 220px;
   position: relative;
-  display: flex;
-  justify-content: center;
 `;
 const ItemImg = styled.img`
   height: 100%;
   position: absolute;
   /* z-index: 1; */
-  border-radius: 5px;
+  border-radius: 20px;
 `;
 
 const ShareBox = styled.button`

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, Input, Text, Image, Grid } from "../elements";
+import { Text, ContainerGrid } from "../elements";
 
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
 import { useDispatch, useSelector } from "react-redux";
 
 import { history } from "../redux/configureStore";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { actionCreators as mainActions } from "../redux/modules/main";
 import CategoryBar from "../components/CategoryBar";
-
+import { ReactComponent as GoBack } from "../img/icon_left.svg";
 const Category = (props) => {
   const dispatch = useDispatch();
   const category_list = useSelector((state) => state.main.category_list);
@@ -30,30 +30,53 @@ const Category = (props) => {
   }, []);
 
   return (
-    <Container>
-      <Text alignCenter size="20px" bold>
-        전체보기
-      </Text>
-      <HeaderContainer>
-        <CategoryBar></CategoryBar>
-      </HeaderContainer>
-      <CardWrap>
-        {category_list?.map((p, idx) => {
-          // console.log("피", p);
-          return <CategoryPost key={p._id} {...p} />;
-        })}
-      </CardWrap>
+    <ContainerGrid>
+      <Container>
+        <Header>
+          <GoBack
+            style={{
+              margin: "auto",
+              fill: "#707070",
+            }}
+            onClick={() => {
+              history.goBack();
+            }}
+          />
+          <Text alignCenter size="22px" bold>
+            카테고리
+          </Text>
+        </Header>
+        <CategoryBarWrap>
+          <CategoryBar></CategoryBar>
+        </CategoryBarWrap>
+
+        <CardWrap>
+          {category_list?.map((p, idx) => {
+            // console.log("피", p);
+            return <CategoryPost key={p._id} {...p} />;
+          })}
+        </CardWrap>
+      </Container>
       <ButtonNavigation />
-    </Container>
+    </ContainerGrid>
   );
 };
 
 const Container = styled.div`
-  overflow-x: auto;
+  /* overflow-x: hidden; */
+  margin-bottom: 120px;
 `;
+const Header = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+`;
+// const Container = styled.div`
+//   overflow-x: auto;
+// `;
 
-const HeaderContainer = styled.div`
-  margin: 5% 0% 2% 0%;
+const CategoryBarWrap = styled.div`
+  /* margin-top: 5%; */
   display: flex;
   justify-content: space-around;
 `;
@@ -63,7 +86,7 @@ const CardWrap = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
-  padding: 0% 3% 0% 3%;
+  gap: 1rem;
 `;
 
 export default Category;

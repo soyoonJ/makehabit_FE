@@ -57,34 +57,11 @@ const CategoryPost = (props) => {
       {/* 클릭 시 이동 일단 임의로 설정 */}
       <Card
         onClick={() => {
-          // history.push("/challenge/1");
           dispatch(postActions.getDetailPostDB(challengeId));
         }}
       >
-        {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
-        {/* <Img src={process.env.PUBLIC_URL + "/images/Recommend_test.png"}></Img> */}
-        {/* <Img src={Img01}></Img> */}
-        {/* <Img src={Img01 + "/Recommend_test.png"}></Img> */}
         <ThumbnailBox>
           <Img src={thumbnail} />
-          {/* {post.isLike ? (
-            <FcLike
-              color="#000"
-              size="25"
-              onClick={() => {
-                disLike();
-              }}
-            />
-          ) : (
-            <FcLikePlaceholder
-              color="#000"
-              size="25"
-              onClick={() => {
-                like();
-              }}
-            />
-          )} */}
-
           {isLike ? (
             <Like
               src={LikeImg}
@@ -106,11 +83,11 @@ const CategoryPost = (props) => {
           {title}
           {/* {titleLength > 10 ? puls : ""} */}
         </Title>
-        <Tag>
+        {/* <Tag>
           <Text size="10px" alignCenter>
             {tags}
           </Text>
-        </Tag>
+        </Tag> */}
       </Card>
     </React.Fragment>
   );
@@ -163,6 +140,7 @@ const Tag = styled.div`
   align-items: center;
 `;
 const Title = styled.div`
+  margin-top: 10px;
   width: 100%;
   font-size: 18px;
   font-weight: bold;
