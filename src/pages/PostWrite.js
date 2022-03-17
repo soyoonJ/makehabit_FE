@@ -28,9 +28,10 @@ const PostWrite = () => {
   //모달 리스트
   const modalList = [
     ["study", "공부"],
-    ["exercise", "운동"],
-    ["self-development", "자기계발"],
+    ["exercise", "운동/건강"],
+    ["self-development", "자기개발/취미"],
     ["living-habit", "생활습관"],
+    ["eco", "에코"],
   ];
   const getData = (idx) => {
     setCategoryValue(modalList[idx][1]);
@@ -158,17 +159,19 @@ const PostWrite = () => {
   const startDay = moment(date);
   const transformDay = startDay.format("YYYY년 MM월 DD일");
 
+  const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
+
   return (
     <Container>
-      <PageBack />
       <Grid>
         {/* 타이틀 */}
-        <Grid textAlign="center" borderBottom="solid 1px #e0e0e0">
-          <Text>챌린지 개설</Text>
-        </Grid>
+        <TitleContainer>
+          <PageBack color="#707070" left padding="0 0 0 1.063rem" />
+          <TitleText>챌린지 개설</TitleText>
+        </TitleContainer>
 
         {/* 이미지 업로드 */}
-        <Grid>
+        <Grid padding="0 1.250rem">
           <Upload
             ref={uploadRef}
             _ref={fileInput}
@@ -179,78 +182,84 @@ const PostWrite = () => {
         </Grid>
 
         {/* 제목 */}
-        <Grid padding="10px">
-          <Text>챌린지 제목</Text>
+        <Grid padding="1.250rem">
+          <HeadLine>챌린지 제목</HeadLine>
           <TitleInput
             placeholder="제목을 입력해주세요."
             onChange={onChangeTitle}
           />
         </Grid>
         {/* 카테고리 선택 */}
-        <Grid>
-          <CategoryButton
-            onClick={() => {
-              childRef.current.openModal();
-            }}
-          >
-            {categoryValue ? (
-              categoryValue
-            ) : (
-              <Grid is_flex justifyContent="center">
-                <Grid>
-                  <Text style={{ padding: "100px" }}>카테고리 선택</Text>
-                </Grid>
-                <Grid style={{ textAlign: "right" }}>
-                  <MdOutlineKeyboardArrowDown />
-                </Grid>
-              </Grid>
-            )}
-          </CategoryButton>
 
-          <CategoryModal1 ref={childRef} getData={getData}></CategoryModal1>
-        </Grid>
+        <CategoryButton
+          onClick={() => {
+            childRef.current.openModal();
+          }}
+        >
+          {categoryValue ? (
+            <CategoryTextBox>
+              <HeadLine>{categoryValue}</HeadLine>
+            </CategoryTextBox>
+          ) : (
+            <CategoryContainer>
+              <ToLeft>
+                <HeadLine>카테고리 선택</HeadLine>
+              </ToLeft>
+              <ToRight>
+                <MdOutlineKeyboardArrowDown />
+              </ToRight>
+            </CategoryContainer>
+          )}
+        </CategoryButton>
+
+        <CategoryModal1 ref={childRef} getData={getData}></CategoryModal1>
+
         {/* 이미지 첨부 */}
 
-        <Grid is_flex justifyContent="center">
-          <Grid>
-            <Text>챌린지 시작일</Text>
-          </Grid>
-          <Grid is_flex>
-            {/* <GoCalendar
-                onClick={() => {
-                  calendar();
-                }}
-                style={{ cursor: "pointer" }}
-              /> */}
-            <Text color="#FF8B37">
-              {date ? transformDay : "2022년 00월 00일"}
-            </Text>
-            <StartDate
+        <ChallengeStartContainer>
+          <ToLeft>
+            <HeadLine>챌린지 시작일</HeadLine>
+          </ToLeft>
+          <ToRight>
+            <StartDate>{date ? transformDay : "2022년 00월 00일"}</StartDate>
+            <DateInput
               id="inputCalendar"
               type="date"
               min={todayDate}
               onChange={onChange}
-            ></StartDate>
-          </Grid>
-        </Grid>
-        <Grid padding="0 5%">
-          <Text>3일간 10번씩 도전해봐요!</Text>
-        </Grid>
-        {/* 예상 종료일 */}
-        <ColorBox>
-          <Text color="white">
-            예상 종료일 :{" "}
-            {todayPlus30 > todayDate
-              ? todayPlus30
-              : "예상 종료일은 30일 뒤 입니다."}
-          </Text>
-        </ColorBox>
+            ></DateInput>
+          </ToRight>
+        </ChallengeStartContainer>
+        <MarginBox>
+          <CaptionTextBox>
+            <Caption>3일간 10번씩 도전해봐요!</Caption>
+          </CaptionTextBox>
+          {/* 예상 종료일 */}
+
+          <ColorBox>
+            <EndDateText>
+              예상 종료일 :{" "}
+              {todayPlus30 > todayDate
+                ? moment(date, "YYYY.MM.DD")
+                    .add(30, "days")
+                    .format("YYYY년 MM월 DD일") +
+                  " " +
+                  dayArray[moment(date, "YYYY.MM.DD").add(30, "days").day()] +
+                  "요일"
+                : "예상 종료일은 30일 뒤 입니다."}
+            </EndDateText>
+          </ColorBox>
+        </MarginBox>
         <Grid padding="5%">
           <Grid>
-            <Text>챌린지 설명 작성</Text>
+            <HeadLine>챌린지 설명 작성</HeadLine>
           </Grid>
           <Grid>
-            <Text>무얼 도전해볼까요? 챌린지에 대해 설명해주세요.</Text>
+            <CaptionTextBox>
+              <Caption style={{ color: "black" }}>
+                무얼 도전해볼까요? 챌린지에 대해 설명해주세요.
+              </Caption>
+            </CaptionTextBox>
           </Grid>
           <Contents
             placeholder="ex) 매일 책 한 권 읽는 챌린지"
@@ -259,12 +268,16 @@ const PostWrite = () => {
           ></Contents>
           <Text textAlign="right">{desc.length ? desc.length : "0"}/500자</Text>
         </Grid>
-        <Grid padding="5%">
+        <MarginBox>
           <Grid>
-            <Text>챌린지 인증 방법</Text>
+            <HeadLine>챌린지 인증 방법</HeadLine>
           </Grid>
           <Grid>
-            <Text>달성을 인증할 수 있는 방법에 대해 설명해주세요.</Text>
+            <CaptionTextBox>
+              <Caption style={{ color: "black" }}>
+                달성을 인증할 수 있는 방법에 대해 설명해주세요.
+              </Caption>
+            </CaptionTextBox>
           </Grid>
           <Contents
             placeholder="ex) 오늘 날짜가 적힌 메모와 책 페이지를 찍어주세요."
@@ -274,34 +287,37 @@ const PostWrite = () => {
           <Text textAlign="right">
             {method.length ? method.length : "0"}/500자
           </Text>
-        </Grid>
-        <Grid padding="5%" margin="0 0 150px 0">
+        </MarginBox>
+        <MarginBox style={{ margin: "0 0 9.375rem 0" }}>
           {imgExist && title && sendCategory && date && desc && method ? (
-            <Link
-              to={{
-                pathname: "/completed/open",
-                state: { openStart: date },
-              }}
-            >
+            <MarginBox>
+              <Link
+                to={{
+                  pathname: "/completed/open",
+                  state: { openStart: date },
+                }}
+              >
+                <CreateButton
+                  onClick={() => {
+                    confirm();
+                  }}
+                >
+                  개설 완료
+                </CreateButton>
+              </Link>
+            </MarginBox>
+          ) : (
+            <MarginBox>
               <CreateButton
                 onClick={() => {
-                  console.log("아무거나");
                   confirm();
                 }}
               >
-                개설 완료
+                <CreateText>챌린지 개설 완료</CreateText>
               </CreateButton>
-            </Link>
-          ) : (
-            <CreateButton
-              onClick={() => {
-                confirm();
-              }}
-            >
-              개설 완료
-            </CreateButton>
+            </MarginBox>
           )}
-        </Grid>
+        </MarginBox>
       </Grid>
 
       <ButtonNavigation />
@@ -309,23 +325,129 @@ const PostWrite = () => {
   );
 };
 const Container = styled.div``;
-const StartDate = styled.input`
-  // box-sizing: border-box;
-  // border-radius: 10px;
-  // background-color: #9dcabf;
-  color: white;
-  // padding: 16px 10px;
+// 인증하기 텍스트
+const TitleContainer = styled.div`
   text-align: center;
-  // margin-right: 3px;
+  margin: 1.313em 0 4.7vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TitleText = styled.span`
+  font-size: 1.375rem;
+  font-weight: bold;
+  line-height: 1.813rem;
+`;
+
+const HeadLine = styled.span`
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.625rem;
+`;
+
+const TitleInput = styled.input`
+  width: 100%;
+  background-color: #f7f7f7;
+  height: 3.875rem;
+  border: none;
+  border-radius: 0.313rem;
+  margin: 0.625rem 0;
+  ::placeholder {
+    font-size: 1rem;
+    margin-left: 0.625rem;
+    opacity: 1; /* 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css */
+  }
+`;
+
+const CategoryButton = styled.button`
+  width: 100%;
+  margin: 0.625rem 0;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: white;
+`;
+
+const CategoryContainer = styled.div`
+  // text-align: center;
+  // margin: 1.313em 0 4.7vh 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  // align-items: center;
+  // justify-content: center;
+`;
+
+const CategoryTextBox = styled.div`
+  margin: 0.625rem 0;
+`;
+const ToLeft = styled.div`
+  display: flex;
+  margin: 0.625rem 1.25rem;
+  align-items: center;
+  justify-content: left;
+`;
+
+const ToRight = styled.div`
+  display: flex;
+  margin: 0.625rem 1.25rem;
+  align-items: center;
+  justify-content: right;
+`;
+
+const ChallengeStartContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+`;
+
+const StartDate = styled.span`
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.625rem;
+  color: #ff8b37;
+`;
+const DateInput = styled.input`
+  color: white;
+  text-align: center;
   border: none;
   ::-webkit-datetime-edit {
     display: none;
   }
   ::-webkit-calendar-picker-indicator {
-    font-size: 30px;
+    font-size: 1.25rem;
     margin: auto;
   }
   cursor: pointer;
+`;
+const MarginBox = styled.div`
+  margin: 0.625rem 1.25rem;
+`;
+const CaptionTextBox = styled.div`
+  margin: 0.625rem 0;
+`;
+const Caption = styled.span`
+  font-size: 1rem;
+  line-height: 1.25rem;
+  color: #707070;
+`;
+
+const ColorBox = styled.div`
+  width: 100%;
+  height: 2.5rem;
+  background-color: #ff8b37;
+  border-radius: 0.313rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`;
+
+const EndDateText = styled.span`
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 `;
 
 const Contents = styled.textarea`
@@ -336,32 +458,12 @@ const Contents = styled.textarea`
   height: 30vh;
   background: #f7f7f7;
   resize: none;
-`;
-
-const CategoryButton = styled.button`
-  width: 100%;
-  margin: 10px 0;
-  border: none;
-  border-bottom: 1px solid #e0e0e0;
-  background-color: white;
-`;
-
-const ColorBox = styled.div`
-  width: 100%;
-  height: 40px;
-  background-color: #ff8b37;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-`;
-
-const TitleInput = styled.input`
-  width: 100%;
-  background-color: #f7f7f7;
-  height: 60px;
-  border: none;
-  border-radius: 5px;
+  ::placeholder {
+    font-size: 1rem;
+    margin-top: 0.625rem;
+    margin-left: 0.625rem;
+    opacity: 1; /* 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css */
+  }
 `;
 
 const CreateButton = styled.button`
@@ -373,4 +475,12 @@ const CreateButton = styled.button`
   border-radius: 5px;
   color: #fff;
 `;
+
+const CreateText = styled.span`
+  font-size: 1.375rem;
+  font-weight: bold;
+  line-height: 1.1813rem;
+  color: white;
+`;
+
 export default PostWrite;
