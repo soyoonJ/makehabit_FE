@@ -53,7 +53,11 @@ const ItemSelect = (props) => {
                 >
                   {e[0]}
                 </button>
-                {i === clickedCate ? <hr /> : ""}
+                {i === clickedCate ? (
+                  <hr style={{ width: i === 4 ? "14.5vh" : "10.5vh" }} />
+                ) : (
+                  ""
+                )}
               </div>
             ))}
           </NaviButton>
@@ -90,13 +94,11 @@ const NaviButton = styled.div`
     hr {
       position: absolute;
       height: 3px;
-      width: 100%;
       background-color: #ff8b37;
       border: none;
       z-index: 10;
       bottom: -1.89vh;
-      left: -1.6rem;
-      right: -0.813rem;
+      left: -1.9rem;
       margin: 0px;
     }
   }

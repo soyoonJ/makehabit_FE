@@ -18,9 +18,8 @@ const PageBack = (props) => {
     >
       <IoIosArrowBack
         style={{
-          width: "30",
-          height: "30",
-          size: "10px",
+          width: "28",
+          height: "28",
         }}
       />
     </Back>

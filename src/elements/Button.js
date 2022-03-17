@@ -21,6 +21,7 @@ const Button = (props) => {
     position,
     bottom,
     right,
+    left,
     fontSize,
     fontWeight,
     alignItems,
@@ -59,6 +60,7 @@ const Button = (props) => {
     position,
     bottom,
     right,
+    left,
     fontSize,
     alignItems,
     alignSelf,
@@ -120,6 +122,7 @@ const ElButton = styled.button`
   position: ${(props) => props.position};
   ${(props) => (props.bottom ? `bottom:${props.bottom};` : "")};
   ${(props) => (props.right ? `right:${props.right};` : "")};
+  ${(props) => (props.left ? `left:${props.left};` : "")};
   ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : "")};
   ${(props) => (props.fontWeight ? `font-weight:${props.fontWeight};` : "")};
   align-items: ${(props) => props.alignItems};

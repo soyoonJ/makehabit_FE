@@ -53,7 +53,7 @@ const ItemCircle = () => {
 
   return (
     <ContainerGrid bg="#f7f7f7">
-      <Grid height="40vh" padding="5vh 0 0">
+      <Grid height="40vh" padding="6.16vh 0 0">
         <ItemContainer>
           {color.map((e, i) => (
             <div
@@ -83,13 +83,13 @@ const ItemContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 7vh);
-  gap: 4vh 4%;
+  gap: 5.21vh 4%;
   justify-items: center;
   align-items: center;
 
   div {
-    width: 7vh;
-    height: 7vh;
+    width: 7.34vh;
+    height: 7.34vh;
     border-radius: 50%;
     position: relative;
     z-index: 1;
