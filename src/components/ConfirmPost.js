@@ -13,10 +13,22 @@ const ConfirmPost = (props) => {
   // console.log("챌린지리스트", props);
   const dispatch = useDispatch();
   const { thumbnail, title, round, content, status, startAt, isUpload } = props;
-  const date = new Date(startAt);
-  const koStartAt = date.toLocaleString();
-  const dDay = moment(koStartAt, "YYYY.MM.DD").fromNow();
-  const startDate = dDay.split(" ")[1];
+  // const date = new Date(startAt);
+  // const koStartAt = date.toLocaleString();
+  // const dDay = moment(koStartAt, "YYYY.MM.DD").fromNow();
+  // const startDate = dDay.split(" ")[1];
+  // console.log("koStartAt, dDay", koStartAt, dDay);
+
+  const now = moment(new Date());
+  const day = moment(new Date(startAt));
+  // .format("YYYY-MM-DD HH:mm:ss");
+  const startDate = Math.abs(now.diff(day, "days"));
+  let startHour = "";
+  if (startDate === 0) {
+    startHour = Math.abs(now.diff(day, "hour"));
+  }
+  // console.log("now, day, days", now, day, now.diff(day, "days"));
+  // console.log("startHour", startHour);
   // console.log("디데이", startDate);
   // console.log("koStartAt", koStartAt);
   // const spiltDate = koStartAt.split(". ");
@@ -26,6 +38,7 @@ const ConfirmPost = (props) => {
   const statusText = [
     // { progress: "진행예정", buttonText: `${koStartAt.slice(0, 11)} 시작` },
     { progress: "진행예정", buttonText: `${startDate}일 뒤 시작` },
+    { progress: "진행예정", buttonText: `${startHour}시간 뒤 시작` },
     { progress: "종료", buttonText: "완료된 챌린지입니다." },
     { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
   ];
@@ -33,13 +46,17 @@ const ConfirmPost = (props) => {
   let statusContent = "";
   //시작전
   if (status === 1) {
-    statusContent = statusText[0];
+    if (startDate !== 0) {
+      statusContent = statusText[0];
+    } else {
+      statusContent = statusText[1];
+    }
   }
   //종료
   else if (status === 2) {
-    statusContent = statusText[1];
-  } else if (status === 0 && isUpload) {
     statusContent = statusText[2];
+  } else if (status === 0 && isUpload) {
+    statusContent = statusText[3];
   }
   // console.log("ConfimrPost", status, statusContent);
   return (

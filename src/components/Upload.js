@@ -51,6 +51,8 @@ const Upload = forwardRef((props, ref) => {
         onChange={saveFileImage}
         ref={_ref}
         cursor="pointer"
+        // width="100%"
+        // height="100%"
       ></ImageInput>
     </ImageBox>
   );
@@ -61,7 +63,9 @@ Upload.defaultProps = {};
 const ImageBox = styled.div`
   display: flex;
   margin: auto;
-  height: 21vh;
+  height: 12rem;
+  width: 100%;
+
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -73,8 +77,6 @@ const ImageInput = styled.input`
   // ::file-selector-button {
   //   display: none;
   // }
-  // width: 100%;
-  // height: 100%;
 `;
 
 export default Upload;

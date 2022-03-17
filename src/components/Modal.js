@@ -1,5 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle } from "react";
 // import { Text, Grid } from "../elements";
+import { ReactComponent as CloseImg } from "../img/icon_close.svg";
+
 import styled from "styled-components";
 
 const Modal = forwardRef((props, ref) => {
@@ -43,7 +45,9 @@ const Modal = forwardRef((props, ref) => {
         }}
       >
         <section>
-          <div onClick={closeModal}>X</div>
+          <div onClick={closeModal}>
+            <CloseImg fill="#707070" width="1.5rem" height="1.5rem" />
+          </div>
           <SectionContainer>{children}</SectionContainer>
         </section>
       </Container>

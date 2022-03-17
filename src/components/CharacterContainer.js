@@ -107,7 +107,20 @@ const CharacterContainer = () => {
 
   return (
     <Container>
-      <Point>{currentPoint}</Point>
+      <Point>
+        <div>
+          <img
+            src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
+            alt="포인트 아이콘"
+            style={{
+              width: "1.375rem",
+              height: "1.375rem",
+              marginRight: "0.5rem",
+            }}
+          />
+          <span>{currentPoint}</span>
+        </div>
+      </Point>
       {viewBg && (
         <ImgContainer>
           <ItemImg src={Item + viewBg} alt={viewBg}></ItemImg>
@@ -159,14 +172,25 @@ const Point = styled.div`
   height: 2rem;
   margin: 2.6vh 0 0 5%;
   background: #fff;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1rem;
+
   border-radius: 3.125rem;
   z-index: 5;
   display: flex;
   align-items: center;
-  justify-content: center;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.313rem 0.626rem;
+    text-align: center;
+  }
+
+  & > div > span {
+    font-weight: 600;
+    font-size: 1rem;
+  }
 `;
 
 const ImgContainer = styled.div`

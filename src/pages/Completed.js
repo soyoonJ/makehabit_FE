@@ -86,21 +86,6 @@ const Completed = (props) => {
   return (
     <React.Fragment>
       <ContainerGrid>
-        {/* <TopBox>
-          <div>{content.icon}</div>
-          <div>{content.title}</div>
-          <div>{content.subTitle1}</div>
-          <div>{content.subTitle2}</div>
-        </TopBox>
-        <div
-          style={{
-            fontSize: "1.25rem",
-            fontWeight: "bold",
-            marginBottom: "0.875rem",
-          }}
-        >
-          {content.boxTitle}
-        </div> */}
         {page === "confirm" ? (
           <Grid>
             <TopBox>
@@ -113,14 +98,23 @@ const Completed = (props) => {
             </TopBox>
             <GiftBox>
               <Content>
-                성공보상<span style={{ color: "#FF8B37" }}> 10P</span>
+                <img
+                  src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
+                  alt="포인트 아이콘"
+                  style={{
+                    width: "2.125rem",
+                    height: "2.125rem",
+                    marginRight: "1rem",
+                  }}
+                ></img>
+                성공보상<span style={{ color: "#FF8B37" }}>&nbsp;10P</span>
               </Content>
             </GiftBox>
 
             <Button
               borderRadius="5px"
               border="1px solid #FF8B37"
-              height="5vh"
+              height="3.25rem"
               padding="2.5%"
               color="rgba(255, 139, 55, 1)"
               fontSize="1.125rem"
@@ -164,10 +158,10 @@ const Completed = (props) => {
                       </>
                     )}
                   </span>
-                  <span>부터</span>
+                  <span> 부터</span>
                 </div>
                 <div>
-                  <span style={{ fontWeight: "bold" }}>3일씩 10바퀴</span>
+                  <span style={{ fontWeight: "bold" }}>3일씩 10세트</span>
                   <span>가 진행 될 예정이에요.</span>
                 </div>
                 <div>완주하는 그 날까지 힘내요!</div>
@@ -213,6 +207,7 @@ const TopBox = styled.div`
     &:nth-child(4) {
       font-size: 1.25rem;
       text-align: center;
+      margin-bottom: 0.5rem;
     }
   }
 `;
@@ -220,12 +215,14 @@ const TopBox = styled.div`
 // 개설/참여완료 주황색 info 박스
 const InfoBox = styled.div`
   width: 100%;
-  height: 9.625rem;
   background: #fff1e7;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
 `;
 const InfoText = styled.div`
-  padding: 1.813rem 8%;
+  padding: 1.813rem 2.25rem;
   font-size: 1.25rem;
   letter-spacing: -0.005rem;
   line-height: 1.625rem;
@@ -241,7 +238,6 @@ const InfoText = styled.div`
 // 인증완료 보상 info 박스
 const GiftBox = styled.div`
   width: 100%;
-  height: 6.125rem;
   background: #fff1e7;
   border-radius: 5px;
   display: flex;
@@ -252,5 +248,8 @@ const GiftBox = styled.div`
 const Content = styled.div`
   font-size: 1.563rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin: 2rem;
 `;
 export default Completed;

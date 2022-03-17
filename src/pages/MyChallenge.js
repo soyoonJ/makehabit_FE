@@ -65,7 +65,15 @@ const MyChallenge = (props) => {
           {currentPage === "feed" ? <Highlight style={{ right: "0" }} /> : ""}
         </div>
       </Container>
-      <hr style={{ margin: "0 0 2vh 0", outline: "none" }} />
+      <hr
+        style={{
+          height: "0.094rem",
+          margin: "0 0 2vh 0",
+          outline: "none",
+          border: "none",
+          background: "#E0E0E0",
+        }}
+      />
 
       {/* 참여챌린지 */}
       <ContainerGrid margin="0 0 14.6vh">
@@ -122,7 +130,7 @@ const Highlight = styled.hr`
   border-radius: 20px;
   background-color: #ff8b37;
   z-index: 10;
-  bottom: 0;
+  bottom: -0.094rem;
   margin: 0px;
 `;
 const TabName = styled.div`
@@ -133,7 +141,7 @@ const TabName = styled.div`
 const ImageContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.9vh;
+  gap: 1rem;
   justify-items: center;
   align-items: center;
 
