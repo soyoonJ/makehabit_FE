@@ -126,11 +126,22 @@ const Confirm = (props) => {
               modalRef.current.openModal();
             }}
           >
-            [아이콘]
+            <img
+              src={process.env.PUBLIC_URL + "/images/modal_question.png"}
+              alt="물음표 아이콘"
+              style={{
+                width: "1.125rem",
+                height: "1.125rem",
+                display: "flex",
+                marginLeft: "0.438rem",
+              }}
+            />
           </span>
         </Example>
         <CommentTitle>코멘트 남기기</CommentTitle>
-        <div>오늘의 도전과 함께 기록해보세요.</div>
+        <div style={{ fontSize: "1.89vh" }}>
+          오늘의 도전과 함께 기록해보세요.
+        </div>
         <Textarea
           onChange={onChange}
           maxLength="300"
@@ -139,10 +150,10 @@ const Confirm = (props) => {
         <div
           style={{
             textAlign: "end",
-            marginBottom: "12.5vh",
-            marginTop: "0.438em",
+            marginTop: "0.94vh",
             color: "#9C9C9C",
-            lineHeight: "1.313em",
+            lineHeight: "2.65vh",
+            fontSize: "1.89vh",
           }}
         >
           {commentLength}/300자
@@ -155,7 +166,7 @@ const Confirm = (props) => {
         <div>챌린지 인증예시</div>
         <div
           style={{
-            margin: "0.563rem 0 2rem 0",
+            margin: "0.563rem 0 0 0",
             fontWeight: "600",
             lineHeight: "1.5rem",
             fontSize: "1.125rem",
@@ -193,13 +204,14 @@ const Confirm = (props) => {
 // 인증하기 텍스트
 const ConfirmText = styled.div`
   text-align: center;
-  margin: 1.313em 0 4.7vh 0;
+  padding-top: 2.48vh;
+  margin: 0 0 5vh 0;
   display: flex;
   align-items: center;
   justify-content: center;
 
   & > span {
-    font-size: 1.375rem;
+    font-size: 2.6vh;
     font-weight: bold;
     line-height: 1.813rem;
   }
@@ -208,17 +220,17 @@ const ConfirmText = styled.div`
 // 타이틀
 const Title = styled.div`
   font-weight: 700;
-  font-size: 1.375rem;
+  font-size: 2.6vh;
   color: #ff8b37;
-  line-height: 1.813rem;
+  line-height: 3.41vh;
   letter-spacing: -0.005em;
 `;
 const SubTitle = styled.div`
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.9vh;
   line-height: 1.313rem;
   color: #1d1b1b;
-  margin: 0.5rem 0 1.5rem 0;
+  margin: 0.94vh 0 2.7vh 0;
 `;
 
 // 이미지
@@ -238,55 +250,62 @@ const SubTitle = styled.div`
 
 // 챌린지 예시 도움말
 const Example = styled.div`
-  text-align: right;
   color: #707070;
   font-weight: 400;
   font-size: 0.813rem;
   line-height: 1.063rem;
   margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 `;
 
 // 코멘트 작성란
 const CommentTitle = styled.div`
-  margin: 1.25rem 0 0.375rem;
-  font-size: 1.25rem;
+  margin: 4.73vh 0 0.71vh;
+  font-size: 2.36vh;
   font-weight: 700;
-  line-height: 1.625rem;
+  line-height: 3.1vh;
   color: #1d1b1b;
 
   & > div {
-    font-size: 1rem;
+    font-size: 1.89vh;
     font-weight: 400;
-    line-height: 1.313rem;
+    line-height: 2.65vh;
     color: #1d1b1b;
   }
 `;
 const Textarea = styled.textarea`
   width: 100%;
-  height: 8.125rem;
+  height: 15.4vh;
   resize: none;
   box-sizing: border-box;
-  margin-top: 1rem;
+  margin-top: 1.77vh;
   background: #f7f7f7;
   border: none;
-  font-size: 1rem;
+  font-size: 1.89vh;
   padding: 1.25rem 1.625rem;
 
   ::placeholder {
     color: #9c9c9c;
+    font-size: 1.89vh;
   }
 `;
 const Button = styled.button`
-  width: 100%;
-  height: 4.125rem;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  font-size: 2.6vh;
+  font-weight: 700;
+  width: 90%;
+  max-width: 380px;
+  height: 7.93vh;
   border: none;
   border-radius: 5px;
   background: #ff8b37;
   color: white;
-  font-weight: 700;
-  font-size: 1.375rem;
-  line-height: 1.813rem;
-  margin: 0 0 5% 0;
+  margin: 0 auto 2.36vh auto;
 `;
 
 export default Confirm;

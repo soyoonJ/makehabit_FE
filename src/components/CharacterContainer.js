@@ -164,7 +164,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 48.5vh;
+  height: 46vh;
+  // 모바일 버전
+  @media (min-width: 420px) {
+    height: 48.5vh;
+  }
 `;
 const Point = styled.div`
   position: absolute;
@@ -174,6 +178,7 @@ const Point = styled.div`
   background: #fff;
 
   border-radius: 3.125rem;
+  border: 1.5px solid #cfcfcf;
   z-index: 5;
   display: flex;
   align-items: center;

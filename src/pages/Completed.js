@@ -43,7 +43,6 @@ const Completed = (props) => {
 
   const contents = [
     {
-      icon: "👏",
       title: "챌린지 개설을 완료했어요",
       subTitle1: "새로운 습관이 시작되는 곳이군요!",
       subTitle2: "",
@@ -51,25 +50,23 @@ const Completed = (props) => {
       buttonText: "챌린지 보러가기",
       // API response 오면 moveTo 넣기
       // 하단 수정 필요
-      moveTo: `/challenges/${openId}`,
+      moveTo: "/mychallenge/navi",
     },
     {
-      icon: "👏",
       title: participateTitle,
       subTitle1: "챌린지에 참여하신 걸 축하해요!",
       subTitle2: "완주까지 함께 도전해봐요.",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
-      moveTo: `/challenges/${participateId}`,
+      moveTo: "/mychallenge/navi",
     },
     {
-      icon: "👍",
       title: "목표 인증 완료!",
       subTitle1: `${totalCnt}번째 도전`,
       subTitle2: "",
       boxTitle: "인증 보상",
       buttonText: "확인",
-      moveTo: "/mychallenge/navi",
+      moveTo: "/mychallenge/feed",
     },
   ];
 
@@ -89,7 +86,16 @@ const Completed = (props) => {
         {page === "confirm" ? (
           <Grid>
             <TopBox>
-              <div>{content.icon}</div>
+              <div>
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/images/illust_exercise_samkki.png"
+                  }
+                  alt="상단 캐릭터 일러스트"
+                  style={{ height: "26.77vh" }}
+                />
+              </div>
               <div>{content.title}</div>
               <div style={{ fontWeight: "700" }}>
                 <span style={{ color: "#FF8B37" }}>{content.subTitle1}</span>을
@@ -102,9 +108,9 @@ const Completed = (props) => {
                   src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
                   alt="포인트 아이콘"
                   style={{
-                    width: "2.125rem",
-                    height: "2.125rem",
-                    marginRight: "1rem",
+                    width: "4.02vh",
+                    height: "4.02vh",
+                    marginRight: "1.89vh",
                   }}
                 ></img>
                 성공보상<span style={{ color: "#FF8B37" }}>&nbsp;10P</span>
@@ -114,10 +120,10 @@ const Completed = (props) => {
             <Button
               borderRadius="5px"
               border="1px solid #FF8B37"
-              height="3.25rem"
+              height="6.16vh"
               padding="2.5%"
               color="rgba(255, 139, 55, 1)"
-              fontSize="1.125rem"
+              fontSize="2.13vh"
               fontWeight="600"
               bg="#fff"
               _onClick={() => {
@@ -130,16 +136,38 @@ const Completed = (props) => {
         ) : (
           <>
             <TopBox>
-              <div>{content.icon}</div>
+              {page === "participate" ? (
+                <div>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/images/illust_exercise_samkki.png"
+                    }
+                    alt="상단 캐릭터 일러스트"
+                    style={{ height: "26.77vh" }}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/images/illust_congrate_samkki.png"
+                    }
+                    alt="상단 캐릭터 일러스트"
+                    style={{ height: "30.8vh" }}
+                  />
+                </div>
+              )}
               <div>{content.title}</div>
               <div>{content.subTitle1}</div>
               <div>{content.subTitle2}</div>
             </TopBox>
             <div
               style={{
-                fontSize: "1.25rem",
+                fontSize: "2.36vh",
                 fontWeight: "bold",
-                marginBottom: "0.875rem",
+                marginBottom: "2.36vh",
               }}
             >
               {content.boxTitle}
@@ -170,11 +198,16 @@ const Completed = (props) => {
           </>
         )}
         <Button
-          fontSize="1.375rem"
+          position="fixed"
+          right="0"
+          left="0"
+          bottom="0"
+          fontSize="2.6vh"
           fontWeight="bold"
-          height="4.125rem"
-          width="100%"
-          margin="17.4vh 0 4.8vh"
+          height="7.93vh"
+          width="90%"
+          maxWidth="380px"
+          margin="0 auto 2.36vh auto"
           bg="rgba(255, 139, 55, 1)"
           _onClick={() => {
             history.push(content.moveTo);
@@ -188,26 +221,33 @@ const Completed = (props) => {
 };
 
 const TopBox = styled.div`
-  margin: 14.4vh 1.5rem 6.7vh 1.5rem;
+  margin: 0 1.5rem 5.56vh 1.5rem;
+  padding-top: 8.05vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   & > div {
     &:nth-child(1) {
-      margin-bottom: 1.688rem;
-      font-size: 7.5rem;
+      margin-bottom: 3.43vh;
     }
 
     &:nth-child(2) {
-      font-size: 1.375rem;
+      font-size: 2.6vh;
       font-weight: bold;
       margin-bottom: 0.75rem;
       text-align: center;
     }
 
-    &:nth-child(3),
-    &:nth-child(4) {
-      font-size: 1.25rem;
+    &:nth-child(3) {
+      font-size: 2.36vh;
       text-align: center;
       margin-bottom: 0.5rem;
+    }
+
+    &:nth-child(4) {
+      font-size: 2.36vh;
+      text-align: center;
     }
   }
 `;
@@ -223,14 +263,14 @@ const InfoBox = styled.div`
 `;
 const InfoText = styled.div`
   padding: 1.813rem 2.25rem;
-  font-size: 1.25rem;
-  letter-spacing: -0.005rem;
-  line-height: 1.625rem;
+  font-size: 2.36vh;
+  letter-spacing: -0.5%;
+  line-height: 3.31vh;
 
   & > div {
     &:nth-child(1),
     &:nth-child(2) {
-      margin-bottom: 0.563rem;
+      margin-bottom: 0.7vh;
     }
   }
 `;
@@ -246,10 +286,10 @@ const GiftBox = styled.div`
   margin-bottom: 1.188rem;
 `;
 const Content = styled.div`
-  font-size: 1.563rem;
+  font-size: 2.96vh;
   font-weight: bold;
   display: flex;
   align-items: center;
-  margin: 2rem;
+  margin: 3.79vh;
 `;
 export default Completed;
