@@ -53,15 +53,7 @@ const ItemSelect = (props) => {
                 >
                   {e[0]}
                 </button>
-                {i === clickedCate ? (
-                  <hr
-                    style={{
-                      width: i === 4 ? "8rem" : "5.688rem",
-                    }}
-                  />
-                ) : (
-                  ""
-                )}
+                {i === clickedCate ? <hr /> : ""}
               </div>
             ))}
           </NaviButton>
@@ -76,13 +68,13 @@ const ItemSelect = (props) => {
 
 const Navi = styled.div`
   border-bottom: 1.5px solid #e0e0e0;
+  height: 7.22vh;
 `;
 
 const NaviButton = styled.div`
-  height: 1.625rem;
   white-space: nowrap;
   display: flex;
-  margin: 1.063rem 0 1.063rem 1.875rem;
+  margin: 1.9vh 0 1.9vh 1.875rem;
 
   & > div {
     position: relative;
@@ -91,18 +83,19 @@ const NaviButton = styled.div`
       width: auto;
       all: unset;
       margin-right: 2.688rem;
-      font-size: 1.25rem;
-      line-height: 1.625rem;
+      font-size: 2.37vh;
+      line-height: 3.317vh;
     }
 
     hr {
       position: absolute;
       height: 3px;
+      width: 100%;
       background-color: #ff8b37;
       border: none;
       z-index: 10;
-      bottom: -1.063rem;
-      left: -1.875rem;
+      bottom: -1.89vh;
+      left: -1.6rem;
       right: -0.813rem;
       margin: 0px;
     }

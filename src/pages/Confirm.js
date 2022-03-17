@@ -5,8 +5,8 @@ import React from "react";
 import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
 import Upload from "../components/Upload";
+import { ReactComponent as CheckImg } from "../img/icon_check.svg";
 import { useDispatch, useSelector } from "react-redux";
-// import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
 import Modal from "../components/Modal";
@@ -161,9 +161,19 @@ const Confirm = (props) => {
             fontSize: "1.125rem",
             color: "#FF8B37",
             letterSpacing: "-0.005rem",
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <span>[체크]</span> 이렇게 인증해주세요!
+          <span
+            style={{
+              marginRight: "0.313rem",
+              display: "flex",
+            }}
+          >
+            <CheckImg fill="#FF8B37" width="1.5rem" height="1.5rem" />
+          </span>{" "}
+          이렇게 인증해주세요!
         </div>
         <div
           style={{

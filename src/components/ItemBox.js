@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { actionCreators as characterActions } from "../redux/modules/character";
+import { Grid } from "../elements";
 
 import { useDispatch, useSelector } from "react-redux";
 import Horizontable from "./Horizontable";
@@ -80,56 +81,67 @@ const ItemBox = () => {
   return (
     <ItemContainer>
       <Horizontable>
-        {itemList.map((e, i) => (
-          <OneItem key={i}>
-            <div>
-              {/* 아이템 이미지 박스 */}
-              <div
-                style={{
-                  position: "relative",
-                  border:
-                    e.itemImgUrl === item
-                      ? "5px solid #6825D6"
-                      : "5px solid #f7f7f7",
-                }}
-              >
-                <img
-                  src={Item + itemList[i].itemImgUrl}
-                  onClick={() => {
-                    setItem(e.itemImgUrl);
+        <Grid margin="2.37vh 3.9%">
+          {itemList.map((e, i) => (
+            <OneItem key={i}>
+              <div>
+                {/* 아이템 이미지 박스 */}
+                <div
+                  style={{
+                    position: "relative",
+                    border:
+                      e.itemImgUrl === item
+                        ? "5px solid #6825D6"
+                        : "5px solid #f7f7f7",
                   }}
-                  alt={itemList[i].itemImgUrl}
-                ></img>
-
-                {e.isOwned ? (
-                  ""
-                ) : (
+                >
                   <img
-                    src={Icons + "/icon_lock.svg"}
-                    alt="잠금아이콘"
-                    style={{
-                      position: "absolute",
-                      top: "9px",
-                      right: "9px",
-                      width: "2.37vh",
-                      height: "2.37vh",
-                      // color: "gray",
+                    src={Item + itemList[i].itemImgUrl}
+                    onClick={() => {
+                      setItem(e.itemImgUrl);
                     }}
-                  />
-                  // <LockImg />
+                    alt={itemList[i].itemImgUrl}
+                  ></img>
+
+                  {e.isOwned ? (
+                    ""
+                  ) : (
+                    <img
+                      src={Icons + "/icon_lock.svg"}
+                      alt="잠금아이콘"
+                      style={{
+                        position: "absolute",
+                        top: "9px",
+                        right: "9px",
+                        width: "2.37vh",
+                        height: "2.37vh",
+                      }}
+                    />
+                  )}
+                </div>
+                {i !== 0 ? (
+                  <>
+                    <div>{e.itemName}</div>
+                    <Point>
+                      <img
+                        src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
+                        alt="포인트 아이콘"
+                        style={{
+                          width: "1.563rem",
+                          height: "1.563rem",
+                          marginRight: "0.5rem",
+                        }}
+                      />
+                      {e.price}
+                    </Point>
+                  </>
+                ) : (
+                  ""
                 )}
               </div>
-              {i !== 0 ? (
-                <>
-                  <div>{e.itemName}</div>
-                  <div>{e.price}</div>
-                </>
-              ) : (
-                ""
-              )}
-            </div>
-          </OneItem>
-        ))}
+            </OneItem>
+          ))}
+        </Grid>
       </Horizontable>
     </ItemContainer>
   );
@@ -137,7 +149,7 @@ const ItemBox = () => {
 
 const ItemContainer = styled.div`
   max-width: 420px;
-  height: 44.5vh;
+  height: 32.46vh;
   background: #f7f7f7;
   display: flex;
   overflow-x: scroll;
@@ -150,10 +162,12 @@ const ItemContainer = styled.div`
 
 const OneItem = styled.div`
   width: 36%;
+  height: 100%;
   display: inline-block;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 4vh 3%;
+  margin: 0 3% 11.84vh 3%;
 
   & > div {
     display: flex;
@@ -191,8 +205,17 @@ const OneItem = styled.div`
 
   img {
     height: 100%;
+    width: 100%;
+    object-fit: cover;
     overflow: hidden;
     border-radius: 10px;
   }
 `;
+
+const Point = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export default ItemBox;
