@@ -43,7 +43,7 @@ const Modal = forwardRef((props, ref) => {
         }}
       >
         <section>
-          <ModalHeader>카테고리</ModalHeader>
+          <ModalHeader>카테고리 선택</ModalHeader>
           <ModalContent>
             <Grid borderBottom="3px solid #f7f7f7" margin="0">
               <Button
@@ -62,7 +62,7 @@ const Modal = forwardRef((props, ref) => {
                   setData(1);
                 }}
               >
-                운동
+                운동/건강
               </Button>
             </Grid>
 
@@ -73,7 +73,7 @@ const Modal = forwardRef((props, ref) => {
                   setData(2);
                 }}
               >
-                자기계발
+                자기개발/취미
               </Button>
             </Grid>
 
@@ -92,7 +92,7 @@ const Modal = forwardRef((props, ref) => {
               <Button
                 onClick={() => {
                   closeModal();
-                  setData("에코");
+                  setData(4);
                 }}
               >
                 에코
