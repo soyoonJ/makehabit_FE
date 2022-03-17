@@ -54,7 +54,7 @@ const ItemSelect = (props) => {
                   {e[0]}
                 </button>
                 {i === clickedCate ? (
-                  <hr style={{ width: i === 4 ? "14.5vh" : "10.5vh" }} />
+                  <hr style={{ width: i === 4 ? "113%" : "119%" }} />
                 ) : (
                   ""
                 )}
@@ -78,17 +78,16 @@ const Navi = styled.div`
 const NaviButton = styled.div`
   white-space: nowrap;
   display: flex;
-  margin: 1.9vh 0 1.9vh 1.875rem;
+  margin: 1.9vh 0;
 
   & > div {
     position: relative;
-
     button {
       width: auto;
       all: unset;
-      margin-right: 2.688rem;
       font-size: 2.37vh;
       line-height: 3.317vh;
+      margin: 0 0.813rem 0 1.875rem;
     }
 
     hr {
@@ -98,7 +97,7 @@ const NaviButton = styled.div`
       border: none;
       z-index: 10;
       bottom: -1.89vh;
-      left: -1.9rem;
+      left: 0;
       margin: 0px;
     }
   }

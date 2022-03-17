@@ -111,8 +111,8 @@ const MyChallenge = (props) => {
 const PageTitle = styled.div`
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
-  margin: 1.313em 0 4.7vh 0;
+  font-size: 2.6vh;
+  margin: 2.49vh 0 4.7vh 0;
 `;
 
 const Container = styled.div`
@@ -135,7 +135,8 @@ const Highlight = styled.hr`
 `;
 const TabName = styled.div`
   cursor: pointer;
-  margin-bottom: 0.875em;
+  margin-bottom: 2.37vh;
+  font-size: 1.9vh;
 `;
 
 const ImageContainer = styled.div`

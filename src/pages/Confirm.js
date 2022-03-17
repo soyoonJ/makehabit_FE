@@ -292,7 +292,7 @@ const Textarea = styled.textarea`
   }
 `;
 const Button = styled.button`
-  position: fixed;
+  position: absolute;
   right: 0;
   left: 0;
   bottom: 0;

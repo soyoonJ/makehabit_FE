@@ -127,9 +127,9 @@ const ItemBox = () => {
                         src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
                         alt="포인트 아이콘"
                         style={{
-                          width: "1.563rem",
-                          height: "1.563rem",
-                          marginRight: "0.5rem",
+                          width: "2.96vh",
+                          height: "2.96vh",
+                          marginRight: "0.94vh",
                         }}
                       />
                       {e.price}
@@ -177,7 +177,7 @@ const OneItem = styled.div`
 
   & > div > div {
     &:nth-child(1) {
-      // 자물쇠 아이콘 대비 - relative
+      // 자물쇠 아이콘 대비 relative
       position: relative;
       width: 100%;
       height: 19vh;
@@ -189,17 +189,17 @@ const OneItem = styled.div`
     }
 
     &:nth-child(2) {
-      font-size: 1.125rem;
+      font-size: 2.13vh;
       font-weight: 600;
-      line-height: 1.5rem;
+      line-height: 2.79vh;
       color: #707070;
-      margin-top: 0.625rem;
+      margin-top: 1.18vh;
     }
 
     &:nth-child(3) {
-      font-size: 1.25rem;
+      font-size: 2.37vh;
       font-weight: 700;
-      margin-top: 0.625rem;
+      margin-top: 1.18vh;
     }
   }
 
