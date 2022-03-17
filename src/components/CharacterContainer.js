@@ -113,9 +113,9 @@ const CharacterContainer = () => {
             src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
             alt="포인트 아이콘"
             style={{
-              width: "1.375rem",
-              height: "1.375rem",
-              marginRight: "0.5rem",
+              width: "2.6vh",
+              height: "2.6vh",
+              marginRight: "0.94vh",
             }}
           />
           <span>{currentPoint}</span>
@@ -137,11 +137,11 @@ const CharacterContainer = () => {
         margin="0 5% 2vh 0"
         bg="#6825D6"
         color="#fff"
-        width="7.25rem"
-        height="2.5rem"
-        lineHeight="1.5rem"
+        width="13.74vh"
+        height="4.74vh"
+        lineHeight="2.79vh"
         borderRadius="3.125rem"
-        fontSize="1.125rem"
+        fontSize="2.13vh"
         alignSelf="end"
         fontWeight="600"
         centerFlex
@@ -172,8 +172,6 @@ const Container = styled.div`
 `;
 const Point = styled.div`
   position: absolute;
-  width: 6.875rem;
-  height: 2rem;
   margin: 2.6vh 0 0 5%;
   background: #fff;
 
@@ -188,13 +186,13 @@ const Point = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 0.313rem 0.626rem;
+    padding: 0.59vh 1.18vh;
     text-align: center;
   }
 
   & > div > span {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.89vh;
   }
 `;
 

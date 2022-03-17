@@ -25,7 +25,7 @@ const MyFeed = (props) => {
 
   return (
     <React.Fragment>
-      <PageBack padding="5%" color="#707070" />
+      <PageBack padding="2.13vh 4.36%" color="#707070" />
       <FeedNum>
         {order + 1}/{length}
       </FeedNum>
@@ -49,12 +49,12 @@ const MyFeed = (props) => {
 };
 
 const FeedNum = styled.div`
-  height: 4.438rem;
+  padding: 2.49vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.375rem;
-  line-height: 1.813rem;
+  font-size: 2.6vh;
+  line-height: 3.41vh;
   letter-spacing: -0.005rem;
   font-weight: 700;
 `;
@@ -71,22 +71,22 @@ const Img = styled.img`
 const Comment = styled.div`
   & > div {
     &:nth-child(1) {
-      font-size: 1.375rem;
+      font-size: 2.6vh;
       font-weight: 700;
-      line-height: 1.813rem;
+      line-height: 3.41vh;
       letter-spacing: -0.005rem;
       color: #1d1b1b;
-      margin-bottom: 0.688rem;
+      margin-bottom: 1.3vh;
     }
     &:nth-child(2) {
-      font-size: 0.813rem;
+      font-size: 1.54vh;
       line-height: 1.063rem;
       letter-spacing: -0.005rem;
       color: #1d1b1b;
       margin-bottom: 2.125rem;
     }
     &:nth-child(3) {
-      font-size: 1.25rem;
+      font-size: 2.37vh;
       line-height: 1.625rem;
       letter-spacing: -0.005rem;
       color: #1d1b1b;

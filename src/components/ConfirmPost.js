@@ -91,8 +91,8 @@ const ConfirmPost = (props) => {
 
             <Round>
               {/* 진행예정인 챌린지 */}
-              {status === 1 || status === 2 ? (
-                <div>{statusContent.progress}</div>
+              {status === 1 ? (
+                <div style={{ color: "#FF8B37" }}>{statusContent.progress}</div>
               ) : (
                 <>
                   <span>{round}세트</span> 진행중
@@ -109,8 +109,10 @@ const ConfirmPost = (props) => {
           <Button
             width="100%"
             bg="#ddd"
+            padding="0.5rem"
             fontSize="1rem"
             fontWeight="600"
+            lineHeight="2.48vh"
             cursor="default"
           >
             {statusContent.buttonText}
@@ -119,8 +121,10 @@ const ConfirmPost = (props) => {
           <Button
             width="100%"
             bg="#FF8B37"
+            padding="0.5rem"
             fontSize="1rem"
             fontWeight="600"
+            lineHeight="1.31rem"
             _onClick={() => {
               history.push(`/confirm/${props.challengeId}`);
             }}
@@ -135,8 +139,8 @@ const ConfirmPost = (props) => {
 
 const GridBox = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 4%;
+  grid-template-columns: 1fr 2.46875fr;
+  gap: 2.01vh;
   margin: 5vh 0;
 `;
 const ImageContainer = styled.div`
@@ -149,7 +153,6 @@ const ImageContainer = styled.div`
 const PostImage = styled.img`
   width: 100%;
   height: 100%;
-  min-height: 15vh;
   object-fit: cover;
   border-radius: 10px;
 `;
@@ -163,7 +166,7 @@ const Completed = styled.div`
   opacity: 0.7;
 
   color: white;
-  font-size: 1.125rem;
+  font-size: 2.13vh;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -184,7 +187,8 @@ const TextGrid = styled.div`
 
 const Title = styled.div`
   width: 100%;
-  font-size: 1.25rem;
+  font-size: 2.37vh;
+  line-height: 3.1vh;
   font-weight: bold;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -192,7 +196,7 @@ const Title = styled.div`
 `;
 const Round = styled.div`
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1.66vh;
   & > span {
     color: #ff8b37;
   }
@@ -200,8 +204,8 @@ const Round = styled.div`
 `;
 
 const Content = styled.div`
-  font-size: 0.8rem;
-  line-height: 150%;
+  font-size: 0.813rem;
+  line-height: 1.219rem;
   font-weight: 400;
   color: #707070;
 

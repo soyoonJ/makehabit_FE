@@ -198,7 +198,7 @@ const Completed = (props) => {
           </>
         )}
         <Button
-          position="fixed"
+          position="position"
           right="0"
           left="0"
           bottom="0"
