@@ -158,66 +158,57 @@ const Mypage = (props) => {
         </ShareBox>
       </Grid>{" "}
       <Grid>
-        <Button
-          borderbottom="#E0E0E0 1.5px solid"
-          alignLeft
-          padding="0% 5%"
-          fontSize="1.25rem"
-          height="4.188rem"
-          bg="white"
-          borderRadius="0px"
-          color="black"
-        >
-          좋아요 모아보기
+        <TestBox>
+          <Text weight="600" bold size="18px" alignLeft>
+            좋아요 모아보기
+          </Text>
+
           <RightButton
             style={{
+              alignItems: "flex-end",
+              margin: "auto",
               fill: "#9C9C9C",
             }}
           />
-        </Button>
+        </TestBox>
       </Grid>
       <Grid>
-        <Button
-          borderbottom="#E0E0E0 1.5px solid"
-          alignLeft
-          padding="0% 5%"
-          fontSize="1.25rem"
-          height="4.188rem"
-          bg="white"
-          borderRadius="0px"
-          color="black"
-        >
-          문의 FAQ
-        </Button>
+        <TestBox>
+          <Text weight="600" bold size="18px" alignLeft>
+            문의 FAQ
+          </Text>
+
+          <RightButton
+            style={{
+              alignItems: "flex-end",
+              margin: "auto",
+              fill: "#9C9C9C",
+            }}
+          />
+        </TestBox>
       </Grid>
       <Grid>
-        <Button
-          borderbottom="#E0E0E0 1.5px solid"
-          alignLeft
-          padding="0% 5%"
-          fontSize="1.25rem"
-          height="4.188rem"
-          bg="white"
-          borderRadius="0px"
-          color="black"
+        <TestBox
           _onClick={() => {
             // dispatch(challengeActions.setTab("feed"));
             history.push("/mychallenge/feed");
           }}
         >
-          나의 기록보기
-        </Button>
+          <Text weight="600" bold size="18px" alignLeft>
+            나의 기록보기
+          </Text>
+
+          <RightButton
+            style={{
+              alignItems: "flex-end",
+              margin: "auto",
+              fill: "#9C9C9C",
+            }}
+          />
+        </TestBox>
       </Grid>
       <Grid>
-        <Button
-          borderbottom="#E0E0E0 1.5px solid"
-          alignLeft
-          padding="0% 5%"
-          fontSize="1.25rem"
-          height="4.188rem"
-          bg="white"
-          borderRadius="0px"
-          color="black"
+        <TestBox
           _onClick={() => {
             window.confirm(
               "로그아웃 하시면 캐릭터 꾸미기나 챌린지 참여가 제한됩니다😢\n정말 로그아웃 하시겠어요?"
@@ -226,8 +217,17 @@ const Mypage = (props) => {
               : console.log("취소");
           }}
         >
-          로그아웃
-        </Button>
+          <Text weight="600" bold size="18px" alignLeft>
+            로그아웃
+          </Text>
+          <RightButton
+            style={{
+              alignItems: "flex-end",
+              margin: "auto",
+              fill: "#9C9C9C",
+            }}
+          />
+        </TestBox>
       </Grid>
       <ButtonNavigation />
     </Container>
@@ -282,6 +282,21 @@ const ShareButton = styled.div`
   height: 40px;
   background-color: #6825d6;
   margin-right: 17px;
+`;
+
+const TestBox = styled.button`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: left;
+  height: 4.188rem;
+  width: 100%;
+  border: none;
+  background-color: white;
+  font-size: 1.25rem;
+  margin-top: 2%;
+  padding: 0% 5%;
+  border-bottom: 1px #e0e0e0 solid;
 `;
 
 export default Mypage;
