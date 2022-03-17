@@ -30,6 +30,8 @@ const Button = (props) => {
     alignSelf,
     disabled,
     zIndex,
+    alignLeft,
+    borderbottom,
   } = props;
 
   if (is_float) {
@@ -64,6 +66,9 @@ const Button = (props) => {
     display,
     fontWeight,
     zIndex,
+
+    alignLeft,
+    borderbottom,
   };
 
   return (
@@ -95,6 +100,8 @@ Button.defaultProps = {
   fontWeight: null,
   right: null,
   centerFlex: null,
+  alignLeft: false,
+  borderbottom: false,
 };
 
 const ElButton = styled.button`
@@ -123,6 +130,9 @@ const ElButton = styled.button`
     props.centerFlex
       ? `display: flex; justify-content: center; align-items:center `
       : ""}
+  ${(props) => (props.alignLeft ? `text-align: left;` : "")};
+  ${(props) =>
+    props.borderbottom ? ` border-bottom:${props.borderbottom};` : ""};
 `;
 
 // 동그라미 버튼

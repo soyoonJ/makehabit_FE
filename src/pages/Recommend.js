@@ -9,7 +9,7 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 
-import { ReactComponent as GoBack } from "../img/icon_left.svg";
+import { ReactComponent as LeftButoon } from "../img/icon_left.svg";
 const Recommend = (props) => {
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const Recommend = (props) => {
     <React.Fragment>
       <ContainerGrid>
         <Header>
-          <GoBack
+          <LeftButoon
             style={{
               margin: "auto",
               fill: "#707070",

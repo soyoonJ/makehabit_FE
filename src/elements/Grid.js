@@ -45,10 +45,8 @@ const Grid = (props) => {
     borderRadius,
     position,
     justifyContent,
-
     is_post_box,
     is_category_box,
-
     boxSizing,
     borderStyle,
     alignItems,

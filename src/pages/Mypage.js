@@ -18,6 +18,8 @@ import Character from "../redux/modules/character";
 import styled from "styled-components";
 import { actionCreators as characterActions } from "../redux/modules/character";
 
+import { ReactComponent as RightButton } from "../img/icon_right.svg";
+
 const Mypage = (props) => {
   const dispatch = useDispatch();
 
@@ -74,7 +76,6 @@ const Mypage = (props) => {
               </ImgContainer>
             )} */}
           </CharacterWrap>
-
           {/* 닉네임 / 닉네임 변경 */}
           <Grid
             is_flex
@@ -120,7 +121,6 @@ const Mypage = (props) => {
               </Grid>
             </Modal>
           </Grid>
-
           {/* 레벨 / 남은 경험치*/}
           <Grid is_flex textAlign="center">
             <Text>Lv.1</Text>
@@ -130,96 +130,105 @@ const Mypage = (props) => {
           <Grid is_flex justifyContent="center" padding="5%">
             <ProgressBar />
           </Grid>
-
-          <Grid size="">
-            <ShareBox>
-              <Grid>
-                <Text
-                  alignLeft
-                  margin="10px 0px 5px 12px"
-                  bold
-                  color="white"
-                  size="20px"
-                >
-                  나만의 캐릭터를 자랑해보세요!
-                </Text>
-                <Text
-                  alignLeft
-                  margin="10px 0px 5px 12px"
-                  color="white"
-                  size="13px"
-                >
-                  내 캐릭터의 이미지를 저장할 수 있어요
-                </Text>
-              </Grid>
-              <ShareButton>
-                <Text bold alignCenter color="white">
-                  공유하기
-                </Text>
-              </ShareButton>
-            </ShareBox>
-          </Grid>
-          <Grid>
-            <Button
-              margin="1px 0px"
-              fontSize="1.25rem"
-              height="4.188rem"
-              bg="white"
-              borderRadius="0px"
-              color="black"
-            >
-              좋아요 모아보기
-            </Button>
-          </Grid>
-          <Grid>
-            <Button
-              margin="1px 0px"
-              fontSize="1.25rem"
-              height="4.188rem"
-              bg="white"
-              borderRadius="0px"
-              color="black"
-            >
-              문의 FAQ
-            </Button>
-          </Grid>
-          <Grid>
-            <Button
-              margin="1px 0px"
-              fontSize="1.25rem"
-              height="4.188rem"
-              bg="white"
-              borderRadius="0px"
-              color="black"
-              _onClick={() => {
-                // dispatch(challengeActions.setTab("feed"));
-                history.push("/mychallenge/feed");
-              }}
-            >
-              나의 기록보기
-            </Button>
-          </Grid>
-          <Grid>
-            <Button
-              margin="1px 0px"
-              fontSize="1.25rem"
-              height="4.188rem"
-              bg="white"
-              borderRadius="0px"
-              color="black"
-              _onClick={() => {
-                window.confirm(
-                  "로그아웃 하시면 캐릭터 꾸미기나 챌린지 참여가 제한됩니다😢\n정말 로그아웃 하시겠어요?"
-                )
-                  ? dispatch(userActions.logoutDB())
-                  : console.log("취소");
-              }}
-            >
-              로그아웃
-            </Button>
-          </Grid>
         </Grid>
       </ContainerGrid>
+      <Grid>
+        <ShareBox>
+          <Grid margin="0px 21px">
+            <Text alignLeft margin="19px 0px 5px 0px" color="white" size="18px">
+              나만의 캐릭터를 자랑해보세요!
+            </Text>
+            <Text
+              alignLeft
+              margin="5px 0px 19px
+              0px"
+              color="white"
+              size="13px"
+            >
+              내 캐릭터의 이미지를 저장할 수 있어요
+            </Text>
+          </Grid>
+          <div>
+            <ShareButton>
+              <Text margin="auto" size="18px" alignCenter color="white">
+                공유하기
+              </Text>
+            </ShareButton>
+          </div>
+        </ShareBox>
+      </Grid>{" "}
+      <Grid>
+        <Button
+          borderbottom="#E0E0E0 1.5px solid"
+          alignLeft
+          padding="0% 5%"
+          fontSize="1.25rem"
+          height="4.188rem"
+          bg="white"
+          borderRadius="0px"
+          color="black"
+        >
+          좋아요 모아보기
+          <RightButton
+            style={{
+              fill: "#9C9C9C",
+            }}
+          />
+        </Button>
+      </Grid>
+      <Grid>
+        <Button
+          borderbottom="#E0E0E0 1.5px solid"
+          alignLeft
+          padding="0% 5%"
+          fontSize="1.25rem"
+          height="4.188rem"
+          bg="white"
+          borderRadius="0px"
+          color="black"
+        >
+          문의 FAQ
+        </Button>
+      </Grid>
+      <Grid>
+        <Button
+          borderbottom="#E0E0E0 1.5px solid"
+          alignLeft
+          padding="0% 5%"
+          fontSize="1.25rem"
+          height="4.188rem"
+          bg="white"
+          borderRadius="0px"
+          color="black"
+          _onClick={() => {
+            // dispatch(challengeActions.setTab("feed"));
+            history.push("/mychallenge/feed");
+          }}
+        >
+          나의 기록보기
+        </Button>
+      </Grid>
+      <Grid>
+        <Button
+          borderbottom="#E0E0E0 1.5px solid"
+          alignLeft
+          padding="0% 5%"
+          fontSize="1.25rem"
+          height="4.188rem"
+          bg="white"
+          borderRadius="0px"
+          color="black"
+          _onClick={() => {
+            window.confirm(
+              "로그아웃 하시면 캐릭터 꾸미기나 챌린지 참여가 제한됩니다😢\n정말 로그아웃 하시겠어요?"
+            )
+              ? dispatch(userActions.logoutDB())
+              : console.log("취소");
+          }}
+        >
+          로그아웃
+        </Button>
+      </Grid>
       <ButtonNavigation />
     </Container>
   );
@@ -255,9 +264,8 @@ const ItemImg = styled.img`
 const ShareBox = styled.button`
   margin: "3px 0px";
   width: 100%;
-  height: "4.188rem";
+  height: 100%;
   background-color: #ff8b37;
-  box-sizing: border-box;
   padding: 3px;
   align-items: center;
   display: flex;
@@ -265,16 +273,15 @@ const ShareBox = styled.button`
 `;
 
 const ShareButton = styled.div`
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  border-radius: 50px;
+  /* border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-
-  width: 120px;
+  border-bottom-right-radius: 20px; */
+  display: flex;
+  width: 92px;
   height: 40px;
   background-color: #6825d6;
-  margin-right: 5px;
-  text-align: center;
+  margin-right: 17px;
 `;
 
 export default Mypage;
