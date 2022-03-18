@@ -68,7 +68,7 @@ const MyChallenge = (props) => {
       <hr
         style={{
           height: "0.094rem",
-          margin: "0 0 2vh 0",
+          margin: "0 0 2.84vh 0",
           outline: "none",
           border: "none",
           background: "#E0E0E0",

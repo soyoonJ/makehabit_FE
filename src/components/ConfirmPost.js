@@ -37,7 +37,7 @@ const ConfirmPost = (props) => {
   // 버튼 텍스트, 우측 상단 진행상태 텍스트 달기 위한 조건
   const statusText = [
     // { progress: "진행예정", buttonText: `${koStartAt.slice(0, 11)} 시작` },
-    { progress: "진행예정", buttonText: `${startDate}일 뒤 시작` },
+    { progress: "진행예정", buttonText: `${startDate}일` },
     { progress: "진행예정", buttonText: `${startHour}시간 뒤 시작` },
     { progress: "종료", buttonText: "완료된 챌린지입니다." },
     { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
@@ -55,6 +55,7 @@ const ConfirmPost = (props) => {
   //종료
   else if (status === 2) {
     statusContent = statusText[2];
+    // 진행중
   } else if (status === 0 && isUpload) {
     statusContent = statusText[3];
   }
@@ -105,10 +106,11 @@ const ConfirmPost = (props) => {
           <Content>{content}</Content>
         </div>
 
-        {status === 1 || status === 2 || isUpload ? (
+        {status === 2 || isUpload ? (
           <Button
             width="100%"
             bg="#ddd"
+            color="#9C9C9C"
             padding="0.5rem"
             fontSize="1rem"
             fontWeight="600"
@@ -118,19 +120,39 @@ const ConfirmPost = (props) => {
             {statusContent.buttonText}
           </Button>
         ) : (
-          <Button
-            width="100%"
-            bg="#FF8B37"
-            padding="0.5rem"
-            fontSize="1rem"
-            fontWeight="600"
-            lineHeight="1.31rem"
-            _onClick={() => {
-              history.push(`/confirm/${props.challengeId}`);
-            }}
-          >
-            오늘의 인증하기
-          </Button>
+          <>
+            {status === 1 ? (
+              <Button
+                bg="#fff"
+                color="#FF8B37"
+                width="100%"
+                padding="0.5rem"
+                fontSize="1rem"
+                fontWeight="600"
+                lineHeight="2.48vh"
+                cursor="default"
+              >
+                {statusContent.buttonText}{" "}
+                <span style={{ color: "#9C9C9C" }}>
+                  뒤에 챌린지가 시작됩니다!
+                </span>
+              </Button>
+            ) : (
+              <Button
+                width="100%"
+                bg="#FF8B37"
+                padding="0.5rem"
+                fontSize="1rem"
+                fontWeight="600"
+                lineHeight="1.31rem"
+                _onClick={() => {
+                  history.push(`/confirm/${props.challengeId}`);
+                }}
+              >
+                오늘의 인증하기
+              </Button>
+            )}
+          </>
         )}
       </TextContainer>
     </GridBox>
@@ -141,7 +163,7 @@ const GridBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 2.46875fr;
   gap: 2.01vh;
-  margin: 5vh 0;
+  margin: 0 0 4.028vh 0;
 `;
 const ImageContainer = styled.div`
   width: 100%;
