@@ -151,9 +151,7 @@ const PostDetail = (props) => {
           </ToLeft>
           <ToRight>
             <StartDate>
-              {moment(koStartAt, "YYYY.MM.DD")
-                .add(30, "days")
-                .format("YYYY년 MM월 DD일")}
+              {moment(koStartAt, "YYYY.MM.DD").format("YYYY년 MM월 DD일")}
             </StartDate>
           </ToRight>
         </ChallengeStartContainer>
@@ -289,13 +287,13 @@ const PostDetail = (props) => {
               },
             }}
           >
-            <Join
+            <ConfirmButton
               onClick={() => {
                 dispatch(postActions.joinDB(challengeId));
               }}
             >
               <HeadLine>챌린지 참여하기</HeadLine>
-            </Join>
+            </ConfirmButton>
           </Link>
         ) : (
           // 참여 안했을 때 + 로그인 안되어 있을 때

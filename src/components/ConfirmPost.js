@@ -37,8 +37,8 @@ const ConfirmPost = (props) => {
   // 버튼 텍스트, 우측 상단 진행상태 텍스트 달기 위한 조건
   const statusText = [
     // { progress: "진행예정", buttonText: `${koStartAt.slice(0, 11)} 시작` },
-    { progress: "진행예정", buttonText: `${startDate}일` },
-    { progress: "진행예정", buttonText: `${startHour}시간 뒤 시작` },
+    { progress: "진행예정", buttonText: `${startDate + 1}일` },
+    { progress: "진행예정", buttonText: `${startHour}시간` },
     { progress: "종료", buttonText: "완료된 챌린지입니다." },
     { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
   ];
@@ -96,7 +96,13 @@ const ConfirmPost = (props) => {
                 <div style={{ color: "#FF8B37" }}>{statusContent.progress}</div>
               ) : (
                 <>
-                  <span>{round}세트</span> 진행중
+                  {status === 0 ? (
+                    <>
+                      <span>{round}세트</span> 진행중
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </>
               )}
             </Round>

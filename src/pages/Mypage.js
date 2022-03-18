@@ -296,7 +296,7 @@ const TestBox = styled.button`
   font-size: 1.25rem;
   margin-top: 2%;
   padding: 0% 5%;
-  border-bottom: 1px #e0e0e0 solid;
+  border-bottom: 1.5px #e0e0e0 solid;
 `;
 
 export default Mypage;

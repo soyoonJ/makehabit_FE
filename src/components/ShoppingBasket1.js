@@ -280,7 +280,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                         width="22px"
                         src={Icon + "/icon_coin.svg"}
                       />
-                      <ItemPrice>{shopColor.price}</ItemPrice>
+                      <ItemPrice>{shopBg.price}</ItemPrice>
                     </ToLeft>
                   </ItemInfo>
 
