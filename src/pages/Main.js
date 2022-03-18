@@ -23,7 +23,7 @@ const Main = (props) => {
   React.useEffect(() => {
     dispatch(mainActions.RecommendDB(2));
     dispatch(mainActions.mainnewDB(2, "new"));
-    dispatch(mainActions.mainstudyDB(2, "study"));
+    dispatch(mainActions.mainstudyDB(2, "exercise"));
   }, []);
 
   //추천작심삼일 리스트 가져오기
@@ -238,7 +238,7 @@ const Main = (props) => {
             </Text>
             <PlusButton
               onClick={() => {
-                history.push(`/recommend/study`);
+                history.push(`/recommend/exercise`);
               }}
             >
               더보기

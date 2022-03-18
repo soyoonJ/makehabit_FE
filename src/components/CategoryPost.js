@@ -117,6 +117,7 @@ const Img = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
+  z-index: 1;
 `;
 
 const Like = styled.img`
