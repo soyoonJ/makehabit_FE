@@ -30,8 +30,8 @@ const Category = (props) => {
   }, []);
 
   return (
-    <ContainerGrid>
-      <Container>
+    <React.Fragment>
+      <ContainerGrid>
         <Header>
           <GoBack
             style={{
@@ -46,26 +46,25 @@ const Category = (props) => {
             카테고리
           </Text>
         </Header>
-        <CategoryBarWrap>
-          <CategoryBar></CategoryBar>
-        </CategoryBarWrap>
+      </ContainerGrid>
 
+      <CategoryBarWrap>
+        <CategoryBar></CategoryBar>
+      </CategoryBarWrap>
+
+      <ContainerGrid margin="0 0 14.6vh">
         <CardWrap>
           {category_list?.map((p, idx) => {
             // console.log("피", p);
             return <CategoryPost key={p._id} {...p} />;
           })}
         </CardWrap>
-      </Container>
+      </ContainerGrid>
       <ButtonNavigation />
-    </ContainerGrid>
+    </React.Fragment>
   );
 };
 
-const Container = styled.div`
-  /* overflow-x: hidden; */
-  margin-bottom: 120px;
-`;
 const Header = styled.div`
   display: flex;
   justify-content: space-around;
@@ -82,11 +81,12 @@ const CategoryBarWrap = styled.div`
 `;
 
 const CardWrap = styled.div`
+  margin-top: 2.6vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
   gap: 1rem;
+  justify-items: center;
+  align-items: baseline;
 `;
 
 export default Category;

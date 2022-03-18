@@ -9,7 +9,7 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 
-import { ReactComponent as LeftButoon } from "../img/icon_left.svg";
+import { ReactComponent as LeftButton } from "../img/icon_left.svg";
 import { ReactComponent as BannerImg1 } from "../img/banner_02.png";
 
 const Recommend = (props) => {
@@ -50,7 +50,7 @@ const Recommend = (props) => {
     <React.Fragment>
       <ContainerGrid>
         <Header>
-          <LeftButoon
+          <LeftButton
             style={{
               margin: "auto",
               fill: "#707070",
@@ -67,13 +67,15 @@ const Recommend = (props) => {
         <Container>
           <Banner src={BannerImg} />
           {/* <img src="/images/banner_01.png" /> */}
-          <CardWrap>
-            {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
-            {recommend_list?.map((p, idx) => {
-              // console.log("피", p);
-              return <CategoryPost key={p._id} {...p} />;
-            })}
-          </CardWrap>
+          <div style={{ paddingBottom: "18vh" }}>
+            <CardWrap>
+              {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
+              {recommend_list?.map((p, idx) => {
+                // console.log("피", p);
+                return <CategoryPost key={p._id} {...p} />;
+              })}
+            </CardWrap>
+          </div>
         </Container>
       </ContainerGrid>
       <ButtonNavigation />
@@ -81,10 +83,7 @@ const Recommend = (props) => {
   );
 };
 
-const Container = styled.div`
-  /* overflow-x: hidden; */
-  margin-bottom: 120px;
-`;
+const Container = styled.div``;
 
 const Header = styled.div`
   display: flex;
@@ -99,16 +98,14 @@ const Banner = styled.img`
 `;
 
 const CardWrap = styled.div`
-  // display: flex;
-  // margin: 0% 3% 0% 2%;
-  // justify-content: space-around;
   max-width: 380px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4%;
   justify-items: center;
-  align-items: center;
+  align-items: baseline;
+  margin-bottom: 14.6vh;
 `;
 
 export default Recommend;
