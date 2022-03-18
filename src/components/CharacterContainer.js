@@ -123,7 +123,11 @@ const CharacterContainer = () => {
       </Point>
       {viewBg && (
         <ImgContainer>
-          <ItemImg src={Item + viewBg} alt={viewBg}></ItemImg>
+          <ItemImg
+            src={Item + viewBg}
+            alt={viewBg}
+            style={{ width: "100%", objectFit: "cover" }}
+          ></ItemImg>
           <ItemImg src={Item + viewBody} alt={viewBody}></ItemImg>
           <ItemImg src={Item + viewClothes} alt={viewClothes}></ItemImg>
           <ItemImg src={Item + viewAcc} alt={viewAcc}></ItemImg>
