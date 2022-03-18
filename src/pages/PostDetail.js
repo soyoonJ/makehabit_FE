@@ -8,6 +8,7 @@ import { history } from "../redux/configureStore";
 
 import { Grid, Text, Input } from "../elements";
 import PageBack from "../components/PageBack";
+import LeaveModal from "../components/LeaveModal";
 
 import styled from "styled-components";
 
@@ -107,12 +108,16 @@ const PostDetail = (props) => {
   const DisLikeImg =
     process.env.PUBLIC_URL + "/images/icon_outline_heart_shadow.png";
   const LikeImg = process.env.PUBLIC_URL + "/images/icon_fill_heart_shadow.png";
+
+  //모달창
+
+  const leaveModal = React.useRef();
   return (
-    <Grid padding="0 0 50px 0">
-      <Grid>
+    <Container>
+      <TitleBox>
         <PageBack />
         <TitleImage src={post.thumbnail} />
-      </Grid>
+      </TitleBox>
       <MarginBox>
         <TitleContainer>
           <TitleText>{post.title}</TitleText>
@@ -157,8 +162,20 @@ const PostDetail = (props) => {
         </ChallengeStartContainer>
         <MarginBox>
           {/* 예상 종료일 */}
-
           <OrangeBox>
+            <EndDateText>
+              <ToLeft style={{ margin: "0.813rem" }}>예상 종료일 </ToLeft>
+              <ToRight style={{ margin: "0.813rem" }}>
+                {moment(date, "YYYY.MM.DD")
+                  .add(30, "days")
+                  .format("YYYY년 MM월 DD일") +
+                  " " +
+                  dayArray[moment(date, "YYYY.MM.DD").add(30, "days").day()] +
+                  "요일"}
+              </ToRight>
+            </EndDateText>
+          </OrangeBox>
+          {/* <OrangeBox>
             <EndDateText>
               예상 종료일 :{" "}
               {moment(koStartAt, "YYYY.MM.DD")
@@ -170,11 +187,11 @@ const PostDetail = (props) => {
                 ] +
                 "요일"}
             </EndDateText>
-          </OrangeBox>
+          </OrangeBox> */}
         </MarginBox>
       </BorderBox>
       {post.isParticipate ? (
-        <BorderBottomBox>
+        <IsParticipate>
           <MarginBox>
             <HeadLine>나의 참여도</HeadLine>
             <Text>3번씩 10세트면 한 달 습관 성공! 꾸준히 도전해봐요!</Text>
@@ -225,7 +242,8 @@ const PostDetail = (props) => {
               </JoinBox>
             )}
           </JoinContainer>
-        </BorderBottomBox>
+          <BorderBottomBox />
+        </IsParticipate>
       ) : (
         ""
       )}
@@ -236,6 +254,7 @@ const PostDetail = (props) => {
           <TextArea>{post.content}</TextArea>
         </ColorBoxChallenge>
       </MarginBox>
+      <PaddingBox />
       <MarginBox>
         <HeadLine>챌린지 인증방법</HeadLine>
         <ColorBoxChallenge>
@@ -243,10 +262,13 @@ const PostDetail = (props) => {
         </ColorBoxChallenge>
       </MarginBox>
       {post.isParticipate && post.status === 1 ? (
-        <MarginBox style={{ margin: "0 0 50px 0" }}>
-          <CancelBox style={{ margin: "0 0 100px 0" }}>
-            <CancelButton>챌린지 탈퇴하기</CancelButton>
+        <MarginBox>
+          <CancelBox style={{ margin: "20px 0 100px 0" }}>
+            <CancelButton onClick={() => leaveModal.current.openModal()}>
+              챌린지 탈퇴하기
+            </CancelButton>
           </CancelBox>
+          <LeaveModal ref={leaveModal} challengeId={challengeId} />
         </MarginBox>
       ) : (
         <MarginBox style={{ margin: "0 0 50px 0" }}></MarginBox>
@@ -277,39 +299,64 @@ const PostDetail = (props) => {
             </ConfirmButton>
           ) // 참여 안했을 때 + 로그인 되어있을 때
         ) : is_login ? (
-          <Link
-            to={{
-              pathname: "/completed/participate",
-              state: {
-                participateStart: post.startAt,
-                challengeId: challengeId,
-                title: post.title,
-              },
-            }}
-          >
+          <ConfirmBox>
+            <Link
+              to={{
+                pathname: "/completed/participate",
+                state: {
+                  participateStart: post.startAt,
+                  challengeId: challengeId,
+                  title: post.title,
+                },
+              }}
+            >
+              <ConfirmButton
+                onClick={() => {
+                  dispatch(postActions.joinDB(challengeId));
+                }}
+              >
+                <HeadLine>챌린지 참여하기</HeadLine>
+              </ConfirmButton>
+            </Link>
+          </ConfirmBox>
+        ) : (
+          // 참여 안했을 때 + 로그인 안되어 있을 때
+          <ConfirmBox>
             <ConfirmButton
               onClick={() => {
-                dispatch(postActions.joinDB(challengeId));
+                window.alert("로그인 후 인증 해주세요!");
+                history.push("/login");
               }}
             >
               <HeadLine>챌린지 참여하기</HeadLine>
             </ConfirmButton>
-          </Link>
-        ) : (
-          // 참여 안했을 때 + 로그인 안되어 있을 때
-          <Join
-            onClick={() => {
-              window.alert("로그인 후 인증 해주세요!");
-              history.push("/login");
-            }}
-          >
-            <HeadLine>챌린지 참여하기</HeadLine>
-          </Join>
+          </ConfirmBox>
         )}
       </ConfirmContainer>
-    </Grid>
+    </Container>
   );
 };
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  @media screen and (min-width: 420px) {
+    max-height: 100vh;
+    overflow: auto;
+  }
+`;
+const TitleBox = styled.div`
+  width: 100%;
+  height: 15.625rem;
+`;
+
+const TitleImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const TitleContainer = styled.div`
   // text-align: center;
   // margin: 1.313em 0 4.7vh 0;
@@ -325,10 +372,6 @@ const TitleText = styled.span`
   line-height: 1.813rem;
 `;
 
-const TitleImage = styled.img`
-  width: 100%;
-  height: 30vh;
-`;
 const ToLeft = styled.div`
   display: flex;
   margin: 0.625rem 1.25rem;
@@ -368,15 +411,23 @@ const ToRight = styled.div`
   justify-content: right;
 `;
 const BorderBox = styled.div`
+  margin-top: 20px;
   padding: 0.625rem 0;
   border-top: 0.094rem solid #e0e0e0;
   border-bottom: 0.094rem solid #e0e0e0;
 `;
 
+const IsParticipate = styled.div``;
+
 const BorderBottomBox = styled.div`
   padding: 0.625rem 0;
   border-bottom: 0.094rem solid #e0e0e0;
 `;
+
+const PaddingBox = styled.div`
+  padding: 10px 0;
+`;
+
 const ChallengeStartContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1.7fr;
@@ -409,7 +460,9 @@ const EndDateText = styled.span`
   line-height: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
+  width: 100%;
+  justify-content: space-between;
   color: white;
 
   @media (max-width: 420px) {
@@ -423,7 +476,6 @@ const OrangeBox = styled.div`
   background-color: #ff8b37;
   border-radius: 0.313rem;
   display: flex;
-  justify-content: center;
   text-align: center;
 `;
 const CurrentRound = styled.span`
@@ -447,8 +499,10 @@ const RoundPoint = styled.span`
 `;
 
 const Tag = styled.div`
-  font-size: 10px;
+  font-size: 1rem;
+  font-weight: 400;
   padding: 0.188rem 0.313rem;
+  margin: 0 0.625rem 0 0;
   border-radius: 0.313rem;
   height: 28px;
   background-color: #efefef;
@@ -461,7 +515,7 @@ const Tag = styled.div`
   //   }
   cursor: pointer;
   color: #707070;
-  width: 100px;
+  width: 7.5rem;
   text-align: center;
 `;
 const HeadLine = styled.span`
@@ -531,6 +585,7 @@ const JoinBox = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 4%;
+  height: 7.5rem;
   // margin: 5vh 0;
   border-radius: 10px;
   background-color: #f7f7f7;
@@ -558,20 +613,34 @@ const CancelBox = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 100%;
-  padding: 26px 33px;
+  // padding: 26px 33px;
   background: #ddd;
 `;
 
 const CancelButton = styled.button`
   width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 400;
+  padding: 1.188rem 6.938rem;
   cursor: default;
   border: none;
   background-color: #ddd;
   color: #707070;
 `;
-
+const ConfirmBox = styled.div`
+  width: 100%;
+  background-color: #ddd;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: default;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  color: #707070;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const ConfirmButton = styled.button`
   width: 100%;
   background-color: #ddd;

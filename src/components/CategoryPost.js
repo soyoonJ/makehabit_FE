@@ -56,13 +56,14 @@ const CategoryPost = (props) => {
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
-      <Card
-        onClick={() => {
-          dispatch(postActions.getDetailPostDB(challengeId));
-        }}
-      >
+      <Card>
         <ThumbnailBox>
-          <Img src={thumbnail} />
+          <Img
+            src={thumbnail}
+            onClick={() => {
+              dispatch(postActions.getDetailPostDB(challengeId));
+            }}
+          />
           {isLike ? (
             <Like
               src={LikeImg}
@@ -124,7 +125,7 @@ const Like = styled.img`
   position: absolute;
   bottom: 10px;
   right: 10px;
-  z-index: 99;
+  z-index: 100;
 `;
 
 const Tag = styled.div`

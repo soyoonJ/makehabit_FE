@@ -43,7 +43,9 @@ const Modal = forwardRef((props, ref) => {
         }}
       >
         <section>
-          <ModalHeader>카테고리 선택</ModalHeader>
+          <ModalHeader>
+            <HeaderText>카테고리 선택</HeaderText>
+          </ModalHeader>
           <ModalContent>
             <Grid borderBottom="3px solid #f7f7f7" margin="0">
               <Button
@@ -52,7 +54,7 @@ const Modal = forwardRef((props, ref) => {
                   setData(0);
                 }}
               >
-                공부
+                <ContentText>공부</ContentText>
               </Button>
             </Grid>
             <Grid borderBottom="3px solid #f7f7f7">
@@ -62,7 +64,7 @@ const Modal = forwardRef((props, ref) => {
                   setData(1);
                 }}
               >
-                운동/건강
+                <ContentText>운동/건강</ContentText>
               </Button>
             </Grid>
 
@@ -73,7 +75,7 @@ const Modal = forwardRef((props, ref) => {
                   setData(2);
                 }}
               >
-                자기개발/취미
+                <ContentText>자기개발/취미</ContentText>
               </Button>
             </Grid>
 
@@ -84,7 +86,7 @@ const Modal = forwardRef((props, ref) => {
                   setData(3);
                 }}
               >
-                생활습관
+                <ContentText>생활습관</ContentText>
               </Button>
             </Grid>
 
@@ -95,7 +97,7 @@ const Modal = forwardRef((props, ref) => {
                   setData(4);
                 }}
               >
-                에코
+                <ContentText>에코</ContentText>
               </Button>
             </Grid>
           </ModalContent>
@@ -185,11 +187,18 @@ const OpenModal = styled(ModalBox)`
 const ModalHeader = styled.header`
   position: relative;
   padding: 16px;
-  background-color: #f1f1f1;
-  color: #ff8b37;
+  background-color: #fff;
+
   text-align: center;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+`;
+
+const HeaderText = styled.span`
+  color: #ff8b37;
+  font-size: 1.375rem;
+  font-weight: bold;
+  line-height: 1.813rem;
 `;
 
 const Section = styled.section`
@@ -208,6 +217,11 @@ const ModalContent = styled.div`
   height: 50%;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
+`;
+
+const ContentText = styled.span`
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 `;
 
 const Footer = styled.footer`
