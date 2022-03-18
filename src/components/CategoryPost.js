@@ -29,8 +29,9 @@ const CategoryPost = (props) => {
   // console.log(subtitle);
 
   //이미지경로
-  const DisLikeImg = process.env.PUBLIC_URL + "/images/icon_outlineheart.svg";
-  const LikeImg = process.env.PUBLIC_URL + "/images/icon_fillheart.svg";
+  const DisLikeImg =
+    process.env.PUBLIC_URL + "/images/icon_outline_heart_shadow.png";
+  const LikeImg = process.env.PUBLIC_URL + "/images/icon_fill_heart_shadow.png";
 
   //로그인 체크
   const is_login = useSelector((state) => state.user.is_login);
@@ -105,22 +106,21 @@ const Card = styled.div`
   /* margin: 10px 0px; */
   cursor: pointer;
   display: block;
-
-  width: 160px;
+  width: 100%;
 `;
 
 const ThumbnailBox = styled.div`
-  width: 167px;
+  width: 100%;
   height: 167px;
   position: relative;
+  border-radius: 5px;
 `;
 
 const Img = styled.img`
-  /* padding: 0% 4%; */
   width: 100%;
   height: 100%;
-  /* max-width: 150px;
-  max-height: 150px; */
+  object-fit: cover;
+  border-radius: 5px;
 `;
 
 const Like = styled.img`

@@ -52,7 +52,7 @@ const Main = (props) => {
               color="#FF8B37"
               margin="22px 10px 0px 0px"
             >
-              로고부분
+              습관삼끼
             </Text>
             <ContainerInput>
               <InputBox
@@ -189,9 +189,10 @@ const Main = (props) => {
             </Category>
           </CategoryWrap>
 
+          {/* 테마 카테고리 - 추천 작심삼끼 */}
           <RecommendTitle>
             <Text size="20px" bold>
-              추천 작심삼일
+              추천 습관삼끼
             </Text>
             <PlusButton
               onClick={() => {
@@ -202,12 +203,15 @@ const Main = (props) => {
               더보기
             </PlusButton>
           </RecommendTitle>
+
           <RecommendWrap>
             {recommend_list?.map((p, idx) => {
               return <CategoryPost key={p._id} {...p} />;
             })}
           </RecommendWrap>
           {/*★★★★★★map 부분 바꿔야함!!!!!!!!!!! */}
+
+          {/* 테마 카테고리 - 따끈따끈 새챌린지 */}
           <RecommendTitle>
             <Text size="20px" bold>
               따끈따끈 새챌린지
@@ -220,14 +224,17 @@ const Main = (props) => {
               더보기
             </PlusButton>
           </RecommendTitle>
+
           <RecommendWrap>
             {new_list?.map((p, idx) => {
               return <CategoryPost key={p._id} {...p} />;
             })}
           </RecommendWrap>
+
+          {/* 테마 카테고리 - 운동 가보자고 */}
           <RecommendTitle>
             <Text size="20px" bold>
-              스터디윗미
+              운동 가보자고
             </Text>
             <PlusButton
               onClick={() => {
@@ -237,6 +244,7 @@ const Main = (props) => {
               더보기
             </PlusButton>
           </RecommendTitle>
+
           <RecommendWrap>
             {study_list?.map((p, idx) => {
               return <CategoryPost key={p._id} {...p} />;
@@ -320,22 +328,20 @@ const CategoryText = styled.text`
   align-items: center;
   font-weight: bold;
   font-size: 14px;
-  margin-top: 23px;
   margin-bottom: 27px;
   text-align: center;
 `;
 
 //추천 작심삼일
 const RecommendWrap = styled.div`
-  /* margin-top: 4%; */
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 4.1%;
+  margin-bottom: 6.51vh;
 `;
 
 const RecommendTitle = styled.div`
   display: flex;
-  margin-top: 14px;
-  /* margin: 0% 5% 0% 5%; */
 `;
 
 const RecommendImg = styled.div`

@@ -15,19 +15,20 @@ const Banner1 = () => {
   const [bannerIndex, setBannerIndex] = React.useState(0);
 
   // map 돌리기 위한 배너 갯수만큼의 배열
-  const circleArray = [0, 0, 0, 0, 0];
-
+  const circleArray = [0, 0];
+  // map돌릴때 쓰일 imgUrl
+  const imgURL = ["/banner/mainbanner_01.png", "/banner/mainbanner_02.png"];
   // 이전 버튼 클릭시 배너의 인덱스를 -1, 인덱스가 처음이면 마지막으로 돌아가기.
   const clickPrev = () => {
     if (bannerIndex <= 0) {
-      setBannerIndex(4);
+      setBannerIndex(imgURL.length - 1);
       return;
     }
     setBannerIndex(bannerIndex - 1);
   };
   // 다음 버튼 클릭시 배너의 인덱스를 +1, 인덱스가 마지막이면 처음인 0으로 돌아가기.
   const clickNext = () => {
-    if (bannerIndex >= 4) {
+    if (bannerIndex >= imgURL.length - 1) {
       setBannerIndex(0);
       return;
     }
@@ -42,56 +43,27 @@ const Banner1 = () => {
   // useEffect와 setInterval을 활용해 일정시간마다 자동으로 슬라이더가 넘어가기 구현
   React.useEffect(() => {
     const slider = setInterval(
-      () => setBannerIndex((value) => (value === 4 ? 0 : value + 1)),
+      () =>
+        setBannerIndex((value) =>
+          value === imgURL.length - 1 ? 0 : value + 1
+        ),
       3000
     );
     return () => clearInterval(slider);
   }, []);
 
-  // map돌릴때 쓰일 imgUrl
-  const imgURL = [
-    "https://ifh.cc/g/GPUMTv.jpg",
-    "https://ifh.cc/g/CKsG1H.jpg",
-    "https://ifh.cc/g/Z7YrNr.jpg",
-    "https://i.pinimg.com/564x/fc/10/66/fc1066bff5fcfa8ff8125f10eec74545.jpg",
-    "https://ifh.cc/g/M0MzE9.jpg",
-  ];
-  // map돌릴때 쓰일 배너멘트
-  const bannerMent = [
-    [
-      "야 너두?",
-      "오늘은 영어 스터디모임 어떠세요",
-      "영어스터디 구하러가기",
-      "스터디",
-    ],
-    [
-      "나만 없어ㅠㅠ",
-      "나도 고양이 키우고 싶다..",
-      "반려동물 모임 구경가기",
-      "반려동물",
-    ],
-    ["투어", "떠나요. 어디든..", "투어모임 구하러가기", "투어"],
-    ["요가", "퇴근 후 요가 어때요", "운동모임 구하러가기", "스포츠"],
-    ["주말엔", "봉사활동 어떠세요", "봉사활동모임 참여하기", "봉사활동"],
-  ];
-
   return (
     <Container>
-      <FontAwesomeIcon
+      <IconImg
+        src={"/images/icon_left.svg"}
         onClick={clickPrev}
-        icon={faAngleLeft}
-        style={{
-          position: "absolute",
-          left: "10px",
-          zIndex: 1,
-          cursor: "pointer",
-        }}
+        style={{ left: "10px" }}
       />
       <Carousel bannerIndex={bannerIndex}>
         {circleArray.map((e, i) => (
           <ContentBox style={{ display: "flex" }} index={i} key={i}>
             <Content style={{ display: "flex" }}>
-              <TextBox>
+              {/* <TextBox>
                 <h2
                   style={{
                     width: "100%",
@@ -123,7 +95,7 @@ const Banner1 = () => {
                     {bannerMent[i][2]}
                   </Button>
                 </ButtonBox>
-              </TextBox>
+              </TextBox> */}
               <Img imgURL={imgURL[i]} index={i}></Img>
               {/* {i === 0 && (
                 <h1
@@ -157,10 +129,10 @@ const Banner1 = () => {
           ></Circle>
         ))}
       </CircleBox>
-      <FontAwesomeIcon
+      <IconImg
+        src={"/images/icon_right.svg"}
         onClick={clickNext}
-        icon={faAngleRight}
-        style={{ position: "absolute", right: "10px", cursor: "pointer" }}
+        style={{ right: "10px" }}
       />
     </Container>
   );
@@ -170,7 +142,8 @@ const Banner1 = () => {
 const Container = styled.div`
   width: 100%;
   max-width: 420px;
-  height: 350px;
+  height: 175px;
+  margin: 25px 0;
   background: black;
   font-size: 70px;
   display: flex;
@@ -210,7 +183,7 @@ const Carousel = styled.div`
 `;
 const ContentBox = styled.div`
   font-size: 22px;
-  height: 300px;
+  height: 175px;
   font-weight: 700;
   line-height: 60px;
 
@@ -221,10 +194,6 @@ const ContentBox = styled.div`
   @media (max-width: 420px) {
     width: 100vw;
   }
-
-  color: ${(props) => ([1, 3].includes(props.index) ? "white" : "black")};
-  background-color: ${(props) =>
-    props.index === 1 ? "#3b5892;" : props.index === 3 ? "#dfc6b2" : null};
 `;
 const TextBox = styled.div`
   z-index: 5;
@@ -233,7 +202,7 @@ const TextBox = styled.div`
 const Content = styled.div`
   position: relative;
   width: 100%;
-  padding: 0px 20px;
+  padding: 0px;
 `;
 const CircleBox = styled.div`
   width: auto;
@@ -254,17 +223,25 @@ const Circle = styled.div`
 
 const Img = styled.div`
   background-image: url(${(props) => props.imgURL});
-  width: 200px;
+  // width: 200px;
 
-  height: 200px;
-  background-size: cover;
+  @media (min-width: 420px) {
+    width: 420px;
+  }
+
+  @media (max-width: 420px) {
+    width: 100vw;
+  }
+  background-size: 100% auto;
   background-position: center;
-  position: absolute;
-  right: 20px;
-  top: 0px;
+  background-repeat: no-repeat;
   z-index: 2;
 `;
-
+const IconImg = styled.img`
+  position: absolute;
+  cursor: pointer;
+  z-index: 3;
+`;
 const ButtonBox = styled.div`
   /* position: absolute; 
   left: 80px; */

@@ -20,25 +20,32 @@ const Search = () => {
       <Container>
         <ContainerGrid>
           <Header>
-            <Text width="30%" size="22px" bold color="#FF8B37">
-              로고부분
+            {/*로고 */}
+            {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
+            <Text
+              width="30%"
+              size="20px"
+              bold
+              color="#FF8B37"
+              margin="22px 10px 0px 0px"
+            >
+              습관삼끼
             </Text>
             <ContainerInput>
               <InputBox
                 ref={search}
                 placeholder="도전하고 싶은 습관을 검색해보세요!"
-                width="65%"
               ></InputBox>
 
-              <ImgBox
-                style={{ width: "15px" }}
+              <SearchIcon
+                style={{ width: "20px" }}
                 src="images/icon_search.svg"
                 alt=""
                 onClick={() => {
                   dispatch(mainActions.getSearchDB(search.current.value));
                   history.push(`/search`);
                 }}
-              ></ImgBox>
+              ></SearchIcon>
             </ContainerInput>
           </Header>
         </ContainerGrid>
@@ -56,15 +63,18 @@ const Search = () => {
     </React.Fragment>
   );
 };
+
 const Container = styled.div`
   /* overflow-x: hidden; */
   /* margin: 0% 3% 0% 3%; */
   margin: 0%;
   padding-bottom: 50px;
+  margin-bottom: 100px;
 `;
 const Header = styled.div`
-  margin: 10% 0% 2% 0%;
+  /* margin: 26px 0; */
   display: flex;
+  margin-bottom: 20px;
 `;
 
 const ImgBox = styled.img`
@@ -87,22 +97,33 @@ const CardWrap = styled.div`
   justify-items: center;
   align-items: center;
 `;
-
 const ContainerInput = styled.div`
   margin-top: 21px;
-  width: 70%;
-  height: 29px;
+  width: 100%;
+  height: 32px;
   border-radius: 5px;
   background-color: #f7f7f7;
   align-items: center;
+  display: flex;
 `;
 
 const InputBox = styled.input`
-  width: 70%;
+  width: 16.188em;
   height: 29px;
   border: none;
   border-radius: 5px;
   background-color: #f7f7f7;
   outline: none;
+  padding-left: 0.813rem;
+  size: 5px;
+  ::placeholder {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+`;
+const SearchIcon = styled.img`
+  height: 20px;
+  width: 10%;
+  margin-left: 8%;
 `;
 export default Search;

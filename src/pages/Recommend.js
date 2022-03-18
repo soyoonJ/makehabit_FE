@@ -27,7 +27,7 @@ const Recommend = (props) => {
     if (categoryId === "new") {
       dispatch(mainActions.RecommendDB(10, categoryId));
       // console.log("들어옸니!!!!!!!!!", categoryId);
-    } else if (categoryId === "study") {
+    } else if (categoryId === "exercise") {
       dispatch(mainActions.RecommendDB(10, categoryId));
     } else {
       dispatch(mainActions.RecommendDB(10));
@@ -37,13 +37,13 @@ const Recommend = (props) => {
 
   if (categoryId === "new") {
     title = "따끈따끈 새챌린지";
-    BannerImg = "/images/banner_01.png";
+    BannerImg = "/banner/themebanner_01.png";
   } else if (categoryId === "study") {
-    title = "스터디윗미";
-    BannerImg = "/images/banner_02.png";
+    title = "운동 가보자고";
+    BannerImg = "/banner/themebanner_02.png";
   } else {
     title = "추천 작심삼일";
-    BannerImg = "/images/banner_03.png";
+    BannerImg = "/banner/themebanner_01.png";
   }
 
   return (
@@ -102,9 +102,11 @@ const CardWrap = styled.div`
   // display: flex;
   // margin: 0% 3% 0% 2%;
   // justify-content: space-around;
+  max-width: 380px;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 4%;
   justify-items: center;
   align-items: center;
 `;

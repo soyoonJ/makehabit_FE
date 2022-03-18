@@ -102,6 +102,11 @@ const PostDetail = (props) => {
   const currentRound = parseInt((post?.proofCount - 1) / 3) + 1;
   console.log("바퀴", currentRound, (currentRound - 1) * 3 + 2);
   const Item = process.env.PUBLIC_URL + "/images";
+
+  //이미지경로
+  const DisLikeImg =
+    process.env.PUBLIC_URL + "/images/icon_outline_heart_shadow.png";
+  const LikeImg = process.env.PUBLIC_URL + "/images/icon_fill_heart_shadow.png";
   return (
     <Grid padding="0 0 50px 0">
       <Grid>
@@ -113,17 +118,15 @@ const PostDetail = (props) => {
           <TitleText>{post.title}</TitleText>
           <IconToRight>
             {post.isLike ? (
-              <FcLike
-                color="#000"
-                size="25"
+              <Like
+                src={LikeImg}
                 onClick={() => {
                   disLike();
                 }}
               />
             ) : (
-              <FcLikePlaceholder
-                color="#000"
-                size="25"
+              <Like
+                src={DisLikeImg}
                 onClick={() => {
                   like();
                 }}
@@ -586,4 +589,12 @@ const ConfirmButton = styled.button`
 const Img = styled.img`
   size: 40px;
 `;
+
+const Like = styled.img`
+  size: 10px;
+
+  bottom: 10px;
+  right: 10px;
+`;
+
 export default PostDetail;
