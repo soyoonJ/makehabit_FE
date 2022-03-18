@@ -138,6 +138,7 @@ const CharacterContainer = () => {
         _onClick={saveButton}
         position="absolute"
         bottom="0"
+        right="0"
         margin="0 5% 2vh 0"
         bg="#6825D6"
         color="#fff"

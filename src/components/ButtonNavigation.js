@@ -181,6 +181,7 @@ const Footer = styled.div`
   bottom: 0px;
   width: 100%;
   max-width: 420px;
+  z-index: 99;
 `;
 
 const GradientBox = styled.div`

@@ -167,14 +167,14 @@ const likeDB = (challengeId) => {
       .like(challengeId)
       .then((response) => {
         console.log("좋아요");
-        dispatch(editLike(challengeId, true));
+        dispatch(getDetailPostDB(challengeId));
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .then(() => {
-        dispatch(getDetailPostDB(challengeId));
       });
+    // .then(() => {
+    //   dispatch(getDetailPostDB(challengeId));
+    // });
   };
 };
 
@@ -186,14 +186,14 @@ const dislikeDB = (challengeId) => {
       .dislike(challengeId)
       .then((response) => {
         console.log("싫어요");
-        dispatch(editLike(challengeId, false));
+        dispatch(getDetailPostDB(challengeId));
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .then(() => {
-        dispatch(getDetailPostDB(challengeId));
       });
+    // .then(() => {
+    //   dispatch(getDetailPostDB(challengeId));
+    // });
   };
 };
 

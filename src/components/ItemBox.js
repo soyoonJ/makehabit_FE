@@ -182,7 +182,7 @@ const OneItem = styled.div`
       width: 100%;
       height: 19vh;
       background: #fff;
-      border-radius: 10px;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;

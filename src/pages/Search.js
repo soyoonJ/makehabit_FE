@@ -48,21 +48,59 @@ const Search = () => {
               ></SearchIcon>
             </ContainerInput>
           </Header>
+          {/*검색된 포스팅카드 불러오기 */}
+          <CardWrap>
+            {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
+            {searchWord_list?.map((p, idx) => {
+              // console.log("검색리스트", p);
+              return <CategoryPost key={p._id} {...p} />;
+            })}
+          </CardWrap>
         </ContainerGrid>
 
+
         {/*검색된 포스팅카드 불러오기 */}
-        <CardWrap>
-          {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
-          {searchWord_list?.map((p, idx) => {
-            // console.log("검색리스트", p);
-            return <CategoryPost key={p._id} {...p} />;
-          })}
-        </CardWrap>
+
+        {searchWord_list?.length === 0 ? (
+          <NoChallenge>
+            찾으시는 챌린지가 없어요!
+            <br />
+            <br />
+            챌린지를 개설하셔서
+            <br />
+            습관만들기를 시작해보세요!
+            <br />
+            <br />
+            <button
+              onClick={() => {
+                history.push("/postwrite");
+              }}
+            >
+              습관만들러 가기
+            </button>
+          </NoChallenge>
+        ) : (
+          <CardWrap>
+            {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
+            {searchWord_list?.map((p, idx) => {
+              // console.log("검색리스트", p);
+              return <CategoryPost key={p._id} {...p} />;
+            })}
+          </CardWrap>
+        )}
+
+
         <ButtonNavigation></ButtonNavigation>
       </Container>
     </React.Fragment>
   );
 };
+
+const NoChallenge = styled.div`
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
 
 const Container = styled.div`
   /* overflow-x: hidden; */
@@ -96,6 +134,8 @@ const CardWrap = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
+  gap: 0 4.1%;
+  margin-bottom: 6.51vh;
 `;
 const ContainerInput = styled.div`
   margin-top: 21px;
