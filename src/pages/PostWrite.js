@@ -197,10 +197,18 @@ const PostWrite = () => {
           }}
         >
           {categoryValue ? (
-            <CategoryTextBox>
-              <HeadLine>{categoryValue}</HeadLine>
-            </CategoryTextBox>
+            <CategoryContainer>
+              <ToLeft>
+                <HeadLine>{categoryValue}</HeadLine>
+              </ToLeft>
+              <ToRight>
+                <MdOutlineKeyboardArrowDown />
+              </ToRight>
+            </CategoryContainer>
           ) : (
+            // <CategoryTextBox>
+            //   <HeadLine></HeadLine>
+            // </CategoryTextBox>
             <CategoryContainer>
               <ToLeft>
                 <HeadLine>카테고리 선택</HeadLine>
@@ -218,7 +226,7 @@ const PostWrite = () => {
 
         <ChallengeStartContainer>
           <ToLeft>
-            <HeadLine>챌린지 시작일</HeadLine>
+            <ChallengeText>챌린지 시작일</ChallengeText>
           </ToLeft>
           <ToRight>
             <StartDate>{date ? transformDay : "2022년 00월 00일"}</StartDate>
@@ -238,15 +246,17 @@ const PostWrite = () => {
 
           <ColorBox>
             <EndDateText>
-              예상 종료일 :{" "}
-              {todayPlus30 > todayDate
-                ? moment(date, "YYYY.MM.DD")
-                    .add(30, "days")
-                    .format("YYYY년 MM월 DD일") +
-                  " " +
-                  dayArray[moment(date, "YYYY.MM.DD").add(30, "days").day()] +
-                  "요일"
-                : "예상 종료일은 30일 뒤 입니다."}
+              <ToLeft style={{ margin: "0.813rem" }}>예상 종료일 </ToLeft>
+              <ToRight style={{ margin: "0.813rem" }}>
+                {todayPlus30 > todayDate
+                  ? moment(date, "YYYY.MM.DD")
+                      .add(30, "days")
+                      .format("YYYY년 MM월 DD일") +
+                    " " +
+                    dayArray[moment(date, "YYYY.MM.DD").add(30, "days").day()] +
+                    "요일"
+                  : "2022년 00월 00일 월요일"}
+              </ToRight>
             </EndDateText>
           </ColorBox>
         </MarginBox>
@@ -348,16 +358,19 @@ const HeadLine = styled.span`
 
 const TitleInput = styled.input`
   width: 100%;
+  box-sizing: border-box;
   background-color: #f7f7f7;
   height: 3.875rem;
   border: none;
   border-radius: 0.313rem;
-  margin: 0.625rem 0;
-  ::placeholder {
-    font-size: 1rem;
-    margin-left: 0.625rem;
-    opacity: 1; /* 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css */
-  }
+  margin: 1.125rem 0;
+  font-size: 1rem;
+  // ::placeholder {
+  //   font-size: 1rem;
+  //   margin-left: 0.625rem;
+  //   opacity: 1; /* 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css */
+  // }
+  padding-left: 1.625rem;
 `;
 
 const CategoryButton = styled.button`
@@ -396,14 +409,24 @@ const ToRight = styled.div`
 
 const ChallengeStartContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1.7fr;
 `;
-
+const ChallengeText = styled.span`
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.625rem;
+  @media (max-width: 420px) {
+    font-size: 0.9rem;
+  }
+`;
 const StartDate = styled.span`
   font-size: 1.25rem;
   font-weight: bold;
   line-height: 1.625rem;
   color: #ff8b37;
+  @media (max-width: 420px) {
+    font-size: 0.9rem;
+  }
 `;
 const DateInput = styled.input`
   color: white;
@@ -436,7 +459,6 @@ const ColorBox = styled.div`
   background-color: #ff8b37;
   border-radius: 0.313rem;
   display: flex;
-  justify-content: center;
   text-align: center;
 `;
 
@@ -446,8 +468,14 @@ const EndDateText = styled.span`
   line-height: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
+  width: 100%;
+  justify-content: space-between;
   color: white;
+
+  @media (max-width: 420px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Contents = styled.textarea`

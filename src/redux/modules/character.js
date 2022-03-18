@@ -73,6 +73,7 @@ const purchaseItemList = (totalPrice, items) => {
       .PurchaseItem(totalPrice, items)
       .then(function (response) {
         console.log("아이템 구매 및 저장", response);
+        history.push("/charactersave");
       })
       .catch((error) => {
         console.log(error);
