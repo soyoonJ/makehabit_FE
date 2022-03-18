@@ -90,7 +90,7 @@ const Completed = (props) => {
                 <img
                   src={
                     process.env.PUBLIC_URL +
-                    "/images/illust_exercise_samkki.png"
+                    "/images/illust_greatjob_samkki.png"
                   }
                   alt="상단 캐릭터 일러스트"
                   style={{ height: "26.77vh" }}
