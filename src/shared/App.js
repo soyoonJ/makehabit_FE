@@ -63,7 +63,7 @@ function App() {
               <Route path="/signup" component={Signup} />
               <Route path="/category/:id" component={Category} />
               <Route path="/search" component={Search} />
-              <Route path="/recommend" component={Recommend} />
+              <Route path="/recommend/:id" component={Recommend} />
               <Route path="/challenges/:id" component={PostDetail} />
               <Route path="/postwrite" component={PostWrite} />
               <Route path="/confirm/:id" component={Confirm} />

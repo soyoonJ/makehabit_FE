@@ -84,6 +84,10 @@ export const apis = {
   //카테고리페이지-목록조희
   category: (categoryId) => instance.get(`/api/category/${categoryId}`),
 
+  //메인카테고리
+  maincategory: (recommendLength, categoryId) =>
+    instance.get(`/api/category/${categoryId}?length=${recommendLength}`),
+
   // 마감임박(보류)
   // 실시간(보류)
 

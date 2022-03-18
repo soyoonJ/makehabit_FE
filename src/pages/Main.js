@@ -18,14 +18,25 @@ const Main = (props) => {
   const search = React.useRef(null);
   // console.log("서치", search.current.value);
 
+  // const categoryId = props.match.params.id;
+
   React.useEffect(() => {
     dispatch(mainActions.RecommendDB(2));
+    dispatch(mainActions.mainnewDB(2, "new"));
+    dispatch(mainActions.mainstudyDB(2, "study"));
   }, []);
 
   //추천작심삼일 리스트 가져오기
   const recommend_list = useSelector((state) => state.main.recommend_list);
-  const category_list = useSelector((state) => state.main.category_list);
-  // console.log("useSelector 썻는데!!!!", recommend_list);
+  const new_list = useSelector((state) => state.main.new_list);
+  const study_list = useSelector((state) => state.main.study_list);
+  // const maincategory_list = useSelector(
+  //   (state) => state.main.maincategory_list
+  // );
+  console.log("추천리스트", recommend_list);
+  console.log("뉴리스트", new_list);
+  console.log("스터디", new_list);
+  // console.log("useSelector 썻는데!!!!", maincategory_list);
 
   return (
     <React.Fragment>
@@ -185,7 +196,7 @@ const Main = (props) => {
             <PlusButton
               onClick={() => {
                 dispatch(mainActions.RecommendDB(10));
-                history.push("/recommend");
+                history.push("/recommend/first");
               }}
             >
               더보기
@@ -203,33 +214,31 @@ const Main = (props) => {
             </Text>
             <PlusButton
               onClick={() => {
-                dispatch(mainActions.categoryDB("new"));
-                history.push("/recommend");
+                history.push(`/recommend/new`);
               }}
             >
               더보기
             </PlusButton>
           </RecommendTitle>
           <RecommendWrap>
-            {recommend_list?.map((p, idx) => {
+            {new_list?.map((p, idx) => {
               return <CategoryPost key={p._id} {...p} />;
             })}
           </RecommendWrap>
           <RecommendTitle>
             <Text size="20px" bold>
-              스터디윗미~?노우!
+              스터디윗미
             </Text>
             <PlusButton
               onClick={() => {
-                dispatch(mainActions.categoryDB("new"));
-                history.push("/recommend");
+                history.push(`/recommend/study`);
               }}
             >
               더보기
             </PlusButton>
           </RecommendTitle>
           <RecommendWrap>
-            {recommend_list?.map((p, idx) => {
+            {study_list?.map((p, idx) => {
               return <CategoryPost key={p._id} {...p} />;
             })}
           </RecommendWrap>

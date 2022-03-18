@@ -7,11 +7,14 @@ import { apis } from "../../shared/Api";
 const GET_SEARCH = "GET_SEARCH";
 const GET_CATEGOTY = "GET_CATEGOTY";
 const GET_RECOMMEND = "GET_RECOMMEND";
+const GET_NEW = "GET_NEW";
+const GET_STUDY = "GET_STUDY";
 
 // action creators
 const getSearch = createAction(GET_SEARCH, (searchWord_list) => ({
   searchWord_list,
 }));
+
 const getCategory = createAction(
   GET_CATEGOTY,
   (category_list, checkLoadAll) => ({
@@ -19,6 +22,13 @@ const getCategory = createAction(
     checkLoadAll,
   })
 );
+const newCategory = createAction(GET_NEW, (new_list) => ({
+  new_list,
+}));
+
+const studyCategory = createAction(GET_STUDY, (study_list) => ({
+  study_list,
+}));
 
 const getRecommend = createAction(GET_RECOMMEND, (recommend_list) => ({
   recommend_list,
@@ -29,6 +39,8 @@ const initialState = {
   searchWord_list: [],
   category_list: [],
   recommend_list: [],
+  new_list: [],
+  study_list: [],
 };
 
 // 미들웨어
@@ -48,18 +60,31 @@ const getSearchDB = (searchWord) => {
   };
 };
 
-//메인-추천삼일(보류보류보류)
-const RecommendDB = (recommendLength) => {
+//메인-추천삼일
+const RecommendDB = (recommendLength, categoryId) => {
   return function (dispatch, getState, { history }) {
-    apis
-      .mainRecommend(recommendLength)
-      .then(function (res) {
-        console.log("추천삼일모듈", res.data.challenges);
-        dispatch(getRecommend(res.data.challenges));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (categoryId) {
+      apis
+        .category(categoryId) //
+        .then(function (res) {
+          // console.log("잘 들어가느냐!!!", res.data);
+          dispatch(getRecommend(res.data.challenges));
+        })
+        .catch((error) => {
+          console.log(error);
+          return;
+        });
+    } else {
+      apis
+        .mainRecommend(recommendLength)
+        .then(function (res) {
+          console.log("추천삼일모듈", res.data.challenges);
+          dispatch(getRecommend(res.data.challenges));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 };
 
@@ -67,7 +92,6 @@ const RecommendDB = (recommendLength) => {
 const categoryDB = (categoryId) => {
   return function (dispatch, getState, { history }) {
     apis
-
       .category(categoryId) //
       .then(function (res) {
         // console.log("잘 들어가느냐!!!", res.data);
@@ -79,6 +103,44 @@ const categoryDB = (categoryId) => {
       })
       .then(function (res) {
         history.push(`/category/${categoryId}`);
+      });
+  };
+};
+
+//메인 신규 목록조회
+const mainnewDB = (recommendLength, categoryId) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .maincategory(recommendLength, categoryId) //
+      .then(function (res) {
+        console.log("잘 들어가느냐!!!", res.data);
+        dispatch(newCategory(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+        return;
+      })
+      .then(function (res) {
+        // history.push(`/category/${categoryId}`);
+      });
+  };
+};
+
+//메인 스터디 목록조회
+const mainstudyDB = (recommendLength, categoryId) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .maincategory(recommendLength, categoryId) //
+      .then(function (res) {
+        console.log("잘 들어가느냐!!!", res.data);
+        dispatch(studyCategory(res.data));
+      })
+      .catch((error) => {
+        console.log(error);
+        return;
+      })
+      .then(function (res) {
+        // history.push(`/category/${categoryId}`);
       });
   };
 };
@@ -108,6 +170,19 @@ export default handleActions(
         console.log("추천!!!목록!!리스트!!!", action.payload.recommend_list);
         draft.recommend_list = action.payload.recommend_list;
       }),
+
+    [GET_NEW]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("카테고리 목록 조회", action.payload);
+        draft.new_list = action.payload.new_list.challenges;
+      }),
+
+    [GET_STUDY]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("카테고리 목록 조회", action.payload);
+
+        draft.study_list = action.payload.study_list.challenges;
+      }),
   },
 
   initialState
@@ -120,6 +195,8 @@ const actionCreators = {
   categoryDB,
   getCategory,
   getRecommend,
+  mainnewDB,
+  mainstudyDB,
 };
 
 export { actionCreators };
