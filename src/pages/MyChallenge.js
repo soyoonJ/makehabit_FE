@@ -79,28 +79,71 @@ const MyChallenge = (props) => {
       <ContainerGrid margin="0 0 14.6vh">
         {currentPage === "navi" ? (
           <div style={{ marginBottom: "14.6vh" }}>
-            {challenge_list?.map((e, i) => {
-              return <ConfirmPost key={i} {...e} />;
-            })}
+            {challenge_list?.length === 0 ? (
+              <NoChallenge>
+                참여중인 챌린지가 없어요!
+                <br />
+                <br />
+                지금 바로 챌린지에 참여하셔서
+                <br />
+                습관만들기를 시작해보세요!
+                <br />
+                <br />
+                <button
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  습관만들러 가기
+                </button>
+              </NoChallenge>
+            ) : (
+              <>
+                {challenge_list?.map((e, i) => {
+                  return <ConfirmPost key={i} {...e} />;
+                })}
+              </>
+            )}
           </div>
         ) : (
-          <ImageContainer>
-            {/* 나의 기록보기 페이지 */}
-            {proof_list?.map((e, i) => {
-              return (
-                <div>
-                  <Link
-                    to={{
-                      pathname: `/myfeed/${e.proofShotId}`,
-                      state: { length: proof_list?.length, order: i },
-                    }}
-                  >
-                    <Img src={e.imgUrl} alt="" key={i} />
-                  </Link>
-                </div>
-              );
-            })}
-          </ImageContainer>
+          <>
+            {proof_list?.length === 0 ? (
+              <NoChallenge>
+                참여중인 챌린지가 없어요!
+                <br />
+                <br />
+                지금 바로 챌린지에 참여하셔서
+                <br />
+                습관만들기를 시작해보세요!
+                <br />
+                <br />
+                <button
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  습관만들러 가기
+                </button>
+              </NoChallenge>
+            ) : (
+              <ImageContainer>
+                {proof_list?.map((e, i) => {
+                  return (
+                    <div>
+                      <Link
+                        to={{
+                          pathname: `/myfeed/${e.proofShotId}`,
+                          state: { length: proof_list?.length, order: i },
+                        }}
+                      >
+                        <Img src={e.imgUrl} alt="" key={i} />
+                      </Link>
+                    </div>
+                  );
+                })}
+              </ImageContainer>
+            )}
+          </>
         )}
       </ContainerGrid>
       <ButtonNavigation />
@@ -137,6 +180,13 @@ const TabName = styled.div`
   cursor: pointer;
   margin-bottom: 2.37vh;
   font-size: 1.9vh;
+`;
+
+// 챌린지 없을 때 띄워줌
+const NoChallenge = styled.div`
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
 `;
 
 const ImageContainer = styled.div`
