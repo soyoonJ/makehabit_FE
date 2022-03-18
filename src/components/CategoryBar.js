@@ -47,6 +47,7 @@ const CategoryBar = () => {
             }}
             style={{
               borderBottomColor: i === clickedCategory ? "#ff8b37" : "#ffffff",
+              fontWeight: i === clickedCategory ? "800" : "400",
             }}
           >
             {e[1]}
@@ -59,6 +60,7 @@ const CategoryBar = () => {
 
 const CategoryBox = styled.div`
   height: 8vh;
+  width: 100%;
   max-width: 420px;
   display: flex;
   /* justify-content: center;
@@ -68,6 +70,7 @@ const CategoryBox = styled.div`
   overflow-x: hidden;
   white-space: nowrap;
   flex-direction: column;
+  /* border-bottom: 2px gray solid; */
 
   /* @media only screen and (max-width: 768px) {
     margin-bottom: 0%;
@@ -76,11 +79,13 @@ const CategoryBox = styled.div`
 
   div {
     display: inline-block;
+    border-bottom: 2px gray solid;
   }
 `;
 
 const CategoryCircle = styled.p`
   margin: 2%;
+  font-weight: 400;
   font-size: 17px;
   padding: 5px 9px;
   color: #000;
