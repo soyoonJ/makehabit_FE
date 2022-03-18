@@ -56,7 +56,7 @@ const Mypage = (props) => {
   return (
     <Container>
       <ContainerGrid>
-        <Grid margin="10% 0%">
+        <Grid margin="10% 0% 0% 0%">
           <CharacterWrap>
             <ImgContainer>
               <ItemImg src={Item + equipBg?.itemImgUrl} />
@@ -122,13 +122,13 @@ const Mypage = (props) => {
             </Modal>
           </Grid>
           {/* 레벨 / 남은 경험치*/}
-          <Grid is_flex textAlign="center">
+          {/* <Grid is_flex textAlign="center">
             <Text>Lv.1</Text>
             <Text>다음 레벨까지 100경험치</Text>
-          </Grid>
+          </Grid> */}
           {/* 경험치 바 */}
           <Grid is_flex justifyContent="center" padding="5%">
-            <ProgressBar />
+            {/* <ProgressBar /> */}
           </Grid>
         </Grid>
       </ContainerGrid>
@@ -140,7 +140,7 @@ const Mypage = (props) => {
             </Text>
             <Text
               alignLeft
-              margin="5px 0px 19px
+              margin="7px 0px 19px
               0px"
               color="white"
               size="13px"
@@ -189,7 +189,7 @@ const Mypage = (props) => {
       </Grid>
       <Grid>
         <TestBox
-          _onClick={() => {
+          onClick={() => {
             // dispatch(challengeActions.setTab("feed"));
             history.push("/mychallenge/feed");
           }}
@@ -209,7 +209,7 @@ const Mypage = (props) => {
       </Grid>
       <Grid>
         <TestBox
-          _onClick={() => {
+          onClick={() => {
             window.confirm(
               "로그아웃 하시면 캐릭터 꾸미기나 챌린지 참여가 제한됩니다😢\n정말 로그아웃 하시겠어요?"
             )
@@ -239,7 +239,7 @@ const Container = styled.div`
 `;
 
 const CharacterWrap = styled.div`
-  width: 100%;
+  width: 210px;
   height: 100%;
   /* background-color: aqua; */
   /* display: flex; */
@@ -250,15 +250,17 @@ const CharacterWrap = styled.div`
 `;
 
 const ImgContainer = styled.div`
-  width: 210px;
+  width: 100%;
   height: 220px;
   position: relative;
 `;
 const ItemImg = styled.img`
+  width: 100%;
   height: 100%;
   position: absolute;
   /* z-index: 1; */
   border-radius: 20px;
+  object-fit: cover;
 `;
 
 const ShareBox = styled.button`
