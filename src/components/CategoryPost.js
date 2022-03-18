@@ -66,16 +66,14 @@ const CategoryPost = (props) => {
           {isLike ? (
             <Like
               src={LikeImg}
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 disLike();
               }}
             />
           ) : (
             <Like
               src={DisLikeImg}
-              onClick={(e) => {
-                e.stopPropagation();
+              onClick={() => {
                 like();
               }}
             />
@@ -83,6 +81,7 @@ const CategoryPost = (props) => {
         </ThumbnailBox>
 
         <Title>{title}</Title>
+
         {/* <Tag>
             {tags}
           </Text>
@@ -125,7 +124,6 @@ const Like = styled.img`
   position: absolute;
   bottom: 10px;
   right: 10px;
-  z-index: 99;
 `;
 
 const Tag = styled.div`
