@@ -95,7 +95,7 @@ const Container = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative; //absolute를 쓸때 영역을 잡아주는 역할
-  background: url("/images/text.png");
+  background: url("/banner/background_banner.png");
   background-size: cover;
   scrollbar-width: none;
   ::-webkit-scrollbar {
