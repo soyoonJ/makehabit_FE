@@ -39,7 +39,7 @@ const Category = (props) => {
               fill: "#707070",
             }}
             onClick={() => {
-              history.goBack();
+              history.push("/");
             }}
           />
           <Text alignCenter size="22px" bold>

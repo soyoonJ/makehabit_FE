@@ -48,7 +48,16 @@ const Search = () => {
               ></SearchIcon>
             </ContainerInput>
           </Header>
+          {/*검색된 포스팅카드 불러오기 */}
+          <CardWrap>
+            {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
+            {searchWord_list?.map((p, idx) => {
+              // console.log("검색리스트", p);
+              return <CategoryPost key={p._id} {...p} />;
+            })}
+          </CardWrap>
         </ContainerGrid>
+
 
         {/*검색된 포스팅카드 불러오기 */}
 
@@ -79,6 +88,7 @@ const Search = () => {
             })}
           </CardWrap>
         )}
+
 
         <ButtonNavigation></ButtonNavigation>
       </Container>
@@ -124,6 +134,8 @@ const CardWrap = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
+  gap: 0 4.1%;
+  margin-bottom: 6.51vh;
 `;
 const ContainerInput = styled.div`
   margin-top: 21px;

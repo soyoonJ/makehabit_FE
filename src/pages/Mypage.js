@@ -156,18 +156,17 @@ const Mypage = (props) => {
             </ShareButton>
           </div>
         </ShareBox>
-      </Grid>{" "}
+      </Grid>
       <Grid>
         <TestBox>
           <Text weight="600" bold size="18px" alignLeft>
             좋아요 모아보기
           </Text>
-
           <RightButton
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#9C9C9C",
+              fill: "#707070",
             }}
           />
         </TestBox>
@@ -182,7 +181,7 @@ const Mypage = (props) => {
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#9C9C9C",
+              fill: "#707070",
             }}
           />
         </TestBox>
