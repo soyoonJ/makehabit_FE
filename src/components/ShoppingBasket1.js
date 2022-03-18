@@ -265,7 +265,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
             </ModalHeaderContentBox>
           </ModalHeader>
           <ModalContent>
-            {!shopBg && !shopColor && !shopClothes && !shopAcc && !shopEmotion
+            {!shopBg && !shopClothes && !shopAcc && !shopEmotion
               ? closeModal()
               : ""}
 
@@ -306,7 +306,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                       <Img
                         width="28px"
                         style={{ margin: "0" }}
-                        src={Icon + "/icon_close.svg"}
+                        src={Icon + "/icon_close(shop).svg"}
                       />
                     </ItemCancel>
                   </ToRight>
@@ -352,7 +352,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                       <Img
                         width="28px"
                         style={{ margin: "0" }}
-                        src={Icon + "/icon_close.svg"}
+                        src={Icon + "/icon_close(shop).svg"}
                       />
                     </ItemCancel>
                   </ToRight>
@@ -400,7 +400,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                       <Img
                         width="28px"
                         style={{ margin: "0" }}
-                        src={Icon + "/icon_close.svg"}
+                        src={Icon + "/icon_close(shop).svg"}
                       />
                     </ItemCancel>
                   </ToRight>
@@ -449,7 +449,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                       <Img
                         width="28px"
                         style={{ margin: "0" }}
-                        src={Icon + "/icon_close.svg"}
+                        src={Icon + "/icon_close(shop).svg"}
                       />
                     </ItemCancel>
                   </ToRight>
@@ -495,7 +495,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
                       <Img
                         width="28px"
                         style={{ margin: "0" }}
-                        src={Icon + "/icon_close.svg"}
+                        src={Icon + "/icon_close(shop).svg"}
                       />
                     </ItemCancel>
                   </ToRight>
@@ -556,7 +556,7 @@ const Container = styled.div`
 
   section > div > div {
     &:nth-child(1) {
-      font-weight: bold;
+      // font-weight: bold;
       margin-bottom: 20px;
     }
     &:nth-child(2) {
@@ -675,18 +675,45 @@ const Footer = styled.footer`
   text-align: right;
 `;
 const ButtonBox = styled.div`
-  width: 100%;
   background-color: #fff;
-`;
-const Button = styled.button`
+
   position: fixed;
   bottom: 0;
-  height: 50px;
+  height: 106px;
   width: 100%;
   max-width: 420px;
+
+  // background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+  display: flex;
+`;
+
+const ConfirmBox = styled.div`
+  width: 100%;
+  background-color: #ddd;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: default;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  color: #707070;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Button = styled.button`
+  height: 4.188rem;
+  width: 100%;
+  margin: 1.25rem;
+  max-width: 26.25rem;
   background-color: #ff8b37;
   color: white;
   border: none;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.813rem;
 `;
 
 const MarginBox = styled.div`
@@ -722,10 +749,11 @@ const ItemInfo = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  height: 114px;
+  height: 7.125rem;
 `;
 const ItemName = styled.span`
   font-size: 1.25rem;
+  font-weight: bold;
   line-height: 1.625rem;
   color: black;
 `;
@@ -745,6 +773,7 @@ const ItemPriceBox = styled.div`
 
 const ItemPrice = styled.span`
   font-size: 1.25rem;
+  font-weight: bold;
   line-height: 1.625rem;
   color: black;
 `;

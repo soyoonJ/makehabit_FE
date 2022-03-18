@@ -148,13 +148,14 @@ const joinCancelDB = (challengeId) => {
       .then((response) => {
         console.log("참여취소하기");
         dispatch(editJoin(challengeId, false));
+        history.push("/");
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .then(() => {
-        dispatch(getDetailPostDB(challengeId));
       });
+    // .then(() => {
+    //   dispatch(getDetailPostDB(challengeId));
+    // });
   };
 };
 

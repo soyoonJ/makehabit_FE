@@ -159,6 +159,15 @@ const PostWrite = () => {
   const startDay = moment(date);
   const transformDay = startDay.format("YYYY년 MM월 DD일");
 
+  //현재 시간 받아오기
+  let currentTime = new Date();
+  let hour = currentTime.getHours();
+  console.log(
+    "dkssudgktpdy",
+    hour,
+    todayDate,
+    moment(todayDate, "YYYY-MM-DD").add(1, "days").format("YYYY-MM-DD")
+  );
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
   return (
@@ -233,7 +242,13 @@ const PostWrite = () => {
             <DateInput
               id="inputCalendar"
               type="date"
-              min={todayDate}
+              min={
+                hour < 15
+                  ? todayDate
+                  : moment(todayDate, "YYYY-MM-DD")
+                      .add(1, "days")
+                      .format("YYYY-MM-DD")
+              }
               onChange={onChange}
             ></DateInput>
           </ToRight>
@@ -260,6 +275,7 @@ const PostWrite = () => {
             </EndDateText>
           </ColorBox>
         </MarginBox>
+        <BorderBottom />
         <Grid padding="5%">
           <Grid>
             <HeadLine>챌린지 설명 작성</HeadLine>
@@ -274,9 +290,11 @@ const PostWrite = () => {
           <Contents
             placeholder="ex) 매일 책 한 권 읽는 챌린지"
             onChange={onChangeDesc}
-            maxLength="500"
+            maxLength="150"
           ></Contents>
-          <Text textAlign="right">{desc.length ? desc.length : "0"}/500자</Text>
+          <LengthText textAlign="right">
+            {desc.length ? desc.length : "0"}/150자
+          </LengthText>
         </Grid>
         <MarginBox>
           <Grid>
@@ -292,15 +310,15 @@ const PostWrite = () => {
           <Contents
             placeholder="ex) 오늘 날짜가 적힌 메모와 책 페이지를 찍어주세요."
             onChange={onChangeMethod}
-            maxLength="500"
+            maxLength="150"
           ></Contents>
-          <Text textAlign="right">
-            {method.length ? method.length : "0"}/500자
-          </Text>
+          <LengthText textAlign="right">
+            {method.length ? method.length : "0"}/150자
+          </LengthText>
         </MarginBox>
         <MarginBox style={{ margin: "0 0 9.375rem 0" }}>
           {imgExist && title && sendCategory && date && desc && method ? (
-            <MarginBox>
+            <CreateBox>
               <Link
                 to={{
                   pathname: "/completed/open",
@@ -312,12 +330,12 @@ const PostWrite = () => {
                     confirm();
                   }}
                 >
-                  개설 완료
+                  <CreateText>챌린지 개설 완료</CreateText>
                 </CreateButton>
               </Link>
-            </MarginBox>
+            </CreateBox>
           ) : (
-            <MarginBox>
+            <CreateBox>
               <CreateButton
                 onClick={() => {
                   confirm();
@@ -325,7 +343,7 @@ const PostWrite = () => {
               >
                 <CreateText>챌린지 개설 완료</CreateText>
               </CreateButton>
-            </MarginBox>
+            </CreateBox>
           )}
         </MarginBox>
       </Grid>
@@ -379,6 +397,11 @@ const CategoryButton = styled.button`
   border: none;
   border-bottom: 1px solid #e0e0e0;
   background-color: white;
+`;
+
+const BorderBottom = styled.div`
+  margin-top: 1.688rem;
+  border-bottom: 1.5px solid #e0e0e0;
 `;
 
 const CategoryContainer = styled.div`
@@ -444,6 +467,11 @@ const DateInput = styled.input`
 const MarginBox = styled.div`
   margin: 0.625rem 1.25rem;
 `;
+
+const CreateBox = styled.div`
+  margin: 1.25rem 1.25rem;
+`;
+
 const CaptionTextBox = styled.div`
   margin: 0.625rem 0;
 `;
@@ -480,12 +508,12 @@ const EndDateText = styled.span`
 
 const Contents = styled.textarea`
   box-sizing: border-box;
-  border-radius: 10px;
   width: 100%;
-  padding: 15px;
-  height: 30vh;
+  padding: 1.625rem;
+  height: 8.125rem;
   background: #f7f7f7;
   resize: none;
+  border: none;
   ::placeholder {
     font-size: 1rem;
     margin-top: 0.625rem;
@@ -493,7 +521,14 @@ const Contents = styled.textarea`
     opacity: 1; /* 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css */
   }
 `;
-
+const LengthText = styled.span`
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: right;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: #9c9c9c;
+`;
 const CreateButton = styled.button`
   width: 100%;
   height: 60px;
