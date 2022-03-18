@@ -179,9 +179,9 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     if (item === "bg") {
       setTotalPoint((totalPoint) => totalPoint - shopBg?.price);
     }
-    if (item === "color") {
-      setTotalPoint((totalPoint) => totalPoint - shopColor?.price);
-    }
+    // if (item === "color") {
+    //   setTotalPoint((totalPoint) => totalPoint - shopColor?.price);
+    // }
     if (item === "clothes") {
       setTotalPoint((totalPoint) => totalPoint - shopClothes?.price);
     }
@@ -220,7 +220,12 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     } else {
       items.push({ _id: equipEmotion?.itemId });
     }
-    dispatch(characterActions.purchaseItemList(totalPoint, items));
+    if (currentPoint >= totalPoint) {
+      dispatch(characterActions.purchaseItemList(totalPoint, items));
+    } else {
+      window.alert("포인트가 부족합니다.");
+      return;
+    }
   };
   const Icon = process.env.PUBLIC_URL + "/images";
   // const ShoppingList = [shopBg, shopColor, shopClothes, shopAcc, shopEmotion];
@@ -254,6 +259,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
               </ToLeft>
               <ToRight>
                 <Img width="22px" src={Icon + "/icon_coin.svg"} />
+                <TitlePoint>내 포인트 &nbsp;</TitlePoint>
                 <TitlePoint>{currentPoint}</TitlePoint>
               </ToRight>
             </ModalHeaderContentBox>
@@ -661,7 +667,7 @@ const ModalContent = styled.div`
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
-  overflow-y: auto;
+  overflow-y: scroll;
 `;
 
 const Footer = styled.footer`
