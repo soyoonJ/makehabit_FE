@@ -71,8 +71,7 @@ const Login = () => {
           color="#9C9C9C"
           width="80%"
           _onClick={() => {
-            // history.push(`/`);
-            window.location.replace("/");
+            history.push(`/`);
           }}
         >
           로그인 없이 둘러보기

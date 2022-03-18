@@ -112,6 +112,7 @@ const ConfirmPost = (props) => {
           <Content>{content}</Content>
         </div>
 
+        {/* 종료, 진행중인데 인증완료된 버튼 */}
         {status === 2 || isUpload ? (
           <Button
             width="100%"
@@ -127,9 +128,15 @@ const ConfirmPost = (props) => {
           </Button>
         ) : (
           <>
+            {/* 진행예정 */}
             {status === 1 ? (
               <Button
-                bg="#fff"
+                // bg="#fff"
+                // 회색배경 ver
+                bg="#f7f7f7"
+                // 회색라인 ver
+                // bg="#fff"
+                // border="1.5px solid #e0e0e0"
                 color="#FF8B37"
                 width="100%"
                 padding="0.5rem"
