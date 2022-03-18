@@ -80,12 +80,8 @@ const CategoryPost = (props) => {
           )}
         </ThumbnailBox>
 
-        <Title>
-          {title}
-          {/* {titleLength > 10 ? puls : ""} */}
-        </Title>
+        <Title>{title}</Title>
         {/* <Tag>
-          <Text size="10px" alignCenter>
             {tags}
           </Text>
         </Tag> */}
@@ -103,9 +99,7 @@ CategoryPost.defaultProps = {
 };
 
 const Card = styled.div`
-  /* margin: 10px 0px; */
   cursor: pointer;
-  display: block;
   width: 100%;
 `;
 
@@ -141,11 +135,16 @@ const Tag = styled.div`
 `;
 const Title = styled.div`
   margin-top: 10px;
-  width: 100%;
   font-size: 18px;
   font-weight: bold;
-  white-space: nowrap;
+  display: block;
+
+  width: 100%;
+
   text-overflow: ellipsis;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 export default CategoryPost;

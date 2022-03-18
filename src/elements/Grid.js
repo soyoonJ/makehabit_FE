@@ -12,12 +12,13 @@ const Grid = (props) => {
     children,
     _onClick,
     height,
-    left,
     borderBottom,
     borderTop,
     is_flex_start,
     borderRadius,
     position,
+    top,
+    left,
     justifyContent,
 
     is_post_box,
@@ -44,6 +45,8 @@ const Grid = (props) => {
     borderTop,
     borderRadius,
     position,
+    left,
+    top,
     justifyContent,
     is_post_box,
     is_category_box,
@@ -120,6 +123,8 @@ const GridBox = styled.div`
   // ${(props) => (props.justifyCenter ? `justify-content: center` : "")}
   // ${(props) => (props.justifyRight ? `justify-content: right` : "")}
   ${(props) => (props.borderRadius ? `border-radius: 10px` : "")}
+  ${(props) => (props.left ? `left: ${props.left}` : "")}
+  ${(props) => (props.top ? `top: ${props.top}` : "")}
   position: ${(props) => props.position};
   justify-content: ${(props) => props.justifyContent};
   boxsizing: ${(props) => props.boxSizing};
