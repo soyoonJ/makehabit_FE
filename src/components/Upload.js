@@ -48,6 +48,7 @@ const Upload = forwardRef((props, ref) => {
         id="thumnail"
         type="file"
         accept=".png , .jpg , .png, .jpeg, .gif, .jfif"
+        // accept="capture=camera"
         onChange={saveFileImage}
         ref={_ref}
         cursor="pointer"

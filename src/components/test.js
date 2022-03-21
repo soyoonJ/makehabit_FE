@@ -192,14 +192,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       setTotalPoint((totalPoint) => totalPoint - shopEmotion?.price);
     }
   };
-  console.log(
-    "구매리스트",
-    shopBg,
-    shopColor,
-    shopClothes,
-    shopAcc,
-    shopEmotion
-  );
+
   const purchase = () => {
     let items = [];
     if (shopBg) {
@@ -539,14 +532,15 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
   max-width: 420px;
-  max-height: 100vh;
+
   background: rgba(0, 0, 0, 0.6);
   z-index: 101;
   display: flex;
 
   section {
     width: 100%;
-    height: 100vh;
+    // height: 50%;
+    max-height: 85vh;
     align-self: end;
     // background: #fff;
     background-color: transparent !important;
@@ -607,8 +601,7 @@ const OpenModal = styled(ModalBox)`
 `;
 
 const ModalHeader = styled.header`
-  height: 100%;
-  max-height: 6.5rem;
+  min-height: 6.5rem;
   position: relative;
   background-color: white;
   color: #ff8b37;
@@ -671,10 +664,11 @@ const Section = styled.section`
 
 const ModalContent = styled.div`
   height: 100%;
+  min-height: 86.5vh;
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
-  overflow-y: scroll;
+  overflow: auto;
 `;
 
 const Footer = styled.footer`
@@ -721,6 +715,7 @@ const Button = styled.button`
   font-size: 1.375rem;
   font-weight: 700;
   line-height: 1.813rem;
+  border-radius: 5px;
 `;
 
 const MarginBox = styled.div`
