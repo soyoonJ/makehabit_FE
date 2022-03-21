@@ -58,7 +58,6 @@ const Search = () => {
           </CardWrap>
         </ContainerGrid>
 
-
         {/*검색된 포스팅카드 불러오기 */}
 
         {searchWord_list?.length === 0 ? (
@@ -88,7 +87,6 @@ const Search = () => {
             })}
           </CardWrap>
         )}
-
 
         <ButtonNavigation></ButtonNavigation>
       </Container>
