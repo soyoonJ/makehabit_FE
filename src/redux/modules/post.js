@@ -14,7 +14,8 @@ const EDIT_JOIN = "EDIT_JOIN";
 
 //좋아요
 const EDIT_LIKE = "EDIT_LIKE";
-
+const GET_LIKE = "GET_LIKE";
+const GET_DISLIKE = "GET_DISLIKE";
 const addPost = createAction(ADD_POST, (challengeId) => ({ challengeId }));
 const imgExist = createAction(IMG_EXIST, (imgExist) => ({ imgExist }));
 const editJoin = createAction(EDIT_JOIN, (nickname, isPush) => ({
@@ -31,12 +32,15 @@ const getDetailPost = createAction(DETAIL_POST, (post) => ({
   post,
 }));
 
+const getLike = createAction(GET_LIKE, (isLike) => ({ isLike }));
+
 // initialState
 const initialState = {
   imgExist: false,
   page: null,
   challengId: "",
   post: [],
+  isLike: [],
 };
 
 //게시물 등록
@@ -148,7 +152,9 @@ const joinCancelDB = (challengeId) => {
       .then((response) => {
         console.log("참여취소하기");
         dispatch(editJoin(challengeId, false));
-        history.push("/");
+
+        window.alert("탈퇴가 완료되었습니다.");
+        dispatch(getDetailPostDB(challengeId));
       })
       .catch(function (error) {
         console.log(error);
@@ -167,7 +173,7 @@ const likeDB = (challengeId) => {
       .like(challengeId)
       .then((response) => {
         console.log("좋아요");
-        dispatch(getDetailPostDB(challengeId));
+        dispatch(getLike(challengeId));
       })
       .catch(function (error) {
         console.log(error);
@@ -186,7 +192,7 @@ const dislikeDB = (challengeId) => {
       .dislike(challengeId)
       .then((response) => {
         console.log("싫어요");
-        dispatch(getDetailPostDB(challengeId));
+        dispatch(getLike(challengeId));
       })
       .catch(function (error) {
         console.log(error);
@@ -227,6 +233,11 @@ export default handleActions(
     [IMG_EXIST]: (state, action) =>
       produce(state, (draft) => {
         draft.imgExist = action.payload.imgExist;
+      }),
+    [GET_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("GET_LIKE", action.payload.isLike);
+        draft.isLike.push(action.payload.isLike.data);
       }),
   },
   initialState

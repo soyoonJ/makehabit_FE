@@ -47,6 +47,7 @@ function App() {
   React.useEffect(() => {
     // 로그인 후 새로고침하면 리덕스 데이터 날라감 > loginCheck 작업 필요!
     if (is_token) {
+      console.log("is_token", is_token);
       dispatch(userActions.loginCheckDB());
     }
   }, []);

@@ -180,7 +180,6 @@ export default handleActions(
     [GET_STUDY]: (state, action) =>
       produce(state, (draft) => {
         console.log("카테고리 목록 조회", action.payload);
-
         draft.study_list = action.payload.study_list.challenges;
       }),
   },
