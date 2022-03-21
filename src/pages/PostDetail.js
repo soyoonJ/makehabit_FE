@@ -21,15 +21,20 @@ const PostDetail = (props) => {
   const post = useSelector((state) => state.post.post);
   const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
-  console.log("POSTDETAIL", post);
+  console.log("POSTDETAIL", post, post?.isLike);
   // console.log("POSTEDETAIL:", post);
   //좋아요 버튼 on/off
   let [isLike, setIsLike] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(userActions.loginCheckDB());
-    dispatch(postActions.getDetailPostDB(challengeId));
+    // dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
+
+  // React.useEffect(() => {
+  //   console.log("좋아요가 바뀐다!");
+  //   dispatch(postActions.getDetailPostDB(challengeId));
+  // }, [post?.isLike]);
   // console.log("POSTDTAIL", post.startAt.subString(0, 10));
   // console.log(
   //   moment(post.startAt).utc().format("YYYY.MM.DD"),
@@ -75,7 +80,15 @@ const PostDetail = (props) => {
   //인증하기 버튼 방어 코드
   const date = new Date(post?.startAt);
   const koStartAt = date.toLocaleString();
-  console.log("koStartAt", koStartAt);
+  const todayDate = new Date();
+  const today = moment(todayDate, "YYYY-MM-DD").format("YYYY-MM-DD");
+  const setDay = moment(koStartAt, "YYYY-MM-DD").format("YYYY-MM-DD");
+
+  // var duration = moment.duration(setDay.diff(today));
+  // var days = duration.asDays();
+  console.log("koStartAt", koStartAt, today, setDay);
+  console.log(moment(setDay).diff(today, "days")); // 1
+  const diffDay = moment(setDay).diff(today, "days");
   const spiltDate = koStartAt.split(". ");
   const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
   // console.log("아이디", challengeId);
@@ -142,7 +155,11 @@ const PostDetail = (props) => {
       </MarginBox>
       <MarginBox>
         <SubtitleContainer>
-          <Tag>작심삼일 {post.round}회차</Tag>
+          {today < setDay ? (
+            <Tag>{diffDay}일 뒤 시작</Tag>
+          ) : (
+            <Tag>습관삼끼 {post.round}회차</Tag>
+          )}
           <JoinWrap>
             <BsFillPersonFill size={16} />
             <JoinText>{post.participants}명과 함께 도전중이에요!</JoinText>
@@ -166,11 +183,13 @@ const PostDetail = (props) => {
             <EndDateText>
               <ToLeft style={{ margin: "0.813rem" }}>예상 종료일 </ToLeft>
               <ToRight style={{ margin: "0.813rem" }}>
-                {moment(date, "YYYY.MM.DD")
+                {moment(koStartAt, "YYYY.MM.DD")
                   .add(30, "days")
                   .format("YYYY년 MM월 DD일") +
                   " " +
-                  dayArray[moment(date, "YYYY.MM.DD").add(30, "days").day()] +
+                  dayArray[
+                    moment(koStartAt, "YYYY.MM.DD").add(30, "days").day()
+                  ] +
                   "요일"}
               </ToRight>
             </EndDateText>
@@ -271,7 +290,7 @@ const PostDetail = (props) => {
           <LeaveModal ref={leaveModal} challengeId={challengeId} />
         </MarginBox>
       ) : (
-        <MarginBox style={{ margin: "0 0 50px 0" }}></MarginBox>
+        <MarginBox style={{ margin: "0 0 100px 0" }}></MarginBox>
       )}
 
       <ConfirmContainer>
@@ -310,26 +329,26 @@ const PostDetail = (props) => {
                 },
               }}
             >
-              <ConfirmButton
+              <JoinButton
                 onClick={() => {
                   dispatch(postActions.joinDB(challengeId));
                 }}
               >
                 <HeadLine>챌린지 참여하기</HeadLine>
-              </ConfirmButton>
+              </JoinButton>
             </Link>
           </ConfirmBox>
         ) : (
           // 참여 안했을 때 + 로그인 안되어 있을 때
           <ConfirmBox>
-            <ConfirmButton
+            <JoinButton
               onClick={() => {
                 window.alert("로그인 후 인증 해주세요!");
                 history.push("/login");
               }}
             >
               <HeadLine>챌린지 참여하기</HeadLine>
-            </ConfirmButton>
+            </JoinButton>
           </ConfirmBox>
         )}
       </ConfirmContainer>
@@ -624,18 +643,19 @@ const CancelButton = styled.button`
   padding: 1.188rem 6.938rem;
   cursor: default;
   border: none;
-  background-color: #ddd;
-  color: #707070;
+  background-color: #ff8b37;
+  color: #fff;
 `;
 const ConfirmBox = styled.div`
   width: 100%;
-  background-color: #ddd;
+  color: #fff;
+  background-color: #ff8b37;
   font-size: 1rem;
   font-weight: 600;
   cursor: default;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  color: #707070;
+
   border: none;
   display: flex;
   align-items: center;
@@ -650,6 +670,18 @@ const ConfirmButton = styled.button`
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   color: #707070;
+  border: none;
+`;
+
+const JoinButton = styled.button`
+  width: 100%;
+  background-color: #ff8b37;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: default;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  color: #fff;
   border: none;
 `;
 

@@ -539,14 +539,15 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
   max-width: 420px;
-  max-height: 100vh;
+
   background: rgba(0, 0, 0, 0.6);
   z-index: 101;
   display: flex;
 
   section {
     width: 100%;
-    height: 100vh;
+    // height: 50%;
+    max-height: 85vh;
     align-self: end;
     // background: #fff;
     background-color: transparent !important;
@@ -674,7 +675,7 @@ const ModalContent = styled.div`
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
-  overflow-y: scroll;
+  overflow: auto;
 `;
 
 const Footer = styled.footer`
@@ -721,6 +722,7 @@ const Button = styled.button`
   font-size: 1.375rem;
   font-weight: 700;
   line-height: 1.813rem;
+  border-radius: 5px;
 `;
 
 const MarginBox = styled.div`

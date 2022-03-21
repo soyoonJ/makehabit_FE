@@ -101,6 +101,7 @@ CategoryPost.defaultProps = {
 };
 
 const Card = styled.div`
+  margin-bottom: 20px;
   cursor: pointer;
   width: 100%;
 `;
@@ -110,6 +111,7 @@ const ThumbnailBox = styled.div`
   height: 167px;
   position: relative;
   border-radius: 5px;
+  z-index: 9;
 `;
 
 const Img = styled.img`
@@ -117,7 +119,8 @@ const Img = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
-  z-index: 1;
+  position: relative;
+  z-index: 9;
 `;
 
 const Like = styled.img`
@@ -125,7 +128,7 @@ const Like = styled.img`
   position: absolute;
   bottom: 10px;
   right: 10px;
-  z-index: 100;
+  z-index: 90;
 `;
 
 const Tag = styled.div`

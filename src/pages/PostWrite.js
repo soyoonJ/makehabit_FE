@@ -514,6 +514,7 @@ const Contents = styled.textarea`
   background: #f7f7f7;
   resize: none;
   border: none;
+  font-size: 1rem;
   ::placeholder {
     font-size: 1rem;
     margin-top: 0.625rem;

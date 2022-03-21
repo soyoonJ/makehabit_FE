@@ -162,15 +162,15 @@ const ButtonNavigation = () => {
         </ButtonWrap>
       </Footer>
 
-      <LoginModal ref={modalRef}>
-        <Grid padding="30px 30px 0px 30px">
+      <LoginModal ref={modalRef} in_page>
+        {/* <Grid padding="30px 30px 0px 30px">
           <Text size="20" bold alignCenter>
             앗 로그인이 필요해요!
           </Text>
           <Button margin="10px 0px" _onClick={() => history.push("/login")}>
             로그인하러가기
           </Button>
-        </Grid>
+        </Grid> */}
       </LoginModal>
     </React.Fragment>
   );
