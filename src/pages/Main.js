@@ -52,7 +52,7 @@ const Main = (props) => {
               color="#FF8B37"
               margin="22px 10px 0px 0px"
             >
-              습관삼끼
+              로고닷닷
             </Text>
             <ContainerInput>
               <InputBox
