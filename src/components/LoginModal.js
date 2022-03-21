@@ -1,5 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle } from "react";
-import { Text, Grid } from "../elements";
+import { history } from "../redux/configureStore";
+
+import { Text, Grid, Button } from "../elements";
 import styled from "styled-components";
 
 const LoginModal = forwardRef((props, ref) => {
@@ -12,7 +14,7 @@ const LoginModal = forwardRef((props, ref) => {
     },
   }));
 
-  const { open, close, getData, children } = props;
+  const { open, close, getData, children, in_page } = props;
 
   const setData = (categoryName) => {
     getData(categoryName);
@@ -28,23 +30,23 @@ const LoginModal = forwardRef((props, ref) => {
     setModalOpen(false);
   };
 
-  const outSection = React.useRef();
+  // const outSection = React.useRef();
   // ----------------------------------------
 
   if (modalOpen) {
     return (
-      <Container
-        ref={outSection}
-        onClick={(e) => {
-          if (outSection.current === e.target) {
-            // console.log("close modal!");
-            closeModal();
-          }
-        }}
-      >
+      <Container>
         <section>
-          <div onClick={closeModal}>X</div>
-          <Grid padding="30px 30px 0px 30px">{children}</Grid>
+          {in_page ? <XIcon onClick={closeModal}>X</XIcon> : ""}
+          <Grid padding="30px 30px 0px 30px">
+            <Text size="20" bold alignCenter>
+              앗 로그인이 필요해요!
+            </Text>
+            <Button margin="10px 0px" _onClick={() => history.push("/login")}>
+              로그인하러가기
+            </Button>
+            {/* 그냥 둘러보기 버튼 추가 시 in_page일 경우에는 버튼 안 뜨게 해야 함 */}
+          </Grid>
         </section>
       </Container>
     );
@@ -67,6 +69,7 @@ const Container = styled.div`
   display: flex;
 
   section {
+    position: relative;
     width: 80%;
     height: 50%;
     margin: auto;
@@ -75,22 +78,24 @@ const Container = styled.div`
     border-radius: 10px;
   }
 
-  section > div {
-    &:nth-child(1) {
-      cursor: pointer;
-      text-align: right;
-      margin: 20px;
-      font-size: 1.3rem;
-    }
-  }
-
-  section > div > div {
-    &:nth-child(1) {
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    &:nth-child(2) {
-    }
-  }
+  // section > div > div {
+  //   &:nth-child(1) {
+  //     font-weight: bold;
+  //     margin-bottom: 20px;
+  //   }
+  //   &:nth-child(2) {
+  //   }
+  // }
 `;
+
+const XIcon = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  text-align: right;
+  margin: 20px;
+  font-size: 1.3rem;
+`;
+
 export default LoginModal;
