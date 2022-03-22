@@ -260,8 +260,8 @@ const Main = (props) => {
           </RecommendWrap>
         </ContainerGrid>
         <LogoBottom>
-          <Text>로고부분</Text>
-          <Text>@teamname</Text>
+          <Text>습관삼끼</Text>
+          <Text>@hanghae99_C5</Text>
         </LogoBottom>
         <ButtonNavigation />
       </Container>
