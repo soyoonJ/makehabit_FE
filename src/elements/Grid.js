@@ -12,6 +12,7 @@ const Grid = (props) => {
     children,
     _onClick,
     height,
+    lineHeight,
     borderBottom,
     borderTop,
     is_flex_start,
@@ -41,6 +42,7 @@ const Grid = (props) => {
     width,
     maxWidth,
     height,
+    lineHeight,
     padding,
     margin,
     bg,
@@ -93,6 +95,7 @@ Grid.defaultProps = {
   width: "100%",
   maxWidth: "",
   height: "100%",
+  lineHeight: "",
   padding: false,
   margin: false,
   bg: false,
@@ -115,6 +118,7 @@ const GridBox = styled.div`
   width: ${(props) => props.width};
   ${(props) => (props.maxWidth ? `max-width: ${props.maxWidth};` : "")}
   height: ${(props) => props.height};
+  ${(props) => (props.lineHeight ? `line-height: ${props.lineHeight};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}

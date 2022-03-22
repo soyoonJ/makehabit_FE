@@ -6,6 +6,8 @@ import styled from "styled-components";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import { ReactComponent as CheckImg } from "../img/icon_check.svg";
+import { ReactComponent as CloseImg } from "../img/icon_close.svg";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Signup = () => {
@@ -88,35 +90,168 @@ const Signup = () => {
           </p>
         </Grid>
 
-        <Grid margin="4.02vh 0 0 0" fontSize="2.6vh" fontWeight="700">
+        <Grid
+          margin="4.02vh 0 5.45vh 0"
+          fontSize="2.6vh"
+          fontWeight="700"
+          lineHeight="4.02vh"
+        >
           <span style={{ color: "#FF8B37" }}>함께 도전하며,</span>
           <br />
           <span style={{ color: "#FF8B37" }}> 새로운 습관</span>을 만나보세요.
         </Grid>
 
-        <Grid margin="5% 0% 0% 0%">
-          <Text bold size="18px">
-            아이디(이메일)
-          </Text>
+        <Grid>
+          <Title>아이디(이메일)</Title>
+          <Grid position="relative">
+            <InputBox
+              placeholder="이메일 주소를 입력해주세요"
+              onChange={changeEmail}
+              onBlur={() => {
+                // console.log("포커스 아웃 됨!");
+                dispatch(userActions.emailCheckDB(user_email));
+                // console.log(emailCheck);
+              }}
+            />
+            {user_email ? (
+              emailCheck ? (
+                <CheckResult style={{ color: "#245EF5" }}>
+                  <CheckImg
+                    width="1.89vh"
+                    height="1.89vh"
+                    style={{ fill: "#245EF5" }}
+                  />
+                  <p>사용 가능한 이메일</p>
+                </CheckResult>
+              ) : (
+                // <Text color="red">이미 사용 중인 이메일입니다</Text>
+                <CheckResult style={{ color: "#E42E2E" }}>
+                  <CloseImg
+                    width="1.89vh"
+                    height="1.89vh"
+                    style={{ fill: "#E42E2E" }}
+                  />
+                  <p>사용 불가한 이메일입니다</p>
+                </CheckResult>
+              )
+            ) : (
+              <></>
+            )}
+          </Grid>
+        </Grid>
+
+        <Title
+          style={{
+            marginTop: "7.22vh",
+          }}
+        >
+          비밀번호
+        </Title>
+
+        <Grid position="relative">
           <InputBox
-            placeholder="이메일 주소를 입력해주세요"
-            onChange={changeEmail}
+            type={pwdMode}
+            placeholder="8~16자, 문자/숫자/특수문자를 모두 포함하여 사용해주세요."
+            onChange={changePwd}
+          />
+
+          {isHidden ? (
+            <AiFillEye
+              onClick={changeBool}
+              style={{
+                position: "absolute",
+                top: "0.947vh",
+                right: "20px",
+                cursor: "pointer",
+              }}
+            />
+          ) : (
+            <AiFillEyeInvisible
+              onClick={changeBool}
+              style={{
+                position: "absolute",
+                top: "0.947vh",
+                right: "20px",
+                cursor: "pointer",
+              }}
+            />
+          )}
+        </Grid>
+
+        <Title
+          style={{
+            marginTop: "4.26vh",
+          }}
+        >
+          비밀번호 확인
+        </Title>
+        <Grid position="relative">
+          <InputBox
+            type={pwdMode}
+            label="비밀번호 확인"
+            placeholder="비밀번호를 다시 입력해주세요"
+            onChange={changePwdcheck}
+          />
+          {isHidden ? (
+            <AiFillEye
+              onClick={changeBool}
+              style={{
+                position: "absolute",
+                top: "0.947vh",
+                right: "20px",
+                cursor: "pointer",
+              }}
+            />
+          ) : (
+            <AiFillEyeInvisible
+              onClick={changeBool}
+              style={{
+                position: "absolute",
+                top: "0.947vh",
+                right: "20px",
+                cursor: "pointer",
+              }}
+            />
+          )}
+        </Grid>
+
+        <Title
+          style={{
+            marginTop: "7.22vh",
+          }}
+        >
+          마지막으로 닉네임을 알려주세요!
+        </Title>
+        <Grid position="relative">
+          <InputBox
+            placeholder="3~15자의 영어,한글,숫자만 사용가능합니다"
+            onChange={changeNickname}
             onBlur={() => {
               // console.log("포커스 아웃 됨!");
-              dispatch(userActions.emailCheckDB(user_email));
+              dispatch(userActions.nicknameCheckDB(user_nickname));
               // console.log(emailCheck);
             }}
           />
-          {user_email ? (
-            emailCheck ? (
-              <Text margin="0" color="green">
-                사용 가능한 이메일
-              </Text>
+          {user_nickname ? (
+            nicknameCheck ? (
+              <CheckResult style={{ color: "#245EF5" }}>
+                <CheckImg
+                  width="1.89vh"
+                  height="1.89vh"
+                  style={{ fill: "#245EF5" }}
+                />
+                <p>사용 가능한 닉네임입니다</p>
+              </CheckResult>
             ) : (
-              // <Text color="red">이미 사용 중인 이메일입니다</Text>
-              <Text margin="0" color="red">
-                사용 불가한 이메일입니다
-              </Text>
+              // <Text color="red">이미 사용중인 닉네임입ㄴ니다</Text>
+              <CheckResult style={{ color: "#E42E2E" }}>
+                <CloseImg
+                  width="1.89vh"
+                  height="1.89vh"
+                  style={{ fill: "#E42E2E" }}
+                />
+                <p>사용 불가한 닉네임입니다</p>
+              </CheckResult>
             )
           ) : (
             <Text margin="0" color="white">
@@ -124,75 +259,6 @@ const Signup = () => {
             </Text>
           )}
         </Grid>
-
-        <Text bold size="18px">
-          비밀번호
-        </Text>
-        <InputBox
-          type={pwdMode}
-          placeholder="8~16자, 문자/숫자/특수문자를 모두 포함하여 사용해주세요."
-          onChange={changePwd}
-        />
-
-        {isHidden ? (
-          <AiFillEye
-            onClick={changeBool}
-            style={{
-              position: "absolute",
-              right: "20px",
-              top: "331px",
-              cursor: "pointer",
-            }}
-          />
-        ) : (
-          <AiFillEyeInvisible
-            onClick={changeBool}
-            style={{
-              position: "absolute",
-              right: "20px",
-              top: "331px",
-              cursor: "pointer",
-            }}
-          />
-        )}
-        <Text bold size="18px">
-          비밀번호 확인
-        </Text>
-        <InputBox
-          type={pwdMode}
-          label="비밀번호 확인"
-          placeholder="비밀번호를 다시 입력해주세요"
-          onChange={changePwdcheck}
-        />
-
-        <Text bold size="18px">
-          마지막으로 닉네임을 알려주세요!
-        </Text>
-        <InputBox
-          placeholder="3~15자의 영어,한글,숫자만 사용가능합니다"
-          onChange={changeNickname}
-          onBlur={() => {
-            // console.log("포커스 아웃 됨!");
-            dispatch(userActions.nicknameCheckDB(user_nickname));
-            // console.log(emailCheck);
-          }}
-        />
-        {user_nickname ? (
-          nicknameCheck ? (
-            <Text margin="0" color="green">
-              사용 가능한 닉네임입니다
-            </Text>
-          ) : (
-            // <Text color="red">이미 사용중인 닉네임입ㄴ니다</Text>
-            <Text margin="0" color="red">
-              사용 불가한 닉네임입니다
-            </Text>
-          )
-        ) : (
-          <Text margin="0" color="white">
-            기본값
-          </Text>
-        )}
 
         <Grid textAlign="center">
           <Text>
@@ -222,13 +288,34 @@ const Container = styled.div`
   margin: 0;
 `;
 
+const Title = styled.div`
+  font-weight: bold;
+  font-size: 2.13vh;
+  line-height: 2.79vh;
+  margin-bottom: 0.71vh;
+`;
+
 const InputBox = styled.input`
   border: none;
   border-bottom: 1px solid #9c9c9c;
   width: 100%;
-  padding-bottom: 6px;
+  padding: 0.59vh 0;
   color: #9c9c9c;
-  size: 16px;
+  font-size: 1.89vh;
+  line-height: 2.65vh;
+`;
+
+const CheckResult = styled.div`
+  position: absolute;
+  left: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 1.54vh;
+    margin: 0.94vh 0 0.94vh 0.82vh;
+  }
 `;
 
 const Footer = styled.div`
