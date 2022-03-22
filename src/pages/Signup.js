@@ -28,19 +28,17 @@ const Signup = () => {
   //nicknameChcek
   const nicknameCheck = useSelector((state) => state.user.nicknameCheck);
 
-  // let [confirmNickname, setConfirmNickname] = useState(true);
-
   //password
   const [user_pwd, setPwd] = useState("");
   const changePwd = (e) => {
     setPwd(e.target.value);
   };
-
   //password Check
   const [user_pwdcheck, setPwdcheck] = useState("");
   const changePwdcheck = (e) => {
     setPwdcheck(e.target.value);
   };
+
   //회원가입 보안
   const signup = () => {
     if (user_email === "") {
@@ -64,9 +62,11 @@ const Signup = () => {
   //input box 비밀번호 보기 / 끄기
   //이모티콘 스위칭
   let [isHidden, setIsHidden] = React.useState(true);
-
   //type형태
   let [pwdMode, setPwdMode] = React.useState("text");
+  let [correct, setCorrect] = React.useState(false);
+
+  const [isActive, setActive] = React.useState(false);
 
   React.useEffect(() => {
     if (isHidden === false) {
@@ -74,7 +74,24 @@ const Signup = () => {
     } else {
       setPwdMode("password");
     }
-  }, [isHidden]);
+
+    if (user_pwd === user_pwdcheck) {
+      setCorrect(true);
+    } else {
+      setCorrect(false);
+    }
+
+    if (
+      user_email !== "" &&
+      user_pwd !== "" &&
+      user_pwdcheck !== "" &&
+      user_nickname !== ""
+    ) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [isHidden, user_pwdcheck, user_pwd, user_email, user_nickname]);
 
   const changeBool = () => {
     setIsHidden(!isHidden);
@@ -213,6 +230,31 @@ const Signup = () => {
               }}
             />
           )}
+
+          {user_pwdcheck ? (
+            correct ? (
+              <CheckResult style={{ color: "#245EF5" }}>
+                <CheckImg
+                  width="1.89vh"
+                  height="1.89vh"
+                  style={{ fill: "#245EF5" }}
+                />
+                <p>비밀번호가 일치합니다</p>
+              </CheckResult>
+            ) : (
+              // <Text color="red">이미 사용 중인 이메일입니다</Text>
+              <CheckResult style={{ color: "#E42E2E" }}>
+                <CloseImg
+                  width="1.89vh"
+                  height="1.89vh"
+                  style={{ fill: "#E42E2E" }}
+                />
+                <p>비밀번호가 일치하지 않습니다</p>
+              </CheckResult>
+            )
+          ) : (
+            <></>
+          )}
         </Grid>
 
         <Title
@@ -254,14 +296,12 @@ const Signup = () => {
               </CheckResult>
             )
           ) : (
-            <Text margin="0" color="white">
-              기본값
-            </Text>
+            <></>
           )}
         </Grid>
 
-        <Grid textAlign="center">
-          <Text>
+        <Grid textAlign="center" margin="7.22vh 0 0">
+          <Text size="1.89vh">
             계정이 있으신가요? &nbsp;
             <a href={"/login"}>로그인</a>
           </Text>
@@ -272,9 +312,11 @@ const Signup = () => {
       {/*회원가입 버튼 */}
       <Footer>
         <Grid>
-          <Button bg="#FF8B37" width="100%" _onClick={signup}>
-            시작하기
-          </Button>
+          {isActive ? (
+            <JoinButton onClick={signup}>시작하기</JoinButton>
+          ) : (
+            <NotButton disabled>시작하기</NotButton>
+          )}
         </Grid>
       </Footer>
     </React.Fragment>
@@ -300,9 +342,13 @@ const InputBox = styled.input`
   border-bottom: 1px solid #9c9c9c;
   width: 100%;
   padding: 0.59vh 0;
-  color: #9c9c9c;
+  color: #000;
   font-size: 1.89vh;
   line-height: 2.65vh;
+
+  ::placeholder {
+    color: #9c9c9c;
+  }
 `;
 
 const CheckResult = styled.div`
@@ -316,6 +362,29 @@ const CheckResult = styled.div`
     font-size: 1.54vh;
     margin: 0.94vh 0 0.94vh 0.82vh;
   }
+`;
+
+const JoinButton = styled.button`
+  background: #ff8b37;
+  width: 100%;
+  height: 8.88vh;
+  border: none;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  color: #fff;
+  font-size: 2.6vh;
+  font-weight: 700;
+`;
+const NotButton = styled.button`
+  background: #f7f7f7;
+  width: 100%;
+  height: 8.88vh;
+  border: none;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  color: #9c9c9c;
+  font-size: 2.6vh;
+  font-weight: 700;
 `;
 
 const Footer = styled.div`
