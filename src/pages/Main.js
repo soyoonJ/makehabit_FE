@@ -346,7 +346,7 @@ const RecommendWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 4.1%;
-  margin-bottom: 6.51vh;
+  margin-bottom: 1.5rem;
 `;
 
 const RecommendTitle = styled.div`
@@ -364,6 +364,7 @@ const RecommendImg = styled.div`
 const PlusButton = styled.button`
   width: 40%;
   border: 0;
+  padding: 0;
   background-color: white;
   text-align: right;
   font-size: 20px;

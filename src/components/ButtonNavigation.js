@@ -195,14 +195,33 @@ const GradientBox = styled.div`
 `;
 
 const ButtonWrap = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  // justify-content: space-around;
   align-items: center;
-  margin-left: auto;
+  // margin-left: auto;
   width: 100%;
   height: 11.84vh;
   background-color: #fff;
 `;
+
+// const ButtonIcon = styled.button`
+//   all: unset;
+//   display: grid;
+//   grid-template-rows: 1fr 1fr;
+//   align-items: center;
+//   background-color: white;
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+
+//   & > div {
+//     &:nth-child(2) {
+//       font-size: 0.813rem;
+//       line-height: 1.063rem;
+//       letter-spacing: -0.005rem;
+//     }
+//   }
+// `;
 
 const ButtonIcon = styled.button`
   all: unset;

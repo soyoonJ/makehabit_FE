@@ -73,7 +73,6 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       } else {
         items.push({ _id: equipEmotion?.itemId });
       }
-      console.log("ItemsList다", items);
       dispatch(characterActions.purchaseItemList(totalPoint, items));
     },
   }));
@@ -193,14 +192,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       setTotalPoint((totalPoint) => totalPoint - shopEmotion?.price);
     }
   };
-  console.log(
-    "구매리스트",
-    shopBg,
-    shopColor,
-    shopClothes,
-    shopAcc,
-    shopEmotion
-  );
+
   const purchase = () => {
     let items = [];
     if (shopBg) {
@@ -609,8 +601,7 @@ const OpenModal = styled(ModalBox)`
 `;
 
 const ModalHeader = styled.header`
-  height: 100%;
-  max-height: 6.5rem;
+  min-height: 6.5rem;
   position: relative;
   background-color: white;
   color: #ff8b37;
@@ -673,6 +664,7 @@ const Section = styled.section`
 
 const ModalContent = styled.div`
   height: 100%;
+  min-height: 86.5vh;
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;

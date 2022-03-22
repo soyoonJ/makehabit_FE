@@ -8,7 +8,7 @@ import { IoIosArrowBack } from "react-icons/io";
 const PageBack = (props) => {
   const { color, padding, left } = props;
   const styles = { color, padding, left };
-
+  const Image = process.env.PUBLIC_URL + "/images";
   return (
     <Back
       {...styles}
@@ -16,12 +16,7 @@ const PageBack = (props) => {
         history.goBack();
       }}
     >
-      <IoIosArrowBack
-        style={{
-          width: "28",
-          height: "28",
-        }}
-      />
+      <Img src={Image + "/icon_left_shadow.png"} />
     </Back>
   );
 };
@@ -40,6 +35,11 @@ const Back = styled.div`
   color: ${(props) => props.color};
   position: absolute;
   ${(props) => (props.left ? `left: 0;` : "")};
+`;
+
+const Img = styled.img`
+  width: 28px;
+  height: 28px;
 `;
 
 export default PageBack;
