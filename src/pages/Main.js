@@ -275,7 +275,6 @@ const Container = styled.div`
   margin: 0%;
   padding-bottom: 50px;
   margin-bottom: 100px;
-  max-height: 100vh;
 `;
 
 const Header = styled.div`
