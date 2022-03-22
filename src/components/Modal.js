@@ -92,14 +92,14 @@ const Container = styled.div`
 `;
 
 const SectionContainer = styled.div`
-  padding: 3rem 2.875em 3.125rem 2.875em;
+  padding: 4.14vh 3.08vh;
 
   & > div {
     &:nth-child(1) {
       color: #1d1b1b;
       font-weight: 700;
-      font-size: 1.375rem;
-      line-height: 1.813rem;
+      font-size: 2.6vh;
+      line-height: 3.41vh;
       letter-spacing: -0.005rem;
     }
   }

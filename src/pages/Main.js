@@ -93,7 +93,7 @@ const Main = (props) => {
                 src="images/icon_all.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("all"));
-                  history.push("/category");
+                  history.push("/category/all");
                 }}
               />
               <CategoryText bold alignCenter>
@@ -260,8 +260,8 @@ const Main = (props) => {
           </RecommendWrap>
         </ContainerGrid>
         <LogoBottom>
-          <Text>로고부분</Text>
-          <Text>@teamname</Text>
+          <Text>습관삼끼</Text>
+          <Text>@hanghae99_C5</Text>
         </LogoBottom>
         <ButtonNavigation />
       </Container>

@@ -95,10 +95,9 @@ const CategoryPost = (props) => {
 
 CategoryPost.defaultProps = {
   puls: "...",
-  img: "ihttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw8iLInSA0YTMGUXPAGcrG4ZvLC8PGrs8lZloBXFYYxI3DNCV7nVLmM83ojgAxMkQaA8&usqp=CAU",
-  title:
-    "타이틀 변수로 변경해라, 이거 길어지면 어떻게 나오닝?너 지금 뭐하고 있니?",
-  tags: "작심삼일이다",
+  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaw8iLInSA0YTMGUXPAGcrG4ZvLC8PGrs8lZloBXFYYxI3DNCV7nVLmM83ojgAxMkQaA8&usqp=CAU",
+  title: "",
+  tags: "",
 };
 
 const Card = styled.div`
