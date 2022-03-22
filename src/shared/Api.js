@@ -126,6 +126,7 @@ export const apis = {
   joinCancel: (challengId) =>
     instance.delete(`/api/challenges/${challengId}/join`),
   // 상세페이지-찜하기 버튼&취소버튼
+  getLike: () => instance.get("/api/mypage/like"),
   like: (challengeId) => instance.post(`/api/challenges/${challengeId}/like`),
   dislike: (challengeId) =>
     instance.delete(`/api/challenges/${challengeId}/like`),

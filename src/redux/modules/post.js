@@ -149,6 +149,21 @@ const joinCancelDB = (challengeId) => {
   };
 };
 
+const getLikeDB = () => {
+  return function (dispatch, getState, { history }) {
+    console.log("GETLIKEINNNNN");
+    apis
+      .getLike()
+      .then((response) => {
+        console.log("getLike! 성공!", response.data);
+        dispatch(getLike(response.data.challenges));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+
 //찜하기
 const likeDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
@@ -156,11 +171,7 @@ const likeDB = (challengeId) => {
     apis
       .like(challengeId)
       .then((response) => {
-        const likeList = getState().main.category_list.filter(
-          (e) => e.isLike === true
-        );
-        console.log("좋아요", likeList);
-        dispatch(getLike(likeList));
+        dispatch(getLikeDB());
         dispatch(addLike(challengeId));
         // dispatch(getDetailPostDB(challengeId));
       })
@@ -178,6 +189,7 @@ const dislikeDB = (challengeId) => {
       .dislike(challengeId)
       .then((response) => {
         console.log("싫어요");
+        dispatch(getLikeDB());
         dispatch(deleteLike(challengeId));
       })
       .catch(function (error) {
@@ -217,9 +229,11 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(
           "GETLIKE!",
-          action.payload.isLike,
-          action.payload.isLike.map((e, i) => e.challengeId)
+          action.payload.isLike.map((e) => e.challengeId)
         );
+        // const likeList = getState().main.category_list.filter(
+        //   (e) => e.isLike === true
+        // );
         draft.isLike.push(action.payload.isLike.map((e, i) => e.challengeId));
       }),
     [ADD_LIKE]: (state, action) =>
@@ -245,6 +259,7 @@ const actionCreators = {
   joinDB,
   joinCancelDB,
   editLike,
+  getLikeDB,
   likeDB,
   dislikeDB,
   imgExist,

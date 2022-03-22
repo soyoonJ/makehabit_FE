@@ -125,6 +125,11 @@ const PostDetail = (props) => {
   //모달창
 
   const leaveModal = React.useRef();
+  //Like 누를때마다 화면 전환
+  const likeList = useSelector((state) => state.post.isLike);
+  React.useEffect(() => {
+    dispatch(postActions.getDetailPostDB(challengeId));
+  }, [likeList]);
   return (
     <Container>
       <TitleBox>
