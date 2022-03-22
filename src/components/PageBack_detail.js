@@ -4,7 +4,6 @@ import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
 import { IoIosArrowBack } from "react-icons/io";
-import { ReactComponent as IconLeft } from "../img/icon_left.svg";
 
 const PageBack = (props) => {
   const { color, padding, left } = props;
@@ -17,7 +16,7 @@ const PageBack = (props) => {
         history.goBack();
       }}
     >
-      <IconLeft fill="#707070" />
+      <Img src={Image + "/icon_left_shadow.png"} />
     </Back>
   );
 };
