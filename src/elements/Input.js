@@ -9,6 +9,7 @@ const Input = (props) => {
     placeholder,
     type,
     value,
+    padding,
     // is_submit,
     // onSubmit,
     // is_radio,
@@ -17,6 +18,7 @@ const Input = (props) => {
     // multiline,
     label,
     width,
+    height,
     disable,
     bg,
     _onKeyDown,
@@ -32,6 +34,8 @@ const Input = (props) => {
 
   const styles = {
     width,
+    height,
+    padding,
     bg,
     borderStyle,
     margin,
@@ -74,13 +78,15 @@ Input.defaultProps = {
   _onFocus: () => {},
   margin: false,
   _onKeyPress: () => {},
+  padding: "12px 4px",
 };
 
 const ElInput = styled.input`
   width: ${(props) => props.width};
+  ${(props) => (props.height ? `height: ${props.height};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.color ? `color: ${props.color};` : "")}
-  padding: 12px 4px;
+  padding: ${(props) => props.padding};
   box-sizing: border-box;
   border: 1px solid #adb5bd;
   border-radius: ${(props) => props.borderRadius};

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
 import { actionCreators as mainActions } from "../redux/modules/main";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
@@ -19,12 +20,19 @@ const Main = (props) => {
   // console.log("서치", search.current.value);
 
   // const categoryId = props.match.params.id;
-
+  const likeList = useSelector((state) => state.post.isLike);
   React.useEffect(() => {
     dispatch(mainActions.RecommendDB(2));
     dispatch(mainActions.mainnewDB(2, "new"));
     dispatch(mainActions.mainstudyDB(2, "exercise"));
   }, []);
+
+  React.useEffect(() => {
+    console.log("바뀌냐", likeList);
+    dispatch(mainActions.RecommendDB(2));
+    dispatch(mainActions.mainnewDB(2, "new"));
+    dispatch(mainActions.mainstudyDB(2, "exercise"));
+  }, [likeList]);
 
   //추천작심삼일 리스트 가져오기
   const recommend_list = useSelector((state) => state.main.recommend_list);
@@ -33,9 +41,9 @@ const Main = (props) => {
   // const maincategory_list = useSelector(
   //   (state) => state.main.maincategory_list
   // );
-  console.log("추천리스트", recommend_list);
-  console.log("뉴리스트", new_list);
-  console.log("스터디", new_list);
+  // console.log("추천리스트", recommend_list);
+  // console.log("뉴리스트", new_list);
+  // console.log("스터디", new_list);
   // console.log("useSelector 썻는데!!!!", maincategory_list);
 
   return (
@@ -84,8 +92,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_all.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("all"));
-                  // history.push("/category");
+                  // dispatch(mainActions.categoryDB("all"));
+                  history.push("/category");
                 }}
               />
               <CategoryText bold alignCenter>
@@ -99,8 +107,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_best.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("popular"));
-                  // history.push("/category/popular");
+                  // dispatch(mainActions.categoryDB("popular"));
+                  history.push("/category/popular");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -112,8 +120,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_new.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("new"));
-                  // history.push("/category/new");
+                  // dispatch(mainActions.categoryDB("new"));
+                  history.push("/category/new");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -125,8 +133,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_book.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("study"));
-                  // history.push("/category/study");
+                  // dispatch(mainActions.categoryDB("study"));
+                  history.push("/category/study");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -140,8 +148,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_sport.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("exercise"));
-                  // history.push("/category/exercise");
+                  // dispatch(mainActions.categoryDB("exercise"));
+                  history.push("/category/exercise");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -153,8 +161,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_lifestyle.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("self-development"));
-                  // history.push("/category/self-development");
+                  // dispatch(mainActions.categoryDB("self-development"));
+                  history.push("/category/self-development");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -166,8 +174,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_sun.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("living-habit"));
-                  // history.push("/category/living-habit");
+                  // dispatch(mainActions.categoryDB("living-habit"));
+                  history.push("/category/living-habit");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -179,8 +187,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_forest.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("eco"));
-                  // history.push("/category/eco");
+                  // dispatch(mainActions.categoryDB("eco"));
+                  history.push("/category/eco");
                 }}
               ></Img>
               <CategoryText bold alignCenter>

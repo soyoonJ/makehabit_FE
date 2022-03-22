@@ -120,7 +120,7 @@ const Container = styled.div`
   max-width: 420px;
 
   background: rgba(0, 0, 0, 0.6);
-  z-index: 99;
+  z-index: 101;
   display: flex;
 
   section {
