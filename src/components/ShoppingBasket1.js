@@ -73,6 +73,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       } else {
         items.push({ _id: equipEmotion?.itemId });
       }
+      console.log("ItemsList다", items);
       dispatch(characterActions.purchaseItemList(totalPoint, items));
     },
   }));

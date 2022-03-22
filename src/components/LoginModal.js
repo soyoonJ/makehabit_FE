@@ -67,6 +67,7 @@ const Container = styled.div`
   background: rgba(0, 0, 0, 0.6);
   z-index: 99;
   display: flex;
+  max-height: 100vh;
 
   section {
     position: relative;
@@ -76,6 +77,7 @@ const Container = styled.div`
     align-self: center;
     background: #fff;
     border-radius: 10px;
+    max-height: 100vh;
   }
 
   // section > div > div {
