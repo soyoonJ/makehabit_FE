@@ -131,34 +131,21 @@ const Login = () => {
           </Button>
         </Text>
 
-        <ButtonBox>
-          <Button
-            href={KAKAO_AUTH_URL}
-            bg="#FAE100"
-            color="black"
-            fontSize="2.13vh"
-            height="6.16vh"
-            centerFlex
-            _onClick={() => {
-              console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
-              window.location.href = KAKAO_AUTH_URL;
-            }}
-          >
-            카카오 로그인
-          </Button>
-        </ButtonBox>
+        <KakaoImg
+          href={KAKAO_AUTH_URL}
+          src={process.env.PUBLIC_URL + "/images/kakao_login.png"}
+          alt="카카오 로그인"
+          onClick={() => {
+            console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
+            window.location.href = KAKAO_AUTH_URL;
+          }}
+        ></KakaoImg>
       </ContainerGrid>
     </React.Fragment>
   );
 };
 
 const InputBox = styled.div`
-  text-align: center;
-`;
-
-const ButtonBox = styled.div`
-  display: block;
-  align-items: center;
   text-align: center;
 `;
 
@@ -196,6 +183,10 @@ const SignupDiv = styled.div`
     align-items: center;
     justify-content: center;
   }
+`;
+
+const KakaoImg = styled.img`
+  width: 100%;
 `;
 
 export default Login;

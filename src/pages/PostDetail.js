@@ -19,7 +19,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 const PostDetail = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.post);
-  const nickname = useSelector((state) => state.user.user.nickname);
+  // const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
   // console.log("POSTDETAIL", post, post?.isLike);
   // console.log("POSTEDETAIL:", post);

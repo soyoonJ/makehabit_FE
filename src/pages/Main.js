@@ -93,7 +93,7 @@ const Main = (props) => {
                 src="images/icon_all.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("all"));
-                  history.push("/category");
+                  history.push("/category/all");
                 }}
               />
               <CategoryText bold alignCenter>
