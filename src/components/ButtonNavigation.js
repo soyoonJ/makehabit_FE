@@ -32,7 +32,6 @@ const ButtonNavigation = () => {
     if (is_login) {
       // dispatch(challengeActions.setTab("navi"));
       // dispatch(challengeActions.naviChallengeDB());
-
       history.push(`/mychallenge/navi`);
     } else {
       // console.log("로그인");

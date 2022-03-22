@@ -21,14 +21,14 @@ const PostDetail = (props) => {
   const post = useSelector((state) => state.post.post);
   const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
-  console.log("POSTDETAIL", post, post?.isLike);
+  // console.log("POSTDETAIL", post, post?.isLike);
   // console.log("POSTEDETAIL:", post);
   //좋아요 버튼 on/off
   let [isLike, setIsLike] = React.useState(false);
 
   React.useEffect(() => {
-    dispatch(userActions.loginCheckDB());
-    // dispatch(postActions.getDetailPostDB(challengeId));
+    // dispatch(userActions.loginCheckDB());
+    dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
 
   // React.useEffect(() => {

@@ -31,6 +31,9 @@ const Grid = (props) => {
     textAlign,
     letterSpacing,
     pointer,
+
+    fontSize,
+    fontWeight,
   } = props;
 
   const styles = {
@@ -57,6 +60,8 @@ const Grid = (props) => {
     textAlign,
     letterSpacing,
     pointer,
+    fontSize,
+    fontWeight,
   };
 
   if (is_post_box) {
@@ -136,6 +141,8 @@ const GridBox = styled.div`
   ${(props) => (props.borderTop ? `border-top: ${props.borderTop};` : "")}
   ${(props) =>
     props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
+  ${(props) => (props.fontSize ? `font-size: ${props.fontSize};` : "")}
+  ${(props) => (props.fontWeight ? `font-weight: ${props.fontWeight};` : "")}
 `;
 
 const PostGridBox = styled.div`

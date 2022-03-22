@@ -100,10 +100,10 @@ const categoryDB = (categoryId) => {
       .catch((error) => {
         console.log(error);
         return;
-      })
-      .then(function (res) {
-        history.push(`/category/${categoryId}`);
       });
+    // .then(function (res) {
+    //   history.push(`/category/${categoryId}`);
+    // });
   };
 };
 
@@ -113,16 +113,16 @@ const mainnewDB = (recommendLength, categoryId) => {
     apis
       .maincategory(recommendLength, categoryId) //
       .then(function (res) {
-        console.log("잘 들어가느냐!!!", res.data);
+        // console.log("잘 들어가느냐!!!", res.data);
         dispatch(newCategory(res.data));
       })
       .catch((error) => {
         console.log(error);
         return;
-      })
-      .then(function (res) {
-        // history.push(`/category/${categoryId}`);
       });
+    // .then(function (res) {
+    // history.push(`/category/${categoryId}`);
+    // });
   };
 };
 
@@ -138,10 +138,10 @@ const mainstudyDB = (recommendLength, categoryId) => {
       .catch((error) => {
         console.log(error);
         return;
-      })
-      .then(function (res) {
-        // history.push(`/category/${categoryId}`);
       });
+    // .then(function (res) {
+    // history.push(`/category/${categoryId}`);
+    // });
   };
 };
 

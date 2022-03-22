@@ -15,6 +15,9 @@ const EDIT_JOIN = "EDIT_JOIN";
 //좋아요
 const EDIT_LIKE = "EDIT_LIKE";
 const GET_LIKE = "GET_LIKE";
+const ADD_LIKE = "ADD_LIKE";
+const DELETE_LIKE = "DELTE_LIKE";
+
 const GET_DISLIKE = "GET_DISLIKE";
 const addPost = createAction(ADD_POST, (challengeId) => ({ challengeId }));
 const imgExist = createAction(IMG_EXIST, (imgExist) => ({ imgExist }));
@@ -32,8 +35,9 @@ const getDetailPost = createAction(DETAIL_POST, (post) => ({
   post,
 }));
 
+const addLike = createAction(ADD_LIKE, (isLike) => ({ isLike }));
+const deleteLike = createAction(DELETE_LIKE, (isLike) => ({ isLike }));
 const getLike = createAction(GET_LIKE, (isLike) => ({ isLike }));
-
 // initialState
 const initialState = {
   imgExist: false,
@@ -54,21 +58,9 @@ const addPostDB = (
   tag
 ) => {
   return function (dispatch, useState, { history }) {
-    console.log("게시물 등록");
     apis
       .imageUpload(thumbnail)
       .then(function (response) {
-        console.log("업로드된 이미지", response);
-        console.log(
-          "dat",
-          title,
-          category,
-          response.data.imgUrl,
-          startAt,
-          content,
-          howtoContent,
-          tag
-        );
         apis
           .createChallenge(
             title,
@@ -80,7 +72,7 @@ const addPostDB = (
             tag
           )
           .then((response) => {
-            console.log("게시물 등록", response);
+            // console.log("게시물 등록", response);
             dispatch(addPost(response.data.challengeId));
           })
           .catch(function (error) {
@@ -97,11 +89,10 @@ const addPostDB = (
 //이미지 업로드
 const uploadImageDB = (challengeId, imgUrl, challengeTitle, comment) => {
   return function (dispatch, useState, { history }) {
-    console.log("이미지 업로드");
     apis
       .confirm(challengeId, imgUrl, challengeTitle, comment)
       .then((response) => {
-        console.log("이미지 업로드");
+        // console.log("이미지 업로드");
       })
       .catch(function (error) {
         console.log(error);
@@ -112,13 +103,10 @@ const uploadImageDB = (challengeId, imgUrl, challengeTitle, comment) => {
 //상세페이지 불러오기
 const getDetailPostDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
-    console.log("상세페이지");
     apis
       .detail(challengeId)
       .then((response) => {
-        console.log("상세페이지", response);
         dispatch(getDetailPost(response.data));
-        history.push(`/challenges/${challengeId}`);
       })
       .catch(function (error) {
         console.log(error);
@@ -129,11 +117,9 @@ const getDetailPostDB = (challengeId) => {
 //참여하기
 const joinDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
-    console.log("참여하기");
     apis
       .join(challengeId)
       .then((response) => {
-        console.log("참여하기");
         dispatch(editJoin(challengeId, true));
       })
       .catch(function (error) {
@@ -146,11 +132,9 @@ const joinDB = (challengeId) => {
 //참여취소하기
 const joinCancelDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
-    console.log("참여취소하기");
     apis
       .joinCancel(challengeId)
       .then((response) => {
-        console.log("참여취소하기");
         dispatch(editJoin(challengeId, false));
 
         window.alert("탈퇴가 완료되었습니다.");
@@ -172,15 +156,17 @@ const likeDB = (challengeId) => {
     apis
       .like(challengeId)
       .then((response) => {
-        console.log("좋아요");
-        dispatch(getLike(challengeId));
+        const likeList = getState().main.category_list.filter(
+          (e) => e.isLike === true
+        );
+        console.log("좋아요", likeList);
+        dispatch(getLike(likeList));
+        dispatch(addLike(challengeId));
+        // dispatch(getDetailPostDB(challengeId));
       })
       .catch(function (error) {
         console.log(error);
       });
-    // .then(() => {
-    //   dispatch(getDetailPostDB(challengeId));
-    // });
   };
 };
 
@@ -192,7 +178,7 @@ const dislikeDB = (challengeId) => {
       .dislike(challengeId)
       .then((response) => {
         console.log("싫어요");
-        dispatch(getLike(challengeId));
+        dispatch(deleteLike(challengeId));
       })
       .catch(function (error) {
         console.log(error);
@@ -217,27 +203,34 @@ export default handleActions(
       }),
     [DETAIL_POST]: (state, action) =>
       produce(state, (draft) => {
-        console.log("Detail_post", action.payload);
         draft.post = action.payload.post;
         draft.is_loaded = true;
         // draft.post.comments = action.payload.comments;
       }),
-    [EDIT_JOIN]: (state, action) =>
-      produce(state, (draft) => {
-        console.log("EDITJOIN ENTER!");
-      }),
-    [EDIT_LIKE]: (state, action) =>
-      produce(state, (draft) => {
-        console.log("EDITLIKE ENTER!");
-      }),
+    [EDIT_JOIN]: (state, action) => produce(state, (draft) => {}),
+    [EDIT_LIKE]: (state, action) => produce(state, (draft) => {}),
     [IMG_EXIST]: (state, action) =>
       produce(state, (draft) => {
         draft.imgExist = action.payload.imgExist;
       }),
     [GET_LIKE]: (state, action) =>
       produce(state, (draft) => {
-        console.log("GET_LIKE", action.payload.isLike);
-        draft.isLike.push(action.payload.isLike.data);
+        console.log(
+          "GETLIKE!",
+          action.payload.isLike,
+          action.payload.isLike.map((e, i) => e.challengeId)
+        );
+        draft.isLike.push(action.payload.isLike.map((e, i) => e.challengeId));
+      }),
+    [ADD_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("ADD_LIKE", action.payload.isLike);
+        draft.isLike.push(action.payload.isLike);
+      }),
+    [DELETE_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("DELETE_LIKE", action.payload.isLike);
+        draft.isLike.filter((e) => e.isLike !== action.payload.isLike);
       }),
   },
   initialState
