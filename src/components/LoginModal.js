@@ -39,8 +39,8 @@ const LoginModal = forwardRef((props, ref) => {
         <section>
           {in_page ? <XIcon onClick={closeModal}>X</XIcon> : ""}
           <Grid padding="30px 30px 0px 30px">
-            <Text size="20" bold alignCenter>
-              앗 로그인이 필요해요!
+            <Text size="22px" bold alignCenter color="#FF8B37">
+              로그인이 필요한 페이지입니다
             </Text>
             <Button margin="10px 0px" _onClick={() => history.push("/login")}>
               로그인하러가기
@@ -67,15 +67,18 @@ const Container = styled.div`
   background: rgba(0, 0, 0, 0.6);
   z-index: 99;
   display: flex;
+  max-height: 100vh;
+  overflow: auto;
 
   section {
-    position: relative;
+    /* position: relative; */
     width: 80%;
     height: 50%;
     margin: auto;
     align-self: center;
     background: #fff;
     border-radius: 10px;
+    position: sticky;
   }
 
   // section > div > div {

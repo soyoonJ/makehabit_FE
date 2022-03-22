@@ -53,6 +53,7 @@ const CategoryPost = (props) => {
       history.push("/login");
     }
   };
+
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
@@ -61,7 +62,7 @@ const CategoryPost = (props) => {
           <Img
             src={thumbnail}
             onClick={() => {
-              dispatch(postActions.getDetailPostDB(challengeId));
+              history.push(`/challenges/${challengeId}`);
             }}
           />
           {isLike ? (

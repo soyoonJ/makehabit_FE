@@ -28,7 +28,7 @@ const Main = (props) => {
   }, []);
 
   React.useEffect(() => {
-    console.log("바뀌냐");
+    console.log("바뀌냐", likeList);
     dispatch(mainActions.RecommendDB(2));
     dispatch(mainActions.mainnewDB(2, "new"));
     dispatch(mainActions.mainstudyDB(2, "exercise"));
@@ -92,8 +92,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_all.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("all"));
-                  // history.push("/category");
+                  // dispatch(mainActions.categoryDB("all"));
+                  history.push("/category");
                 }}
               />
               <CategoryText bold alignCenter>
@@ -107,8 +107,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_best.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("popular"));
-                  // history.push("/category/popular");
+                  // dispatch(mainActions.categoryDB("popular"));
+                  history.push("/category/popular");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -120,8 +120,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_new.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("new"));
-                  // history.push("/category/new");
+                  // dispatch(mainActions.categoryDB("new"));
+                  history.push("/category/new");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -133,8 +133,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_book.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("study"));
-                  // history.push("/category/study");
+                  // dispatch(mainActions.categoryDB("study"));
+                  history.push("/category/study");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -148,8 +148,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_sport.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("exercise"));
-                  // history.push("/category/exercise");
+                  // dispatch(mainActions.categoryDB("exercise"));
+                  history.push("/category/exercise");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -161,8 +161,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_lifestyle.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("self-development"));
-                  // history.push("/category/self-development");
+                  // dispatch(mainActions.categoryDB("self-development"));
+                  history.push("/category/self-development");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -174,8 +174,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_sun.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("living-habit"));
-                  // history.push("/category/living-habit");
+                  // dispatch(mainActions.categoryDB("living-habit"));
+                  history.push("/category/living-habit");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -187,8 +187,8 @@ const Main = (props) => {
                 width="50px"
                 src="images/icon_forest.svg"
                 onClick={() => {
-                  dispatch(mainActions.categoryDB("eco"));
-                  // history.push("/category/eco");
+                  // dispatch(mainActions.categoryDB("eco"));
+                  history.push("/category/eco");
                 }}
               ></Img>
               <CategoryText bold alignCenter>
@@ -263,8 +263,8 @@ const Main = (props) => {
           <Text>로고부분</Text>
           <Text>@teamname</Text>
         </LogoBottom>
+        <ButtonNavigation />
       </Container>
-      <ButtonNavigation />
     </React.Fragment>
   );
 };
@@ -275,6 +275,7 @@ const Container = styled.div`
   margin: 0%;
   padding-bottom: 50px;
   margin-bottom: 100px;
+  max-height: 100vh;
 `;
 
 const Header = styled.div`
