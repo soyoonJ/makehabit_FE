@@ -113,7 +113,6 @@ const Container = styled.div`
   display: flex;
   overflow: hidden;
   max-height: 100%;
-  position: fixed;
   overflow: scroll;
   width: 100%;
 
