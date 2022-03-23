@@ -10,6 +10,18 @@ const instance = axios.create({
     accept: "application/json, text/plain,*/*",
   },
 });
+instance.interceptors.request.use(
+  function (config) {
+    console.log("configINNNNN");
+    config.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
+    return config;
+  },
+  function (error) {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
+
 // instance token refresh
 instance.interceptors.response.use(
   (response) => {
@@ -25,6 +37,7 @@ instance.interceptors.response.use(
     const originalRequest = config;
 
     if (status === 401) {
+      console.log("401error", config);
       const refreshToken = `Bearer ${localStorage.getItem("token")}`;
 
       originalRequest.headers = { Authorization: refreshToken };
@@ -126,6 +139,7 @@ export const apis = {
   joinCancel: (challengId) =>
     instance.delete(`/api/challenges/${challengId}/join`),
   // 상세페이지-찜하기 버튼&취소버튼
+  getLike: () => instance.get("/api/mypage/like"),
   like: (challengeId) => instance.post(`/api/challenges/${challengeId}/like`),
   dislike: (challengeId) =>
     instance.delete(`/api/challenges/${challengeId}/like`),

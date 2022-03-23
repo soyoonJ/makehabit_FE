@@ -47,225 +47,223 @@ const Main = (props) => {
   // console.log("useSelector 썻는데!!!!", maincategory_list);
 
   return (
-    <React.Fragment>
-      <Container>
-        <ContainerGrid>
-          <Header>
-            {/*로고 */}
-            {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
-            <Text
-              width="30%"
-              size="20px"
-              bold
-              color="#FF8B37"
-              margin="22px 10px 0px 0px"
-            >
-              로고닷닷
-            </Text>
-            <ContainerInput>
-              <InputBox
-                ref={search}
-                placeholder="도전하고 싶은 습관을 검색해보세요!"
-              ></InputBox>
-
-              <SearchIcon
-                style={{ width: "20px" }}
-                src="images/icon_search.svg"
-                alt=""
-                onClick={() => {
-                  dispatch(mainActions.getSearchDB(search.current.value));
-                  history.push(`/search`);
-                }}
-              ></SearchIcon>
-            </ContainerInput>
-          </Header>
-        </ContainerGrid>
-
-        <Banner1 />
-        <ContainerGrid>
-          <Text size="20px" bold borderBox>
-            카테고리
+    <Container>
+      <ContainerGrid>
+        <Header>
+          {/*로고 */}
+          {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
+          <Text
+            width="30%"
+            size="20px"
+            bold
+            color="#FF8B37"
+            margin="22px 10px 0px 0px"
+          >
+            로고닷닷
           </Text>
-          <CategoryWrap>
-            <Category>
-              <Img
-                width="50px"
-                src="images/icon_all.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("all"));
-                  history.push("/category");
-                }}
-              />
-              <CategoryText bold alignCenter>
-                전체보기
-              </CategoryText>
-            </Category>
+          <ContainerInput>
+            <InputBox
+              ref={search}
+              placeholder="도전하고 싶은 습관을 검색해보세요!"
+            ></InputBox>
 
-            <Category>
-              <Img
-                alignCenter
-                width="50px"
-                src="images/icon_best.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("popular"));
-                  history.push("/category/popular");
-                }}
-              ></Img>
-              <CategoryText bold alignCenter>
-                인기
-              </CategoryText>
-            </Category>
-            <Category>
-              <Img
-                width="50px"
-                src="images/icon_new.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("new"));
-                  history.push("/category/new");
-                }}
-              ></Img>
-              <CategoryText bold alignCenter>
-                신규
-              </CategoryText>
-            </Category>
-            <Category>
-              <Img
-                width="50px"
-                src="images/icon_book.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("study"));
-                  history.push("/category/study");
-                }}
-              ></Img>
-              <CategoryText bold alignCenter>
-                공부
-              </CategoryText>
-            </Category>
-          </CategoryWrap>
-          <CategoryWrap>
-            <Category>
-              <Img
-                width="50px"
-                src="images/icon_sport.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("exercise"));
-                  history.push("/category/exercise");
-                }}
-              ></Img>
-              <CategoryText bold alignCenter>
-                운동
-              </CategoryText>
-            </Category>
-            <Category>
-              <Img
-                width="50px"
-                src="images/icon_lifestyle.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("self-development"));
-                  history.push("/category/self-development");
-                }}
-              ></Img>
-              <CategoryText bold alignCenter>
-                자기계발
-              </CategoryText>
-            </Category>
-            <Category>
-              <Img
-                width="50px"
-                src="images/icon_sun.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("living-habit"));
-                  history.push("/category/living-habit");
-                }}
-              ></Img>
-              <CategoryText bold alignCenter>
-                생활습관
-              </CategoryText>
-            </Category>
-            <Category>
-              <Img
-                width="50px"
-                src="images/icon_forest.svg"
-                onClick={() => {
-                  // dispatch(mainActions.categoryDB("eco"));
-                  history.push("/category/eco");
-                }}
-              ></Img>
-              <CategoryText bold alignCenter>
-                에코
-              </CategoryText>
-            </Category>
-          </CategoryWrap>
-
-          {/* 테마 카테고리 - 추천 작심삼끼 */}
-          <RecommendTitle>
-            <Text size="20px" bold>
-              추천 습관삼끼
-            </Text>
-            <PlusButton
+            <SearchIcon
+              style={{ width: "20px" }}
+              src="images/icon_search.svg"
+              alt=""
               onClick={() => {
-                dispatch(mainActions.RecommendDB(10));
-                history.push("/recommend/first");
+                dispatch(mainActions.getSearchDB(search.current.value));
+                history.push(`/search`);
               }}
-            >
-              더보기
-            </PlusButton>
-          </RecommendTitle>
+            ></SearchIcon>
+          </ContainerInput>
+        </Header>
+      </ContainerGrid>
 
-          <RecommendWrap>
-            {recommend_list?.map((p, idx) => {
-              return <CategoryPost key={p._id} {...p} />;
-            })}
-          </RecommendWrap>
-          {/*★★★★★★map 부분 바꿔야함!!!!!!!!!!! */}
-
-          {/* 테마 카테고리 - 따끈따끈 새챌린지 */}
-          <RecommendTitle>
-            <Text size="20px" bold>
-              따끈따끈 새챌린지
-            </Text>
-            <PlusButton
+      <Banner1 />
+      <ContainerGrid>
+        <Text size="20px" bold borderBox>
+          카테고리
+        </Text>
+        <CategoryWrap>
+          <Category>
+            <Img
+              width="50px"
+              src="images/icon_all.svg"
               onClick={() => {
-                history.push(`/recommend/new`);
+                // dispatch(mainActions.categoryDB("all"));
+                history.push("/category/all");
               }}
-            >
-              더보기
-            </PlusButton>
-          </RecommendTitle>
+            />
+            <CategoryText bold alignCenter>
+              전체보기
+            </CategoryText>
+          </Category>
 
-          <RecommendWrap>
-            {new_list?.map((p, idx) => {
-              return <CategoryPost key={p._id} {...p} />;
-            })}
-          </RecommendWrap>
-
-          {/* 테마 카테고리 - 운동 가보자고 */}
-          <RecommendTitle>
-            <Text size="20px" bold>
-              운동 가보자고
-            </Text>
-            <PlusButton
+          <Category>
+            <Img
+              alignCenter
+              width="50px"
+              src="images/icon_best.svg"
               onClick={() => {
-                history.push(`/recommend/exercise`);
+                // dispatch(mainActions.categoryDB("popular"));
+                history.push("/category/popular");
               }}
-            >
-              더보기
-            </PlusButton>
-          </RecommendTitle>
+            ></Img>
+            <CategoryText bold alignCenter>
+              인기
+            </CategoryText>
+          </Category>
+          <Category>
+            <Img
+              width="50px"
+              src="images/icon_new.svg"
+              onClick={() => {
+                // dispatch(mainActions.categoryDB("new"));
+                history.push("/category/new");
+              }}
+            ></Img>
+            <CategoryText bold alignCenter>
+              신규
+            </CategoryText>
+          </Category>
+          <Category>
+            <Img
+              width="50px"
+              src="images/icon_book.svg"
+              onClick={() => {
+                // dispatch(mainActions.categoryDB("study"));
+                history.push("/category/study");
+              }}
+            ></Img>
+            <CategoryText bold alignCenter>
+              공부
+            </CategoryText>
+          </Category>
+        </CategoryWrap>
+        <CategoryWrap>
+          <Category>
+            <Img
+              width="50px"
+              src="images/icon_sport.svg"
+              onClick={() => {
+                // dispatch(mainActions.categoryDB("exercise"));
+                history.push("/category/exercise");
+              }}
+            ></Img>
+            <CategoryText bold alignCenter>
+              운동
+            </CategoryText>
+          </Category>
+          <Category>
+            <Img
+              width="50px"
+              src="images/icon_lifestyle.svg"
+              onClick={() => {
+                // dispatch(mainActions.categoryDB("self-development"));
+                history.push("/category/self-development");
+              }}
+            ></Img>
+            <CategoryText bold alignCenter>
+              자기계발
+            </CategoryText>
+          </Category>
+          <Category>
+            <Img
+              width="50px"
+              src="images/icon_sun.svg"
+              onClick={() => {
+                // dispatch(mainActions.categoryDB("living-habit"));
+                history.push("/category/living-habit");
+              }}
+            ></Img>
+            <CategoryText bold alignCenter>
+              생활습관
+            </CategoryText>
+          </Category>
+          <Category>
+            <Img
+              width="50px"
+              src="images/icon_forest.svg"
+              onClick={() => {
+                // dispatch(mainActions.categoryDB("eco"));
+                history.push("/category/eco");
+              }}
+            ></Img>
+            <CategoryText bold alignCenter>
+              에코
+            </CategoryText>
+          </Category>
+        </CategoryWrap>
 
-          <RecommendWrap>
-            {study_list?.map((p, idx) => {
-              return <CategoryPost key={p._id} {...p} />;
-            })}
-          </RecommendWrap>
-        </ContainerGrid>
-        <LogoBottom>
-          <Text>로고부분</Text>
-          <Text>@teamname</Text>
-        </LogoBottom>
-      </Container>
+        {/* 테마 카테고리 - 추천 작심삼끼 */}
+        <RecommendTitle>
+          <Text size="20px" bold>
+            추천 습관삼끼
+          </Text>
+          <PlusButton
+            onClick={() => {
+              dispatch(mainActions.RecommendDB(10));
+              history.push("/recommend/first");
+            }}
+          >
+            더보기
+          </PlusButton>
+        </RecommendTitle>
+
+        <RecommendWrap>
+          {recommend_list?.map((p, idx) => {
+            return <CategoryPost key={p._id} {...p} />;
+          })}
+        </RecommendWrap>
+        {/*★★★★★★map 부분 바꿔야함!!!!!!!!!!! */}
+
+        {/* 테마 카테고리 - 따끈따끈 새챌린지 */}
+        <RecommendTitle>
+          <Text size="20px" bold>
+            따끈따끈 새챌린지
+          </Text>
+          <PlusButton
+            onClick={() => {
+              history.push(`/recommend/new`);
+            }}
+          >
+            더보기
+          </PlusButton>
+        </RecommendTitle>
+
+        <RecommendWrap>
+          {new_list?.map((p, idx) => {
+            return <CategoryPost key={p._id} {...p} />;
+          })}
+        </RecommendWrap>
+
+        {/* 테마 카테고리 - 운동 가보자고 */}
+        <RecommendTitle>
+          <Text size="20px" bold>
+            운동 가보자고
+          </Text>
+          <PlusButton
+            onClick={() => {
+              history.push(`/recommend/exercise`);
+            }}
+          >
+            더보기
+          </PlusButton>
+        </RecommendTitle>
+
+        <RecommendWrap>
+          {study_list?.map((p, idx) => {
+            return <CategoryPost key={p._id} {...p} />;
+          })}
+        </RecommendWrap>
+      </ContainerGrid>
+      <LogoBottom>
+        <Text>습관삼끼</Text>
+        <Text>@hanghae99_C5</Text>
+      </LogoBottom>
       <ButtonNavigation />
-    </React.Fragment>
+    </Container>
   );
 };
 
@@ -345,7 +343,7 @@ const RecommendWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0 4.1%;
-  margin-bottom: 6.51vh;
+  margin-bottom: 1.5rem;
 `;
 
 const RecommendTitle = styled.div`
@@ -363,6 +361,7 @@ const RecommendImg = styled.div`
 const PlusButton = styled.button`
   width: 40%;
   border: 0;
+  padding: 0;
   background-color: white;
   text-align: right;
   font-size: 20px;

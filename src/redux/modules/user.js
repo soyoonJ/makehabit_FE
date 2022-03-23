@@ -107,8 +107,8 @@ const loginDB = (email, password) => {
             // token: res.data.token,
           })
         );
-        // history.push("/");
-        window.location.href = "/";
+        history.push("/");
+        // window.location.href = "/";
       })
       .catch(function (error) {
         // console.log(error);

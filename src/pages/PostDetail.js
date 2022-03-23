@@ -19,7 +19,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 const PostDetail = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.post);
-  const nickname = useSelector((state) => state.user.user.nickname);
+  // const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
   // console.log("POSTDETAIL", post, post?.isLike);
   // console.log("POSTEDETAIL:", post);
@@ -125,6 +125,11 @@ const PostDetail = (props) => {
   //모달창
 
   const leaveModal = React.useRef();
+  //Like 누를때마다 화면 전환
+  const likeList = useSelector((state) => state.post.isLike);
+  React.useEffect(() => {
+    dispatch(postActions.getDetailPostDB(challengeId));
+  }, [likeList]);
   return (
     <Container>
       <TitleBox>

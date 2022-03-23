@@ -12,6 +12,7 @@ import styled from "styled-components";
 import Modal from "../components/Modal";
 // import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
+import { Style } from "@material-ui/icons";
 
 const Confirm = (props) => {
   const challengeId = props.match.params.id;
@@ -84,15 +85,18 @@ const Confirm = (props) => {
 
   return (
     <React.Fragment>
-      <ContainerGrid>
-        <ConfirmText>
-          <PageBack color="#707070" left padding="0 0 0 1.063rem" />
-          <span>오늘의 인증하기</span>
-        </ConfirmText>
-        {/* useSelector 해서 타이틀 가져오기 */}
-        <Title>{challenge_info?.title}</Title>
-        <SubTitle>오늘의 도전에 성공한 순간을 사진으로 기록해보세요.</SubTitle>
-        {/* <ImageBox
+      <Container>
+        <ContainerGrid>
+          <ConfirmText>
+            <PageBack color="#707070" left padding="0 0 0 1.063rem" />
+            <span>오늘의 인증하기</span>
+          </ConfirmText>
+          {/* useSelector 해서 타이틀 가져오기 */}
+          <Title>{challenge_info?.title}</Title>
+          <SubTitle>
+            오늘의 도전에 성공한 순간을 사진으로 기록해보세요.
+          </SubTitle>
+          {/* <ImageBox
           onClick={onClickUpload}
           style={{
             backgroundImage: `url(${preview})`,
@@ -106,100 +110,106 @@ const Confirm = (props) => {
             id="thumnail"
           ></input>
         </ImageBox> */}
-        {/* 이미지 첨부 */}
-        <Upload
-          currentPage="confirm"
-          ref={uploadRef}
-          _ref={fileInput}
-          _onClick={() => {
-            console.log(uploadRef);
-            uploadRef.current.upload();
-          }}
-        />
-        <Example>
-          자세한 인증 예시가 궁금하다면?
-          <span
-            style={{
-              cursor: "pointer",
+          {/* 이미지 첨부 */}
+          <Upload
+            currentPage="confirm"
+            ref={uploadRef}
+            _ref={fileInput}
+            _onClick={() => {
+              console.log(uploadRef);
+              uploadRef.current.upload();
             }}
-            onClick={() => {
-              modalRef.current.openModal();
-            }}
-          >
-            <img
-              src={process.env.PUBLIC_URL + "/images/modal_question.png"}
-              alt="물음표 아이콘"
+          />
+          <Example>
+            자세한 인증 예시가 궁금하다면?
+            <span
               style={{
-                width: "1.125rem",
-                height: "1.125rem",
-                display: "flex",
-                marginLeft: "0.438rem",
+                cursor: "pointer",
               }}
-            />
-          </span>
-        </Example>
-        <CommentTitle>코멘트 남기기</CommentTitle>
-        <div style={{ fontSize: "1.89vh" }}>
-          오늘의 도전과 함께 기록해보세요.
-        </div>
-        <Textarea
-          onChange={onChange}
-          maxLength="300"
-          placeholder="인증과 함께 소감을 남겨보세요."
-        ></Textarea>
-        <div
-          style={{
-            textAlign: "end",
-            marginTop: "0.94vh",
-            color: "#9C9C9C",
-            lineHeight: "2.65vh",
-            fontSize: "1.89vh",
-          }}
-        >
-          {commentLength}/300자
-        </div>
-
-        <Button onClick={confirm}>인증 완료하기</Button>
-      </ContainerGrid>
-
-      <Modal ref={modalRef}>
-        <div>챌린지 인증예시</div>
-        <div
-          style={{
-            margin: "0.563rem 0 0 0",
-            fontWeight: "600",
-            lineHeight: "1.5rem",
-            fontSize: "1.125rem",
-            color: "#FF8B37",
-            letterSpacing: "-0.005rem",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <span
+              onClick={() => {
+                modalRef.current.openModal();
+              }}
+            >
+              <img
+                src={process.env.PUBLIC_URL + "/images/modal_question.png"}
+                alt="물음표 아이콘"
+                style={{
+                  width: "1.125rem",
+                  height: "1.125rem",
+                  display: "flex",
+                  marginLeft: "0.438rem",
+                }}
+              />
+            </span>
+          </Example>
+          <CommentTitle>코멘트 남기기</CommentTitle>
+          <div style={{ fontSize: "1.89vh" }}>
+            오늘의 도전과 함께 기록해보세요.
+          </div>
+          <Textarea
+            onChange={onChange}
+            maxLength="300"
+            placeholder="인증과 함께 소감을 남겨보세요."
+          ></Textarea>
+          <div
             style={{
-              marginRight: "0.313rem",
-              display: "flex",
+              textAlign: "end",
+              marginTop: "0.94vh",
+              color: "#9C9C9C",
+              lineHeight: "2.65vh",
+              fontSize: "1.89vh",
             }}
           >
-            <CheckImg fill="#FF8B37" width="1.5rem" height="1.5rem" />
-          </span>{" "}
-          이렇게 인증해주세요!
-        </div>
-        <div
-          style={{
-            lineHeight: "1.875em",
-            fontSize: "1.25rem",
-            color: "#1D1B1B",
-            letterSpacing: "-0.005rem",
-          }}
-        >
-          {challenge_info?.howtoContent}
-        </div>
-      </Modal>
+            {commentLength}/300자
+          </div>
+
+          <Button onClick={confirm}>인증 완료하기</Button>
+        </ContainerGrid>
+
+        <Modal ref={modalRef}>
+          <div>도전 인증 예시</div>
+          <div
+            style={{
+              margin: "1.65vh 0 3.79vh 0",
+              fontWeight: "600",
+              lineHeight: "2.79vh",
+              fontSize: "2.13vh",
+              color: "#FF8B37",
+              letterSpacing: "-0.005rem",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span
+              style={{
+                marginRight: "0.313rem",
+                display: "flex",
+              }}
+            >
+              <CheckImg fill="#FF8B37" width="1.5rem" height="1.5rem" />
+            </span>{" "}
+            이렇게 인증해주세요!
+          </div>
+          <div
+            style={{
+              lineHeight: "3.31vh",
+              fontSize: "2.37vh",
+              color: "#1D1B1B",
+              wordBreak: "break-word",
+              letterSpacing: "-0.005rem",
+            }}
+          >
+            {challenge_info?.howtoContent}
+          </div>
+        </Modal>
+      </Container>
     </React.Fragment>
   );
 };
+
+const Container = styled.div`
+  max-height: 100vh;
+`;
 
 // 인증하기 텍스트
 const ConfirmText = styled.div`

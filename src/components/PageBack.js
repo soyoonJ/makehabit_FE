@@ -4,11 +4,12 @@ import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
 import { IoIosArrowBack } from "react-icons/io";
+import { ReactComponent as IconLeft } from "../img/icon_left.svg";
 
 const PageBack = (props) => {
   const { color, padding, left } = props;
   const styles = { color, padding, left };
-
+  const Image = process.env.PUBLIC_URL + "/images";
   return (
     <Back
       {...styles}
@@ -16,12 +17,7 @@ const PageBack = (props) => {
         history.goBack();
       }}
     >
-      <IoIosArrowBack
-        style={{
-          width: "28",
-          height: "28",
-        }}
-      />
+      <IconLeft fill="#707070" />
     </Back>
   );
 };
@@ -40,6 +36,11 @@ const Back = styled.div`
   color: ${(props) => props.color};
   position: absolute;
   ${(props) => (props.left ? `left: 0;` : "")};
+`;
+
+const Img = styled.img`
+  width: 28px;
+  height: 28px;
 `;
 
 export default PageBack;
