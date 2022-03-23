@@ -37,7 +37,9 @@ const ItemCircle = () => {
 
   React.useEffect(() => {
     // console.log("유즈이펙트", item);
-    dispatch(characterActions.colorPreview(item));
+    if (category === "color") {
+      dispatch(characterActions.colorPreview(item));
+    }
   }, [item]);
 
   const color = [
