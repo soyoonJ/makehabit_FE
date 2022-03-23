@@ -1,7 +1,6 @@
 {
-  "short_name": "습관삼끼",
-  "name": "습관삼끼",
-  "description": "작심삼일도 열번이면 한달이다",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "images/192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "images/512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -22,8 +21,6 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "crossorigin": "use-credentials",
-  "filename": "manifest.json"
-
+  "background_color": "#ffffff"
 }
+ 
