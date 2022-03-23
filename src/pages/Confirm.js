@@ -167,13 +167,13 @@ const Confirm = (props) => {
         </ContainerGrid>
 
         <Modal ref={modalRef}>
-          <div>챌린지 인증예시</div>
+          <div>도전 인증 예시</div>
           <div
             style={{
-              margin: "0.563rem 0 0 0",
+              margin: "1.65vh 0 3.79vh 0",
               fontWeight: "600",
-              lineHeight: "1.5rem",
-              fontSize: "1.125rem",
+              lineHeight: "2.79vh",
+              fontSize: "2.13vh",
               color: "#FF8B37",
               letterSpacing: "-0.005rem",
               display: "flex",
@@ -192,9 +192,10 @@ const Confirm = (props) => {
           </div>
           <div
             style={{
-              lineHeight: "1.875em",
-              fontSize: "1.25rem",
+              lineHeight: "3.31vh",
+              fontSize: "2.37vh",
               color: "#1D1B1B",
+              wordBreak: "break-word",
               letterSpacing: "-0.005rem",
             }}
           >

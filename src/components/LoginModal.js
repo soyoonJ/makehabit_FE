@@ -35,20 +35,62 @@ const LoginModal = forwardRef((props, ref) => {
 
   if (modalOpen) {
     return (
-      <Container>
-        <section>
-          {in_page ? <XIcon onClick={closeModal}>X</XIcon> : ""}
-          <Grid padding="30px 30px 0px 30px">
-            <Text size="22px" bold alignCenter color="#FF8B37">
-              로그인이 필요한 페이지입니다
-            </Text>
-            <Button margin="10px 0px" _onClick={() => history.push("/login")}>
-              로그인하러가기
-            </Button>
-            {/* 그냥 둘러보기 버튼 추가 시 in_page일 경우에는 버튼 안 뜨게 해야 함 */}
-          </Grid>
-        </section>
-      </Container>
+      <ContainerWrap>
+        {" "}
+        <Container>
+          <section>
+            {/* {in_page ? <XIcon onClick={closeModal}>X</XIcon> : ""} */}
+
+            <Grid padding="45px 30px 45px 30px">
+              <Text
+                size="22px"
+                bold
+                alignCenter
+                color="#FF8B37"
+                margin="0px 0px 0px 0px"
+              >
+                로그인이 필요한
+              </Text>
+              <Text
+                size="22px"
+                bold
+                alignCenter
+                color="#FF8B37"
+                margin="5px 0px 10px 0px"
+              >
+                페이지입니다
+              </Text>
+              <Text size="16x" alignCenter margin="24px 0px 5px 0px">
+                지금 로그인하고 습관삼끼와 함께
+              </Text>
+              <Text size="16x" alignCenter margin="0px 0px 0px 0px">
+                다양한 습관을 만들어봐요!
+              </Text>
+              <Button
+                bg="#FF8B37"
+                size="22px"
+                width="100%"
+                margin="37px 0px 0px 0px"
+                _onClick={() => history.push("/login")}
+              >
+                로그인하러가기
+              </Button>
+              <Button
+                bold
+                bg="white"
+                color="#707070"
+                size="22px"
+                width="100%"
+                margin="5px 0px 0px 0px"
+                _onClick={closeModal}
+              >
+                좀 더 둘러보기
+              </Button>
+              {/* 그냥 둘러보기 버튼 추가 시 in_page일 경우에는 버튼 안 뜨게 해야 함 */}
+            </Grid>
+          </section>
+        </Container>
+      </ContainerWrap>
     );
   }
   return null;
@@ -57,6 +99,8 @@ const LoginModal = forwardRef((props, ref) => {
 LoginModal.defaultProps = {
   children: null,
 };
+
+const ContainerWrap = styled.div``;
 
 const Container = styled.div`
   position: absolute;
@@ -67,18 +111,23 @@ const Container = styled.div`
   background: rgba(0, 0, 0, 0.6);
   z-index: 99;
   display: flex;
-  max-height: 100vh;
-  overflow: auto;
+  overflow: hidden;
+  max-height: 100%;
+  position: fixed;
+  overflow: scroll;
+  width: 100%;
 
   section {
-    /* position: relative; */
-    width: 80%;
-    height: 50%;
+    position: relative;
+    width: 282px;
+    height: auto;
     margin: auto;
     align-self: center;
     background: #fff;
     border-radius: 10px;
-    // position: sticky;
+    overflow: hidden;
+    max-height: 100%;
+    /* position: sticky; */
   }
 
   // section > div > div {
