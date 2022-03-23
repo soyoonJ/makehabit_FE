@@ -78,7 +78,7 @@ const Container = styled.div`
     align-self: center;
     background: #fff;
     border-radius: 10px;
-    position: sticky;
+    // position: sticky;
   }
 
   // section > div > div {
