@@ -212,6 +212,7 @@ const PostDetail = (props) => {
                 "요일"}
             </EndDateText>
           </OrangeBox> */}
+          w
         </MarginBox>
       </BorderBox>
       {post.isParticipate ? (
@@ -364,10 +365,14 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  -ms-overflow-style: none;
 
   @media screen and (min-width: 420px) {
     max-height: 100vh;
     overflow: auto;
+  }
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;
 const TitleBox = styled.div`

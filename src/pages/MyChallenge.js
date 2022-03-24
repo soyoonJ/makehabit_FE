@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
+import { ContainerGrid, Text, Button } from "../elements";
 import ButtonNavigation from "../components/ButtonNavigation";
 import ConfirmPost from "../components/ConfirmPost";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
@@ -81,21 +81,37 @@ const MyChallenge = (props) => {
           <div style={{ marginBottom: "14.6vh" }}>
             {challenge_list?.length === 0 ? (
               <NoChallenge>
-                참여중인 챌린지가 없어요!
+                <div>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/images/illust_question2_samkki.png"
+                    }
+                    alt="상단 캐릭터 일러스트"
+                    style={{ height: "26.77vh", margin: "36px 0px 0px 0px" }}
+                  />
+                </div>
+                <Text size="24px" bold margin="0px 0px 5px 0px">
+                  참여중인 챌린지가 없어요!
+                </Text>
+                <Text size="20px" margin="18px 0px 5px 0px">
+                  지금 바로 챌린지에 참여하셔서
+                </Text>
+                <Text size="20px" margin="0px 0px 0px 0px">
+                  습관만들기를 시작해보세요!
+                </Text>
                 <br />
-                <br />
-                지금 바로 챌린지에 참여하셔서
-                <br />
-                습관만들기를 시작해보세요!
-                <br />
-                <br />
-                <button
-                  onClick={() => {
-                    history.push("/");
+                <Button
+                  bg="#FF8B37"
+                  margin="44px 0px 0px 0px"
+                  height="67px"
+                  _onClick={() => {
+                    history.push("/postwrite");
                   }}
+                  fontSize="22px"
                 >
                   습관만들러 가기
-                </button>
+                </Button>
               </NoChallenge>
             ) : (
               <>
@@ -109,21 +125,37 @@ const MyChallenge = (props) => {
           <>
             {proof_list?.length === 0 ? (
               <NoChallenge>
-                참여중인 챌린지가 없어요!
+                <div>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      "/images/illust_question2_samkki.png"
+                    }
+                    alt="상단 캐릭터 일러스트"
+                    style={{ height: "26.77vh", margin: "36px 0px 0px 0px" }}
+                  />
+                </div>
+                <Text size="24px" bold margin="0px 0px 5px 0px">
+                  참여중인 챌린지가 없어요!
+                </Text>
+                <Text size="20px" margin="18px 0px 5px 0px">
+                  지금 바로 챌린지에 참여하셔서
+                </Text>
+                <Text size="20px" margin="0px 0px 0px 0px">
+                  습관만들기를 시작해보세요!
+                </Text>
                 <br />
-                <br />
-                지금 바로 챌린지에 참여하셔서
-                <br />
-                습관만들기를 시작해보세요!
-                <br />
-                <br />
-                <button
-                  onClick={() => {
-                    history.push("/");
+                <Button
+                  bg="#FF8B37"
+                  margin="44px 0px 0px 0px"
+                  height="67px"
+                  _onClick={() => {
+                    history.push("/postwrite");
                   }}
+                  fontSize="22px"
                 >
                   습관만들러 가기
-                </button>
+                </Button>
               </NoChallenge>
             ) : (
               <ImageContainer>
