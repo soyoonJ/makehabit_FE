@@ -5,6 +5,8 @@ import React from "react";
 import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
 import Upload from "../components/Upload";
+import MetaTag from "../shared/MetaTag";
+
 import { ReactComponent as CheckImg } from "../img/icon_check.svg";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -85,6 +87,8 @@ const Confirm = (props) => {
 
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 오늘의 인증" />
+
       <Container>
         <ContainerGrid>
           <ConfirmText>

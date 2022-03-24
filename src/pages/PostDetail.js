@@ -9,6 +9,7 @@ import { history } from "../redux/configureStore";
 import { Grid, Text, Input } from "../elements";
 import PageBack from "../components/PageBack";
 import LeaveModal from "../components/LeaveModal";
+import MetaTag from "../shared/MetaTag";
 
 import styled from "styled-components";
 
@@ -132,6 +133,8 @@ const PostDetail = (props) => {
   }, [likeList]);
   return (
     <Container>
+      <MetaTag title={"습관삼끼 | " + post.title} />
+
       <TitleBox>
         <PageBack />
         <TitleImage src={post.thumbnail} />
@@ -257,13 +260,13 @@ const PostDetail = (props) => {
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
               </JoinBox>
             )}
           </JoinContainer>

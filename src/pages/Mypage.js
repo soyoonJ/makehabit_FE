@@ -1,24 +1,25 @@
 import React, { useState, useRef } from "react";
 
 import { Grid, Text, Input, Button, ContainerGrid } from "../elements";
-
 import ProgressBar from "../components/ProgressBar";
 import NicknameModal from "../components/NicknameModal";
 import Modal from "../components/Modal";
+import ButtonNavigation from "../components/ButtonNavigation";
+import CharacterContainer from "../components/CharacterContainer";
+import Character from "../redux/modules/character";
+import MetaTag from "../shared/MetaTag";
+
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as characterActions } from "../redux/modules/character";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { HiOutlinePencil } from "react-icons/hi";
-import ButtonNavigation from "../components/ButtonNavigation";
-import CharacterContainer from "../components/CharacterContainer";
-import Character from "../redux/modules/character";
-import styled from "styled-components";
-import { actionCreators as characterActions } from "../redux/modules/character";
-
 import { ReactComponent as RightButton } from "../img/icon_right.svg";
+
+import styled from "styled-components";
 
 const Mypage = (props) => {
   const dispatch = useDispatch();
@@ -55,6 +56,8 @@ const Mypage = (props) => {
   const childRef = useRef();
   return (
     <Container>
+      <MetaTag title="습관삼끼 | 마이페이지" />
+
       <ContainerGrid>
         <Grid margin="10% 0% 0% 0%">
           <CharacterWrap>

@@ -49,29 +49,29 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     purchase() {
       let items = [];
       if (shopBg) {
-        items.push({ _id: shopBg.itemId });
+        items.push(shopBg.itemId);
       } else {
-        items.push({ _id: equipBg?.itemId });
+        items.push(equipBg?.itemId);
       }
       if (shopColor) {
-        items.push({ _id: shopColor.itemId });
+        items.push(shopColor.itemId);
       } else {
-        items.push({ _id: equipColor?.itemId });
+        items.push(equipColor?.itemId);
       }
       if (shopClothes) {
-        items.push({ _id: shopClothes.itemId });
+        items.push(shopClothes.itemId);
       } else {
-        items.push({ _id: equipClothes?.itemId });
+        items.push(equipClothes?.itemId);
       }
       if (shopAcc) {
-        items.push({ _id: shopAcc.itemId });
+        items.push(shopAcc.itemId);
       } else {
-        items.push({ _id: equipAcc?.itemId });
+        items.push(equipAcc?.itemId);
       }
       if (shopEmotion) {
-        items.push({ _id: shopEmotion.itemId });
+        items.push(shopEmotion.itemId);
       } else {
-        items.push({ _id: equipEmotion?.itemId });
+        items.push(equipEmotion?.itemId);
       }
       console.log("ItemsList다", items);
       dispatch(characterActions.purchaseItemList(totalPoint, items));
@@ -204,29 +204,29 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const purchase = () => {
     let items = [];
     if (shopBg) {
-      items.push({ _id: shopBg.itemId });
+      items.push(shopBg.itemId);
     } else {
-      items.push({ _id: equipBg?.itemId });
+      items.push(equipBg?.itemId);
     }
     if (shopColor) {
-      items.push({ _id: shopColor.itemId });
+      items.push(shopColor.itemId);
     } else {
-      items.push({ _id: equipColor?.itemId });
+      items.push(equipColor?.itemId);
     }
     if (shopClothes) {
-      items.push({ _id: shopClothes.itemId });
+      items.push(shopClothes.itemId);
     } else {
-      items.push({ _id: equipClothes?.itemId });
+      items.push(equipClothes?.itemId);
     }
     if (shopAcc) {
-      items.push({ _id: shopAcc.itemId });
+      items.push(shopAcc.itemId);
     } else {
-      items.push({ _id: equipAcc?.itemId });
+      items.push(equipAcc?.itemId);
     }
     if (shopEmotion) {
-      items.push({ _id: shopEmotion.itemId });
+      items.push(shopEmotion.itemId);
     } else {
-      items.push({ _id: equipEmotion?.itemId });
+      items.push(equipEmotion?.itemId);
     }
     if (currentPoint >= totalPoint) {
       dispatch(characterActions.purchaseItemList(totalPoint, items));
@@ -676,7 +676,9 @@ const ModalContent = styled.div`
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
-  overflow: auto;
+  overflow-y: auto;
+
+  margin-bottom: 106px;
 `;
 
 const Footer = styled.footer`

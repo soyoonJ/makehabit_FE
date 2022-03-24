@@ -4,6 +4,8 @@ import { Text, ContainerGrid, Button } from "../elements";
 import { history } from "../redux/configureStore";
 import ButtonNavigation from "../components/ButtonNavigation";
 import CategoryPost from "../components/CategoryPost";
+import MetaTag from "../shared/MetaTag";
+
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../redux/modules/main";
 
@@ -11,6 +13,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const search = React.useRef(null);
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
+  console.log("searchWord_list", searchWord_list);
   //   React.useEffect(() => {
   //     dispatch(mainActions.getSearchDB());
   //   }, []);
@@ -19,6 +22,8 @@ const Search = () => {
 
   return (
     <React.Fragment>
+      <MetaTag title={"습관삼끼 | " + search.current.value + " 검색결과"} />
+
       <Container>
         <ContainerGrid>
           <Header>
