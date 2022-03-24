@@ -41,6 +41,7 @@ const initialState = {
   recommend_list: [],
   new_list: [],
   study_list: [],
+  isLoading: true,
 };
 
 // 미들웨어
@@ -157,7 +158,7 @@ export default handleActions(
     //카테고리 목록 가져오는 부분
     [GET_CATEGOTY]: (state, action) =>
       produce(state, (draft) => {
-        console.log("카테고리 목록 조회", action.payload);
+        // console.log("카테고리 목록 조회", action.payload);
         // draft는 복사본 만드는 느낌
         //action.payload 는 서버에서 응답 받아온 값
         // 여기 list.challenges로 적은 이유는 map 돌리는 부분에서 간소화하기위함
@@ -169,18 +170,21 @@ export default handleActions(
       produce(state, (draft) => {
         console.log("추천!!!목록!!리스트!!!", action.payload.recommend_list);
         draft.recommend_list = action.payload.recommend_list;
+        // draft.isLoading = false;
       }),
 
     [GET_NEW]: (state, action) =>
       produce(state, (draft) => {
         console.log("카테고리 목록 조회", action.payload);
         draft.new_list = action.payload.new_list.challenges;
+        // draft.isLoading = false;
       }),
 
     [GET_STUDY]: (state, action) =>
       produce(state, (draft) => {
         console.log("카테고리 목록 조회", action.payload);
         draft.study_list = action.payload.study_list.challenges;
+        // draft.isLoading = false;
       }),
   },
 

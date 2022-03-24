@@ -5,12 +5,14 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "../elements";
+import Spinner from "../shared/Spinner";
 // import { actionCreators as characterActions } from "../redux/modules/character";
 
 import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.character.isLoading);
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
@@ -107,6 +109,7 @@ const CharacterContainer = () => {
 
   return (
     <Container>
+      {isLoading ? <Spinner /> : ""}
       <Point>
         <div>
           <img

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as mainActions } from "../redux/modules/main";
+import MetaTag from "../shared/MetaTag";
 
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
@@ -16,7 +17,7 @@ const Recommend = (props) => {
   const recommend_list = useSelector((state) => state.main.recommend_list);
 
   const categoryId = props.match.params.id;
-  console.log("??????????", props.match.params);
+  // console.log("??????????", props.match.params);
 
   const dispatch = useDispatch();
 
@@ -49,6 +50,8 @@ const Recommend = (props) => {
   return (
     <React.Fragment>
       <ContainerGrid>
+        <MetaTag title={"습관삼끼 | " + title} />
+
         <Header>
           <LeftButton
             style={{

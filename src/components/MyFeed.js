@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
+import MetaTag from "../shared/MetaTag";
+import Spinner from "../shared/Spinner";
 
 import styled from "styled-components";
 
@@ -18,6 +20,7 @@ const MyFeed = (props) => {
   const proofShotId = props.match.params.id;
   const feed = useSelector((state) => state.challenge?.feed);
   // console.log("피드", feed);
+  const isLoading = useSelector((state) => state.challenge.isLoading);
 
   React.useEffect(() => {
     dispatch(challengeActions.myfeedDB(proofShotId));
@@ -25,6 +28,9 @@ const MyFeed = (props) => {
 
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 나의 기록보기" />
+      {isLoading ? <Spinner /> : ""}
+
       <PageBack padding="2.13vh 4.36%" color="#707070" />
       <FeedNum>
         {order + 1}/{length}

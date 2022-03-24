@@ -4,6 +4,7 @@ import CharacterContainer from "../components/CharacterContainer";
 import ItemSelect from "../components/ItemSelect";
 import ButtonNavigation from "../components/ButtonNavigation";
 import LoginModal from "../components/LoginModal";
+import MetaTag from "../shared/MetaTag";
 
 import { useSelector } from "react-redux";
 
@@ -19,6 +20,8 @@ const Character = () => {
 
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 캐릭터꾸미기" />
+
       <CharacterContainer />
       <ItemSelect />
       <ButtonNavigation />

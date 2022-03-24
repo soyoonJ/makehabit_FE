@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text, Button, ContainerGrid } from "../elements";
+import MetaTag from "../shared/MetaTag";
 
 import styled from "styled-components";
 
@@ -99,6 +100,8 @@ const Signup = () => {
 
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 회원가입" />
+
       <ContainerGrid>
         {/* <Container> */}
         <Grid textAlign="center" padding="2.48vh 0">

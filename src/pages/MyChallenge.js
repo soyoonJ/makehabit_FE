@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { ContainerGrid, Grid, Text, Input, Image } from "../elements";
 import ButtonNavigation from "../components/ButtonNavigation";
 import ConfirmPost from "../components/ConfirmPost";
+import MetaTag from "../shared/MetaTag";
+import Spinner from "../shared/Spinner";
+
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import { history } from "../redux/configureStore";
@@ -20,6 +23,7 @@ const MyChallenge = (props) => {
   const proof_list = useSelector((state) => state.challenge.proof_list);
   // console.log("챌린지리스트", challenge_list);
   // console.log("피드길이", proof_list?.length);
+  const isLoading = useSelector((state) => state.challenge.isLoading);
 
   React.useEffect(() => {
     if (currentPage === "navi") {
@@ -32,6 +36,9 @@ const MyChallenge = (props) => {
 
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 참여 챌린지 목록" />
+      {isLoading ? <Spinner /> : ""}
+
       <PageTitle style={{ textAlign: "center" }}>참여 챌린지</PageTitle>
 
       <Container>

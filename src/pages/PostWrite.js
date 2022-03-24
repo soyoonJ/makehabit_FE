@@ -10,6 +10,7 @@ import { Grid, Text } from "../elements";
 import CategoryModal1 from "../components/CategoryModal1";
 import Upload from "../components/Upload";
 import PageBack from "../components/PageBack";
+import MetaTag from "../shared/MetaTag";
 // import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
@@ -172,6 +173,8 @@ const PostWrite = () => {
 
   return (
     <Container>
+      <MetaTag title="습관삼끼 | 신규 챌린지 작성" />
+
       <Grid>
         {/* 타이틀 */}
         <TitleContainer>

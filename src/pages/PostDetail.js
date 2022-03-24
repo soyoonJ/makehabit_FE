@@ -9,6 +9,7 @@ import { history } from "../redux/configureStore";
 import { Grid, Text, Input } from "../elements";
 import PageBack from "../components/PageBack";
 import LeaveModal from "../components/LeaveModal";
+import MetaTag from "../shared/MetaTag";
 
 import styled from "styled-components";
 
@@ -132,6 +133,8 @@ const PostDetail = (props) => {
   }, [likeList]);
   return (
     <Container>
+      <MetaTag title={"습관삼끼 | " + post.title} />
+
       <TitleBox>
         <PageBack />
         <TitleImage src={post.thumbnail} />

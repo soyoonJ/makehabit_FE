@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 import { ReactComponent as CheckImg } from "../img/icon_check.svg";
+import MetaTag from "../shared/MetaTag";
 
 import styled from "styled-components";
 
@@ -29,6 +30,8 @@ const CharacterSave = () => {
 
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 캐릭터꾸미기" />
+
       <ContainerGrid>
         <CharacterWrap>
           <ImgContainer>
