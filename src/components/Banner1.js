@@ -17,7 +17,7 @@ const Banner1 = () => {
   // map 돌리기 위한 배너 갯수만큼의 배열
   const circleArray = [0, 0];
   // map돌릴때 쓰일 imgUrl
-  const imgURL = ["/banner/mainbanner_01.png", "/banner/mainbanner_02.png"];
+  const imgURL = ["/banner/mainbanner_01.webp", "/banner/mainbanner_02.webp"];
   // 이전 버튼 클릭시 배너의 인덱스를 -1, 인덱스가 처음이면 마지막으로 돌아가기.
   const clickPrev = () => {
     if (bannerIndex <= 0) {
