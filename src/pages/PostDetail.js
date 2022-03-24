@@ -256,13 +256,13 @@ const PostDetail = (props) => {
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
               </JoinBox>
             )}
           </JoinContainer>
