@@ -6,7 +6,7 @@ import ButtonNavigation from "../components/ButtonNavigation";
 import LoginModal from "../components/LoginModal";
 import MetaTag from "../shared/MetaTag";
 
-import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 const Character = () => {
   const modalRef = React.useRef();
@@ -19,7 +19,7 @@ const Character = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <Container>
       <MetaTag title="습관삼끼 | 캐릭터꾸미기" />
 
       <CharacterContainer />
@@ -27,8 +27,11 @@ const Character = () => {
       <ButtonNavigation />
 
       <LoginModal ref={modalRef}></LoginModal>
-    </React.Fragment>
+    </Container>
   );
 };
-
+const Container = styled.div`
+  height: 100%;
+  max-height: 100vh;
+`;
 export default Character;
