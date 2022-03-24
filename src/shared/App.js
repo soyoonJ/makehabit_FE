@@ -34,6 +34,7 @@ import ShoppingBasket from "../pages/ShoppingBasket";
 import CharacterSave from "../pages/CharacterSave";
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
 import Spinner from "./Spinner";
+import RankingPage from "../pages/RankingPage";
 
 function App() {
   const handleNetworkChange = (online) => {
@@ -78,6 +79,7 @@ function App() {
               <Route path="/chat/:id" component={Chat} />
               <Route path="/charactersave" component={CharacterSave} />
               <Route path="/kakao" component={Auth2RedirectHandler}></Route>
+              <Route path="/ranking" component={RankingPage} />
 
               <Route path="*" exact component={NotFound} />
             </Switch>
