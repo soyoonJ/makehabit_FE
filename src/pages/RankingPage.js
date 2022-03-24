@@ -45,8 +45,6 @@ const RankingPage = () => {
         </RankingWrap>
       </ContainerGrid>
     </Container>
-   </ContainerGrid>
-
   );
 };
 
