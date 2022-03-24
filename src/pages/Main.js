@@ -6,8 +6,8 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
-import MetaTag from "../shared/MetaTag";
 import CategoryPost from "../components/CategoryPost";
+import MetaTag from "../shared/MetaTag";
 import Spinner from "../shared/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -53,7 +53,7 @@ const Main = (props) => {
   return (
     <Container>
       <MetaTag title="습관삼끼" />
-      {/* {isLoading ? <Spinner /> : ""} */}
+      {isLoading ? <Spinner /> : ""}
       {/* 스피너테스트 */}
       {/* <Spinner /> */}
 
@@ -306,10 +306,7 @@ const Main = (props) => {
 };
 
 const Container = styled.div`
-  /* overflow-x: hidden; */
-  /* margin: 0% 3% 0% 3%; */
   margin: 0%;
-  // padding-bottom: 50px;
   margin-bottom: 100px;
   width: 100%;
   height: 100%;
@@ -405,14 +402,6 @@ const RecommendTitle = styled.div`
   display: flex;
 `;
 
-const RecommendImg = styled.div`
-  max-width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin-bottom: -10px;
-`;
 const PlusButton = styled.button`
   width: 40%;
   border: 0;

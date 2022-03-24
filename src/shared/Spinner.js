@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Spinner = (props) => {
+const Spinner = () => {
   return (
     <React.Fragment>
       <Outter>

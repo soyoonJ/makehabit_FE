@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { Button } from "../elements";
 // import { useDispatch, useSelector } from "react-redux";
 
 const Banner1 = () => {
@@ -154,11 +151,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
   overflow-x: hidden;
-  /* left: -30px; */
   position: relative;
-  //   @media only screen and (max-width: 1100px) {
-  //     display: none;
-  //   }
 `;
 const Carousel = styled.div`
   display: flex;
@@ -195,10 +188,6 @@ const ContentBox = styled.div`
     width: 100vw;
   }
 `;
-const TextBox = styled.div`
-  z-index: 5;
-  width: 100%;
-`;
 const Content = styled.div`
   position: relative;
   width: 100%;
@@ -223,7 +212,6 @@ const Circle = styled.div`
 
 const Img = styled.div`
   background-image: url(${(props) => props.imgURL});
-  // width: 200px;
 
   @media (min-width: 420px) {
     width: 420px;
@@ -242,12 +230,5 @@ const IconImg = styled.img`
   cursor: pointer;
   z-index: 3;
 `;
-const ButtonBox = styled.div`
-  /* position: absolute; 
-  left: 80px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10%;
-`;
+
 export default Banner1;
