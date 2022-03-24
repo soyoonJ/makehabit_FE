@@ -35,6 +35,7 @@ const Header = styled.div`
 
 const MyRanking = styled.div`
   width: 100%;
+  height: 9vh;
   background-color: #ff8b37;
 `;
 
