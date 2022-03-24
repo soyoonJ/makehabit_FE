@@ -48,11 +48,11 @@ const initialState = {
 // 메인-검색기능
 const getSearchDB = (searchWord) => {
   return function (dispatch, getState, { history }) {
-    console.log("메인이다!!!!!!!!!!!!!!!!!!!!!!", searchWord);
+    // console.log("메인이다!!!!!!!!!!!!!!!!!!!!!!", searchWord);
     apis
       .mainSearch(searchWord) // 메인페이지에서 dispatch 값 데이터
       .then(function (res) {
-        console.log("검색데이타!!!!", res.data);
+        // console.log("검색데이타!!!!", res.data);
         dispatch(getSearch(res.data));
       })
       .catch((error) => {
@@ -79,7 +79,7 @@ const RecommendDB = (recommendLength, categoryId) => {
       apis
         .mainRecommend(recommendLength)
         .then(function (res) {
-          console.log("추천삼일모듈", res.data.challenges);
+          // console.log("추천삼일모듈", res.data.challenges);
           dispatch(getRecommend(res.data.challenges));
         })
         .catch((error) => {
@@ -133,7 +133,7 @@ const mainstudyDB = (recommendLength, categoryId) => {
     apis
       .maincategory(recommendLength, categoryId) //
       .then(function (res) {
-        console.log("잘 들어가느냐!!!", res.data);
+        // console.log("잘 들어가느냐!!!", res.data);
         dispatch(studyCategory(res.data));
       })
       .catch((error) => {
@@ -168,23 +168,23 @@ export default handleActions(
 
     [GET_RECOMMEND]: (state, action) =>
       produce(state, (draft) => {
-        console.log("추천!!!목록!!리스트!!!", action.payload.recommend_list);
+        // console.log("추천!!!목록!!리스트!!!", action.payload.recommend_list);
         draft.recommend_list = action.payload.recommend_list;
-        // draft.isLoading = false;
+        draft.isLoading = false;
       }),
 
     [GET_NEW]: (state, action) =>
       produce(state, (draft) => {
-        console.log("카테고리 목록 조회", action.payload);
+        // console.log("카테고리 목록 조회", action.payload);
         draft.new_list = action.payload.new_list.challenges;
-        // draft.isLoading = false;
+        draft.isLoading = false;
       }),
 
     [GET_STUDY]: (state, action) =>
       produce(state, (draft) => {
-        console.log("카테고리 목록 조회", action.payload);
+        // console.log("카테고리 목록 조회", action.payload);
         draft.study_list = action.payload.study_list.challenges;
-        // draft.isLoading = false;
+        draft.isLoading = false;
       }),
   },
 

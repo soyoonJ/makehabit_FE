@@ -18,7 +18,7 @@ import styled from "styled-components";
 const MyChallenge = (props) => {
   const dispatch = useDispatch();
   const currentPage = props.match.params.id;
-  console.log("지금", currentPage);
+  // console.log("지금", currentPage);
   const challenge_list = useSelector((state) => state.challenge.challenge_list);
   const proof_list = useSelector((state) => state.challenge.proof_list);
   // console.log("챌린지리스트", challenge_list);

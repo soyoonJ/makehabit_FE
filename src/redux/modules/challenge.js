@@ -43,7 +43,7 @@ const getConfirmDB = (challengeId) => {
     apis
       .getConfirm(challengeId)
       .then(function (res) {
-        console.log("인증조회", res);
+        // console.log("인증조회", res);
         dispatch(setConfirm(res.data));
       })
       .catch((error) => {
@@ -87,7 +87,7 @@ const naviChallengeDB = () => {
     apis
       .naviChallenge()
       .then(function (res) {
-        console.log(res);
+        // console.log(res);
         dispatch(setChallenge(res.data.challenges));
       })
       .catch((error) => {
@@ -99,11 +99,11 @@ const naviChallengeDB = () => {
 // 마이페이지 > 내 기록보기
 const myChallengeDB = () => {
   return function (dispatch, getState, { history }) {
-    console.log("마이페이지 myChallenge");
+    // console.log("마이페이지 myChallenge");
     apis
       .myChallenge()
       .then(function (res) {
-        console.log(res);
+        // console.log(res);
         dispatch(setProofshots(res.data.proofShots));
       })
       .catch((error) => {
@@ -115,11 +115,11 @@ const myChallengeDB = () => {
 // 내 기록보기 > 사진 하나 클릭 시 상세
 const myfeedDB = (proofShotId) => {
   return function (dispatch, getState, { history }) {
-    console.log("myfeedDB");
+    // console.log("myfeedDB");
     apis
       .oneFeed(proofShotId)
       .then(function (res) {
-        console.log(res);
+        // console.log(res);
         dispatch(setFeed(res.data.proofShot));
       })
       .catch((error) => {

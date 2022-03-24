@@ -25,7 +25,7 @@ const CharacterContainer = () => {
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
-  console.log("isEquip", isEquip);
+  // console.log("isEquip", isEquip);
   // console.log(
   //   "equip확인",
   //   isEquip,
@@ -37,7 +37,7 @@ const CharacterContainer = () => {
 
   // 미리보기
   const preview = useSelector((state) => state.character);
-  console.log("미리보기", preview);
+  // console.log("미리보기", preview);
   const previewColor = useSelector((state) => state.character?.colorItem);
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);

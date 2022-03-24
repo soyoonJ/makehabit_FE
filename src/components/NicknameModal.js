@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Input } from "../elements";
 const CategoryModal = (props) => {
-  const { open, close, getData } = props;
+  const { open, close } = props;
 
-  const setData = (categoryName) => {
-    getData(categoryName);
-  };
+  // const setData = (categoryName) => {
+  //   getData(categoryName);
+  // };
 
   if (open) {
     return (

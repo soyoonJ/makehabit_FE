@@ -32,7 +32,7 @@ const Recommend = (props) => {
       dispatch(mainActions.RecommendDB(10, categoryId));
     } else {
       dispatch(mainActions.RecommendDB(10));
-      console.log("추천");
+      // console.log("추천");
     }
   }, []);
 

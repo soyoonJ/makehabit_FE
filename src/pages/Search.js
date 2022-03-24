@@ -13,16 +13,20 @@ const Search = () => {
   const dispatch = useDispatch();
   const search = React.useRef(null);
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
-  console.log("searchWord_list", searchWord_list);
+  // console.log("searchWord_list", searchWord_list);
   //   React.useEffect(() => {
   //     dispatch(mainActions.getSearchDB());
   //   }, []);
-  const QuesetionImg =
-    process.env.PUBLIC_URL + "/images/illust_question_samkki.png";
+  // const QuesetionImg =
+  //   process.env.PUBLIC_URL + "/images/illust_question_samkki.png";
 
   return (
     <React.Fragment>
-      <MetaTag title={"습관삼끼 | " + search.current.value + " 검색결과"} />
+      {search.current?.value === "undefined" ? (
+        <MetaTag title="습관삼끼 | 검색결과" />
+      ) : (
+        <MetaTag title={"습관삼끼 | " + search.current?.value + " 검색결과"} />
+      )}
 
       <Container>
         <ContainerGrid>

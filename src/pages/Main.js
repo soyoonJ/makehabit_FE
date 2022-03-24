@@ -6,13 +6,13 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
-import MetaTag from "../shared/MetaTag";
 import CategoryPost from "../components/CategoryPost";
+import MetaTag from "../shared/MetaTag";
 import Spinner from "../shared/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const Main = (props) => {
+const Main = () => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
@@ -25,11 +25,11 @@ const Main = (props) => {
 
   // const categoryId = props.match.params.id;
   const likeList = useSelector((state) => state.post.isLike);
-  React.useEffect(() => {
-    dispatch(mainActions.RecommendDB(2));
-    dispatch(mainActions.mainnewDB(2, "new"));
-    dispatch(mainActions.mainstudyDB(2, "exercise"));
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(mainActions.RecommendDB(2));
+  //   dispatch(mainActions.mainnewDB(2, "new"));
+  //   dispatch(mainActions.mainstudyDB(2, "exercise"));
+  // }, []);
 
   React.useEffect(() => {
     // console.log("바뀌냐", likeList);
@@ -53,7 +53,7 @@ const Main = (props) => {
   return (
     <Container>
       <MetaTag title="습관삼끼" />
-      {/* {isLoading ? <Spinner /> : ""} */}
+      {isLoading ? <Spinner /> : ""}
       {/* 스피너테스트 */}
       {/* <Spinner /> */}
 
@@ -306,10 +306,7 @@ const Main = (props) => {
 };
 
 const Container = styled.div`
-  /* overflow-x: hidden; */
-  /* margin: 0% 3% 0% 3%; */
   margin: 0%;
-  // padding-bottom: 50px;
   margin-bottom: 100px;
   width: 100%;
   height: 100%;
@@ -405,14 +402,6 @@ const RecommendTitle = styled.div`
   display: flex;
 `;
 
-const RecommendImg = styled.div`
-  max-width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin-bottom: -10px;
-`;
 const PlusButton = styled.button`
   width: 40%;
   border: 0;
