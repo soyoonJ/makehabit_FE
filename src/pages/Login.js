@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ContainerGrid, Button, Input, Text } from "../elements";
+import MetaTag from "../shared/MetaTag";
+
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
@@ -38,6 +40,8 @@ const Login = () => {
   };
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 로그인" />
+
       <ContainerGrid>
         <Text
           color="#FF8B37"

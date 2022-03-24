@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
 import { actionCreators as mainActions } from "../redux/modules/main";
-import { actionCreators as postActions } from "../redux/modules/post";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
-import { useDispatch, useSelector } from "react-redux";
-
+import MetaTag from "../shared/MetaTag";
 import CategoryPost from "../components/CategoryPost";
+import Spinner from "../shared/Spinner";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const Main = (props) => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
@@ -17,6 +18,9 @@ const Main = (props) => {
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
   const dispatch = useDispatch();
   const search = React.useRef(null);
+
+  const isLoading = useSelector((state) => state.main.isLoading);
+  // const [loading, setLoading] = React.useState(true);
   // console.log("서치", search.current.value);
 
   // const categoryId = props.match.params.id;
@@ -28,7 +32,7 @@ const Main = (props) => {
   }, []);
 
   React.useEffect(() => {
-    console.log("바뀌냐", likeList);
+    // console.log("바뀌냐", likeList);
     dispatch(mainActions.RecommendDB(2));
     dispatch(mainActions.mainnewDB(2, "new"));
     dispatch(mainActions.mainstudyDB(2, "exercise"));
@@ -48,6 +52,11 @@ const Main = (props) => {
 
   return (
     <Container>
+      <MetaTag title="습관삼끼" />
+      {/* {isLoading ? <Spinner /> : ""} */}
+      {/* 스피너테스트 */}
+      {/* <Spinner /> */}
+
       <ContainerGrid>
         <Header>
           {/*로고 */}
@@ -59,7 +68,7 @@ const Main = (props) => {
             color="#FF8B37"
             margin="22px 10px 0px 0px"
           >
-            로고닷닷
+            습관삼끼
           </Text>
           <ContainerInput>
             <InputBox
@@ -271,8 +280,21 @@ const Container = styled.div`
   /* overflow-x: hidden; */
   /* margin: 0% 3% 0% 3%; */
   margin: 0%;
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
   margin-bottom: 100px;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+
+  @media screen and (min-width: 420px) {
+    max-height: 100vh;
+    overflow: auto;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Header = styled.div`

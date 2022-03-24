@@ -49,6 +49,8 @@ const initialState = {
   emotionItem: null,
   clothesItem: null,
   accItem: null,
+
+  isLoading: true,
 };
 
 //캐릭터 아이템 목록받기
@@ -120,7 +122,9 @@ export default handleActions(
             (e) => e.isEquip === true
           );
         }
-        console.log("찍히나요", draft.isEquip);
+
+        draft.isLoading = false;
+        // console.log("찍히나요", draft.isEquip);
       }),
     [SELECTED_ITEMS]: (state, action) =>
       produce(state, (draft) => {

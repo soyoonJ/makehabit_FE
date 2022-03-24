@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Text, ContainerGrid } from "../elements";
+import { Text, ContainerGrid, Button } from "../elements";
 import { history } from "../redux/configureStore";
 import ButtonNavigation from "../components/ButtonNavigation";
 import CategoryPost from "../components/CategoryPost";
+import MetaTag from "../shared/MetaTag";
+
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../redux/modules/main";
 
@@ -11,12 +13,17 @@ const Search = () => {
   const dispatch = useDispatch();
   const search = React.useRef(null);
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
+  console.log("searchWord_list", searchWord_list);
   //   React.useEffect(() => {
   //     dispatch(mainActions.getSearchDB());
   //   }, []);
+  const QuesetionImg =
+    process.env.PUBLIC_URL + "/images/illust_question_samkki.png";
 
   return (
     <React.Fragment>
+      <MetaTag title={"습관삼끼 | " + search.current.value + " 검색결과"} />
+
       <Container>
         <ContainerGrid>
           <Header>
@@ -60,21 +67,37 @@ const Search = () => {
         <ContainerGrid>
           {searchWord_list?.length === 0 ? (
             <NoChallenge>
-              찾으시는 챌린지가 없어요!
+              <div>
+                <img
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/images/illust_question_samkki.png"
+                  }
+                  alt="상단 캐릭터 일러스트"
+                  style={{ height: "26.77vh" }}
+                />
+              </div>
+              <Text size="24px" bold margin="0px 0px 5px 0px">
+                찾으시는 챌린지가 없어요!
+              </Text>
+              <Text size="20px" margin="0px 0px 5px 0px">
+                새로운 챌린지를 개설하셔서
+              </Text>
+              <Text size="20px" margin="0px 0px 5px 0px">
+                습관을 만들어 볼까요?
+              </Text>
               <br />
-              <br />
-              챌린지를 개설하셔서
-              <br />
-              습관만들기를 시작해보세요!
-              <br />
-              <br />
-              <button
-                onClick={() => {
+              <Button
+                bg="#FF8B37"
+                margin="44px 0px 0px 0px"
+                height="67px"
+                _onClick={() => {
                   history.push("/postwrite");
                 }}
+                fontSize="22px"
               >
                 습관만들러 가기
-              </button>
+              </Button>
             </NoChallenge>
           ) : (
             <CardWrap>
@@ -96,6 +119,7 @@ const NoChallenge = styled.div`
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
+  margin-top: 96px;
 `;
 
 const Container = styled.div`
@@ -111,11 +135,9 @@ const Header = styled.div`
   margin-bottom: 20px;
 `;
 
-const ImgBox = styled.img`
-  height: 20px;
-  width: 20px;
-
-  margin-left: 20%;
+const QuesetionImg = styled.img`
+  height: 26.77vh;
+  margin-top: 96px;
 `;
 
 const Img = styled.img`
