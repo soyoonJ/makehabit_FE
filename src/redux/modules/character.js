@@ -59,7 +59,7 @@ const getItemDB = (category) => {
     apis
       .GetItemList()
       .then(function (res) {
-        console.log("아이템", res);
+        // console.log("아이템", res);
         dispatch(setItems(res.data, category));
       })
       .catch((error) => {
@@ -74,7 +74,7 @@ const purchaseItemList = (totalPrice, items) => {
     apis
       .PurchaseItem(totalPrice, items)
       .then(function (response) {
-        console.log("아이템 구매 및 저장", response);
+        // console.log("아이템 구매 및 저장", response);
         history.push("/charactersave");
       })
       .catch((error) => {
@@ -90,7 +90,7 @@ const mypageCharacterList = () => {
     apis
       .mypageCharacter()
       .then(function (res) {
-        console.log("내캐릭터", res.data.character.equippedItems);
+        // console.log("내캐릭터", res.data.character.equippedItems);
         dispatch(selectedItems(res.data.character.equippedItems));
       })
       .catch((error) => {
@@ -104,7 +104,7 @@ export default handleActions(
   {
     [SET_ITEMS]: (state, action) =>
       produce(state, (draft) => {
-        console.log("GETLIST", action.payload);
+        // console.log("GETLIST", action.payload);
         draft.allList = action.payload.itemList.items;
 
         if (action.payload.category === undefined) {

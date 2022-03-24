@@ -4,8 +4,6 @@ import { produce } from "immer";
 import { apis } from "../../shared/Api";
 import axios from "axios";
 
-import { useDispatch } from "react-redux";
-
 // actions
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
@@ -54,7 +52,6 @@ const emailCheckDB = (email) => {
     apis
       .emailCheck(email)
       .then((response) => {
-        console.log("emailCheckDB", response);
         dispatch(emailCheck(1));
         // window.alert("사용 가능한 아이디 입니다.")
       })
@@ -77,9 +74,7 @@ const nicknameCheckDB = (nickname) => {
     apis
       .nicknameCheck(nickname)
       .then((response) => {
-        console.log(response);
         dispatch(nicknameCheck(1));
-        //   window.alert("사용 가능한 닉네임 입니다.")
       })
       .catch((error) => {
         console.log("nicknamecheckdberror", error, error.response.data.message);
@@ -109,7 +104,7 @@ const loginDB = (email, password) => {
     apis
       .login(email, password)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
         // 서버에서 받아온 정보를 리덕스에 저장해주는 액션
@@ -133,7 +128,7 @@ const loginDB = (email, password) => {
 // 카카오 API
 const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
-    console.log("I'mINNNN");
+    // console.log("I'mINNNN");
     // Kakao.API.request({
     //   url: '/v1/user/unlink',
     //   success: function(response) {
@@ -148,7 +143,7 @@ const kakaoLogin = (code) => {
       url: `https://juhyeon.shop/api/users/kakao/callback?code=${code}`,
     })
       .then((res) => {
-        console.log("카카오오오", res);
+        // console.log("카카오오오", res);
         const token = res.data.token;
         localStorage.setItem("token", token); //예시로 로컬에 저장
         dispatch(setUser());

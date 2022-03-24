@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 // import { Text, Grid } from "../elements";
 import { ReactComponent as CloseImg } from "../img/icon_close.svg";
 
@@ -14,11 +14,11 @@ const Modal = forwardRef((props, ref) => {
     },
   }));
 
-  const { open, close, getData, children } = props;
+  const { children } = props;
 
-  const setData = (categoryName) => {
-    getData(categoryName);
-  };
+  // const setData = (categoryName) => {
+  //   getData(categoryName);
+  // };
 
   // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);

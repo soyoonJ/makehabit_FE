@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Text, Button } from "../elements";
+// import { Grid, Text, Button } from "../elements";
 // import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
@@ -20,7 +20,7 @@ import { ReactComponent as MypageImg } from "../img/icon_mypage.svg";
 const ButtonNavigation = () => {
   const { pathname } = useLocation();
 
-  console.log("pathname", pathname);
+  // console.log("pathname", pathname);
   const is_login = useSelector((state) => state.user.is_login);
 
   // console.log("버튼", clickedTab);
@@ -197,9 +197,7 @@ const GradientBox = styled.div`
 const ButtonWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  // justify-content: space-around;
   align-items: center;
-  // margin-left: auto;
   width: 100%;
   height: 11.84vh;
   background-color: #fff;

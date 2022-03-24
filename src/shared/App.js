@@ -33,7 +33,8 @@ import Search from "../pages/Search";
 import ShoppingBasket from "../pages/ShoppingBasket";
 import CharacterSave from "../pages/CharacterSave";
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
-import Spinner from "./Spinner";
+// import Spinner from "./Spinner";
+import RankingPage from "../pages/RankingPage";
 
 function App() {
   const handleNetworkChange = (online) => {
@@ -48,7 +49,7 @@ function App() {
   React.useEffect(() => {
     // 로그인 후 새로고침하면 리덕스 데이터 날라감 > loginCheck 작업 필요!
     if (is_token) {
-      console.log("is_token", is_token);
+      // console.log("is_token", is_token);
       dispatch(userActions.loginCheckDB());
     }
   }, []);
@@ -78,6 +79,7 @@ function App() {
               <Route path="/chat/:id" component={Chat} />
               <Route path="/charactersave" component={CharacterSave} />
               <Route path="/kakao" component={Auth2RedirectHandler}></Route>
+              <Route path="/ranking" component={RankingPage} />
 
               <Route path="*" exact component={NotFound} />
             </Switch>
@@ -97,7 +99,7 @@ const Container = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative; //absolute를 쓸때 영역을 잡아주는 역할
-  background: url("/banner/background_banner.png");
+  background: url("/banner/background_banner.webp");
   background-size: cover;
   scrollbar-width: none;
   ::-webkit-scrollbar {

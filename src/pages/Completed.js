@@ -1,18 +1,18 @@
 import React from "react";
 
-import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
+import { ContainerGrid, Grid, Button } from "../elements";
 import MetaTag from "../shared/MetaTag";
 
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import moment from "moment";
 
 const Completed = (props) => {
   const page = props.match.params.id;
-  const openId = useSelector((state) => state.post.challengeId);
+  // const openId = useSelector((state) => state.post.challengeId);
   // console.log("openId", openId);
   const totalCnt = useSelector((state) => state.challenge.totalCnt);
 
@@ -20,10 +20,10 @@ const Completed = (props) => {
 
   const openStartAt = location.state?.openStart;
   const participateStartAt = location.state?.participateStart;
-  const participateId = location.state?.challengeId;
+  // const participateId = location.state?.challengeId;
   const participateTitle = location.state?.title;
-  console.log("participateId", participateId);
-  console.log("openStartAt", openStartAt);
+  // console.log("participateId", participateId);
+  // console.log("openStartAt", openStartAt);
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -35,13 +35,13 @@ const Completed = (props) => {
   const partTransformDate = partStartDate.format("YYYY년 MM월 DD일");
   const partTransformDay = dayArray[moment(partStartDate).day()];
 
-  console.log(
-    "open시작일자",
-    openStartAt,
-    openStartDate,
-    openTransformDate,
-    openTransformDay
-  );
+  // console.log(
+  //   "open시작일자",
+  //   openStartAt,
+  //   openStartDate,
+  //   openTransformDate,
+  //   openTransformDay
+  // );
 
   const contents = [
     {

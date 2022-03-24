@@ -1,33 +1,35 @@
 import React, { useState, useRef } from "react";
 
 import { Grid, Text, Input, Button, ContainerGrid } from "../elements";
-import ProgressBar from "../components/ProgressBar";
-import NicknameModal from "../components/NicknameModal";
+// import ProgressBar from "../components/ProgressBar";
+// import NicknameModal from "../components/NicknameModal";
 import Modal from "../components/Modal";
 import ButtonNavigation from "../components/ButtonNavigation";
-import CharacterContainer from "../components/CharacterContainer";
-import Character from "../redux/modules/character";
+// import CharacterContainer from "../components/CharacterContainer";
+// import Character from "../redux/modules/character";
 import MetaTag from "../shared/MetaTag";
+import Spinner from "../shared/Spinner";
 
-import { actionCreators as challengeActions } from "../redux/modules/challenge";
+// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as characterActions } from "../redux/modules/character";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
-import { HiOutlinePencil } from "react-icons/hi";
+// import { HiOutlinePencil } from "react-icons/hi";
 import { ReactComponent as RightButton } from "../img/icon_right.svg";
 
 import styled from "styled-components";
 
-const Mypage = (props) => {
+const Mypage = () => {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector((state) => state.character.isLoading);
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
-
-    console.log("오냐냐냐냐냐");
+    // console.log("오냐냐냐냐냐");
   }, []);
 
   const isEquip = useSelector((state) => state.character?.isEquip);
@@ -37,26 +39,27 @@ const Mypage = (props) => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  console.log(
-    "equip확인",
-    isEquip,
-    equipBg?.itemImgUrl,
-    equipColor?.itemImgUrl,
-    equipClothes?.itemImgUrl,
-    equipAcc?.itemImgUrl
-  );
+  // console.log(
+  //   "equip확인",
+  //   isEquip,
+  //   equipBg?.itemImgUrl,
+  //   equipColor?.itemImgUrl,
+  //   equipClothes?.itemImgUrl,
+  //   equipAcc?.itemImgUrl
+  // );
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   //닉네임 가져오기
   const nickName = useSelector((state) => state.user?.user?.nickname);
-  console.log("닉네임", nickName);
+  // console.log("닉네임", nickName);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
   return (
     <Container>
       <MetaTag title="습관삼끼 | 마이페이지" />
+      {isLoading ? <Spinner /> : ""}
 
       <ContainerGrid>
         <Grid margin="10% 0% 0% 0%">

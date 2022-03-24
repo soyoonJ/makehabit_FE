@@ -1,5 +1,5 @@
-import React, { useRef, forwardRef, useImperativeHandle } from "react";
-import { Text, Grid } from "../elements";
+import React, { forwardRef, useImperativeHandle } from "react";
+// import { Text, Grid } from "../elements";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -10,7 +10,7 @@ const Upload = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  console.log("현재위치", location.pathname);
+  // console.log("현재위치", location.pathname);
   const { _onClick, _ref } = props;
   // console.log("upload", ref, props, _ref);
   useImperativeHandle(ref, () => ({

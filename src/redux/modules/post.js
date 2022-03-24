@@ -5,8 +5,8 @@ import { apis } from "../../shared/Api";
 
 // actions
 const ADD_POST = "ADD_POST";
-const EDIT_POST = "EDIT_POST";
-const DELETE_POST = "DELETE_POST";
+// const EDIT_POST = "EDIT_POST";
+// const DELETE_POST = "DELETE_POST";
 const DETAIL_POST = "DETAIL_POST";
 const IMG_EXIST = "IMG_EXIST";
 //참여하기
@@ -18,7 +18,8 @@ const GET_LIKE = "GET_LIKE";
 const ADD_LIKE = "ADD_LIKE";
 const DELETE_LIKE = "DELTE_LIKE";
 
-const GET_DISLIKE = "GET_DISLIKE";
+// const GET_DISLIKE = "GET_DISLIKE";
+
 const addPost = createAction(ADD_POST, (challengeId) => ({ challengeId }));
 const imgExist = createAction(IMG_EXIST, (imgExist) => ({ imgExist }));
 const editJoin = createAction(EDIT_JOIN, (nickname, isPush) => ({
@@ -163,11 +164,11 @@ const joinCancelDB = (challengeId) => {
 
 const getLikeDB = () => {
   return function (dispatch, getState, { history }) {
-    console.log("GETLIKEINNNNN");
+    // console.log("GETLIKEINNNNN");
     apis
       .getLike()
       .then((response) => {
-        console.log("getLike! 성공!", response.data);
+        // console.log("getLike! 성공!", response.data);
         dispatch(getLike(response.data.challenges));
       })
       .catch(function (error) {
@@ -179,7 +180,7 @@ const getLikeDB = () => {
 //찜하기
 const likeDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
-    console.log("좋아요");
+    // console.log("좋아요");
     apis
       .like(challengeId)
       .then((response) => {
@@ -196,11 +197,11 @@ const likeDB = (challengeId) => {
 //찜하기 취소하기
 const dislikeDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
-    console.log("싫어요");
+    // console.log("싫어요");
     apis
       .dislike(challengeId)
       .then((response) => {
-        console.log("싫어요");
+        // console.log("싫어요");
         dispatch(getLikeDB());
         dispatch(deleteLike(challengeId));
       })
@@ -239,10 +240,10 @@ export default handleActions(
       }),
     [GET_LIKE]: (state, action) =>
       produce(state, (draft) => {
-        console.log(
-          "GETLIKE!",
-          action.payload.isLike.map((e) => e.challengeId)
-        );
+        // console.log(
+        //   "GETLIKE!",
+        //   action.payload.isLike.map((e) => e.challengeId)
+        // );
         // const likeList = getState().main.category_list.filter(
         //   (e) => e.isLike === true
         // );
@@ -250,12 +251,12 @@ export default handleActions(
       }),
     [ADD_LIKE]: (state, action) =>
       produce(state, (draft) => {
-        console.log("ADD_LIKE", action.payload.isLike);
+        // console.log("ADD_LIKE", action.payload.isLike);
         draft.isLike.push(action.payload.isLike);
       }),
     [DELETE_LIKE]: (state, action) =>
       produce(state, (draft) => {
-        console.log("DELETE_LIKE", action.payload.isLike);
+        // console.log("DELETE_LIKE", action.payload.isLike);
         draft.isLike.filter((e) => e.isLike !== action.payload.isLike);
       }),
   },

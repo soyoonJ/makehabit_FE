@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Text, Button, ContainerGrid } from "../elements";
+import { Grid, Text, ContainerGrid } from "../elements";
 import MetaTag from "../shared/MetaTag";
 
 import styled from "styled-components";

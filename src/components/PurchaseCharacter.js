@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
+// import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 
 import PageBack from "./PageBack";
 

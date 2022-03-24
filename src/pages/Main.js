@@ -1,19 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
 import { actionCreators as mainActions } from "../redux/modules/main";
-import { actionCreators as postActions } from "../redux/modules/post";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
-import MetaTag from "../shared/MetaTag";
 import CategoryPost from "../components/CategoryPost";
+import MetaTag from "../shared/MetaTag";
 import Spinner from "../shared/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const Main = (props) => {
+const Main = () => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
@@ -26,11 +25,11 @@ const Main = (props) => {
 
   // const categoryId = props.match.params.id;
   const likeList = useSelector((state) => state.post.isLike);
-  React.useEffect(() => {
-    dispatch(mainActions.RecommendDB(2));
-    dispatch(mainActions.mainnewDB(2, "new"));
-    dispatch(mainActions.mainstudyDB(2, "exercise"));
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(mainActions.RecommendDB(2));
+  //   dispatch(mainActions.mainnewDB(2, "new"));
+  //   dispatch(mainActions.mainstudyDB(2, "exercise"));
+  // }, []);
 
   React.useEffect(() => {
     // console.log("바뀌냐", likeList);
@@ -97,109 +96,138 @@ const Main = (props) => {
         </Text>
         <CategoryWrap>
           <Category>
-            <Img
-              width="50px"
-              src="images/icon_all.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("all"));
-                history.push("/category/all");
-              }}
-            />
+            <CategoryIcon>
+              <Img
+                width="50px"
+                height="auto"
+                src="images/icon_all.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("all"));
+                  history.push("/category/all");
+                }}
+              />
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               전체보기
             </CategoryText>
           </Category>
 
           <Category>
-            <Img
-              alignCenter
-              width="50px"
-              src="images/icon_best.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("popular"));
-                history.push("/category/popular");
-              }}
-            ></Img>
+            <CategoryIcon>
+              <Img
+                alignCenter
+                width="50px"
+                height="auto"
+                src="images/icon_best.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("popular"));
+                  history.push("/category/popular");
+                }}
+              ></Img>
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               인기
             </CategoryText>
           </Category>
+
           <Category>
-            <Img
-              width="50px"
-              src="images/icon_new.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("new"));
-                history.push("/category/new");
-              }}
-            ></Img>
+            <CategoryIcon>
+              <Img
+                width="50px"
+                height="auto"
+                src="images/icon_new.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("new"));
+                  history.push("/category/new");
+                }}
+              ></Img>
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               신규
             </CategoryText>
           </Category>
+
           <Category>
-            <Img
-              width="50px"
-              src="images/icon_book.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("study"));
-                history.push("/category/study");
-              }}
-            ></Img>
+            <CategoryIcon>
+              <Img
+                width="50px"
+                height="auto"
+                src="images/icon_book.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("study"));
+                  history.push("/category/study");
+                }}
+              ></Img>
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               공부
             </CategoryText>
           </Category>
         </CategoryWrap>
+
         <CategoryWrap>
           <Category>
-            <Img
-              width="50px"
-              src="images/icon_sport.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("exercise"));
-                history.push("/category/exercise");
-              }}
-            ></Img>
+            <CategoryIcon>
+              <Img
+                width="50px"
+                height="auto"
+                src="images/icon_sport.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("exercise"));
+                  history.push("/category/exercise");
+                }}
+              ></Img>
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               운동
             </CategoryText>
           </Category>
+
           <Category>
-            <Img
-              width="50px"
-              src="images/icon_lifestyle.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("self-development"));
-                history.push("/category/self-development");
-              }}
-            ></Img>
+            <CategoryIcon>
+              <Img
+                width="50px"
+                height="auto"
+                src="images/icon_lifestyle.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("self-development"));
+                  history.push("/category/self-development");
+                }}
+              ></Img>
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               자기계발
             </CategoryText>
           </Category>
+
           <Category>
-            <Img
-              width="50px"
-              src="images/icon_sun.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("living-habit"));
-                history.push("/category/living-habit");
-              }}
-            ></Img>
+            <CategoryIcon>
+              <Img
+                width="50px"
+                height="auto"
+                src="images/icon_sun.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("living-habit"));
+                  history.push("/category/living-habit");
+                }}
+              ></Img>
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               생활습관
             </CategoryText>
           </Category>
+
           <Category>
-            <Img
-              width="50px"
-              src="images/icon_forest.svg"
-              onClick={() => {
-                // dispatch(mainActions.categoryDB("eco"));
-                history.push("/category/eco");
-              }}
-            ></Img>
+            <CategoryIcon>
+              <Img
+                width="50px"
+                src="images/icon_forest.svg"
+                onClick={() => {
+                  // dispatch(mainActions.categoryDB("eco"));
+                  history.push("/category/eco");
+                }}
+              ></Img>
+            </CategoryIcon>
             <CategoryText bold alignCenter>
               에코
             </CategoryText>
@@ -278,10 +306,7 @@ const Main = (props) => {
 };
 
 const Container = styled.div`
-  /* overflow-x: hidden; */
-  /* margin: 0% 3% 0% 3%; */
   margin: 0%;
-  // padding-bottom: 50px;
   margin-bottom: 100px;
   width: 100%;
   height: 100%;
@@ -299,7 +324,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  /* margin: 26px 0; */h
+  /* margin: 26px 0; */
   display: flex;
 `;
 
@@ -327,11 +352,7 @@ const InputBox = styled.input`
     margin-left: 10px;
   }
 `;
-const ImgBox = styled.div`
-  width: 76px;
-  height: 76px;
-  display: grid;
-`;
+
 const Img = styled.img`
   cursor: pointer;
 `;
@@ -343,14 +364,22 @@ const SearchIcon = styled.img`
 `;
 
 const CategoryWrap = styled.div`
-  /* margin-top: 2%; */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const Category = styled.div`
   display: grid;
   justify-content: center;
+  gap: 10px;
+`;
+
+const CategoryIcon = styled.div`
+  width: 76px;
+  height: 76px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CategoryText = styled.text`
@@ -373,14 +402,6 @@ const RecommendTitle = styled.div`
   display: flex;
 `;
 
-const RecommendImg = styled.div`
-  max-width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin-bottom: -10px;
-`;
 const PlusButton = styled.button`
   width: 40%;
   border: 0;
