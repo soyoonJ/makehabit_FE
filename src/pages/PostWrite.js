@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { actionCreators as postActions } from "../redux/modules/post";
 // import { actionCreators as userAction } from "../redux/modules/user";
 // import { actionCreators as challengeActions } from "../redux/modules/challenge";
-import { Grid, Text } from "../elements";
+import { Grid } from "../elements";
 // import CategoryModal from "../components/CategoryModal";
 import CategoryModal1 from "../components/CategoryModal1";
 import Upload from "../components/Upload";
@@ -103,7 +103,7 @@ const PostWrite = () => {
     const imageForm = new FormData();
     let image = fileInput.current.files[0];
     imageForm.append("image", image);
-    console.log("들어왔나?", date, desc, method);
+    // console.log("들어왔나?", date, desc, method);
 
     if (image === undefined) {
       alert("썸네일 이미지가 없습니다!");
@@ -146,12 +146,12 @@ const PostWrite = () => {
   };
 
   // const imageForm = new FormData();
-  console.log("이미지 파일 바뀌었다!", fileInput);
-  React.useEffect(() => {
-    console.log("이미지 파일 바뀌었다!");
-    // image = fileInput.current.files[0];
-    // imageForm.append("image", image);
-  }, [fileInput]);
+  // console.log("이미지 파일 바뀌었다!", fileInput);
+  // React.useEffect(() => {
+  //   // console.log("이미지 파일 바뀌었다!");
+  //   // image = fileInput.current.files[0];
+  //   // imageForm.append("image", image);
+  // }, [fileInput]);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
@@ -163,12 +163,12 @@ const PostWrite = () => {
   //현재 시간 받아오기
   let currentTime = new Date();
   let hour = currentTime.getHours();
-  console.log(
-    "dkssudgktpdy",
-    hour,
-    todayDate,
-    moment(todayDate, "YYYY-MM-DD").add(1, "days").format("YYYY-MM-DD")
-  );
+  // console.log(
+  //   "dkssudgktpdy",
+  //   hour,
+  //   todayDate,
+  //   moment(todayDate, "YYYY-MM-DD").add(1, "days").format("YYYY-MM-DD")
+  // );
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
   return (

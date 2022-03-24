@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 function Progressbar() {
   //   const quizList = useSelector((state) => state.quiz.quizList);

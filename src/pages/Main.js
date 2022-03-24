@@ -12,7 +12,7 @@ import Spinner from "../shared/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const Main = (props) => {
+const Main = () => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))

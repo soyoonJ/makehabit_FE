@@ -1,16 +1,16 @@
 import React, {
-  useRef,
+  // useRef,
   forwardRef,
   useImperativeHandle,
   useState,
 } from "react";
-import { Text, Grid } from "../elements";
+// import { Text, Grid } from "../elements";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators as characterActions } from "../redux/modules/character";
-import GridContainer from "../elements/ContainerGrid";
+// import GridContainer from "../elements/ContainerGrid";
 
 const ShoppingBasket1 = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
@@ -73,20 +73,20 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       } else {
         items.push(equipEmotion?.itemId);
       }
-      console.log("ItemsList다", items);
+      // console.log("ItemsList다", items);
       dispatch(characterActions.purchaseItemList(totalPoint, items));
     },
   }));
   const dispatch = useDispatch();
 
   const itemList = useSelector((state) => state.character.itemList);
-  const category = itemList[0]?.category;
+  // const category = itemList[0]?.category;
   const shopList = useSelector((state) => state.character.shopList);
-  const { open, close, getData } = props;
+  // const { open, close, getData } = props;
 
-  const setData = (categoryName) => {
-    getData(categoryName);
-  };
+  // const setData = (categoryName) => {
+  //   getData(categoryName);
+  // };
 
   // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -111,11 +111,11 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
   //Item 변경 할때 사용 하는 useState
-  const [fitBg, setFitBg] = useState();
-  const [fitColor, setFitColor] = useState();
-  const [fitClothes, setFitClothes] = useState();
-  const [fitAcc, setFitAcc] = useState();
-  const [fitEmotion, setFitEmotion] = useState();
+  // const [fitBg, setFitBg] = useState();
+  // const [fitColor, setFitColor] = useState();
+  // const [fitClothes, setFitClothes] = useState();
+  // const [fitAcc, setFitAcc] = useState();
+  // const [fitEmotion, setFitEmotion] = useState();
 
   // 미리보기 리스트
   const previewBg = useSelector((state) => state.character?.backgroundItem);
@@ -138,7 +138,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const [shopEmotion, setEmotion] = useState();
 
   const [totalPoint, setTotalPoint] = useState(0);
-  const [add, setAdd] = useState(false);
+  // const [add, setAdd] = useState(false);
 
   React.useEffect(() => {
     //필터 리스트
@@ -169,14 +169,14 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   //   setFitEmotion(equipEmotion?.itemImgUrl)
   // }, [equipColor?.itemImgUrl]);
   const account = (item) => {
-    console.log(
-      "accoutn 실행됨?",
-      shopList,
-      shopBg,
-      shopColor,
-      shopClothes,
-      shopAcc
-    );
+    // console.log(
+    //   "accoutn 실행됨?",
+    //   shopList,
+    //   shopBg,
+    //   shopColor,
+    //   shopClothes,
+    //   shopAcc
+    // );
     if (item === "bg") {
       setTotalPoint((totalPoint) => totalPoint - shopBg?.price);
     }
@@ -193,14 +193,14 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       setTotalPoint((totalPoint) => totalPoint - shopEmotion?.price);
     }
   };
-  console.log(
-    "구매리스트",
-    shopBg,
-    shopColor,
-    shopClothes,
-    shopAcc,
-    shopEmotion
-  );
+  // console.log(
+  //   "구매리스트",
+  //   shopBg,
+  //   shopColor,
+  //   shopClothes,
+  //   shopAcc,
+  //   shopEmotion
+  // );
   const purchase = () => {
     let items = [];
     if (shopBg) {

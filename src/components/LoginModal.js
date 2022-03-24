@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { history } from "../redux/configureStore";
 
 import { Text, Grid, Button } from "../elements";
@@ -14,11 +14,11 @@ const LoginModal = forwardRef((props, ref) => {
     },
   }));
 
-  const { open, close, getData, children, in_page } = props;
+  const { in_page } = props;
 
-  const setData = (categoryName) => {
-    getData(categoryName);
-  };
+  // const setData = (categoryName) => {
+  //   getData(categoryName);
+  // };
 
   // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -143,14 +143,14 @@ const Container = styled.div`
   // }
 `;
 
-const XIcon = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-  text-align: right;
-  margin: 20px;
-  font-size: 1.3rem;
-`;
+// const XIcon = styled.div`
+//   position: absolute;
+//   right: 0;
+//   top: 0;
+//   cursor: pointer;
+//   text-align: right;
+//   margin: 20px;
+//   font-size: 1.3rem;
+// `;
 
 export default LoginModal;

@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { Grid } from "../elements";
 import styled from "styled-components";
 
@@ -12,7 +12,7 @@ const Modal = forwardRef((props, ref) => {
     },
   }));
 
-  const { open, close, getData } = props;
+  const { getData } = props;
 
   const setData = (categoryName) => {
     getData(categoryName);
@@ -224,10 +224,10 @@ const ContentText = styled.span`
   line-height: 1.75rem;
 `;
 
-const Footer = styled.footer`
-  padding: 12px 16px;
-  text-align: right;
-`;
+// const Footer = styled.footer`
+//   padding: 12px 16px;
+//   text-align: right;
+// `;
 
 const Button = styled.button`
   width: 100%;
