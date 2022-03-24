@@ -37,8 +37,6 @@ const LoginModal = forwardRef((props, ref) => {
     return (
       <Container>
         <section>
-          {/* {in_page ? <XIcon onClick={closeModal}>X</XIcon> : ""} */}
-
           <Grid padding="45px 30px 45px 30px">
             <Text
               size="22px"
@@ -73,17 +71,22 @@ const LoginModal = forwardRef((props, ref) => {
             >
               로그인하러가기
             </Button>
-            <Button
-              bold
-              bg="white"
-              color="#707070"
-              size="22px"
-              width="100%"
-              margin="5px 0px 0px 0px"
-              _onClick={closeModal}
-            >
-              좀 더 둘러보기
-            </Button>
+            {in_page ? (
+              <Button
+                bold
+                bg="white"
+                color="#707070"
+                size="22px"
+                width="100%"
+                margin="5px 0px 0px 0px"
+                _onClick={closeModal}
+              >
+                좀 더 둘러보기
+              </Button>
+            ) : (
+              ""
+            )}
+
             {/* 그냥 둘러보기 버튼 추가 시 in_page일 경우에는 버튼 안 뜨게 해야 함 */}
           </Grid>
         </section>
@@ -107,9 +110,15 @@ const Container = styled.div`
   z-index: 99;
   display: flex;
   overflow: hidden;
-  max-height: 100%;
-  overflow: scroll;
-  width: 100%;
+  /* max-height: 100%; */
+  /* overflow: scroll; */
+  /* width: 100%; */
+
+  @media screen and (min-width: 420px) {
+    max-height: 100vh;
+    /* position: fixed; */
+    overflow: auto;
+  }
 
   section {
     position: relative;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
@@ -309,8 +309,21 @@ const Container = styled.div`
   /* overflow-x: hidden; */
   /* margin: 0% 3% 0% 3%; */
   margin: 0%;
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
   margin-bottom: 100px;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+
+  @media screen and (min-width: 420px) {
+    max-height: 100vh;
+    overflow: auto;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Header = styled.div`
