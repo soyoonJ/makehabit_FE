@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
 import { actionCreators as mainActions } from "../redux/modules/main";
-import { actionCreators as postActions } from "../redux/modules/post";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
@@ -54,7 +53,7 @@ const Main = (props) => {
   return (
     <Container>
       <MetaTag title="습관삼끼" />
-      {isLoading ? <Spinner /> : ""}
+      {/* {isLoading ? <Spinner /> : ""} */}
       {/* 스피너테스트 */}
       {/* <Spinner /> */}
 
@@ -299,7 +298,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  /* margin: 26px 0; */h
+  /* margin: 26px 0; */
   display: flex;
 `;
 
