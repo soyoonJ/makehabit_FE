@@ -57,7 +57,7 @@ const RankingPage2 = () => {
         </div>
         <div>
           <Text margin="14px 0px 8px 0px" bold alignCenter>
-            사용자닉네임임
+            사용자닉네임입
           </Text>
           <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
             100번
