@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ContainerGrid, Button, Input, Text } from "../elements";
 import MetaTag from "../shared/MetaTag";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import { KAKAO_AUTH_URL } from "../shared/Auth";
@@ -25,7 +25,7 @@ const Login = () => {
 
   const handlePress = (e) => {
     if (e.key === "Enter") {
-      console.log("enter");
+      // console.log("enter");
       login();
     }
   };
@@ -140,7 +140,7 @@ const Login = () => {
           src={process.env.PUBLIC_URL + "/images/kakao_login.png"}
           alt="카카오 로그인"
           onClick={() => {
-            console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
+            // console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
             window.location.href = KAKAO_AUTH_URL;
           }}
         ></KakaoImg>

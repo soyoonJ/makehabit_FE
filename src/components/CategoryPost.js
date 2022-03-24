@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Text } from "../elements";
-
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import styled from "styled-components";
@@ -13,6 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 const CategoryPost = (props) => {
   //좋아요 버튼 on/off
   // let [isLike, setIsLike] = React.useState(false);
+  function getParametersForUnsplash({ width, height, quality, format }) {
+    return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;
+  }
 
   const dispatch = useDispatch();
   // const post = useSelector((state) => state.main.category_list);
@@ -60,7 +61,16 @@ const CategoryPost = (props) => {
       <Card>
         <ThumbnailBox>
           <Img
-            src={thumbnail}
+            // 기존 이미지 크기 두배로 리사이징
+            src={
+              thumbnail +
+              getParametersForUnsplash({
+                width: 334,
+                height: 334,
+                quality: 80,
+                format: "jpg",
+              })
+            }
             onClick={() => {
               history.push(`/challenges/${challengeId}`);
             }}
@@ -131,15 +141,15 @@ const Like = styled.img`
   z-index: 90;
 `;
 
-const Tag = styled.div`
-  display: inline-flex;
-  background-color: beige;
-  margin: 0% 3%;
-  width: 90px;
-  height: 20px;
-  border-radius: 5px;
-  align-items: center;
-`;
+// const Tag = styled.div`
+//   display: inline-flex;
+//   background-color: beige;
+//   margin: 0% 3%;
+//   width: 90px;
+//   height: 20px;
+//   border-radius: 5px;
+//   align-items: center;
+// `;
 const Title = styled.div`
   margin-top: 10px;
   font-size: 18px;

@@ -120,7 +120,7 @@ const Confirm = (props) => {
             ref={uploadRef}
             _ref={fileInput}
             _onClick={() => {
-              console.log(uploadRef);
+              // console.log(uploadRef);
               uploadRef.current.upload();
             }}
           />
