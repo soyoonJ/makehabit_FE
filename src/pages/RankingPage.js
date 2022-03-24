@@ -36,6 +36,7 @@ const RankingPage = () => {
         <Text size="13px" color="#707070" margin="14px 20px 0px 0px" alignRight>
           2022.02.02.00시 업데이트
         </Text>
+
         <RankingWrap>
           <Ranking01>
             <Medal src="images/icon_1st.png" />
@@ -44,6 +45,8 @@ const RankingPage = () => {
         </RankingWrap>
       </ContainerGrid>
     </Container>
+   </ContainerGrid>
+
   );
 };
 
