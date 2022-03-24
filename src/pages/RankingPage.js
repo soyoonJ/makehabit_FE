@@ -22,7 +22,11 @@ const RankingPage = () => {
           습관삼끼 랭킹
         </Text>
       </Header>
-      <MyRanking></MyRanking>
+      <MyRanking>
+        <Text size="18px" margin="25px">
+          4
+        </Text>
+      </MyRanking>
     </ContainerGrid>
   );
 };
