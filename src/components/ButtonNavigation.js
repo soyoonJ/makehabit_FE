@@ -20,7 +20,7 @@ import { ReactComponent as MypageImg } from "../img/icon_mypage.svg";
 const ButtonNavigation = () => {
   const { pathname } = useLocation();
 
-  console.log("pathname", pathname);
+  // console.log("pathname", pathname);
   const is_login = useSelector((state) => state.user.is_login);
 
   // console.log("버튼", clickedTab);

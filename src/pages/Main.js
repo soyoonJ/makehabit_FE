@@ -25,11 +25,11 @@ const Main = (props) => {
 
   // const categoryId = props.match.params.id;
   const likeList = useSelector((state) => state.post.isLike);
-  React.useEffect(() => {
-    dispatch(mainActions.RecommendDB(2));
-    dispatch(mainActions.mainnewDB(2, "new"));
-    dispatch(mainActions.mainstudyDB(2, "exercise"));
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(mainActions.RecommendDB(2));
+  //   dispatch(mainActions.mainnewDB(2, "new"));
+  //   dispatch(mainActions.mainstudyDB(2, "exercise"));
+  // }, []);
 
   React.useEffect(() => {
     // console.log("바뀌냐", likeList);
