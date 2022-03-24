@@ -5,9 +5,7 @@ import { history } from "../redux/configureStore";
 
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
-const Icons = process.env.PUBLIC_URL + "/images/192x192.png";
-
-const RankingPage = () => {
+const RankingPage2 = () => {
   return (
     <Container>
       <ContainerGrid>
@@ -26,24 +24,98 @@ const RankingPage = () => {
           </Text>
         </Header>
       </ContainerGrid>
-      <MyRanking>
-        <MyRankingNumber>4</MyRankingNumber>
-        <Profile src="images/test.png" />
-        <Nickname>나의닉네임입니다</Nickname>
-        <Round>100번</Round>
-      </MyRanking>
-      <ContainerGrid>
-        <Text size="13px" color="#707070" margin="14px 20px 0px 0px" alignRight>
-          2022.02.02.00시 업데이트
-        </Text>
 
-        <RankingWrap>
-          <Ranking01>
-            <Medal src="images/icon_1st.png" />
-            <img src="images/test.png" />
-          </Ranking01>
-        </RankingWrap>
+      <MyRanking>
+        <div>
+          <MyRankNum>004</MyRankNum>
+          <Profile src="images/test.png" />
+          <Text margin="0 0 0 18px" color="#fff" size="18px" width="130px" bold>
+            나의 닉네임입니다
+          </Text>
+          <Text color="#fff" size="18px" bold>
+            100번
+          </Text>
+        </div>
+      </MyRanking>
+
+      <ContainerGrid>
+        <Text
+          alignRight
+          color="#707070"
+          size="13px"
+          margin="14px 20px 15px 0px"
+        >
+          2022.03.26 00시 업데이트
+        </Text>
       </ContainerGrid>
+
+      {/*랭킹순위 */}
+      <RankingWrap>
+        <div>
+          <Medal src="images/icon_1st.png" />
+          <ProfileImg src="images/test.png" />
+        </div>
+        <div>
+          <Text margin="14px 0px 8px 0px" bold alignCenter>
+            사용자닉네임임
+          </Text>
+          <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
+            100번
+          </Text>
+        </div>
+      </RankingWrap>
+      <Wrap>
+        <RankingWrap>
+          <div>
+            <Medal src="images/icon_2st.png" />
+            <ProfileImg src="images/test.png" />
+          </div>
+
+          <div>
+            <Text margin="14px 0px 8px 0px" bold alignCenter>
+              사용자닉네임임
+            </Text>
+            <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
+              100번
+            </Text>
+          </div>
+        </RankingWrap>
+        <RankingWrap>
+          <div>
+            <Medal src="images/icon_3st.png" />
+            <ProfileImg src="images/test.png" />
+          </div>
+          <div>
+            <Text margin="14px 0px 8px 0px" bold alignCenter>
+              사용자닉네임임
+            </Text>
+            <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
+              100번
+            </Text>
+          </div>
+        </RankingWrap>
+      </Wrap>
+
+      <Line />
+
+      <RankingList>
+        <div>
+          <RankNum>004</RankNum>
+          <Profile src="images/test.png" />
+          <Text
+            margin="0 0 0 18px"
+            color="#1D1B1B"
+            size="18px"
+            width="130px"
+            bold
+          >
+            나의 닉네임입니다
+          </Text>
+          <Text color="#FF8B37" size="18px" bold>
+            100번
+          </Text>
+        </div>
+      </RankingList>
     </Container>
   );
 };
@@ -59,54 +131,109 @@ const Header = styled.div`
 `;
 
 const MyRanking = styled.div`
-  display: flex;
   width: 100%;
-  height: 9vh;
+  height: 8.76vh;
   background-color: #ff8b37;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > div {
+    width: 100%;
+    max-width: 420px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // height: 100%;
+    display: grid;
+    grid-template-columns: 17.4% 12.8% 1fr 17.4%;
+    align-items: center;
+  }
 `;
 
-const MyRankingNumber = styled.text`
-  color: white;
+const MyRankNum = styled.p`
+  display: flex;
+  justify-content: center;
   font-size: 18px;
-  margin: 25px 25px 28px 25px;
+  font-weight: bold;
+  color: #fff;
 `;
 
 const Profile = styled.img`
-  width: 50px;
+  border-radius: 5px;
+  width: 100%;
   height: 50px;
-  margin: 12px 18px 28px 0px;
+  margin-right: 18px;
 `;
 
-const Nickname = styled.text`
-  color: white;
-  font-size: 18px;
-  margin: 25px 0px 28px 20px;
-`;
-
-const Round = styled.text`
-  color: white;
-  font-size: 18px;
-  margin: 25px 0px 28px 30px;
-  align-items: flex-end;
+const Wrap = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
 
 const RankingWrap = styled.div`
-  background-color: beige;
-  margin-top: 8px;
-  height: 388px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  flex-direction: column;
+  /* position: absolute; */
+  left: 50%;
+
+  & > div {
+    position: relative;
+  }
 `;
 
-const Ranking01 = styled.div`
-  border-radius: 20px;
-  margin-top: 21px;
-  position: absolute;
+const ProfileImg = styled.img`
+  width: 119px;
+  height: 119px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Medal = styled.img`
   z-index: 99;
-  position: relative;
-  left: 35px;
-  top: -85px;
+  position: absolute;
+  left: -30.91px;
+  top: -21px;
 `;
 
-export default RankingPage;
+const Line = styled.div`
+  background-color: #f7f7f7;
+  height: 5px;
+  margin-top: 22px;
+`;
+
+const RankingList = styled.div`
+  width: 100%;
+  height: 8.76vh;
+  background-color: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px #f7f7f7 solid;
+
+  & > div {
+    width: 100%;
+    max-width: 420px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // height: 100%;
+    display: grid;
+    grid-template-columns: 17.4% 12.8% 1fr 17.4%;
+    align-items: center;
+  }
+`;
+
+const RankNum = styled.p`
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #707070;
+`;
+
+export default RankingPage2;
