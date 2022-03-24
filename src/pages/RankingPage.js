@@ -5,7 +5,9 @@ import { history } from "../redux/configureStore";
 
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
-const RankingPage2 = () => {
+
+const RankingPage = () => {
+
   return (
     <Container>
       <ContainerGrid>
