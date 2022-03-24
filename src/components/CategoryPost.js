@@ -62,6 +62,7 @@ const CategoryPost = (props) => {
         <ThumbnailBox>
           <Img
             // 기존 이미지 크기 두배로 리사이징
+            alt="썸네일"
             src={
               thumbnail +
               getParametersForUnsplash({
@@ -78,6 +79,7 @@ const CategoryPost = (props) => {
           {isLike ? (
             <Like
               src={LikeImg}
+              alt="좋아요 아이콘"
               onClick={() => {
                 disLike();
               }}
@@ -85,6 +87,7 @@ const CategoryPost = (props) => {
           ) : (
             <Like
               src={DisLikeImg}
+              alt="좋아요취소 아이콘"
               onClick={() => {
                 like();
               }}

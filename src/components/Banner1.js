@@ -55,6 +55,7 @@ const Banner1 = () => {
         src={"/images/icon_left.svg"}
         onClick={clickPrev}
         style={{ left: "10px" }}
+        alt="left icon"
       />
       <Carousel bannerIndex={bannerIndex}>
         {circleArray.map((e, i) => (
@@ -130,6 +131,7 @@ const Banner1 = () => {
         src={"/images/icon_right.svg"}
         onClick={clickNext}
         style={{ right: "10px" }}
+        alt="right icon"
       />
     </Container>
   );
