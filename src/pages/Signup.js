@@ -17,7 +17,6 @@ const Signup = () => {
   const [user_email, setEmail] = useState("");
   const changeEmail = (e) => {
     setEmail(e.target.value);
-    dispatch(userActions.emailCheckDB(user_email));
   };
   //emailCheck
   const emailCheck = useSelector((state) => state.user.emailCheck);
@@ -26,7 +25,6 @@ const Signup = () => {
   const [user_nickname, setNickname] = useState("");
   const changeNickname = (e) => {
     setNickname(e.target.value);
-    dispatch(userActions.nicknameCheckDB(user_nickname));
   };
   //nicknameChcek
   const nicknameCheck = useSelector((state) => state.user.nicknameCheck);
@@ -99,7 +97,17 @@ const Signup = () => {
   const changeBool = () => {
     setIsHidden(!isHidden);
   };
+  //이메일 체크
+  React.useEffect(() => {
+    console.log("changeEmail", user_email);
+    dispatch(userActions.emailCheckDB(user_email));
+  }, [user_email]);
 
+  //닉네임 체크
+  React.useEffect(() => {
+    console.log("changeNick", user_nickname);
+    dispatch(userActions.nicknameCheckDB(user_nickname));
+  }, [user_nickname]);
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 회원가입" />
@@ -131,7 +139,7 @@ const Signup = () => {
               onChange={changeEmail}
             />
             {user_email ? (
-              emailCheck ? (
+              emailCheck === 1 ? (
                 <CheckResult style={{ color: "#245EF5" }}>
                   <CheckImg
                     width="1.89vh"
@@ -140,7 +148,7 @@ const Signup = () => {
                   />
                   <p>사용 가능한 이메일</p>
                 </CheckResult>
-              ) : (
+              ) : emailCheck === 0 ? (
                 // <Text color="red">이미 사용 중인 이메일입니다</Text>
                 <CheckResult style={{ color: "#E42E2E" }}>
                   <CloseImg
@@ -148,7 +156,16 @@ const Signup = () => {
                     height="1.89vh"
                     style={{ fill: "#E42E2E" }}
                   />
-                  <p>사용 불가한 이메일입니다</p>
+                  <p>이메일 형식을 확인해주세요</p>
+                </CheckResult>
+              ) : (
+                <CheckResult style={{ color: "#E42E2E" }}>
+                  <CloseImg
+                    width="1.89vh"
+                    height="1.89vh"
+                    style={{ fill: "#E42E2E" }}
+                  />
+                  <p>이미 사용중인 이메일 입니다</p>
                 </CheckResult>
               )
             ) : (
@@ -270,7 +287,7 @@ const Signup = () => {
             onChange={changeNickname}
           />
           {user_nickname ? (
-            nicknameCheck ? (
+            nicknameCheck === 1 ? (
               <CheckResult style={{ color: "#245EF5" }}>
                 <CheckImg
                   width="1.89vh"
@@ -278,6 +295,16 @@ const Signup = () => {
                   style={{ fill: "#245EF5" }}
                 />
                 <p>사용 가능한 닉네임입니다</p>
+              </CheckResult>
+            ) : nicknameCheck === 0 ? (
+              // <Text color="red">이미 사용중인 닉네임입ㄴ니다</Text>
+              <CheckResult style={{ color: "#E42E2E" }}>
+                <CloseImg
+                  width="1.89vh"
+                  height="1.89vh"
+                  style={{ fill: "#E42E2E" }}
+                />
+                <p>닉네임 형식을 확인해주세요</p>
               </CheckResult>
             ) : (
               // <Text color="red">이미 사용중인 닉네임입ㄴ니다</Text>
@@ -287,7 +314,7 @@ const Signup = () => {
                   height="1.89vh"
                   style={{ fill: "#E42E2E" }}
                 />
-                <p>사용 불가한 닉네임입니다</p>
+                <p>이미 사용중인 닉네임 입니다</p>
               </CheckResult>
             )
           ) : (

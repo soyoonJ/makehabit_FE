@@ -75,13 +75,24 @@ const addPostDB = (
           .then((response) => {
             // console.log("게시물 등록", response);
             dispatch(addPost(response.data.challengeId));
+            history.push("/completed/open");
           })
           .catch(function (error) {
-            console.log("addpostDB_error", error);
+            console.log(
+              "addpostDB_error",
+              error,
+              error.response.data.errorMessage
+            );
+            if (
+              error.response.data.errorMessage ===
+              "더 이상 챌린지를 개설할 수 없습니다."
+            ) {
+              window.alert("하루에 게시글은 3개까지 작성이 가능합니다.");
+            }
           });
       })
       .catch((error) => {
-        console.log(error);
+        console.log("여긴가?", error);
         return;
       });
   };
@@ -122,6 +133,7 @@ const joinDB = (challengeId) => {
       .join(challengeId)
       .then((response) => {
         dispatch(editJoin(challengeId, true));
+        history.push("/completed/participate");
       })
       .catch(function (error) {
         console.log(error);
