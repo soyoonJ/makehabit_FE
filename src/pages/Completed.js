@@ -1,6 +1,8 @@
 import React from "react";
 
 import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
+import MetaTag from "../shared/MetaTag";
+
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,9 +50,8 @@ const Completed = (props) => {
       subTitle2: "",
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
-      // API response 오면 moveTo 넣기
-      // 하단 수정 필요
       moveTo: "/mychallenge/navi",
+      meta: "챌린지 개설 완료",
     },
     {
       title: participateTitle,
@@ -59,6 +60,7 @@ const Completed = (props) => {
       boxTitle: "챌린지 일정",
       buttonText: "챌린지 보러가기",
       moveTo: "/mychallenge/navi",
+      meta: "챌린지 참여 완료",
     },
     {
       title: "목표 인증 완료!",
@@ -67,6 +69,7 @@ const Completed = (props) => {
       boxTitle: "인증 보상",
       buttonText: "확인",
       moveTo: "/mychallenge/feed",
+      meta: "오늘의 인증 완료",
     },
   ];
 
@@ -82,6 +85,8 @@ const Completed = (props) => {
 
   return (
     <React.Fragment>
+      <MetaTag title={"습관삼끼 | " + content.meta} />
+
       <ContainerGrid>
         {page === "confirm" ? (
           <Grid>

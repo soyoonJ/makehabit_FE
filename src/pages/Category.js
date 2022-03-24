@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
+import MetaTag from "../shared/MetaTag";
 
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
@@ -11,11 +12,12 @@ import { history } from "../redux/configureStore";
 import { actionCreators as mainActions } from "../redux/modules/main";
 import CategoryBar from "../components/CategoryBar";
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
+
 const Category = (props) => {
   const dispatch = useDispatch();
   const category_list = useSelector((state) => state.main.category_list);
 
-  console.log("카테고리리스트", category_list);
+  // console.log("카테고리리스트", category_list);
 
   // 새로고침 해도 현재카테고리를 보여 줄 수 있도록
   const categoryId = props.match.params.id;
@@ -31,6 +33,8 @@ const Category = (props) => {
 
   return (
     <React.Fragment>
+      <MetaTag title="습관삼끼 | 카테고리별 조회" />
+
       <ContainerGrid>
         <Header>
           <GoBack

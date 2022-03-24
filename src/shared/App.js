@@ -33,6 +33,7 @@ import Search from "../pages/Search";
 import ShoppingBasket from "../pages/ShoppingBasket";
 import CharacterSave from "../pages/CharacterSave";
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
+import Spinner from "./Spinner";
 
 function App() {
   const handleNetworkChange = (online) => {
