@@ -132,7 +132,7 @@ const kakaoLogin = (code) => {
     // });
     axios({
       method: "GET",
-      url: `http://52.79.227.179/api/users/kakao/callback?code=${code}`,
+      url: `https://juhyeon.shop/api/users/kakao/callback?code=${code}`,
     })
       .then((res) => {
         console.log("카카오오오", res);
