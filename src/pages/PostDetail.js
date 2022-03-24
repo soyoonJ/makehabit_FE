@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
-import { actionCreators as userActions } from "../redux/modules/user";
+
 import { history } from "../redux/configureStore";
 
-import { Grid, Text, Input } from "../elements";
+import LoginModal from "../components/LoginModal";
+import { Text } from "../elements";
 import PageBack from "../components/PageBack";
 import LeaveModal from "../components/LeaveModal";
 import MetaTag from "../shared/MetaTag";
@@ -15,7 +15,6 @@ import styled from "styled-components";
 
 import moment from "moment";
 
-import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 import { BsFillPersonFill } from "react-icons/bs";
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -25,7 +24,6 @@ const PostDetail = (props) => {
   // console.log("POSTDETAIL", post, post?.isLike);
   // console.log("POSTEDETAIL:", post);
   //좋아요 버튼 on/off
-  let [isLike, setIsLike] = React.useState(false);
 
   React.useEffect(() => {
     // dispatch(userActions.loginCheckDB());
@@ -45,13 +43,15 @@ const PostDetail = (props) => {
 
   //로그인 체크
   const is_login = useSelector((state) => state.user.is_login);
+
+  //로그인모달창에 접근하는 ref
+  const loginModal = React.useRef();
   //찜하기 (좋아요) 기능
   const like = () => {
     if (is_login) {
       dispatch(postActions.likeDB(challengeId));
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
+      loginModal.current.openModal();
     }
   };
   //찜하기 해제 기능
@@ -59,8 +59,7 @@ const PostDetail = (props) => {
     if (is_login) {
       dispatch(postActions.dislikeDB(challengeId));
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
+      loginModal.current.openModal();
     }
   };
   //인증하기 기능
@@ -68,13 +67,7 @@ const PostDetail = (props) => {
     if (is_login) {
       history.push(`/confirm/${challengeId}`);
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
-    }
-  };
-  const join = () => {
-    if (is_login) {
-    } else {
+      loginModal.current.openModal();
     }
   };
 
@@ -215,7 +208,6 @@ const PostDetail = (props) => {
                 "요일"}
             </EndDateText>
           </OrangeBox> */}
-          w
         </MarginBox>
       </BorderBox>
       {post.isParticipate ? (
@@ -328,7 +320,18 @@ const PostDetail = (props) => {
           ) // 참여 안했을 때 + 로그인 되어있을 때
         ) : is_login ? (
           <ConfirmBox>
-            <Link
+            <JoinButton
+              onClick={() => {
+                if (is_login) {
+                  dispatch(postActions.joinDB(challengeId));
+                } else {
+                  loginModal.current.openModal();
+                }
+              }}
+            >
+              <HeadLine>챌린지 참여하기</HeadLine>
+            </JoinButton>
+            {/* <Link
               to={{
                 pathname: "/completed/participate",
                 state: {
@@ -345,15 +348,14 @@ const PostDetail = (props) => {
               >
                 <HeadLine>챌린지 참여하기</HeadLine>
               </JoinButton>
-            </Link>
+            </Link> */}
           </ConfirmBox>
         ) : (
           // 참여 안했을 때 + 로그인 안되어 있을 때
           <ConfirmBox>
             <JoinButton
               onClick={() => {
-                window.alert("로그인 후 인증 해주세요!");
-                history.push("/login");
+                loginModal.current.openModal();
               }}
             >
               <HeadLine>챌린지 참여하기</HeadLine>
@@ -361,6 +363,7 @@ const PostDetail = (props) => {
           </ConfirmBox>
         )}
       </ConfirmContainer>
+      <LoginModal ref={loginModal} in_page />
     </Container>
   );
 };

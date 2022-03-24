@@ -24,8 +24,8 @@ const nicknameCheck = createAction(NICKNAME_CHECK, (result) => ({ result }));
 const initialState = {
   user: { email: null, nickname: null },
   is_login: false,
-  emailCheck: false,
-  nicknameCheck: false,
+  emailCheck: 0, //0 = 이메일 형식을 확인해주세요 ,-1 = 이미 가입된 이메일 입니다, 1 =  사용 가능한 이메일
+  nicknameCheck: 0, //0 = 닉네임 형식을 확인해주세요 ,-1 = 이미 가입된 닉네임 입니다, 1 =  사용 가능한 닉네임
 };
 
 // 회원가입
@@ -50,19 +50,22 @@ const signupDB = (email, nickname, password, confirmPassword) => {
 //이메일 체크
 const emailCheckDB = (email) => {
   return function (dispatch, getState, { history }) {
+    console.log("호출 전 email", email);
     apis
       .emailCheck(email)
       .then((response) => {
         console.log("emailCheckDB", response);
-        dispatch(emailCheck(true));
+        dispatch(emailCheck(1));
         // window.alert("사용 가능한 아이디 입니다.")
       })
       .catch((error) => {
-        console.log("emailcheckdberror", error);
-        dispatch(emailCheck(false));
-        const error_message = error.response.data.result;
-        if (error_message === "false") {
-          window.alert("사용 중인 아이디 입니다!");
+        console.log("emailcheckdberror", error, error.response.data.message);
+
+        const error_message = error.response.data.message;
+        if (error_message === "이메일 형식을 확인해주세요.") {
+          dispatch(emailCheck(0));
+        } else {
+          dispatch(emailCheck(-1));
         }
       });
   };
@@ -75,12 +78,22 @@ const nicknameCheckDB = (nickname) => {
       .nicknameCheck(nickname)
       .then((response) => {
         console.log(response);
-        dispatch(nicknameCheck(true));
+        dispatch(nicknameCheck(1));
         //   window.alert("사용 가능한 닉네임 입니다.")
       })
       .catch((error) => {
-        console.log(error);
-        dispatch(nicknameCheck(false));
+        console.log("nicknamecheckdberror", error, error.response.data.message);
+
+        const error_message = error.response.data.message;
+        if (
+          error_message ===
+          "닉네임은 3자 이상, 15자 이하의 영어,한자,숫자로만 구성되어야 합니다."
+        ) {
+          dispatch(nicknameCheck(0));
+        } else {
+          dispatch(nicknameCheck(-1));
+        }
+
         //   const error_message = error.response.data.result
         //   if (error_message === "false") {
         //     window.alert("사용 중인 닉네임 입니다!")

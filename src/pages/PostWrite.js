@@ -163,6 +163,7 @@ const PostWrite = () => {
   //현재 시간 받아오기
   let currentTime = new Date();
   let hour = currentTime.getHours();
+  let min = currentTime.getMinutes();
   console.log(
     "dkssudgktpdy",
     hour,
@@ -246,7 +247,9 @@ const PostWrite = () => {
               id="inputCalendar"
               type="date"
               min={
-                hour < 15
+                hour < 23
+                  ? todayDate
+                  : min <= 50
                   ? todayDate
                   : moment(todayDate, "YYYY-MM-DD")
                       .add(1, "days")
@@ -322,7 +325,14 @@ const PostWrite = () => {
         <MarginBox style={{ margin: "0 0 9.375rem 0" }}>
           {imgExist && title && sendCategory && date && desc && method ? (
             <CreateBox>
-              <Link
+              <CreateButton
+                onClick={() => {
+                  confirm();
+                }}
+              >
+                <CreateText>챌린지 개설 완료</CreateText>
+              </CreateButton>
+              {/* <Link
                 to={{
                   pathname: "/completed/open",
                   state: { openStart: date },
@@ -335,7 +345,7 @@ const PostWrite = () => {
                 >
                   <CreateText>챌린지 개설 완료</CreateText>
                 </CreateButton>
-              </Link>
+              </Link> */}
             </CreateBox>
           ) : (
             <CreateBox>

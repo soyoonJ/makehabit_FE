@@ -273,245 +273,249 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
             </ModalHeaderContentBox>
           </ModalHeader>
           <ModalContent>
-            {!shopBg && !shopClothes && !shopAcc && !shopEmotion
-              ? closeModal()
-              : ""}
+            <MarginBottom>
+              {!shopBg && !shopClothes && !shopAcc && !shopEmotion
+                ? closeModal()
+                : ""}
 
-            {shopBg && !shopBg.isOwned ? (
-              <MarginBox>
-                <GridBox>
-                  <PreviewImg>
-                    <ImageContainer style={{ position: "relative" }}>
-                      <PostImage src={Item + shopBg.itemImgUrl}></PostImage>
-                    </ImageContainer>
-                  </PreviewImg>
-                  <ItemInfo>
-                    <ItemName>{shopBg.itemName}</ItemName>
-                    <ItemOwned>미보유 중</ItemOwned>
-                    <ToLeft>
-                      <Img
-                        style={{ margin: "0  10px 0 0" }}
-                        width="22px"
-                        src={Icon + "/icon_coin.svg"}
-                      />
-                      <ItemPrice>{shopBg.price}</ItemPrice>
-                    </ToLeft>
-                  </ItemInfo>
+              {shopBg && !shopBg.isOwned ? (
+                <MarginBox>
+                  <GridBox>
+                    <PreviewImg>
+                      <ImageContainer style={{ position: "relative" }}>
+                        <PostImage src={Item + shopBg.itemImgUrl}></PostImage>
+                      </ImageContainer>
+                    </PreviewImg>
+                    <ItemInfo>
+                      <ItemName>{shopBg.itemName}</ItemName>
+                      <ItemOwned>미보유 중</ItemOwned>
+                      <ToLeft>
+                        <Img
+                          style={{ margin: "0  10px 0 0" }}
+                          width="22px"
+                          src={Icon + "/icon_coin.svg"}
+                        />
+                        <ItemPrice>{shopBg.price}</ItemPrice>
+                      </ToLeft>
+                    </ItemInfo>
 
-                  <ToRight
-                    style={{
-                      alignItems: "flex-start",
-                      margin: "0",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <ItemCancel
-                      onClick={() => {
-                        setBg("");
-                        account("bg");
+                    <ToRight
+                      style={{
+                        alignItems: "flex-start",
+                        margin: "0",
+                        cursor: "pointer",
                       }}
                     >
-                      <Img
-                        width="28px"
-                        style={{ margin: "0" }}
-                        src={Icon + "/icon_close(shop).svg"}
-                      />
-                    </ItemCancel>
-                  </ToRight>
-                </GridBox>
-              </MarginBox>
-            ) : (
-              ""
-            )}
-            {shopColor && !shopColor.isOwned ? (
-              <MarginBox>
-                <GridBox>
-                  <PreviewImg>
-                    <ImageContainer style={{ position: "relative" }}>
-                      <PostImage src={Item + shopColor.itemImgUrl}></PostImage>
-                    </ImageContainer>
-                  </PreviewImg>
-                  <ItemInfo>
-                    <ItemName>{shopColor.itemName}</ItemName>
-                    <ItemOwned>미보유 중</ItemOwned>
-                    <ToLeft>
-                      <Img
-                        style={{ margin: "0  10px 0 0" }}
-                        width="22px"
-                        src={Icon + "/icon_coin.svg"}
-                      />
-                      <ItemPrice>{shopColor.price}</ItemPrice>
-                    </ToLeft>
-                  </ItemInfo>
+                      <ItemCancel
+                        onClick={() => {
+                          setBg("");
+                          account("bg");
+                        }}
+                      >
+                        <Img
+                          width="28px"
+                          style={{ margin: "0" }}
+                          src={Icon + "/icon_close(shop).svg"}
+                        />
+                      </ItemCancel>
+                    </ToRight>
+                  </GridBox>
+                </MarginBox>
+              ) : (
+                ""
+              )}
+              {shopColor && !shopColor.isOwned ? (
+                <MarginBox>
+                  <GridBox>
+                    <PreviewImg>
+                      <ImageContainer style={{ position: "relative" }}>
+                        <PostImage
+                          src={Item + shopColor.itemImgUrl}
+                        ></PostImage>
+                      </ImageContainer>
+                    </PreviewImg>
+                    <ItemInfo>
+                      <ItemName>{shopColor.itemName}</ItemName>
+                      <ItemOwned>미보유 중</ItemOwned>
+                      <ToLeft>
+                        <Img
+                          style={{ margin: "0  10px 0 0" }}
+                          width="22px"
+                          src={Icon + "/icon_coin.svg"}
+                        />
+                        <ItemPrice>{shopColor.price}</ItemPrice>
+                      </ToLeft>
+                    </ItemInfo>
 
-                  <ToRight
-                    style={{
-                      alignItems: "flex-start",
-                      margin: "0",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <ItemCancel
-                      onClick={() => {
-                        setColor("");
-                        account("color");
+                    <ToRight
+                      style={{
+                        alignItems: "flex-start",
+                        margin: "0",
+                        cursor: "pointer",
                       }}
                     >
-                      <Img
-                        width="28px"
-                        style={{ margin: "0" }}
-                        src={Icon + "/icon_close(shop).svg"}
-                      />
-                    </ItemCancel>
-                  </ToRight>
-                </GridBox>
-              </MarginBox>
-            ) : (
-              ""
-            )}
-            {shopEmotion && !shopEmotion.isOwned ? (
-              <MarginBox>
-                <GridBox>
-                  <PreviewImg>
-                    <ImageContainer style={{ position: "relative" }}>
-                      <PostImage
-                        src={Item + shopEmotion.itemImgUrl}
-                      ></PostImage>
-                    </ImageContainer>
-                  </PreviewImg>
-                  <ItemInfo>
-                    <ItemName>{shopEmotion.itemName}</ItemName>
-                    <ItemOwned>미보유 중</ItemOwned>
-                    <ToLeft>
-                      <Img
-                        style={{ margin: "0  10px 0 0" }}
-                        width="22px"
-                        src={Icon + "/icon_coin.svg"}
-                      />
-                      <ItemPrice>{shopEmotion.price}</ItemPrice>
-                    </ToLeft>
-                  </ItemInfo>
+                      <ItemCancel
+                        onClick={() => {
+                          setColor("");
+                          account("color");
+                        }}
+                      >
+                        <Img
+                          width="28px"
+                          style={{ margin: "0" }}
+                          src={Icon + "/icon_close(shop).svg"}
+                        />
+                      </ItemCancel>
+                    </ToRight>
+                  </GridBox>
+                </MarginBox>
+              ) : (
+                ""
+              )}
+              {shopEmotion && !shopEmotion.isOwned ? (
+                <MarginBox>
+                  <GridBox>
+                    <PreviewImg>
+                      <ImageContainer style={{ position: "relative" }}>
+                        <PostImage
+                          src={Item + shopEmotion.itemImgUrl}
+                        ></PostImage>
+                      </ImageContainer>
+                    </PreviewImg>
+                    <ItemInfo>
+                      <ItemName>{shopEmotion.itemName}</ItemName>
+                      <ItemOwned>미보유 중</ItemOwned>
+                      <ToLeft>
+                        <Img
+                          style={{ margin: "0  10px 0 0" }}
+                          width="22px"
+                          src={Icon + "/icon_coin.svg"}
+                        />
+                        <ItemPrice>{shopEmotion.price}</ItemPrice>
+                      </ToLeft>
+                    </ItemInfo>
 
-                  <ToRight
-                    style={{
-                      alignItems: "flex-start",
-                      margin: "0",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <ItemCancel
-                      onClick={() => {
-                        setEmotion("");
-                        account("emotion");
+                    <ToRight
+                      style={{
+                        alignItems: "flex-start",
+                        margin: "0",
+                        cursor: "pointer",
                       }}
                     >
-                      <Img
-                        width="28px"
-                        style={{ margin: "0" }}
-                        src={Icon + "/icon_close(shop).svg"}
-                      />
-                    </ItemCancel>
-                  </ToRight>
-                </GridBox>
-              </MarginBox>
-            ) : (
-              ""
-            )}
+                      <ItemCancel
+                        onClick={() => {
+                          setEmotion("");
+                          account("emotion");
+                        }}
+                      >
+                        <Img
+                          width="28px"
+                          style={{ margin: "0" }}
+                          src={Icon + "/icon_close(shop).svg"}
+                        />
+                      </ItemCancel>
+                    </ToRight>
+                  </GridBox>
+                </MarginBox>
+              ) : (
+                ""
+              )}
 
-            {shopClothes && !shopClothes.isOwned ? (
-              <MarginBox>
-                <GridBox>
-                  <PreviewImg>
-                    <ImageContainer style={{ position: "relative" }}>
-                      <PostImage
-                        src={Item + shopClothes.itemImgUrl}
-                      ></PostImage>
-                    </ImageContainer>
-                  </PreviewImg>
-                  <ItemInfo>
-                    <ItemName>{shopClothes.itemName}</ItemName>
-                    <ItemOwned>미보유 중</ItemOwned>
-                    <ToLeft>
-                      <Img
-                        style={{ margin: "0  10px 0 0" }}
-                        width="22px"
-                        src={Icon + "/icon_coin.svg"}
-                      />
-                      <ItemPrice>{shopClothes.price}</ItemPrice>
-                    </ToLeft>
-                  </ItemInfo>
+              {shopClothes && !shopClothes.isOwned ? (
+                <MarginBox>
+                  <GridBox>
+                    <PreviewImg>
+                      <ImageContainer style={{ position: "relative" }}>
+                        <PostImage
+                          src={Item + shopClothes.itemImgUrl}
+                        ></PostImage>
+                      </ImageContainer>
+                    </PreviewImg>
+                    <ItemInfo>
+                      <ItemName>{shopClothes.itemName}</ItemName>
+                      <ItemOwned>미보유 중</ItemOwned>
+                      <ToLeft>
+                        <Img
+                          style={{ margin: "0  10px 0 0" }}
+                          width="22px"
+                          src={Icon + "/icon_coin.svg"}
+                        />
+                        <ItemPrice>{shopClothes.price}</ItemPrice>
+                      </ToLeft>
+                    </ItemInfo>
 
-                  <ToRight
-                    style={{
-                      alignItems: "flex-start",
-                      margin: "0",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <ItemCancel
-                      onClick={() => {
-                        setClothes("");
-                        account("clothes");
+                    <ToRight
+                      style={{
+                        alignItems: "flex-start",
+                        margin: "0",
+                        cursor: "pointer",
                       }}
                     >
-                      <Img
-                        width="28px"
-                        style={{ margin: "0" }}
-                        src={Icon + "/icon_close(shop).svg"}
-                      />
-                    </ItemCancel>
-                  </ToRight>
-                </GridBox>
-              </MarginBox>
-            ) : (
-              ""
-            )}
-            {shopAcc && !shopAcc.isOwned ? (
-              <MarginBox>
-                <GridBox>
-                  <PreviewImg>
-                    <ImageContainer style={{ position: "relative" }}>
-                      <PostImage src={Item + shopAcc.itemImgUrl}></PostImage>
-                    </ImageContainer>
-                  </PreviewImg>
-                  <ItemInfo>
-                    <ItemName>{shopAcc.itemName}</ItemName>
-                    <ItemOwned>미보유 중</ItemOwned>
-                    <ToLeft>
-                      <Img
-                        style={{ margin: "0  10px 0 0" }}
-                        width="22px"
-                        src={Icon + "/icon_coin.svg"}
-                      />
-                      <ItemPrice>{shopAcc.price}</ItemPrice>
-                    </ToLeft>
-                  </ItemInfo>
+                      <ItemCancel
+                        onClick={() => {
+                          setClothes("");
+                          account("clothes");
+                        }}
+                      >
+                        <Img
+                          width="28px"
+                          style={{ margin: "0" }}
+                          src={Icon + "/icon_close(shop).svg"}
+                        />
+                      </ItemCancel>
+                    </ToRight>
+                  </GridBox>
+                </MarginBox>
+              ) : (
+                ""
+              )}
+              {shopAcc && !shopAcc.isOwned ? (
+                <MarginBox>
+                  <GridBox>
+                    <PreviewImg>
+                      <ImageContainer style={{ position: "relative" }}>
+                        <PostImage src={Item + shopAcc.itemImgUrl}></PostImage>
+                      </ImageContainer>
+                    </PreviewImg>
+                    <ItemInfo>
+                      <ItemName>{shopAcc.itemName}</ItemName>
+                      <ItemOwned>미보유 중</ItemOwned>
+                      <ToLeft>
+                        <Img
+                          style={{ margin: "0  10px 0 0" }}
+                          width="22px"
+                          src={Icon + "/icon_coin.svg"}
+                        />
+                        <ItemPrice>{shopAcc.price}</ItemPrice>
+                      </ToLeft>
+                    </ItemInfo>
 
-                  <ToRight
-                    style={{
-                      alignItems: "flex-start",
-                      margin: "0",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <ItemCancel
-                      onClick={() => {
-                        setAcc("");
-                        account("acc");
+                    <ToRight
+                      style={{
+                        alignItems: "flex-start",
+                        margin: "0",
+                        cursor: "pointer",
                       }}
                     >
-                      <Img
-                        width="28px"
-                        style={{ margin: "0" }}
-                        src={Icon + "/icon_close(shop).svg"}
-                      />
-                    </ItemCancel>
-                  </ToRight>
-                </GridBox>
-              </MarginBox>
-            ) : (
-              ""
-            )}
+                      <ItemCancel
+                        onClick={() => {
+                          setAcc("");
+                          account("acc");
+                        }}
+                      >
+                        <Img
+                          width="28px"
+                          style={{ margin: "0" }}
+                          src={Icon + "/icon_close(shop).svg"}
+                        />
+                      </ItemCancel>
+                    </ToRight>
+                  </GridBox>
+                </MarginBox>
+              ) : (
+                ""
+              )}
+            </MarginBottom>
           </ModalContent>
           <ButtonBox>
             <Button
@@ -538,6 +542,7 @@ const Container = styled.div`
   position: fixed;
   bottom: 0;
   height: 100%;
+
   width: 100%;
   max-width: 420px;
 
@@ -560,15 +565,6 @@ const Container = styled.div`
       text-align: right;
       margin: 20px;
       font-size: 1.3rem;
-    }
-  }
-
-  section > div > div {
-    &:nth-child(1) {
-      // font-weight: bold;
-      margin-bottom: 20px;
-    }
-    &:nth-child(2) {
     }
   }
 `;
@@ -659,38 +655,32 @@ const TitlePoint = styled.span`
   line-height: 1rem;
   color: black;
 `;
-const Section = styled.section`
-  width: 100%;
-  margin: auto;
-  max-width: 350px;
-  border-radius: 0.3rem;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-  background-color: #fff;
-  /* 팝업이 스르륵 열리는 효과 */
-  animation: modal-show 0.3s linear;
-  overflow: hidden;
-`;
 
 const ModalContent = styled.div`
-  height: 100%;
+  height: 620px;
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
-  overflow-y: auto;
+  overflow: auto;
+  margin-bottom: 6.625rem;
+  -ms-overflow-style: none;
+  max-height: 38.75rem;
 
-  margin-bottom: 106px;
+  @media screen and (max-width: 420px) {
+    max-height: 10rem;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-const Footer = styled.footer`
-  padding: 12px 16px;
-  text-align: right;
-`;
 const ButtonBox = styled.div`
   background-color: #fff;
 
   position: fixed;
   bottom: 0;
-  height: 106px;
+  height: 6.625rem;
   width: 100%;
   max-width: 420px;
 
@@ -802,4 +792,9 @@ const ItemCancel = styled.div`
     align-items: center;
   }
 `;
+
+const MarginBottom = styled.div`
+  // margin-bottom: 6.625rem;
+`;
+
 export default ShoppingBasket1;

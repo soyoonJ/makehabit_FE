@@ -54,7 +54,7 @@ const Main = (props) => {
   return (
     <Container>
       <MetaTag title="습관삼끼" />
-      {isLoading ? <Spinner /> : ""}
+      {/* {isLoading ? <Spinner /> : ""} */}
       {/* 스피너테스트 */}
       {/* <Spinner /> */}
 
