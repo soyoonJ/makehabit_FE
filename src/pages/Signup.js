@@ -17,6 +17,7 @@ const Signup = () => {
   const [user_email, setEmail] = useState("");
   const changeEmail = (e) => {
     setEmail(e.target.value);
+    dispatch(userActions.emailCheckDB(user_email));
   };
   //emailCheck
   const emailCheck = useSelector((state) => state.user.emailCheck);
@@ -25,6 +26,7 @@ const Signup = () => {
   const [user_nickname, setNickname] = useState("");
   const changeNickname = (e) => {
     setNickname(e.target.value);
+    dispatch(userActions.nicknameCheckDB(user_nickname));
   };
   //nicknameChcek
   const nicknameCheck = useSelector((state) => state.user.nicknameCheck);
@@ -127,11 +129,6 @@ const Signup = () => {
             <InputBox
               placeholder="이메일 주소를 입력해주세요"
               onChange={changeEmail}
-              onBlur={() => {
-                // console.log("포커스 아웃 됨!");
-                dispatch(userActions.emailCheckDB(user_email));
-                // console.log(emailCheck);
-              }}
             />
             {user_email ? (
               emailCheck ? (
@@ -271,11 +268,6 @@ const Signup = () => {
           <InputBox
             placeholder="3~15자의 영어,한글,숫자만 사용가능합니다"
             onChange={changeNickname}
-            onBlur={() => {
-              // console.log("포커스 아웃 됨!");
-              dispatch(userActions.nicknameCheckDB(user_nickname));
-              // console.log(emailCheck);
-            }}
           />
           {user_nickname ? (
             nicknameCheck ? (
