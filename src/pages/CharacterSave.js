@@ -15,8 +15,6 @@ const CharacterSave = () => {
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
-
-    console.log("오냐냐냐냐냐");
   }, []);
 
   const isEquip = useSelector((state) => state.character?.isEquip);
@@ -50,6 +48,7 @@ const CharacterSave = () => {
           style={{
             textAlign: "center",
             fontSize: "2.6vh",
+            fontWeight: "700",
             lineHeight: "3.414vh",
             marginBottom: "2.6vh",
           }}
@@ -61,6 +60,7 @@ const CharacterSave = () => {
             textAlign: "center",
             color: "#707070",
             fontSize: "1.66vh",
+            fontWeight: "600",
             lineHeight: "2.65vh",
           }}
         >

@@ -56,10 +56,10 @@ const Confirm = (props) => {
 
   const debounceComment = debounce((e) => {
     setComment(e.target.value);
-  }, 500);
+  }, 300);
   const throttleLength = throttle((e) => {
     setLength(e.target.value.length);
-  }, 300);
+  }, 200);
   const commentKeyPress = React.useCallback(debounceComment, []);
   const lengthKeyPress = React.useCallback(throttleLength, []);
   const onChange = (e) => {

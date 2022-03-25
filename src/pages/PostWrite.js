@@ -12,6 +12,7 @@ import Upload from "../components/Upload";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
 // import { history } from "../redux/configureStore";
+import { debounce } from "lodash";
 import styled from "styled-components";
 
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -80,14 +81,28 @@ const PostWrite = () => {
   const [desc, setDesc] = React.useState("");
   const [method, setMethod] = React.useState("");
 
-  const onChangeTitle = (e) => {
+  const debounceTitle = debounce((e) => {
     setTitle(e.target.value);
+  }, 300);
+  const debounceDesc = debounce((e) => {
+    setDesc(e.target.value);
+  }, 300);
+  const debounceMethod = debounce((e) => {
+    setMethod(e.target.value);
+  }, 300);
+
+  const TitleKeyPress = React.useCallback(debounceTitle, []);
+  const DescKeyPress = React.useCallback(debounceDesc, []);
+  const MethodKeyPress = React.useCallback(debounceMethod, []);
+
+  const onChangeTitle = (e) => {
+    TitleKeyPress(e);
   };
   const onChangeDesc = (e) => {
-    setDesc(e.target.value);
+    DescKeyPress(e);
   };
   const onChangeMethod = (e) => {
-    setMethod(e.target.value);
+    MethodKeyPress(e);
   };
 
   //업로드에 함수 접근하는 Ref
