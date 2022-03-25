@@ -33,9 +33,9 @@ const Main = () => {
 
   React.useEffect(() => {
     // console.log("바뀌냐", likeList);
-    dispatch(mainActions.RecommendDB(2));
-    dispatch(mainActions.mainnewDB(2, "new"));
-    dispatch(mainActions.mainstudyDB(2, "exercise"));
+    dispatch(mainActions.RecommendDB(4));
+    dispatch(mainActions.mainnewDB(4, "new"));
+    dispatch(mainActions.mainstudyDB(4, "exercise"));
   }, [likeList]);
 
   //추천작심삼일 리스트 가져오기
@@ -265,6 +265,78 @@ const Main = () => {
         </RecommendWrap>
         {/*★★★★★★map 부분 바꿔야함!!!!!!!!!!! */}
 
+        <RecommendTitle>
+          <Text size="20px" bold>
+            습관삼끼 랭킹
+          </Text>
+          <PlusButton
+            onClick={() => {
+              history.push(`/ranking`);
+            }}
+          >
+            더보기
+          </PlusButton>
+        </RecommendTitle>
+
+        {/*랭킹리스트*/}
+        <RankWarp>
+          {" "}
+          <RankingList>
+            <div>
+              <RankNum src="images/icon_1st.png" />
+              <Profile src="images/test.png" />
+              <Text
+                margin="0 0 0 18px"
+                color="#1D1B1B"
+                size="18px"
+                width="130px"
+                bold
+              >
+                나의 닉네임입니다
+              </Text>
+              <Text color="#FF8B37" size="18px" bold>
+                100번
+              </Text>
+            </div>
+          </RankingList>
+          <RankingList>
+            <div>
+              <RankNum src="images/icon_2st.png" />
+              <Profile src="images/test.png" />
+              <Text
+                margin="0 0 0 18px"
+                color="#1D1B1B"
+                size="18px"
+                width="130px"
+                bold
+              >
+                나의 닉네임입니다
+              </Text>
+              <Text color="#FF8B37" size="18px" bold>
+                100번
+              </Text>
+            </div>
+          </RankingList>
+          <RankingList>
+            <div>
+              <RankNum src="images/icon_3st.png" />
+              <Profile src="images/test.png" />
+              <Text
+                margin="0 0 0 18px"
+                color="#1D1B1B"
+                size="18px"
+                width="130px"
+                bold
+              >
+                나의 닉네임입니다
+              </Text>
+              <Text color="#FF8B37" size="18px" bold>
+                100번
+              </Text>
+            </div>
+          </RankingList>
+        </RankWarp>
+
         {/* 테마 카테고리 - 따끈따끈 새챌린지 */}
         <RecommendTitle>
           <Text size="20px" bold>
@@ -316,7 +388,7 @@ const Main = () => {
 
 const Container = styled.div`
   margin: 0%;
-  margin-bottom: 100px;
+  margin-bottom: 170px;
   width: 100%;
   height: 100%;
   overflow-y: hidden;
@@ -425,5 +497,46 @@ const LogoBottom = styled.div`
   display: grid;
   text-align: center;
   margin-top: 48px;
+`;
+
+// 랭킹
+const RankWarp = styled.div`
+  margin-bottom: 40px;
+`;
+
+const RankingList = styled.div`
+  width: 100%;
+  height: 8.76vh;
+  background-color: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px #f7f7f7 solid;
+
+  & > div {
+    width: 100%;
+    max-width: 420px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // height: 100%;
+    display: grid;
+    grid-template-columns: 17.4% 12.8% 1fr 17.4%;
+    align-items: center;
+  }
+`;
+
+const RankNum = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+`;
+
+const Profile = styled.img`
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+  margin-right: 18px;
 `;
 export default Main;
