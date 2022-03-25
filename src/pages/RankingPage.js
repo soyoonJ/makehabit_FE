@@ -5,7 +5,7 @@ import { history } from "../redux/configureStore";
 
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
-const RankingPage2 = () => {
+const RankingPage = () => {
   return (
     <Container>
       <ContainerGrid>
@@ -236,4 +236,4 @@ const RankNum = styled.p`
   color: #707070;
 `;
 
-export default RankingPage2;
+export default RankingPage;
