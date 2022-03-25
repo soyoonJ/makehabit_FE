@@ -10,11 +10,25 @@ import { actionCreators as rankingActions } from "../redux/modules/ranking";
 
 const RankingPage = () => {
   const dispatch = useDispatch();
-
+  const Item = process.env.PUBLIC_URL + "/items/large";
   React.useEffect(() => {
     dispatch(rankingActions.getRankingDB(10));
-    console.log("랭킹랭킹~~~~");
   }, []);
+
+  // 내 랭킹데이터 가져오기
+  const MyNickname = useSelector((state) => state.ranking.my_list?.nickname);
+  const MyRank = useSelector((state) => state.ranking.my_list?.rank);
+  const MyCnt = useSelector((state) => state.ranking.my_list?.proofCnt);
+
+  const isEquip = useSelector((state) => state.ranking.my_list?.equippedItems);
+  const equipColor = isEquip?.find((e) => e.category === "color");
+  const equipBg = isEquip?.find((e) => e.category === "background");
+  const equipClothes = isEquip?.find((e) => e.category === "clothes");
+  const equipAcc = isEquip?.find((e) => e.category === "acc");
+  const equipEmotion = isEquip?.find((e) => e.category === "emotion");
+  console.log("닉네임", isEquip);
+
+  //전체 랭킹데이터 가져오기
 
   return (
     <Container>
@@ -37,13 +51,20 @@ const RankingPage = () => {
 
       <MyRanking>
         <div>
-          <MyRankNum>004</MyRankNum>
-          <Profile src="images/test.png" alt="testimg" />
+          <MyRankNum>{MyRank}</MyRankNum>
+
+          <Profile>
+            <ItemImg src={Item + equipBg?.itemImgUrl} />
+            <ItemImg src={Item + equipColor?.itemImgUrl} />
+            <ItemImg src={Item + equipClothes?.itemImgUrl} />
+            <ItemImg src={Item + equipAcc?.itemImgUrl} />
+            <ItemImg src={Item + equipEmotion?.itemImgUrl} />
+          </Profile>
           <Text margin="0 0 0 18px" color="#fff" size="18px" width="130px" bold>
-            나의 닉네임입니다
+            {MyNickname}
           </Text>
           <Text color="#fff" size="18px" bold>
-            100번
+            {MyCnt}번
           </Text>
         </div>
       </MyRanking>
@@ -169,11 +190,21 @@ const MyRankNum = styled.p`
   color: #fff;
 `;
 
-const Profile = styled.img`
+const Profile = styled.div`
   border-radius: 5px;
   width: 100%;
   height: 50px;
   margin-right: 18px;
+  position: relative;
+`;
+
+const ItemImg = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* z-index: 1; */
+  border-radius: 20px;
+  object-fit: cover;
 `;
 
 const Wrap = styled.div`

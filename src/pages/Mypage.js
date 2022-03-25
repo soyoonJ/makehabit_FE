@@ -39,20 +39,20 @@ const Mypage = () => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  // console.log(
-  //   "equip확인",
-  //   isEquip,
-  //   equipBg?.itemImgUrl,
-  //   equipColor?.itemImgUrl,
-  //   equipClothes?.itemImgUrl,
-  //   equipAcc?.itemImgUrl
-  // );
+  console.log(
+    "equip확인",
+    isEquip,
+    equipBg?.itemImgUrl,
+    equipColor?.itemImgUrl,
+    equipClothes?.itemImgUrl,
+    equipAcc?.itemImgUrl
+  );
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   //닉네임 가져오기
   const nickName = useSelector((state) => state.user?.user?.nickname);
-  // console.log("닉네임", nickName);
+  console.log("닉네임", nickName);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();

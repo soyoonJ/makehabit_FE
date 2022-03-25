@@ -82,6 +82,7 @@ const Completed = (props) => {
   } else {
     content = contents[2];
   }
+  // console.log(page);
 
   return (
     <React.Fragment>
@@ -103,8 +104,10 @@ const Completed = (props) => {
               </div>
               <div>{content.title}</div>
               <div style={{ fontWeight: "700" }}>
-                <span style={{ color: "#FF8B37" }}>{content.subTitle1}</span>을
-                성공했어요.
+                <span style={{ color: "#FF8B37", fontWeight: "700" }}>
+                  {content.subTitle1}
+                </span>
+                을 성공했어요.
               </div>
             </TopBox>
             <GiftBox>
@@ -118,7 +121,10 @@ const Completed = (props) => {
                     marginRight: "1.89vh",
                   }}
                 ></img>
-                성공보상<span style={{ color: "#FF8B37" }}>&nbsp;10P</span>
+                성공보상
+                <span style={{ color: "#FF8B37", fontWeight: "700" }}>
+                  &nbsp;10P
+                </span>
               </Content>
             </GiftBox>
 

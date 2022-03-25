@@ -14,12 +14,12 @@ const setRanking = createAction(SET_RANKING, (ranking_list) => ({
 // initialState
 const initialState = {
   ranking_list: null,
+  my_list: null,
 };
 
 // 인증기록하기 페이지 조회
 const getRankingDB = (length) => {
   return function (dispatch, getState, { history }) {
-    // console.log(challengeId);
     apis
       .GetRanking(length)
       .then(function (res) {
@@ -37,7 +37,9 @@ export default handleActions(
   {
     [SET_RANKING]: (state, action) =>
       produce(state, (draft) => {
-        draft.ranking_list = action.payload.ranking_list.me;
+        draft.my_list = action.payload.ranking_list.me;
+        // console.log("확인", draft.my_list, action.payload.ranking_list.me);
+        draft.ranking_list = action.payload.ranking_list.RankingList;
       }),
   },
   initialState

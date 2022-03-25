@@ -159,7 +159,7 @@ const PostDetail = (props) => {
           {today < setDay ? (
             <Tag>{diffDay}일 뒤 시작</Tag>
           ) : (
-            <Tag>습관삼끼 {post.round}회차</Tag>
+            <Tag>습관삼끼 {post.round}세트</Tag>
           )}
           <JoinWrap>
             <BsFillPersonFill size={16} />

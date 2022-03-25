@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Button } from "../elements";
-import { actionCreators as challengeActions } from "../redux/modules/challenge";
+// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
@@ -11,7 +11,8 @@ import moment from "moment";
 
 const ConfirmPost = (props) => {
   // console.log("챌린지리스트", props);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // console.log("props", props);
   const { thumbnail, title, round, content, status, startAt, isUpload } = props;
   // const date = new Date(startAt);
   // const koStartAt = date.toLocaleString();
@@ -93,12 +94,15 @@ const ConfirmPost = (props) => {
             <Round>
               {/* 진행예정인 챌린지 */}
               {status === 1 ? (
-                <div style={{ color: "#FF8B37" }}>{statusContent.progress}</div>
+                <div style={{ color: "#FF8B37", fontWeight: "600" }}>
+                  {statusContent.progress}
+                </div>
               ) : (
                 <>
                   {status === 0 ? (
                     <>
-                      <span>{round}세트</span> 진행중
+                      <span style={{ fontWeight: "600" }}>{round}세트</span>{" "}
+                      진행중
                     </>
                   ) : (
                     ""

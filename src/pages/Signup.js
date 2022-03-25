@@ -4,6 +4,7 @@ import { Grid, Text, ContainerGrid } from "../elements";
 import MetaTag from "../shared/MetaTag";
 
 import styled from "styled-components";
+import { debounce } from "lodash";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -15,29 +16,45 @@ const Signup = () => {
   const dispatch = useDispatch();
   //email
   const [user_email, setEmail] = useState("");
-  const changeEmail = (e) => {
+  const debounceEmail = debounce((e) => {
     setEmail(e.target.value);
+  }, 500);
+  const IdKeyPress = React.useCallback(debounceEmail, []);
+  const changeEmail = (e) => {
+    IdKeyPress(e);
   };
   //emailCheck
   const emailCheck = useSelector((state) => state.user.emailCheck);
 
   //nickname
   const [user_nickname, setNickname] = useState("");
-  const changeNickname = (e) => {
+  const debounceNickname = debounce((e) => {
     setNickname(e.target.value);
+  }, 500);
+  const NicknameKeyPress = React.useCallback(debounceNickname, []);
+  const changeNickname = (e) => {
+    NicknameKeyPress(e);
   };
   //nicknameChcek
   const nicknameCheck = useSelector((state) => state.user.nicknameCheck);
 
   //password
   const [user_pwd, setPwd] = useState("");
-  const changePwd = (e) => {
+  const debouncePwd = debounce((e) => {
     setPwd(e.target.value);
+  }, 500);
+  const PwdKeyPress = React.useCallback(debouncePwd, []);
+  const changePwd = (e) => {
+    PwdKeyPress(e);
   };
   //password Check
   const [user_pwdcheck, setPwdcheck] = useState("");
-  const changePwdcheck = (e) => {
+  const debouncePwdcheck = debounce((e) => {
     setPwdcheck(e.target.value);
+  }, 500);
+  const PwdcheckKeyPress = React.useCallback(debouncePwdcheck, []);
+  const changePwdcheck = (e) => {
+    PwdcheckKeyPress(e);
   };
 
   //회원가입 보안
@@ -126,9 +143,15 @@ const Signup = () => {
           fontWeight="700"
           lineHeight="4.02vh"
         >
-          <span style={{ color: "#FF8B37" }}>함께 도전하며,</span>
+          <span style={{ color: "#FF8B37", fontWeight: "700" }}>
+            함께 도전하며,
+          </span>
           <br />
-          <span style={{ color: "#FF8B37" }}> 새로운 습관</span>을 만나보세요.
+          <span style={{ color: "#FF8B37", fontWeight: "700" }}>
+            {" "}
+            새로운 습관
+          </span>
+          을 만나보세요.
         </Grid>
 
         <Grid>
