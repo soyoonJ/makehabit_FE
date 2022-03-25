@@ -124,6 +124,8 @@
     ]
   },
   "devDependencies": {
+    "cra-bundle-analyzer": "^0.1.1",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-pwa-manifest": "^4.3.0",
     "workbox-webpack-plugin": "^6.5.1"
   },

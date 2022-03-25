@@ -98,9 +98,10 @@ const Main = () => {
           <Category>
             <CategoryIcon>
               <Img
-                width="50px"
-                height="auto"
+                width="50"
+                height="50"
                 src="images/icon_all.svg"
+                alt="전체보기"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("all"));
                   history.push("/category/all");
@@ -116,8 +117,9 @@ const Main = () => {
             <CategoryIcon>
               <Img
                 alignCenter
-                width="50px"
-                height="auto"
+                width="50"
+                height="48.98"
+                alt="인기"
                 src="images/icon_best.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("popular"));
@@ -133,8 +135,9 @@ const Main = () => {
           <Category>
             <CategoryIcon>
               <Img
-                width="50px"
-                height="auto"
+                width="50"
+                height="50.82"
+                alt="신규"
                 src="images/icon_new.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("new"));
@@ -150,8 +153,9 @@ const Main = () => {
           <Category>
             <CategoryIcon>
               <Img
-                width="50px"
-                height="auto"
+                width="50"
+                height="49.21"
+                alt="공부"
                 src="images/icon_book.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("study"));
@@ -169,8 +173,9 @@ const Main = () => {
           <Category>
             <CategoryIcon>
               <Img
-                width="50px"
-                height="auto"
+                width="50"
+                height="50"
+                alt="운동"
                 src="images/icon_sport.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("exercise"));
@@ -186,8 +191,9 @@ const Main = () => {
           <Category>
             <CategoryIcon>
               <Img
-                width="50px"
-                height="auto"
+                width="50"
+                height="49.21"
+                alt="자기계발"
                 src="images/icon_lifestyle.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("self-development"));
@@ -203,8 +209,9 @@ const Main = () => {
           <Category>
             <CategoryIcon>
               <Img
-                width="50px"
-                height="auto"
+                width="50"
+                height="50.82"
+                alt="생활습관"
                 src="images/icon_sun.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("living-habit"));
@@ -220,7 +227,9 @@ const Main = () => {
           <Category>
             <CategoryIcon>
               <Img
-                width="50px"
+                width="50"
+                height="49.21"
+                alt="에코"
                 src="images/icon_forest.svg"
                 onClick={() => {
                   // dispatch(mainActions.categoryDB("eco"));
