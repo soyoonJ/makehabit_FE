@@ -183,6 +183,10 @@ export const apis = {
   //아이템 구매 및 저장하기
   PurchaseItem: (totalPrice, items) =>
     instance.post(`/api/character`, { totalPrice, items }),
+
+  // 랭킹정보 불러오기 --------------------------------------------------------------------
+  GetRanking: (length) =>
+    instance.get(`/api/users/callUserRanking?length=${length}`),
 };
 
 export default instance;

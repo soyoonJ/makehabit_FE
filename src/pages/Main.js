@@ -264,7 +264,10 @@ const Main = () => {
           })}
         </RecommendWrap>
         {/*★★★★★★map 부분 바꿔야함!!!!!!!!!!! */}
+      </ContainerGrid>
 
+      {/*랭킹리스트*/}
+      <ContainerGrid>
         <RecommendTitle>
           <Text size="20px" bold>
             습관삼끼 랭킹
@@ -277,66 +280,73 @@ const Main = () => {
             더보기
           </PlusButton>
         </RecommendTitle>
+      </ContainerGrid>
 
-        {/*랭킹리스트*/}
-        <RankWarp>
-          {" "}
-          <RankingList>
-            <div>
-              <RankNum src="images/icon_1st.png" />
-              <Profile src="images/test.png" />
-              <Text
-                margin="0 0 0 18px"
-                color="#1D1B1B"
-                size="18px"
-                width="130px"
-                bold
-              >
-                나의 닉네임입니다
-              </Text>
-              <Text color="#FF8B37" size="18px" bold>
-                100번
-              </Text>
-            </div>
-          </RankingList>
-          <RankingList>
-            <div>
-              <RankNum src="images/icon_2st.png" />
-              <Profile src="images/test.png" />
-              <Text
-                margin="0 0 0 18px"
-                color="#1D1B1B"
-                size="18px"
-                width="130px"
-                bold
-              >
-                나의 닉네임입니다
-              </Text>
-              <Text color="#FF8B37" size="18px" bold>
-                100번
-              </Text>
-            </div>
-          </RankingList>
-          <RankingList>
-            <div>
-              <RankNum src="images/icon_3st.png" />
-              <Profile src="images/test.png" />
-              <Text
-                margin="0 0 0 18px"
-                color="#1D1B1B"
-                size="18px"
-                width="130px"
-                bold
-              >
-                나의 닉네임입니다
-              </Text>
-              <Text color="#FF8B37" size="18px" bold>
-                100번
-              </Text>
-            </div>
-          </RankingList>
-        </RankWarp>
+      <RankWarp>
+        <RankingList>
+          <div>
+            <RankNum>
+              <img src="images/icon_1st.png" alt="Icon_1st" />
+            </RankNum>
+            <Profile src="images/test.png" alt="testimg" />
+            <Text
+              margin="0 0 0 18px"
+              color="#1D1B1B"
+              size="18px"
+              width="130px"
+              bold
+            >
+              나의 닉네임입니다
+            </Text>
+            <Text color="#FF8B37" size="18px" bold>
+              100번
+            </Text>
+          </div>
+        </RankingList>
+        <RankingList>
+          <div>
+            <RankNum>
+              <img src="images/icon_2st.png" alt="Icon_2nd" />
+            </RankNum>
+            <Profile src="images/test.png" alt="testimg" />
+            <Text
+              margin="0 0 0 18px"
+              color="#1D1B1B"
+              size="18px"
+              width="130px"
+              bold
+            >
+              나의 닉네임입니다
+            </Text>
+            <Text color="#FF8B37" size="18px" bold>
+              100번
+            </Text>
+          </div>
+        </RankingList>
 
+        <RankingList>
+          <div>
+            <RankNum>
+              <img src="images/icon_3st.png" alt="Icon_3rd" />
+            </RankNum>
+            <Profile src="images/test.png" alt="testimg" />
+            <Text
+              margin="0 0 0 18px"
+              color="#1D1B1B"
+              size="18px"
+              width="130px"
+              bold
+            >
+              나의 닉네임입니다
+            </Text>
+            <Text color="#FF8B37" size="18px" bold>
+              100번
+            </Text>
+          </div>
+        </RankingList>
+      </RankWarp>
+
+      <ContainerGrid>
         {/* 테마 카테고리 - 따끈따끈 새챌린지 */}
         <RecommendTitle>
           <Text size="20px" bold>
@@ -350,13 +360,11 @@ const Main = () => {
             더보기
           </PlusButton>
         </RecommendTitle>
-
         <RecommendWrap>
           {new_list?.map((p, idx) => {
             return <CategoryPost key={p._id} {...p} />;
           })}
         </RecommendWrap>
-
         {/* 테마 카테고리 - 운동 가보자고 */}
         <RecommendTitle>
           <Text size="20px" bold>
@@ -370,13 +378,13 @@ const Main = () => {
             더보기
           </PlusButton>
         </RecommendTitle>
-
         <RecommendWrap>
           {study_list?.map((p, idx) => {
             return <CategoryPost key={p._id} {...p} />;
           })}
         </RecommendWrap>
       </ContainerGrid>
+
       <LogoBottom>
         <Text margin="0" bold>
           습관삼끼
@@ -528,16 +536,19 @@ const RankingList = styled.div`
   }
 `;
 
-const RankNum = styled.img`
+const RankNum = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
+
+  img {
+    width: 40px;
+  }
 `;
 
 const Profile = styled.img`
   border-radius: 5px;
-  width: 100%;
+  width: 50px;
   height: 50px;
   margin-right: 18px;
 `;

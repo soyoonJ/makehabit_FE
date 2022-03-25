@@ -5,7 +5,17 @@ import { history } from "../redux/configureStore";
 
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as rankingActions } from "../redux/modules/ranking";
+
 const RankingPage = () => {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(rankingActions.getRankingDB(10));
+    console.log("랭킹랭킹~~~~");
+  }, []);
+
   return (
     <Container>
       <ContainerGrid>
@@ -28,7 +38,7 @@ const RankingPage = () => {
       <MyRanking>
         <div>
           <MyRankNum>004</MyRankNum>
-          <Profile src="images/test.png" />
+          <Profile src="images/test.png" alt="testimg" />
           <Text margin="0 0 0 18px" color="#fff" size="18px" width="130px" bold>
             나의 닉네임입니다
           </Text>
@@ -52,12 +62,12 @@ const RankingPage = () => {
       {/*랭킹순위 */}
       <RankingWrap>
         <div>
-          <Medal src="images/icon_1st.png" />
+          <Medal src="images/icon_1st.png" alt="Icon_1st" />
           <ProfileImg src="images/test.png" />
         </div>
         <div>
           <Text margin="14px 0px 8px 0px" bold alignCenter>
-            사용자닉네임임
+            사용자닉네임입
           </Text>
           <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
             100번
@@ -67,7 +77,7 @@ const RankingPage = () => {
       <Wrap>
         <RankingWrap>
           <div>
-            <Medal src="images/icon_2st.png" />
+            <Medal src="images/icon_2st.png" alt="Icon_2st" />
             <ProfileImg src="images/test.png" />
           </div>
 
@@ -82,7 +92,7 @@ const RankingPage = () => {
         </RankingWrap>
         <RankingWrap>
           <div>
-            <Medal src="images/icon_3st.png" />
+            <Medal src="images/icon_3st.png" alt="Icon_3st" />
             <ProfileImg src="images/test.png" />
           </div>
           <div>
@@ -101,7 +111,7 @@ const RankingPage = () => {
       <RankingList>
         <div>
           <RankNum>004</RankNum>
-          <Profile src="images/test.png" />
+          <Profile src="images/test.png" alt="testimg" />
           <Text
             margin="0 0 0 18px"
             color="#1D1B1B"
