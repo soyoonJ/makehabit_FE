@@ -386,8 +386,10 @@ const Main = () => {
       </ContainerGrid>
 
       <LogoBottom>
-        <Text>습관삼끼</Text>
-        <Text>@hanghae99_C5</Text>
+        <Text margin="0" bold>
+          습관삼끼
+        </Text>
+        <Text margin="0">@ hanghae99_C5</Text>
       </LogoBottom>
       <ButtonNavigation />
     </Container>

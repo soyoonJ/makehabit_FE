@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { ContainerGrid, Button, Input, Text } from "../elements";
 import MetaTag from "../shared/MetaTag";
 
@@ -8,24 +7,34 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 import { KAKAO_AUTH_URL } from "../shared/Auth";
 
+import styled from "styled-components";
+import { debounce } from "lodash";
+
 const Login = () => {
   const dispatch = useDispatch();
 
   //email
   const [user_email, setEmail] = useState("");
-  const changeEmail = (e) => {
+  const debounceEmail = debounce((e) => {
     setEmail(e.target.value);
+  }, 500);
+  const IdKeyPress = React.useCallback(debounceEmail, []);
+  const changeEmail = (e) => {
+    IdKeyPress(e);
   };
 
   //password
   const [user_pwd, setPwd] = useState("");
-  const changePwd = (e) => {
+  const debouncePwd = debounce((e) => {
     setPwd(e.target.value);
+  }, 500);
+  const PwdKeyPress = React.useCallback(debouncePwd, []);
+  const changePwd = (e) => {
+    PwdKeyPress(e);
   };
 
   const handlePress = (e) => {
     if (e.key === "Enter") {
-      // console.log("enter");
       login();
     }
   };
