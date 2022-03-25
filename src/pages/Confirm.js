@@ -5,13 +5,14 @@ import React from "react";
 import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
 import Upload from "../components/Upload";
+import Modal from "../components/Modal";
 import MetaTag from "../shared/MetaTag";
 
 import { ReactComponent as CheckImg } from "../img/icon_check.svg";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
-import Modal from "../components/Modal";
+import { debounce, throttle } from "lodash";
 // import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { Style } from "@material-ui/icons";
@@ -52,10 +53,22 @@ const Confirm = (props) => {
   // 코멘트 값 받아오기
   const [comment, setComment] = React.useState(null);
   const [commentLength, setLength] = React.useState(0);
-  const onChange = (e) => {
+
+  const debounceComment = debounce((e) => {
     setComment(e.target.value);
+  }, 500);
+  const throttleLength = throttle((e) => {
     setLength(e.target.value.length);
+  }, 300);
+  const commentKeyPress = React.useCallback(debounceComment, []);
+  const lengthKeyPress = React.useCallback(throttleLength, []);
+  const onChange = (e) => {
+    commentKeyPress(e);
+    lengthKeyPress(e);
   };
+
+  // console.log("comment", comment);
+  // console.log("commentLength", commentLength);
 
   const confirm = () => {
     if (fileInput.current.files[0] === undefined || comment === null) {
@@ -100,20 +113,7 @@ const Confirm = (props) => {
           <SubTitle>
             오늘의 도전에 성공한 순간을 사진으로 기록해보세요.
           </SubTitle>
-          {/* <ImageBox
-          onClick={onClickUpload}
-          style={{
-            backgroundImage: `url(${preview})`,
-          }}
-        >
-          <input
-            accept=".png , .jpg , .png, .jpeg"
-            type="file"
-            onChange={handlePreview}
-            ref={fileInput}
-            id="thumnail"
-          ></input>
-        </ImageBox> */}
+
           {/* 이미지 첨부 */}
           <Upload
             currentPage="confirm"
