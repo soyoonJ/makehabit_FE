@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 
@@ -18,6 +19,11 @@ import moment from "moment";
 import { BsFillPersonFill } from "react-icons/bs";
 const PostDetail = (props) => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  // console.log("pathname", location.pathname.split("/")[1]);
+  const challenges = location.pathname.split("/")[1];
+
   const post = useSelector((state) => state.post.post);
   // const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
@@ -80,8 +86,8 @@ const PostDetail = (props) => {
 
   // var duration = moment.duration(setDay.diff(today));
   // var days = duration.asDays();
-  console.log("koStartAt", koStartAt, today, setDay);
-  console.log(moment(setDay).diff(today, "days")); // 1
+  // console.log("koStartAt", koStartAt, today, setDay);
+  // console.log(moment(setDay).diff(today, "days")); // 1
   const diffDay = moment(setDay).diff(today, "days");
   const spiltDate = koStartAt.split(". ");
   const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
@@ -129,7 +135,7 @@ const PostDetail = (props) => {
       <MetaTag title={"습관삼끼 | " + post.title} />
 
       <TitleBox>
-        <PageBack />
+        <PageBack challenges={challenges} />
         <TitleImage src={post.thumbnail} />
       </TitleBox>
       <MarginBox>

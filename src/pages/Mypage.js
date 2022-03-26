@@ -113,13 +113,14 @@ const Mypage = () => {
             justifyContent="center"
             // padding="2% 5%"
           >
+            {/* 닉네임 수정 */}
             <Button
               bg="white"
               color="black"
-              _onClick={() => {
-                // console.log("onClick!", childRef, childRef.current);
-                childRef.current.openModal();
-              }}
+              // _onClick={() => {
+              //   // console.log("onClick!", childRef, childRef.current);
+              //   childRef.current.openModal();
+              // }}
             >
               <Text bold size="22px">
                 {nickName}
