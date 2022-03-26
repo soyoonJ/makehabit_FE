@@ -52,7 +52,7 @@ const Mypage = () => {
 
   //닉네임 가져오기
   const nickName = useSelector((state) => state.user?.user?.nickname);
-  console.log("닉네임", nickName);
+  // console.log("닉네임", nickName);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
@@ -100,12 +100,17 @@ const Mypage = () => {
               //   childRef.current.openModal();
               // }}
             >
-              <Text bold size="22px">
+              <Text
+                weight="700"
+                size="2.6vh"
+                lineHeight="3.41vh"
+                margin="2.51vh 0"
+              >
                 {nickName}
               </Text>
             </Button>
 
-            <Modal ref={childRef}>
+            {/* <Modal ref={childRef}>
               <Grid>
                 <Grid is_flex height="50px">
                   <Input></Input>
@@ -127,7 +132,7 @@ const Mypage = () => {
                   </Button>
                 </Grid>
               </Grid>
-            </Modal>
+            </Modal> */}
           </Grid>
           {/* 레벨 / 남은 경험치*/}
           {/* <Grid is_flex textAlign="center">
@@ -141,19 +146,36 @@ const Mypage = () => {
         </Grid>
       </ContainerGrid>
 
+      {/* 통계치 */}
+      <ContainerGrid>
+        <UserScore>
+          <div>
+            총 인증횟수<span>33회</span>
+          </div>
+          <div>
+            챌린지 참가<span>10회</span>
+          </div>
+        </UserScore>
+      </ContainerGrid>
+
       {/* 공유하기 배너 */}
       <Grid>
         <ShareBox>
           <Grid margin="0px 21px">
-            <Text alignLeft margin="19px 0px 5px 0px" color="white" size="18px">
+            <Text
+              alignLeft
+              margin="19px 0px 5px 0px"
+              color="white"
+              size="2.37vh"
+              weight="700"
+            >
               나만의 캐릭터를 자랑해보세요!
             </Text>
             <Text
               alignLeft
-              margin="7px 0px 19px
-              0px"
+              margin="7px 0px 19px 0px"
               color="white"
-              size="13px"
+              size="1.54vh"
             >
               내 캐릭터의 이미지를 저장할 수 있어요
             </Text>
@@ -163,7 +185,8 @@ const Mypage = () => {
               <p
                 style={{
                   margin: "auto",
-                  fontSize: "18px",
+                  fontSize: "2.13vh",
+                  fontWeight: "600",
                   color: "white",
                   textAlign: "center",
                 }}
@@ -181,7 +204,7 @@ const Mypage = () => {
       {/* 하단 메뉴 */}
       {/* <Grid>
         <TestBox>
-          <Text weight="600" bold size="18px" alignLeft>
+          <Text bold size="2.13vh" alignLeft>
             좋아요 모아보기
           </Text>
           <RightButton
@@ -201,7 +224,7 @@ const Mypage = () => {
             history.push("/ranking");
           }}
         >
-          <Text weight="600" bold size="18px" alignLeft>
+          <Text bold size="2.13vh" alignLeft>
             나의 랭킹보기
           </Text>
           <RightButton
@@ -209,6 +232,7 @@ const Mypage = () => {
             style={{
               alignItems: "flex-end",
               margin: "auto",
+              fill: "#9C9C9C",
             }}
           />
         </TestBox>
@@ -216,7 +240,7 @@ const Mypage = () => {
 
       <Grid>
         <TestBox>
-          <Text weight="600" bold size="18px" alignLeft>
+          <Text bold size="2.13vh" alignLeft>
             문의 FAQ
           </Text>
 
@@ -236,7 +260,7 @@ const Mypage = () => {
             history.push("/mychallenge/feed");
           }}
         >
-          <Text weight="600" bold size="18px" alignLeft>
+          <Text bold size="2.13vh" alignLeft>
             나의 기록보기
           </Text>
 
@@ -259,7 +283,7 @@ const Mypage = () => {
               : console.log("취소");
           }}
         >
-          <Text weight="600" bold size="18px" alignLeft>
+          <Text bold size="2.13vh" alignLeft>
             로그아웃
           </Text>
           <RightButton
@@ -281,17 +305,17 @@ const Container = styled.div`
 `;
 
 const CharacterWrap = styled.div`
-  width: 210px;
-  height: 100%;
+  width: 53.8%;
+  height: 26.06vh;
   align-items: center;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
 `;
 
 const ImgContainer = styled.div`
   width: 100%;
-  height: 220px;
+  height: 100%;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
@@ -300,8 +324,31 @@ const ItemImg = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
-  /* z-index: 1; */
   object-fit: cover;
+`;
+
+const UserScore = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.1%;
+  margin-bottom: 2.8vh;
+
+  & > div {
+    background: #f7f7f7;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1.89vh;
+    line-height: 1.89vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.66vh 1.66vh 2.25vh 1.66vh;
+
+    & > span {
+      font-weight: 600;
+      color: #6825d6;
+    }
+  }
 `;
 
 const ShareBox = styled.button`
@@ -330,6 +377,7 @@ const ShareButton = styled.div`
 const TestBox = styled.button`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   text-align: center;
   align-items: left;
   height: 4.188rem;
