@@ -23,7 +23,7 @@ const MyChallenge = (props) => {
   const proof_list = useSelector((state) => state.challenge.proof_list);
   // console.log("챌린지리스트", challenge_list);
   // console.log("피드길이", proof_list?.length);
-  const isLoading = useSelector((state) => state.challenge.isLoading);
+  // const isLoading = useSelector((state) => state.challenge.isLoading);
 
   React.useEffect(() => {
     if (currentPage === "navi") {

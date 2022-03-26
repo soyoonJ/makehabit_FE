@@ -52,6 +52,7 @@ const Completed = lazy(() => import("../pages/Completed"));
 const Search = lazy(() => import("../pages/Search"));
 const ShoppingBasket = lazy(() => import("../pages/ShoppingBasket"));
 const CharacterSave = lazy(() => import("../pages/CharacterSave"));
+const CharacterShare = lazy(() => import("../pages/CharacterShare"));
 const RankingPage = lazy(() => import("../pages/RankingPage"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
@@ -105,6 +106,7 @@ function App() {
                 <Route path="/completed/:id" component={Completed} />
                 {/* <Route path="/chat/:id" component={Chat} /> */}
                 <Route path="/charactersave" component={CharacterSave} />
+                <Route path="/charactershare" component={CharacterShare} />
                 <Route path="/kakao" component={Auth2RedirectHandler}></Route>
                 <Route path="/ranking" component={RankingPage} />
 
