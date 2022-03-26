@@ -8,7 +8,7 @@ import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
 import CategoryPost from "../components/CategoryPost";
 import MetaTag from "../shared/MetaTag";
-import Spinner from "../shared/Spinner";
+// import Spinner from "../shared/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
