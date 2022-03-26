@@ -186,7 +186,7 @@ const PostDetail = (props) => {
             <Tag>습관삼끼 {post.round}세트</Tag>
           )}
           <JoinWrap>
-            <BsFillPersonFill size={16} />
+            <BsFillPersonFill size={16} fill="#707070" />
             <JoinText>{post.participants}명과 함께 도전중이에요!</JoinText>
           </JoinWrap>
         </SubtitleContainer>
@@ -206,8 +206,10 @@ const PostDetail = (props) => {
           {/* 예상 종료일 */}
           <OrangeBox>
             <EndDateText>
-              <ToLeft style={{ margin: "0.813rem" }}>예상 종료일 </ToLeft>
-              <ToRight style={{ margin: "0.813rem" }}>
+              <ToLeft style={{ margin: "0.813rem", fontWeight: "600" }}>
+                예상 종료일{" "}
+              </ToLeft>
+              <ToRight style={{ margin: "0.813rem", fontWeight: "600" }}>
                 {moment(koStartAt, "YYYY.MM.DD")
                   .add(30, "days")
                   .format("YYYY년 MM월 DD일") +
