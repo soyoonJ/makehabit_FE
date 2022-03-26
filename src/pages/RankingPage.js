@@ -14,7 +14,7 @@ const RankingPage = () => {
   const dispatch = useDispatch();
   const Item = process.env.PUBLIC_URL + "/items/large";
 
-  const tomorrow = moment().add(1, "days").format("YYYY-MM-DD");
+  const tomorrow = moment().format("YYYY-MM-DD HH:mm");
   // console.log(tomorrow);
 
   React.useEffect(() => {
@@ -89,7 +89,14 @@ const RankingPage = () => {
           <Text margin="0 0 0 18px" color="#fff" size="18px" width="130px" bold>
             {MyNickname}
           </Text>
-          <Text color="#fff" size="18px" bold>
+          <Text
+            alignCenter
+            color="#fff"
+            size="18px"
+            width="100%"
+            bold
+            margin="0 0px 0 0px"
+          >
             {MyCnt}번
           </Text>
         </div>
@@ -101,7 +108,7 @@ const RankingPage = () => {
           size="13px"
           margin="14px 20px 15px 0px"
         >
-          {tomorrow} 00시 업데이트
+          최근 업데이트 : {tomorrow}
         </Text>
       </ContainerGrid>
       {/*랭킹순위 */}
@@ -233,6 +240,7 @@ const MyRanking = styled.div`
     // height: 100%;
     display: grid;
     grid-template-columns: 17.4% 12.8% 1fr 17.4%;
+
     align-items: center;
   }
 `;
@@ -273,6 +281,7 @@ const ItemImg = styled.img`
 
 const Wrap = styled.div`
   display: flex;
+  margin: 20px;
   justify-content: space-around;
 `;
 

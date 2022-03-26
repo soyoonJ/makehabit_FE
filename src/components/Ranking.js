@@ -33,7 +33,7 @@ const Ranking = (props) => {
           >
             {nickname}
           </Text>
-          <Text color="#FF8B37" size="18px" bold margin="0 8px 0 0px">
+          <Text color="#FF8B37" size="18px" bold margin="0 0px 0 0px">
             {proofCnt}번
           </Text>
         </div>
@@ -61,7 +61,7 @@ const RankingList = styled.div`
     // align-items: center;
     // height: 100%;
     display: grid;
-    grid-template-columns: 17.4% 12.8% 1fr 17.4%;
+    grid-template-columns: 17.4% 12.8% 1fr 13%;
     position: absolute;
     align-items: center;
   }
