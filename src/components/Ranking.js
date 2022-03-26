@@ -33,7 +33,7 @@ const Ranking = (props) => {
           >
             {nickname}
           </Text>
-          <Text color="#FF8B37" size="18px" bold margin="0 0 0 18px">
+          <Text color="#FF8B37" size="18px" bold margin="0 8px 0 0px">
             {proofCnt}번
           </Text>
         </div>

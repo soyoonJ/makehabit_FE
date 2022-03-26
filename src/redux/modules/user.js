@@ -9,13 +9,14 @@ const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
 const EMAIL_CHECK = "EMAIL_CHECK";
 const NICKNAME_CHECK = "NICKNAME_CHECK";
+const SET_INFO = "SET_INFO";
 
 // action creators
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, () => ({}));
 const emailCheck = createAction(EMAIL_CHECK, (result) => ({ result }));
 const nicknameCheck = createAction(NICKNAME_CHECK, (result) => ({ result }));
-
+const setInfo = createAction(SET_INFO, (user_info) => ({ user_info }));
 // let authorization_code = new URL(window.location.href).searchParams.get("code");
 
 // initialState
@@ -190,6 +191,20 @@ const logoutDB = () => {
   };
 };
 
+const getInfoDB = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .mypageUserInfo()
+      .then((res) => {
+        console.log("getInfoDB", res.data);
+        // dispatch(setInfo(res.data))
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
@@ -217,6 +232,10 @@ export default handleActions(
         draft.nicknameCheck = action.payload.result;
         draft.is_loaded = true;
       }),
+    [SET_INFO]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user_info = action.payload.user_info;
+      }),
   },
   initialState
 );
@@ -232,6 +251,8 @@ const actionCreators = {
   nicknameCheckDB,
   loginCheckDB,
   kakaoLogin,
+  setInfo,
+  getInfoDB,
 };
 
 export { actionCreators };

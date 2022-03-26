@@ -29,6 +29,7 @@ const Mypage = () => {
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
+    dispatch(userActions.getInfoDB());
     // console.log("오냐냐냐냐냐");
   }, []);
 
