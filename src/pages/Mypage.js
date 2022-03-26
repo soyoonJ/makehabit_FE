@@ -39,14 +39,14 @@ const Mypage = () => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  console.log(
-    "equip확인",
-    isEquip,
-    equipBg?.itemImgUrl,
-    equipColor?.itemImgUrl,
-    equipClothes?.itemImgUrl,
-    equipAcc?.itemImgUrl
-  );
+  // console.log(
+  //   "equip확인",
+  //   isEquip,
+  //   equipBg?.itemImgUrl,
+  //   equipColor?.itemImgUrl,
+  //   equipClothes?.itemImgUrl,
+  //   equipAcc?.itemImgUrl
+  // );
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 

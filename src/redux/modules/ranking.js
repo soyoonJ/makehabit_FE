@@ -13,7 +13,7 @@ const setRanking = createAction(SET_RANKING, (ranking_list) => ({
 
 // initialState
 const initialState = {
-  ranking_list: null,
+  ranking_list: [],
   my_list: null,
 };
 

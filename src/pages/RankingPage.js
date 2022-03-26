@@ -7,12 +7,22 @@ import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
+import Ranking from "../components/Ranking";
 
 const RankingPage = () => {
   const dispatch = useDispatch();
   const Item = process.env.PUBLIC_URL + "/items/large";
+
+  // const today = new Date();
+  // console.log(today);
+  // // let year = today.getFullYear(); // 년도
+  // // let month = today.getMonth() + 1; // 월
+  // // let date = today.getDate(); // 날짜
+  // // let date2 = date.getDate()+1; // 날짜
+  // const tomorrow = new Date(today.setDate(today.getDate() + 1));
+
   React.useEffect(() => {
-    dispatch(rankingActions.getRankingDB(10));
+    dispatch(rankingActions.getRankingDB(100));
   }, []);
 
   // 내 랭킹데이터 가져오기
@@ -26,9 +36,30 @@ const RankingPage = () => {
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
-  console.log("닉네임", isEquip);
+
+  // console.log("isEquip", test);
 
   //전체 랭킹데이터 가져오기
+  const AllRanking = useSelector((state) => state.ranking.ranking_list);
+  const AllisEquip = useSelector(
+    (state) => state.ranking.ranking_list?.equippedItems
+  );
+  const AllequipColor = AllisEquip?.find((e) => e.category === "color");
+  const AllequipBg = AllisEquip?.find((e) => e.category === "background");
+  const AllequipClothes = AllisEquip?.find((e) => e.category === "clothes");
+  const AllequipAcc = AllisEquip?.find((e) => e.category === "acc");
+  const AllequipEmotion = AllisEquip?.find((e) => e.category === "emotion");
+
+  console.log(
+    "equip확인",
+    // AllisEquip,
+    AllRanking
+    // AllequipBg?.itemImgUrl,
+    // AllequipColor?.itemImgUrl,
+    // AllequipClothes?.itemImgUrl,
+    // AllequipAcc?.itemImgUrl
+  );
+  // console.log("아이템ㅌ확인", AllRanking[0]?.equippedItems[0]?.itemImgUrl);
 
   return (
     <Container>
@@ -48,7 +79,6 @@ const RankingPage = () => {
           </Text>
         </Header>
       </ContainerGrid>
-
       <MyRanking>
         <div>
           <MyRankNum>{MyRank}</MyRankNum>
@@ -68,7 +98,6 @@ const RankingPage = () => {
           </Text>
         </div>
       </MyRanking>
-
       <ContainerGrid>
         <Text
           alignRight
@@ -76,77 +105,107 @@ const RankingPage = () => {
           size="13px"
           margin="14px 20px 15px 0px"
         >
-          2022.03.26 00시 업데이트
+          {/* {today} 00시 업데이트 */}
         </Text>
       </ContainerGrid>
-
       {/*랭킹순위 */}
+
+      {/*1위*/}
       <RankingWrap>
         <div>
           <Medal src="images/icon_1st.png" alt="Icon_1st" />
-          <ProfileImg src="images/test.png" />
+          <AllProfile>
+            <ItemImg src={Item + AllRanking[0]?.equippedItems[0]?.itemImgUrl} />
+            <ItemImg src={Item + AllRanking[0]?.equippedItems[1]?.itemImgUrl} />
+            <ItemImg src={Item + AllRanking[0]?.equippedItems[2]?.itemImgUrl} />
+            <ItemImg src={Item + AllRanking[0]?.equippedItems[3]?.itemImgUrl} />
+            <ItemImg src={Item + AllRanking[0]?.equippedItems[4]?.itemImgUrl} />
+          </AllProfile>
         </div>
         <div>
           <Text margin="14px 0px 8px 0px" bold alignCenter>
-            사용자닉네임입
+            {AllRanking[0]?.nickname}
           </Text>
           <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
-            100번
+            {AllRanking[0]?.proofCnt}번
           </Text>
         </div>
       </RankingWrap>
+
       <Wrap>
+        {/*2위*/}
         <RankingWrap>
           <div>
             <Medal src="images/icon_2st.png" alt="Icon_2st" />
-            <ProfileImg src="images/test.png" />
+            <AllProfile>
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[0]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[1]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[2]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[3]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[4]?.itemImgUrl}
+              />
+            </AllProfile>
+          </div>
+          <div>
+            <Text margin="14px 0px 8px 0px" bold alignCenter>
+              {AllRanking[1]?.nickname}
+            </Text>
+            <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
+              {AllRanking[1]?.proofCnt}번
+            </Text>
+          </div>
+        </RankingWrap>
+
+        {/*3위*/}
+        <RankingWrap>
+          <div>
+            <Medal src="images/icon_3st.png" alt="Icon_3st" />
+            <AllProfile>
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[0]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[1]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[2]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[3]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[4]?.itemImgUrl}
+              />
+            </AllProfile>
           </div>
 
           <div>
             <Text margin="14px 0px 8px 0px" bold alignCenter>
-              사용자닉네임임
+              {AllRanking[2]?.nickname}
             </Text>
             <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
-              100번
-            </Text>
-          </div>
-        </RankingWrap>
-        <RankingWrap>
-          <div>
-            <Medal src="images/icon_3st.png" alt="Icon_3st" />
-            <ProfileImg src="images/test.png" />
-          </div>
-          <div>
-            <Text margin="14px 0px 8px 0px" bold alignCenter>
-              사용자닉네임임
-            </Text>
-            <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
-              100번
+              {AllRanking[2]?.proofCnt}번
             </Text>
           </div>
         </RankingWrap>
       </Wrap>
-
       <Line />
 
-      <RankingList>
-        <div>
-          <RankNum>004</RankNum>
-          <Profile src="images/test.png" alt="testimg" />
-          <Text
-            margin="0 0 0 18px"
-            color="#1D1B1B"
-            size="18px"
-            width="130px"
-            bold
-          >
-            나의 닉네임입니다
-          </Text>
-          <Text color="#FF8B37" size="18px" bold>
-            100번
-          </Text>
-        </div>
-      </RankingList>
+      {/*4위부터  */}
+      <ListWrap>
+        {AllRanking?.map((p, idx) => {
+          if (idx > 2) return <Ranking key={p._id} {...p} />;
+        })}
+      </ListWrap>
     </Container>
   );
 };
@@ -192,8 +251,16 @@ const MyRankNum = styled.p`
 
 const Profile = styled.div`
   border-radius: 5px;
-  width: 100%;
+  width: 50px;
   height: 50px;
+  margin-right: 18px;
+  position: relative;
+`;
+
+const AllProfile = styled.div`
+  border-radius: 5px;
+  width: 119px;
+  height: 119px;
   margin-right: 18px;
   position: relative;
 `;
@@ -251,7 +318,7 @@ const RankingList = styled.div`
   width: 100%;
   height: 8.76vh;
   background-color: #ffff;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px #f7f7f7 solid;
@@ -277,4 +344,7 @@ const RankNum = styled.p`
   color: #707070;
 `;
 
+const ListWrap = styled.div`
+  display: grid;
+`;
 export default RankingPage;

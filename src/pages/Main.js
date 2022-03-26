@@ -11,7 +11,7 @@ import MetaTag from "../shared/MetaTag";
 import Spinner from "../shared/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
-
+import { actionCreators as rankingActions } from "../redux/modules/ranking";
 const Main = () => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
@@ -36,8 +36,14 @@ const Main = () => {
     dispatch(mainActions.RecommendDB(4));
     dispatch(mainActions.mainnewDB(4, "new"));
     dispatch(mainActions.mainstudyDB(4, "exercise"));
+    dispatch(rankingActions.getRankingDB(3));
   }, [likeList]);
 
+  React.useEffect(() => {
+    // console.log("바뀌냐", likeList);
+
+    dispatch(rankingActions.getRankingDB(3));
+  }, []);
   //추천작심삼일 리스트 가져오기
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const new_list = useSelector((state) => state.main.new_list);
@@ -50,6 +56,14 @@ const Main = () => {
   // console.log("스터디", new_list);
   // console.log("useSelector 썻는데!!!!", maincategory_list);
 
+  //전체 랭킹데이터 가져오기
+  const AllRanking = useSelector((state) => state.ranking.ranking_list);
+  const AllisEquip = useSelector(
+    (state) => state.ranking.ranking_list?.equippedItems
+  );
+  const Item = process.env.PUBLIC_URL + "/items/large";
+
+  console.log("아이템ㅌ확인", AllRanking[0]?.equippedItems[0]?.itemImgUrl);
   return (
     <Container>
       <MetaTag title="습관삼끼" />
@@ -263,7 +277,6 @@ const Main = () => {
             return <CategoryPost key={p._id} {...p} />;
           })}
         </RecommendWrap>
-        {/*★★★★★★map 부분 바꿔야함!!!!!!!!!!! */}
       </ContainerGrid>
 
       {/*랭킹리스트*/}
@@ -288,7 +301,23 @@ const Main = () => {
             <RankNum>
               <img src="images/icon_1st.png" alt="Icon_1st" />
             </RankNum>
-            <Profile src="images/test.png" alt="testimg" />
+            <Profile>
+              <ItemImg
+                src={Item + AllRanking[0]?.equippedItems[0]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[0]?.equippedItems[1]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[0]?.equippedItems[2]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[0]?.equippedItems[3]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[0]?.equippedItems[4]?.itemImgUrl}
+              />
+            </Profile>
             <Text
               margin="0 0 0 18px"
               color="#1D1B1B"
@@ -296,10 +325,10 @@ const Main = () => {
               width="130px"
               bold
             >
-              나의 닉네임입니다
+              {AllRanking[0]?.nickname}
             </Text>
-            <Text color="#FF8B37" size="18px" bold>
-              100번
+            <Text color="#FF8B37" size="18px" bold margin="0 0 0 23px">
+              {AllRanking[0]?.proofCnt}번
             </Text>
           </div>
         </RankingList>
@@ -308,7 +337,23 @@ const Main = () => {
             <RankNum>
               <img src="images/icon_2st.png" alt="Icon_2nd" />
             </RankNum>
-            <Profile src="images/test.png" alt="testimg" />
+            <Profile>
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[0]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[1]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[2]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[3]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[1]?.equippedItems[4]?.itemImgUrl}
+              />
+            </Profile>
             <Text
               margin="0 0 0 18px"
               color="#1D1B1B"
@@ -316,10 +361,10 @@ const Main = () => {
               width="130px"
               bold
             >
-              나의 닉네임입니다
+              {AllRanking[1]?.nickname}
             </Text>
-            <Text color="#FF8B37" size="18px" bold>
-              100번
+            <Text color="#FF8B37" size="18px" bold margin="0 0 0 23px">
+              {AllRanking[1]?.proofCnt}번
             </Text>
           </div>
         </RankingList>
@@ -329,7 +374,23 @@ const Main = () => {
             <RankNum>
               <img src="images/icon_3st.png" alt="Icon_3rd" />
             </RankNum>
-            <Profile src="images/test.png" alt="testimg" />
+            <Profile>
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[0]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[1]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[2]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[3]?.itemImgUrl}
+              />
+              <ItemImg
+                src={Item + AllRanking[2]?.equippedItems[4]?.itemImgUrl}
+              />
+            </Profile>
             <Text
               margin="0 0 0 18px"
               color="#1D1B1B"
@@ -337,10 +398,10 @@ const Main = () => {
               width="130px"
               bold
             >
-              나의 닉네임입니다
+              {AllRanking[2]?.nickname}
             </Text>
-            <Text color="#FF8B37" size="18px" bold>
-              100번
+            <Text color="#FF8B37" size="18px" bold margin="0 0 0 23px">
+              {AllRanking[2]?.proofCnt}번
             </Text>
           </div>
         </RankingList>
@@ -546,10 +607,20 @@ const RankNum = styled.div`
   }
 `;
 
-const Profile = styled.img`
+const Profile = styled.div`
   border-radius: 5px;
   width: 50px;
   height: 50px;
   margin-right: 18px;
+  position: relative;
 `;
+const ItemImg = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* z-index: 1; */
+  border-radius: 10px;
+  object-fit: cover;
+`;
+
 export default Main;
