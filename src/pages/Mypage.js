@@ -21,12 +21,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as RightButton } from "../img/icon_right.svg";
 
 import styled from "styled-components";
-import html2canvas from "html2canvas";
 
 const Mypage = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector((state) => state.character.isLoading);
+  // const isLoading = useSelector((state) => state.character.isLoading);
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
@@ -54,27 +53,6 @@ const Mypage = () => {
   //닉네임 가져오기
   const nickName = useSelector((state) => state.user?.user?.nickname);
   console.log("닉네임", nickName);
-
-  // 공유하기 기능
-  async function shareCanvas() {
-    // html2canvas 활용해서 canvas로 만들고 dataUrl 만들기
-    const canvasElement = await html2canvas(
-      document.getElementById("myCharacter")
-    );
-    const dataUrl = canvasElement.toDataURL();
-    const blob = await (await fetch(dataUrl)).blob();
-    const filesArray = [
-      new File([blob], "mycharacter.png", {
-        type: blob.type,
-        lastModified: new Date().getTime(),
-      }),
-    ];
-    const shareData = {
-      files: filesArray,
-    };
-    // web share API 활용해서 공유하기
-    navigator.share(shareData);
-  }
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
@@ -189,7 +167,9 @@ const Mypage = () => {
                   color: "white",
                   textAlign: "center",
                 }}
-                onClick={shareCanvas}
+                onClick={() => {
+                  history.push("/charactershare");
+                }}
               >
                 공유하기
               </p>

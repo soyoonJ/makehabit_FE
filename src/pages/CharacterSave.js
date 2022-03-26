@@ -165,6 +165,7 @@ const CharacterSave = () => {
             bg="#fff"
             color="rgba(255, 139, 55, 1)"
             _onClick={shareCanvas}
+            // _onClick={onHtmlToPng}
           >
             내 캐릭터 공유하기
           </Button>

@@ -19,7 +19,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const search = React.useRef(null);
 
-  const isLoading = useSelector((state) => state.main.isLoading);
+  // const isLoading = useSelector((state) => state.main.isLoading);
   // const [loading, setLoading] = React.useState(true);
   // console.log("서치", search.current.value);
 
