@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import styled from "styled-components";
 // import { history } from "../redux/configureStore";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Button } from "../elements";
 import Spinner from "../shared/Spinner";
@@ -11,7 +11,7 @@ import Spinner from "../shared/Spinner";
 import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.character.isLoading);
 
   const Item = process.env.PUBLIC_URL + "/items/large";

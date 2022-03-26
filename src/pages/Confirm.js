@@ -15,7 +15,6 @@ import styled from "styled-components";
 import { debounce, throttle } from "lodash";
 // import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
-import { Style } from "@material-ui/icons";
 
 const Confirm = (props) => {
   const challengeId = props.match.params.id;

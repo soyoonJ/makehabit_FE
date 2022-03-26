@@ -8,7 +8,7 @@ import ButtonNavigation from "../components/ButtonNavigation";
 // import CharacterContainer from "../components/CharacterContainer";
 // import Character from "../redux/modules/character";
 import MetaTag from "../shared/MetaTag";
-import Spinner from "../shared/Spinner";
+// import Spinner from "../shared/Spinner";
 
 // import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as RightButton } from "../img/icon_right.svg";
 
 import styled from "styled-components";
+import html2canvas from "html2canvas";
 
 const Mypage = () => {
   const dispatch = useDispatch();
@@ -54,17 +55,39 @@ const Mypage = () => {
   const nickName = useSelector((state) => state.user?.user?.nickname);
   console.log("닉네임", nickName);
 
+  // 공유하기 기능
+  async function shareCanvas() {
+    // html2canvas 활용해서 canvas로 만들고 dataUrl 만들기
+    const canvasElement = await html2canvas(
+      document.getElementById("myCharacter")
+    );
+    const dataUrl = canvasElement.toDataURL();
+    const blob = await (await fetch(dataUrl)).blob();
+    const filesArray = [
+      new File([blob], "mycharacter.png", {
+        type: blob.type,
+        lastModified: new Date().getTime(),
+      }),
+    ];
+    const shareData = {
+      files: filesArray,
+    };
+    // web share API 활용해서 공유하기
+    navigator.share(shareData);
+  }
+
   //자식 함수 접근하는 Ref
   const childRef = useRef();
   return (
     <Container>
       <MetaTag title="습관삼끼 | 마이페이지" />
-      {isLoading ? <Spinner /> : ""}
+      {/* {isLoading ? <Spinner /> : ""} */}
 
       <ContainerGrid>
         <Grid margin="10% 0% 0% 0%">
           <CharacterWrap>
-            <ImgContainer>
+            {/* 지금 테두리 이상함 공유하기 창 따로 띄우는게 나을듯? */}
+            <ImgContainer id="myCharacter">
               <ItemImg src={Item + equipBg?.itemImgUrl} />
               <ItemImg src={Item + equipColor?.itemImgUrl} />
               <ItemImg src={Item + equipClothes?.itemImgUrl} />
@@ -90,13 +113,14 @@ const Mypage = () => {
             justifyContent="center"
             // padding="2% 5%"
           >
+            {/* 닉네임 수정 */}
             <Button
               bg="white"
               color="black"
-              _onClick={() => {
-                // console.log("onClick!", childRef, childRef.current);
-                childRef.current.openModal();
-              }}
+              // _onClick={() => {
+              //   // console.log("onClick!", childRef, childRef.current);
+              //   childRef.current.openModal();
+              // }}
             >
               <Text bold size="22px">
                 {nickName}
@@ -133,11 +157,13 @@ const Mypage = () => {
             <Text>다음 레벨까지 100경험치</Text>
           </Grid> */}
           {/* 경험치 바 */}
-          <Grid is_flex justifyContent="center" padding="5%">
-            {/* <ProgressBar /> */}
-          </Grid>
+          {/* <Grid is_flex justifyContent="center" padding="5%">
+            <ProgressBar />
+          </Grid> */}
         </Grid>
       </ContainerGrid>
+
+      {/* 공유하기 배너 */}
       <Grid>
         <ShareBox>
           <Grid margin="0px 21px">
@@ -156,13 +182,23 @@ const Mypage = () => {
           </Grid>
           <div>
             <ShareButton>
-              <Text margin="auto" size="18px" alignCenter color="white">
+              <p
+                style={{
+                  margin: "auto",
+                  fontSize: "18px",
+                  color: "white",
+                  textAlign: "center",
+                }}
+                onClick={shareCanvas}
+              >
                 공유하기
-              </Text>
+              </p>
             </ShareButton>
           </div>
         </ShareBox>
       </Grid>
+
+      {/* 하단 메뉴 */}
       <Grid>
         <TestBox>
           <Text weight="600" bold size="18px" alignLeft>
@@ -246,8 +282,6 @@ const Container = styled.div`
 const CharacterWrap = styled.div`
   width: 210px;
   height: 100%;
-  /* background-color: aqua; */
-  /* display: flex; */
   align-items: center;
   margin: auto;
   display: flex;
@@ -258,13 +292,14 @@ const ImgContainer = styled.div`
   width: 100%;
   height: 220px;
   position: relative;
+  border-radius: 20px;
+  overflow: hidden;
 `;
 const ItemImg = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
   /* z-index: 1; */
-  border-radius: 20px;
   object-fit: cover;
 `;
 
