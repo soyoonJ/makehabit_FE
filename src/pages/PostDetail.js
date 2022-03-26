@@ -17,6 +17,8 @@ import styled from "styled-components";
 import moment from "moment";
 
 import { BsFillPersonFill } from "react-icons/bs";
+import { FaShare } from "react-icons/fa";
+
 const PostDetail = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -127,9 +129,23 @@ const PostDetail = (props) => {
   const leaveModal = React.useRef();
   //Like 누를때마다 화면 전환
   const likeList = useSelector((state) => state.post.isLike);
+
+  const sharePost = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: post.title,
+        text: post.content,
+        url: `https://localhost:3000/challenges/${challengeId}`,
+      });
+    } else {
+      alert("공유하기가 지원되지 않는 환경 입니다.");
+    }
+  };
+
   React.useEffect(() => {
     dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
+
   return (
     <Container>
       <MetaTag title={"습관삼끼 | " + post.title} />
@@ -142,6 +158,8 @@ const PostDetail = (props) => {
         <TitleContainer>
           <TitleText>{post.title}</TitleText>
           <IconToRight>
+            <FaShare onClick={sharePost} />
+
             {post.isLike ? (
               <Like
                 src={LikeImg}
