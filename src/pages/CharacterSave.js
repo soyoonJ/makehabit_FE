@@ -4,11 +4,12 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators as characterActions } from "../redux/modules/character";
-import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
+import { ContainerGrid, Button } from "../elements";
 import { ReactComponent as CheckImg } from "../img/icon_check.svg";
 import MetaTag from "../shared/MetaTag";
 
 import styled from "styled-components";
+import html2canvas from "html2canvas";
 
 const CharacterSave = () => {
   const dispatch = useDispatch();
@@ -26,12 +27,85 @@ const CharacterSave = () => {
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
+  // const capture = () => {
+  //   html2canvas(document.querySelector("myCharacter")).then(function(canvas) {
+  //     document.body.appendChild(canvas);
+  //   });
+  // }
+
+  // 공유하기 기능
+  async function shareCanvas() {
+    // html2canvas 활용해서 canvas로 만들고 dataUrl 만들기
+    const canvasElement = await html2canvas(
+      document.getElementById("myCharacter")
+    );
+    const dataUrl = canvasElement.toDataURL();
+    const blob = await (await fetch(dataUrl)).blob();
+    const filesArray = [
+      new File([blob], "mycharacter.png", {
+        type: blob.type,
+        lastModified: new Date().getTime(),
+      }),
+    ];
+    const shareData = {
+      files: filesArray,
+    };
+    // web share API 활용해서 공유하기
+    navigator.share(shareData);
+  }
+
+  // 저장하기 기능
+  const onHtmlToPng = () => {
+    let url = "";
+    html2canvas(document.getElementById("myCharacter")).then((canvas) => {
+      url = canvas.toDataURL("image/png");
+      // console.log("url", url);
+      // 곧바로 저장하기!!!
+      let link = document.createElement("a");
+      document.body.appendChild(link);
+      link.href = url;
+      link.download = "mycharacter.png";
+      link.click();
+      document.body.removeChild(link);
+    });
+  };
+
+  // 카카오 공유 시도
+  // const kakaoShare = () => {
+  //   let url = "";
+  //   html2canvas(document.getElementById("myCharacter")).then((canvas) => {
+  //     url = canvas.toDataURL("image/png");
+
+  //     window.Kakao.Link.sendDefault({
+  //       objectType: "feed",
+  //       content: {
+  //         title: "습관삼끼",
+  //         description: "작심삼일도 열번하면 30일이다!!",
+  //         imageUrl: url,
+  //         link: {
+  //           webUrl: "https://makehabit.shop/character",
+  //           mobileWebUrl: "https://makehabit.shop",
+  //         },
+  //       },
+  //       buttons: [
+  //         {
+  //           title: "내 캐릭터 만들러 가기",
+  //           link: {
+  //             webUrl: "https://makehabit.shop/character",
+  //             mobileWebUrl: "https://makehabit.shop",
+  //           },
+  //         },
+  //       ],
+  //     });
+  //   });
+  // };
+
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 캐릭터꾸미기" />
 
       <ContainerGrid>
-        <CharacterWrap>
+        <CharacterWrap id="myCharacter">
           <ImgContainer>
             <ItemImg src={Item + equipBg?.itemImgUrl} />
             <ItemImg src={Item + equipColor?.itemImgUrl} />
@@ -90,7 +164,7 @@ const CharacterSave = () => {
             height="6.16vh"
             bg="#fff"
             color="rgba(255, 139, 55, 1)"
-            _onClick={() => {}}
+            _onClick={shareCanvas}
           >
             내 캐릭터 공유하기
           </Button>
@@ -100,7 +174,6 @@ const CharacterSave = () => {
   );
 };
 
-// 개설/참여완료 주황색 info 박스
 const CharacterWrap = styled.div`
   display: flex;
   flex-direction: column;
