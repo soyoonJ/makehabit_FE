@@ -8,7 +8,7 @@ import ButtonNavigation from "../components/ButtonNavigation";
 // import CharacterContainer from "../components/CharacterContainer";
 // import Character from "../redux/modules/character";
 import MetaTag from "../shared/MetaTag";
-import Spinner from "../shared/Spinner";
+// import Spinner from "../shared/Spinner";
 
 // import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -81,7 +81,7 @@ const Mypage = () => {
   return (
     <Container>
       <MetaTag title="습관삼끼 | 마이페이지" />
-      {isLoading ? <Spinner /> : ""}
+      {/* {isLoading ? <Spinner /> : ""} */}
 
       <ContainerGrid>
         <Grid margin="10% 0% 0% 0%">

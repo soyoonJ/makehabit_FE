@@ -7,7 +7,7 @@ import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
-import Spinner from "../shared/Spinner";
+// import Spinner from "../shared/Spinner";
 
 import styled from "styled-components";
 
@@ -29,7 +29,7 @@ const MyFeed = (props) => {
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 나의 기록보기" />
-      {isLoading ? <Spinner /> : ""}
+      {/* {isLoading ? <Spinner /> : ""} */}
 
       <PageBack padding="2.13vh 4.36%" color="#707070" />
       <FeedNum>
