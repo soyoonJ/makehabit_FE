@@ -19,6 +19,7 @@ const Text = (props) => {
     borderBox,
     textAlign,
     alignLeft,
+    lineHeight,
   } = props;
 
   const styles = {
@@ -36,6 +37,7 @@ const Text = (props) => {
     borderBox,
     textAlign,
     alignLeft,
+    lineHeight,
   };
   return (
     <>
@@ -58,6 +60,7 @@ Text.defaultProps = {
   alignRight: false,
   borderBox: null,
   alignLeft: false,
+  lineHeight: null,
 };
 
 const P = styled.p`
@@ -76,6 +79,7 @@ const P = styled.p`
   ${(props) => (props.borderBox ? `box-sizing: border-box;` : "")};
   ${(props) => (props.textAlign ? `text-align: ${props.textAlign};` : "")}
   ${(props) => (props.alignLeft ? `text-align: left;` : "")};
+  ${(props) => (props.lineHeight ? `line-height: ${props.lineHeight};` : "")};
 `;
 
 export default Text;
