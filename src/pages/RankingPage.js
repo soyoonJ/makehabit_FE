@@ -8,18 +8,14 @@ import { ReactComponent as GoBack } from "../img/icon_left.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
 import Ranking from "../components/Ranking";
+import moment from "moment";
 
 const RankingPage = () => {
   const dispatch = useDispatch();
   const Item = process.env.PUBLIC_URL + "/items/large";
 
-  // const today = new Date();
-  // console.log(today);
-  // // let year = today.getFullYear(); // 년도
-  // // let month = today.getMonth() + 1; // 월
-  // // let date = today.getDate(); // 날짜
-  // // let date2 = date.getDate()+1; // 날짜
-  // const tomorrow = new Date(today.setDate(today.getDate() + 1));
+  const tomorrow = moment().add(1, "days").format("YYYY-MM-DD");
+  // console.log(tomorrow);
 
   React.useEffect(() => {
     dispatch(rankingActions.getRankingDB(100));
@@ -105,7 +101,7 @@ const RankingPage = () => {
           size="13px"
           margin="14px 20px 15px 0px"
         >
-          {/* {today} 00시 업데이트 */}
+          {tomorrow} 00시 업데이트
         </Text>
       </ContainerGrid>
       {/*랭킹순위 */}
@@ -270,8 +266,9 @@ const ItemImg = styled.img`
   height: 100%;
   position: absolute;
   /* z-index: 1; */
-  border-radius: 20px;
+  border-radius: 5px;
   object-fit: cover;
+  margin-left: 4%;
 `;
 
 const Wrap = styled.div`
@@ -290,6 +287,7 @@ const RankingWrap = styled.div`
 
   & > div {
     position: relative;
+    margin-left: 10px;
   }
 `;
 

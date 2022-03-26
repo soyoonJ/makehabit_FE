@@ -179,7 +179,7 @@ const Mypage = () => {
       </Grid>
 
       {/* 하단 메뉴 */}
-      <Grid>
+      {/* <Grid>
         <TestBox>
           <Text weight="600" bold size="18px" alignLeft>
             좋아요 모아보기
@@ -192,7 +192,28 @@ const Mypage = () => {
             }}
           />
         </TestBox>
+      </Grid> */}
+
+      <Grid>
+        <TestBox
+          onClick={() => {
+            // dispatch(challengeActions.setTab("feed"));
+            history.push("/ranking");
+          }}
+        >
+          <Text weight="600" bold size="18px" alignLeft>
+            나의 랭킹보기
+          </Text>
+          <RightButton
+            fill="#9C9C9C"
+            style={{
+              alignItems: "flex-end",
+              margin: "auto",
+            }}
+          />
+        </TestBox>
       </Grid>
+
       <Grid>
         <TestBox>
           <Text weight="600" bold size="18px" alignLeft>
@@ -200,10 +221,10 @@ const Mypage = () => {
           </Text>
 
           <RightButton
+            fill="#9C9C9C"
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#707070",
             }}
           />
         </TestBox>
@@ -220,10 +241,10 @@ const Mypage = () => {
           </Text>
 
           <RightButton
+            fill="#9C9C9C"
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#9C9C9C",
             }}
           />
         </TestBox>
@@ -242,10 +263,10 @@ const Mypage = () => {
             로그아웃
           </Text>
           <RightButton
+            fill="#9C9C9C"
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#9C9C9C",
             }}
           />
         </TestBox>

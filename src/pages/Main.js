@@ -332,6 +332,7 @@ const Main = () => {
             </Text>
           </div>
         </RankingList>
+
         <RankingList>
           <div>
             <RankNum>
@@ -582,7 +583,7 @@ const RankingList = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px #f7f7f7 solid;
+  border-bottom: 2px #f7f7f7 solid;
 
   & > div {
     width: 100%;

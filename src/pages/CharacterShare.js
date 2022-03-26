@@ -66,7 +66,7 @@ const CharacterShare = () => {
 
   return (
     <React.Fragment>
-      <MetaTag title="습관삼끼 | 캐릭터꾸미기" />
+      <MetaTag title="습관삼끼 | 내 캐릭터 보기" />
 
       <ContainerGrid>
         <div style={{ position: "relative" }}>
