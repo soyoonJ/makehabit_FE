@@ -33,7 +33,7 @@ const initialState = {
   proof_list: null,
   feed: null,
   totalCnt: null,
-  isLoading: true,
+  // isLoading: true,
 };
 
 // 인증기록하기 페이지 조회
@@ -143,17 +143,17 @@ export default handleActions(
     [SET_CHALLENGE]: (state, action) =>
       produce(state, (draft) => {
         draft.challenge_list = action.payload.challenge_list;
-        draft.isLoading = false;
+        // draft.isLoading = false;
       }),
     [SET_PROOF]: (state, action) =>
       produce(state, (draft) => {
         draft.proof_list = action.payload.proof_list;
-        draft.isLoading = false;
+        // draft.isLoading = false;
       }),
     [SET_FEED]: (state, action) =>
       produce(state, (draft) => {
         draft.feed = action.payload.feed;
-        draft.isLoading = false;
+        // draft.isLoading = false;
       }),
     [SET_COMPLETE]: (state, action) =>
       produce(state, (draft) => {

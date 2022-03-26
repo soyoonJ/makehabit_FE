@@ -41,7 +41,7 @@ const initialState = {
   recommend_list: [],
   new_list: [],
   study_list: [],
-  isLoading: true,
+  // isLoading: true,
 };
 
 // 미들웨어
@@ -170,21 +170,21 @@ export default handleActions(
       produce(state, (draft) => {
         // console.log("추천!!!목록!!리스트!!!", action.payload.recommend_list);
         draft.recommend_list = action.payload.recommend_list;
-        draft.isLoading = false;
+        // draft.isLoading = false;
       }),
 
     [GET_NEW]: (state, action) =>
       produce(state, (draft) => {
         // console.log("카테고리 목록 조회", action.payload);
         draft.new_list = action.payload.new_list.challenges;
-        draft.isLoading = false;
+        // draft.isLoading = false;
       }),
 
     [GET_STUDY]: (state, action) =>
       produce(state, (draft) => {
         // console.log("카테고리 목록 조회", action.payload);
         draft.study_list = action.payload.study_list.challenges;
-        draft.isLoading = false;
+        // draft.isLoading = false;
       }),
   },
 

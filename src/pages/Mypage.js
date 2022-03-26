@@ -8,7 +8,7 @@ import ButtonNavigation from "../components/ButtonNavigation";
 // import CharacterContainer from "../components/CharacterContainer";
 // import Character from "../redux/modules/character";
 import MetaTag from "../shared/MetaTag";
-import Spinner from "../shared/Spinner";
+// import Spinner from "../shared/Spinner";
 
 // import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -25,7 +25,7 @@ import styled from "styled-components";
 const Mypage = () => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector((state) => state.character.isLoading);
+  // const isLoading = useSelector((state) => state.character.isLoading);
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
@@ -39,14 +39,14 @@ const Mypage = () => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  console.log(
-    "equip확인",
-    isEquip,
-    equipBg?.itemImgUrl,
-    equipColor?.itemImgUrl,
-    equipClothes?.itemImgUrl,
-    equipAcc?.itemImgUrl
-  );
+  // console.log(
+  //   "equip확인",
+  //   isEquip,
+  //   equipBg?.itemImgUrl,
+  //   equipColor?.itemImgUrl,
+  //   equipClothes?.itemImgUrl,
+  //   equipAcc?.itemImgUrl
+  // );
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
@@ -59,12 +59,13 @@ const Mypage = () => {
   return (
     <Container>
       <MetaTag title="습관삼끼 | 마이페이지" />
-      {isLoading ? <Spinner /> : ""}
+      {/* {isLoading ? <Spinner /> : ""} */}
 
       <ContainerGrid>
         <Grid margin="10% 0% 0% 0%">
           <CharacterWrap>
-            <ImgContainer>
+            {/* 지금 테두리 이상함 공유하기 창 따로 띄우는게 나을듯? */}
+            <ImgContainer id="myCharacter">
               <ItemImg src={Item + equipBg?.itemImgUrl} />
               <ItemImg src={Item + equipColor?.itemImgUrl} />
               <ItemImg src={Item + equipClothes?.itemImgUrl} />
@@ -90,13 +91,14 @@ const Mypage = () => {
             justifyContent="center"
             // padding="2% 5%"
           >
+            {/* 닉네임 수정 */}
             <Button
               bg="white"
               color="black"
-              _onClick={() => {
-                // console.log("onClick!", childRef, childRef.current);
-                childRef.current.openModal();
-              }}
+              // _onClick={() => {
+              //   // console.log("onClick!", childRef, childRef.current);
+              //   childRef.current.openModal();
+              // }}
             >
               <Text bold size="22px">
                 {nickName}
@@ -133,11 +135,13 @@ const Mypage = () => {
             <Text>다음 레벨까지 100경험치</Text>
           </Grid> */}
           {/* 경험치 바 */}
-          <Grid is_flex justifyContent="center" padding="5%">
-            {/* <ProgressBar /> */}
-          </Grid>
+          {/* <Grid is_flex justifyContent="center" padding="5%">
+            <ProgressBar />
+          </Grid> */}
         </Grid>
       </ContainerGrid>
+
+      {/* 공유하기 배너 */}
       <Grid>
         <ShareBox>
           <Grid margin="0px 21px">
@@ -156,14 +160,26 @@ const Mypage = () => {
           </Grid>
           <div>
             <ShareButton>
-              <Text margin="auto" size="18px" alignCenter color="white">
+              <p
+                style={{
+                  margin: "auto",
+                  fontSize: "18px",
+                  color: "white",
+                  textAlign: "center",
+                }}
+                onClick={() => {
+                  history.push("/charactershare");
+                }}
+              >
                 공유하기
-              </Text>
+              </p>
             </ShareButton>
           </div>
         </ShareBox>
       </Grid>
-      <Grid>
+
+      {/* 하단 메뉴 */}
+      {/* <Grid>
         <TestBox>
           <Text weight="600" bold size="18px" alignLeft>
             좋아요 모아보기
@@ -176,7 +192,28 @@ const Mypage = () => {
             }}
           />
         </TestBox>
+      </Grid> */}
+
+      <Grid>
+        <TestBox
+          onClick={() => {
+            // dispatch(challengeActions.setTab("feed"));
+            history.push("/ranking");
+          }}
+        >
+          <Text weight="600" bold size="18px" alignLeft>
+            나의 랭킹보기
+          </Text>
+          <RightButton
+            fill="#9C9C9C"
+            style={{
+              alignItems: "flex-end",
+              margin: "auto",
+            }}
+          />
+        </TestBox>
       </Grid>
+
       <Grid>
         <TestBox>
           <Text weight="600" bold size="18px" alignLeft>
@@ -184,10 +221,10 @@ const Mypage = () => {
           </Text>
 
           <RightButton
+            fill="#9C9C9C"
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#707070",
             }}
           />
         </TestBox>
@@ -204,10 +241,10 @@ const Mypage = () => {
           </Text>
 
           <RightButton
+            fill="#9C9C9C"
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#9C9C9C",
             }}
           />
         </TestBox>
@@ -226,10 +263,10 @@ const Mypage = () => {
             로그아웃
           </Text>
           <RightButton
+            fill="#9C9C9C"
             style={{
               alignItems: "flex-end",
               margin: "auto",
-              fill: "#9C9C9C",
             }}
           />
         </TestBox>
@@ -246,8 +283,6 @@ const Container = styled.div`
 const CharacterWrap = styled.div`
   width: 210px;
   height: 100%;
-  /* background-color: aqua; */
-  /* display: flex; */
   align-items: center;
   margin: auto;
   display: flex;
@@ -258,13 +293,14 @@ const ImgContainer = styled.div`
   width: 100%;
   height: 220px;
   position: relative;
+  border-radius: 20px;
+  overflow: hidden;
 `;
 const ItemImg = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
   /* z-index: 1; */
-  border-radius: 20px;
   object-fit: cover;
 `;
 

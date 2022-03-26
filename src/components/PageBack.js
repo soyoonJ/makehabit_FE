@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { ReactComponent as IconLeft } from "../img/icon_left.svg";
 
 const PageBack = (props) => {
-  const { color, padding, left } = props;
+  const { color, padding, left, challenges } = props;
   const styles = { color, padding, left };
   // const Image = process.env.PUBLIC_URL + "/images";
   return (
@@ -17,7 +17,15 @@ const PageBack = (props) => {
         history.goBack();
       }}
     >
-      <IconLeft fill="#707070" />
+      {challenges ? (
+        <img
+          src={process.env.PUBLIC_URL + "/images/icon_left_shadow.png"}
+          alt="뒤로가기 화살표"
+          style={{ width: "45px", height: "45px" }}
+        ></img>
+      ) : (
+        <IconLeft fill="#707070" />
+      )}
     </Back>
   );
 };

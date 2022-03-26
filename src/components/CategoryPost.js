@@ -36,6 +36,7 @@ const CategoryPost = (props) => {
 
   //로그인 체크
   const is_login = useSelector((state) => state.user.is_login);
+
   //찜하기 (좋아요) 기능
   const like = () => {
     if (is_login) {
