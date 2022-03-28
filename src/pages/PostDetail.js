@@ -17,7 +17,7 @@ import styled from "styled-components";
 import moment from "moment";
 
 import { BsFillPersonFill } from "react-icons/bs";
-import { FaShare } from "react-icons/fa";
+import { ReactComponent as ShareIcon } from "../img/icon_share.svg";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -135,7 +135,7 @@ const PostDetail = (props) => {
       navigator.share({
         title: post.title,
         text: post.content,
-        url: `https://localhost:3000/challenges/${challengeId}`,
+        url: `https://makehabit.co.kr/challenges/${challengeId}`,
       });
     } else {
       alert("공유하기가 지원되지 않는 환경 입니다.");
@@ -158,7 +158,11 @@ const PostDetail = (props) => {
         <TitleContainer>
           <TitleText>{post.title}</TitleText>
           <IconToRight>
-            <FaShare onClick={sharePost} />
+            <ShareIcon
+              onClick={sharePost}
+              fill="#CFCFCF"
+              style={{ margin: "0 14px" }}
+            />
 
             {post.isLike ? (
               <Like
@@ -428,9 +432,10 @@ const TitleContainer = styled.div`
 `;
 
 const TitleText = styled.span`
-  font-size: 1.375rem;
+  font-size: 2.6vh;
   font-weight: bold;
   line-height: 1.813rem;
+  word-break: break-all;
 `;
 
 const ToLeft = styled.div`
