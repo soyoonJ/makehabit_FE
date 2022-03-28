@@ -105,7 +105,7 @@ const CategoryPost = (props) => {
 
         <Title>{title}</Title>
         <TagWrap>
-          <Date>26일 뒤 시작</Date>
+          <Date>27일 뒤 시작</Date>
           <Participants>{post.participants}명 참가</Participants>
         </TagWrap>
 
