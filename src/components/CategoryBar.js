@@ -4,14 +4,16 @@ import Horizontable from "./Horizontable";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../redux/modules/main";
-const CategoryBar = () => {
+
+const CategoryBar = (props) => {
   const dispatch = useDispatch();
   const [clickedCategory, changeClicked] = React.useState(0);
   const checkLoadAll = useSelector(
     // 카테고리 클릭시, 색상 변경하려고 아래코드 넣었는데 우선순위 뒤로감
-    // (state) => state.main.category_list[0].category
-    (state) => state.main.checkLoadAll
+    (state) => state.main.category_list
+    // (state) => state.main.checkLoadAll
   );
+  console.log("체크중", checkLoadAll);
 
   const categoryList = [
     ["all", "전체"],
@@ -24,13 +26,15 @@ const CategoryBar = () => {
     ["eco", "에코"],
   ];
 
+  // const categoryId = props.match.params.id;
+  // console.log(categoryId);
   // 메인헤더 클릭시에도 디폴트값으로 인덱스0번째인 "전체"가 색칠돼어있어야함
   // post.js에서 전체를 불러왔을때 state.post.checkLoadAll=true를 줘서 useEffect와 조건문을 사용하여 만듬
-  React.useEffect(() => {
-    if (checkLoadAll) {
-      changeClicked(0);
-    }
-  }, [checkLoadAll]);
+  // React.useEffect(() => {
+  //   if (categoryId === "all") {
+  //     changeClicked(0);
+  //   }
+  // }, []);
 
   // console.log("카테고리색상변경", checkLoadAll);
 
