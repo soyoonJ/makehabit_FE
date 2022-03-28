@@ -4,13 +4,14 @@ import { useLocation } from "react-router-dom";
 // import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
-import { ContainerGrid } from "../elements";
+import { Button, ContainerGrid, Text } from "../elements";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
 // import Spinner from "../shared/Spinner";
 
 import styled from "styled-components";
-
+import { ReactComponent as GoBack } from "../img/icon_left.svg";
+import { history } from "../redux/configureStore";
 const MyFeed = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -30,14 +31,32 @@ const MyFeed = (props) => {
     <React.Fragment>
       <MetaTag title="습관삼끼 | 나의 기록보기" />
       {/* {isLoading ? <Spinner /> : ""} */}
-
-      <PageBack padding="2.13vh 4.36%" color="#707070" />
+      {/*소윤님작업 */}
+      {/* <PageBack padding="2.13vh 4.36%" color="#707070" />
       <FeedNum>
         {order + 1}/{length}
-      </FeedNum>
+      </FeedNum> */}
+      <ContainerGrid>
+        <Header>
+          <GoBack
+            style={{
+              margin: "auto",
+              fill: "#707070",
+            }}
+            onClick={() => {
+              history.push("/");
+            }}
+          />
+          <Text alignCenter size="22px" bold>
+            {order + 1}/{length}
+          </Text>
+        </Header>
+      </ContainerGrid>
+
       <ImageContainer>
         <Img src={feed?.imgUrl} alt="인증이미지" />
       </ImageContainer>
+
       <ContainerGrid>
         {feed && (
           <Comment>
@@ -54,6 +73,11 @@ const MyFeed = (props) => {
   );
 };
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+`;
 const FeedNum = styled.div`
   padding: 2.49vh;
   display: flex;

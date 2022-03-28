@@ -129,7 +129,8 @@ const Container = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative; //absolute를 쓸때 영역을 잡아주는 역할
-  background: url("/banner/background_banner.webp");
+  /* background: url("/banner/background_banner.webp"); */
+  background: url("/banner/background_습관삼끼_ v3.png");
   background-size: cover;
   scrollbar-width: none;
   ::-webkit-scrollbar {
@@ -198,7 +199,9 @@ const Outter = styled.div`
       align-items: center;
       justify-content: center;
     }
+  }
 `;
+
 const Loader = styled.div`
   width: 80px;
   height: 80px;
