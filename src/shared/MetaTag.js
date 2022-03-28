@@ -13,8 +13,10 @@ const MetaTag = (props) => {
       <meta property="og:description" content={description} />
       <meta
         property="og:image"
-        content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
+        // content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
+        content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
       />
+      <meta property="og:url" content="https://makehabit.co.kr/"></meta>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
 
@@ -24,7 +26,7 @@ const MetaTag = (props) => {
       <meta name="twitter:url" content="https://makehabit.co.kr/" />
       <meta
         name="twitter:image"
-        content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
+        content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
       />
     </Helmet>
   );

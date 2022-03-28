@@ -113,6 +113,16 @@ const CharacterSave = () => {
             <ItemImg src={Item + equipAcc?.itemImgUrl} />
             <ItemImg src={Item + equipEmotion?.itemImgUrl} />
           </ImgContainer>
+          <img
+            src={process.env.PUBLIC_URL + "/images/logo_text_image_small.png"}
+            alt="logo"
+            style={{
+              height: "4.7vh",
+              width: "100%",
+              margin: "0 auto",
+              objectFit: "cover",
+            }}
+          />
         </CharacterWrap>
 
         <Circle>
