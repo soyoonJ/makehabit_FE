@@ -11,10 +11,15 @@ const Banner1 = () => {
   // 배너인덱스를 useState로 관리
   const [bannerIndex, setBannerIndex] = React.useState(0);
 
-  // map 돌리기 위한 배너 갯수만큼의 배열
-  const circleArray = [0, 0];
   // map돌릴때 쓰일 imgUrl
-  const imgURL = ["/banner/mainbanner_01.webp", "/banner/mainbanner_02.webp"];
+  // const imgURL = ["/banner/mainbanner_01.webp", "/banner/mainbanner_02.webp"];
+  const imgURL = [
+    "/banner/mainbanner_01.png",
+    "/banner/mainbanner_02.png",
+    "/banner/mainbanner_03.png",
+    "/banner/mainbanner_04.png",
+    "/banner/mainbanner_05.png",
+  ];
   // 이전 버튼 클릭시 배너의 인덱스를 -1, 인덱스가 처음이면 마지막으로 돌아가기.
   const clickPrev = () => {
     if (bannerIndex <= 0) {
@@ -58,7 +63,7 @@ const Banner1 = () => {
         alt="left icon"
       />
       <Carousel bannerIndex={bannerIndex}>
-        {circleArray.map((e, i) => (
+        {imgURL.map((e, i) => (
           <ContentBox style={{ display: "flex" }} index={i} key={i}>
             <Content style={{ display: "flex" }}>
               {/* <TextBox>
@@ -113,7 +118,7 @@ const Banner1 = () => {
         ))}
       </Carousel>
       <CircleBox>
-        {circleArray.map((e, i) => (
+        {imgURL.map((e, i) => (
           <Circle
             key={i}
             onClick={() => {

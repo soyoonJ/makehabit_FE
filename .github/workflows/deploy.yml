@@ -42,6 +42,11 @@ jobs:
         run: |
           npm install
       # Build an optimized production build
+      - name: Setting .env
+        run: |
+          echo "REACT_APP_CLIENT_ID=${{secrets.CLIENT_ID}}" >> .env
+          cat .env
+
       - name: Production build
         run: |
           unset CI

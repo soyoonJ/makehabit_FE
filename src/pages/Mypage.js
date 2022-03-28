@@ -25,7 +25,8 @@ import styled from "styled-components";
 const Mypage = () => {
   const dispatch = useDispatch();
 
-  // const isLoading = useSelector((state) => state.character.isLoading);
+  const userInfo = useSelector((state) => state.user?.user_info);
+  // console.log(userInfo);
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
@@ -151,10 +152,10 @@ const Mypage = () => {
       <ContainerGrid>
         <UserScore>
           <div>
-            총 인증횟수<span>33회</span>
+            총 인증횟수<span>{userInfo?.proofCnt}회</span>
           </div>
           <div>
-            챌린지 참가<span>10회</span>
+            챌린지 참가<span>{userInfo?.participateCnt}회</span>
           </div>
         </UserScore>
       </ContainerGrid>
@@ -343,7 +344,7 @@ const UserScore = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.66vh 1.66vh 2.25vh 1.66vh;
+    padding: 2.01vh 1.66vh;
 
     & > span {
       font-weight: 600;

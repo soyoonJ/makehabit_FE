@@ -10,7 +10,7 @@ const Auth2RedirectHandler = (props) => {
   // let state = new URL(window.location.href).searchParams.get("state");
 
   React.useEffect(() => {
-    console.log("Auth2RedirectHandler", code);
+    // console.log("Auth2RedirectHandler", code);
     dispatch(userActions.kakaoLogin(code));
     // dispatch(userActions.naverLogin(code, state));
   }, []);

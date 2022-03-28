@@ -43,7 +43,7 @@ export default handleActions(
         draft.ranking_list = action.payload.ranking_list.RankingList.filter(
           (e) => e.proofCnt > 0
         );
-        // draft.ranking_list.filter((ranking_list) => ranking_list.length > 2);
+
         console.log("확인", draft.ranking_list);
       }),
   },

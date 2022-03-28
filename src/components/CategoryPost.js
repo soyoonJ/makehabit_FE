@@ -56,6 +56,13 @@ const CategoryPost = (props) => {
     }
   };
 
+  // 참여날짜 & 참가자수
+  React.useEffect(() => {
+    // dispatch(userActions.loginCheckDB());
+    dispatch(postActions.getDetailPostDB(challengeId));
+  }, []);
+
+  const post = useSelector((state) => state.post.post);
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
@@ -97,6 +104,10 @@ const CategoryPost = (props) => {
         </ThumbnailBox>
 
         <Title>{title}</Title>
+        <TagWrap>
+          <Date>25일 뒤 시작</Date>
+          <Participants>{post.participants}명 참가</Participants>
+        </TagWrap>
 
         {/* <Tag>
             {tags}
@@ -167,5 +178,33 @@ const Title = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+`;
+
+const TagWrap = styled.div`
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  align-content: center;
+`;
+
+const Date = styled.div`
+  width: auto;
+  font-size: 12px;
+  height: 100%;
+  background-color: #ffc194;
+  border-radius: 5px;
+  padding: 3%;
+  text-align: center;
+  margin-right: 5px;
+`;
+
+const Participants = styled.div`
+  width: auto;
+  font-size: 12px;
+  height: 100%;
+  background-color: #ffc194;
+  border-radius: 5px;
+  padding: 3%;
+  text-align: center;
 `;
 export default CategoryPost;
