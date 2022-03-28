@@ -12,7 +12,9 @@ import MetaTag from "../shared/MetaTag";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
-const Main = () => {
+import { actionCreators as postActions } from "../redux/modules/post";
+
+const Main = (props) => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
@@ -30,13 +32,14 @@ const Main = () => {
   //   dispatch(mainActions.mainnewDB(2, "new"));
   //   dispatch(mainActions.mainstudyDB(2, "exercise"));
   // }, []);
-
+  const challengeId = props.match.params.id;
   React.useEffect(() => {
     // console.log("바뀌냐", likeList);
     dispatch(mainActions.RecommendDB(4));
     dispatch(mainActions.mainnewDB(4, "new"));
     dispatch(mainActions.mainstudyDB(4, "exercise"));
     dispatch(rankingActions.getRankingDB(3));
+    dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
 
   React.useEffect(() => {
@@ -51,7 +54,7 @@ const Main = () => {
   // const maincategory_list = useSelector(
   //   (state) => state.main.maincategory_list
   // );
-  // console.log("추천리스트", recommend_list);
+  console.log("추천리스트", recommend_list);
   // console.log("뉴리스트", new_list);
   // console.log("스터디", new_list);
   // console.log("useSelector 썻는데!!!!", maincategory_list);
@@ -74,16 +77,14 @@ const Main = () => {
       <ContainerGrid>
         <Header>
           {/*로고 */}
-          {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
-          <Text
-            width="30%"
-            size="20px"
-            bold
-            color="#FF8B37"
-            margin="22px 10px 0px 0px"
-          >
-            습관삼끼
-          </Text>
+          <Logo
+            src="/logo/logo_text.svg"
+            alt="로고"
+            onClick={() => {
+              history.push(`/`);
+            }}
+          />
+
           <ContainerInput>
             <InputBox
               ref={search}
@@ -448,9 +449,19 @@ const Main = () => {
       </ContainerGrid>
 
       <LogoBottom>
-        <Text margin="0" bold>
+        {/* <Text margin="0" bold>
           습관삼끼
-        </Text>
+        </Text> */}
+        <div>
+          <img
+            src="/logo/logo_text.svg"
+            alt="로고"
+            onClick={() => {
+              history.push(`/`);
+            }}
+          />
+        </div>
+
         <Text margin="0">@ hanghae99_C5</Text>
       </LogoBottom>
       <ButtonNavigation />
@@ -458,6 +469,12 @@ const Main = () => {
   );
 };
 
+const Logo = styled.img`
+  width: 84px;
+  margin-right: 5px;
+  margin: 22px 10px 4px 0px;
+  align-content: center;
+`;
 const Container = styled.div`
   margin: 0%;
   margin-bottom: 170px;
@@ -569,6 +586,14 @@ const LogoBottom = styled.div`
   display: grid;
   text-align: center;
   margin-top: 48px;
+
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+
+  & > div {
+    width: 110px;
+  }
 `;
 
 // 랭킹

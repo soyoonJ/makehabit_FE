@@ -32,16 +32,13 @@ const Search = () => {
         <ContainerGrid>
           <Header>
             {/*로고 */}
-            {/* <Image size="40" src="images/logoEx.png" alt=""></Image> */}
-            <Text
-              width="30%"
-              size="20px"
-              bold
-              color="#FF8B37"
-              margin="22px 10px 0px 0px"
-            >
-              습관삼끼
-            </Text>
+            <Logo
+              src="/logo/logo_text.svg"
+              alt="로고"
+              onClick={() => {
+                history.push(`/`);
+              }}
+            />
             <ContainerInput>
               <InputBox
                 ref={search}
@@ -118,7 +115,12 @@ const Search = () => {
     </React.Fragment>
   );
 };
-
+const Logo = styled.img`
+  width: 84px;
+  margin-right: 5px;
+  margin: 22px 10px 4px 0px;
+  align-content: center;
+`;
 const NoChallenge = styled.div`
   text-align: center;
   font-size: 1.5rem;
