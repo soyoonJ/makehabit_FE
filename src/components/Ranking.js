@@ -11,12 +11,23 @@ const Ranking = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   const { equippedItems, nickname, proofCnt, rank } = props;
   const AllRanking = useSelector((state) => state.ranking.ranking_list);
+
+  console.log("rank", rank);
   //   console.log("아이템", equippedItems[0]);
+
   return (
     <RankingList>
       {proofCnt > 0 ? (
         <div>
-          <RankNum>{rank}</RankNum>
+          {1 <= rank && rank <= 3 ? (
+            <MedalRank
+              src={process.env.PUBLIC_URL + `images/icon_${rank}st.png`}
+              alt="Rank_Icon"
+            />
+          ) : (
+            <RankNum>{rank}</RankNum>
+          )}
+
           <Profile>
             <ItemImg src={Item + equippedItems[0]?.itemImgUrl} />
             <ItemImg src={Item + equippedItems[1]?.itemImgUrl} />
@@ -43,6 +54,12 @@ const Ranking = (props) => {
     </RankingList>
   );
 };
+
+const MedalRank = styled.img`
+  weight: 3.81vh;
+  height: 3.31vh;
+  margin-left: 20px;
+`;
 
 const RankingList = styled.div`
   width: 100%;
