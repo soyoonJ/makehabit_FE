@@ -54,7 +54,7 @@ const Main = (props) => {
   // const maincategory_list = useSelector(
   //   (state) => state.main.maincategory_list
   // );
-  console.log("추천리스트", recommend_list);
+  // console.log("추천리스트", recommend_list);
   // console.log("뉴리스트", new_list);
   // console.log("스터디", new_list);
   // console.log("useSelector 썻는데!!!!", maincategory_list);
@@ -480,12 +480,14 @@ const Container = styled.div`
   margin-bottom: 170px;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
   overflow-y: hidden;
   -ms-overflow-style: none;
 
   @media screen and (min-width: 420px) {
     max-height: 100vh;
     overflow: auto;
+    overflow-x: hidden;
   }
 
   ::-webkit-scrollbar {
