@@ -14,7 +14,8 @@ const Completed = (props) => {
   const page = props.match.params.id;
   // const openId = useSelector((state) => state.post.challengeId);
   // console.log("openId", openId);
-  const totalCnt = useSelector((state) => state.challenge.totalCnt);
+  const totalCnt = useSelector((state) => state.challenge?.totalCnt);
+  const point = useSelector((state) => state.challenge?.point);
 
   const location = useLocation();
 
@@ -110,6 +111,7 @@ const Completed = (props) => {
                 을 성공했어요.
               </div>
             </TopBox>
+
             <GiftBox>
               <Content>
                 <img
@@ -123,7 +125,7 @@ const Completed = (props) => {
                 ></img>
                 성공보상
                 <span style={{ color: "#FF8B37", fontWeight: "700" }}>
-                  &nbsp;10P
+                  &nbsp;{point}P
                 </span>
               </Content>
             </GiftBox>

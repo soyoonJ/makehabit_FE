@@ -8,6 +8,8 @@ import { ReactComponent as GoBack } from "../img/icon_left.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
 import Ranking from "../components/Ranking";
+import MetaTag from "../shared/MetaTag";
+
 import moment from "moment";
 
 const RankingPage = () => {
@@ -59,6 +61,7 @@ const RankingPage = () => {
 
   return (
     <Container>
+      <MetaTag title="습관삼끼 | 인증랭킹" />
       <ContainerGrid>
         <Header>
           <GoBack
@@ -67,7 +70,7 @@ const RankingPage = () => {
               fill: "#707070",
             }}
             onClick={() => {
-              history.push("/");
+              history.goBack();
             }}
           />
           <Text alignCenter size="22px" bold>

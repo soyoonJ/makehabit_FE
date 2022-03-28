@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
+import moment from "moment";
+
 // import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 // import { ContactSupportOutlined } from "@material-ui/icons";
 const CategoryPost = (props) => {
@@ -21,7 +23,17 @@ const CategoryPost = (props) => {
 
   // const Img01 = process.env.PUBLIC_URL + "/images";
   // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
-  const { thumbnail, title, tags, challengeId, puls, isLike } = props;
+  const {
+    thumbnail,
+    title,
+    tags,
+    challengeId,
+    startAt,
+    puls,
+    isLike,
+    participants,
+    round,
+  } = props;
   // console.log("카테고리포스트", props);
 
   //글자수체크
@@ -33,6 +45,7 @@ const CategoryPost = (props) => {
   const DisLikeImg =
     process.env.PUBLIC_URL + "/images/icon_outline_heart_shadow.png";
   const LikeImg = process.env.PUBLIC_URL + "/images/icon_fill_heart_shadow.png";
+  const Icon = process.env.PUBLIC_URL + "/images";
 
   //로그인 체크
   const is_login = useSelector((state) => state.user.is_login);
@@ -62,7 +75,13 @@ const CategoryPost = (props) => {
     dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
 
-  const post = useSelector((state) => state.post.post);
+  const date = new Date(startAt);
+  const koStartAt = date.toLocaleString();
+  const todayDate = new Date();
+  const today = moment(todayDate, "YYYY-MM-DD").format("YYYY-MM-DD");
+  const setDay = moment(koStartAt, "YYYY-MM-DD").format("YYYY-MM-DD");
+  const diffDay = moment(setDay).diff(today, "days");
+
   return (
     <React.Fragment>
       {/* 클릭 시 이동 일단 임의로 설정 */}
@@ -105,8 +124,15 @@ const CategoryPost = (props) => {
 
         <Title>{title}</Title>
         <TagWrap>
-          <Date>27일 뒤 시작</Date>
-          <Participants>{post.participants}명 참가</Participants>
+          {today < setDay ? (
+            <Tag>{diffDay}일 뒤 시작</Tag>
+          ) : (
+            <Tag>습관삼끼 {round}세트</Tag>
+          )}
+          <div>
+            <img src={Icon + "/icon_mypage.svg"} />
+            <ParticipantsTag>{participants}명 참가</ParticipantsTag>
+          </div>
         </TagWrap>
 
         {/* <Tag>
@@ -167,6 +193,7 @@ const Like = styled.img`
 // `;
 const Title = styled.div`
   margin-top: 10px;
+  word-break: break-all;
   font-size: 18px;
   font-weight: bold;
   display: block;
@@ -185,26 +212,40 @@ const TagWrap = styled.div`
   margin-top: 10px;
   display: flex;
   align-content: center;
+  justify-content: space-between;
+
+  & > div {
+    display: flex;
+    width: 40%;
+    align-items: center;
+  }
 `;
 
-const Date = styled.div`
-  width: auto;
-  font-size: 12px;
-  height: 100%;
-  background-color: #ffc194;
+const Tag = styled.div`
+  width: 100%;
+  min-width: 90px;
+  font-size: 13px;
+  font-weight: 600;
+  /* height: 100%; */
+  background-color: #efefef;
   border-radius: 5px;
   padding: 3%;
   text-align: center;
+  justify-content: center;
   margin-right: 5px;
+  color: #707070;
 `;
 
-const Participants = styled.div`
-  width: auto;
+const ParticipantsTag = styled.div`
+  width: 100%;
   font-size: 12px;
+  font-weight: 600;
   height: 100%;
-  background-color: #ffc194;
   border-radius: 5px;
-  padding: 3%;
+  display: flex;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 `;
 export default CategoryPost;

@@ -4,7 +4,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators as characterActions } from "../redux/modules/character";
-import { ContainerGrid, Button } from "../elements";
+import { Grid, ContainerGrid, Button } from "../elements";
 import { ReactComponent as CloseImg } from "../img/icon_close.svg";
 import MetaTag from "../shared/MetaTag";
 
@@ -66,79 +66,92 @@ const CharacterShare = () => {
 
   return (
     <React.Fragment>
-      <MetaTag title="습관삼끼 | 내 캐릭터 보기" />
+      <Grid height="100vh" bg="#F7F7F7">
+        <MetaTag title="습관삼끼 | 내 캐릭터 보기" />
 
-      <ContainerGrid>
-        <div style={{ position: "relative" }}>
-          <p
+        <ContainerGrid bg="#fff" padding="2.48vh">
+          <div style={{ position: "relative" }}>
+            <p
+              style={{
+                margin: "0",
+                textAlign: "center",
+                fontSize: "2.6vh",
+                fontWeight: "700",
+                lineHeight: "3.41vh",
+              }}
+            >
+              캐릭터 공유하기
+            </p>
+            <CloseImg
+              fill="#707070"
+              width="28"
+              height="28"
+              style={{ position: "absolute", right: "0", top: "0" }}
+              onClick={() => {
+                history.push("/mypage");
+              }}
+            />
+          </div>
+        </ContainerGrid>
+
+        <CharacterWrap id="myCharacter">
+          <ImgContainer>
+            <ItemImg src={Item + equipBg?.itemImgUrl} />
+            <ItemImg src={Item + equipColor?.itemImgUrl} />
+            <ItemImg src={Item + equipClothes?.itemImgUrl} />
+            <ItemImg src={Item + equipAcc?.itemImgUrl} />
+            <ItemImg src={Item + equipEmotion?.itemImgUrl} />
+          </ImgContainer>
+        </CharacterWrap>
+        <img
+          src={process.env.PUBLIC_URL + "/images/logo_text_image.png"}
+          alt="logo"
+          style={{
+            height: "4.7vh",
+            width: "100%",
+            margin: "0 auto",
+            objectFit: "cover",
+          }}
+        />
+
+        <ContainerGrid bg="#F7F7F7">
+          <div
             style={{
-              margin: "2.48vh",
               textAlign: "center",
-              fontSize: "2.6vh",
-              fontWeight: "700",
-              lineHeight: "3.41vh",
+              fontSize: "2.37vh",
+              fontWeight: "500",
+              height: "100%",
+              color: "#707070",
+              lineHeight: "3.10vh",
+              padding: "4.97vh 0",
             }}
           >
-            캐릭터 공유하기
-          </p>
-          <CloseImg
-            fill="#707070"
-            width="28"
-            height="28"
-            style={{ position: "absolute", right: "0", top: "0" }}
-            onClick={() => {
-              history.push("/mypage");
-            }}
-          />
-        </div>
-      </ContainerGrid>
+            습관삼끼에서 도전하는
+            <br />
+            멋진 나의 캐릭터를 공유해봐요!
+          </div>
 
-      <CharacterWrap id="myCharacter">
-        <ImgContainer>
-          <ItemImg src={Item + equipBg?.itemImgUrl} />
-          <ItemImg src={Item + equipColor?.itemImgUrl} />
-          <ItemImg src={Item + equipClothes?.itemImgUrl} />
-          <ItemImg src={Item + equipAcc?.itemImgUrl} />
-          <ItemImg src={Item + equipEmotion?.itemImgUrl} />
-        </ImgContainer>
-        <LogoContainer>습관삼끼</LogoContainer>
-      </CharacterWrap>
-
-      <div
-        style={{
-          textAlign: "center",
-          fontSize: "2.37vh",
-          fontWeight: "500",
-          lineHeight: "3.10vh",
-          marginBottom: "6.16vh",
-        }}
-      >
-        습관삼끼에서 도전하는
-        <br />
-        멋진 나의 캐릭터를 공유해봐요!
-      </div>
-
-      <ContainerGrid>
-        <Buttons>
-          <Button
-            borderRadius="5px"
-            border="1.5px solid #FF8B37"
-            margin="0 0 2.25vh"
-            bg="#fff"
-            color="rgba(255, 139, 55, 1)"
-            _onClick={onHtmlToPng}
-          >
-            이미지로 저장하기
-          </Button>
-          <Button
-            bg="rgba(255, 139, 55, 1)"
-            margin="0 0 1.89vh 0"
-            _onClick={shareCanvas}
-          >
-            내 캐릭터 공유하기
-          </Button>
-        </Buttons>
-      </ContainerGrid>
+          <Buttons>
+            <Button
+              borderRadius="5px"
+              border="1.5px solid #FF8B37"
+              margin="0 0 2.25vh"
+              bg="#fff"
+              color="rgba(255, 139, 55, 1)"
+              _onClick={onHtmlToPng}
+            >
+              이미지로 저장하기
+            </Button>
+            <Button
+              bg="rgba(255, 139, 55, 1)"
+              margin="0 0 1.89vh 0"
+              _onClick={shareCanvas}
+            >
+              내 캐릭터 공유하기
+            </Button>
+          </Buttons>
+        </ContainerGrid>
+      </Grid>
     </React.Fragment>
   );
 };
@@ -148,7 +161,6 @@ const CharacterWrap = styled.div`
   flex-direction: column;
   position: relative;
   height: 46vh;
-  margin-bottom: 6.16vh;
   // 모바일 버전
   @media (min-width: 420px) {
     height: 48.5vh;
@@ -167,21 +179,6 @@ const ItemImg = styled.img`
   height: 100%;
   position: absolute;
   z-index: 1;
-`;
-
-const LogoContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 36.67%;
-  z-index: 10;
-  width: 105px;
-  height: 28px;
-  border-radius: 15px 15px 0px 0px;
-  background: #fff;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Buttons = styled.div`

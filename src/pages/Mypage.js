@@ -218,6 +218,22 @@ const Mypage = () => {
           />
         </TestBox>
       </Grid> */}
+      <Grid>
+        <TestBox>
+          <Text bold size="2.13vh" alignLeft>
+            습관삼끼 피드백
+          </Text>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAsQRKY6RxcAZ2tP9cC-kmhyQDKrsMJ4h-QICdfq-nlYUW1w/viewform">
+            <RightButton
+              fill="#9C9C9C"
+              style={{
+                alignItems: "flex-end",
+                margin: "auto",
+              }}
+            />
+          </a>
+        </TestBox>
+      </Grid>
 
       <Grid>
         <TestBox
@@ -240,21 +256,6 @@ const Mypage = () => {
         </TestBox>
       </Grid>
 
-      <Grid>
-        <TestBox>
-          <Text bold size="2.13vh" alignLeft>
-            문의 FAQ
-          </Text>
-
-          <RightButton
-            fill="#9C9C9C"
-            style={{
-              alignItems: "flex-end",
-              margin: "auto",
-            }}
-          />
-        </TestBox>
-      </Grid>
       <Grid>
         <TestBox
           onClick={() => {

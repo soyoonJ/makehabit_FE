@@ -12,7 +12,7 @@ import Upload from "../components/Upload";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
 // import { history } from "../redux/configureStore";
-import { debounce } from "lodash";
+import { debounce, throttle } from "lodash";
 import styled from "styled-components";
 
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -77,32 +77,50 @@ const PostWrite = () => {
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
 
   //content내용 받아오기
-  const [title, setTitle] = React.useState(null);
+  const [title, setTitle] = React.useState("");
+  const [titleLength, setTitleLength] = React.useState(0);
   const [desc, setDesc] = React.useState("");
+  const [descLength, setDescLength] = React.useState(0);
   const [method, setMethod] = React.useState("");
+  const [methodLength, setMethodLength] = React.useState(0);
 
   const debounceTitle = debounce((e) => {
     setTitle(e.target.value);
   }, 300);
+  const throttleTitle = throttle((e) => {
+    setTitleLength(e.target.value.length);
+  }, 200);
   const debounceDesc = debounce((e) => {
     setDesc(e.target.value);
   }, 300);
+  const throttleDesc = throttle((e) => {
+    setDescLength(e.target.value.length);
+  }, 200);
   const debounceMethod = debounce((e) => {
     setMethod(e.target.value);
   }, 300);
+  const throttleMethod = throttle((e) => {
+    setMethodLength(e.target.value.length);
+  }, 200);
 
   const TitleKeyPress = React.useCallback(debounceTitle, []);
+  const TitleLengthKeyPress = React.useCallback(throttleTitle, []);
   const DescKeyPress = React.useCallback(debounceDesc, []);
+  const DescLengthKeyPress = React.useCallback(throttleDesc, []);
   const MethodKeyPress = React.useCallback(debounceMethod, []);
+  const MethodLengthKeyPress = React.useCallback(throttleMethod, []);
 
   const onChangeTitle = (e) => {
     TitleKeyPress(e);
+    TitleLengthKeyPress(e);
   };
   const onChangeDesc = (e) => {
     DescKeyPress(e);
+    DescLengthKeyPress(e);
   };
   const onChangeMethod = (e) => {
     MethodKeyPress(e);
+    MethodLengthKeyPress(e);
   };
 
   //업로드에 함수 접근하는 Ref
@@ -209,7 +227,9 @@ const PostWrite = () => {
           <TitleInput
             placeholder="제목을 입력해주세요."
             onChange={onChangeTitle}
+            maxLength="20"
           />
+          <LengthText textAlign="right">{titleLength}/20자</LengthText>
         </Grid>
         {/* 카테고리 선택 */}
 
@@ -307,9 +327,7 @@ const PostWrite = () => {
             onChange={onChangeDesc}
             maxLength="150"
           ></Contents>
-          <LengthText textAlign="right">
-            {desc.length ? desc.length : "0"}/150자
-          </LengthText>
+          <LengthText textAlign="right">{descLength}/150자</LengthText>
         </Grid>
         <MarginBox>
           <Grid>
@@ -327,9 +345,7 @@ const PostWrite = () => {
             onChange={onChangeMethod}
             maxLength="150"
           ></Contents>
-          <LengthText textAlign="right">
-            {method.length ? method.length : "0"}/150자
-          </LengthText>
+          <LengthText textAlign="right">{methodLength}/150자</LengthText>
         </MarginBox>
         <MarginBox style={{ margin: "0 0 9.375rem 0" }}>
           {imgExist && title && sendCategory && date && desc && method ? (
@@ -403,7 +419,7 @@ const TitleInput = styled.input`
   height: 3.875rem;
   border: none;
   border-radius: 0.313rem;
-  margin: 1.125rem 0;
+  margin: 1.125rem 0 0;
   font-size: 1rem;
   // ::placeholder {
   //   font-size: 1rem;
@@ -416,6 +432,7 @@ const TitleInput = styled.input`
 const CategoryButton = styled.button`
   width: 100%;
   margin: 0.625rem 0;
+  padding: 0;
   border: none;
   border-bottom: 1px solid #e0e0e0;
   background-color: white;

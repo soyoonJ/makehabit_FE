@@ -234,6 +234,7 @@ const ConfirmText = styled.div`
 const Title = styled.div`
   font-weight: 700;
   font-size: 2.6vh;
+  word-break: break-all;
   color: #ff8b37;
   line-height: 3.41vh;
   letter-spacing: -0.005em;
