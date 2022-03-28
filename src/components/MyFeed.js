@@ -120,6 +120,7 @@ const Comment = styled.div`
       line-height: 1.625rem;
       letter-spacing: -0.005rem;
       color: #1d1b1b;
+      margin-bottom: 1.75rem;
     }
   }
 `;

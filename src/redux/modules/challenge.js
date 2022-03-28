@@ -21,8 +21,8 @@ const setFeed = createAction(SET_FEED, (feed) => ({ feed }));
 const setConfirm = createAction(SET_CONFIRM, (challenge_info) => ({
   challenge_info,
 }));
-const setComplete = createAction(SET_COMPLETE, (totalCnt) => ({
-  totalCnt,
+const setComplete = createAction(SET_COMPLETE, (confirm_info) => ({
+  confirm_info,
 }));
 
 // initialState
@@ -33,6 +33,7 @@ const initialState = {
   proof_list: null,
   feed: null,
   totalCnt: null,
+  point: null,
   // isLoading: true,
 };
 
@@ -66,7 +67,8 @@ const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
         apis
           .confirm(challengeId, res.data.imgUrl, challengeTitle, comment)
           .then(function (res) {
-            dispatch(setComplete(res.data.totalCnt));
+            // console.log("인증완료", res.data);
+            dispatch(setComplete(res.data));
             history.push("/completed/confirm");
           })
           .catch((error) => {
@@ -147,7 +149,7 @@ export default handleActions(
       }),
     [SET_PROOF]: (state, action) =>
       produce(state, (draft) => {
-        draft.proof_list = action.payload.proof_list;
+        draft.proof_list = action.payload.proof_list.reverse();
         // draft.isLoading = false;
       }),
     [SET_FEED]: (state, action) =>
@@ -157,7 +159,8 @@ export default handleActions(
       }),
     [SET_COMPLETE]: (state, action) =>
       produce(state, (draft) => {
-        draft.totalCnt = action.payload.totalCnt;
+        draft.totalCnt = action.payload.confirm_info.totalCnt;
+        draft.point = action.payload.confirm_info.point;
       }),
   },
   initialState

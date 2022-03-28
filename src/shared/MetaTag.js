@@ -8,7 +8,11 @@ const MetaTag = (props) => {
     <Helmet>
       <title>{title}</title>
       <meta property="og:title" content={title} />
-      <meta property="og:image" content={image} />
+      {/* <meta property="og:image" content={image} /> */}
+      <meta
+        property="og:image"
+        content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
+      />
       {/* <meta property="og:site_name" content="" /> */}
       <meta property="og:description" content={description} />
       {/* 페이스북은 이미지의 사이즈가 최소 1200x630 픽셀보다 크기를 권장하며,
@@ -22,6 +26,7 @@ const MetaTag = (props) => {
 };
 
 MetaTag.defaultProps = {
+  // image: process.env.PUBLIC_URL + "/meta/metatag_02.png",
   description: "작심삼일도 열번 하면 30일이다",
   keywords: "습관삼끼, 습관만들기, 갓생살기",
 };
