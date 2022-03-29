@@ -552,10 +552,8 @@ const Container = styled.div`
 
   section {
     width: 100%;
-    // height: 50%;
-    max-height: 85vh;
+    height: 85vh;
     align-self: end;
-    // background: #fff;
     background-color: transparent !important;
   }
 
@@ -657,18 +655,18 @@ const TitlePoint = styled.span`
 `;
 
 const ModalContent = styled.div`
-  height: 620px;
+  height: 65vh;
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
   overflow: auto;
-  margin-bottom: 6.625rem;
+  // margin-bottom: 6.625rem;
   -ms-overflow-style: none;
-  max-height: 38.75rem;
+  // max-height: 38.75rem;
 
-  @media screen and (max-width: 420px) {
-    max-height: 10rem;
-  }
+  // @media screen and (max-width: 420px) {
+  //   max-height: 10rem;
+  // }
 
   ::-webkit-scrollbar {
     display: none;
@@ -719,14 +717,14 @@ const Button = styled.button`
 `;
 
 const MarginBox = styled.div`
-  margin: 0.625rem 1.25rem;
+  margin: 0 1.25rem;
+  padding: 2.72vh 0;
 `;
 const GridBox = styled.div`
   display: grid;
   max-width: 420px;
   grid-template-columns: 2fr 3fr 1fr;
   gap: 4%;
-  margin: 5vh 0;
 `;
 const PreviewImg = styled.div`
   // min-width: 100px;
@@ -794,7 +792,11 @@ const ItemCancel = styled.div`
 `;
 
 const MarginBottom = styled.div`
-  // margin-bottom: 6.625rem;
+  padding-bottom: 5rem;
+
+  @media (max-width: 320px) {
+    padding-bottom: 8rem;
+  }
 `;
 
 export default ShoppingBasket1;
