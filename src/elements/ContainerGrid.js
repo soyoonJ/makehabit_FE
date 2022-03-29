@@ -18,7 +18,7 @@ const ContainerGrid = (props) => {
 
 ContainerGrid.defaultProps = {
   children: null,
-  padding: "0 5%",
+  padding: "0 1.250rem",
   position: null,
   bg: null,
   width: null,
