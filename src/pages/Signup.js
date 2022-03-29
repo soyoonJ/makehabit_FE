@@ -208,7 +208,7 @@ const Signup = () => {
         <Grid position="relative">
           <InputBox
             type={pwdMode}
-            placeholder="8~16자, 문자/숫자/특수문자를 모두 포함하여 사용해주세요."
+            placeholder="8~16자, 문자/숫자/특수문자를 모두 포함해주세요."
             onChange={changePwd}
           />
 
