@@ -38,13 +38,13 @@ const Recommend = (props) => {
 
   if (categoryId === "new") {
     title = "따끈따끈 새챌린지";
-    BannerImg = "/banner/themebanner_01.png";
-  } else if (categoryId === "study") {
+    BannerImg = "/banner/themebanner_01.webp";
+  } else if (categoryId === "exercise") {
     title = "운동 가보자고";
-    BannerImg = "/banner/themebanner_02.png";
+    BannerImg = "/banner/themebanner_02.webp";
   } else {
     title = "추천 작심삼일";
-    BannerImg = "/banner/themebanner_01.png";
+    BannerImg = "/banner/themebanner_01.webp";
   }
 
   return (
