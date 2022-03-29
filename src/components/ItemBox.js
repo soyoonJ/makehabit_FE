@@ -149,7 +149,6 @@ const ItemBox = () => {
 
 const ItemContainer = styled.div`
   max-width: 420px;
-  height: 100%;
   background: #f7f7f7;
   display: flex;
   overflow-x: scroll;

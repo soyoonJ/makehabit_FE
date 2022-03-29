@@ -233,7 +233,7 @@ const Mypage = () => {
       <Grid>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSfAsQRKY6RxcAZ2tP9cC-kmhyQDKrsMJ4h-QICdfq-nlYUW1w/viewform"
-          style={{}}
+          style={{ all: "unset" }}
         >
           <TestBox>
             <Text bold size="2.13vh" alignLeft>

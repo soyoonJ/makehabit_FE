@@ -163,6 +163,7 @@ const Confirm = (props) => {
             style={{
               textAlign: "end",
               marginTop: "0.94vh",
+              marginBottom: "9vh",
               color: "#9C9C9C",
               lineHeight: "2.65vh",
               fontSize: "1.89vh",
@@ -311,13 +312,13 @@ const Textarea = styled.textarea`
   }
 `;
 const Button = styled.button`
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  // position: absolute;
+  // right: 0;
+  // left: 0;
+  // bottom: 0;
   font-size: 2.6vh;
   font-weight: 700;
-  width: 90%;
+  width: 100%;
   max-width: 380px;
   height: 7.93vh;
   border: none;
