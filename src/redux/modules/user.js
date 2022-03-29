@@ -26,7 +26,6 @@ const initialState = {
   emailCheck: 0, //0 = 이메일 형식을 확인해주세요 ,-1 = 이미 가입된 이메일 입니다, 1 =  사용 가능한 이메일
   nicknameCheck: 0, //0 = 닉네임 형식을 확인해주세요 ,-1 = 이미 가입된 닉네임 입니다, 1 =  사용 가능한 닉네임
   user_info: null,
-  empty: [],
 };
 
 // 회원가입
@@ -140,11 +139,13 @@ const kakaoLogin = (code) => {
       url: `https://makehabitapi.shop/api/users/kakao/callback?code=${code}`,
     })
       .then((res) => {
-        console.log("카카오오오", res);
-        window.alert("zz", res.data);
+        // console.log("카카오오오", res);
         const token = res.data.token;
         localStorage.setItem("token", token); //예시로 로컬에 저장
-        dispatch(setUser(res.data));
+        setUser({
+          nickname: res.data.user.nickname,
+        });
+        dispatch(setUser());
         history.push("/");
       })
       .catch(function (error) {
@@ -209,8 +210,7 @@ export default handleActions(
       produce(state, (draft) => {
         // localStorage.setItem("token", action.payload.user.token);
         draft.user = action.payload.user;
-        console.log("안녕하세요", action.payload);
-        draft.empty = action.payload;
+        // console.log("안녕하세요", action.payload);
         // console.log(draft.user);
         draft.is_login = true;
       }),
