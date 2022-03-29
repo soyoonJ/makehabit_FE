@@ -37,6 +37,7 @@ import Auth2RedirectHandler from "./Auth2RedirectHandler";
 
 //메타태그
 import { Helmet } from "react-helmet-async";
+import MetaTag from "./MetaTag";
 // import Chat from "../pages/Chat";
 // import Spinner from "./Spinner";
 const Main = lazy(() => import("../pages/Main"));
@@ -92,18 +93,7 @@ function App() {
               }
             >
               <>
-                <Helmet>
-                  <title>호이이잇</title>
-                  <meta
-                    property="og:image"
-                    // content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
-                    content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
-                  />
-                  <meta
-                    property="og:url"
-                    content="https://makehabit.co.kr/"
-                  ></meta>
-                </Helmet>
+                <MetaTag />
               </>
               <Switch>
                 <Route path="/" exact component={Main} />
