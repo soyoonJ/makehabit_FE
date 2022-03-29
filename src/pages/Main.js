@@ -54,7 +54,6 @@ const Main = (props) => {
   // const maincategory_list = useSelector(
   //   (state) => state.main.maincategory_list
   // );
-  console.log("추천리스트", recommend_list);
   // console.log("뉴리스트", new_list);
   // console.log("스터디", new_list);
   // console.log("useSelector 썻는데!!!!", maincategory_list);
@@ -65,8 +64,6 @@ const Main = (props) => {
     (state) => state.ranking.ranking_list?.equippedItems
   );
   const Item = process.env.PUBLIC_URL + "/items/large";
-
-  console.log("아이템ㅌ확인", AllRanking[0]?.equippedItems[0]?.itemImgUrl);
   return (
     <Container>
       <MetaTag title="습관삼끼" />
@@ -465,6 +462,7 @@ const Main = (props) => {
         <Text margin="0">@ hanghae99_C5</Text>
       </LogoBottom>
       <ButtonNavigation />
+      <BottomMargin />
     </Container>
   );
 };
@@ -477,10 +475,9 @@ const Logo = styled.img`
 `;
 const Container = styled.div`
   margin: 0%;
-  margin-bottom: 170px;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
+  overflow-y: auto;
   -ms-overflow-style: none;
 
   @media screen and (min-width: 420px) {
@@ -647,6 +644,10 @@ const ItemImg = styled.img`
   /* z-index: 1; */
   border-radius: 10px;
   object-fit: cover;
+`;
+
+const BottomMargin = styled.div`
+  margin-bottom: 170px;
 `;
 
 export default Main;

@@ -107,7 +107,7 @@ const Container = styled.div`
   bottom: 0px;
   left: 0px;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 99;
+  z-index: 102;
   display: flex;
   overflow: hidden;
   /* max-height: 100%; */

@@ -24,7 +24,7 @@ const ItemBox = () => {
   const isEquip = isEquipAll.find((e) => e.category === category);
   // 미리보기
   const preview = useSelector((state) => state.character);
-  console.log("미리보기", preview);
+  // console.log("미리보기", preview);
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);

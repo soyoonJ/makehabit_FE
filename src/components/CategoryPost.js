@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
+import LoginModal from "../components/LoginModal";
+
 import moment from "moment";
 
 // import { FcLikePlaceholder, FcLike } from "react-icons/fc";
@@ -20,6 +22,9 @@ const CategoryPost = (props) => {
   const dispatch = useDispatch();
   // const post = useSelector((state) => state.main.category_list);
   // console.log("정신차려라", post);
+
+  //로그인모달창에 접근하는 ref
+  const loginModal = React.useRef();
 
   // const Img01 = process.env.PUBLIC_URL + "/images";
   // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
@@ -55,8 +60,7 @@ const CategoryPost = (props) => {
     if (is_login) {
       dispatch(postActions.likeDB(challengeId));
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
+      loginModal.current.openModal();
     }
   };
   //찜하기 해제 기능
@@ -64,8 +68,7 @@ const CategoryPost = (props) => {
     if (is_login) {
       dispatch(postActions.dislikeDB(challengeId));
     } else {
-      window.alert("로그인 후 인증 해주세요!");
-      history.push("/login");
+      loginModal.current.openModal();
     }
   };
 
@@ -140,6 +143,7 @@ const CategoryPost = (props) => {
           </Text>
         </Tag> */}
       </Card>
+      <LoginModal ref={loginModal} in_page />
     </React.Fragment>
   );
 };

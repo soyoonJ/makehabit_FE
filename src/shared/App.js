@@ -127,15 +127,16 @@ const Container = styled.div`
   flex-direction: column; // 아이템이 세로방향으로 흐릴 수 있도록(상>하)
   justify-content: flex-start;
   align-items: center;
-  overflow: hidden;
+  overflow: auto;
   position: relative; //absolute를 쓸때 영역을 잡아주는 역할
   /* background: url("/banner/background_banner.webp"); */
   background: url("/banner/background_습관삼끼_ v3.png");
   background-size: cover;
   scrollbar-width: none;
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  // -ms-overflow-style: none;
+  // ::-webkit-scrollbar {
+  //   display: none;
+  // }
 
   @media screen and (min-width: 420px) {
     max-height: 100vh;
@@ -143,6 +144,7 @@ const Container = styled.div`
   }
 
   #wrap {
+    -ms-overflow-style: none;
     scrollbar-width: none;
     ::-webkit-scrollbar {
       display: none;
@@ -151,8 +153,8 @@ const Container = styled.div`
     overflow-y: scroll;
     width: 100%;
     max-width: 420px;
-    height: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    // min-height: 100vh;
     margin: 0 auto;
     padding: 0 auto;
     box-sizing: border-box;

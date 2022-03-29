@@ -15,6 +15,7 @@ import MetaTag from "../shared/MetaTag";
 import { debounce, throttle } from "lodash";
 import styled from "styled-components";
 
+import LoginModal from "../components/LoginModal";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 // import { GoCalendar } from "react-icons/go";
 
@@ -198,6 +199,16 @@ const PostWrite = () => {
   let hour = currentTime.getHours();
   let min = currentTime.getMinutes();
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
+
+  //로그인모달창에 접근하는 ref
+  const loginModal = React.useRef();
+  const is_token = localStorage.getItem("token") ? true : false;
+  // 로그인 상태 아닐 경우 튕겨내기
+  React.useEffect(() => {
+    if (!is_token) {
+      loginModal.current.openModal();
+    }
+  }, []);
 
   return (
     <Container>
@@ -385,7 +396,7 @@ const PostWrite = () => {
           )}
         </MarginBox>
       </Grid>
-
+      <LoginModal ref={loginModal} in_page />
       <ButtonNavigation />
     </Container>
   );
