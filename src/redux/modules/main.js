@@ -17,8 +17,9 @@ const getSearch = createAction(GET_SEARCH, (searchWord_list) => ({
 
 const getCategory = createAction(
   GET_CATEGOTY,
-  (category_list, checkLoadAll) => ({
+  (category_list, category, checkLoadAll) => ({
     category_list,
+    category,
     checkLoadAll,
   })
 );
@@ -38,6 +39,7 @@ const getRecommend = createAction(GET_RECOMMEND, (recommend_list) => ({
 const initialState = {
   searchWord_list: [],
   category_list: [],
+  category: [],
   recommend_list: [],
   new_list: [],
   study_list: [],
@@ -102,9 +104,6 @@ const categoryDB = (categoryId) => {
         console.log(error);
         return;
       });
-    // .then(function (res) {
-    //   history.push(`/category/${categoryId}`);
-    // });
   };
 };
 
@@ -163,6 +162,7 @@ export default handleActions(
         //action.payload 는 서버에서 응답 받아온 값
         // 여기 list.challenges로 적은 이유는 map 돌리는 부분에서 간소화하기위함
         draft.category_list = action.payload.category_list.challenges;
+
         draft.checkLoadAll = action.payload.checkLoadAll;
       }),
 

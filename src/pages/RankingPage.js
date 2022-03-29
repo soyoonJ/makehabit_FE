@@ -82,11 +82,13 @@ const RankingPage = () => {
       </ContainerGrid>
       <MyRanking>
         <div>
-          {1 <= MyRank <= 3 ? (
-            <MyMedal
-              src={process.env.PUBLIC_URL + `images/icon_${MyRank}st.png`}
-              alt="Rank_Icon"
-            />
+
+          {MyRank === 1 ? (
+            <MyRankIcon src="images/icon_1st.png" alt="Icon_1st" />
+          ) : MyRank === 2 ? (
+            <MyRankIcon src="images/icon_2st.png" alt="Icon_2st" />
+          ) : MyRank === 3 ? (
+            <MyRankIcon src="images/icon_3st.png" alt="Icon_3st" />
           ) : (
             <MyRankNum>{MyRank}</MyRankNum>
           )}
@@ -305,6 +307,17 @@ const MyRankNum = styled.p`
   color: #fff;
 `;
 
+const MyRankIcon = styled.img`
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  width: 40px;
+  align-content: center;
+  margin: auto;
+`;
+
 const Profile = styled.div`
   border-radius: 5px;
   width: 50px;
@@ -352,14 +365,6 @@ const RankingWrap = styled.div`
   }
 `;
 
-const ProfileImg = styled.img`
-  width: 119px;
-  height: 119px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Medal = styled.img`
   z-index: 99;
   position: absolute;
@@ -371,36 +376,6 @@ const Line = styled.div`
   background-color: #f7f7f7;
   height: 5px;
   margin-top: 22px;
-`;
-
-const RankingList = styled.div`
-  width: 100%;
-  height: 8.76vh;
-  background-color: #ffff;
-  display: grid;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px #f7f7f7 solid;
-
-  & > div {
-    width: 100%;
-    max-width: 420px;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // height: 100%;
-    display: grid;
-    grid-template-columns: 17.4% 12.8% 1fr 17.4%;
-    align-items: center;
-  }
-`;
-
-const RankNum = styled.p`
-  display: flex;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #707070;
 `;
 
 const ListWrap = styled.div`

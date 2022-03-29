@@ -1,56 +1,45 @@
 import React from "react";
 import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
-import { history } from "../redux/configureStore";
-
-import { actionCreators as rankingActions } from "../redux/modules/ranking";
-
-import { useDispatch, useSelector } from "react-redux";
 
 const Ranking = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   const { equippedItems, nickname, proofCnt, rank } = props;
   const AllRanking = useSelector((state) => state.ranking.ranking_list);
 
-  console.log("rank", rank);
-  //   console.log("아이템", equippedItems[0]);
-
   return (
     <RankingList>
-      {proofCnt > 0 ? (
-        <div>
-          {1 <= rank && rank <= 3 ? (
-            <MedalRank
-              src={process.env.PUBLIC_URL + `images/icon_${rank}st.png`}
-              alt="Rank_Icon"
-            />
-          ) : (
-            <RankNum>{rank}</RankNum>
-          )}
+      <div>
+        {rank === 1 ? (
+          <Medal src="images/icon_1st.png" alt="Icon_1st" />
+        ) : rank === 2 ? (
+          <Medal src="images/icon_2st.png" alt="Icon_2st" />
+        ) : rank === 3 ? (
+          <Medal src="images/icon_3st.png" alt="Icon_3st" />
+        ) : (
+          <RankNum>{rank}</RankNum>
+        )}
 
-          <Profile>
-            <ItemImg src={Item + equippedItems[0]?.itemImgUrl} />
-            <ItemImg src={Item + equippedItems[1]?.itemImgUrl} />
-            <ItemImg src={Item + equippedItems[2]?.itemImgUrl} />
-            <ItemImg src={Item + equippedItems[3]?.itemImgUrl} />
-            <ItemImg src={Item + equippedItems[4]?.itemImgUrl} />
-          </Profile>
-          <Text
-            margin="0 0 0 18px"
-            color="#1D1B1B"
-            size="18px"
-            width="130px"
-            bold
-          >
-            {nickname}
-          </Text>
-          <Text color="#FF8B37" size="18px" bold margin="0 0px 0 0px">
-            {proofCnt}번
-          </Text>
-        </div>
-      ) : (
-        ""
-      )}
+        <Profile>
+          <ItemImg src={Item + equippedItems[0]?.itemImgUrl} />
+          <ItemImg src={Item + equippedItems[1]?.itemImgUrl} />
+          <ItemImg src={Item + equippedItems[2]?.itemImgUrl} />
+          <ItemImg src={Item + equippedItems[3]?.itemImgUrl} />
+          <ItemImg src={Item + equippedItems[4]?.itemImgUrl} />
+        </Profile>
+        <Text
+          margin="0 0 0 18px"
+          color="#1D1B1B"
+          size="18px"
+          width="130px"
+          bold
+        >
+          {nickname}
+        </Text>
+        <Text color="#FF8B37" size="18px" bold margin="0 0px 0 0px">
+          {proofCnt}번
+        </Text>
+      </div>
     </RankingList>
   );
 };
@@ -89,6 +78,14 @@ const RankNum = styled.p`
   font-size: 18px;
   font-weight: bold;
   color: #707070;
+`;
+
+const Medal = styled.img`
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
 `;
 const Profile = styled.div`
   border-radius: 5px;
