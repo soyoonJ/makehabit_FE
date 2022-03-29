@@ -400,13 +400,13 @@ const PostDetail = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   -ms-overflow-style: none;
-
-  @media screen and (min-width: 420px) {
-    max-height: 100vh;
-    overflow: auto;
-  }
+  max-height: 100vh;
+  // @media screen and (min-width: 420px) {
+  //   max-height: 100vh;
+  //   overflow: auto;
+  // }
   ::-webkit-scrollbar {
     display: none;
   }
@@ -593,19 +593,6 @@ const HeadLine = styled.span`
 const TextArea = styled.span`
   font-size: 1.25rem;
   line-height: 1.625rem;
-`;
-
-const Join = styled.button`
-  position: fixed;
-  bottom: 0;
-  height: 50px;
-  width: 100%;
-  max-width: 420px;
-  background-color: #ff8b37;
-  color: white;
-  border: none;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
 `;
 
 const ColorBoxJoin = styled.div`
