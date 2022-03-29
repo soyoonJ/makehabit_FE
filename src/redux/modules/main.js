@@ -97,16 +97,13 @@ const categoryDB = (categoryId) => {
     apis
       .category(categoryId) //
       .then(function (res) {
-        console.log("잘 들어가느냐!!!", res.data);
+        // console.log("잘 들어가느냐!!!", res.data);
         dispatch(getCategory(res.data));
       })
       .catch((error) => {
         console.log(error);
         return;
       });
-    // .then(function (res) {
-    //   history.push(`/category/${categoryId}`);
-    // });
   };
 };
 
@@ -165,9 +162,8 @@ export default handleActions(
         //action.payload 는 서버에서 응답 받아온 값
         // 여기 list.challenges로 적은 이유는 map 돌리는 부분에서 간소화하기위함
         draft.category_list = action.payload.category_list.challenges;
-        draft.category = action.payload.category_list.challenges.category;
+
         draft.checkLoadAll = action.payload.checkLoadAll;
-        console.log("카테고리!!!!", draft.category);
       }),
 
     [GET_RECOMMEND]: (state, action) =>
