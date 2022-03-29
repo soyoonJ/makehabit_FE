@@ -105,12 +105,13 @@ const RankingPage = () => {
             {MyNickname}
           </Text>
           <Text
-            alignCenter
+            padding="0px 20px 0px 0px "
+            margin="0px"
+            alignRight
             color="#fff"
             size="18px"
-            width="100%"
+            width=""
             bold
-            margin="0 0px 0 0px"
           >
             {MyCnt}번
           </Text>

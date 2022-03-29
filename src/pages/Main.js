@@ -48,8 +48,7 @@ const Main = () => {
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const new_list = useSelector((state) => state.main.new_list);
   const study_list = useSelector((state) => state.main.study_list);
-  const empty = useSelector((state) => state.user.empty);
-  console.log("MAINEMPTY", empty);
+
   //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking?.ranking_list);
   console.log("랭킹", AllRanking);
