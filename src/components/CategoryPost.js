@@ -121,10 +121,11 @@ const CategoryPost = (props) => {
           ) : (
             <Tag>습관삼끼 {round}세트</Tag>
           )}
-          <div>
+
+          <ParticipantsTag>
             <img src={Icon + "/icon_mypage.svg"} />
-            <ParticipantsTag>{participants}명</ParticipantsTag>
-          </div>
+            {participants}명
+          </ParticipantsTag>
         </TagWrap>
 
         {/* <Tag>
@@ -190,9 +191,7 @@ const Title = styled.div`
   font-size: 18px;
   font-weight: bold;
   display: block;
-
   width: 100%;
-
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -204,7 +203,7 @@ const TagWrap = styled.div`
   width: 100%;
   margin-top: 10px;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
 
   & > div {
@@ -217,8 +216,8 @@ const TagWrap = styled.div`
 const Tag = styled.div`
   width: 100%;
   min-width: 90px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 400;
   /* height: 100%; */
   background-color: #efefef;
   border-radius: 5px;
@@ -234,10 +233,9 @@ const ParticipantsTag = styled.div`
   font-size: 16px;
   font-weight: 400;
   height: 100%;
-  border-radius: 5px;
   display: flex;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   align-content: center;
   color: #707070;

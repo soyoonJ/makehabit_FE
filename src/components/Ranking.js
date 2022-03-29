@@ -7,6 +7,10 @@ const Ranking = (props) => {
   const { equippedItems, nickname, proofCnt, rank } = props;
   // console.log("Ranking.js", equippedItems, nickname, proofCnt, rank);
 
+  function getParametersForUnsplash({ width, height, quality, format }) {
+    return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;
+  }
+
   return (
     <RankingList>
       <div>
@@ -21,11 +25,66 @@ const Ranking = (props) => {
         )}
 
         <Profile>
-          <ItemImg src={Item + equippedItems[0]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[1]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[2]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[3]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[4]?.itemImgUrl} />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[0]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[1]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "png",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[2]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[3]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[4]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 50,
+                height: 50,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
         </Profile>
         <Text
           margin="0 0 0 18px"
