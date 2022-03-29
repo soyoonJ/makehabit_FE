@@ -140,13 +140,14 @@ const kakaoLogin = (code) => {
     })
       .then((res) => {
         // console.log("카카오오오", res);
-        const token = res.data.token;
+        const token = res.data.user.token;
         localStorage.setItem("token", token); //예시로 로컬에 저장
-        setUser({
-          email: null,
-          nickname: res.data.nickname,
-        });
-        dispatch(setUser());
+        dispatch(
+          setUser({
+            email: null,
+            nickname: res.data.user.nickname,
+          })
+        );
         history.push("/");
       })
       .catch(function (error) {
