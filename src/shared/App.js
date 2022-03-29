@@ -80,11 +80,6 @@ function App() {
   return (
     <React.Fragment>
       <Container>
-        <>
-          <Helmet>
-            <title>습관삼끼</title>
-          </Helmet>
-        </>
         {onLine ? "" : alert("인터넷 연결상태를 확인해주세요")}
         <div id="wrap">
           <ConnectedRouter history={history}>
@@ -96,6 +91,20 @@ function App() {
                 </Outter>
               }
             >
+              <>
+                <Helmet>
+                  <title>호이이잇</title>
+                  <meta
+                    property="og:image"
+                    // content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
+                    content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
+                  />
+                  <meta
+                    property="og:url"
+                    content="https://makehabit.co.kr/"
+                  ></meta>
+                </Helmet>
+              </>
               <Switch>
                 <Route path="/" exact component={Main} />
                 <Route path="/login" component={Login} />
