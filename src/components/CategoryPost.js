@@ -123,7 +123,7 @@ const CategoryPost = (props) => {
           )}
 
           <ParticipantsTag>
-            <img src={Icon + "/icon_mypage.svg"} />
+            <img src={Icon + "/icon_mypage.svg"} alt="icon" />
             {participants}명
           </ParticipantsTag>
         </TagWrap>
@@ -217,7 +217,7 @@ const Tag = styled.div`
   width: 100%;
   min-width: 100px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   /* height: 100%; */
   background-color: #efefef;
   border-radius: 5px;

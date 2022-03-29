@@ -154,6 +154,7 @@ const PostDetail = (props) => {
         <PageBack challenges={challenges} />
         <TitleImage src={post.thumbnail} />
       </TitleBox>
+
       <MarginBox>
         <TitleContainer>
           <TitleText>{post.title}</TitleText>
@@ -206,7 +207,7 @@ const PostDetail = (props) => {
             </StartDate>
           </ToRight>
         </ChallengeStartContainer>
-        <MarginBox>
+        <MarginBox style={{ paddingTop: "23px", paddingBottom: "35px" }}>
           {/* 예상 종료일 */}
           <OrangeBox>
             <EndDateText>
@@ -242,11 +243,11 @@ const PostDetail = (props) => {
       </BorderBox>
       {post.isParticipate ? (
         <IsParticipate>
-          <MarginBox>
+          <MarginBox style={{ marginTop: "1.688rem" }}>
             <HeadLine>나의 참여도</HeadLine>
             <Text>3번씩 10세트면 한 달 습관 성공! 꾸준히 도전해봐요!</Text>
           </MarginBox>
-          <MarginBox>
+          <MarginBox style={{ marginBottom: "1.125rem" }}>
             <ColorBoxJoin>
               <CurrentRound>{currentRound}바퀴 진행중</CurrentRound>
             </ColorBoxJoin>
@@ -308,14 +309,14 @@ const PostDetail = (props) => {
         ""
       )}
 
-      <MarginBox>
+      <MarginBox style={{ paddingTop: "2.188rem" }}>
         <HeadLine>이런 챌린지에요!</HeadLine>
         <ColorBoxChallenge>
           <TextArea>{post.content}</TextArea>
         </ColorBoxChallenge>
       </MarginBox>
-      <PaddingBox />
-      <MarginBox>
+      {/* <PaddingBox /> */}
+      <MarginBox style={{ paddingTop: "2.5rem" }}>
         <HeadLine>챌린지 인증방법</HeadLine>
         <ColorBoxChallenge>
           <TextArea>{post.howtoContent}</TextArea>
@@ -323,7 +324,7 @@ const PostDetail = (props) => {
       </MarginBox>
       {post.isParticipate && post.status === 1 ? (
         <MarginBox>
-          <CancelBox style={{ margin: "20px 0 100px 0" }}>
+          <CancelBox style={{ margin: "33px 0 100px 0" }}>
             <CancelButton onClick={() => leaveModal.current.openModal()}>
               챌린지 탈퇴하기
             </CancelButton>
@@ -434,11 +435,10 @@ const TitleImage = styled.img`
 
 const TitleContainer = styled.div`
   // text-align: center;
-  // margin: 1.313em 0 4.7vh 0;
+  margin: 1.563rem 0 0.875rem 0;
   display: grid;
   grid-template-columns: 5fr 1fr;
-  // align-items: center;
-  // justify-content: center;
+  align-items: center;
 `;
 
 const TitleText = styled.span`
@@ -450,7 +450,7 @@ const TitleText = styled.span`
 
 const ToLeft = styled.div`
   display: flex;
-  margin: 0.625rem 1.25rem;
+  margin: 0 0 0 1.25rem;
   align-items: center;
   justify-content: left;
 `;
@@ -482,13 +482,13 @@ const JoinText = styled.span`
 `;
 const ToRight = styled.div`
   display: flex;
-  margin: 0.625rem 1.25rem;
+  margin: 0 1.25rem;
   align-items: center;
   justify-content: right;
 `;
 const BorderBox = styled.div`
   margin-top: 20px;
-  padding: 0.625rem 0;
+  padding: 1.75rem 0 0;
   border-top: 0.094rem solid #e0e0e0;
   border-bottom: 0.094rem solid #e0e0e0;
 `;
@@ -509,7 +509,7 @@ const ChallengeStartContainer = styled.div`
   grid-template-columns: 1fr 1.7fr;
 `;
 const ChallengeText = styled.span`
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: bold;
   line-height: 1.625rem;
   @media (max-width: 420px) {
@@ -527,7 +527,7 @@ const StartDate = styled.span`
 `;
 
 const MarginBox = styled.div`
-  margin: 1.25rem 1.25rem;
+  margin: 0 1.25rem;
 `;
 
 const EndDateText = styled.span`
@@ -685,11 +685,11 @@ const CancelButton = styled.button`
   width: 100%;
   font-size: 1.25rem;
   font-weight: 400;
-  padding: 1.188rem 6.938rem;
+  padding: 1.188rem 0;
   cursor: default;
   border: none;
-  background-color: #ff8b37;
-  color: #fff;
+  background-color: #f7f7f7;
+  color: #707070;
 `;
 const ConfirmBox = styled.div`
   width: 100%;
