@@ -43,14 +43,14 @@ const ItemCircle = () => {
   }, [item]);
 
   const color = [
-    ["/color_00.png", "#FF954D"],
-    ["/color_01.png", "#FFF16C"],
-    ["/color_02.png", "#FFC0C0"],
-    ["/color_03.png", "#FF6666"],
-    ["/color_04.png", "#C7FFE0"],
-    ["/color_05.png", "#CAEF9A"],
-    ["/color_06.png", "#8CD6F4"],
-    ["/color_07.png", "#D7C5FF"],
+    ["/color_00.webp", "#FF954D"],
+    ["/color_01.webp", "#FFF16C"],
+    ["/color_02.webp", "#FFC0C0"],
+    ["/color_03.webp", "#FF6666"],
+    ["/color_04.webp", "#C7FFE0"],
+    ["/color_05.webp", "#CAEF9A"],
+    ["/color_06.webp", "#8CD6F4"],
+    ["/color_07.webp", "#D7C5FF"],
   ];
 
   return (
