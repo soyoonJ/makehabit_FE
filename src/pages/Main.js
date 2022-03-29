@@ -66,41 +66,39 @@ const Main = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   return (
     <Container>
-      <MetaTag title="습관삼끼" />
+      {/* <MetaTag title="습관삼끼" /> */}
       {/* {isLoading ? <Spinner /> : ""} */}
       {/* 스피너테스트 */}
       {/* <Spinner /> */}
 
-      <ContainerGrid>
-        <Header>
-          {/*로고 */}
-          <Logo
-            src="/logo/logo_text.svg"
-            alt="로고"
+      <Header>
+        {/*로고 */}
+        <Logo
+          src="/logo/logo_text.svg"
+          alt="로고"
+          onClick={() => {
+            history.push(`/`);
+          }}
+        />
+
+        <ContainerInput>
+          <InputBox
+            ref={search}
+            placeholder="도전하고 싶은 습관을 검색해보세요!"
+          ></InputBox>
+
+          <SearchIcon
+            style={{ width: "20px" }}
+            src="images/icon_search.svg"
+            alt=""
             onClick={() => {
-              history.push(`/`);
+              dispatch(mainActions.getSearchDB(search.current.value));
+              history.push(`/search`);
             }}
-          />
-
-          <ContainerInput>
-            <InputBox
-              ref={search}
-              placeholder="도전하고 싶은 습관을 검색해보세요!"
-            ></InputBox>
-
-            <SearchIcon
-              style={{ width: "20px" }}
-              src="images/icon_search.svg"
-              alt=""
-              onClick={() => {
-                dispatch(mainActions.getSearchDB(search.current.value));
-                history.push(`/search`);
-              }}
-            ></SearchIcon>
-          </ContainerInput>
-        </Header>
-      </ContainerGrid>
-
+          ></SearchIcon>
+        </ContainerInput>
+      </Header>
+      <MarginTop />
       <Banner1 />
       <ContainerGrid>
         <Text size="20px" bold borderBox>
@@ -470,7 +468,7 @@ const Main = (props) => {
 const Logo = styled.img`
   width: 84px;
   margin-right: 5px;
-  margin: 22px 10px 4px 0px;
+  margin: 0px 10px 4px 0px;
   align-content: center;
 `;
 const Container = styled.div`
@@ -492,12 +490,23 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  /* margin: 26px 0; */
+  position: fixed;
+  padding: 0 1.25rem;
+  top: 0px;
+  max-width: 23.75rem;
+  z-index: 99;
   display: flex;
+  width: 100%;
+  background-color: #fff;
+  align-items: center;
+  height: 5rem;
+`;
+
+const MarginTop = styled.div`
+  margin-top: 5rem;
 `;
 
 const ContainerInput = styled.div`
-  margin-top: 21px;
   width: 100%;
   height: 32px;
   border-radius: 5px;

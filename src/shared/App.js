@@ -92,9 +92,12 @@ function App() {
                 </Outter>
               }
             >
-              <>
-                <MetaTag />
-              </>
+              {/* <>
+                <MetaTag
+                  title="작심삼일~~!"
+                  description="하이요요요요요요요요요요"
+                />
+              </> */}
               <Switch>
                 <Route path="/" exact component={Main} />
                 <Route path="/login" component={Login} />
