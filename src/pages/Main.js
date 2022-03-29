@@ -481,6 +481,7 @@ const Container = styled.div`
   @media screen and (min-width: 420px) {
     max-height: 100vh;
     overflow: auto;
+    overflow-x: hidden;
   }
 
   ::-webkit-scrollbar {

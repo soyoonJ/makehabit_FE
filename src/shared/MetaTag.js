@@ -1,26 +1,33 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet-async";
 
 const MetaTag = (props) => {
-  const { keywords, description, title, image } = props;
+  const { keywords, description, title } = props;
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta property="og:title" content={title} />
-      {/* <meta property="og:image" content={image} /> */}
+      <meta property="og:site_name" content={title} />
+      <meta property="og:description" content={description} />
       <meta
         property="og:image"
-        content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
+        // content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
+        content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
       />
-      {/* <meta property="og:site_name" content="" /> */}
-      <meta property="og:description" content={description} />
-      {/* 페이스북은 이미지의 사이즈가 최소 1200x630 픽셀보다 크기를 권장하며,
-      1.91:1 의 비율인 이미지 권장
-    트위터는 파일 사이즈가 1MB 보다 크기를 권장 */}
+      <meta property="og:url" content="https://makehabit.co.kr/"></meta>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+
+      <meta name="twitter:title" content={title} />
       <meta name="twitter:card" content="summary" />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:url" content="https://makehabit.co.kr/" />
+      <meta
+        name="twitter:image"
+        content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
+      />
     </Helmet>
   );
 };

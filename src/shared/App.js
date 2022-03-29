@@ -34,6 +34,10 @@ import styled from "styled-components";
 // import RankingPage from "../pages/RankingPage";
 
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
+
+//메타태그
+import { Helmet } from "react-helmet-async";
+import MetaTag from "./MetaTag";
 // import Chat from "../pages/Chat";
 // import Spinner from "./Spinner";
 const Main = lazy(() => import("../pages/Main"));
@@ -88,6 +92,9 @@ function App() {
                 </Outter>
               }
             >
+              <>
+                <MetaTag />
+              </>
               <Switch>
                 <Route path="/" exact component={Main} />
                 <Route path="/login" component={Login} />
@@ -150,6 +157,7 @@ const Container = styled.div`
       display: none;
     }
 
+    overflow-x: hidden;
     overflow-y: scroll;
     width: 100%;
     max-width: 420px;
