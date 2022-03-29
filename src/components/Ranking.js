@@ -5,7 +5,7 @@ import { Text, ContainerGrid } from "../elements";
 const Ranking = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   const { equippedItems, nickname, proofCnt, rank } = props;
-  console.log("Ranking.js", equippedItems, nickname, proofCnt, rank);
+  // console.log("Ranking.js", equippedItems, nickname, proofCnt, rank);
 
   return (
     <RankingList>
@@ -54,8 +54,8 @@ const RankingList = styled.div`
   width: 100%;
   height: 8.76vh;
   background-color: #ffff;
-  display: grid;
-  align-items: center;
+  /* display: grid; */
+  align-content: center;
   justify-content: space-between;
   border-bottom: 2px #f7f7f7 solid;
 
@@ -65,10 +65,12 @@ const RankingList = styled.div`
     // display: flex;
     // justify-content: center;
     // align-items: center;
-    // height: 100%;
+    height: 100%;
     display: grid;
-    grid-template-columns: 17.4% 12.8% 1fr 13%;
-    position: absolute;
+    align-content: center;
+    justify-content: space-between;
+    grid-template-columns: 17.4% 12.8% 1fr 17.4%;
+    // position: absolute;
     align-items: center;
   }
 `;
