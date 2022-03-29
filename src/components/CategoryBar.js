@@ -32,10 +32,13 @@ const CategoryBar = (props) => {
               history.push(`/category/${e[0]}`);
             }}
             style={{
-              borderBottomColor: e[0] === categoryId ? "#ff8b37" : "#9C9C9C",
+              borderBottomColor: e[0] === categoryId ? "#ff8b37" : "#E0E0E0",
               fontWeight: e[0] === categoryId ? "800" : "400",
+              fontSize: "1rem",
+              lineHeight: "2.375rem",
+              color: e[0] === categoryId ? "#000" : "#9C9C9C",
               // background: e[0] === categoryId ? "black" : "yellow",
-              minWidth: "90px",
+              minWidth: "70px",
             }}
           >
             {e[1]}
@@ -47,7 +50,6 @@ const CategoryBar = (props) => {
 };
 
 const CategoryBox = styled.div`
-  height: 8vh;
   width: 100%;
   max-width: 420px;
   display: flex;
@@ -72,6 +74,7 @@ const CategoryBox = styled.div`
 
 const CategoryCircle = styled.p`
   /* margin: 2%; */
+  margin: 0px;
   font-weight: 400;
   font-size: 17px;
   padding: 5px 9px;

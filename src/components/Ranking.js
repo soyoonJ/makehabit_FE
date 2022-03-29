@@ -5,6 +5,11 @@ import { Text, ContainerGrid } from "../elements";
 const Ranking = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   const { equippedItems, nickname, proofCnt, rank } = props;
+  // console.log("Ranking.js", equippedItems, nickname, proofCnt, rank);
+
+  function getParametersForUnsplash({ width, height, quality, format }) {
+    return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;
+  }
 
   return (
     <RankingList>
@@ -20,11 +25,66 @@ const Ranking = (props) => {
         )}
 
         <Profile>
-          <ItemImg src={Item + equippedItems[0]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[1]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[2]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[3]?.itemImgUrl} />
-          <ItemImg src={Item + equippedItems[4]?.itemImgUrl} />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[0]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[1]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "png",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[2]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[3]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 100,
+                height: 100,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
+          <ItemImg
+            src={
+              Item +
+              equippedItems[4]?.itemImgUrl +
+              getParametersForUnsplash({
+                width: 50,
+                height: 50,
+                quality: 80,
+                format: "webp",
+              })
+            }
+          />
         </Profile>
         <Text
           margin="0 0 0 18px"
@@ -35,7 +95,15 @@ const Ranking = (props) => {
         >
           {nickname}
         </Text>
-        <Text color="#FF8B37" size="18px" bold margin="0 0px 0 0px">
+        <Text
+          padding="0px 20px 0px 0px "
+          margin="0px"
+          alignRight
+          color="#FF8B37"
+          size="18px"
+          bold
+          width=""
+        >
           {proofCnt}번
         </Text>
       </div>
@@ -53,8 +121,8 @@ const RankingList = styled.div`
   width: 100%;
   height: 8.76vh;
   background-color: #ffff;
-  display: grid;
-  align-items: center;
+  /* display: grid; */
+  align-content: center;
   justify-content: space-between;
   border-bottom: 2px #f7f7f7 solid;
 
@@ -64,10 +132,12 @@ const RankingList = styled.div`
     // display: flex;
     // justify-content: center;
     // align-items: center;
-    // height: 100%;
+    height: 100%;
     display: grid;
-    grid-template-columns: 17.4% 12.8% 1fr 13%;
-    position: absolute;
+    align-content: center;
+    justify-content: space-between;
+    grid-template-columns: 17.4% 12.8% 1fr 17.4%;
+    // position: absolute;
     align-items: center;
   }
 `;

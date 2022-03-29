@@ -154,6 +154,7 @@ const PostDetail = (props) => {
         <PageBack challenges={challenges} />
         <TitleImage src={post.thumbnail} />
       </TitleBox>
+
       <MarginBox>
         <TitleContainer>
           <TitleText>{post.title}</TitleText>
@@ -206,7 +207,7 @@ const PostDetail = (props) => {
             </StartDate>
           </ToRight>
         </ChallengeStartContainer>
-        <MarginBox>
+        <MarginBox style={{ paddingTop: "23px", paddingBottom: "35px" }}>
           {/* 예상 종료일 */}
           <OrangeBox>
             <EndDateText>
@@ -242,11 +243,11 @@ const PostDetail = (props) => {
       </BorderBox>
       {post.isParticipate ? (
         <IsParticipate>
-          <MarginBox>
+          <MarginBox style={{ marginTop: "1.688rem" }}>
             <HeadLine>나의 참여도</HeadLine>
             <Text>3번씩 10세트면 한 달 습관 성공! 꾸준히 도전해봐요!</Text>
           </MarginBox>
-          <MarginBox>
+          <MarginBox style={{ marginBottom: "1.125rem" }}>
             <ColorBoxJoin>
               <CurrentRound>{currentRound}바퀴 진행중</CurrentRound>
             </ColorBoxJoin>
@@ -256,56 +257,66 @@ const PostDetail = (props) => {
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 1}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 1}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             )}
             {post.proofCount >= (currentRound - 1) * 3 + 2 ? (
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 2}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 2}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             )}
             {post.proofCount >= (currentRound - 1) * 3 + 3 ? (
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>300P ~ 3000P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>300P ~ 3000P</RoundPoint>
               </JoinBox>
             )}
           </JoinContainer>
+          <TipBox>
+            <TipContent style={{ color: "#FF8B37" }}>💡참여 꿀팁!! </TipContent>
+            <TipContent>3일마다 300P~3000P 랜덤 증정!!</TipContent>
+          </TipBox>
           <BorderBottomBox />
         </IsParticipate>
       ) : (
         ""
       )}
 
-      <MarginBox>
+      <MarginBox style={{ paddingTop: "2.188rem" }}>
         <HeadLine>이런 챌린지에요!</HeadLine>
         <ColorBoxChallenge>
           <TextArea>{post.content}</TextArea>
         </ColorBoxChallenge>
       </MarginBox>
-      <PaddingBox />
-      <MarginBox>
+      {/* <PaddingBox /> */}
+      <MarginBox style={{ paddingTop: "2.5rem" }}>
         <HeadLine>챌린지 인증방법</HeadLine>
         <ColorBoxChallenge>
           <TextArea>{post.howtoContent}</TextArea>
@@ -313,7 +324,7 @@ const PostDetail = (props) => {
       </MarginBox>
       {post.isParticipate && post.status === 1 ? (
         <MarginBox>
-          <CancelBox style={{ margin: "20px 0 100px 0" }}>
+          <CancelBox style={{ margin: "33px 0 100px 0" }}>
             <CancelButton onClick={() => leaveModal.current.openModal()}>
               챌린지 탈퇴하기
             </CancelButton>
@@ -400,13 +411,13 @@ const PostDetail = (props) => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   -ms-overflow-style: none;
-
-  @media screen and (min-width: 420px) {
-    max-height: 100vh;
-    overflow: auto;
-  }
+  max-height: 100vh;
+  // @media screen and (min-width: 420px) {
+  //   max-height: 100vh;
+  //   overflow: auto;
+  // }
   ::-webkit-scrollbar {
     display: none;
   }
@@ -424,11 +435,10 @@ const TitleImage = styled.img`
 
 const TitleContainer = styled.div`
   // text-align: center;
-  // margin: 1.313em 0 4.7vh 0;
+  margin: 1.563rem 0 0.875rem 0;
   display: grid;
   grid-template-columns: 5fr 1fr;
-  // align-items: center;
-  // justify-content: center;
+  align-items: center;
 `;
 
 const TitleText = styled.span`
@@ -440,7 +450,7 @@ const TitleText = styled.span`
 
 const ToLeft = styled.div`
   display: flex;
-  margin: 0.625rem 1.25rem;
+  margin: 0 0 0 1.25rem;
   align-items: center;
   justify-content: left;
 `;
@@ -472,13 +482,13 @@ const JoinText = styled.span`
 `;
 const ToRight = styled.div`
   display: flex;
-  margin: 0.625rem 1.25rem;
+  margin: 0 1.25rem;
   align-items: center;
   justify-content: right;
 `;
 const BorderBox = styled.div`
   margin-top: 20px;
-  padding: 0.625rem 0;
+  padding: 1.75rem 0 0;
   border-top: 0.094rem solid #e0e0e0;
   border-bottom: 0.094rem solid #e0e0e0;
 `;
@@ -499,7 +509,7 @@ const ChallengeStartContainer = styled.div`
   grid-template-columns: 1fr 1.7fr;
 `;
 const ChallengeText = styled.span`
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: bold;
   line-height: 1.625rem;
   @media (max-width: 420px) {
@@ -517,7 +527,7 @@ const StartDate = styled.span`
 `;
 
 const MarginBox = styled.div`
-  margin: 1.25rem 1.25rem;
+  margin: 0 1.25rem;
 `;
 
 const EndDateText = styled.span`
@@ -595,19 +605,6 @@ const TextArea = styled.span`
   line-height: 1.625rem;
 `;
 
-const Join = styled.button`
-  position: fixed;
-  bottom: 0;
-  height: 50px;
-  width: 100%;
-  max-width: 420px;
-  background-color: #ff8b37;
-  color: white;
-  border: none;
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-`;
-
 const ColorBoxJoin = styled.div`
   width: 100%;
   box-sizing: border-box;
@@ -649,10 +646,11 @@ const JoinContainer = styled.div`
 
 const JoinBox = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 2fr 1fr 1fr;
   gap: 4%;
-  height: 7.5rem;
+  height: 8rem;
   // margin: 5vh 0;
+  padding: 0.5rem 0;
   border-radius: 10px;
   background-color: #f7f7f7;
   place-items: center;
@@ -687,11 +685,11 @@ const CancelButton = styled.button`
   width: 100%;
   font-size: 1.25rem;
   font-weight: 400;
-  padding: 1.188rem 6.938rem;
+  padding: 1.188rem 0;
   cursor: default;
   border: none;
-  background-color: #ff8b37;
-  color: #fff;
+  background-color: #f7f7f7;
+  color: #707070;
 `;
 const ConfirmBox = styled.div`
   width: 100%;
@@ -743,4 +741,12 @@ const Like = styled.img`
   right: 10px;
 `;
 
+const TipBox = styled.div`
+  margin: 1.25rem 0;
+  padding: 0 1.25rem;
+`;
+
+const TipContent = styled.span`
+  font-weight: 700;
+`;
 export default PostDetail;

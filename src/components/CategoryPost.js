@@ -13,6 +13,12 @@ import moment from "moment";
 // import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 // import { ContactSupportOutlined } from "@material-ui/icons";
 const CategoryPost = (props) => {
+  // 참여날짜 & 참가자수
+  React.useEffect(() => {
+    // dispatch(userActions.loginCheckDB());
+    dispatch(postActions.getDetailPostDB(challengeId));
+  }, []);
+
   //좋아요 버튼 on/off
   // let [isLike, setIsLike] = React.useState(false);
   function getParametersForUnsplash({ width, height, quality, format }) {
@@ -20,21 +26,15 @@ const CategoryPost = (props) => {
   }
 
   const dispatch = useDispatch();
-  // const post = useSelector((state) => state.main.category_list);
-  // console.log("정신차려라", post);
 
   //로그인모달창에 접근하는 ref
   const loginModal = React.useRef();
-
-  // const Img01 = process.env.PUBLIC_URL + "/images";
-  // "이미지","타이틀이 들어가나용" > 밑에 변수값으로 나중에 변경
   const {
     thumbnail,
     title,
-    tags,
     challengeId,
     startAt,
-    puls,
+
     isLike,
     participants,
     round,
@@ -66,12 +66,6 @@ const CategoryPost = (props) => {
       loginModal.current.openModal();
     }
   };
-
-  // 참여날짜 & 참가자수
-  React.useEffect(() => {
-    // dispatch(userActions.loginCheckDB());
-    dispatch(postActions.getDetailPostDB(challengeId));
-  }, []);
 
   const date = new Date(startAt);
   const koStartAt = date.toLocaleString();
@@ -127,10 +121,11 @@ const CategoryPost = (props) => {
           ) : (
             <Tag>습관삼끼 {round}세트</Tag>
           )}
-          <div>
-            <img src={Icon + "/icon_mypage.svg"} />
-            <ParticipantsTag>{participants}명 참가</ParticipantsTag>
-          </div>
+
+          <ParticipantsTag>
+            <img src={Icon + "/icon_mypage.svg"} alt="icon" />
+            {participants}명
+          </ParticipantsTag>
         </TagWrap>
 
         {/* <Tag>
@@ -196,9 +191,7 @@ const Title = styled.div`
   font-size: 18px;
   font-weight: bold;
   display: block;
-
   width: 100%;
-
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -210,7 +203,7 @@ const TagWrap = styled.div`
   width: 100%;
   margin-top: 10px;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
 
   & > div {
@@ -222,9 +215,9 @@ const TagWrap = styled.div`
 
 const Tag = styled.div`
   width: 100%;
-  min-width: 90px;
-  font-size: 13px;
-  font-weight: 600;
+  min-width: 100px;
+  font-size: 16px;
+  font-weight: 500;
   /* height: 100%; */
   background-color: #efefef;
   border-radius: 5px;
@@ -237,14 +230,14 @@ const Tag = styled.div`
 
 const ParticipantsTag = styled.div`
   width: 100%;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 400;
   height: 100%;
-  border-radius: 5px;
   display: flex;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   align-content: center;
+  color: #707070;
 `;
 export default CategoryPost;

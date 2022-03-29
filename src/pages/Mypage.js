@@ -233,6 +233,8 @@ const Mypage = () => {
       <Grid>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSfAsQRKY6RxcAZ2tP9cC-kmhyQDKrsMJ4h-QICdfq-nlYUW1w/viewform"
+          target="_blank"
+          rel="noreferrer"
           style={{ all: "unset" }}
         >
           <TestBox>

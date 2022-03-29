@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 // import { useParams } from "react-router-dom";
 import { actionCreators as mainActions } from "../redux/modules/main";
+import { actionCreators as postActions } from "../redux/modules/post";
 import CategoryBar from "../components/CategoryBar";
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
@@ -25,11 +26,21 @@ const Category = (props) => {
   //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
   //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
 
+  //Like 누를때마다 화면 전환
+  const likeList = useSelector((state) => state.post.isLike);
+
   React.useEffect(() => {
     // console.log("호호호호호");
     //   setLoading(false);
     // }, [id])
     dispatch(mainActions.categoryDB(categoryId));
+  }, [likeList]);
+
+  React.useEffect(() => {
+    // console.log("호호호호호");
+    //   setLoading(false);
+    // }, [id])
+    dispatch(postActions.getDetailPostDB(categoryId));
   }, [categoryId]);
 
   return (

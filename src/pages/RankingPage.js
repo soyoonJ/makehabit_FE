@@ -16,6 +16,10 @@ const RankingPage = () => {
   const dispatch = useDispatch();
   const Item = process.env.PUBLIC_URL + "/items/large";
 
+  function getParametersForUnsplash({ width, height, quality, format }) {
+    return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;
+  }
+
   const tomorrow = moment().format("YYYY-MM-DD HH:mm");
   // console.log(tomorrow);
 
@@ -40,7 +44,9 @@ const RankingPage = () => {
   // console.log("isEquip", test);
 
   //전체 랭킹데이터 가져오기
-  const AllRanking = useSelector((state) => state.ranking.ranking_list);
+  const AllRanking = useSelector((state) => state.ranking?.ranking_list);
+  // console.log("랭킹", AllRanking);
+
   // const AllisEquip = useSelector(
   //   (state) => state.ranking.ranking_list?.equippedItems
   // );
@@ -82,7 +88,6 @@ const RankingPage = () => {
       </ContainerGrid>
       <MyRanking>
         <div>
-
           {MyRank === 1 ? (
             <MyRankIcon src="images/icon_1st.png" alt="Icon_1st" />
           ) : MyRank === 2 ? (
@@ -94,22 +99,78 @@ const RankingPage = () => {
           )}
 
           <Profile>
-            <ItemImg src={Item + equipBg?.itemImgUrl} />
-            <ItemImg src={Item + equipColor?.itemImgUrl} />
-            <ItemImg src={Item + equipClothes?.itemImgUrl} />
-            <ItemImg src={Item + equipAcc?.itemImgUrl} />
-            <ItemImg src={Item + equipEmotion?.itemImgUrl} />
+            <ItemImg
+              src={
+                Item +
+                equipBg?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipColor?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipClothes?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipAcc?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipEmotion?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
           </Profile>
           <Text margin="0 0 0 18px" color="#fff" size="18px" width="130px" bold>
             {MyNickname}
           </Text>
           <Text
-            alignCenter
+            padding="0px 20px 0px 0px "
+            margin="0px"
+            alignRight
             color="#fff"
             size="18px"
-            width="100%"
+            width=""
             bold
-            margin="0 0px 0 0px"
           >
             {MyCnt}번
           </Text>
@@ -139,11 +200,66 @@ const RankingPage = () => {
             alt="Rank_Icon"
           />
           <AllProfile>
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[0]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[1]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[2]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[3]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[4]?.itemImgUrl} />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[0]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[1]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[2]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[3]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[4]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
           </AllProfile>
         </div>
         <div>
@@ -228,7 +344,7 @@ const RankingPage = () => {
             <Text margin="14px 0px 8px 0px" bold alignCenter>
               {AllRanking[2]?.nickname}
             </Text>
-            <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
+            <Text alignCenter color="#ff8b37" bold margin="0px 0px 0px 0px">
               {AllRanking[2]?.proofCnt}번
             </Text>
           </div>

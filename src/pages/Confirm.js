@@ -151,7 +151,7 @@ const Confirm = (props) => {
             </span>
           </Example>
           <CommentTitle>코멘트 남기기</CommentTitle>
-          <div style={{ fontSize: "1.89vh" }}>
+          <div style={{ fontSize: "1rem" }}>
             오늘의 도전과 함께 기록해보세요.
           </div>
           <Textarea
@@ -282,8 +282,8 @@ const Example = styled.div`
 
 // 코멘트 작성란
 const CommentTitle = styled.div`
-  margin: 4.73vh 0 0.71vh;
-  font-size: 2.36vh;
+  margin: 4.73vh 0 0.375rem;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 3.1vh;
   color: #1d1b1b;
@@ -297,18 +297,18 @@ const CommentTitle = styled.div`
 `;
 const Textarea = styled.textarea`
   width: 100%;
-  height: 15.4vh;
+  height: 8.125rem;
   resize: none;
   box-sizing: border-box;
   margin-top: 1.77vh;
   background: #f7f7f7;
   border: none;
-  font-size: 1.89vh;
+  font-size: 1rem;
   padding: 1.25rem 1.625rem;
 
   ::placeholder {
     color: #9c9c9c;
-    font-size: 1.89vh;
+    font-size: 1rem;
   }
 `;
 const Button = styled.button`

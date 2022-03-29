@@ -139,10 +139,19 @@ const kakaoLogin = (code) => {
       url: `https://makehabitapi.shop/api/users/kakao/callback?code=${code}`,
     })
       .then((res) => {
-        // console.log("카카오오오", res);
-        const token = res.data.token;
+        console.log(
+          "카카오오오",
+          res,
+          res.data.user.nickname,
+          res.data.user.user.nickname
+        );
+        const token = res.data.user.token;
         localStorage.setItem("token", token); //예시로 로컬에 저장
-        dispatch(setUser());
+        dispatch(
+          setUser({
+            nickname: res.data.user.nickname,
+          })
+        );
         history.push("/");
       })
       .catch(function (error) {
@@ -207,7 +216,7 @@ export default handleActions(
       produce(state, (draft) => {
         // localStorage.setItem("token", action.payload.user.token);
         draft.user = action.payload.user;
-        // console.log(action.payload.user);
+        // console.log("안녕하세요", action.payload);
         // console.log(draft.user);
         draft.is_login = true;
       }),
