@@ -13,13 +13,21 @@ const Banner1 = () => {
 
   // map돌릴때 쓰일 imgUrl
   // const imgURL = ["/banner/mainbanner_01.webp", "/banner/mainbanner_02.webp"];
+  // const imgURL = [
+  //   "/banner/mainbanner_01.png",
+  //   "/banner/mainbanner_02.png",
+  //   "/banner/mainbanner_03.png",
+  //   "/banner/mainbanner_04.png",
+  //   "/banner/mainbanner_05.png",
+  // ];
   const imgURL = [
-    "/banner/mainbanner_01.png",
-    "/banner/mainbanner_02.png",
-    "/banner/mainbanner_03.png",
-    "/banner/mainbanner_04.png",
-    "/banner/mainbanner_05.png",
+    "/banner/mainbanner_01.webp",
+    "/banner/mainbanner_02.webp",
+    "/banner/mainbanner_03.webp",
+    "/banner/mainbanner_04.webp",
+    "/banner/mainbanner_05.webp",
   ];
+
   // 이전 버튼 클릭시 배너의 인덱스를 -1, 인덱스가 처음이면 마지막으로 돌아가기.
   const clickPrev = () => {
     if (bannerIndex <= 0) {
