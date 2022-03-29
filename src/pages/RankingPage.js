@@ -16,6 +16,10 @@ const RankingPage = () => {
   const dispatch = useDispatch();
   const Item = process.env.PUBLIC_URL + "/items/large";
 
+  function getParametersForUnsplash({ width, height, quality, format }) {
+    return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;
+  }
+
   const tomorrow = moment().format("YYYY-MM-DD HH:mm");
   // console.log(tomorrow);
 
@@ -41,7 +45,7 @@ const RankingPage = () => {
 
   //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking?.ranking_list);
-  console.log("랭킹", AllRanking);
+  // console.log("랭킹", AllRanking);
 
   // const AllisEquip = useSelector(
   //   (state) => state.ranking.ranking_list?.equippedItems
@@ -95,11 +99,66 @@ const RankingPage = () => {
           )}
 
           <Profile>
-            <ItemImg src={Item + equipBg?.itemImgUrl} />
-            <ItemImg src={Item + equipColor?.itemImgUrl} />
-            <ItemImg src={Item + equipClothes?.itemImgUrl} />
-            <ItemImg src={Item + equipAcc?.itemImgUrl} />
-            <ItemImg src={Item + equipEmotion?.itemImgUrl} />
+            <ItemImg
+              src={
+                Item +
+                equipBg?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipColor?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipClothes?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipAcc?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                equipEmotion?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 214,
+                  height: 214,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
           </Profile>
           <Text margin="0 0 0 18px" color="#fff" size="18px" width="130px" bold>
             {MyNickname}
@@ -141,11 +200,66 @@ const RankingPage = () => {
             alt="Rank_Icon"
           />
           <AllProfile>
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[0]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[1]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[2]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[3]?.itemImgUrl} />
-            <ItemImg src={Item + AllRanking[0]?.equippedItems[4]?.itemImgUrl} />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[0]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[1]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[2]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[3]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
+            <ItemImg
+              src={
+                Item +
+                AllRanking[0]?.equippedItems[4]?.itemImgUrl +
+                getParametersForUnsplash({
+                  width: 100,
+                  height: 100,
+                  quality: 80,
+                  format: "webp",
+                })
+              }
+            />
           </AllProfile>
         </div>
         <div>
