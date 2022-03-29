@@ -103,9 +103,11 @@ const Main = () => {
       </Header>
 
       <MarginTop />
+
       <Banner1 />
-      <ContainerGrid>
-        <Text size="20px" bold borderBox>
+
+      <ContainerGrid margin="4.26vh 0 2.37vh 0">
+        <Text size="20px" weight="700" borderBox>
           카테고리
         </Text>
         <CategoryWrap>
@@ -122,9 +124,7 @@ const Main = () => {
                 }}
               />
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              전체보기
-            </CategoryText>
+            <CategoryText alignCenter>전체보기</CategoryText>
           </Category>
 
           <Category>
@@ -141,9 +141,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              인기
-            </CategoryText>
+            <CategoryText alignCenter>인기</CategoryText>
           </Category>
 
           <Category>
@@ -159,9 +157,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              신규
-            </CategoryText>
+            <CategoryText alignCenter>신규</CategoryText>
           </Category>
 
           <Category>
@@ -177,9 +173,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              공부
-            </CategoryText>
+            <CategoryText alignCenter>공부</CategoryText>
           </Category>
         </CategoryWrap>
 
@@ -197,9 +191,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              운동
-            </CategoryText>
+            <CategoryText alignCenter>운동</CategoryText>
           </Category>
 
           <Category>
@@ -215,9 +207,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              자기계발
-            </CategoryText>
+            <CategoryText alignCenter>자기계발</CategoryText>
           </Category>
 
           <Category>
@@ -233,9 +223,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              생활습관
-            </CategoryText>
+            <CategoryText alignCenter>생활습관</CategoryText>
           </Category>
 
           <Category>
@@ -251,15 +239,13 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText bold alignCenter>
-              에코
-            </CategoryText>
+            <CategoryText alignCenter>에코</CategoryText>
           </Category>
         </CategoryWrap>
 
         {/* 테마 카테고리 - 추천 작심삼끼 */}
         <RecommendTitle>
-          <Text size="20px" bold>
+          <Text size="20px" weight="700" margin="2.48vh 0">
             추천 습관삼끼
           </Text>
           <PlusButton
@@ -282,7 +268,7 @@ const Main = () => {
       {/*랭킹리스트*/}
       <ContainerGrid>
         <RecommendTitle>
-          <Text size="20px" bold>
+          <Text size="20px" weight="700" margin="2.48vh 0">
             습관삼끼 랭킹
           </Text>
           <PlusButton
@@ -304,7 +290,7 @@ const Main = () => {
       <ContainerGrid>
         {/* 테마 카테고리 - 따끈따끈 새챌린지 */}
         <RecommendTitle>
-          <Text size="20px" bold>
+          <Text size="20px" weight="700" margin="2.48vh 0">
             따끈따끈 새챌린지
           </Text>
           <PlusButton
@@ -322,7 +308,7 @@ const Main = () => {
         </RecommendWrap>
         {/* 테마 카테고리 - 운동 가보자고 */}
         <RecommendTitle>
-          <Text size="20px" bold>
+          <Text size="20px" weight="700" margin="2.48vh 0">
             운동 가보자고
           </Text>
           <PlusButton
@@ -420,6 +406,7 @@ const ContainerInput = styled.div`
 `;
 
 const InputBox = styled.input`
+  font-size: 13px;
   width: 100%;
   height: 29px;
   border: none;
@@ -429,7 +416,7 @@ const InputBox = styled.input`
   padding-left: 0.813rem;
   size: 5px;
   ::placeholder {
-    font-size: 12px;
+    font-size: 13px;
     margin-left: 10px;
   }
 `;
@@ -442,6 +429,7 @@ const SearchIcon = styled.img`
   height: 20px;
   width: 10%;
   margin-left: 8%;
+  margin-right: 4%;
 `;
 
 const CategoryWrap = styled.div`
@@ -465,7 +453,7 @@ const CategoryIcon = styled.div`
 
 const CategoryText = styled.text`
   align-items: center;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 14px;
   margin-bottom: 27px;
   text-align: center;
@@ -513,6 +501,7 @@ const RankWarp = styled.div`
 `;
 const ListWrap = styled.div`
   display: grid;
+  margin-bottom: 2.25vh;
 `;
 
 const RankingList = styled.div`

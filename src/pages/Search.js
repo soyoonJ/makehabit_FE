@@ -190,6 +190,7 @@ const ContainerInput = styled.div`
 `;
 
 const InputBox = styled.input`
+  font-size: 13px;
   width: 100%;
   height: 29px;
   border: none;
@@ -199,7 +200,7 @@ const InputBox = styled.input`
   padding-left: 0.813rem;
   size: 5px;
   ::placeholder {
-    font-size: 12px;
+    font-size: 13px;
     margin-left: 10px;
   }
 `;
@@ -207,5 +208,6 @@ const SearchIcon = styled.img`
   height: 20px;
   width: 10%;
   margin-left: 8%;
+  margin-right: 4%;
 `;
 export default Search;

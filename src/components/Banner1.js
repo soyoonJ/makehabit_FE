@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 // import { useDispatch, useSelector } from "react-redux";
 
+import { ReactComponent as LeftIcon } from "../img/icon_left.svg";
+import { ReactComponent as RightIcon } from "../img/icon_right.svg";
+
 const Banner1 = () => {
   // const dispatch = useDispatch();
   //
@@ -73,11 +76,18 @@ const Banner1 = () => {
 
   return (
     <Container>
-      <IconImg
-        src={"/images/icon_left.svg"}
+      <LeftIcon
         onClick={clickPrev}
-        style={{ left: "10px" }}
+        style={{
+          left: "10px",
+          position: "absolute",
+          cursor: "pointer",
+          zIndex: "3",
+        }}
+        width="20"
+        heigth="20"
         alt="left icon"
+        fill="#000"
       />
       <Carousel bannerIndex={bannerIndex}>
         {imgURL.map((e, i) => (
@@ -158,18 +168,31 @@ const Banner1 = () => {
               clickCircle(i);
             }}
             style={{
-              width: i === bannerIndex ? "32px" : null,
-              borderRadius: i === bannerIndex ? "12px" : null,
-              transition: "width 0.1s",
+              // width: i === bannerIndex ? "32px" : null,
+              // borderRadius: i === bannerIndex ? "12px" : null,
+              // transition: "width 0.1s",
+              width: "4px",
+              height: "4px",
+              borderRadius: "50%",
+              background: i === bannerIndex ? "#FF8B37" : "#fff",
+              transform: "matrix(1, 0, 0, -1, 0, 0)",
             }}
           ></Circle>
         ))}
       </CircleBox>
-      <IconImg
-        src={"/images/icon_right.svg"}
+
+      <RightIcon
         onClick={clickNext}
-        style={{ right: "10px" }}
+        style={{
+          right: "10px",
+          position: "absolute",
+          cursor: "pointer",
+          zIndex: "3",
+        }}
+        width="20"
+        heigth="20"
         alt="right icon"
+        fill="#000"
       />
     </Container>
   );
@@ -237,7 +260,7 @@ const CircleBox = styled.div`
   width: auto;
   display: flex;
   position: absolute;
-  bottom: 10%;
+  bottom: 11px;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
@@ -269,5 +292,7 @@ const IconImg = styled.img`
   position: absolute;
   cursor: pointer;
   z-index: 3;
+  width: 18px;
+  height: 18px;
 `;
 export default Banner1;
