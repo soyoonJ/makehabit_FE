@@ -36,7 +36,15 @@ const Ranking = (props) => {
         >
           {nickname}
         </Text>
-        <Text color="#FF8B37" size="18px" bold margin="0 0px 0 0px">
+        <Text
+          padding="0px 12px 0px 0px "
+          margin="0px"
+          alignRight
+          color="#FF8B37"
+          size="18px"
+          bold
+          width=""
+        >
           {proofCnt}번
         </Text>
       </div>
