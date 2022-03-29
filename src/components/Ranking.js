@@ -5,6 +5,7 @@ import { Text, ContainerGrid } from "../elements";
 const Ranking = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   const { equippedItems, nickname, proofCnt, rank } = props;
+  console.log("Ranking.js", equippedItems, nickname, proofCnt, rank);
 
   return (
     <RankingList>

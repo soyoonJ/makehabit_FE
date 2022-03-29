@@ -19,6 +19,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     },
     closeModal() {
       setModalOpen(false);
+      setTotalPoint(0);
     },
     account() {
       setTotalPoint(0);
@@ -73,7 +74,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       } else {
         items.push(equipEmotion?.itemId);
       }
-      // console.log("ItemsList다", items);
+      console.log("ItemsList다", items);
       dispatch(characterActions.purchaseItemList(totalPoint, items));
     },
   }));
@@ -96,6 +97,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
 
   const closeModal = () => {
     setModalOpen(false);
+    setTotalPoint(0);
   };
   const currentPoint = useSelector((state) => state.character.currentPoint);
 

@@ -8,17 +8,20 @@ import MetaTag from "../shared/MetaTag";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../redux/modules/main";
-
-const Search = () => {
+import { actionCreators as postActions } from "../redux/modules/post";
+const Search = (props) => {
   const dispatch = useDispatch();
   const search = React.useRef(null);
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
-  // console.log("searchWord_list", searchWord_list);
-  //   React.useEffect(() => {
-  //     dispatch(mainActions.getSearchDB());
-  //   }, []);
-  // const QuesetionImg =
-  //   process.env.PUBLIC_URL + "/images/illust_question_samkki.png";
+
+  console.log("searchWord_list", searchWord_list);
+
+  //Like 누를때마다 화면 전환
+  const likeList = useSelector((state) => state.post.isLike);
+
+  React.useEffect(() => {
+    dispatch(mainActions.getSearchDB(search.current.value));
+  }, [likeList]);
 
   //엔터키
   const handlePress = (e) => {
@@ -41,8 +44,8 @@ const Search = () => {
       )}
 
       <Container>
-        <ContainerGrid>
-          <Header>
+        <Header>
+          <ContainerGrid>
             {/*로고 */}
             <Logo
               src="/logo/logo_text.svg"
@@ -51,6 +54,7 @@ const Search = () => {
                 history.push(`/`);
               }}
             />
+
             <ContainerInput>
               <InputBox
                 ref={search}
@@ -65,17 +69,17 @@ const Search = () => {
                 onClick={searchBtn}
               ></SearchIcon>
             </ContainerInput>
-          </Header>
-          {/*검색된 포스팅카드 불러오기 */}
-          {/* <CardWrap>
+          </ContainerGrid>
+        </Header>
+        {/*검색된 포스팅카드 불러오기 */}
+        {/* <CardWrap>
             {searchWord_list?.map((p, idx) => {
               // console.log("검색리스트", p);
               return <CategoryPost key={p._id} {...p} />;
             })}
           </CardWrap> */}
-        </ContainerGrid>
 
-        <ContainerGrid>
+        <ContainerGrid margin="9.47vh 0 0">
           {searchWord_list?.length === 0 ? (
             <NoChallenge>
               <div>
@@ -128,7 +132,7 @@ const Search = () => {
 const Logo = styled.img`
   width: 84px;
   margin-right: 5px;
-  margin: 22px 10px 4px 0px;
+  margin: 0px 10px 4px 0px;
   align-content: center;
 `;
 const NoChallenge = styled.div`
@@ -146,20 +150,25 @@ const Container = styled.div`
   margin-bottom: 100px;
 `;
 const Header = styled.div`
-  /* margin: 26px 0; */
+  position: fixed;
+  top: 0px;
+  margin: auto;
+  z-index: 99;
+
+  width: 100%;
+  max-width: 420px;
+  background-color: #fff;
   display: flex;
-  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+
+  & > div {
+    display: flex;
+    width: 100%;
+  }
 `;
 
-const QuesetionImg = styled.img`
-  height: 26.77vh;
-  margin-top: 96px;
-`;
-
-const Img = styled.img`
-  size: 20px;
-  cursor: pointer;
-`;
 const CardWrap = styled.div`
   // display: flex;
   // margin: 0% 3% 0% 2%;
@@ -172,7 +181,6 @@ const CardWrap = styled.div`
   margin-bottom: 6.51vh;
 `;
 const ContainerInput = styled.div`
-  margin-top: 21px;
   width: 100%;
   height: 32px;
   border-radius: 5px;
@@ -182,7 +190,7 @@ const ContainerInput = styled.div`
 `;
 
 const InputBox = styled.input`
-  width: 16.188em;
+  width: 100%;
   height: 29px;
   border: none;
   border-radius: 5px;

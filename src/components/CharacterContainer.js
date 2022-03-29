@@ -44,6 +44,16 @@ const CharacterContainer = () => {
   const previewAcc = useSelector((state) => state.character?.accItem);
   const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
+  console.log(
+    "preview확인",
+    preview,
+    previewBg?.itemImgUrl,
+    previewColor?.itemImgUrl,
+    previewClothes?.itemImgUrl,
+    previewAcc?.itemImgUrl,
+    previewEmotion?.itemImgUrl
+  );
+
   //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
   const [viewBg, setBg] = useState();
