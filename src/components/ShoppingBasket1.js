@@ -273,7 +273,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
             </ModalHeaderContentBox>
           </ModalHeader>
           <ModalContent>
-            <MarginBottom>
+            <ContentBox>
               {!shopBg && !shopClothes && !shopAcc && !shopEmotion
                 ? closeModal()
                 : ""}
@@ -515,8 +515,10 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
               ) : (
                 ""
               )}
-            </MarginBottom>
+            </ContentBox>
+            <MarginBottom />
           </ModalContent>
+
           <ButtonBox>
             <Button
               onClick={() => {
@@ -662,15 +664,12 @@ const ModalContent = styled.div`
   overflow: auto;
   // margin-bottom: 6.625rem;
   -ms-overflow-style: none;
-  // max-height: 38.75rem;
-
 
   // 내용 height > max-height : max-height 적용.
   // 내용 height < max-height : 내용 height 적용.
   @media screen and (max-width: 420px) {
-    max-height: 10rem;
+    // max-height: 10rem;
   }
-
 
   ::-webkit-scrollbar {
     display: none;
@@ -794,7 +793,9 @@ const ItemCancel = styled.div`
     align-items: center;
   }
 `;
-
+const ContentBox = styled.div`
+  margin-bottom: 6.625rem;
+`;
 const MarginBottom = styled.div`
   padding-bottom: 5rem;
 
