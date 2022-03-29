@@ -102,17 +102,17 @@ const CharacterShare = () => {
             <ItemImg src={Item + equipAcc?.itemImgUrl} />
             <ItemImg src={Item + equipEmotion?.itemImgUrl} />
           </ImgContainer>
+          <img
+            src={process.env.PUBLIC_URL + "/images/logo_text_image_small.png"}
+            alt="logo"
+            style={{
+              height: "4.7vh",
+              width: "100%",
+              margin: "0 auto",
+              objectFit: "cover",
+            }}
+          />
         </CharacterWrap>
-        <img
-          src={process.env.PUBLIC_URL + "/images/logo_text_image.png"}
-          alt="logo"
-          style={{
-            height: "4.7vh",
-            width: "100%",
-            margin: "0 auto",
-            objectFit: "cover",
-          }}
-        />
 
         <ContainerGrid bg="#F7F7F7">
           <div
@@ -161,6 +161,7 @@ const CharacterWrap = styled.div`
   flex-direction: column;
   position: relative;
   height: 46vh;
+  background: #fff;
   // 모바일 버전
   @media (min-width: 420px) {
     height: 48.5vh;

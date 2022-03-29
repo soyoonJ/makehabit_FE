@@ -150,6 +150,7 @@ const Container = styled.div`
       display: none;
     }
 
+    overflow-x: hidden;
     overflow-y: scroll;
     width: 100%;
     max-width: 420px;

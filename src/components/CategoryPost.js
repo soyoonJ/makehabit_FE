@@ -41,11 +41,6 @@ const CategoryPost = (props) => {
   } = props;
   // console.log("카테고리포스트", props);
 
-  //글자수체크
-  // let titleLength = title.length;
-  // let subtitle = title.substring(0, 7);
-  // console.log(subtitle);
-
   //이미지경로
   const DisLikeImg =
     process.env.PUBLIC_URL + "/images/icon_outline_heart_shadow.png";
