@@ -103,7 +103,8 @@ const CharacterShare = () => {
             <ItemImg src={Item + equipEmotion?.itemImgUrl} />
           </ImgContainer>
           <img
-            src={process.env.PUBLIC_URL + "/images/logo_text_image_small.png"}
+            // src={process.env.PUBLIC_URL + "/images/logo_text_image.png"}
+            src="/images/logo_text_image.svg"
             alt="logo"
             style={{
               height: "4.7vh",
