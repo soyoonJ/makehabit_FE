@@ -11,7 +11,6 @@ import MetaTag from "../shared/MetaTag";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import { history } from "../redux/configureStore";
-import LoginModal from "../components/LoginModal";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
@@ -34,16 +33,6 @@ const MyChallenge = (props) => {
       dispatch(challengeActions.myChallengeDB());
     }
   }, [currentPage]);
-
-  //로그인모달창에 접근하는 ref
-  const loginModal = React.useRef();
-  const is_token = localStorage.getItem("token") ? true : false;
-  // 로그인 상태 아닐 경우 튕겨내기
-  React.useEffect(() => {
-    if (!is_token) {
-      loginModal.current.openModal();
-    }
-  }, []);
 
   return (
     <React.Fragment>
@@ -196,7 +185,6 @@ const MyChallenge = (props) => {
           </>
         )}
       </ContainerGrid>
-      <LoginModal ref={loginModal} in_page />
       <ButtonNavigation />
     </React.Fragment>
   );

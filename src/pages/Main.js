@@ -64,6 +64,14 @@ const Main = (props) => {
     (state) => state.ranking.ranking_list?.equippedItems
   );
   const Item = process.env.PUBLIC_URL + "/items/large";
+
+  //엔터키
+  const onKeyPress = (e) => {
+    if (e.key == "Enter") {
+      history.push(`/search`);
+    }
+  };
+
   return (
     <Container>
       {/* <MetaTag title="습관삼끼" /> */}
@@ -91,10 +99,10 @@ const Main = (props) => {
             style={{ width: "20px" }}
             src="images/icon_search.svg"
             alt=""
-            onClick={() => {
-              dispatch(mainActions.getSearchDB(search.current.value));
-              history.push(`/search`);
-            }}
+            // onClick={() => {
+            //   dispatch(mainActions.getSearchDB(search.current.value));
+            //   history.push(`/search`);
+            // }}
           ></SearchIcon>
         </ContainerInput>
       </Header>
