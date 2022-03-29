@@ -40,8 +40,19 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+   
     <title>습관삼끼</title>
-
+    
+    <!-- meta tag-->
+    <meta property="og:title" content={title} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:image"
+    
+      content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
+    />
+    <meta property="og:url" content="https://makehabit.co.kr/"></meta>
     
 
     <!-- pwa service worker -->
@@ -50,6 +61,8 @@
       const el = document.createElement('pwa-update');
       document.body.appendChild(el);
    </script>
+
+
     
   </head>
   <body>
