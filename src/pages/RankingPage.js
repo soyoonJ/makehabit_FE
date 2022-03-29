@@ -28,6 +28,8 @@ const RankingPage = () => {
   const MyRank = useSelector((state) => state.ranking.my_list?.rank);
   const MyCnt = useSelector((state) => state.ranking.my_list?.proofCnt);
 
+  // console.log("MyRank", MyRank);
+
   const isEquip = useSelector((state) => state.ranking.my_list?.equippedItems);
   const equipColor = isEquip?.find((e) => e.category === "color");
   const equipBg = isEquip?.find((e) => e.category === "background");
@@ -39,24 +41,24 @@ const RankingPage = () => {
 
   //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking.ranking_list);
-  const AllisEquip = useSelector(
-    (state) => state.ranking.ranking_list?.equippedItems
-  );
-  const AllequipColor = AllisEquip?.find((e) => e.category === "color");
-  const AllequipBg = AllisEquip?.find((e) => e.category === "background");
-  const AllequipClothes = AllisEquip?.find((e) => e.category === "clothes");
-  const AllequipAcc = AllisEquip?.find((e) => e.category === "acc");
-  const AllequipEmotion = AllisEquip?.find((e) => e.category === "emotion");
+  // const AllisEquip = useSelector(
+  //   (state) => state.ranking.ranking_list?.equippedItems
+  // );
+  // const AllequipColor = AllisEquip?.find((e) => e.category === "color");
+  // const AllequipBg = AllisEquip?.find((e) => e.category === "background");
+  // const AllequipClothes = AllisEquip?.find((e) => e.category === "clothes");
+  // const AllequipAcc = AllisEquip?.find((e) => e.category === "acc");
+  // const AllequipEmotion = AllisEquip?.find((e) => e.category === "emotion");
 
-  console.log(
-    "equip확인",
-    // AllisEquip,
-    AllRanking
-    // AllequipBg?.itemImgUrl,
-    // AllequipColor?.itemImgUrl,
-    // AllequipClothes?.itemImgUrl,
-    // AllequipAcc?.itemImgUrl
-  );
+  // console.log(
+  //   "equip확인",
+  //   // AllisEquip,
+  //   AllRanking
+  //   // AllequipBg?.itemImgUrl,
+  //   // AllequipColor?.itemImgUrl,
+  //   // AllequipClothes?.itemImgUrl,
+  //   // AllequipAcc?.itemImgUrl
+  // );
   // console.log("아이템ㅌ확인", AllRanking[0]?.equippedItems[0]?.itemImgUrl);
 
   return (
@@ -80,6 +82,7 @@ const RankingPage = () => {
       </ContainerGrid>
       <MyRanking>
         <div>
+
           {MyRank === 1 ? (
             <MyRankIcon src="images/icon_1st.png" alt="Icon_1st" />
           ) : MyRank === 2 ? (
@@ -89,6 +92,7 @@ const RankingPage = () => {
           ) : (
             <MyRankNum>{MyRank}</MyRankNum>
           )}
+
           <Profile>
             <ItemImg src={Item + equipBg?.itemImgUrl} />
             <ItemImg src={Item + equipColor?.itemImgUrl} />
@@ -126,7 +130,14 @@ const RankingPage = () => {
       {/*1위*/}
       <RankingWrap>
         <div>
-          <Medal src="images/icon_1st.png" alt="Icon_1st" />
+          {/* <Medal src="images/icon_1st.png" alt="Icon_1st" /> */}
+          <Medal
+            src={
+              process.env.PUBLIC_URL +
+              `images/icon_${AllRanking[0]?.rank}st.png`
+            }
+            alt="Rank_Icon"
+          />
           <AllProfile>
             <ItemImg src={Item + AllRanking[0]?.equippedItems[0]?.itemImgUrl} />
             <ItemImg src={Item + AllRanking[0]?.equippedItems[1]?.itemImgUrl} />
@@ -149,7 +160,13 @@ const RankingPage = () => {
         {/*2위*/}
         <RankingWrap>
           <div>
-            <Medal src="images/icon_2st.png" alt="Icon_2st" />
+            <Medal
+              src={
+                process.env.PUBLIC_URL +
+                `images/icon_${AllRanking[1]?.rank}st.png`
+              }
+              alt="Rank_Icon"
+            />
             <AllProfile>
               <ItemImg
                 src={Item + AllRanking[1]?.equippedItems[0]?.itemImgUrl}
@@ -181,7 +198,13 @@ const RankingPage = () => {
         {/*3위*/}
         <RankingWrap>
           <div>
-            <Medal src="images/icon_3st.png" alt="Icon_3st" />
+            <Medal
+              src={
+                process.env.PUBLIC_URL +
+                `images/icon_${AllRanking[2]?.rank}st.png`
+              }
+              alt="Rank_Icon"
+            />
             <AllProfile>
               <ItemImg
                 src={Item + AllRanking[2]?.equippedItems[0]?.itemImgUrl}
@@ -214,6 +237,21 @@ const RankingPage = () => {
       <Line />
 
       {/*4위부터  */}
+      {/* {1 <= MyRank <= 3 ? (
+        <MyMedal
+          src={process.env.PUBLIC_URL + `images/icon_${MyRank}st.png`}
+          alt="Rank_Icon"
+        />
+      ) : (
+        <MyRankNum>{MyRank}</MyRankNum>
+      )} */}
+
+      {/* <ListWrap>
+        {AllRanking?.map((p, idx) => {
+          if (idx > 2) return <Ranking key={p._id} {...p} />;
+        })}
+      </ListWrap> */}
+
       <ListWrap>
         {AllRanking?.map((p, idx) => {
           if (idx > 2) return <Ranking key={p._id} {...p} />;
@@ -231,6 +269,12 @@ const Header = styled.div`
   display: flex;
   justify-content: space-around;
   text-align: center;
+`;
+
+const MyMedal = styled.img`
+  weight: 3.81vh;
+  height: 3.31vh;
+  margin-left: 20px;
 `;
 
 const MyRanking = styled.div`
