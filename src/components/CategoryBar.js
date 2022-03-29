@@ -35,7 +35,7 @@ const CategoryBar = (props) => {
               borderBottomColor: e[0] === categoryId ? "#ff8b37" : "#9C9C9C",
               fontWeight: e[0] === categoryId ? "800" : "400",
               // background: e[0] === categoryId ? "black" : "yellow",
-              minWidth: "90px",
+              minWidth: "70px",
             }}
           >
             {e[1]}

@@ -44,7 +44,7 @@ const MyFeed = (props) => {
               fill: "#707070",
             }}
             onClick={() => {
-              history.push("/");
+              history.goBack();
             }}
           />
           <Text alignCenter size="22px" bold>
