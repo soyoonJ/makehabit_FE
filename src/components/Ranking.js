@@ -5,7 +5,7 @@ import { Text, ContainerGrid } from "../elements";
 const Ranking = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   const { equippedItems, nickname, proofCnt, rank } = props;
-  const AllRanking = useSelector((state) => state.ranking.ranking_list);
+  // const AllRanking = useSe lector((state) => state.ranking.ranking_list);
 
   return (
     <RankingList>
