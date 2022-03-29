@@ -116,7 +116,7 @@ const PostDetail = (props) => {
 
   //몇 바퀴인지 표시
   const currentRound = parseInt((post?.proofCount - 1) / 3) + 1;
-  console.log("바퀴", currentRound, (currentRound - 1) * 3 + 2);
+  // console.log("바퀴", currentRound, (currentRound - 1) * 3 + 2);
   const Item = process.env.PUBLIC_URL + "/images";
 
   //이미지경로
@@ -299,7 +299,7 @@ const PostDetail = (props) => {
             )}
           </JoinContainer>
           <TipBox>
-            <TipContent style={{ color: "#FF8B37" }}>참여 꿀팁!! </TipContent>
+            <TipContent style={{ color: "#FF8B37" }}>💡참여 꿀팁!! </TipContent>
             <TipContent>3일마다 300P~3000P 랜덤 증정!!</TipContent>
           </TipBox>
           <BorderBottomBox />
