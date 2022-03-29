@@ -34,6 +34,9 @@ import styled from "styled-components";
 // import RankingPage from "../pages/RankingPage";
 
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
+
+//메타태그
+import { Helmet } from "react-helmet-async";
 // import Chat from "../pages/Chat";
 // import Spinner from "./Spinner";
 const Main = lazy(() => import("../pages/Main"));
@@ -77,6 +80,11 @@ function App() {
   return (
     <React.Fragment>
       <Container>
+        <>
+          <Helmet>
+            <title>습관삼끼</title>
+          </Helmet>
+        </>
         {onLine ? "" : alert("인터넷 연결상태를 확인해주세요")}
         <div id="wrap">
           <ConnectedRouter history={history}>
