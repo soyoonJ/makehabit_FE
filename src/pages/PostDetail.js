@@ -7,7 +7,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 
 import LoginModal from "../components/LoginModal";
-import { Text } from "../elements";
+import { ContainerGrid, Text } from "../elements";
 import PageBack from "../components/PageBack";
 import LeaveModal from "../components/LeaveModal";
 import MetaTag from "../shared/MetaTag";
@@ -256,42 +256,58 @@ const PostDetail = (props) => {
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 1}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 1}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             )}
             {post.proofCount >= (currentRound - 1) * 3 + 2 ? (
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 2}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 2}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 10P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>100P</RoundPoint>
               </JoinBox>
             )}
             {post.proofCount >= (currentRound - 1) * 3 + 3 ? (
               <JoinBox style={{ backgroundColor: "orange" }}>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>300P ~ 3000P</RoundPoint>
               </JoinBox>
             ) : (
               <JoinBox>
                 <RoundText>{(currentRound - 1) * 3 + 3}번째</RoundText>
                 <Img width="34px" src={Item + "/icon_coin.svg"} />
-                <RoundPoint>인증 하면 300P ~ 3000P</RoundPoint>
+                <RoundPoint>인증 하면</RoundPoint>
+                <RoundPoint>300P ~ 3000P</RoundPoint>
               </JoinBox>
             )}
           </JoinContainer>
+          <ContainerGrid>
+            <div>
+              <span style={{ fontWeight: "700", color: "#FF8B37" }}>
+                참여 꿀팁!!{" "}
+              </span>
+              <span style={{ fontWeight: "700" }}>
+                3일마다 300P~3000P 랜덤 증정!!
+              </span>
+            </div>
+          </ContainerGrid>
           <BorderBottomBox />
         </IsParticipate>
       ) : (
@@ -636,10 +652,11 @@ const JoinContainer = styled.div`
 
 const JoinBox = styled.div`
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 2fr 1fr 1fr;
   gap: 4%;
-  height: 7.5rem;
+  height: 8rem;
   // margin: 5vh 0;
+  padding: 0.5rem 0;
   border-radius: 10px;
   background-color: #f7f7f7;
   place-items: center;
