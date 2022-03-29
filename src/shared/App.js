@@ -93,7 +93,10 @@ function App() {
               }
             >
               <>
-                <MetaTag />
+                <MetaTag
+                  title="테스트입니다~~!"
+                  description="하이요요요요요요요요요요"
+                />
               </>
               <Switch>
                 <Route path="/" exact component={Main} />

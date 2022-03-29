@@ -66,7 +66,7 @@ const Main = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   return (
     <Container>
-      <MetaTag title="습관삼끼" />
+      {/* <MetaTag title="습관삼끼" /> */}
       {/* {isLoading ? <Spinner /> : ""} */}
       {/* 스피너테스트 */}
       {/* <Spinner /> */}
