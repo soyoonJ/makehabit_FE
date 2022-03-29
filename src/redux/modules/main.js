@@ -150,7 +150,7 @@ export default handleActions(
   {
     [GET_SEARCH]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.keyword);
+        console.log(action.payload);
         draft.searchWord_list = action.payload.searchWord_list.challenges;
       }),
 

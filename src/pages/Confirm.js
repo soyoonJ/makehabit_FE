@@ -297,7 +297,7 @@ const CommentTitle = styled.div`
 `;
 const Textarea = styled.textarea`
   width: 100%;
-  height: 15.4vh;
+  height: 8.125rem;
   resize: none;
   box-sizing: border-box;
   margin-top: 1.77vh;

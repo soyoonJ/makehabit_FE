@@ -7,7 +7,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 
 import LoginModal from "../components/LoginModal";
-import { ContainerGrid, Text } from "../elements";
+import { Text } from "../elements";
 import PageBack from "../components/PageBack";
 import LeaveModal from "../components/LeaveModal";
 import MetaTag from "../shared/MetaTag";
@@ -298,16 +298,10 @@ const PostDetail = (props) => {
               </JoinBox>
             )}
           </JoinContainer>
-          <ContainerGrid>
-            <div>
-              <span style={{ fontWeight: "700", color: "#FF8B37" }}>
-                참여 꿀팁!!{" "}
-              </span>
-              <span style={{ fontWeight: "700" }}>
-                3일마다 300P~3000P 랜덤 증정!!
-              </span>
-            </div>
-          </ContainerGrid>
+          <TipBox>
+            <TipContent style={{ color: "#FF8B37" }}>참여 꿀팁!! </TipContent>
+            <TipContent>3일마다 300P~3000P 랜덤 증정!!</TipContent>
+          </TipBox>
           <BorderBottomBox />
         </IsParticipate>
       ) : (
@@ -747,4 +741,12 @@ const Like = styled.img`
   right: 10px;
 `;
 
+const TipBox = styled.div`
+  margin: 1.25rem 0;
+  padding: 0 1.25rem;
+`;
+
+const TipContent = styled.span`
+  font-weight: 700;
+`;
 export default PostDetail;

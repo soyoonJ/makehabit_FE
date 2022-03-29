@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+import { history } from "../redux/configureStore";
 // import { useDispatch, useSelector } from "react-redux";
 
 const Banner1 = () => {
@@ -28,6 +30,13 @@ const Banner1 = () => {
     "/banner/mainbanner_05.webp",
   ];
 
+  const linkUrl = [
+    "https://witty-board-2e4.notion.site/ff6fbf9567904a9faec189af3ffb9823",
+    "https://witty-board-2e4.notion.site/492789cf78d044bf99ce316415ed41e9",
+    "https://makehabit.co.kr/character",
+    "https://witty-board-2e4.notion.site/ff6fbf9567904a9faec189af3ffb9823",
+    "http://makehabit.co.kr/category/study",
+  ];
   // 이전 버튼 클릭시 배너의 인덱스를 -1, 인덱스가 처음이면 마지막으로 돌아가기.
   const clickPrev = () => {
     if (bannerIndex <= 0) {
@@ -107,7 +116,13 @@ const Banner1 = () => {
                   </Button>
                 </ButtonBox>
               </TextBox> */}
-              <Img imgURL={imgURL[i]} onClick={() => {}} index={i}></Img>
+              <Img
+                imgURL={imgURL[i]}
+                onClick={() => {
+                  window.location.assign(`${linkUrl[i]}`);
+                }}
+                index={i}
+              ></Img>
               {/* {i === 0 && (
                 <h1
                   style={{
@@ -245,5 +260,4 @@ const IconImg = styled.img`
   cursor: pointer;
   z-index: 3;
 `;
-
 export default Banner1;

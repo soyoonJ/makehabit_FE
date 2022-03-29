@@ -2,19 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
-import { actionCreators as mainActions } from "../redux/modules/main";
 
 import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
 import CategoryPost from "../components/CategoryPost";
 import MetaTag from "../shared/MetaTag";
 // import Spinner from "../shared/Spinner";
+import Ranking from "../components/Ranking";
 
 import { useDispatch, useSelector } from "react-redux";
+
+import { actionCreators as mainActions } from "../redux/modules/main";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
 import { actionCreators as postActions } from "../redux/modules/post";
 
-const Main = (props) => {
+const Main = () => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
@@ -27,43 +29,30 @@ const Main = (props) => {
 
   // const categoryId = props.match.params.id;
   const likeList = useSelector((state) => state.post.isLike);
-  // React.useEffect(() => {
-  //   dispatch(mainActions.RecommendDB(2));
-  //   dispatch(mainActions.mainnewDB(2, "new"));
-  //   dispatch(mainActions.mainstudyDB(2, "exercise"));
-  // }, []);
-  const challengeId = props.match.params.id;
+  // const challengeId = props.match.params.id;
+
   React.useEffect(() => {
     // console.log("바뀌냐", likeList);
     dispatch(mainActions.RecommendDB(4));
     dispatch(mainActions.mainnewDB(4, "new"));
     dispatch(mainActions.mainstudyDB(4, "exercise"));
     dispatch(rankingActions.getRankingDB(3));
-    dispatch(postActions.getDetailPostDB(challengeId));
+    // dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
 
   React.useEffect(() => {
-    // console.log("바뀌냐", likeList);
-
     dispatch(rankingActions.getRankingDB(3));
   }, []);
+
   //추천작심삼일 리스트 가져오기
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const new_list = useSelector((state) => state.main.new_list);
   const study_list = useSelector((state) => state.main.study_list);
-  // const maincategory_list = useSelector(
-  //   (state) => state.main.maincategory_list
-  // );
-  // console.log("뉴리스트", new_list);
-  // console.log("스터디", new_list);
-  // console.log("useSelector 썻는데!!!!", maincategory_list);
-
+  const empty = useSelector((state) => state.user.empty);
+  console.log("MAINEMPTY", empty);
   //전체 랭킹데이터 가져오기
-  const AllRanking = useSelector((state) => state.ranking.ranking_list);
-  const AllisEquip = useSelector(
-    (state) => state.ranking.ranking_list?.equippedItems
-  );
-  const Item = process.env.PUBLIC_URL + "/items/large";
+  const AllRanking = useSelector((state) => state.ranking?.ranking_list);
+  console.log("랭킹", AllRanking);
 
   //엔터키
   const handlePress = (e) => {
@@ -85,30 +74,33 @@ const Main = (props) => {
       {/* <Spinner /> */}
 
       <Header>
-        {/*로고 */}
-        <Logo
-          src="/logo/logo_text.svg"
-          alt="로고"
-          onClick={() => {
-            history.push(`/`);
-          }}
-        />
+        <ContainerGrid>
+          {/*로고 */}
+          <Logo
+            src="/logo/logo_text.svg"
+            alt="로고"
+            onClick={() => {
+              history.push(`/`);
+            }}
+          />
 
-        <ContainerInput>
-          <InputBox
-            ref={search}
-            onKeyPress={handlePress}
-            placeholder="도전하고 싶은 습관을 검색해보세요!"
-          ></InputBox>
+          <ContainerInput>
+            <InputBox
+              ref={search}
+              onKeyPress={handlePress}
+              placeholder="도전하고 싶은 습관을 검색해보세요!"
+            ></InputBox>
 
-          <SearchIcon
-            style={{ width: "20px" }}
-            src="images/icon_search.svg"
-            alt=""
-            onClick={searchBtn}
-          ></SearchIcon>
-        </ContainerInput>
+            <SearchIcon
+              style={{ width: "20px" }}
+              src="images/icon_search.svg"
+              alt=""
+              onClick={searchBtn}
+            ></SearchIcon>
+          </ContainerInput>
+        </ContainerGrid>
       </Header>
+
       <MarginTop />
       <Banner1 />
       <ContainerGrid>
@@ -302,7 +294,7 @@ const Main = (props) => {
         </RecommendTitle>
       </ContainerGrid>
 
-      <RankWarp>
+      {/* <RankWarp>
         <RankingList>
           <div>
             <RankNum>
@@ -413,7 +405,13 @@ const Main = (props) => {
             </Text>
           </div>
         </RankingList>
-      </RankWarp>
+      </RankWarp> */}
+
+      <ListWrap>
+        {AllRanking?.map((p, idx) => {
+          return <Ranking key={p._id} {...p} />;
+        })}
+      </ListWrap>
 
       <ContainerGrid>
         {/* 테마 카테고리 - 따끈따끈 새챌린지 */}
@@ -502,15 +500,22 @@ const Container = styled.div`
 
 const Header = styled.div`
   position: fixed;
-  padding: 0 1.25rem;
   top: 0px;
-  max-width: 23.75rem;
+  margin: auto;
   z-index: 99;
-  display: flex;
+
   width: 100%;
+  max-width: 420px;
   background-color: #fff;
+  display: flex;
+  justify-content: center;
   align-items: center;
   height: 5rem;
+
+  & > div {
+    display: flex;
+    width: 100%;
+  }
 `;
 
 const MarginTop = styled.div`
@@ -527,7 +532,7 @@ const ContainerInput = styled.div`
 `;
 
 const InputBox = styled.input`
-  width: 16.188em;
+  width: 100%;
   height: 29px;
   border: none;
   border-radius: 5px;
@@ -617,6 +622,9 @@ const LogoBottom = styled.div`
 // 랭킹
 const RankWarp = styled.div`
   margin-bottom: 40px;
+`;
+const ListWrap = styled.div`
+  display: grid;
 `;
 
 const RankingList = styled.div`

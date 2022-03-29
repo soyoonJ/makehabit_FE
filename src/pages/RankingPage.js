@@ -40,7 +40,9 @@ const RankingPage = () => {
   // console.log("isEquip", test);
 
   //전체 랭킹데이터 가져오기
-  const AllRanking = useSelector((state) => state.ranking.ranking_list);
+  const AllRanking = useSelector((state) => state.ranking?.ranking_list);
+  console.log("랭킹", AllRanking);
+
   // const AllisEquip = useSelector(
   //   (state) => state.ranking.ranking_list?.equippedItems
   // );
@@ -82,7 +84,6 @@ const RankingPage = () => {
       </ContainerGrid>
       <MyRanking>
         <div>
-
           {MyRank === 1 ? (
             <MyRankIcon src="images/icon_1st.png" alt="Icon_1st" />
           ) : MyRank === 2 ? (
