@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./shared/App";
 import { Provider } from "react-redux";
+import { HelmetProvider } from "react-helmet-async";
 
 // 스토어 주입
 import store from "./redux/configureStore";
@@ -12,7 +13,9 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 ReactDOM.render(
   // <ReactPWAInstallProvider enableLogging>
   <Provider store={store}>
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </Provider>,
   // </ReactPWAInstallProvider>,
   document.getElementById("root")
