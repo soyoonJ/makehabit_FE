@@ -116,13 +116,13 @@ const Signup = () => {
   };
   //이메일 체크
   React.useEffect(() => {
-    console.log("changeEmail", user_email);
+    // console.log("changeEmail", user_email);
     dispatch(userActions.emailCheckDB(user_email));
   }, [user_email]);
 
   //닉네임 체크
   React.useEffect(() => {
-    console.log("changeNick", user_nickname);
+    // console.log("changeNick", user_nickname);
     dispatch(userActions.nicknameCheckDB(user_nickname));
   }, [user_nickname]);
   return (
@@ -218,7 +218,7 @@ const Signup = () => {
               style={{
                 position: "absolute",
                 top: "0.947vh",
-                right: "20px",
+                right: "10px",
                 cursor: "pointer",
               }}
             />
@@ -228,7 +228,7 @@ const Signup = () => {
               style={{
                 position: "absolute",
                 top: "0.947vh",
-                right: "20px",
+                right: "10px",
                 cursor: "pointer",
               }}
             />
@@ -255,7 +255,7 @@ const Signup = () => {
               style={{
                 position: "absolute",
                 top: "0.947vh",
-                right: "20px",
+                right: "10px",
                 cursor: "pointer",
               }}
             />
@@ -265,7 +265,7 @@ const Signup = () => {
               style={{
                 position: "absolute",
                 top: "0.947vh",
-                right: "20px",
+                right: "10px",
                 cursor: "pointer",
               }}
             />
@@ -388,11 +388,15 @@ const InputBox = styled.input`
   width: 100%;
   padding: 0.59vh 0;
   color: #000;
-  font-size: 1.89vh;
+  font-size: 1.5vh;
   line-height: 2.65vh;
 
   ::placeholder {
     color: #9c9c9c;
+  }
+
+  @media screen and (max-width: 420px) {
+    font-size: 1.3vh;
   }
 `;
 

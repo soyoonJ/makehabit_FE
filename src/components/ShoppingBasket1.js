@@ -657,7 +657,7 @@ const TitlePoint = styled.span`
 `;
 
 const ModalContent = styled.div`
-  height: 620px;
+  height: 37.5rem;
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
@@ -666,6 +666,8 @@ const ModalContent = styled.div`
   -ms-overflow-style: none;
   max-height: 38.75rem;
 
+  // 내용 height > max-height : max-height 적용.
+  // 내용 height < max-height : 내용 height 적용.
   @media screen and (max-width: 420px) {
     max-height: 10rem;
   }

@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // import { HiOutlinePencil } from "react-icons/hi";
 import { ReactComponent as RightButton } from "../img/icon_right.svg";
+import LoginModal from "../components/LoginModal";
 
 import styled from "styled-components";
 
@@ -58,6 +59,17 @@ const Mypage = () => {
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
+
+  //로그인모달창에 접근하는 ref
+  const loginModal = React.useRef();
+  const is_token = localStorage.getItem("token") ? true : false;
+  // 로그인 상태 아닐 경우 튕겨내기
+  React.useEffect(() => {
+    if (!is_token) {
+      loginModal.current.openModal();
+    }
+  }, []);
+
   return (
     <Container>
       <MetaTag title="습관삼끼 | 마이페이지" />
@@ -298,6 +310,7 @@ const Mypage = () => {
           />
         </TestBox>
       </Grid>
+      <LoginModal ref={loginModal} in_page />
       <ButtonNavigation />
     </Container>
   );

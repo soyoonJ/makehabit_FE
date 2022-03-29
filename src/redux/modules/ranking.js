@@ -23,7 +23,6 @@ const getRankingDB = (length) => {
     apis
       .GetRanking(length)
       .then(function (res) {
-        console.log("랭킹조회", res.data);
         dispatch(setRanking(res.data));
       })
       .catch((error) => {
@@ -43,8 +42,6 @@ export default handleActions(
         draft.ranking_list = action.payload.ranking_list.RankingList.filter(
           (e) => e.proofCnt > 0
         );
-
-        console.log("확인", draft.ranking_list);
       }),
   },
   initialState
