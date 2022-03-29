@@ -107,7 +107,7 @@ const Banner1 = () => {
                   </Button>
                 </ButtonBox>
               </TextBox> */}
-              <Img imgURL={imgURL[i]} index={i}></Img>
+              <Img imgURL={imgURL[i]} onClick={() => {}} index={i}></Img>
               {/* {i === 0 && (
                 <h1
                   style={{

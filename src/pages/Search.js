@@ -20,6 +20,18 @@ const Search = () => {
   // const QuesetionImg =
   //   process.env.PUBLIC_URL + "/images/illust_question_samkki.png";
 
+  //엔터키
+  const handlePress = (e) => {
+    if (e.key === "Enter") {
+      searchBtn();
+    }
+  };
+
+  const searchBtn = () => {
+    dispatch(mainActions.getSearchDB(search.current.value));
+    history.push(`/search`);
+  };
+
   return (
     <React.Fragment>
       {search.current?.value === "undefined" ? (
@@ -42,6 +54,7 @@ const Search = () => {
             <ContainerInput>
               <InputBox
                 ref={search}
+                onKeyPress={handlePress}
                 placeholder="도전하고 싶은 습관을 검색해보세요!"
               ></InputBox>
 
@@ -49,10 +62,7 @@ const Search = () => {
                 style={{ width: "20px" }}
                 src="images/icon_search.svg"
                 alt=""
-                onClick={() => {
-                  dispatch(mainActions.getSearchDB(search.current.value));
-                  history.push(`/search`);
-                }}
+                onClick={searchBtn}
               ></SearchIcon>
             </ContainerInput>
           </Header>

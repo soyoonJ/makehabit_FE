@@ -66,10 +66,15 @@ const Main = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   //엔터키
-  const onKeyPress = (e) => {
-    if (e.key == "Enter") {
-      history.push(`/search`);
+  const handlePress = (e) => {
+    if (e.key === "Enter") {
+      searchBtn();
     }
+  };
+
+  const searchBtn = () => {
+    dispatch(mainActions.getSearchDB(search.current.value));
+    history.push(`/search`);
   };
 
   return (
@@ -92,6 +97,7 @@ const Main = (props) => {
         <ContainerInput>
           <InputBox
             ref={search}
+            onKeyPress={handlePress}
             placeholder="도전하고 싶은 습관을 검색해보세요!"
           ></InputBox>
 
@@ -99,10 +105,7 @@ const Main = (props) => {
             style={{ width: "20px" }}
             src="images/icon_search.svg"
             alt=""
-            // onClick={() => {
-            //   dispatch(mainActions.getSearchDB(search.current.value));
-            //   history.push(`/search`);
-            // }}
+            onClick={searchBtn}
           ></SearchIcon>
         </ContainerInput>
       </Header>
