@@ -664,9 +664,13 @@ const ModalContent = styled.div`
   -ms-overflow-style: none;
   // max-height: 38.75rem;
 
-  // @media screen and (max-width: 420px) {
-  //   max-height: 10rem;
-  // }
+
+  // 내용 height > max-height : max-height 적용.
+  // 내용 height < max-height : 내용 height 적용.
+  @media screen and (max-width: 420px) {
+    max-height: 10rem;
+  }
+
 
   ::-webkit-scrollbar {
     display: none;

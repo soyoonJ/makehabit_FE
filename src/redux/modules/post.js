@@ -78,11 +78,6 @@ const addPostDB = (
             history.push("/completed/open");
           })
           .catch(function (error) {
-            console.log(
-              "addpostDB_error",
-              error,
-              error.response.data.errorMessage
-            );
             if (
               error.response.data.errorMessage ===
               "더 이상 챌린지를 개설할 수 없습니다."
@@ -92,7 +87,7 @@ const addPostDB = (
           });
       })
       .catch((error) => {
-        console.log("여긴가?", error);
+        console.log(error);
         return;
       });
   };

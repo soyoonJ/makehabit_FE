@@ -40,7 +40,6 @@ const signupDB = (email, nickname, password, confirmPassword) => {
         history.push("/login");
       })
       .catch(function (error) {
-        console.log(error.response.data.message);
         window.alert(error.response.data.message);
         // console.log(error.message);
       });
@@ -50,7 +49,6 @@ const signupDB = (email, nickname, password, confirmPassword) => {
 //이메일 체크
 const emailCheckDB = (email) => {
   return function (dispatch, getState, { history }) {
-    console.log("호출 전 email", email);
     apis
       .emailCheck(email)
       .then((response) => {
@@ -58,8 +56,6 @@ const emailCheckDB = (email) => {
         // window.alert("사용 가능한 아이디 입니다.")
       })
       .catch((error) => {
-        console.log("emailcheckdberror", error, error.response.data.message);
-
         const error_message = error.response.data.message;
         if (error_message === "이메일 형식을 확인해주세요.") {
           dispatch(emailCheck(0));
@@ -79,8 +75,6 @@ const nicknameCheckDB = (nickname) => {
         dispatch(nicknameCheck(1));
       })
       .catch((error) => {
-        console.log("nicknamecheckdberror", error, error.response.data.message);
-
         const error_message = error.response.data.message;
         if (
           error_message ===
