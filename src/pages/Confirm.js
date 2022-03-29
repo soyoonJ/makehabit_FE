@@ -303,12 +303,12 @@ const Textarea = styled.textarea`
   margin-top: 1.77vh;
   background: #f7f7f7;
   border: none;
-  font-size: 1.89vh;
+  font-size: 1rem;
   padding: 1.25rem 1.625rem;
 
   ::placeholder {
     color: #9c9c9c;
-    font-size: 1.89vh;
+    font-size: 1rem;
   }
 `;
 const Button = styled.button`

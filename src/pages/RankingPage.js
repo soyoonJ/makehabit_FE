@@ -229,7 +229,7 @@ const RankingPage = () => {
             <Text margin="14px 0px 8px 0px" bold alignCenter>
               {AllRanking[2]?.nickname}
             </Text>
-            <Text color="#ff8b37" bold margin="0px 0px 0px 0px" alignCenter>
+            <Text alignCenter color="#ff8b37" bold margin="0px 0px 0px 0px">
               {AllRanking[2]?.proofCnt}번
             </Text>
           </div>
