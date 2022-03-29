@@ -21,7 +21,7 @@ const MyFeed = (props) => {
   const proofShotId = props.match.params.id;
   const feed = useSelector((state) => state.challenge?.feed);
   // console.log("피드", feed);
-  const isLoading = useSelector((state) => state.challenge.isLoading);
+  // const isLoading = useSelector((state) => state.challenge.isLoading);
 
   React.useEffect(() => {
     dispatch(challengeActions.myfeedDB(proofShotId));

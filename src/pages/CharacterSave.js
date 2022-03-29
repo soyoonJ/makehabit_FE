@@ -104,27 +104,28 @@ const CharacterSave = () => {
     <React.Fragment>
       <MetaTag title="습관삼끼 | 캐릭터꾸미기" />
 
-      <ContainerGrid>
-        <CharacterWrap id="myCharacter">
-          <ImgContainer>
-            <ItemImg src={Item + equipBg?.itemImgUrl} />
-            <ItemImg src={Item + equipColor?.itemImgUrl} />
-            <ItemImg src={Item + equipClothes?.itemImgUrl} />
-            <ItemImg src={Item + equipAcc?.itemImgUrl} />
-            <ItemImg src={Item + equipEmotion?.itemImgUrl} />
-          </ImgContainer>
-          <img
-            src={process.env.PUBLIC_URL + "/images/logo_text_image_small.png"}
-            alt="logo"
-            style={{
-              height: "4.7vh",
-              width: "100%",
-              margin: "0 auto",
-              objectFit: "cover",
-            }}
-          />
-        </CharacterWrap>
+      <CharacterWrap id="myCharacter">
+        <ImgContainer>
+          <ItemImg src={Item + equipBg?.itemImgUrl} />
+          <ItemImg src={Item + equipColor?.itemImgUrl} />
+          <ItemImg src={Item + equipClothes?.itemImgUrl} />
+          <ItemImg src={Item + equipAcc?.itemImgUrl} />
+          <ItemImg src={Item + equipEmotion?.itemImgUrl} />
+        </ImgContainer>
+        <img
+          // src={process.env.PUBLIC_URL + "/images/logo_text_image.png"}
+          src="/images/logo_text_image.svg"
+          alt="logo"
+          style={{
+            height: "4.7vh",
+            width: "100%",
+            margin: "0 auto",
+            objectFit: "cover",
+          }}
+        />
+      </CharacterWrap>
 
+      <ContainerGrid>
         <Circle>
           <CheckImg fill="#6825D6" width="4.03vh" height="4.03vh" />
         </Circle>
