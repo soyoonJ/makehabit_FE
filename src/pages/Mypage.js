@@ -231,11 +231,14 @@ const Mypage = () => {
         </TestBox>
       </Grid> */}
       <Grid>
-        <TestBox>
-          <Text bold size="2.13vh" alignLeft>
-            습관삼끼 피드백
-          </Text>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAsQRKY6RxcAZ2tP9cC-kmhyQDKrsMJ4h-QICdfq-nlYUW1w/viewform">
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfAsQRKY6RxcAZ2tP9cC-kmhyQDKrsMJ4h-QICdfq-nlYUW1w/viewform"
+          style={{}}
+        >
+          <TestBox>
+            <Text bold size="2.13vh" alignLeft>
+              습관삼끼 피드백
+            </Text>
             <RightButton
               fill="#9C9C9C"
               style={{
@@ -243,8 +246,8 @@ const Mypage = () => {
                 margin: "auto",
               }}
             />
-          </a>
-        </TestBox>
+          </TestBox>
+        </a>
       </Grid>
 
       <Grid>

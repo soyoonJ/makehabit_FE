@@ -88,7 +88,12 @@ const Confirm = (props) => {
       // }
 
       dispatch(
-        challengeActions.confirmDB(challengeId, imageForm, "타이틀", comment)
+        challengeActions.confirmDB(
+          challengeId,
+          imageForm,
+          challenge_info?.title,
+          comment
+        )
       );
     }
   };
