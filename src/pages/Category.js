@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Text, ContainerGrid, Button } from "../elements";
 import MetaTag from "../shared/MetaTag";
 
+import Horizontable from "../components/Horizontable";
+
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,11 +18,10 @@ import { ReactComponent as GoBack } from "../img/icon_left.svg";
 const Category = (props) => {
   const dispatch = useDispatch();
   const category_list = useSelector((state) => state.main.category_list);
-  console.log("카테고리리스트", category_list);
 
   // 새로고침 해도 현재카테고리를 보여 줄 수 있도록
   const categoryId = props.match.params.id;
-  console.log(categoryId);
+  // console.log(categoryId);
   //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
   //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
 
@@ -29,15 +30,6 @@ const Category = (props) => {
     //   setLoading(false);
     // }, [id])
     dispatch(mainActions.categoryDB(categoryId));
-    // if (categoryId === "all") {
-    //   dispatch(mainActions.categoryDB("all"));
-    // }
-    // if (categoryId === "popular") {
-    //   dispatch(mainActions.categoryDB("popular"));
-    // }
-    // if (categoryId === "new") {
-    //   dispatch(mainActions.categoryDB("new"));
-    // }
   }, [categoryId]);
 
   return (
@@ -61,9 +53,7 @@ const Category = (props) => {
         </Header>
       </ContainerGrid>
 
-      <CategoryBarWrap>
-        <CategoryBar></CategoryBar>
-      </CategoryBarWrap>
+      <CategoryBar categoryId={categoryId}></CategoryBar>
 
       <ContainerGrid margin="0 0 14.6vh">
         {category_list?.length === 0 ? (
@@ -100,12 +90,14 @@ const Category = (props) => {
             </Button>
           </NoChallenge>
         ) : (
-          <CardWrap>
-            {category_list?.map((p, idx) => {
-              // console.log("피", p);
-              return <CategoryPost key={p._id} {...p} />;
-            })}
-          </CardWrap>
+          <div>
+            <CardWrap>
+              {category_list?.map((p, idx) => {
+                // console.log("피", p);
+                return <CategoryPost key={p._id} {...p} />;
+              })}
+            </CardWrap>
+          </div>
         )}
       </ContainerGrid>
       <ButtonNavigation />
@@ -123,7 +115,7 @@ const Header = styled.div`
 // `;
 
 const CategoryBarWrap = styled.div`
-  /* margin-top: 5%; */
+  margin-top: 5%;
   display: flex;
   justify-content: space-around;
 `;
