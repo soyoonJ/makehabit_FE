@@ -34,10 +34,10 @@ const Banner1 = () => {
   ];
 
   const linkUrl = [
-    "https://witty-board-2e4.notion.site/ff6fbf9567904a9faec189af3ffb9823",
-    "https://witty-board-2e4.notion.site/492789cf78d044bf99ce316415ed41e9",
+    "https://witty-board-2e4.notion.site/6cd0b4633c4a4998bc15b1668429c6d1",
+    "https://witty-board-2e4.notion.site/e0fe80c96fe74d53adbef6e7e87f74ea",
     "/character",
-    "https://witty-board-2e4.notion.site/ff6fbf9567904a9faec189af3ffb9823",
+    "https://witty-board-2e4.notion.site/6cd0b4633c4a4998bc15b1668429c6d1",
     "/category/study",
   ];
   // 이전 버튼 클릭시 배너의 인덱스를 -1, 인덱스가 처음이면 마지막으로 돌아가기.

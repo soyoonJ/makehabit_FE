@@ -14,12 +14,13 @@ const Search = (props) => {
   const search = React.useRef(null);
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
 
-  console.log("searchWord_list", searchWord_list);
+  // console.log("searchWord_list", search.current.value);
 
   //Like 누를때마다 화면 전환
   const likeList = useSelector((state) => state.post.isLike);
 
   React.useEffect(() => {
+    // dispatch(postActions.getLikeDB());
     dispatch(mainActions.getSearchDB(search.current.value));
   }, [likeList]);
 
@@ -29,7 +30,6 @@ const Search = (props) => {
       searchBtn();
     }
   };
-
   const searchBtn = () => {
     dispatch(mainActions.getSearchDB(search.current.value));
     history.push(`/search`);
