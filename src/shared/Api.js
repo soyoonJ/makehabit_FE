@@ -41,7 +41,7 @@ instance.interceptors.response.use(
       const refreshToken = `Bearer ${localStorage.getItem("token")}`;
 
       originalRequest.headers = { Authorization: refreshToken };
-      console.log("I'mIN!!!!!", originalRequest, originalRequest.headers);
+      // console.log("I'mIN!!!!!", originalRequest, originalRequest.headers);
       return axios(originalRequest);
     }
     return Promise.reject(error);
