@@ -5,7 +5,7 @@ const Spinner = () => {
   return (
     <React.Fragment>
       <Outter>
-        <div>로딩중</div>
+        <div>업로드중!</div>
         <Loader />
       </Outter>
     </React.Fragment>
