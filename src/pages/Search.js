@@ -11,7 +11,7 @@ import { actionCreators as mainActions } from "../redux/modules/main";
 import { actionCreators as postActions } from "../redux/modules/post";
 const Search = (props) => {
   const dispatch = useDispatch();
-  const search = React.useRef(null);
+  const search = React.useRef();
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
 
   // console.log("searchWord_list", search.current.value);
@@ -20,8 +20,13 @@ const Search = (props) => {
   const likeList = useSelector((state) => state.post.isLike);
 
   React.useEffect(() => {
+    if (search.current.value !== "") {
+      // dispatch(postActions.getLikeDB());
+      dispatch(mainActions.getSearchDB(search.current.value));
+    }
     // dispatch(postActions.getLikeDB());
-    dispatch(mainActions.getSearchDB(search.current.value));
+    // dispatch(mainActions.getSearchDB(search.current.value));
+    console.log("검색", search.current.value, typeof search.current.value);
   }, [likeList]);
 
   //엔터키
