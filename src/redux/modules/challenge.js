@@ -34,13 +34,14 @@ const initialState = {
   feed: null,
   totalCnt: null,
   point: null,
-  // isLoading: true,
+  isUpload: false,
 };
 
 // 인증기록하기 페이지 조회
 const getConfirmDB = (challengeId) => {
   return function (dispatch, getState, { history }) {
     // console.log(challengeId);
+
     apis
       .getConfirm(challengeId)
       .then(function (res) {
@@ -159,6 +160,7 @@ export default handleActions(
       }),
     [SET_COMPLETE]: (state, action) =>
       produce(state, (draft) => {
+        draft.isUpload = true;
         draft.totalCnt = action.payload.confirm_info.totalCnt;
         draft.point = action.payload.confirm_info.point;
       }),

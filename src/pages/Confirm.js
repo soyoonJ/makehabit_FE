@@ -7,6 +7,7 @@ import PageBack from "../components/PageBack";
 import Upload from "../components/Upload";
 import Modal from "../components/Modal";
 import MetaTag from "../shared/MetaTag";
+import Spinner from "../shared/Spinner";
 
 import { ReactComponent as CheckImg } from "../img/icon_check.svg";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,6 +67,10 @@ const Confirm = (props) => {
     lengthKeyPress(e);
   };
 
+  const [isLoading, setLoading] = React.useState(false);
+  const isUploaded = useSelector((state) => state.challenge.isUpload);
+  console.log("isUploaded", isUploaded);
+
   // console.log("comment", comment);
   // console.log("commentLength", commentLength);
 
@@ -86,6 +91,7 @@ const Confirm = (props) => {
       // for (var value of imageForm.values()) {
       //   console.log("value", value);
       // }
+      setLoading(true);
 
       dispatch(
         challengeActions.confirmDB(
@@ -105,6 +111,7 @@ const Confirm = (props) => {
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 오늘의 인증" />
+      {isLoading === true && isUploaded === false ? <Spinner /> : ""}
 
       <Container>
         <ContainerGrid>
