@@ -140,8 +140,8 @@ const kakaoLogin = (code) => {
     })
       .then((res) => {
 
-        const token = res.data.token;
 
+        const token = res.data.token;
         localStorage.setItem("token", token); //예시로 로컬에 저장
         dispatch(
           setUser({
