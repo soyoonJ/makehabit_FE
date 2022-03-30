@@ -198,7 +198,7 @@ const PostDetail = (props) => {
       </MarginBox>
       <BorderBox>
         <ChallengeStartContainer>
-          <ToLeft>
+          <ToLeft style={{ width: "140px" }}>
             <ChallengeText>챌린지 시작일</ChallengeText>
           </ToLeft>
           <ToRight>
@@ -211,10 +211,10 @@ const PostDetail = (props) => {
           {/* 예상 종료일 */}
           <OrangeBox>
             <EndDateText>
-              <ToLeft style={{ margin: "0.813rem", fontWeight: "600" }}>
+              <ToLeft style={{ margin: "0.4rem", fontWeight: "600" }}>
                 예상 종료일{" "}
               </ToLeft>
-              <ToRight style={{ margin: "0.813rem", fontWeight: "600" }}>
+              <ToRight style={{ margin: "0.4rem", fontWeight: "600" }}>
                 {moment(koStartAt, "YYYY.MM.DD")
                   .add(30, "days")
                   .format("YYYY년 MM월 DD일") +
@@ -513,7 +513,7 @@ const ChallengeText = styled.span`
   font-weight: bold;
   line-height: 1.625rem;
   @media (max-width: 420px) {
-    font-size: 0.9rem;
+    // font-size: 0.9rem;
   }
 `;
 const StartDate = styled.span`
@@ -522,7 +522,7 @@ const StartDate = styled.span`
   line-height: 1.625rem;
   color: #ff8b37;
   @media (max-width: 420px) {
-    font-size: 0.9rem;
+    // font-size: 0.9rem;
   }
 `;
 
@@ -542,7 +542,7 @@ const EndDateText = styled.span`
   color: white;
 
   @media (max-width: 420px) {
-    font-size: 0.8rem;
+    // font-size: 0.8rem;
   }
 `;
 
