@@ -10,15 +10,7 @@ import LoginModal from "../components/LoginModal";
 
 import moment from "moment";
 
-// import { FcLikePlaceholder, FcLike } from "react-icons/fc";
-// import { ContactSupportOutlined } from "@material-ui/icons";
 const CategoryPost = (props) => {
-  // 참여날짜 & 참가자수
-  React.useEffect(() => {
-    // dispatch(userActions.loginCheckDB());
-    dispatch(postActions.getDetailPostDB(challengeId));
-  }, []);
-
   //좋아요 버튼 on/off
   // let [isLike, setIsLike] = React.useState(false);
   function getParametersForUnsplash({ width, height, quality, format }) {
