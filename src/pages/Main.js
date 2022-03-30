@@ -48,12 +48,9 @@ const Main = () => {
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const new_list = useSelector((state) => state.main.new_list);
   const study_list = useSelector((state) => state.main.study_list);
-  const nickName = useSelector((state) => state.user.user.nickname);
-  console.log("MAININNNN", nickName);
 
   //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking?.ranking_list);
-  console.log("랭킹", AllRanking);
 
   //엔터키
   const handlePress = (e) => {
