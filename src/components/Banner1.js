@@ -34,8 +34,9 @@ const Banner1 = () => {
   ];
 
   const linkUrl = [
+
     "https://docs.google.com/forms/d/e/1FAIpQLSfAsQRKY6RxcAZ2tP9cC-kmhyQDKrsMJ4h-QICdfq-nlYUW1w/viewform",
-    "https://witty-board-2e4.notion.site/492789cf78d044bf99ce316415ed41e9",
+    "https://witty-board-2e4.notion.site/e0fe80c96fe74d53adbef6e7e87f74ea",
     "/character",
     "https://witty-board-2e4.notion.site/6cd0b4633c4a4998bc15b1668429c6d1",
     "/category/study",

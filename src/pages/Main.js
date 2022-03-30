@@ -11,6 +11,7 @@ import MetaTag from "../shared/MetaTag";
 import Ranking from "../components/Ranking";
 
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { actionCreators as mainActions } from "../redux/modules/main";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
@@ -48,25 +49,26 @@ const Main = () => {
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const new_list = useSelector((state) => state.main.new_list);
   const study_list = useSelector((state) => state.main.study_list);
-  const nickName = useSelector((state) => state.user.user.nickname);
-  console.log("MAININNNN", nickName);
 
   //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking?.ranking_list);
-  console.log("랭킹", AllRanking);
 
   //엔터키
-  const handlePress = (e) => {
-    if (e.key === "Enter") {
-      searchBtn();
-    }
+  // const handlePress = (e) => {
+  //   if (e.key === "Enter") {
+  //     searchBtn();
+  //   }
+  // };
+  const [mainKeyword, setKeyword] = React.useState("");
+
+  const onChange = (e) => {
+    setKeyword(e.target.value);
   };
 
   const searchBtn = () => {
     dispatch(mainActions.getSearchDB(search.current.value));
     history.push(`/search`);
-  };
-
+  }; //{}$$search.current.value)
   return (
     <Container>
       {/* <MetaTag title="습관삼끼" /> */}
@@ -84,20 +86,26 @@ const Main = () => {
               history.push(`/`);
             }}
           />
-
           <ContainerInput>
             <InputBox
               ref={search}
-              onKeyPress={handlePress}
+              onChange={onChange}
+              // onKeyPress={handlePress}
               placeholder="도전하고 싶은 습관을 검색해보세요!"
             ></InputBox>
-
-            <SearchIcon
-              style={{ width: "20px" }}
-              src="images/icon_search.svg"
-              alt=""
-              onClick={searchBtn}
-            ></SearchIcon>
+            <Link
+              to={{
+                pathname: "/search",
+                state: { mainKeyword: mainKeyword },
+              }}
+            >
+              <SearchIcon
+                style={{ width: "20px" }}
+                src="images/icon_search.svg"
+                alt=""
+                onClick={searchBtn}
+              ></SearchIcon>
+            </Link>
           </ContainerInput>
         </ContainerGrid>
       </Header>
@@ -429,7 +437,7 @@ const SearchIcon = styled.img`
   height: 20px;
   width: 10%;
   margin-left: 8%;
-  margin-right: 4%;
+  margin-right: 14px;
 `;
 
 const CategoryWrap = styled.div`

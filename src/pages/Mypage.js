@@ -180,7 +180,7 @@ const Mypage = () => {
               alignLeft
               margin="19px 0px 5px 0px"
               color="white"
-              size="2.37vh"
+              size="1.25rem"
               weight="700"
             >
               나만의 캐릭터를 자랑해보세요!
@@ -189,7 +189,7 @@ const Mypage = () => {
               alignLeft
               margin="7px 0px 19px 0px"
               color="white"
-              size="1.54vh"
+              size="0.813rem"
             >
               내 캐릭터의 이미지를 저장할 수 있어요
             </Text>
@@ -199,7 +199,7 @@ const Mypage = () => {
               <p
                 style={{
                   margin: "auto",
-                  fontSize: "2.13vh",
+                  fontSize: "1.125rem",
                   fontWeight: "600",
                   color: "white",
                   textAlign: "center",
