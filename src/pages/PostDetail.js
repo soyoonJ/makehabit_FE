@@ -198,7 +198,7 @@ const PostDetail = (props) => {
       </MarginBox>
       <BorderBox>
         <ChallengeStartContainer>
-          <ToLeft style={{ width: "140px" }}>
+          <ToLeft>
             <ChallengeText>챌린지 시작일</ChallengeText>
           </ToLeft>
           <ToRight>
@@ -442,7 +442,7 @@ const TitleContainer = styled.div`
 `;
 
 const TitleText = styled.span`
-  font-size: 2.6vh;
+  font-size: 1.375rem;
   font-weight: bold;
   line-height: 1.813rem;
   word-break: break-all;
@@ -469,6 +469,24 @@ const SubtitleContainer = styled.div`
   // justify-content: center;
 `;
 
+const Tag = styled.div`
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.188rem 0.313rem;
+  margin: 0 0.625rem 0 0;
+  border-radius: 0.313rem;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #707070;
+  text-align: center;
+  @media (max-width: 420px) {
+    font-size: 0.9rem;
+  }
+`;
+
 const JoinWrap = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 4fr;
@@ -479,6 +497,9 @@ const JoinText = styled.span`
   font-size: 1rem;
   line-height: 1.375rem;
   color: #707070;
+  @media (max-width: 420px) {
+    font-size: 0.9rem;
+  }
 `;
 const ToRight = styled.div`
   display: flex;
@@ -512,8 +533,8 @@ const ChallengeText = styled.span`
   font-size: 1.375rem;
   font-weight: bold;
   line-height: 1.625rem;
-  @media (max-width: 420px) {
-    // font-size: 0.9rem;
+  @media (max-width: 320px) {
+    font-size: 1.1rem;
   }
 `;
 const StartDate = styled.span`
@@ -521,8 +542,8 @@ const StartDate = styled.span`
   font-weight: bold;
   line-height: 1.625rem;
   color: #ff8b37;
-  @media (max-width: 420px) {
-    // font-size: 0.9rem;
+  @media (max-width: 320px) {
+    font-size: 1.1rem;
   }
 `;
 
@@ -574,26 +595,6 @@ const RoundPoint = styled.span`
   color: #707070;
 `;
 
-const Tag = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
-  padding: 0.188rem 0.313rem;
-  margin: 0 0.625rem 0 0;
-  border-radius: 0.313rem;
-  height: 28px;
-  background-color: #efefef;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  //   @media only screen and (max-width: 768px) {
-  //     padding: 9px 9px;
-  //     font-size: 14px;
-  //   }
-  cursor: pointer;
-  color: #707070;
-  width: 7.5rem;
-  text-align: center;
-`;
 const HeadLine = styled.span`
   font-size: 1.25rem;
   font-weight: bold;
