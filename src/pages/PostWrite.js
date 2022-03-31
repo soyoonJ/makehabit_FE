@@ -11,6 +11,7 @@ import CategoryModal1 from "../components/CategoryModal1";
 import Upload from "../components/Upload";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
+import Spinner from "../shared/Spinner";
 // import { history } from "../redux/configureStore";
 import { debounce, throttle } from "lodash";
 import styled from "styled-components";
@@ -133,6 +134,10 @@ const PostWrite = () => {
   //이미지 여부 확인
   const imgExist = useSelector((state) => state.post.imgExist);
 
+  const [isLoading, setLoading] = React.useState(false);
+  const isUploaded = useSelector((state) => state.challenge?.isUpload);
+  // console.log("isUploaded", isUploaded);
+
   const confirm = () => {
     const imageForm = new FormData();
     let image = fileInput.current.files[0];
@@ -166,6 +171,9 @@ const PostWrite = () => {
       alert("챌린지 인증 방법을 쓰지 않았습니다");
       return;
     }
+
+    setLoading(true);
+
     dispatch(
       postActions.addPostDB(
         title,
@@ -213,6 +221,7 @@ const PostWrite = () => {
   return (
     <Container>
       <MetaTag title="습관삼끼 | 신규 챌린지 작성" />
+      {isLoading === true && isUploaded === false ? <Spinner /> : ""}
 
       <Grid>
         {/* 타이틀 */}

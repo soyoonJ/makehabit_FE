@@ -10,15 +10,7 @@ import LoginModal from "../components/LoginModal";
 
 import moment from "moment";
 
-// import { FcLikePlaceholder, FcLike } from "react-icons/fc";
-// import { ContactSupportOutlined } from "@material-ui/icons";
 const CategoryPost = (props) => {
-  // 참여날짜 & 참가자수
-  React.useEffect(() => {
-    // dispatch(userActions.loginCheckDB());
-    dispatch(postActions.getDetailPostDB(challengeId));
-  }, []);
-
   //좋아요 버튼 on/off
   // let [isLike, setIsLike] = React.useState(false);
   function getParametersForUnsplash({ width, height, quality, format }) {
@@ -119,7 +111,7 @@ const CategoryPost = (props) => {
           {today < setDay ? (
             <Tag>{diffDay}일 뒤 시작</Tag>
           ) : (
-            <Tag>습관삼끼 {round}세트</Tag>
+            <Tag>오늘부터시작!</Tag>
           )}
 
           <ParticipantsTag>
@@ -215,7 +207,7 @@ const TagWrap = styled.div`
 
 const Tag = styled.div`
   width: 100%;
-  min-width: 100px;
+  min-width: 90px;
   font-size: 16px;
   font-weight: 500;
   /* height: 100%; */

@@ -46,6 +46,7 @@ const initialState = {
   challengId: "",
   post: [],
   isLike: [],
+  isUpload: false,
 };
 
 //게시물 등록
@@ -219,6 +220,7 @@ export default handleActions(
     //   }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
+        draft.isUpload = true;
         draft.challengeId = action.payload.challengeId;
       }),
     [DETAIL_POST]: (state, action) =>

@@ -139,6 +139,8 @@ const kakaoLogin = (code) => {
       url: `https://makehabitapi.shop/api/users/kakao/callback?code=${code}`,
     })
       .then((res) => {
+
+
         const token = res.data.token;
         localStorage.setItem("token", token); //예시로 로컬에 저장
         dispatch(

@@ -36,13 +36,6 @@ const Category = (props) => {
     dispatch(mainActions.categoryDB(categoryId));
   }, [likeList]);
 
-  React.useEffect(() => {
-    // console.log("호호호호호");
-    //   setLoading(false);
-    // }, [id])
-    dispatch(postActions.getDetailPostDB(categoryId));
-  }, [categoryId]);
-
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 카테고리별 조회" />

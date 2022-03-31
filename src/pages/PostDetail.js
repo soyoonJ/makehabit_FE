@@ -245,7 +245,9 @@ const PostDetail = (props) => {
         <IsParticipate>
           <MarginBox style={{ marginTop: "1.688rem" }}>
             <HeadLine>나의 참여도</HeadLine>
-            <Text>3번씩 10세트면 한 달 습관 성공! 꾸준히 도전해봐요!</Text>
+            <Text size="1rem" margin="0.375rem 0 1rem 0">
+              3번씩 10세트면 한 달 습관 성공! 꾸준히 도전해봐요!
+            </Text>
           </MarginBox>
           <MarginBox style={{ marginBottom: "1.125rem" }}>
             <ColorBoxJoin>
@@ -577,6 +579,7 @@ const OrangeBox = styled.div`
 `;
 const CurrentRound = styled.span`
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1.375rem;
   color: #ff8b37;
   display: flex;
@@ -586,6 +589,7 @@ const CurrentRound = styled.span`
 
 const RoundText = styled.span`
   font-size: 1.25rem;
+  font-weight: 700;
   line-height: 1.625rem;
   color: #707070;
 `;
