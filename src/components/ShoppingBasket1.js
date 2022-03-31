@@ -22,6 +22,15 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       setTotalPoint(0);
     },
     account() {
+      console.log(
+        "여기야!",
+        shopBg,
+        shopColor,
+        shopClothes,
+        shopAcc,
+        shopEmotion
+      );
+
       setTotalPoint(0);
       if (shopBg?.price && !shopBg.isOwned && !isNaN(shopBg?.price)) {
         setTotalPoint((totalPoint) => totalPoint + shopBg?.price);
@@ -77,12 +86,27 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       console.log("ItemsList다", items);
       dispatch(characterActions.purchaseItemList(totalPoint, items));
     },
+    reset() {
+      console.log("reset!");
+      setBg("");
+      setColor("");
+      setEmotion("");
+      setClothes("");
+      setAcc("");
+      // account("bg");
+      // account("color");
+      // account("emotion");
+      // account("clothes");
+      // account("acc");
+    },
   }));
   const dispatch = useDispatch();
 
   const itemList = useSelector((state) => state.character.itemList);
   // const category = itemList[0]?.category;
   const shopList = useSelector((state) => state.character.shopList);
+
+  console.log("shopList바스켓", shopList);
   // const { open, close, getData } = props;
 
   // const setData = (categoryName) => {
@@ -144,6 +168,14 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
 
   React.useEffect(() => {
     //필터 리스트
+    console.log(
+      "shopList야!!",
+      itemBg,
+      itemColor,
+      itemClothes,
+      itemAcc,
+      itemEmotion
+    );
 
     if (itemBg) {
       setBg(itemBg);

@@ -26,12 +26,6 @@ const ItemSelect = (props) => {
   // const category = itemList[0]?.category;
   React.useEffect(() => {
     dispatch(characterActions.getItemDB(ItemCategory[clickedCate][1]));
-    // console.log(
-    //   "실행 되었나?",
-    //   category,
-    //   clickedCate,
-    //   ItemCategory[clickedCate][1]
-    // );
   }, [clickedCate]);
 
   return (

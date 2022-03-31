@@ -10,6 +10,7 @@ const COLOR_PREVIEW = "COLOR_PREVIEW";
 const EMOTION_PREVIEW = "EMOTION_PREVIEW";
 const CLOTHES_PREVIEW = "CLOTHES_PREVIEW";
 const ACC_PREVIEW = "ACC_PREVIEW";
+const RESET_ITEMS = "RESET_ITEMS";
 
 // const setAll = createAction(SET_ALL, (allList) => ({ allList }));
 const setItems = createAction(SET_ITEMS, (itemList, category) => ({
@@ -34,6 +35,7 @@ const clothesPreview = createAction(CLOTHES_PREVIEW, (clothesItem) => ({
   clothesItem,
 }));
 const accPreview = createAction(ACC_PREVIEW, (accItem) => ({ accItem }));
+const resetItems = createAction(RESET_ITEMS, () => ({}));
 
 const initialState = {
   allList: [],
@@ -50,6 +52,7 @@ const initialState = {
   clothesItem: null,
   accItem: null,
 
+  isReset: false,
   // isLoading: true,
 };
 
@@ -133,6 +136,7 @@ export default handleActions(
 
     [BACKGROUND_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
+        draft.isReset = false;
         draft.backgroundItem = action.payload.backgroundItem;
         draft.shopList = draft.shopList.filter((e) => e !== null);
         draft.shopList = draft.shopList.filter(
@@ -143,6 +147,7 @@ export default handleActions(
       }),
     [COLOR_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
+        draft.isReset = false;
         draft.colorItem = action.payload.colorItem;
         draft.shopList = draft.shopList.filter((e) => e !== null);
         draft.shopList = draft.shopList.filter((e) => !e?.includes("color"));
@@ -150,6 +155,7 @@ export default handleActions(
       }),
     [EMOTION_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
+        draft.isReset = false;
         draft.emotionItem = action.payload.emotionItem;
         draft.shopList = draft.shopList.filter((e) => e !== null);
         draft.shopList = draft.shopList.filter((e) => !e?.includes("emotion"));
@@ -157,6 +163,7 @@ export default handleActions(
       }),
     [CLOTHES_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
+        draft.isReset = false;
         draft.clothesItem = action.payload.clothesItem;
         draft.shopList = draft.shopList.filter((e) => e !== null);
         draft.shopList = draft.shopList.filter((e) => !e?.includes("clothes"));
@@ -165,11 +172,16 @@ export default handleActions(
       }),
     [ACC_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
+        draft.isReset = false;
         draft.accItem = action.payload.accItem;
         draft.shopList = draft.shopList.filter((e) => e !== null);
         draft.shopList = draft.shopList.filter((e) => !e?.includes("acc"));
         draft.shopList.push(action.payload.accItem);
         // console.log("악세사리", action.payload.accItem);
+      }),
+    [RESET_ITEMS]: (state, action) =>
+      produce(state, (draft) => {
+        draft.isReset = true;
       }),
   },
   initialState
@@ -188,6 +200,8 @@ const actionCreators = {
   selectedItems,
   purchaseItemList,
   mypageCharacterList,
+
+  resetItems,
 };
 
 export { actionCreators };

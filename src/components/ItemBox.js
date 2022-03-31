@@ -30,6 +30,9 @@ const ItemBox = () => {
   const previewAcc = useSelector((state) => state.character?.accItem);
   const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
+  const isReset = useSelector((state) => state.character?.isReset);
+  // console.log("isReset", isReset);
+
   const Item = process.env.PUBLIC_URL + "/items/small";
   const [item, setItem] = React.useState(null);
 
@@ -63,7 +66,7 @@ const ItemBox = () => {
         setItem(previewEmotion);
       }
     }
-  }, [category]);
+  }, [category, isReset]);
 
   // CharacterContainer에 반영하기 위한 작업
   React.useEffect(() => {
@@ -76,6 +79,8 @@ const ItemBox = () => {
     } else if (category === "emotion") {
       dispatch(characterActions.emotionPreview(item));
     }
+
+    console.log("item", item);
   }, [item]);
 
   return (
