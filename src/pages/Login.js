@@ -140,7 +140,7 @@ const Login = () => {
               history.push(`/signup`);
             }}
           >
-            브랜드 로고 회원가입
+            습관삼끼 회원가입
           </Button>
         </Text>
 
