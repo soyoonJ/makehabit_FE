@@ -111,7 +111,7 @@ const CategoryPost = (props) => {
           {today < setDay ? (
             <Tag>{diffDay}일 뒤 시작</Tag>
           ) : (
-            <Tag>습관삼끼 {round}세트</Tag>
+            <Tag>오늘부터시작!</Tag>
           )}
 
           <ParticipantsTag>
