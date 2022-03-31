@@ -135,8 +135,8 @@ const PostWrite = () => {
   const imgExist = useSelector((state) => state.post.imgExist);
 
   const [isLoading, setLoading] = React.useState(false);
-  const isUploaded = useSelector((state) => state.challenge.isUpload);
-  console.log("isUploaded", isUploaded);
+  const isUploaded = useSelector((state) => state.challenge?.isUpload);
+  // console.log("isUploaded", isUploaded);
 
   const confirm = () => {
     const imageForm = new FormData();

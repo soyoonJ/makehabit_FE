@@ -68,8 +68,8 @@ const Confirm = (props) => {
   };
 
   const [isLoading, setLoading] = React.useState(false);
-  const isUploaded = useSelector((state) => state.challenge.isUpload);
-  console.log("isUploaded", isUploaded);
+  const isUploaded = useSelector((state) => state.challenge?.isUpload);
+  // console.log("isUploaded", isUploaded);
 
   // console.log("comment", comment);
   // console.log("commentLength", commentLength);
