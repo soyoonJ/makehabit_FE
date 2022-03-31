@@ -207,7 +207,7 @@ const TagWrap = styled.div`
 
 const Tag = styled.div`
   width: 100%;
-  min-width: 100px;
+  min-width: 90px;
   font-size: 16px;
   font-weight: 500;
   /* height: 100%; */
