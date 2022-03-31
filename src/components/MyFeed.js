@@ -51,7 +51,7 @@ const MyFeed = (props) => {
     setLength(feed?.comment.length);
   };
   const submitChange = () => {
-    // dispatch(challengeActions.어쩌구(comment));
+    dispatch(challengeActions.changeCommentDB(proofShotId, comment));
     setChange(false);
   };
 
@@ -198,7 +198,7 @@ const Comment = styled.div`
 
 const Title = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   margin-bottom: 1.3vh;
 
@@ -222,6 +222,7 @@ const Title = styled.div`
       height: 25px;
       border: 1.5px solid black;
       border-radius: 12.5px;
+      margin-left: 10px;
     }
   }
 `;
