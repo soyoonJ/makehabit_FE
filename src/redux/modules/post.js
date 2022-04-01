@@ -17,7 +17,8 @@ const EDIT_LIKE = "EDIT_LIKE";
 const GET_LIKE = "GET_LIKE";
 const ADD_LIKE = "ADD_LIKE";
 const DELETE_LIKE = "DELTE_LIKE";
-
+const SET_LOAD = "SET_LOAD";
+const LIKE_COLLECT = "LIKE_COLLECT";
 // const GET_DISLIKE = "GET_DISLIKE";
 
 const addPost = createAction(ADD_POST, (challengeId) => ({ challengeId }));
@@ -39,6 +40,8 @@ const getDetailPost = createAction(DETAIL_POST, (post) => ({
 const addLike = createAction(ADD_LIKE, (isLike) => ({ isLike }));
 const deleteLike = createAction(DELETE_LIKE, (isLike) => ({ isLike }));
 const getLike = createAction(GET_LIKE, (isLike) => ({ isLike }));
+const setLoad = createAction(SET_LOAD, (isLoading) => ({ isLoading }));
+const likeCollection = createAction(LIKE_COLLECT, (collect) => ({ collect }));
 // initialState
 const initialState = {
   imgExist: false,
@@ -47,6 +50,8 @@ const initialState = {
   post: [],
   isLike: [],
   isUpload: false,
+  isLoading: false,
+  likeCollection: [],
 };
 
 //게시물 등록
@@ -60,6 +65,7 @@ const addPostDB = (
   tag
 ) => {
   return function (dispatch, useState, { history }) {
+    dispatch(setLoad(true));
     apis
       .imageUpload(thumbnail)
       .then(function (response) {
@@ -77,6 +83,7 @@ const addPostDB = (
             // console.log("게시물 등록", response);
             dispatch(addPost(response.data.challengeId));
             history.push("/completed/open");
+            dispatch(setLoad(false));
           })
           .catch(function (error) {
             if (
@@ -88,8 +95,12 @@ const addPostDB = (
           });
       })
       .catch((error) => {
-        console.log(error);
-        return;
+        if (
+          error.response.data.message ===
+          "10MB 이하의 이미지만 업로드 할 수 있습니다."
+        ) {
+          window.alert("10MB 이하의 이미지만 업로드 할 수 있습니다.");
+        }
       });
   };
 };
@@ -164,7 +175,8 @@ const getLikeDB = () => {
     apis
       .getLike()
       .then((response) => {
-        // console.log("getLike! 성공!", response.data);
+        console.log("getLike! 성공!", response.data);
+        dispatch(likeCollection(response.data));
         dispatch(getLike(response.data.challenges));
       })
       .catch(function (error) {
@@ -256,6 +268,15 @@ export default handleActions(
         // console.log("DELETE_LIKE", action.payload.isLike);
         draft.isLike.filter((e) => e.isLike !== action.payload.isLike);
       }),
+    [SET_LOAD]: (state, action) =>
+      produce(state, (draft) => {
+        draft.isLoading = action.payload.isLoading;
+      }),
+    [LIKE_COLLECT]: (state, action) =>
+      produce(state, (draft) => {
+        console.log("I'mmmm INNNNN", action.payload);
+        draft.likeCollection = action.payload.collect.challenges;
+      }),
   },
   initialState
 );
@@ -273,6 +294,7 @@ const actionCreators = {
   likeDB,
   dislikeDB,
   imgExist,
+  setLoad,
 };
 
 export { actionCreators };

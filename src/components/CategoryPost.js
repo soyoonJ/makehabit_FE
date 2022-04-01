@@ -207,8 +207,8 @@ const TagWrap = styled.div`
 
 const Tag = styled.div`
   width: 100%;
-  min-width: 90px;
-  font-size: 16px;
+  min-width: 95px;
+  font-size: 15px;
   font-weight: 500;
   /* height: 100%; */
   background-color: #efefef;
@@ -222,7 +222,7 @@ const Tag = styled.div`
 
 const ParticipantsTag = styled.div`
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   height: 100%;
   display: flex;

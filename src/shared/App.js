@@ -58,6 +58,7 @@ const ShoppingBasket = lazy(() => import("../pages/ShoppingBasket"));
 const CharacterSave = lazy(() => import("../pages/CharacterSave"));
 const CharacterShare = lazy(() => import("../pages/CharacterShare"));
 const RankingPage = lazy(() => import("../pages/RankingPage"));
+const LikeCollection = lazy(() => import("../pages/LikeCollection"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 function App() {
@@ -120,6 +121,7 @@ function App() {
                 <Route path="/charactershare" component={CharacterShare} />
                 <Route path="/kakao" component={Auth2RedirectHandler}></Route>
                 <Route path="/ranking" component={RankingPage} />
+                <Route path="/likeCollection" component={LikeCollection} />
 
                 <Route path="*" exact component={NotFound} />
               </Switch>

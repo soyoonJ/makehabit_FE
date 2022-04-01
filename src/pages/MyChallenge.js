@@ -1,5 +1,5 @@
 // 내 챌린지 이름 바뀌면 파일명도 바꾸기
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { ContainerGrid, Text, Button } from "../elements";
@@ -13,6 +13,9 @@ import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
+import { ReactComponent as Dropdown } from "../img/icon_dropdown.svg";
+import { ReactComponent as Dropup } from "../img/icon_dropup.svg";
+
 import styled from "styled-components";
 
 const MyChallenge = (props) => {
@@ -20,8 +23,21 @@ const MyChallenge = (props) => {
   const currentPage = props.match.params.id;
   // console.log("지금", currentPage);
   const challenge_list = useSelector((state) => state.challenge.challenge_list);
+  const isHostList = useSelector((state) =>
+    state.challenge.challenge_list?.filter((e) => e.isHost === true)
+  );
   const proof_list = useSelector((state) => state.challenge.proof_list);
-  // console.log("챌린지리스트", challenge_list);
+  console.log("챌린지리스트", challenge_list, isHostList);
+  //필터
+  const [filter, setFilter] = useState(false);
+  const [showMine, setShowMine] = useState(false);
+  const [challengeText, setChallengeText] = useState("전체 챌린지 보기");
+
+  const handleSelect = (e) => {
+    setShowMine(e.target.value);
+    console.log("handleselect", showMine);
+  };
+
   // console.log("피드길이", proof_list?.length);
   // const isLoading = useSelector((state) => state.challenge.isLoading);
 
@@ -72,7 +88,7 @@ const MyChallenge = (props) => {
           {currentPage === "feed" ? <Highlight style={{ right: "0" }} /> : ""}
         </div>
       </Container>
-      <hr
+      {/* <hr
         style={{
           height: "0.094rem",
           margin: "0 0 2.84vh 0",
@@ -80,12 +96,86 @@ const MyChallenge = (props) => {
           border: "none",
           background: "#E0E0E0",
         }}
-      />
+      /> */}
 
       {/* 참여챌린지 */}
       <ContainerGrid margin="0 0 14.6vh">
         {currentPage === "navi" ? (
           <div style={{ marginBottom: "14.6vh" }}>
+            {filter ? (
+              <MyChallengeBox
+                onClick={() => {
+                  setFilter(false);
+                }}
+              >
+                <SelectBox>
+                  <ToLeft>
+                    <MyChallengeText>{challengeText}</MyChallengeText>
+                  </ToLeft>
+                  <ToRight>
+                    <Dropup />
+                  </ToRight>
+                </SelectBox>
+                {challengeText === "전체 챌린지 보기" ? (
+                  <OptionBox>
+                    {" "}
+                    <MyChallengeText
+                      onClick={() => {
+                        setChallengeText("전체 챌린지 보기");
+                        setShowMine(false);
+                      }}
+                      style={{ color: "purple", fontWeight: "bold" }}
+                    >
+                      전체 챌린지 보기
+                    </MyChallengeText>
+                    <MyChallengeText
+                      onClick={() => {
+                        setChallengeText("내가 개설한 챌린지");
+                        setShowMine(true);
+                      }}
+                    >
+                      내가 개설한 챌린지
+                    </MyChallengeText>
+                  </OptionBox>
+                ) : (
+                  <OptionBox>
+                    {" "}
+                    <MyChallengeText
+                      onClick={() => {
+                        setChallengeText("전체 챌린지 보기");
+                        setShowMine(false);
+                      }}
+                    >
+                      전체 챌린지 보기
+                    </MyChallengeText>
+                    <MyChallengeText
+                      onClick={() => {
+                        setChallengeText("내가 개설한 챌린지");
+                        setShowMine(true);
+                      }}
+                      style={{ color: "purple", fontWeight: "bold" }}
+                    >
+                      내가 개설한 챌린지
+                    </MyChallengeText>
+                  </OptionBox>
+                )}
+              </MyChallengeBox>
+            ) : (
+              <MyChallengeBox
+                onClick={() => {
+                  setFilter(true);
+                }}
+              >
+                <SelectBox>
+                  <ToLeft>
+                    <MyChallengeText>{challengeText}</MyChallengeText>
+                  </ToLeft>
+                  <ToRight>
+                    <Dropdown />
+                  </ToRight>
+                </SelectBox>
+              </MyChallengeBox>
+            )}
             {challenge_list?.length === 0 ? (
               <NoChallenge>
                 <div>
@@ -120,6 +210,12 @@ const MyChallenge = (props) => {
                   습관만들러 가기
                 </Button>
               </NoChallenge>
+            ) : showMine ? (
+              <>
+                {isHostList?.map((e, i) => {
+                  return <ConfirmPost key={i} {...e} />;
+                })}
+              </>
             ) : (
               <>
                 {challenge_list?.map((e, i) => {
@@ -165,7 +261,7 @@ const MyChallenge = (props) => {
                 </Button>
               </NoChallenge>
             ) : (
-              <ImageContainer>
+              <ImageContainer style={{ marginTop: "14px" }}>
                 {proof_list?.map((e, i) => {
                   return (
                     <div>
@@ -250,4 +346,76 @@ const Img = styled.img`
   border-radius: 5.5px;
 `;
 
+const MyChallengeBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin: 14px 0;
+`;
+const ToLeft = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: left;
+`;
+const ToRight = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: right;
+`;
+const SelectBox = styled.div`
+  padding: 0 10px 0 0;
+  width: 138px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const MyChallengeText = styled.span`
+  font-size: 13px;
+  padding: 0 0 0 10px;
+  color: #707070;
+`;
+
+const OptionBox = styled.div`
+  position: absolute;
+  top: 210px;
+  width: 148px;
+  height: 80px;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  display: grid;
+  grid-template-column: 1fr 1fr;
+  align-items: center;
+  // justify-content: center;
+`;
+
+const ContainerBox = styled.div``;
+// const SelectBox = styled.div`
+//   position: relative;
+//   width: 148px;
+//   height: 40px;
+//   font-size: 13px;
+//   border-radius: 5px;
+//   background-color: white;
+//   color: #707070;
+//   & > select {
+//     width: inherit;
+//     height: inherit;
+//     background: transparent;
+//     border: 0 none;
+//     outline: 0 none;
+//     padding: 0 5px;
+//     position: relative;
+//     z-index: 3; // select가 위로 올라와야 함
+//   }
+//   & > select > option {
+//     background: lightcoral;
+//     color: #fff;
+//     padding: 3px 0;
+//     font-size: 13px;
+//   }
+// `;
 export default MyChallenge;

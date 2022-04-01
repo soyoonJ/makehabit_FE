@@ -38,6 +38,7 @@ const PostDetail = (props) => {
     dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
 
+  console.log("나오나?", post);
   // React.useEffect(() => {
   //   console.log("좋아요가 바뀐다!");
   //   dispatch(postActions.getDetailPostDB(challengeId));
@@ -216,11 +217,11 @@ const PostDetail = (props) => {
               </ToLeft>
               <ToRight style={{ margin: "0.4rem", fontWeight: "600" }}>
                 {moment(koStartAt, "YYYY.MM.DD")
-                  .add(30, "days")
+                  .add(29, "days")
                   .format("YYYY년 MM월 DD일") +
                   " " +
                   dayArray[
-                    moment(koStartAt, "YYYY.MM.DD").add(30, "days").day()
+                    moment(koStartAt, "YYYY.MM.DD").add(29, "days").day()
                   ] +
                   "요일"}
               </ToRight>
@@ -608,6 +609,7 @@ const HeadLine = styled.span`
 const TextArea = styled.span`
   font-size: 1.25rem;
   line-height: 1.625rem;
+  white-space: pre-wrap;
 `;
 
 const ColorBoxJoin = styled.div`

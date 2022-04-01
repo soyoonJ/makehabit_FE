@@ -45,6 +45,12 @@ const Loader = styled.div`
   border: 10px solid #f3f3f3;
   border-top: 10px solid #ff8b37;
 
+  //위치 조정
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   animation: spin 1s linear infinite;
 
   @keyframes spin {
