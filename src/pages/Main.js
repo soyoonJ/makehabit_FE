@@ -22,7 +22,6 @@ const Main = () => {
   //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
   //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
   const dispatch = useDispatch();
-  const search = React.useRef(null);
 
   // const isLoading = useSelector((state) => state.main.isLoading);
   // const [loading, setLoading] = React.useState(true);
@@ -53,22 +52,27 @@ const Main = () => {
   //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking?.ranking_list);
 
-  //엔터키
-  // const handlePress = (e) => {
-  //   if (e.key === "Enter") {
-  //     searchBtn();
-  //   }
-  // };
+  //검색바
+  const search = React.useRef(null);
+  // 엔터키
+  const handlePress = (e) => {
+    if (e.key === "Enter") {
+      searchBtn();
+    }
+  };
+
   const [mainKeyword, setKeyword] = React.useState("");
 
   const onChange = (e) => {
     setKeyword(e.target.value);
   };
+  console.log("ddddd", setKeyword);
 
   const searchBtn = () => {
     dispatch(mainActions.getSearchDB(search.current.value));
     history.push(`/search`);
   }; //{}$$search.current.value)
+
   return (
     <Container>
       {/* <MetaTag title="습관삼끼" /> */}
@@ -90,7 +94,7 @@ const Main = () => {
             <InputBox
               ref={search}
               onChange={onChange}
-              // onKeyPress={handlePress}
+              onKeyPress={handlePress}
               placeholder="도전하고 싶은 습관을 검색해보세요!"
             ></InputBox>
             <Link

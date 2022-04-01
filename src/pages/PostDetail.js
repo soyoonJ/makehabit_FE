@@ -142,6 +142,8 @@ const PostDetail = (props) => {
     }
   };
 
+  // 수정버튼
+
   React.useEffect(() => {
     dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
@@ -348,7 +350,11 @@ const PostDetail = (props) => {
               fontWeight="600"
               cursor="default"
             >
-              <HeadLine>{statusContent.buttonText}</HeadLine>
+              {/* {post.isChangeable ? (
+                <HeadLine>챌린지 수정하기 </HeadLine>
+              ) : ( */}
+              <HeadLine>{statusContent.buttonText} </HeadLine>
+              {/* )} */}
             </ConfirmButton>
           ) : (
             <ConfirmButton

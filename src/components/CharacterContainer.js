@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 
 import styled from "styled-components";
 // import { history } from "../redux/configureStore";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as characterActions } from "../redux/modules/character";
 import { Button } from "../elements";
 import Spinner from "../shared/Spinner";
 // import { actionCreators as characterActions } from "../redux/modules/character";
@@ -11,7 +11,7 @@ import Spinner from "../shared/Spinner";
 import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.character.isLoading);
 
   const Item = process.env.PUBLIC_URL + "/items/large";
@@ -25,15 +25,6 @@ const CharacterContainer = () => {
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
-  // console.log("isEquip", isEquip);
-  // console.log(
-  //   "equip확인",
-  //   isEquip,
-  //   equipBg?.itemImgUrl,
-  //   equipColor?.itemImgUrl,
-  //   equipClothes?.itemImgUrl,
-  //   equipAcc?.itemImgUrl
-  // );
 
   // 미리보기
   const preview = useSelector((state) => state.character);
@@ -43,16 +34,6 @@ const CharacterContainer = () => {
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
   const previewEmotion = useSelector((state) => state.character?.emotionItem);
-
-  // console.log(
-  //   "preview확인",
-  //   preview,
-  //   previewBg?.itemImgUrl,
-  //   previewColor?.itemImgUrl,
-  //   previewClothes?.itemImgUrl,
-  //   previewAcc?.itemImgUrl,
-  //   previewEmotion?.itemImgUrl
-  // );
 
   //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
@@ -117,6 +98,22 @@ const CharacterContainer = () => {
     }
   };
 
+  const resetButton = () => {
+    setBody(equipColor?.itemImgUrl);
+    setBg(equipBg?.itemImgUrl);
+    setClothes(equipClothes?.itemImgUrl);
+    setAcc(equipAcc?.itemImgUrl);
+    setEmotion(equipEmotion?.itemImgUrl);
+
+    dispatch(characterActions.backgroundPreview(null));
+    dispatch(characterActions.colorPreview(null));
+    dispatch(characterActions.clothesPreview(null));
+    dispatch(characterActions.accPreview(null));
+    dispatch(characterActions.emotionPreview(null));
+    dispatch(characterActions.resetItems());
+    modalRef.current.reset();
+  };
+
   return (
     <Container>
       {isLoading ? <Spinner /> : ""}
@@ -173,6 +170,12 @@ const CharacterContainer = () => {
           ? "저장하기"
           : "구매 및 저장"}
       </Button>
+
+      <Restart
+        onClick={resetButton}
+        src={process.env.PUBLIC_URL + "images/restart_img.png"}
+        alt="restart_img"
+      />
       <ShoppingBasket1 ref={modalRef} />
     </Container>
   );
@@ -226,5 +229,14 @@ const ItemImg = styled.img`
   height: 100%;
   position: absolute;
   z-index: 1;
+`;
+
+const Restart = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30.5%;
+  margin: 0 0 2vh 5%;
+  z-index: 5;
 `;
 export default CharacterContainer;
