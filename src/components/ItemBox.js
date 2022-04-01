@@ -15,6 +15,7 @@ const ItemBox = () => {
   const dispatch = useDispatch();
 
   const itemList = useSelector((state) => state.character?.itemList);
+  console.log("itemList", itemList);
   const category = itemList[0].category;
   // console.log("아이템리스트", itemList);
   // console.log("카테고리", category);
@@ -29,6 +30,8 @@ const ItemBox = () => {
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
   const previewEmotion = useSelector((state) => state.character?.emotionItem);
+
+  const isReset = useSelector((state) => state.character?.isReset);
 
   const Item = process.env.PUBLIC_URL + "/items/small";
   const [item, setItem] = React.useState(null);
@@ -63,7 +66,7 @@ const ItemBox = () => {
         setItem(previewEmotion);
       }
     }
-  }, [category]);
+  }, [category, isReset]);
 
   // CharacterContainer에 반영하기 위한 작업
   React.useEffect(() => {
@@ -76,6 +79,8 @@ const ItemBox = () => {
     } else if (category === "emotion") {
       dispatch(characterActions.emotionPreview(item));
     }
+
+    console.log("item", item);
   }, [item]);
 
   return (
@@ -122,18 +127,22 @@ const ItemBox = () => {
                 {i !== 0 ? (
                   <>
                     <div>{e.itemName}</div>
-                    <Point>
-                      <img
-                        src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
-                        alt="포인트 아이콘"
-                        style={{
-                          width: "2.96vh",
-                          height: "2.96vh",
-                          marginRight: "0.94vh",
-                        }}
-                      />
-                      {e.price}
-                    </Point>
+                    {!e.isOwned ? (
+                      <Point>
+                        <img
+                          src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
+                          alt="포인트 아이콘"
+                          style={{
+                            width: "2.96vh",
+                            height: "2.96vh",
+                            marginRight: "0.94vh",
+                          }}
+                        />
+                        {e.price}
+                      </Point>
+                    ) : (
+                      ""
+                    )}
                   </>
                 ) : (
                   ""

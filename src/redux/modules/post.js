@@ -19,6 +19,11 @@ const ADD_LIKE = "ADD_LIKE";
 const DELETE_LIKE = "DELTE_LIKE";
 const SET_LOAD = "SET_LOAD";
 const LIKE_COLLECT = "LIKE_COLLECT";
+
+
+//챌린지수정
+const EDIT_POST = "EDIT_POST";
+
 // const GET_DISLIKE = "GET_DISLIKE";
 
 const addPost = createAction(ADD_POST, (challengeId) => ({ challengeId }));
@@ -42,6 +47,9 @@ const deleteLike = createAction(DELETE_LIKE, (isLike) => ({ isLike }));
 const getLike = createAction(GET_LIKE, (isLike) => ({ isLike }));
 const setLoad = createAction(SET_LOAD, (isLoading) => ({ isLoading }));
 const likeCollection = createAction(LIKE_COLLECT, (collect) => ({ collect }));
+
+const editPost = createAction(EDIT_POST, (challengeId) => ({ challengeId }));
+
 // initialState
 const initialState = {
   imgExist: false,
@@ -129,6 +137,45 @@ const getDetailPostDB = (challengeId) => {
       })
       .catch(function (error) {
         console.log(error);
+      });
+  };
+};
+
+// 페이지 수정하기
+const editPostDB = (
+  title,
+  category,
+  thumbnail,
+  startAt,
+  content,
+  howtoContent,
+  tag
+) => {
+  return function (dispatch, useState, { history }) {
+    apis
+      .imageUpload(thumbnail)
+      .then(function (response) {
+        apis
+          .postedit(
+            title,
+            category,
+            response.data.imgUrl,
+            startAt,
+            content,
+            howtoContent,
+            tag
+          )
+          .then((response) => {
+            console.log("게시물 등록", response);
+            dispatch(editPost(response.data.challengeId));
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+        return;
       });
   };
 };
@@ -295,6 +342,7 @@ const actionCreators = {
   dislikeDB,
   imgExist,
   setLoad,
+  editPostDB,
 };
 
 export { actionCreators };

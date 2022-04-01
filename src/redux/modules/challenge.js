@@ -131,6 +131,21 @@ const myfeedDB = (proofShotId) => {
   };
 };
 
+const changeCommentDB = (proofshotId, comment) => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .changeFeed(proofshotId, comment)
+      .then(function (res) {
+        // console.log(res);
+        dispatch(myfeedDB(proofshotId));
+      })
+      .catch((error) => {
+        // console.log(error);
+        window.alert(error.response.data.message);
+      });
+  };
+};
+
 // redux
 export default handleActions(
   {
@@ -180,6 +195,7 @@ const actionCreators = {
   setFeed,
   myfeedDB,
   setComplete,
+  changeCommentDB,
 };
 
 export { actionCreators };

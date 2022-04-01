@@ -143,6 +143,9 @@ const PostDetail = (props) => {
     }
   };
 
+  // 수정
+  const EditpostId = props.match.params.id;
+
   React.useEffect(() => {
     dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
@@ -349,7 +352,18 @@ const PostDetail = (props) => {
               fontWeight="600"
               cursor="default"
             >
-              <HeadLine>{statusContent.buttonText}</HeadLine>
+              {/* {post.isChangeable ? (
+                <HeadLine
+                  onClick={() => {
+                    history.push(`/editPostpage/${EditpostId}`);
+                  }}
+                >
+                  챌린지 수정하기{" "}
+                </HeadLine>
+              ) : (
+                <HeadLine>{statusContent.buttonText} </HeadLine>
+              )} */}
+              <HeadLine>{statusContent.buttonText} </HeadLine>)
             </ConfirmButton>
           ) : (
             <ConfirmButton
