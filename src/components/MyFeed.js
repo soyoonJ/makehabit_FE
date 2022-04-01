@@ -65,6 +65,7 @@ const MyFeed = (props) => {
 
   React.useEffect(() => {
     dispatch(challengeActions.myfeedDB(proofShotId));
+    setComment(feed?.comment);
   }, []);
 
   return (
@@ -183,11 +184,12 @@ const Comment = styled.div`
       margin-bottom: 2.125rem;
     }
     &:nth-child(3) {
-      font-size: 2.37vh;
+      font-size: 1.25rem;
       line-height: 1.625rem;
       letter-spacing: -0.005rem;
       color: #1d1b1b;
       margin-bottom: 1.75rem;
+      white-space: pre-wrap;
     }
   }
 
@@ -198,12 +200,12 @@ const Comment = styled.div`
     height: 8.125rem;
     background: #f7f7f7;
     border: none;
-    font-size: 2.37vh;
+    font-size: 1rem;
     padding: 1.25rem 1.625rem;
 
     ::placeholder {
       color: #9c9c9c;
-      font-size: 2.37vh;
+      font-size: 1rem;
     }
   }
 `;
