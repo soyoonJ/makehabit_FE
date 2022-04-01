@@ -48,11 +48,19 @@ const MyFeed = (props) => {
 
   const wantChange = () => {
     setChange(true);
-    setLength(feed?.comment.length);
+    if (feed?.comment === null) {
+      setLength(0);
+    } else {
+      setLength(feed?.comment.length);
+    }
   };
   const submitChange = () => {
-    dispatch(challengeActions.changeCommentDB(proofShotId, comment));
-    setChange(false);
+    if (commentLength === 0) {
+      alert("1글자 이상 입력해주세요");
+    } else {
+      dispatch(challengeActions.changeCommentDB(proofShotId, comment));
+      setChange(false);
+    }
   };
 
   React.useEffect(() => {
@@ -95,9 +103,13 @@ const MyFeed = (props) => {
             <Title>
               <div>{feed.challengeTitle}</div>
               {!change ? (
-                <div onClick={wantChange}>수정</div>
+                <div onClick={wantChange} className="Rewrite">
+                  수정하기
+                </div>
               ) : (
-                <div onClick={submitChange}>완료</div>
+                <div onClick={submitChange} className="Complete">
+                  저장하기
+                </div>
               )}
             </Title>
 
@@ -164,7 +176,7 @@ const Img = styled.img`
 const Comment = styled.div`
   & > div {
     &:nth-child(2) {
-      font-size: 1.54vh;
+      font-size: 0.813rem;
       line-height: 1.063rem;
       letter-spacing: -0.005rem;
       color: #1d1b1b;
@@ -207,23 +219,44 @@ const Title = styled.div`
       display: flex;
       justify-content: center;
       align-content: center;
-      font-size: 2.6vh;
+      font-size: 1.375rem;
       font-weight: 700;
-      line-height: 3.41vh;
+      line-height: 1.801rem;
       letter-spacing: -0.005rem;
       color: #1d1b1b;
     }
+  }
 
-    &:nth-child(2) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 60px;
-      height: 25px;
-      border: 1.5px solid black;
-      border-radius: 12.5px;
-      margin-left: 10px;
-    }
+  .Rewrite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 1.75rem;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 0.188rem 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    font-weight: 500;
+    background: #f7f7f7;
+    color: #707070;
+  }
+
+  .Complete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 1.75rem;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 0.188rem 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    font-weight: 500;
+    background: #ff8b37;
+    color: #fff;
   }
 `;
 

@@ -170,19 +170,12 @@ const CharacterContainer = () => {
           ? "저장하기"
           : "구매 및 저장"}
       </Button>
-      <Button
-        _onClick={resetButton}
-        position="absolute"
-        bottom="0"
-        left="0"
-        width="13.74vh"
-        height="4.74vh"
-        bg="#6825D6"
-        zIndex="5"
-        margin="0 0 2vh 5%"
-      >
-        초기화
-      </Button>
+
+      <Restart
+        onClick={resetButton}
+        src={process.env.PUBLIC_URL + "images/restart_img.png"}
+        alt="restart_img"
+      />
       <ShoppingBasket1 ref={modalRef} />
     </Container>
   );
@@ -236,5 +229,14 @@ const ItemImg = styled.img`
   height: 100%;
   position: absolute;
   z-index: 1;
+`;
+
+const Restart = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30.5%;
+  margin: 0 0 2vh 5%;
+  z-index: 5;
 `;
 export default CharacterContainer;

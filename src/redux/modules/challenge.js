@@ -140,7 +140,8 @@ const changeCommentDB = (proofshotId, comment) => {
         dispatch(myfeedDB(proofshotId));
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        window.alert(error.response.data.message);
       });
   };
 };
