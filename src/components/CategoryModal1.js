@@ -125,6 +125,7 @@ const Container = styled.div`
 
   section {
     position: fixed;
+    max-width: 420px;
     bottom: 0;
     width: 100%;
     background-color: transparent !important;
