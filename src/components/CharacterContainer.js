@@ -125,7 +125,6 @@ const CharacterContainer = () => {
         <ImgContainer>
           <ItemImg
             src={Item + viewBg}
-            alt={viewBg}
             style={{ width: "100%", objectFit: "cover" }}
           ></ItemImg>
           <ItemImg src={Item + viewBody}></ItemImg>
