@@ -34,7 +34,6 @@ const Banner1 = () => {
   ];
 
   const linkUrl = [
-
     "https://docs.google.com/forms/d/e/1FAIpQLSfAsQRKY6RxcAZ2tP9cC-kmhyQDKrsMJ4h-QICdfq-nlYUW1w/viewform",
     "https://witty-board-2e4.notion.site/e0fe80c96fe74d53adbef6e7e87f74ea",
     "/character",

@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
   // baseURL: "http://52.79.227.179/",
   baseURL: "https://makehabitapi.shop/",
-  timeout: 1000,
+  // timeout: 5000,
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
     "content-type": "application/json;charset=UTF-8",
