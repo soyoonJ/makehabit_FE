@@ -103,8 +103,8 @@ function App() {
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/category/:id" component={Category} />
-                {/* <Route path="/search/:id" component={Search} /> */}
-                <Route path="/search" component={Search} />
+                {/* <Route path="/search/:word" component={Search} /> */}
+                <Route path="/search/" component={Search} />
                 <Route path="/recommend/:id" component={Recommend} />
                 <Route path="/challenges/:id" component={PostDetail} />
                 <Route path="/postwrite" component={PostWrite} />

@@ -144,7 +144,26 @@ export const apis = {
   dislike: (challengeId) =>
     instance.delete(`/api/challenges/${challengeId}/like`),
 
-  //상세페이지 채팅버튼 (보류)
+  //상세페이지 챌린지 수정
+  postedit: (
+    challengId,
+    title,
+    category,
+    thumbnail,
+    startAt,
+    content,
+    howtoContent,
+    tag
+  ) =>
+    instance.post(`/api/challenges/${challengId}`, {
+      title,
+      category,
+      thumbnail,
+      startAt,
+      content,
+      howtoContent,
+      tag,
+    }),
 
   // 인증페이지 -------------------------------------------------------------------------------------------------------
   // 인증하기 페이지 조회

@@ -20,7 +20,7 @@ const Search = (props) => {
 
   // const length = location.state.length;
   const mainkeyword = location.state?.mainKeyword;
-  // console.log("키워드검색", mainkeyword);
+  console.log("키워드검색", mainkeyword);
   // console.log("searchWord_list", search.current.value);
 
   //Like 누를때마다 화면 전환
@@ -39,7 +39,7 @@ const Search = (props) => {
     }
   };
   const searchBtn = () => {
-    dispatch(mainActions.getSearchDB(search.current.value));
+    dispatch(mainActions.getSearchDB(search.current?.value));
     history.push(`/search`);
   };
 
@@ -79,13 +79,6 @@ const Search = (props) => {
             </ContainerInput>
           </ContainerGrid>
         </Header>
-        {/*검색된 포스팅카드 불러오기 */}
-        {/* <CardWrap>
-            {searchWord_list?.map((p, idx) => {
-              // console.log("검색리스트", p);
-              return <CategoryPost key={p._id} {...p} />;
-            })}
-          </CardWrap> */}
 
         <ContainerGrid margin="9.47vh 0 0">
           {searchWord_list?.length === 0 ? (
