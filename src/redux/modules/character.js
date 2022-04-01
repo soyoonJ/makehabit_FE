@@ -12,12 +12,10 @@ const CLOTHES_PREVIEW = "CLOTHES_PREVIEW";
 const ACC_PREVIEW = "ACC_PREVIEW";
 const RESET_ITEMS = "RESET_ITEMS";
 
-// const setAll = createAction(SET_ALL, (allList) => ({ allList }));
 const setItems = createAction(SET_ITEMS, (itemList, category) => ({
   itemList,
   category,
 }));
-// dispatch 여러개 만들어야 하나?
 const selectedItems = createAction(SELECTED_ITEMS, (selected) => ({
   selected,
 }));
@@ -40,7 +38,6 @@ const resetItems = createAction(RESET_ITEMS, () => ({}));
 const initialState = {
   allList: [],
   itemList: [],
-  // allList: [],
   item: null,
   selected: null,
   currentPoint: null,
@@ -62,7 +59,6 @@ const getItemDB = (category) => {
     apis
       .GetItemList()
       .then(function (res) {
-        // console.log("아이템", res);
         dispatch(setItems(res.data, category));
       })
       .catch((error) => {
@@ -77,7 +73,6 @@ const purchaseItemList = (totalPrice, items) => {
     apis
       .PurchaseItem(totalPrice, items)
       .then(function (response) {
-        // console.log("아이템 구매 및 저장", response);
         history.push("/charactersave");
       })
       .catch((error) => {
@@ -93,7 +88,6 @@ const mypageCharacterList = () => {
     apis
       .mypageCharacter()
       .then(function (res) {
-        // console.log("내캐릭터", res.data.character.equippedItems);
         dispatch(selectedItems(res.data.character.equippedItems));
       })
       .catch((error) => {
@@ -107,7 +101,6 @@ export default handleActions(
   {
     [SET_ITEMS]: (state, action) =>
       produce(state, (draft) => {
-        // console.log("GETLIST", action.payload);
         draft.allList = action.payload.itemList.items;
 
         if (action.payload.category === undefined) {
@@ -125,9 +118,6 @@ export default handleActions(
             (e) => e.isEquip === true
           );
         }
-
-        // draft.isLoading = false;
-        // console.log("찍히나요", draft.isEquip);
       }),
     [SELECTED_ITEMS]: (state, action) =>
       produce(state, (draft) => {
@@ -143,7 +133,6 @@ export default handleActions(
           (e) => !e?.includes("background")
         );
         draft.shopList.push(action.payload.backgroundItem);
-        // console.log("배경", action.payload.backgroundItem);
       }),
     [COLOR_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
@@ -168,7 +157,6 @@ export default handleActions(
         draft.shopList = draft.shopList.filter((e) => e !== null);
         draft.shopList = draft.shopList.filter((e) => !e?.includes("clothes"));
         draft.shopList.push(action.payload.clothesItem);
-        // console.log("옷", action.payload.clothesItem);
       }),
     [ACC_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
@@ -177,7 +165,6 @@ export default handleActions(
         draft.shopList = draft.shopList.filter((e) => e !== null);
         draft.shopList = draft.shopList.filter((e) => !e?.includes("acc"));
         draft.shopList.push(action.payload.accItem);
-        // console.log("악세사리", action.payload.accItem);
       }),
     [RESET_ITEMS]: (state, action) =>
       produce(state, (draft) => {

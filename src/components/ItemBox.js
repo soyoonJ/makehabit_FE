@@ -15,6 +15,7 @@ const ItemBox = () => {
   const dispatch = useDispatch();
 
   const itemList = useSelector((state) => state.character?.itemList);
+  console.log("itemList", itemList);
   const category = itemList[0].category;
   // console.log("아이템리스트", itemList);
   // console.log("카테고리", category);
@@ -31,7 +32,6 @@ const ItemBox = () => {
   const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
   const isReset = useSelector((state) => state.character?.isReset);
-  // console.log("isReset", isReset);
 
   const Item = process.env.PUBLIC_URL + "/items/small";
   const [item, setItem] = React.useState(null);
@@ -127,18 +127,22 @@ const ItemBox = () => {
                 {i !== 0 ? (
                   <>
                     <div>{e.itemName}</div>
-                    <Point>
-                      <img
-                        src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
-                        alt="포인트 아이콘"
-                        style={{
-                          width: "2.96vh",
-                          height: "2.96vh",
-                          marginRight: "0.94vh",
-                        }}
-                      />
-                      {e.price}
-                    </Point>
+                    {!e.isOwned ? (
+                      <Point>
+                        <img
+                          src={process.env.PUBLIC_URL + "/images/icon_coin.svg"}
+                          alt="포인트 아이콘"
+                          style={{
+                            width: "2.96vh",
+                            height: "2.96vh",
+                            marginRight: "0.94vh",
+                          }}
+                        />
+                        {e.price}
+                      </Point>
+                    ) : (
+                      ""
+                    )}
                   </>
                 ) : (
                   ""

@@ -54,52 +54,6 @@ const CharacterSave = () => {
     navigator.share(shareData);
   }
 
-  // 저장하기 기능
-  const onHtmlToPng = () => {
-    let url = "";
-    html2canvas(document.getElementById("myCharacter")).then((canvas) => {
-      url = canvas.toDataURL("image/png");
-      // console.log("url", url);
-      // 곧바로 저장하기!!!
-      let link = document.createElement("a");
-      document.body.appendChild(link);
-      link.href = url;
-      link.download = "mycharacter.png";
-      link.click();
-      document.body.removeChild(link);
-    });
-  };
-
-  // 카카오 공유 시도
-  // const kakaoShare = () => {
-  //   let url = "";
-  //   html2canvas(document.getElementById("myCharacter")).then((canvas) => {
-  //     url = canvas.toDataURL("image/png");
-
-  //     window.Kakao.Link.sendDefault({
-  //       objectType: "feed",
-  //       content: {
-  //         title: "습관삼끼",
-  //         description: "작심삼일도 열번하면 30일이다!!",
-  //         imageUrl: url,
-  //         link: {
-  //           webUrl: "https://makehabit.shop/character",
-  //           mobileWebUrl: "https://makehabit.shop",
-  //         },
-  //       },
-  //       buttons: [
-  //         {
-  //           title: "내 캐릭터 만들러 가기",
-  //           link: {
-  //             webUrl: "https://makehabit.shop/character",
-  //             mobileWebUrl: "https://makehabit.shop",
-  //           },
-  //         },
-  //       ],
-  //     });
-  //   });
-  // };
-
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 캐릭터꾸미기" />
@@ -113,7 +67,6 @@ const CharacterSave = () => {
           <ItemImg src={Item + equipEmotion?.itemImgUrl} />
         </ImgContainer>
         <img
-          // src={process.env.PUBLIC_URL + "/images/logo_text_image.png"}
           src="/images/logo_text_image.svg"
           alt="logo"
           style={{
