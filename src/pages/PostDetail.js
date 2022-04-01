@@ -142,7 +142,8 @@ const PostDetail = (props) => {
     }
   };
 
-  // 수정버튼
+  // 수정
+  const EditpostId = props.match.params.id;
 
   React.useEffect(() => {
     dispatch(postActions.getDetailPostDB(challengeId));
@@ -351,10 +352,17 @@ const PostDetail = (props) => {
               cursor="default"
             >
               {/* {post.isChangeable ? (
-                <HeadLine>챌린지 수정하기 </HeadLine>
-              ) : ( */}
-              <HeadLine>{statusContent.buttonText} </HeadLine>
-              {/* )} */}
+                <HeadLine
+                  onClick={() => {
+                    history.push(`/editPostpage/${EditpostId}`);
+                  }}
+                >
+                  챌린지 수정하기{" "}
+                </HeadLine>
+              ) : (
+                <HeadLine>{statusContent.buttonText} </HeadLine>
+              )} */}
+              <HeadLine>{statusContent.buttonText} </HeadLine>)
             </ConfirmButton>
           ) : (
             <ConfirmButton
