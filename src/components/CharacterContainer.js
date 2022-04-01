@@ -1,23 +1,18 @@
 import React, { useRef, useState } from "react";
 
 import styled from "styled-components";
-// import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
 import { Button } from "../elements";
-import Spinner from "../shared/Spinner";
-// import { actionCreators as characterActions } from "../redux/modules/character";
 
 import ShoppingBasket1 from "../components/ShoppingBasket1";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.character.isLoading);
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
   const currentPoint = useSelector((state) => state.character.currentPoint);
-  // console.log(currentPoint);
 
   const isEquip = useSelector((state) => state.character?.isEquip);
   const equipColor = isEquip?.find((e) => e.category === "color");
@@ -28,7 +23,6 @@ const CharacterContainer = () => {
 
   // 미리보기
   const preview = useSelector((state) => state.character);
-  // console.log("미리보기", preview);
   const previewColor = useSelector((state) => state.character?.colorItem);
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
@@ -41,10 +35,8 @@ const CharacterContainer = () => {
   const [viewClothes, setClothes] = useState();
   const [viewAcc, setAcc] = useState();
   const [viewEmotion, setEmotion] = useState();
-  // console.log("데이터?", viewBg, viewBody, viewClothes, viewAcc);
 
   const allList = useSelector((state) => state.character.allList);
-  // console.log("리스트?", allList);
 
   // 저장하기 눌렀을 때 선택되어있는 아이템 전체정보
   const selectedBg = allList.find((e) => e.itemImgUrl === viewBg);
@@ -83,7 +75,6 @@ const CharacterContainer = () => {
   }, [preview]);
 
   const saveButton = () => {
-    // sendItems();
     if (
       selectedBg?.isOwned &&
       selectedBody?.isOwned &&
@@ -116,7 +107,6 @@ const CharacterContainer = () => {
 
   return (
     <Container>
-      {isLoading ? <Spinner /> : ""}
       <Point>
         <div>
           <img
@@ -138,10 +128,10 @@ const CharacterContainer = () => {
             alt={viewBg}
             style={{ width: "100%", objectFit: "cover" }}
           ></ItemImg>
-          <ItemImg src={Item + viewBody} alt={viewBody}></ItemImg>
-          <ItemImg src={Item + viewClothes} alt={viewClothes}></ItemImg>
-          <ItemImg src={Item + viewAcc} alt={viewAcc}></ItemImg>
-          <ItemImg src={Item + viewEmotion} alt={viewEmotion}></ItemImg>
+          <ItemImg src={Item + viewBody}></ItemImg>
+          <ItemImg src={Item + viewClothes}></ItemImg>
+          <ItemImg src={Item + viewAcc}></ItemImg>
+          <ItemImg src={Item + viewEmotion}></ItemImg>
         </ImgContainer>
       )}
       <Button
@@ -186,6 +176,7 @@ const Container = styled.div`
   flex-direction: column;
   position: relative;
   height: 46vh;
+
   // 모바일 버전
   @media (min-width: 420px) {
     height: 48.5vh;
