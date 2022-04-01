@@ -124,10 +124,9 @@ const Container = styled.div`
   display: flex;
 
   section {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    // height: 50%;
-    align-self: end;
-    // background: #fff;
     background-color: transparent !important;
   }
 
