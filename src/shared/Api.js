@@ -166,6 +166,9 @@ export const apis = {
   // 나의 기록보기 상세 조회 (피드/스토리 형식)
   oneFeed: (proofShotId) =>
     instance.get(`/api/mypage/proofShot/${proofShotId}`),
+  // 나의 기록보기 수정
+  changeFeed: (proofShotId, comment) =>
+    instance.patch(`/api/proofshot/${proofShotId}`, { comment }),
 
   //내 챌린지 보기 > 필터
   challengeFilter: (status) =>
