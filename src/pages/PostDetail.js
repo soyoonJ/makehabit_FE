@@ -352,18 +352,18 @@ const PostDetail = (props) => {
               fontWeight="600"
               cursor="default"
             >
-              {/* {post.isChangeable ? ( */}
-              {/* <HeadLine
-                onClick={() => {
-                  history.push(`/editPostpage/${EditpostId}`);
-                }}
-              >
-                챌린지 수정하기{" "}
-              </HeadLine> */}
-              {/* ) : (
+              {post.isChangeable ? (
+                <HeadLine
+                  onClick={() => {
+                    history.push(`/editPostpage/${EditpostId}`);
+                  }}
+                >
+                  챌린지 수정하기{" "}
+                </HeadLine>
+              ) : (
                 <HeadLine>{statusContent.buttonText} </HeadLine>
-              )} */}
-              <HeadLine>{statusContent.buttonText} </HeadLine>
+              )}
+              {/* <HeadLine>{statusContent.buttonText} </HeadLine> */}
             </ConfirmButton>
           ) : (
             <ConfirmButton
