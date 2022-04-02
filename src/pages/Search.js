@@ -39,6 +39,7 @@ const Search = (props) => {
   };
 
   const searchBtn = () => {
+    history.push(`/search?q=${search.current?.value}`);
     dispatch(mainActions.getSearchDB(search.current?.value));
   };
 
