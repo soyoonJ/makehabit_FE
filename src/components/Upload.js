@@ -37,7 +37,7 @@ const Upload = forwardRef((props, ref) => {
 
   //이미지수정
   // const EditpostId = props.match.params.id;
-  const editthumbnail = useSelector((state) => state.post.post.thumbnail);
+  const editthumbnail = useSelector((state) => state.post.post?.thumbnail);
   console.log("이미지지", editthumbnail);
 
   //이미지 업로드
@@ -45,37 +45,44 @@ const Upload = forwardRef((props, ref) => {
     location.pathname.includes("/editPostpage")
       ? // location.pathname === "/postwrite"
         // process.env.PUBLIC_URL + "/images/open_base.png"
-        editthumbnail
+        null
       : location.pathname.includes("/confirm")
       ? process.env.PUBLIC_URL + "/images/confirm_base.png"
       : // : { editthumbnail }
         process.env.PUBLIC_URL + "/images/open_base.png"
   );
 
+  console.log("주소", location.pathname);
+
   React.useEffect(() => {
     dispatch(postActions.imgExist(false));
-    // dispatch(postActions.imageUpload());
+    if (location.pathname.includes("/editPostpage")) {
+      setPreviewImg(editthumbnail);
+    }
+    // dispatch(postActions.addPostDB());
   }, []);
 
   return (
-    <ImageBox
-      style={{
-        backgroundImage: `url(${previewImg})`,
-      }}
-      onClick={_onClick}
-    >
-      <ImageInput
-        id="thumnail"
-        type="file"
-        accept=".png, .jpg, .jpeg, .gif, .jfif, .webp, image/*;capture=camera"
-        // accept="capture=camera"
-        onChange={saveFileImage}
-        ref={_ref}
-        cursor="pointer"
-        // width="100%"
-        // height="100%"
-      ></ImageInput>
-    </ImageBox>
+    <div>
+      <ImageBox
+        style={{
+          backgroundImage: `url(${previewImg})`,
+        }}
+        onClick={_onClick}
+      >
+        <ImageInput
+          id="thumnail"
+          type="file"
+          accept=".png, .jpg, .jpeg, .gif, .jfif, .webp, image/*;capture=camera"
+          // accept="capture=camera"
+          onChange={saveFileImage}
+          ref={_ref}
+          cursor="pointer"
+          // width="100%"
+          // height="100%"
+        ></ImageInput>
+      </ImageBox>
+    </div>
   );
 });
 
