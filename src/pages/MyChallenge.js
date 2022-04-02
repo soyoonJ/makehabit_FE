@@ -124,7 +124,7 @@ const MyChallenge = (props) => {
                         setChallengeText("전체 챌린지 보기");
                         setShowMine(false);
                       }}
-                      style={{ color: "purple", fontWeight: "bold" }}
+                      style={{ color: "#6825D6", fontWeight: "bold" }}
                     >
                       전체 챌린지 보기
                     </MyChallengeText>
@@ -153,7 +153,7 @@ const MyChallenge = (props) => {
                         setChallengeText("내가 개설한 챌린지");
                         setShowMine(true);
                       }}
-                      style={{ color: "purple", fontWeight: "bold" }}
+                      style={{ color: "#6825D6", fontWeight: "bold" }}
                     >
                       내가 개설한 챌린지
                     </MyChallengeText>
@@ -347,6 +347,7 @@ const Img = styled.img`
 `;
 
 const MyChallengeBox = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: right;
@@ -363,8 +364,8 @@ const ToRight = styled.div`
   justify-content: right;
 `;
 const SelectBox = styled.div`
-  padding: 0 10px 0 0;
-  width: 138px;
+  padding: 0 14px 0 0;
+  width: 134px;
   height: 40px;
   border-radius: 5px;
   background-color: #f7f7f7;
@@ -375,13 +376,13 @@ const SelectBox = styled.div`
 
 const MyChallengeText = styled.span`
   font-size: 13px;
-  padding: 0 0 0 10px;
+  padding: 0 0 0 14px;
   color: #707070;
 `;
 
 const OptionBox = styled.div`
   position: absolute;
-  top: 210px;
+  top: 48px;
   width: 148px;
   height: 80px;
   border-radius: 5px;
