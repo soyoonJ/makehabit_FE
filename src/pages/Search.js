@@ -10,26 +10,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as mainActions } from "../redux/modules/main";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useLocation } from "react-router-dom";
+import QueryString from "qs";
 
 const Search = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
+  // const key = location.search;
+  // console.log("keyword", key);
+  const queryData = QueryString.parse(location.search, {
+    ignoreQueryPrefix: true,
+  });
 
   const search = React.useRef();
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
-
-  // const length = location.state.length;
-  const mainkeyword = location.state?.mainKeyword;
-  console.log("키워드검색", mainkeyword);
-  // console.log("searchWord_list", search.current.value);
 
   //Like 누를때마다 화면 전환
   const likeList = useSelector((state) => state.post.isLike);
 
   React.useEffect(() => {
-    // dispatch(postActions.getLikeDB());
-    dispatch(mainActions.getSearchDB(mainkeyword));
-    // console.log("검색", search.current.value, typeof search.current.value);
+    dispatch(mainActions.getSearchDB(search.current?.value));
   }, [likeList]);
 
   //엔터키
@@ -38,9 +37,9 @@ const Search = (props) => {
       searchBtn();
     }
   };
+
   const searchBtn = () => {
     dispatch(mainActions.getSearchDB(search.current?.value));
-    history.push(`/search`);
   };
 
   return (
@@ -66,6 +65,7 @@ const Search = (props) => {
             <ContainerInput>
               <InputBox
                 ref={search}
+                defaultValue={queryData.q}
                 onKeyPress={handlePress}
                 placeholder="도전하고 싶은 습관을 검색해보세요!"
               ></InputBox>
