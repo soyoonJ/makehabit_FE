@@ -122,7 +122,7 @@ function App() {
                 <Route path="/kakao" component={Auth2RedirectHandler}></Route>
                 <Route path="/ranking" component={RankingPage} />
                 <Route path="/likeCollection" component={LikeCollection} />
-                <Route path="/EditPostPage/:id" component={EditPostPage} />
+                <Route path="/editPostpage/:id" component={EditPostPage} />
                 <Route path="*" exact component={NotFound} />
               </Switch>
             </Suspense>

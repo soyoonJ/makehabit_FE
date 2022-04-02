@@ -20,7 +20,6 @@ const DELETE_LIKE = "DELTE_LIKE";
 const SET_LOAD = "SET_LOAD";
 const LIKE_COLLECT = "LIKE_COLLECT";
 
-
 //챌린지수정
 const EDIT_POST = "EDIT_POST";
 

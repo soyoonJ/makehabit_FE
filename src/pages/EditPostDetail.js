@@ -220,14 +220,16 @@ const PostWrite = (props) => {
 
   //수정
   const EditpostId = props.match.params.id;
-  const postdata = useSelector((state) => state.post.post.title);
+  const postdata = useSelector((state) => state.post.post);
   console.log("ddd", postdata);
 
   const [inputText, setInputText] = useState("");
   const onChangeInput = (e) => {
-    const { inputText } = e.target;
+    const { postdata } = e.target;
     setInputText(e.target.value);
   };
+
+  const editthumbnail = useSelector((state) => state.post.post.thumbnail);
 
   console.log(onChangeInput);
   React.useEffect(() => {
@@ -248,6 +250,7 @@ const PostWrite = (props) => {
 
         {/* 이미지 업로드 */}
         <Grid padding="0 1.250rem">
+          {/* <Imagethumbmail src={editthumbnail}></Imagethumbmail> */}
           <Upload
             ref={uploadRef}
             _ref={fileInput}
@@ -261,10 +264,12 @@ const PostWrite = (props) => {
         <Grid padding="1.250rem">
           <HeadLine>챌린지 제목</HeadLine>
           <TitleInput
-            placeholder={postdata}
+            placeholder="제목을 입력해주세요."
             onChange={onChangeTitle}
+            defaultValue={postdata.title}
             maxLength="20"
           />
+
           <LengthText textAlign="right">{titleLength}/20자</LengthText>
         </Grid>
         {/* 카테고리 선택 */}
@@ -309,6 +314,7 @@ const PostWrite = (props) => {
           <ToRight>
             <StartDate>{date ? transformDay : "2022년 00월 00일"}</StartDate>
             <DateInput
+              defaultValue={postdata.startAt}
               id="inputCalendar"
               type="date"
               min={
@@ -362,7 +368,7 @@ const PostWrite = (props) => {
             placeholder="ex) 매일 책 한 권 읽는 챌린지"
             onChange={onChangeDesc}
             maxLength="150"
-            value={postdata}
+            defaultValue={postdata.content}
           ></Contents>
           <LengthText textAlign="right">{descLength}/150자</LengthText>
         </Grid>
@@ -381,7 +387,7 @@ const PostWrite = (props) => {
             placeholder="ex) 오늘 날짜가 적힌 메모와 책 페이지를 찍어주세요."
             onChange={onChangeMethod}
             maxLength="150"
-            value={postdata}
+            defaultValue={postdata.howtoContent}
           ></Contents>
           <LengthText textAlign="right">{methodLength}/150자</LengthText>
         </MarginBox>
@@ -622,6 +628,17 @@ const CreateText = styled.span`
   font-weight: bold;
   line-height: 1.1813rem;
   color: white;
+`;
+const Imagethumbmail = styled.img`
+  display: flex;
+  margin: auto;
+  height: 12rem;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-size: 100% 100%;
 `;
 
 export default PostWrite;

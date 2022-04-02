@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 // import { Text, Grid } from "../elements";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
@@ -24,19 +24,39 @@ const Upload = forwardRef((props, ref) => {
   // console.log("페이지링크", props.match.params);
 
   //이미지 업로드
-  const [previewImg, setPreviewImg] = React.useState(
-    location.pathname === "/postwrite"
-      ? process.env.PUBLIC_URL + "/images/open_base.png"
-      : process.env.PUBLIC_URL + "/images/confirm_base.png"
-  );
+  // const [previewImg, setPreviewImg] = React.useState(
+  //   location.pathname === "/postwrite"
+  //     ? process.env.PUBLIC_URL + "/images/open_base.png"
+  //     : process.env.PUBLIC_URL + "/images/confirm_base.png"
+  // );
 
   const saveFileImage = (e) => {
     setPreviewImg(URL.createObjectURL(e.target.files[0]));
     dispatch(postActions.imgExist(true));
   };
+
+  //이미지수정
+  // const EditpostId = props.match.params.id;
+  const editthumbnail = useSelector((state) => state.post.post.thumbnail);
+  console.log("이미지지", editthumbnail);
+
+  //이미지 업로드
+  const [previewImg, setPreviewImg] = React.useState(
+    location.pathname.includes("/editPostpage")
+      ? // location.pathname === "/postwrite"
+        // process.env.PUBLIC_URL + "/images/open_base.png"
+        editthumbnail
+      : location.pathname.includes("/confirm")
+      ? process.env.PUBLIC_URL + "/images/confirm_base.png"
+      : // : { editthumbnail }
+        process.env.PUBLIC_URL + "/images/open_base.png"
+  );
+
   React.useEffect(() => {
     dispatch(postActions.imgExist(false));
+    // dispatch(postActions.imageUpload());
   }, []);
+
   return (
     <ImageBox
       style={{
@@ -78,6 +98,18 @@ const ImageInput = styled.input`
   // ::file-selector-button {
   //   display: none;
   // }
+`;
+
+const Imagethumbmail = styled.img`
+  display: flex;
+  margin: auto;
+  height: 12rem;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-size: 100% 100%;
 `;
 
 export default Upload;
