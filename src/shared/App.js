@@ -58,6 +58,7 @@ const ShoppingBasket = lazy(() => import("../pages/ShoppingBasket"));
 const CharacterSave = lazy(() => import("../pages/CharacterSave"));
 const CharacterShare = lazy(() => import("../pages/CharacterShare"));
 const RankingPage = lazy(() => import("../pages/RankingPage"));
+const LikeCollection = lazy(() => import("../pages/LikeCollection"));
 const EditPostPage = lazy(() => import("../pages/EditPostDetail"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
@@ -104,8 +105,7 @@ function App() {
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/category/:id" component={Category} />
-                {/* <Route path="/search/:word" component={Search} /> */}
-                <Route path="/search/" component={Search} />
+                <Route path="/search" component={Search} />
                 <Route path="/recommend/:id" component={Recommend} />
                 <Route path="/challenges/:id" component={PostDetail} />
                 <Route path="/postwrite" component={PostWrite} />
@@ -121,7 +121,8 @@ function App() {
                 <Route path="/charactershare" component={CharacterShare} />
                 <Route path="/kakao" component={Auth2RedirectHandler}></Route>
                 <Route path="/ranking" component={RankingPage} />
-                <Route path="/EditPostPage/:id" component={EditPostPage} />
+                <Route path="/likeCollection" component={LikeCollection} />
+                <Route path="/editPostpage/:id" component={EditPostPage} />
                 <Route path="*" exact component={NotFound} />
               </Switch>
             </Suspense>

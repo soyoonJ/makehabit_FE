@@ -67,7 +67,7 @@ const Confirm = (props) => {
     lengthKeyPress(e);
   };
 
-  const [isLoading, setLoading] = React.useState(false);
+  const isLoading = useSelector((state) => state.challenge?.isLoading);
   const isUploaded = useSelector((state) => state.challenge?.isUpload);
   // console.log("isUploaded", isUploaded);
 
@@ -91,7 +91,6 @@ const Confirm = (props) => {
       // for (var value of imageForm.values()) {
       //   console.log("value", value);
       // }
-      setLoading(true);
 
       dispatch(
         challengeActions.confirmDB(

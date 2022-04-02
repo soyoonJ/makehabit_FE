@@ -134,8 +134,8 @@ const PostWrite = () => {
   //이미지 여부 확인
   const imgExist = useSelector((state) => state.post.imgExist);
 
-  const [isLoading, setLoading] = React.useState(false);
   const isUploaded = useSelector((state) => state.challenge?.isUpload);
+  const isLoading = useSelector((state) => state.challenge?.isLoading);
   // console.log("isUploaded", isUploaded);
 
   const confirm = () => {
@@ -171,8 +171,6 @@ const PostWrite = () => {
       alert("챌린지 인증 방법을 쓰지 않았습니다");
       return;
     }
-
-    setLoading(true);
 
     dispatch(
       postActions.addPostDB(
@@ -212,6 +210,7 @@ const PostWrite = () => {
   const loginModal = React.useRef();
   const is_token = localStorage.getItem("token") ? true : false;
   // 로그인 상태 아닐 경우 튕겨내기
+
   React.useEffect(() => {
     if (!is_token) {
       loginModal.current.openModal();

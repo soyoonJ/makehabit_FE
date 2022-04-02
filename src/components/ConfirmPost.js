@@ -197,7 +197,7 @@ const PostImage = styled.img`
 `;
 const Completed = styled.div`
   width: 100%;
-  height: 15vh;
+  height: 100%;
   grid-column: 1/2;
   border-radius: 10px;
   background-color: #000;
@@ -235,7 +235,7 @@ const Title = styled.div`
 `;
 const Round = styled.div`
   font-weight: 600;
-  font-size: 1.66vh;
+  font-size: 1.5vh;
   & > span {
     color: #ff8b37;
   }

@@ -67,7 +67,7 @@ const PostWrite = (props) => {
     // console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
     setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
   };
-
+  console.log("날짜", date);
   // const onReset = () => {
   //   setDate(null); // onClick함수 발생시 ''으로 {text} 변경
   // };
@@ -149,7 +149,7 @@ const PostWrite = (props) => {
       return;
     }
 
-    if (title === null) {
+    if (edittitle === null) {
       alert("챌린지 제목이 없습니다!");
       return;
     }
@@ -163,11 +163,11 @@ const PostWrite = (props) => {
       alert("시작일이 입력되지 않았습니다.");
       return;
     }
-    if (desc === "") {
+    if (editdesc === "") {
       alert("챌린지 설명을 쓰지 않았습니다.");
       return;
     }
-    if (method === "") {
+    if (editmethod === "") {
       alert("챌린지 인증 방법을 쓰지 않았습니다");
       return;
     }
@@ -220,16 +220,29 @@ const PostWrite = (props) => {
 
   //수정
   const EditpostId = props.match.params.id;
-  const postdata = useSelector((state) => state.post.post.title);
-  console.log("ddd", postdata);
+  const postdata = useSelector((state) => state.post.post);
 
   const [inputText, setInputText] = useState("");
   const onChangeInput = (e) => {
-    const { inputText } = e.target;
+    const { postdata } = e.target;
     setInputText(e.target.value);
   };
 
-  console.log(onChangeInput);
+  const editthumbnail = useSelector((state) => state.post.post.thumbnail);
+  const edittitle = React.useRef();
+  const editdesc = React.useRef();
+  const editmethod = React.useRef();
+  console.log("타이틀", edittitle);
+
+  //시작일
+  // const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
+  const editdate = useSelector((state) => state.post.post?.startAt);
+
+  const editDay = moment(editdate);
+  const editchallengesStart = editDay.format("YYYY년 MM월 DD일");
+  const edtiEnd = moment(editdate).add(29, "days").format("YYYY년 MM월 DD일");
+  // const editchallengesEnd = edtiEnd.format("YYYY년 MM월 DD일");
+
   React.useEffect(() => {
     dispatch(postActions.getDetailPostDB(EditpostId));
   }, []);
@@ -248,7 +261,9 @@ const PostWrite = (props) => {
 
         {/* 이미지 업로드 */}
         <Grid padding="0 1.250rem">
+          {/* <Imagethumbmail src={editthumbnail}></Imagethumbmail> */}
           <Upload
+            defaultValue={editthumbnail}
             ref={uploadRef}
             _ref={fileInput}
             _onClick={() => {
@@ -261,10 +276,13 @@ const PostWrite = (props) => {
         <Grid padding="1.250rem">
           <HeadLine>챌린지 제목</HeadLine>
           <TitleInput
-            placeholder={postdata}
+            ref={edittitle}
+            placeholder="제목을 입력해주세요."
             onChange={onChangeTitle}
+            defaultValue={postdata.title}
             maxLength="20"
           />
+
           <LengthText textAlign="right">{titleLength}/20자</LengthText>
         </Grid>
         {/* 카테고리 선택 */}
@@ -307,7 +325,8 @@ const PostWrite = (props) => {
             <ChallengeText>챌린지 시작일</ChallengeText>
           </ToLeft>
           <ToRight>
-            <StartDate>{date ? transformDay : "2022년 00월 00일"}</StartDate>
+            <StartDate>{date ? transformDay : editchallengesStart}</StartDate>
+            {/* <StartDate>{date ? transformDay : "2022년10월10일"}</StartDate> */}
             <DateInput
               id="inputCalendar"
               type="date"
@@ -336,12 +355,21 @@ const PostWrite = (props) => {
               <ToRight style={{ margin: "0.813rem" }}>
                 {todayPlus30 > todayDate
                   ? moment(date, "YYYY.MM.DD")
-                      .add(30, "days")
+                      .add(29, "days")
                       .format("YYYY년 MM월 DD일") +
                     " " +
-                    dayArray[moment(date, "YYYY.MM.DD").add(30, "days").day()] +
+                    dayArray[moment(date, "YYYY.MM.DD").add(29, "days").day()] +
                     "요일"
-                  : "2022년 00월 00일 월요일"}
+                  : edtiEnd}
+
+                {/* {moment(edtiEnd, "YYYY.MM.DD")
+                  .add(30, "days")
+                  .format("YYYY년 MM월 DD일") +
+                  " " +
+                  dayArray[
+                    moment(edtiEnd, "YYYY.MM.DD").add(30, "days").day()
+                  ] +
+                  "요일"} */}
               </ToRight>
             </EndDateText>
           </ColorBox>
@@ -362,7 +390,8 @@ const PostWrite = (props) => {
             placeholder="ex) 매일 책 한 권 읽는 챌린지"
             onChange={onChangeDesc}
             maxLength="150"
-            value={postdata}
+            defaultValue={postdata.content}
+            ref={editdesc}
           ></Contents>
           <LengthText textAlign="right">{descLength}/150자</LengthText>
         </Grid>
@@ -378,10 +407,11 @@ const PostWrite = (props) => {
             </CaptionTextBox>
           </Grid>
           <Contents
+            ref={editmethod}
             placeholder="ex) 오늘 날짜가 적힌 메모와 책 페이지를 찍어주세요."
             onChange={onChangeMethod}
             maxLength="150"
-            value={postdata}
+            defaultValue={postdata.howtoContent}
           ></Contents>
           <LengthText textAlign="right">{methodLength}/150자</LengthText>
         </MarginBox>
@@ -622,6 +652,17 @@ const CreateText = styled.span`
   font-weight: bold;
   line-height: 1.1813rem;
   color: white;
+`;
+const Imagethumbmail = styled.img`
+  display: flex;
+  margin: auto;
+  height: 12rem;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-size: 100% 100%;
 `;
 
 export default PostWrite;
