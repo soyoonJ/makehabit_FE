@@ -67,7 +67,7 @@ const PostWrite = (props) => {
     // console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
     setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
   };
-  console.log("날짜", date);
+  // console.log("날짜", date);
   // const onReset = () => {
   //   setDate(null); // onClick함수 발생시 ''으로 {text} 변경
   // };
@@ -232,7 +232,7 @@ const PostWrite = (props) => {
   const edittitle = React.useRef();
   const editdesc = React.useRef();
   const editmethod = React.useRef();
-  console.log("타이틀", edittitle);
+  // console.log("타이틀", edittitle);
 
   //시작일
   // const dayArray = ["일", "월", "화", "수", "목", "금", "토"];

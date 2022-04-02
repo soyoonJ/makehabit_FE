@@ -165,7 +165,7 @@ const editPostDB = (
             tag
           )
           .then((response) => {
-            console.log("게시물 등록", response);
+            // console.log("게시물 등록", response);
             dispatch(editPost(response.data.challengeId));
           })
           .catch(function (error) {
@@ -221,7 +221,7 @@ const getLikeDB = () => {
     apis
       .getLike()
       .then((response) => {
-        console.log("getLike! 성공!", response.data);
+        // console.log("getLike! 성공!", response.data);
         dispatch(likeCollection(response.data));
         dispatch(getLike(response.data.challenges));
       })
@@ -320,7 +320,7 @@ export default handleActions(
       }),
     [LIKE_COLLECT]: (state, action) =>
       produce(state, (draft) => {
-        console.log("I'mmmm INNNNN", action.payload);
+        // console.log("I'mmmm INNNNN", action.payload);
         draft.likeCollection = action.payload.collect.challenges;
       }),
   },
