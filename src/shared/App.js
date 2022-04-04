@@ -38,6 +38,8 @@ import Auth2RedirectHandler from "./Auth2RedirectHandler";
 //메타태그
 import { Helmet } from "react-helmet-async";
 import MetaTag from "./MetaTag";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import OnBoardModal from "../components/OnBoardModal";
 // import Chat from "../pages/Chat";
 // import Spinner from "./Spinner";
 const Main = lazy(() => import("../pages/Main"));
@@ -71,6 +73,24 @@ function App() {
   const dispatch = useDispatch();
   const is_token = localStorage.getItem("token") ? true : false;
   // console.log("토큰확인", is_token);
+  //OnBoarding
+  const [showModal, setShowModal] = React.useState(true);
+  const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
+
+  const storageCheck = () => {
+    if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
+      setShowModal(false);
+    }
+  };
+
+  const setStorage = () => {
+    if (HAS_VISITED_BEFORE === null) {
+      console.log("emfdjdhkTsl?");
+      let expires = new Date();
+      expires = expires.setHours(expires.getHours() + 24);
+      localStorage.setItem("hasVisitedBefore", expires);
+    }
+  };
 
   React.useEffect(() => {
     // 로그인 후 새로고침하면 리덕스 데이터 날라감 > loginCheck 작업 필요!
@@ -78,7 +98,16 @@ function App() {
       // console.log("is_token", is_token);
       dispatch(userActions.loginCheckDB());
     }
+    storageCheck();
   }, []);
+
+  React.useEffect(() => {
+    console.log("123123", HAS_VISITED_BEFORE);
+    console.log("33333", showModal);
+    if (showModal === false) setStorage();
+  }, [showModal]);
+
+  const handleClose = () => setShowModal(false);
 
   return (
     <React.Fragment>
@@ -127,6 +156,7 @@ function App() {
               </Switch>
             </Suspense>
           </ConnectedRouter>
+          {showModal && <OnBoardModal onClose={handleClose} />}
         </div>
       </Container>
     </React.Fragment>
