@@ -127,8 +127,8 @@ const PostWrite = () => {
 
   //업로드에 함수 접근하는 Ref
   const uploadRef = React.useRef();
-
   const fileInput = React.useRef();
+
   //userId 가져오기
   // const loginCheck = useSelector((state) => state.user.user);
   //이미지 여부 확인
@@ -142,7 +142,7 @@ const PostWrite = () => {
     const imageForm = new FormData();
     let image = fileInput.current.files[0];
     imageForm.append("image", image);
-    // console.log("들어왔나?", date, desc, method);
+    console.log("들어왔나?", date, desc, method);
 
     if (image === undefined) {
       alert("썸네일 이미지가 없습니다!");

@@ -5,7 +5,6 @@ import { Text, ContainerGrid } from "../elements";
 const Ranking = (props) => {
   const Item = process.env.PUBLIC_URL + "/items/large";
   const { equippedItems, nickname, proofCnt, rank } = props;
-  // console.log("Ranking.js", equippedItems, nickname, proofCnt, rank);
 
   function getParametersForUnsplash({ width, height, quality, format }) {
     return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;

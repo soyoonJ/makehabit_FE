@@ -15,7 +15,7 @@ const ItemBox = () => {
   const dispatch = useDispatch();
 
   const itemList = useSelector((state) => state.character?.itemList);
-  console.log("itemList", itemList);
+  // console.log("itemList", itemList);
   const category = itemList[0].category;
   // console.log("아이템리스트", itemList);
   // console.log("카테고리", category);
@@ -80,7 +80,7 @@ const ItemBox = () => {
       dispatch(characterActions.emotionPreview(item));
     }
 
-    console.log("item", item);
+    // console.log("item", item);
   }, [item]);
 
   return (

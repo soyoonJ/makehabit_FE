@@ -32,13 +32,14 @@ const Upload = forwardRef((props, ref) => {
 
   const saveFileImage = (e) => {
     setPreviewImg(URL.createObjectURL(e.target.files[0]));
+    console.log("후후후후", e.target.files[0]);
     dispatch(postActions.imgExist(true));
   };
 
   //이미지수정
   // const EditpostId = props.match.params.id;
   const editthumbnail = useSelector((state) => state.post.post?.thumbnail);
-  console.log("이미지지", editthumbnail);
+  // console.log("이미지지", editthumbnail);
 
   //이미지 업로드
   const [previewImg, setPreviewImg] = React.useState(
@@ -52,7 +53,7 @@ const Upload = forwardRef((props, ref) => {
         process.env.PUBLIC_URL + "/images/open_base.png"
   );
 
-  console.log("주소", location.pathname);
+  // console.log("주소", location.pathname);
 
   React.useEffect(() => {
     dispatch(postActions.imgExist(false));

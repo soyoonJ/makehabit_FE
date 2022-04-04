@@ -47,7 +47,8 @@ const getLike = createAction(GET_LIKE, (isLike) => ({ isLike }));
 const setLoad = createAction(SET_LOAD, (isLoading) => ({ isLoading }));
 const likeCollection = createAction(LIKE_COLLECT, (collect) => ({ collect }));
 
-const editPost = createAction(EDIT_POST, (challengeId) => ({ challengeId }));
+//상세수정
+const editPost = createAction(EDIT_POST, (editpost) => ({ editpost }));
 
 // initialState
 const initialState = {
@@ -59,6 +60,7 @@ const initialState = {
   isUpload: false,
   isLoading: false,
   likeCollection: [],
+  editpost: [],
 };
 
 //게시물 등록
@@ -132,6 +134,7 @@ const getDetailPostDB = (challengeId) => {
     apis
       .detail(challengeId)
       .then((response) => {
+        // console.log("상세페이지데이더", response.data);
         dispatch(getDetailPost(response.data));
       })
       .catch(function (error) {
@@ -142,40 +145,54 @@ const getDetailPostDB = (challengeId) => {
 
 // 페이지 수정하기
 const editPostDB = (
+  challengeId,
   title,
   category,
   thumbnail,
   startAt,
   content,
-  howtoContent,
-  tag
+  howtoContent
 ) => {
   return function (dispatch, useState, { history }) {
+    // apis
+    //   // .imageUpload(thumbnail)
+
+    //   .then(function (response) {
+    //     console.log("확인", response);
+    console.log(
+      "확인",
+      challengeId,
+      title,
+      category,
+      thumbnail,
+      startAt,
+      content,
+      howtoContent
+    );
+    dispatch(setLoad(true));
     apis
-      .imageUpload(thumbnail)
-      .then(function (response) {
-        apis
-          .postedit(
-            title,
-            category,
-            response.data.imgUrl,
-            startAt,
-            content,
-            howtoContent,
-            tag
-          )
-          .then((response) => {
-            console.log("게시물 등록", response);
-            dispatch(editPost(response.data.challengeId));
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+      .postedit(
+        challengeId,
+        title,
+        category,
+        thumbnail,
+        // response.data.imgUrl,
+        startAt,
+        content,
+        howtoContent
+      )
+      .then((response) => {
+        // console.log("게시물 수정", response.date);
+        dispatch(editPost(response.data.challengeId));
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.log(error);
-        return;
       });
+    // });
+    // .catch((error) => {
+    //   console.log(error);
+    //   return;
+    // });
   };
 };
 
@@ -221,7 +238,7 @@ const getLikeDB = () => {
     apis
       .getLike()
       .then((response) => {
-        console.log("getLike! 성공!", response.data);
+        // console.log("getLike! 성공!", response.data);
         dispatch(likeCollection(response.data));
         dispatch(getLike(response.data.challenges));
       })
@@ -320,8 +337,14 @@ export default handleActions(
       }),
     [LIKE_COLLECT]: (state, action) =>
       produce(state, (draft) => {
-        console.log("I'mmmm INNNNN", action.payload);
+        // console.log("I'mmmm INNNNN", action.payload);
         draft.likeCollection = action.payload.collect.challenges;
+      }),
+
+    [EDIT_POST]: (state, action) =>
+      produce(state, (draft) => {
+        // console.log("I'mmmm INNNNN", draft.editpost);
+        draft.editpost = action.payload.editpost;
       }),
   },
   initialState

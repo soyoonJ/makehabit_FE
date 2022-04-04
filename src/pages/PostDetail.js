@@ -38,7 +38,7 @@ const PostDetail = (props) => {
     dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
 
-  console.log("나오나?", post);
+  // console.log("나오나?", post);
   // React.useEffect(() => {
   //   console.log("좋아요가 바뀐다!");
   //   dispatch(postActions.getDetailPostDB(challengeId));
@@ -352,18 +352,18 @@ const PostDetail = (props) => {
               fontWeight="600"
               cursor="default"
             >
-              {/* {post.isChangeable ? ( */}
-              {/* <HeadLine
-                onClick={() => {
-                  history.push(`/editPostpage/${EditpostId}`);
-                }}
-              >
-                챌린지 수정하기{" "}
-              </HeadLine> */}
-              {/* ) : (
+              {post.isChangeable ? (
+                <HeadLine
+                  onClick={() => {
+                    history.push(`/editPostpage/${EditpostId}`);
+                  }}
+                >
+                  챌린지 수정하기{" "}
+                </HeadLine>
+              ) : (
                 <HeadLine>{statusContent.buttonText} </HeadLine>
-              )} */}
-              <HeadLine>{statusContent.buttonText} </HeadLine>
+              )}
+              {/* <HeadLine>{statusContent.buttonText} </HeadLine> */}
             </ConfirmButton>
           ) : (
             <ConfirmButton

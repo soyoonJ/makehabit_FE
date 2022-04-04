@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { actionCreators as mainActions } from "../redux/modules/main";
 import { actionCreators as rankingActions } from "../redux/modules/ranking";
 import { actionCreators as postActions } from "../redux/modules/post";
+import OnBoardModal from "../components/OnBoardModal";
 
 const Main = () => {
   //메인헤더 검색 키워드를 서버 보내주기 위한 작업
@@ -36,7 +37,6 @@ const Main = () => {
     dispatch(mainActions.RecommendDB(4));
     dispatch(mainActions.mainnewDB(4, "new"));
     dispatch(mainActions.mainstudyDB(4, "exercise"));
-    dispatch(rankingActions.getRankingDB(3));
     // dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
 
@@ -74,6 +74,9 @@ const Main = () => {
   return (
     <Container>
       {/* <MetaTag title="습관삼끼" /> */}
+      {/* {isLoading ? <Spinner /> : ""} */}
+      {/* 스피너테스트 */}
+      {/* <Spinner /> */}
 
       <Header>
         <ContainerGrid>

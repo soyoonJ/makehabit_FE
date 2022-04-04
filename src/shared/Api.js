@@ -152,17 +152,15 @@ export const apis = {
     thumbnail,
     startAt,
     content,
-    howtoContent,
-    tag
+    howtoContent
   ) =>
-    instance.post(`/api/challenges/${challengId}`, {
+    instance.put(`/api/challenges/${challengId}`, {
       title,
       category,
       thumbnail,
       startAt,
       content,
       howtoContent,
-      tag,
     }),
 
   // 인증페이지 -------------------------------------------------------------------------------------------------------
