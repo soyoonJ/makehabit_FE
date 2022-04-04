@@ -352,7 +352,7 @@ const PostDetail = (props) => {
               fontWeight="600"
               cursor="default"
             >
-              {/* {post.isChangeable ? (
+              {post.isChangeable ? (
                 <HeadLine
                   onClick={() => {
                     history.push(`/editPostpage/${EditpostId}`);
@@ -362,8 +362,8 @@ const PostDetail = (props) => {
                 </HeadLine>
               ) : (
                 <HeadLine>{statusContent.buttonText} </HeadLine>
-              )} */}
-              <HeadLine>{statusContent.buttonText} </HeadLine>)
+              )}
+              {/* <HeadLine>{statusContent.buttonText} </HeadLine> */}
             </ConfirmButton>
           ) : (
             <ConfirmButton

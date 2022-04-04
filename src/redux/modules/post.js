@@ -20,7 +20,6 @@ const DELETE_LIKE = "DELTE_LIKE";
 const SET_LOAD = "SET_LOAD";
 const LIKE_COLLECT = "LIKE_COLLECT";
 
-
 //챌린지수정
 const EDIT_POST = "EDIT_POST";
 
@@ -148,35 +147,36 @@ const editPostDB = (
   thumbnail,
   startAt,
   content,
-  howtoContent,
-  tag
+  howtoContent
 ) => {
   return function (dispatch, useState, { history }) {
+    // apis
+    //   // .imageUpload(thumbnail)
+
+    //   .then(function (response) {
+    //     console.log("확인", response);
     apis
-      .imageUpload(thumbnail)
-      .then(function (response) {
-        apis
-          .postedit(
-            title,
-            category,
-            response.data.imgUrl,
-            startAt,
-            content,
-            howtoContent,
-            tag
-          )
-          .then((response) => {
-            console.log("게시물 등록", response);
-            dispatch(editPost(response.data.challengeId));
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+      .postedit(
+        title,
+        category,
+        thumbnail,
+        // response.data.imgUrl,
+        startAt,
+        content,
+        howtoContent
+      )
+      .then((response) => {
+        console.log("게시물 등록", response);
+        dispatch(editPost(response.data.challengeId));
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.log(error);
-        return;
       });
+    // });
+    // .catch((error) => {
+    //   console.log(error);
+    //   return;
+    // });
   };
 };
 
@@ -222,7 +222,7 @@ const getLikeDB = () => {
     apis
       .getLike()
       .then((response) => {
-        console.log("getLike! 성공!", response.data);
+        // console.log("getLike! 성공!", response.data);
         dispatch(likeCollection(response.data));
         dispatch(getLike(response.data.challenges));
       })
@@ -321,7 +321,7 @@ export default handleActions(
       }),
     [LIKE_COLLECT]: (state, action) =>
       produce(state, (draft) => {
-        console.log("I'mmmm INNNNN", action.payload);
+        // console.log("I'mmmm INNNNN", action.payload);
         draft.likeCollection = action.payload.collect.challenges;
       }),
   },
