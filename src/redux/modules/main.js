@@ -54,7 +54,7 @@ const getSearchDB = (searchWord) => {
     apis
       .mainSearch(searchWord) // 메인페이지에서 dispatch 값 데이터
       .then(function (res) {
-        console.log("검색데이타!!!!", res.data);
+        // console.log("검색데이타!!!!", res.data);
         dispatch(getSearch(res.data));
       })
       .catch((error) => {
@@ -150,7 +150,7 @@ export default handleActions(
   {
     [GET_SEARCH]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
+        // console.log(action.payload);
         draft.searchWord_list = action.payload.searchWord_list.challenges;
       }),
 

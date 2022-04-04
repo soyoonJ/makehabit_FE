@@ -67,12 +67,10 @@ const Main = () => {
   const onChange = (e) => {
     setKeyword(e.target.value);
   };
-  console.log("ddddd", setKeyword);
 
   const searchBtn = () => {
-    dispatch(mainActions.getSearchDB(search.current.value));
-    history.push(`/search`);
-  }; //{}$$search.current.value)
+    history.push(`/search?q=${mainKeyword}`);
+  };
 
   return (
     <Container>
@@ -92,24 +90,17 @@ const Main = () => {
           />
           <ContainerInput>
             <InputBox
-              ref={search}
               onChange={onChange}
               onKeyPress={handlePress}
               placeholder="도전하고 싶은 습관을 검색해보세요!"
             ></InputBox>
-            <Link
-              to={{
-                pathname: "/search",
-                state: { mainKeyword: mainKeyword },
-              }}
-            >
-              <SearchIcon
-                style={{ width: "20px" }}
-                src="images/icon_search.svg"
-                alt=""
-                onClick={searchBtn}
-              ></SearchIcon>
-            </Link>
+
+            <SearchIcon
+              style={{ width: "20px" }}
+              src="images/icon_search.svg"
+              alt=""
+              onClick={searchBtn}
+            ></SearchIcon>
           </ContainerInput>
         </ContainerGrid>
       </Header>
