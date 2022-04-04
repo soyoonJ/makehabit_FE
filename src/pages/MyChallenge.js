@@ -27,7 +27,7 @@ const MyChallenge = (props) => {
     state.challenge.challenge_list?.filter((e) => e.isHost === true)
   );
   const proof_list = useSelector((state) => state.challenge.proof_list);
-  console.log("챌린지리스트", challenge_list, isHostList);
+  // console.log("챌린지리스트", challenge_list, isHostList);
   //필터
   const [filter, setFilter] = useState(false);
   const [showMine, setShowMine] = useState(false);

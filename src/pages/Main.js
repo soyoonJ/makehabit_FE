@@ -36,7 +36,6 @@ const Main = () => {
     dispatch(mainActions.RecommendDB(4));
     dispatch(mainActions.mainnewDB(4, "new"));
     dispatch(mainActions.mainstudyDB(4, "exercise"));
-    dispatch(rankingActions.getRankingDB(3));
     // dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
 
