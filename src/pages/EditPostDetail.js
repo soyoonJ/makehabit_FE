@@ -23,13 +23,11 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import moment from "moment";
 
 import ButtonNavigation from "../components/ButtonNavigation";
-import challenge from "../redux/modules/challenge";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
   //카테고리 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
   const editcategory = useSelector((state) => state.post.post.category);
-
   let stateCategoryValue = "";
   if (editcategory === "study") {
     stateCategoryValue = "공부";
@@ -74,6 +72,7 @@ const PostWrite = (props) => {
 
   //수정
   const EditpostId = props.match.params.id;
+
   const postdata = useSelector((state) => state.post.post);
 
   const editthumbnail = useSelector((state) => state.post.post?.thumbnail);
@@ -85,16 +84,16 @@ const PostWrite = (props) => {
   // const edittitle = React.useRef();
   // // const editdesc = React.useRef();
   // const editmethod = React.useRef();
-
-  // console.log("타이틀", editmethod);
-
   //시작일
   // const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   const editdate = useSelector((state) => state.post.post?.startAt);
+  // 받아온 값 현지시간으로 변경
+  // const localdate = new Date(editdate);
+  // console.log("현지", localdate);
   const editDay = moment(editdate);
-  // const editchallengesStart = editDay.format("YYYY년 MM월 DD일");
+  // const editDayforamt = editDay.toISOString().split("T")[0];
+  const editDayforamt = editDay.format("YYYY-MM-DD");
   const edtiEnd = moment(editdate).add(29, "days").format("YYYY년 MM월 DD일");
-  // const editchallengesEnd = edtiEnd.format("YYYY년 MM월 DD일");
 
   React.useEffect(() => {
     dispatch(postActions.getDetailPostDB(EditpostId));
@@ -106,7 +105,8 @@ const PostWrite = (props) => {
   let todayDate = new Date(Date.now() - offset).toISOString().split("T")[0];
 
   //선택한 날짜 가져오기
-  const [date, setDate] = useState(editDay);
+
+  const [date, setDate] = useState(editDayforamt);
   const onChange = (e) => {
     // console.log(e.target); //이벤트가 발생한 타겟의 요소를 출력
     // console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
@@ -118,18 +118,16 @@ const PostWrite = (props) => {
   // };
   // 오늘 날짜+30일 YYYY-MM-DD형식으로 추출
 
-  // console.log(date);
   const now = new Date(date);
   let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
-  // console.log("진절머리가난다", todayPlus30);
 
   //content내용 받아오기
-  const [title, setTitle] = React.useState("");
+  const [title, setTitle] = React.useState(edittitle);
   const [titleLength, setTitleLength] = React.useState(0);
-  const [desc, setDesc] = React.useState("");
+  const [desc, setDesc] = React.useState(editdesc);
   const [descLength, setDescLength] = React.useState(0);
-  const [method, setMethod] = React.useState("");
+  const [method, setMethod] = React.useState(editmethod);
   const [methodLength, setMethodLength] = React.useState(0);
 
   const debounceTitle = debounce((e) => {
@@ -195,14 +193,14 @@ const PostWrite = (props) => {
     // }
 
     // imageForm.append("image", image);
-    // console.log("들어왔나?", date, desc, method);
+    console.log("들어왔나?", date, desc, method, title);
 
-    if (image === undefined) {
-      alert("썸네일 이미지가 없습니다!");
-      return;
-    }
+    // if (image === undefined) {
+    //   alert("썸네일 이미지가 없습니다!");
+    //   return;
+    // }
 
-    if (edittitle === null) {
+    if (title === "") {
       alert("챌린지 제목이 없습니다!");
       return;
     }
@@ -216,28 +214,26 @@ const PostWrite = (props) => {
       alert("시작일이 입력되지 않았습니다.");
       return;
     }
-    if (editdesc === "") {
+    if (desc === "") {
       alert("챌린지 설명을 쓰지 않았습니다.");
       return;
     }
-    if (editmethod === "") {
+    if (method === "") {
       alert("챌린지 인증 방법을 쓰지 않았습니다");
       return;
     }
-    // console.log("날짜", date);
-    // console.log("날짜ISOString", date.toISOString());
     // setLoading(true);
 
     dispatch(
       postActions.editPostDB(
+        EditpostId,
         title,
         sendCategory,
         // imageForm,
         image,
-        //date,
-        date.toISOString(),
-        editdesc,
-        editmethod
+        date,
+        desc,
+        method
       )
     );
     history.push(`/challenges/${EditpostId}`);
@@ -288,15 +284,16 @@ const PostWrite = (props) => {
 
         {/* 이미지 업로드 */}
         <Grid padding="0 1.250rem">
-          {/* <Imagethumbmail src={editthumbnail}></Imagethumbmail> */}
-          <Upload
+          <Imagethumbmail src={editthumbnail}></Imagethumbmail>
+          <Caption>*이미지 수정은 불가합니다*</Caption>
+          {/* <Upload
             defaultValue={editthumbnail}
             ref={uploadRef}
             _ref={fileInput}
             _onClick={() => {
               uploadRef.current.upload();
             }}
-          />
+          /> */}
         </Grid>
 
         {/* 제목 */}
@@ -434,19 +431,19 @@ const PostWrite = (props) => {
           <LengthText textAlign="right">{methodLength}/150자</LengthText>
         </MarginBox>
         <MarginBox style={{ margin: "0 0 9.375rem 0" }}>
-          {edittitle && sendCategory && date && editdesc && editmethod ? (
-            <CreateBox>
-              <CreateButton
-                onClick={() => {
-                  confirm();
-                }}
-              >
-                <CreateText>챌린지 수정완료</CreateText>
-              </CreateButton>
-            </CreateBox>
-          ) : (
+          {/* {edittitle && sendCategory && date && editdesc && editmethod ? ( */}
+          <CreateBox>
+            <CreateButton
+              onClick={() => {
+                confirm();
+              }}
+            >
+              <CreateText>챌린지 수정완료</CreateText>
+            </CreateButton>
+          </CreateBox>
+          {/* ) : (
             ""
-          )}
+          )} */}
         </MarginBox>
       </Grid>
       <LoginModal ref={loginModal} in_page />

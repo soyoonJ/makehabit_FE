@@ -71,9 +71,8 @@ const CharacterSave = () => {
           alt="logo"
           style={{
             height: "4.7vh",
-            width: "100%",
-            margin: "0 auto",
             objectFit: "cover",
+            overflow: "hidden",
           }}
         />
       </CharacterWrap>
