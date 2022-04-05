@@ -8,16 +8,16 @@ import { HelmetProvider } from "react-helmet-async";
 // 스토어 주입
 import store from "./redux/configureStore";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-// import ReactPWAInstallProvider from "react-pwa-install";
+import ReactPWAInstallProvider from "react-pwa-install";
 
 ReactDOM.render(
-  // <ReactPWAInstallProvider enableLogging>
-  <Provider store={store}>
-    <HelmetProvider>
-      <App />
-    </HelmetProvider>
-  </Provider>,
-  // </ReactPWAInstallProvider>,
+  <ReactPWAInstallProvider enableLogging>
+    <Provider store={store}>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
+    </Provider>
+  </ReactPWAInstallProvider>,
   document.getElementById("root")
 );
 

@@ -40,6 +40,7 @@ import { Helmet } from "react-helmet-async";
 import MetaTag from "./MetaTag";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import OnBoardModal from "../components/OnBoardModal";
+
 // import Chat from "../pages/Chat";
 // import Spinner from "./Spinner";
 const Main = lazy(() => import("../pages/Main"));
@@ -63,6 +64,7 @@ const RankingPage = lazy(() => import("../pages/RankingPage"));
 const LikeCollection = lazy(() => import("../pages/LikeCollection"));
 const EditPostPage = lazy(() => import("../pages/EditPostDetail"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+// const OnBoardModal = lazy(() => import("../components/OnBoardModal"));
 
 function App() {
   const handleNetworkChange = (online) => {
@@ -84,6 +86,8 @@ function App() {
   };
 
   const setStorage = () => {
+    localStorage.removeItem("hasVisitedBefore");
+
     if (HAS_VISITED_BEFORE === null) {
       console.log("emfdjdhkTsl?");
       let expires = new Date();
