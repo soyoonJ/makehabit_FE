@@ -57,7 +57,7 @@ const PostWrite = (props) => {
   const getData = (idx) => {
     setCategoryValue(modalList[idx][1]);
     setSendCategory(modalList[idx][0]);
-    console.log("하이이이이이이", modalList[idx][0], modalList[idx][1]);
+    // console.log("하이이이이이이", modalList[idx][0], modalList[idx][1]);
   };
 
   //카테고리 팝업
@@ -86,7 +86,7 @@ const PostWrite = (props) => {
   // // const editdesc = React.useRef();
   // const editmethod = React.useRef();
 
-  console.log("타이틀", editmethod);
+  // console.log("타이틀", editmethod);
 
   //시작일
   // const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
@@ -122,7 +122,7 @@ const PostWrite = (props) => {
   const now = new Date(date);
   let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
-  console.log("진절머리가난다", todayPlus30);
+  // console.log("진절머리가난다", todayPlus30);
 
   //content내용 받아오기
   const [title, setTitle] = React.useState("");
@@ -224,8 +224,8 @@ const PostWrite = (props) => {
       alert("챌린지 인증 방법을 쓰지 않았습니다");
       return;
     }
-    console.log("날짜", date);
-    console.log("날짜ISOString", date.toISOString());
+    // console.log("날짜", date);
+    // console.log("날짜ISOString", date.toISOString());
     // setLoading(true);
 
     dispatch(

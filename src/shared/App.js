@@ -89,7 +89,7 @@ function App() {
     localStorage.removeItem("hasVisitedBefore");
 
     if (HAS_VISITED_BEFORE === null) {
-      console.log("emfdjdhkTsl?");
+      // console.log("emfdjdhkTsl?");
       let expires = new Date();
       expires = expires.setHours(expires.getHours() + 24);
       localStorage.setItem("hasVisitedBefore", expires);
@@ -106,8 +106,8 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    console.log("123123", HAS_VISITED_BEFORE);
-    console.log("33333", showModal);
+    // console.log("123123", HAS_VISITED_BEFORE);
+    // console.log("33333", showModal);
     if (showModal === false) setStorage();
   }, [showModal]);
 
