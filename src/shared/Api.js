@@ -154,7 +154,7 @@ export const apis = {
     content,
     howtoContent
   ) =>
-    instance.post(`/api/challenges/${challengId}`, {
+    instance.put(`/api/challenges/${challengId}`, {
       title,
       category,
       thumbnail,
