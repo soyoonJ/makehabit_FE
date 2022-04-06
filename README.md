@@ -1,7 +1,7 @@
-<img width='70%' src='https://user-images.githubusercontent.com/96245651/161973210-c59d024d-903b-4ed7-b86e-4c70772f102d.png
+<p align='center'>
+<img width='40%' src='https://user-images.githubusercontent.com/96245651/161977869-05182be2-ac41-4484-9fa8-013c957f6bc3.svg
 ' />
-![logo_set](https://user-images.githubusercontent.com/96245651/161977869-05182be2-ac41-4484-9fa8-013c957f6bc3.svg)
-습관삼끼 - 습관만들기 서비스
+</p>
 
 <p align='center'>
 <img width='70%' src='https://user-images.githubusercontent.com/96245651/161973210-c59d024d-903b-4ed7-b86e-4c70772f102d.png
