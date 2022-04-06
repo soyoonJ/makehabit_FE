@@ -1,8 +1,8 @@
 # 습관삼끼 - 습관만들기 서비스
 
 <p align='center'>
-<img width='70%' src='https://user-images.githubusercontent.com/69666944/161919019-9d3859f6-a178-4066-a458-d96f7709d8da.png
-'>
+<img width='70%' src='https://user-images.githubusercontent.com/96245651/161973210-c59d024d-903b-4ed7-b86e-4c70772f102d.png
+' />
 </p>
 
 <p align='center'>
