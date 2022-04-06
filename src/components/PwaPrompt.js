@@ -2,6 +2,7 @@ import React from "react";
 import { useReactPWAInstall } from "react-pwa-install";
 import styled from "styled-components";
 import icon from "../img/logo.png";
+import { history } from "../redux/configureStore";
 
 const PwaPrompt = (props) => {
   const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
@@ -24,6 +25,7 @@ const PwaPrompt = (props) => {
             onClick={() => {
               pwaClick();
               _onClick();
+              history.push("/login");
             }}
           >
             습관삼끼 시작하기
@@ -34,6 +36,7 @@ const PwaPrompt = (props) => {
           <Button
             onClick={() => {
               _onClick();
+              history.push("/login");
             }}
           >
             습관삼끼 시작하기
