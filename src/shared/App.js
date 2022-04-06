@@ -88,12 +88,11 @@ function App() {
   const setStorage = () => {
     localStorage.removeItem("hasVisitedBefore");
 
-    if (HAS_VISITED_BEFORE === null) {
-      // console.log("emfdjdhkTsl?");
-      let expires = new Date();
-      expires = expires.setHours(expires.getHours() + 24);
-      localStorage.setItem("hasVisitedBefore", expires);
-    }
+    // if (HAS_VISITED_BEFORE === null) {
+    let expires = new Date();
+    expires = expires.setHours(expires.getHours() + 24);
+    localStorage.setItem("hasVisitedBefore", expires);
+    // }
   };
 
   React.useEffect(() => {
