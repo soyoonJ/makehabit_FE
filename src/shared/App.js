@@ -86,7 +86,6 @@ function App() {
   };
 
   const setStorage = () => {
-
     localStorage.removeItem("hasVisitedBefore");
 
     // if (HAS_VISITED_BEFORE === null) {
