@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 // import { actionCreators as userAction } from "../redux/modules/user";
@@ -368,10 +368,11 @@ const PostWrite = () => {
               >
                 <CreateText>챌린지 개설 완료</CreateText>
               </CreateButton>
+
               {/* <Link
                 to={{
                   pathname: "/completed/open",
-                  state: { openStart: date },
+                  state: { openStart: transformDay },
                 }}
               >
                 <CreateButton
