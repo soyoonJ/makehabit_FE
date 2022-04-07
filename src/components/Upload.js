@@ -32,7 +32,7 @@ const Upload = forwardRef((props, ref) => {
 
   const saveFileImage = (e) => {
     setPreviewImg(URL.createObjectURL(e.target.files[0]));
-    console.log("후후후후", e.target.files[0]);
+    // console.log("후후후후", e.target.files[0]);
     dispatch(postActions.imgExist(true));
   };
 

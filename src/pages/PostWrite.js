@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 // import { actionCreators as userAction } from "../redux/modules/user";
@@ -142,7 +142,7 @@ const PostWrite = () => {
     const imageForm = new FormData();
     let image = fileInput.current.files[0];
     imageForm.append("image", image);
-    console.log("들어왔나?", date, desc, method);
+    // console.log("들어왔나?", date, desc, method);
 
     if (image === undefined) {
       alert("썸네일 이미지가 없습니다!");
@@ -184,14 +184,6 @@ const PostWrite = () => {
       )
     );
   };
-
-  // const imageForm = new FormData();
-  // console.log("이미지 파일 바뀌었다!", fileInput);
-  // React.useEffect(() => {
-  //   // console.log("이미지 파일 바뀌었다!");
-  //   // image = fileInput.current.files[0];
-  //   // imageForm.append("image", image);
-  // }, [fileInput]);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
@@ -376,10 +368,11 @@ const PostWrite = () => {
               >
                 <CreateText>챌린지 개설 완료</CreateText>
               </CreateButton>
+
               {/* <Link
                 to={{
                   pathname: "/completed/open",
-                  state: { openStart: date },
+                  state: { openStart: transformDay },
                 }}
               >
                 <CreateButton

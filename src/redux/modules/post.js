@@ -91,7 +91,10 @@ const addPostDB = (
           .then((response) => {
             // console.log("게시물 등록", response);
             dispatch(addPost(response.data.challengeId));
-            history.push("/completed/open");
+            history.push({
+              pathname: "/completed/open",
+              state: { openStart: startAt },
+            });
             dispatch(setLoad(false));
           })
           .catch(function (error) {
