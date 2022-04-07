@@ -77,7 +77,6 @@ const Main = () => {
       {/* {isLoading ? <Spinner /> : ""} */}
       {/* 스피너테스트 */}
       {/* <Spinner /> */}
-
       <Header>
         <ContainerGrid>
           {/*로고 */}

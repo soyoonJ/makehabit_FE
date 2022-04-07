@@ -84,7 +84,6 @@ const PostWrite = (props) => {
   // const edittitle = React.useRef();
   // // const editdesc = React.useRef();
   // const editmethod = React.useRef();
-
   //시작일
   // const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   const editdate = useSelector((state) => state.post.post?.startAt);
@@ -223,8 +222,6 @@ const PostWrite = (props) => {
       alert("챌린지 인증 방법을 쓰지 않았습니다");
       return;
     }
-
-    console.log("제목", title);
     // setLoading(true);
 
     dispatch(

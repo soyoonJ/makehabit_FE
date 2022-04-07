@@ -1,9 +1,8 @@
 import React from "react";
 // import { Text, Grid } from "../elements";
 import styled from "styled-components";
-
+import PwaPrompt from "./PwaPrompt";
 // import GridContainer from "../elements/ContainerGrid";
-import { history } from "../redux/configureStore";
 const OnBoardModal = (props) => {
   const { onClose } = props;
   //배너
@@ -64,16 +63,7 @@ const OnBoardModal = (props) => {
           </CircleBox> */}
         </ModalContent>
         {bannerIndex === imgURL.length - 1 ? (
-          <ButtonBox>
-            <Button
-              onClick={() => {
-                onClose();
-                history.push("/login");
-              }}
-            >
-              습관삼끼 시작하기
-            </Button>
-          </ButtonBox>
+          <PwaPrompt _onClick={onClose} />
         ) : (
           <ButtonBox>
             <Button
