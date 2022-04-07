@@ -16,7 +16,7 @@ import { ReactComponent as GoBack } from "../img/icon_left.svg";
 const LikeCollection = (props) => {
   const dispatch = useDispatch();
   const like_list = useSelector((state) => state.post.likeCollection);
-  console.log("LIKECOLLECTION", like_list);
+  // console.log("LIKECOLLECTION", like_list);
 
   // 새로고침 해도 현재카테고리를 보여 줄 수 있도록
   const categoryId = props.match.params.id;
