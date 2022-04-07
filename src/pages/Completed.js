@@ -20,6 +20,7 @@ const Completed = (props) => {
   const location = useLocation();
 
   const openStartAt = location.state?.openStart;
+  // console.log("openStartAt", openStartAt);
   const participateStartAt = location.state?.participateStart;
   // const participateId = location.state?.challengeId;
   const participateTitle = location.state?.title;
