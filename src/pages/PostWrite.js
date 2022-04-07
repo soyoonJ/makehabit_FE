@@ -142,7 +142,7 @@ const PostWrite = () => {
     const imageForm = new FormData();
     let image = fileInput.current.files[0];
     imageForm.append("image", image);
-    console.log("들어왔나?", date, desc, method);
+    // console.log("들어왔나?", date, desc, method);
 
     if (image === undefined) {
       alert("썸네일 이미지가 없습니다!");
@@ -184,14 +184,6 @@ const PostWrite = () => {
       )
     );
   };
-
-  // const imageForm = new FormData();
-  // console.log("이미지 파일 바뀌었다!", fileInput);
-  // React.useEffect(() => {
-  //   // console.log("이미지 파일 바뀌었다!");
-  //   // image = fileInput.current.files[0];
-  //   // imageForm.append("image", image);
-  // }, [fileInput]);
 
   //자식 함수 접근하는 Ref
   const childRef = useRef();
