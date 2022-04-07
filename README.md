@@ -34,8 +34,9 @@
     
 
 ## 🛠 프로젝트 아키텍처
-
-![KakaoTalk_20220406_185124759](https://user-images.githubusercontent.com/96245651/161949137-31e75e75-f624-4d7b-b058-f6d842697855.jpg)
+<!-- 
+![KakaoTalk_20220406_185124759](https://user-images.githubusercontent.com/96245651/161949137-31e75e75-f624-4d7b-b058-f6d842697855.jpg) -->
+![KakaoTalk_20220406_185124759](https://imagedelivery.net/v7-TZByhOiJbNM9RaUdzSA/8266ed0b-a588-4053-6d95-d36952d68100/public)
 
 
 <!-- ## <a href="">📌 기술 및 고민 정리 - WIKI</a> -->
