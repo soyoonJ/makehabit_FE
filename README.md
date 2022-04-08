@@ -39,7 +39,7 @@
 ![KakaoTalk_20220406_185124759](https://imagedelivery.net/v7-TZByhOiJbNM9RaUdzSA/8266ed0b-a588-4053-6d95-d36952d68100/public)
 
 
-<!-- ## <a href="">📌 기술 및 고민 정리 - WIKI</a> -->
+## <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki">📌 기술 및 고민 정리 - WIKI</a>
 
 ## 📌 주요 기능
 
