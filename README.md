@@ -18,6 +18,8 @@
 
 </p>
 
+## <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki">📌 기술 및 고민 정리 - WIKI</a>
+
 ## 🏘 작심삼일도 열번이면 한달. 함께 습관을 만들어봐요 !
 
 ## 🎉 습관삼끼 서비스 소개
@@ -39,7 +41,7 @@
 ![KakaoTalk_20220406_185124759](https://imagedelivery.net/v7-TZByhOiJbNM9RaUdzSA/8266ed0b-a588-4053-6d95-d36952d68100/public)
 
 
-## <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki">📌 기술 및 고민 정리 - WIKI</a>
+
 
 ## 📌 주요 기능
 
