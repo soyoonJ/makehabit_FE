@@ -14,35 +14,9 @@ import "./App.css";
 import useNetwork from "./useNetwork";
 import styled from "styled-components";
 
-// import Main from "../pages/Main";
-// import Login from "../pages/Login";
-// import Signup from "../pages/Signup";
-// import Category from "../pages/Category";
-// import PostDetail from "../pages/PostDetail";
-// import PostWrite from "../pages/PostWrite";
-// import Confirm from "../pages/Confirm";
-// import MyChallenge from "../pages/MyChallenge";
-// import Mypage from "../pages/Mypage";
-// import Character from "../pages/Character";
-// import Recommend from "../pages/Recommend";
-// import MyFeed from "../components/MyFeed";
-// import Completed from "../pages/Completed";
-// import NotFound from "../pages/NotFound";
-// import Search from "../pages/Search";
-// import ShoppingBasket from "../pages/ShoppingBasket";
-// import CharacterSave from "../pages/CharacterSave";
-// import RankingPage from "../pages/RankingPage";
-
 import Auth2RedirectHandler from "./Auth2RedirectHandler";
-
-//메타태그
-import { Helmet } from "react-helmet-async";
-import MetaTag from "./MetaTag";
-import { MdKeyboardArrowLeft } from "react-icons/md";
 import OnBoardModal from "../components/OnBoardModal";
 
-// import Chat from "../pages/Chat";
-// import Spinner from "./Spinner";
 const Main = lazy(() => import("../pages/Main"));
 const Login = lazy(() => import("../pages/Login"));
 const Signup = lazy(() => import("../pages/Signup"));
@@ -64,7 +38,6 @@ const RankingPage = lazy(() => import("../pages/RankingPage"));
 const LikeCollection = lazy(() => import("../pages/LikeCollection"));
 const EditPostPage = lazy(() => import("../pages/EditPostDetail"));
 const NotFound = lazy(() => import("../pages/NotFound"));
-// const OnBoardModal = lazy(() => import("../components/OnBoardModal"));
 
 function App() {
   const handleNetworkChange = (online) => {
@@ -74,7 +47,6 @@ function App() {
 
   const dispatch = useDispatch();
   const is_token = localStorage.getItem("token") ? true : false;
-  // console.log("토큰확인", is_token);
   //OnBoarding
   const [showModal, setShowModal] = React.useState(true);
   const HAS_VISITED_BEFORE = localStorage.getItem("hasVisitedBefore");
@@ -88,25 +60,20 @@ function App() {
   const setStorage = () => {
     localStorage.removeItem("hasVisitedBefore");
 
-    // if (HAS_VISITED_BEFORE === null) {
     let expires = new Date();
     expires = expires.setHours(expires.getHours() + 24);
     localStorage.setItem("hasVisitedBefore", expires);
-    // }
   };
 
   React.useEffect(() => {
     // 로그인 후 새로고침하면 리덕스 데이터 날라감 > loginCheck 작업 필요!
     if (is_token) {
-      // console.log("is_token", is_token);
       dispatch(userActions.loginCheckDB());
     }
     storageCheck();
   }, []);
 
   React.useEffect(() => {
-    // console.log("123123", HAS_VISITED_BEFORE);
-    // console.log("33333", showModal);
     if (showModal === false) setStorage();
   }, [showModal]);
 
@@ -126,12 +93,6 @@ function App() {
                 </Outter>
               }
             >
-              {/* <>
-                <MetaTag
-                  title="작심삼일~~!"
-                  description="하이요요요요요요요요요요"
-                />
-              </> */}
               <Switch>
                 <Route path="/" exact component={Main} />
                 <Route path="/login" component={Login} />
@@ -148,7 +109,6 @@ function App() {
                 <Route path="/shoppingBasket" component={ShoppingBasket} />
                 <Route path="/myfeed/:id" component={MyFeed} />
                 <Route path="/completed/:id" component={Completed} />
-                {/* <Route path="/chat/:id" component={Chat} /> */}
                 <Route path="/charactersave" component={CharacterSave} />
                 <Route path="/charactershare" component={CharacterShare} />
                 <Route path="/kakao" component={Auth2RedirectHandler}></Route>
@@ -175,18 +135,12 @@ const Container = styled.div`
   align-items: center;
   overflow: auto;
   position: relative; //absolute를 쓸때 영역을 잡아주는 역할
-  // background: url("/banner/background_습관삼끼_ v3.png");
   background: url("/banner/background_banner.webp");
   background-size: cover;
   scrollbar-width: none;
-  // -ms-overflow-style: none;
-  // ::-webkit-scrollbar {
-  //   display: none;
-  // }
 
   @media screen and (min-width: 420px) {
     max-height: 100vh;
-    // overflow: auto;
   }
 
   #wrap {
@@ -201,7 +155,6 @@ const Container = styled.div`
     width: 100%;
     max-width: 420px;
     height: 100vh;
-    // min-height: 100vh;
     margin: 0 auto;
     padding: 0 auto;
     box-sizing: border-box;

@@ -14,7 +14,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  //email
+
   const [user_email, setEmail] = useState("");
   const debounceEmail = debounce((e) => {
     setEmail(e.target.value);
@@ -23,10 +23,9 @@ const Signup = () => {
   const changeEmail = (e) => {
     IdKeyPress(e);
   };
-  //emailCheck
+
   const emailCheck = useSelector((state) => state.user.emailCheck);
 
-  //nickname
   const [user_nickname, setNickname] = useState("");
   const debounceNickname = debounce((e) => {
     setNickname(e.target.value);
@@ -35,10 +34,8 @@ const Signup = () => {
   const changeNickname = (e) => {
     NicknameKeyPress(e);
   };
-  //nicknameChcek
   const nicknameCheck = useSelector((state) => state.user.nicknameCheck);
 
-  //password
   const [user_pwd, setPwd] = useState("");
   const debouncePwd = debounce((e) => {
     setPwd(e.target.value);
@@ -47,7 +44,6 @@ const Signup = () => {
   const changePwd = (e) => {
     PwdKeyPress(e);
   };
-  //password Check
   const [user_pwdcheck, setPwdcheck] = useState("");
   const debouncePwdcheck = debounce((e) => {
     setPwdcheck(e.target.value);
@@ -57,7 +53,6 @@ const Signup = () => {
     PwdcheckKeyPress(e);
   };
 
-  //회원가입 보안
   const signup = () => {
     if (user_email === "") {
       window.alert("이메일을 입력해주세요!");
@@ -77,10 +72,8 @@ const Signup = () => {
       userActions.signupDB(user_email, user_nickname, user_pwd, user_pwdcheck)
     );
   };
-  //input box 비밀번호 보기 / 끄기
-  //이모티콘 스위칭
+
   let [isHidden, setIsHidden] = React.useState(true);
-  //type형태
   let [pwdMode, setPwdMode] = React.useState("text");
   let [correct, setCorrect] = React.useState(false);
 
@@ -114,15 +107,11 @@ const Signup = () => {
   const changeBool = () => {
     setIsHidden(!isHidden);
   };
-  //이메일 체크
   React.useEffect(() => {
-    // console.log("changeEmail", user_email);
     dispatch(userActions.emailCheckDB(user_email));
   }, [user_email]);
 
-  //닉네임 체크
   React.useEffect(() => {
-    // console.log("changeNick", user_nickname);
     dispatch(userActions.nicknameCheckDB(user_nickname));
   }, [user_nickname]);
   return (
@@ -130,7 +119,6 @@ const Signup = () => {
       <MetaTag title="습관삼끼 | 회원가입" />
 
       <ContainerGrid>
-        {/* <Container> */}
         <Grid textAlign="center" padding="2.48vh 0">
           <p style={{ fontSize: "2.6vh", fontWeight: "bold", margin: "0" }}>
             회원가입
@@ -172,7 +160,6 @@ const Signup = () => {
                   <p>사용 가능한 이메일</p>
                 </CheckResult>
               ) : emailCheck === 0 ? (
-                // <Text color="red">이미 사용 중인 이메일입니다</Text>
                 <CheckResult style={{ color: "#E42E2E" }}>
                   <CloseImg
                     width="1.89vh"
@@ -282,7 +269,6 @@ const Signup = () => {
                 <p>비밀번호가 일치합니다</p>
               </CheckResult>
             ) : (
-              // <Text color="red">이미 사용 중인 이메일입니다</Text>
               <CheckResult style={{ color: "#E42E2E" }}>
                 <CloseImg
                   width="1.89vh"
@@ -320,7 +306,6 @@ const Signup = () => {
                 <p>사용 가능한 닉네임입니다</p>
               </CheckResult>
             ) : nicknameCheck === 0 ? (
-              // <Text color="red">이미 사용중인 닉네임입ㄴ니다</Text>
               <CheckResult style={{ color: "#E42E2E" }}>
                 <CloseImg
                   width="1.89vh"
@@ -330,7 +315,6 @@ const Signup = () => {
                 <p>닉네임 형식을 확인해주세요</p>
               </CheckResult>
             ) : (
-              // <Text color="red">이미 사용중인 닉네임입ㄴ니다</Text>
               <CheckResult style={{ color: "#E42E2E" }}>
                 <CloseImg
                   width="1.89vh"
@@ -351,10 +335,8 @@ const Signup = () => {
             <a href={"/login"}>로그인</a>
           </Text>
         </Grid>
-        {/* </Container> */}
       </ContainerGrid>
 
-      {/*회원가입 버튼 */}
       <Footer>
         <Grid>
           {isActive ? (
@@ -367,13 +349,6 @@ const Signup = () => {
     </React.Fragment>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-`;
 
 const Title = styled.div`
   font-weight: bold;

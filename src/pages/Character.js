@@ -11,7 +11,7 @@ import styled from "styled-components";
 const Character = () => {
   const modalRef = React.useRef();
   const is_token = localStorage.getItem("token") ? true : false;
-  // 로그인 상태 아닐 경우 튕겨내기
+
   React.useEffect(() => {
     if (!is_token) {
       modalRef.current.openModal();

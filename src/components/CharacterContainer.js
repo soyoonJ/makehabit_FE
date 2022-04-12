@@ -21,7 +21,6 @@ const CharacterContainer = () => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  // 미리보기
   const preview = useSelector((state) => state.character);
   const previewColor = useSelector((state) => state.character?.colorItem);
   const previewBg = useSelector((state) => state.character?.backgroundItem);
@@ -29,7 +28,6 @@ const CharacterContainer = () => {
   const previewAcc = useSelector((state) => state.character?.accItem);
   const previewEmotion = useSelector((state) => state.character?.emotionItem);
 
-  //Item 변경 할때 사용 하는 useState
   const [viewBody, setBody] = useState();
   const [viewBg, setBg] = useState();
   const [viewClothes, setClothes] = useState();
@@ -38,16 +36,14 @@ const CharacterContainer = () => {
 
   const allList = useSelector((state) => state.character.allList);
 
-  // 저장하기 눌렀을 때 선택되어있는 아이템 전체정보
   const selectedBg = allList.find((e) => e.itemImgUrl === viewBg);
   const selectedBody = allList.find((e) => e.itemImgUrl === viewBody);
   const selectedAcc = allList.find((e) => e.itemImgUrl === viewClothes);
   const selectedClothes = allList.find((e) => e.itemImgUrl === viewAcc);
   const selectedEmotion = allList.find((e) => e.itemImgUrl === viewEmotion);
-  // console.log("현재바디", selectedBody);
 
-  //자식 함수 접근하는 Ref
   const modalRef = useRef();
+
   React.useEffect(() => {
     setBody(equipColor?.itemImgUrl);
     setBg(equipBg?.itemImgUrl);
@@ -176,7 +172,6 @@ const Container = styled.div`
   position: relative;
   height: 46vh;
 
-  // 모바일 버전
   @media (min-width: 420px) {
     height: 48.5vh;
   }

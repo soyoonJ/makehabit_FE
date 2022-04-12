@@ -18,6 +18,8 @@
 
 </p>
 
+## <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki">📌 기술 및 고민 정리 - WIKI</a>
+
 ## 🏘 작심삼일도 열번이면 한달. 함께 습관을 만들어봐요 !
 
 ## 🎉 습관삼끼 서비스 소개
@@ -34,15 +36,16 @@
     
 
 ## 🛠 프로젝트 아키텍처
+<!-- 
+![KakaoTalk_20220406_185124759](https://user-images.githubusercontent.com/96245651/161949137-31e75e75-f624-4d7b-b058-f6d842697855.jpg) -->
+![KakaoTalk_20220406_185124759](https://imagedelivery.net/v7-TZByhOiJbNM9RaUdzSA/8266ed0b-a588-4053-6d95-d36952d68100/public)
 
-![KakaoTalk_20220406_185124759](https://user-images.githubusercontent.com/96245651/161949137-31e75e75-f624-4d7b-b058-f6d842697855.jpg)
 
 
-<!-- ## <a href="">📌 기술 및 고민 정리 - WIKI</a> -->
 
 ## 📌 주요 기능
 
-|                                                          <a href="">🔗로그인/회원가입</a>                                                           |                                                       <a href="">🔗챌린지개설</a>                                                        |                                                       <a href="">🔗챌린지인증</a>                                                        |                                                          <a href="">🔗랭킹페이지</a>                                                           |                                                          <a href="">🔗캐릭터샵</a>                                                           |
+|                                                          <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5#-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%8E%98%EC%9D%B4%EC%A7%80">🔗로그인/회원가입</a>                                                           |                                                       <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5#-%EC%B1%8C%EB%A6%B0%EC%A7%80">🔗챌린지개설</a>                                                        |                                                       <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5#-%EC%9D%B8%EC%A6%9D-%ED%8E%98%EC%9D%B4%EC%A7%80">🔗챌린지인증</a>                                                        |                                                          <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5#-%EB%9E%AD%ED%82%B9-%ED%8E%98%EC%9D%B4%EC%A7%80">🔗랭킹페이지</a>                                                           |                                                          <a href="https://github.com/dokyunglee0905/makehabit_FE/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5#-%EC%BA%90%EB%A6%AD%ED%84%B0-%EC%83%B5">🔗캐릭터샵</a>                                                           |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
 | <img width="320" alt="로그인/회원가입" src="https://user-images.githubusercontent.com/96245651/161957188-13758b80-91ec-4614-b1a3-a0a87abb4ded.gif"> | <img width="320" alt="개설" src="https://user-images.githubusercontent.com/96245651/161957249-97fdc881-096a-4477-8ad8-df02519df4e4.gif"> | <img width="320" alt="인증" src="https://user-images.githubusercontent.com/96245651/161957290-ef987088-6410-40bd-a98c-efb4daa3f4ec.gif"> | <img width="320" alt="랭킹페이지" src="https://user-images.githubusercontent.com/96245651/161957083-ac4710a9-2594-48d1-b78b-f17c46e5fdbc.gif"> | <img width="320" alt="캐릭터샵" src="https://user-images.githubusercontent.com/96245651/161951520-ea31b791-77b8-4b97-b273-6fcedf734669.gif"> |
 

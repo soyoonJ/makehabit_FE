@@ -12,20 +12,14 @@ import moment from "moment";
 
 const Completed = (props) => {
   const page = props.match.params.id;
-  // const openId = useSelector((state) => state.post.challengeId);
-  // console.log("openId", openId);
   const totalCnt = useSelector((state) => state.challenge?.totalCnt);
   const point = useSelector((state) => state.challenge?.point);
 
   const location = useLocation();
 
   const openStartAt = location.state?.openStart;
-  // console.log("openStartAt", openStartAt);
   const participateStartAt = location.state?.participateStart;
-  // const participateId = location.state?.challengeId;
   const participateTitle = location.state?.title;
-  // console.log("participateId", participateId);
-  // console.log("openStartAt", openStartAt);
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -36,14 +30,6 @@ const Completed = (props) => {
   const partStartDate = moment(participateStartAt);
   const partTransformDate = partStartDate.format("YYYY년 MM월 DD일");
   const partTransformDay = dayArray[moment(partStartDate).day()];
-
-  // console.log(
-  //   "open시작일자",
-  //   openStartAt,
-  //   openStartDate,
-  //   openTransformDate,
-  //   openTransformDay
-  // );
 
   const contents = [
     {
@@ -84,7 +70,6 @@ const Completed = (props) => {
   } else {
     content = contents[2];
   }
-  // console.log(page);
 
   return (
     <React.Fragment>
@@ -266,7 +251,6 @@ const TopBox = styled.div`
   }
 `;
 
-// 개설/참여완료 주황색 info 박스
 const InfoBox = styled.div`
   width: 100%;
   background: #fff1e7;
@@ -289,7 +273,6 @@ const InfoText = styled.div`
   }
 `;
 
-// 인증완료 보상 info 박스
 const GiftBox = styled.div`
   width: 100%;
   background: #fff1e7;

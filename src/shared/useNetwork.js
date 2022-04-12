@@ -3,10 +3,8 @@
 import React from "react";
 
 const useNetwork = () => {
-  // 연결상태를 true/false로 반환
   const [status, setStatus] = React.useState(navigator.onLine);
   const handleChange = () => {
-    // 연결상태가 변경하면 status를 변경
     onchange(navigator.onLine);
     setStatus(navigator.onLine);
   };

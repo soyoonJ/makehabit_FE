@@ -27,15 +27,7 @@ const CharacterSave = () => {
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
-  // const capture = () => {
-  //   html2canvas(document.querySelector("myCharacter")).then(function(canvas) {
-  //     document.body.appendChild(canvas);
-  //   });
-  // }
-
-  // 공유하기 기능
   async function shareCanvas() {
-    // html2canvas 활용해서 canvas로 만들고 dataUrl 만들기
     const canvasElement = await html2canvas(
       document.getElementById("myCharacter")
     );
@@ -128,7 +120,6 @@ const CharacterSave = () => {
             bg="#fff"
             color="rgba(255, 139, 55, 1)"
             _onClick={shareCanvas}
-            // _onClick={onHtmlToPng}
           >
             내 캐릭터 공유하기
           </Button>
@@ -144,7 +135,6 @@ const CharacterWrap = styled.div`
   position: relative;
   height: 46vh;
   margin-bottom: 4.97vh;
-  // 모바일 버전
   @media (min-width: 420px) {
     height: 48.5vh;
   }

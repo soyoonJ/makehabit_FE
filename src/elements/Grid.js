@@ -101,8 +101,6 @@ Grid.defaultProps = {
   bg: false,
   borderBottom: false,
   borderTop: false,
-  // justifyCenter: false,
-  // justifyRight: false,
   borderRadius: false,
   position: false,
   justifyContent: "space-between",

@@ -29,7 +29,6 @@ const CharacterShare = () => {
 
   // 공유하기 기능
   async function shareCanvas() {
-    // html2canvas 활용해서 canvas로 만들고 dataUrl 만들기
     const canvasElement = await html2canvas(
       document.getElementById("myCharacter")
     );
@@ -53,8 +52,6 @@ const CharacterShare = () => {
     let url = "";
     html2canvas(document.getElementById("myCharacter")).then((canvas) => {
       url = canvas.toDataURL("image/png");
-      // console.log("url", url);
-      // 곧바로 저장하기!!!
       let link = document.createElement("a");
       document.body.appendChild(link);
       link.href = url;
@@ -103,7 +100,6 @@ const CharacterShare = () => {
             <ItemImg src={Item + equipEmotion?.itemImgUrl} />
           </ImgContainer>
           <img
-            // src={process.env.PUBLIC_URL + "/images/logo_text_image.png"}
             src="/images/logo_text_image.svg"
             alt="logo"
             style={{
