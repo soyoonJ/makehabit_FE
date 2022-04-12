@@ -1,7 +1,6 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import styled from "styled-components";
 
-// import { history } from "../redux/configureStore";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
 const LeaveModal = forwardRef((props, ref) => {
@@ -14,18 +13,10 @@ const LeaveModal = forwardRef((props, ref) => {
     },
   }));
   const dispatch = useDispatch();
-  // const challengeId = props.match.params.id;
   const { challengeId } = props;
-
-  // const setData = (categoryName) => {
-  //   getData(categoryName);
-  // };
 
   // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
 
   const closeModal = () => {
     setModalOpen(false);

@@ -14,7 +14,6 @@ const Text = (props) => {
     alignCenter,
     font,
     width,
-    // justifyContent,
     alignRight,
     borderBox,
     textAlign,

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ContainerGrid, Grid } from "../elements";
@@ -15,12 +14,10 @@ const ItemCircle = () => {
   const isEquipAll = useSelector((state) => state.character?.isEquip);
   const isEquip = isEquipAll?.find((e) => e.category === category);
 
-  // const preview = useSelector((state) => state.character);
   const previewColor = useSelector((state) => state.character?.colorItem);
   const isReset = useSelector((state) => state.character.isReset);
 
   const [item, setItem] = React.useState(null);
-  // console.log("아이템리스트", itemList);
 
   React.useEffect(() => {
     if (category) {
@@ -33,7 +30,6 @@ const ItemCircle = () => {
   }, [category, isReset]);
 
   React.useEffect(() => {
-    // console.log("유즈이펙트", item);
     if (category === "color") {
       dispatch(characterActions.colorPreview(item));
     }

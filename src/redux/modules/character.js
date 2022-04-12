@@ -2,7 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/Api";
 
-// const SET_ALL = "SET_ALL";
 const SET_ITEMS = "SET_ITEMS";
 const SELECTED_ITEMS = "SELECTED_ITEMS";
 const BACKGROUND_PREVIEW = "BACKGROUND_PREVIEW";
@@ -50,10 +49,8 @@ const initialState = {
   accItem: null,
 
   isReset: false,
-  // isLoading: true,
 };
 
-//캐릭터 아이템 목록받기
 const getItemDB = (category) => {
   return function (dispatch, getState, { history }) {
     apis
@@ -67,7 +64,6 @@ const getItemDB = (category) => {
   };
 };
 
-// 캐릭터 샵 아이템 구매 및 저장
 const purchaseItemList = (totalPrice, items) => {
   return function (dispatch, getState, { history }) {
     apis
@@ -82,7 +78,6 @@ const purchaseItemList = (totalPrice, items) => {
   };
 };
 
-// 마이페이지 캐릭터
 const mypageCharacterList = () => {
   return function (dispatch, getState, { history }) {
     apis

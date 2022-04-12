@@ -15,8 +15,6 @@ import QueryString from "qs";
 const Search = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  // const key = location.search;
-  // console.log("keyword", key);
   const queryData = QueryString.parse(location.search, {
     ignoreQueryPrefix: true,
   });
@@ -24,14 +22,12 @@ const Search = (props) => {
   const search = React.useRef();
   const searchWord_list = useSelector((state) => state.main.searchWord_list);
 
-  //Like 누를때마다 화면 전환
   const likeList = useSelector((state) => state.post.isLike);
 
   React.useEffect(() => {
     dispatch(mainActions.getSearchDB(search.current?.value));
   }, [likeList]);
 
-  //엔터키
   const handlePress = (e) => {
     if (e.key === "Enter") {
       searchBtn();
@@ -54,7 +50,6 @@ const Search = (props) => {
       <Container>
         <Header>
           <ContainerGrid>
-            {/*로고 */}
             <Logo
               src="/logo/logo_text.svg"
               alt="로고"
@@ -119,7 +114,6 @@ const Search = (props) => {
           ) : (
             <CardWrap>
               {searchWord_list?.map((p, idx) => {
-                // console.log("검색리스트", p);
                 return <CategoryPost key={p._id} {...p} />;
               })}
             </CardWrap>
@@ -145,8 +139,6 @@ const NoChallenge = styled.div`
 `;
 
 const Container = styled.div`
-  /* overflow-x: hidden; */
-  /* margin: 0% 3% 0% 3%; */
   margin: 0%;
   padding-bottom: 50px;
   margin-bottom: 100px;
@@ -172,9 +164,6 @@ const Header = styled.div`
 `;
 
 const CardWrap = styled.div`
-  // display: flex;
-  // margin: 0% 3% 0% 2%;
-  // justify-content: space-around;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;

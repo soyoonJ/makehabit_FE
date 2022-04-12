@@ -1,5 +1,4 @@
 import React, { forwardRef, useImperativeHandle } from "react";
-// import { Text, Grid } from "../elements";
 import { ReactComponent as CloseImg } from "../img/icon_close.svg";
 
 import styled from "styled-components";
@@ -16,15 +15,8 @@ const Modal = forwardRef((props, ref) => {
 
   const { children } = props;
 
-  // const setData = (categoryName) => {
-  //   getData(categoryName);
-  // };
-
   // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
 
   const closeModal = () => {
     setModalOpen(false);
@@ -39,7 +31,6 @@ const Modal = forwardRef((props, ref) => {
         ref={outSection}
         onClick={(e) => {
           if (outSection.current === e.target) {
-            // console.log("close modal!");
             closeModal();
           }
         }}

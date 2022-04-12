@@ -1,5 +1,3 @@
-// textarea 우측 마진 안 맞는 부분 수정
-
 import React from "react";
 
 import { ContainerGrid } from "../elements";
@@ -14,41 +12,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 import { debounce, throttle } from "lodash";
-// import ButtonNavigation from "../components/ButtonNavigation";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 const Confirm = (props) => {
   const challengeId = props.match.params.id;
-  // console.log("파라미터값", challengeId);
-  // const Item = process.env.PUBLIC_URL + "/images/open_base";
-  // 챌린지 조회 정보
   const challenge_info = useSelector((state) => state.challenge.challenge_info);
-  // console.log("챌린지정보", challenge_info);
-  //modal에 접근하는 ref
-  const modalRef = React.useRef();
 
-  //업로드에 함수 접근하는 Ref
+  const modalRef = React.useRef();
   const uploadRef = React.useRef();
 
   const fileInput = React.useRef();
   const dispatch = useDispatch();
-  // const preview = useSelector((state) => state.image.preview);
-  const [preview, setPreview] = React.useState(
-    process.env.PUBLIC_URL + "/images/open_base"
-  );
-
-  // 이미지 미리보기 세팅하기 위함
-  const handlePreview = (e) => {
-    const file = e.target.files[0];
-    const newUrl = URL.createObjectURL(file);
-    setPreview(newUrl);
-  };
-  // 파일업로드버튼+이미지 합치기 위한 작업
-  // 기본이미지 클릭 시 파일업로드 버튼 클릭되도록!!
-  const onClickUpload = () => {
-    let myInput = document.getElementById("thumnail");
-    myInput.click();
-  };
 
   // 코멘트 값 받아오기
   const [comment, setComment] = React.useState(null);
@@ -69,10 +43,6 @@ const Confirm = (props) => {
 
   const isLoading = useSelector((state) => state.challenge?.isLoading);
   const isUploaded = useSelector((state) => state.challenge?.isUpload);
-  // console.log("isUploaded", isUploaded);
-
-  // console.log("comment", comment);
-  // console.log("commentLength", commentLength);
 
   const confirm = () => {
     if (fileInput.current.files[0] === undefined || comment === null) {
@@ -81,9 +51,9 @@ const Confirm = (props) => {
     } else {
       const imageForm = new FormData();
       let image = fileInput.current.files[0];
-      // let image2 = uploadRef.current.files[0];
       imageForm.append("image", image);
 
+      // imageForm 데이터 잘 들어가는지 확인하기 위함
       // for (var key of imageForm.keys()) {
       //   console.log("key", key);
       // }
@@ -118,19 +88,16 @@ const Confirm = (props) => {
             <PageBack color="#707070" left padding="0 0 0 1.063rem" />
             <span>오늘의 인증하기</span>
           </ConfirmText>
-          {/* useSelector 해서 타이틀 가져오기 */}
           <Title>{challenge_info?.title}</Title>
           <SubTitle>
             오늘의 도전에 성공한 순간을 사진으로 기록해보세요.
           </SubTitle>
 
-          {/* 이미지 첨부 */}
           <Upload
             currentPage="confirm"
             ref={uploadRef}
             _ref={fileInput}
             _onClick={() => {
-              // console.log(uploadRef);
               uploadRef.current.upload();
             }}
           />
@@ -226,7 +193,6 @@ const Container = styled.div`
   max-height: 100vh;
 `;
 
-// 인증하기 텍스트
 const ConfirmText = styled.div`
   text-align: center;
   padding-top: 2.48vh;
@@ -242,7 +208,6 @@ const ConfirmText = styled.div`
   }
 `;
 
-// 타이틀
 const Title = styled.div`
   font-weight: 700;
   font-size: 2.6vh;
@@ -259,22 +224,6 @@ const SubTitle = styled.div`
   margin: 0.94vh 0 2.7vh 0;
 `;
 
-// 이미지
-// const ImageBox = styled.div`
-//   width: 100%;
-//   max-width: 420px;
-//   height: 300px;
-//   background-size: cover;
-//   cursor: pointer;
-
-//   input {
-//     display: none;
-//     width: 100%;
-//     height: 100%;
-//   }
-// `;
-
-// 챌린지 예시 도움말
 const Example = styled.div`
   color: #707070;
   font-weight: 400;
@@ -286,7 +235,6 @@ const Example = styled.div`
   justify-content: end;
 `;
 
-// 코멘트 작성란
 const CommentTitle = styled.div`
   margin: 4.73vh 0 0.375rem;
   font-size: 1.25rem;
@@ -318,10 +266,6 @@ const Textarea = styled.textarea`
   }
 `;
 const Button = styled.button`
-  // position: absolute;
-  // right: 0;
-  // left: 0;
-  // bottom: 0;
   font-size: 2.6vh;
   font-weight: 700;
   width: 100%;

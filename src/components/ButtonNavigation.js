@@ -1,16 +1,11 @@
 import React from "react";
 
-// import { Grid, Text, Button } from "../elements";
-// import { actionCreators as challengeActions } from "../redux/modules/challenge";
-
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-// import { useDispatch, useSelector } from "react-redux";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import LoginModal from "./LoginModal";
 
-//버튼아이콘 Import
 import { ReactComponent as HomeImg } from "../img/icon_home.svg";
 import { ReactComponent as WriteImg } from "../img/icon_write.svg";
 import { ReactComponent as FlagImg } from "../img/icon_flag.svg";
@@ -20,28 +15,19 @@ import { ReactComponent as MypageImg } from "../img/icon_mypage.svg";
 const ButtonNavigation = () => {
   const { pathname } = useLocation();
 
-  // console.log("pathname", pathname);
   const is_login = useSelector((state) => state.user.is_login);
 
-  // console.log("버튼", clickedTab);
-  //모달창에 접근하는 ref
   const modalRef = React.useRef();
-  // console.log("모달ref!!!", modalRef);
-  // console.log("clickTab", clickedTab, clickedTab === "home");
+
   const confirmPage = () => {
     if (is_login) {
-      // dispatch(challengeActions.setTab("navi"));
-      // dispatch(challengeActions.naviChallengeDB());
       history.push(`/mychallenge/navi`);
     } else {
-      // console.log("로그인");
       modalRef.current.openModal();
     }
   };
   const writePage = () => {
-    // console.log("writePage", is_login, clickedTab);
     if (is_login) {
-      // changeTab("open");
       history.push(`/postwrite`);
     } else {
       modalRef.current.openModal();
@@ -49,7 +35,6 @@ const ButtonNavigation = () => {
   };
 
   const characterPage = () => {
-    // console.log("writePage", is_login);
     if (is_login) {
       history.push(`/character`);
     } else {
@@ -58,7 +43,6 @@ const ButtonNavigation = () => {
   };
 
   const myPage = () => {
-    // console.log("writePage", is_login);
     if (is_login) {
       history.push(`/mypage`);
     } else {
@@ -127,7 +111,6 @@ const ButtonNavigation = () => {
               인증
             </IconText>
           </ButtonIcon>
-          {/* 채팅 추가 연결 필요 */}
           <ButtonIcon
             onClick={() => {
               characterPage();
@@ -161,16 +144,7 @@ const ButtonNavigation = () => {
         </ButtonWrap>
       </Footer>
 
-      <LoginModal ref={modalRef} in_page>
-        {/* <Grid padding="30px 30px 0px 30px">
-          <Text size="20" bold alignCenter>
-            앗 로그인이 필요해요!
-          </Text>
-          <Button margin="10px 0px" _onClick={() => history.push("/login")}>
-            로그인하러가기
-          </Button>
-        </Grid> */}
-      </LoginModal>
+      <LoginModal ref={modalRef} in_page></LoginModal>
     </React.Fragment>
   );
 };
@@ -202,24 +176,6 @@ const ButtonWrap = styled.div`
   height: 11.84vh;
   background-color: #fff;
 `;
-
-// const ButtonIcon = styled.button`
-//   all: unset;
-//   display: grid;
-//   grid-template-rows: 1fr 1fr;
-//   align-items: center;
-//   background-color: white;
-//   margin-top: 10px;
-//   margin-bottom: 10px;
-
-//   & > div {
-//     &:nth-child(2) {
-//       font-size: 0.813rem;
-//       line-height: 1.063rem;
-//       letter-spacing: -0.005rem;
-//     }
-//   }
-// `;
 
 const ButtonIcon = styled.button`
   all: unset;
