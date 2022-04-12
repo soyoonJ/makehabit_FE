@@ -1,5 +1,4 @@
 import React from "react";
-// import styled, { withTheme } from "styled-components";
 import styled from "styled-components";
 import { Text } from ".";
 
@@ -10,12 +9,6 @@ const Input = (props) => {
     type,
     value,
     padding,
-    // is_submit,
-    // onSubmit,
-    // is_radio,
-    // name,
-    // checked,
-    // multiline,
     label,
     width,
     height,

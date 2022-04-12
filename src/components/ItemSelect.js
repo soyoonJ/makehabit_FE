@@ -1,29 +1,25 @@
 import React from "react";
 
 import styled from "styled-components";
-// import { ContainerGrid, Grid, Text, Input, Image, Button } from "../elements";
 
 import ItemBox from "../components/ItemBox";
 import ItemCircle from "../components/ItemCircle";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
 import Horizontable from "./Horizontable";
 
 const ItemSelect = (props) => {
   const dispatch = useDispatch();
-  //   const Item = process.env.PUBLIC_URL + "/items";
   const ItemCategory = [
     ["컬러", "color"],
     ["배경", "background"],
     ["표정", "emotion"],
     ["의상", "clothes"],
     ["악세사리", "acc"],
-    // ["기타", "기타"],
   ];
   const [clickedCate, changeCate] = React.useState(0);
-  // const itemList = useSelector((state) => state.character.itemList);
-  // const category = itemList[0]?.category;
+
   React.useEffect(() => {
     dispatch(characterActions.getItemDB(ItemCategory[clickedCate][1]));
   }, [clickedCate]);
@@ -57,9 +53,7 @@ const ItemSelect = (props) => {
           </NaviButton>
         </Horizontable>
       </Navi>
-      {/* 동그라미 */}
       {clickedCate === 0 ? <ItemCircle /> : <ItemBox />}
-      {/* 아이템 */}
     </React.Fragment>
   );
 };

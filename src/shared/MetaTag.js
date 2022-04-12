@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-// import { Helmet } from "react-helmet-async";
 
 const MetaTag = (props) => {
   const { keywords, description, title } = props;
@@ -13,7 +12,6 @@ const MetaTag = (props) => {
       <meta property="og:description" content={description} />
       <meta
         property="og:image"
-        // content={process.env.PUBLIC_URL + "/meta/metatag_02.png"}
         content="https://makehabit.s3.ap-northeast-2.amazonaws.com/meta/metatag_02.png"
       />
       <meta property="og:url" content="https://makehabit.co.kr/"></meta>
@@ -33,7 +31,6 @@ const MetaTag = (props) => {
 };
 
 MetaTag.defaultProps = {
-  // image: process.env.PUBLIC_URL + "/meta/metatag_02.png",
   description: "작심삼일도 열번 하면 30일이다",
   keywords: "습관삼끼, 습관만들기, 갓생살기",
 };

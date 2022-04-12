@@ -13,7 +13,6 @@ import { debounce } from "lodash";
 const Login = () => {
   const dispatch = useDispatch();
 
-  //email
   const [user_email, setEmail] = useState("");
   const debounceEmail = debounce((e) => {
     setEmail(e.target.value);
@@ -23,7 +22,6 @@ const Login = () => {
     IdKeyPress(e);
   };
 
-  //password
   const [user_pwd, setPwd] = useState("");
   const debouncePwd = debounce((e) => {
     setPwd(e.target.value);
@@ -44,7 +42,6 @@ const Login = () => {
       window.alert("아이디 혹은 비밀번호를 입력해주세요");
       return;
     }
-    // console.log("userEmail, pwd", user_email, user_pwd);
     dispatch(userActions.loginDB(user_email, user_pwd));
   };
   return (
@@ -62,9 +59,6 @@ const Login = () => {
           습관삼끼
         </Text>
         <div>
-          {/* <Text size="20px" bold margin="6% 10% 2%">
-          이메일
-        </Text> */}
           <InputBox>
             <Input
               borderRadius="5px"
@@ -76,9 +70,7 @@ const Login = () => {
               _onKeyPress={handlePress}
             ></Input>
           </InputBox>
-          {/* <Text size="20px" bold margin="6% 10% 2%">
-          비밀번호
-        </Text> */}
+
           <InputBox>
             <Input
               margin="5% 0 4.26vh"
@@ -149,7 +141,6 @@ const Login = () => {
           src={process.env.PUBLIC_URL + "/images/kakao_login.png"}
           alt="카카오 로그인"
           onClick={() => {
-            // console.log("KAKAO_AUTH_URL", KAKAO_AUTH_URL);
             window.location.href = KAKAO_AUTH_URL;
           }}
         ></KakaoImg>

@@ -11,15 +11,12 @@ import LoginModal from "../components/LoginModal";
 import moment from "moment";
 
 const CategoryPost = (props) => {
-  //좋아요 버튼 on/off
-  // let [isLike, setIsLike] = React.useState(false);
   function getParametersForUnsplash({ width, height, quality, format }) {
     return `?w=${width}&h=${height}&q=${quality}&fm=${format}&fit=crop`;
   }
 
   const dispatch = useDispatch();
 
-  //로그인모달창에 접근하는 ref
   const loginModal = React.useRef();
   const {
     thumbnail,
@@ -29,20 +26,15 @@ const CategoryPost = (props) => {
 
     isLike,
     participants,
-    round,
   } = props;
-  // console.log("카테고리포스트", props);
 
-  //이미지경로
   const DisLikeImg =
     process.env.PUBLIC_URL + "/images/icon_outline_heart_shadow.png";
   const LikeImg = process.env.PUBLIC_URL + "/images/icon_fill_heart_shadow.png";
   const Icon = process.env.PUBLIC_URL + "/images";
 
-  //로그인 체크
   const is_login = useSelector((state) => state.user.is_login);
 
-  //찜하기 (좋아요) 기능
   const like = () => {
     if (is_login) {
       dispatch(postActions.likeDB(challengeId));
@@ -50,7 +42,6 @@ const CategoryPost = (props) => {
       loginModal.current.openModal();
     }
   };
-  //찜하기 해제 기능
   const disLike = () => {
     if (is_login) {
       dispatch(postActions.dislikeDB(challengeId));
@@ -68,13 +59,12 @@ const CategoryPost = (props) => {
 
   return (
     <React.Fragment>
-      {/* 클릭 시 이동 일단 임의로 설정 */}
       <Card>
         <ThumbnailBox>
           <Img
-            // 기존 이미지 크기 두배로 리사이징
             alt="썸네일"
             src={
+              // 이미지 경량화 작업
               thumbnail +
               getParametersForUnsplash({
                 width: 334,
@@ -119,11 +109,6 @@ const CategoryPost = (props) => {
             {participants}명
           </ParticipantsTag>
         </TagWrap>
-
-        {/* <Tag>
-            {tags}
-          </Text>
-        </Tag> */}
       </Card>
       <LoginModal ref={loginModal} in_page />
     </React.Fragment>
@@ -168,15 +153,6 @@ const Like = styled.img`
   z-index: 90;
 `;
 
-// const Tag = styled.div`
-//   display: inline-flex;
-//   background-color: beige;
-//   margin: 0% 3%;
-//   width: 90px;
-//   height: 20px;
-//   border-radius: 5px;
-//   align-items: center;
-// `;
 const Title = styled.div`
   margin-top: 10px;
   word-break: break-all;

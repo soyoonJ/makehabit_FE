@@ -1,43 +1,24 @@
 import React from "react";
 
 import { Button } from "../elements";
-// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useDispatch } from "react-redux";
 
 import moment from "moment";
 
 const ConfirmPost = (props) => {
-  // console.log("챌린지리스트", props);
-  // const dispatch = useDispatch();
-  // console.log("props", props);
   const { thumbnail, title, round, content, status, startAt, isUpload } = props;
-  // const date = new Date(startAt);
-  // const koStartAt = date.toLocaleString();
-  // const dDay = moment(koStartAt, "YYYY.MM.DD").fromNow();
-  // const startDate = dDay.split(" ")[1];
-  // console.log("koStartAt, dDay", koStartAt, dDay);
 
   const now = moment(new Date());
   const day = moment(new Date(startAt));
-  // .format("YYYY-MM-DD HH:mm:ss");
   const startDate = Math.abs(now.diff(day, "days"));
   let startHour = "";
   if (startDate === 0) {
     startHour = Math.abs(now.diff(day, "hour"));
   }
-  // console.log("now, day, days", now, day, now.diff(day, "days"));
-  // console.log("startHour", startHour);
-  // console.log("디데이", startDate);
-  // console.log("koStartAt", koStartAt);
-  // const spiltDate = koStartAt.split(". ");
-  // const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
-  // console.log("아이디", challengeId);
-  // 버튼 텍스트, 우측 상단 진행상태 텍스트 달기 위한 조건
+
   const statusText = [
-    // { progress: "진행예정", buttonText: `${koStartAt.slice(0, 11)} 시작` },
     { progress: "진행예정", buttonText: `${startDate + 1}일` },
     { progress: "진행예정", buttonText: `${startHour}시간` },
     { progress: "종료", buttonText: "완료된 챌린지입니다." },
@@ -60,10 +41,9 @@ const ConfirmPost = (props) => {
   } else if (status === 0 && isUpload) {
     statusContent = statusText[3];
   }
-  // console.log("ConfimrPost", status, statusContent);
+
   return (
     <GridBox>
-      {/* 좌측 이미지 - 완료된 챌린지 */}
       {status === 2 ? (
         <ImageContainer>
           <Completed>완료</Completed>
@@ -85,14 +65,12 @@ const ConfirmPost = (props) => {
         </ImageContainer>
       )}
 
-      {/* 우측 텍스트 부분 */}
       <TextContainer>
         <div style={{ marginBottom: "0.813rem" }}>
           <TextGrid>
             <Title>{title}</Title>
 
             <Round>
-              {/* 진행예정인 챌린지 */}
               {status === 1 ? (
                 <div style={{ color: "#FF8B37", fontWeight: "600" }}>
                   {statusContent.progress}
@@ -116,7 +94,6 @@ const ConfirmPost = (props) => {
           <Content>{content}</Content>
         </div>
 
-        {/* 종료, 진행중인데 인증완료된 버튼 */}
         {status === 2 || isUpload ? (
           <Button
             width="100%"
@@ -132,15 +109,9 @@ const ConfirmPost = (props) => {
           </Button>
         ) : (
           <>
-            {/* 진행예정 */}
             {status === 1 ? (
               <Button
-                // bg="#fff"
-                // 회색배경 ver
                 bg="#f7f7f7"
-                // 회색라인 ver
-                // bg="#fff"
-                // border="1.5px solid #e0e0e0"
                 color="#FF8B37"
                 width="100%"
                 padding="0.5rem"

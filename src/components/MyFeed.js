@@ -1,13 +1,10 @@
 import React from "react";
 
 import { useLocation } from "react-router-dom";
-// import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
-import { Button, ContainerGrid, Text } from "../elements";
-import PageBack from "../components/PageBack";
+import { ContainerGrid, Text } from "../elements";
 import MetaTag from "../shared/MetaTag";
-// import Spinner from "../shared/Spinner";
 
 import styled from "styled-components";
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
@@ -23,8 +20,6 @@ const MyFeed = (props) => {
 
   const proofShotId = props.match.params.id;
   const feed = useSelector((state) => state.challenge?.feed);
-  // console.log("피드", feed);
-  // const isLoading = useSelector((state) => state.challenge.isLoading);
 
   const [comment, setComment] = React.useState(null);
   const [commentLength, setLength] = React.useState(null);
@@ -71,12 +66,7 @@ const MyFeed = (props) => {
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 나의 기록보기" />
-      {/* {isLoading ? <Spinner /> : ""} */}
-      {/*소윤님작업 */}
-      {/* <PageBack padding="2.13vh 4.36%" color="#707070" />
-      <FeedNum>
-        {order + 1}/{length}
-      </FeedNum> */}
+
       <ContainerGrid>
         <Header>
           <GoBack
@@ -154,17 +144,6 @@ const Header = styled.div`
   justify-content: space-around;
   text-align: center;
 `;
-const FeedNum = styled.div`
-  padding: 2.49vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.6vh;
-  line-height: 3.41vh;
-  letter-spacing: -0.005rem;
-  font-weight: 700;
-`;
-
 const ImageContainer = styled.div`
   height: 54.5vh;
   margin-bottom: 1.75rem;

@@ -86,17 +86,11 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       dispatch(characterActions.purchaseItemList(totalPoint, items));
     },
     reset() {
-      // console.log("reset!");
       setBg("");
       setColor("");
       setEmotion("");
       setClothes("");
       setAcc("");
-      // account("bg");
-      // account("color");
-      // account("emotion");
-      // account("clothes");
-      // account("acc");
     },
   }));
   const dispatch = useDispatch();
@@ -135,13 +129,6 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  //Item 변경 할때 사용 하는 useState
-  // const [fitBg, setFitBg] = useState();
-  // const [fitColor, setFitColor] = useState();
-  // const [fitClothes, setFitClothes] = useState();
-  // const [fitAcc, setFitAcc] = useState();
-  // const [fitEmotion, setFitEmotion] = useState();
-
   // 미리보기 리스트
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewColor = useSelector((state) => state.character?.colorItem);
@@ -166,16 +153,6 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   // const [add, setAdd] = useState(false);
 
   React.useEffect(() => {
-    //필터 리스트
-    // console.log(
-    //   "shopList야!!",
-    //   itemBg,
-    //   itemColor,
-    //   itemClothes,
-    //   itemAcc,
-    //   itemEmotion
-    // );
-
     if (itemBg) {
       setBg(itemBg);
     }
@@ -191,7 +168,6 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     if (itemEmotion) {
       setEmotion(itemEmotion);
     }
-    // account();
   }, [shopList]);
 
   // React.useEffect(() => {

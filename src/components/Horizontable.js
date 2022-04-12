@@ -4,7 +4,6 @@ const style = {
   width: "100%",
   overflow: "hidden",
   cursor: "pointer",
-  // display: "flex",
   margin: "0px",
 };
 

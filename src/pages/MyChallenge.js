@@ -1,4 +1,3 @@
-// 내 챌린지 이름 바뀌면 파일명도 바꾸기
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,7 +5,6 @@ import { ContainerGrid, Text, Button } from "../elements";
 import ButtonNavigation from "../components/ButtonNavigation";
 import ConfirmPost from "../components/ConfirmPost";
 import MetaTag from "../shared/MetaTag";
-// import Spinner from "../shared/Spinner";
 
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
@@ -21,25 +19,19 @@ import styled from "styled-components";
 const MyChallenge = (props) => {
   const dispatch = useDispatch();
   const currentPage = props.match.params.id;
-  // console.log("지금", currentPage);
   const challenge_list = useSelector((state) => state.challenge.challenge_list);
   const isHostList = useSelector((state) =>
     state.challenge.challenge_list?.filter((e) => e.isHost === true)
   );
   const proof_list = useSelector((state) => state.challenge.proof_list);
-  // console.log("챌린지리스트", challenge_list, isHostList);
-  //필터
+
   const [filter, setFilter] = useState(false);
   const [showMine, setShowMine] = useState(false);
   const [challengeText, setChallengeText] = useState("전체 챌린지 보기");
 
   const handleSelect = (e) => {
     setShowMine(e.target.value);
-    console.log("handleselect", showMine);
   };
-
-  // console.log("피드길이", proof_list?.length);
-  // const isLoading = useSelector((state) => state.challenge.isLoading);
 
   React.useEffect(() => {
     if (currentPage === "navi") {
@@ -53,7 +45,6 @@ const MyChallenge = (props) => {
   return (
     <React.Fragment>
       <MetaTag title="습관삼끼 | 참여 챌린지 목록" />
-      {/* {isLoading ? <Spinner /> : ""} */}
 
       <PageTitle style={{ textAlign: "center" }}>참여 챌린지</PageTitle>
 
@@ -88,17 +79,7 @@ const MyChallenge = (props) => {
           {currentPage === "feed" ? <Highlight style={{ right: "0" }} /> : ""}
         </div>
       </Container>
-      {/* <hr
-        style={{
-          height: "0.094rem",
-          margin: "0 0 2.84vh 0",
-          outline: "none",
-          border: "none",
-          background: "#E0E0E0",
-        }}
-      /> */}
 
-      {/* 참여챌린지 */}
       <ContainerGrid margin="0 0 14.6vh">
         {currentPage === "navi" ? (
           <div style={{ marginBottom: "14.6vh" }}>
@@ -317,7 +298,6 @@ const TabName = styled.div`
   font-size: 1.9vh;
 `;
 
-// 챌린지 없을 때 띄워줌
 const NoChallenge = styled.div`
   text-align: center;
   font-size: 1.5rem;
@@ -392,31 +372,4 @@ const OptionBox = styled.div`
   align-items: center;
   // justify-content: center;
 `;
-
-const ContainerBox = styled.div``;
-// const SelectBox = styled.div`
-//   position: relative;
-//   width: 148px;
-//   height: 40px;
-//   font-size: 13px;
-//   border-radius: 5px;
-//   background-color: white;
-//   color: #707070;
-//   & > select {
-//     width: inherit;
-//     height: inherit;
-//     background: transparent;
-//     border: 0 none;
-//     outline: 0 none;
-//     padding: 0 5px;
-//     position: relative;
-//     z-index: 3; // select가 위로 올라와야 함
-//   }
-//   & > select > option {
-//     background: lightcoral;
-//     color: #fff;
-//     padding: 3px 0;
-//     font-size: 13px;
-//   }
-// `;
 export default MyChallenge;

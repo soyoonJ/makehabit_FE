@@ -1,23 +1,16 @@
 import React, { useState, useRef } from "react";
 
 import { Grid, Text, Input, Button, ContainerGrid } from "../elements";
-// import ProgressBar from "../components/ProgressBar";
-// import NicknameModal from "../components/NicknameModal";
 import Modal from "../components/Modal";
 import ButtonNavigation from "../components/ButtonNavigation";
-// import CharacterContainer from "../components/CharacterContainer";
-// import Character from "../redux/modules/character";
 import MetaTag from "../shared/MetaTag";
-// import Spinner from "../shared/Spinner";
 
-// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as characterActions } from "../redux/modules/character";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { HiOutlinePencil } from "react-icons/hi";
 import { ReactComponent as RightButton } from "../img/icon_right.svg";
 import LoginModal from "../components/LoginModal";
 
@@ -27,12 +20,10 @@ const Mypage = () => {
   const dispatch = useDispatch();
 
   const userInfo = useSelector((state) => state.user?.user_info);
-  // console.log(userInfo);
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
     dispatch(userActions.getInfoDB());
-    // console.log("오냐냐냐냐냐");
   }, []);
 
   const isEquip = useSelector((state) => state.character?.isEquip);
@@ -42,28 +33,15 @@ const Mypage = () => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  // console.log(
-  //   "equip확인",
-  //   isEquip,
-  //   equipBg?.itemImgUrl,
-  //   equipColor?.itemImgUrl,
-  //   equipClothes?.itemImgUrl,
-  //   equipAcc?.itemImgUrl
-  // );
-
   const Item = process.env.PUBLIC_URL + "/items/large";
 
-  //닉네임 가져오기
   const nickName = useSelector((state) => state.user?.user?.nickname);
-  // console.log("닉네임", nickName);
 
-  //자식 함수 접근하는 Ref
   const childRef = useRef();
 
-  //로그인모달창에 접근하는 ref
   const loginModal = React.useRef();
   const is_token = localStorage.getItem("token") ? true : false;
-  // 로그인 상태 아닐 경우 튕겨내기
+
   React.useEffect(() => {
     if (!is_token) {
       loginModal.current.openModal();
@@ -73,12 +51,10 @@ const Mypage = () => {
   return (
     <Container>
       <MetaTag title="습관삼끼 | 마이페이지" />
-      {/* {isLoading ? <Spinner /> : ""} */}
 
       <ContainerGrid>
         <Grid margin="10% 0% 0% 0%">
           <CharacterWrap>
-            {/* 지금 테두리 이상함 공유하기 창 따로 띄우는게 나을듯? */}
             <ImgContainer id="myCharacter">
               <ItemImg src={Item + equipBg?.itemImgUrl} />
               <ItemImg src={Item + equipColor?.itemImgUrl} />
@@ -86,34 +62,9 @@ const Mypage = () => {
               <ItemImg src={Item + equipAcc?.itemImgUrl} />
               <ItemImg src={Item + equipEmotion?.itemImgUrl} />
             </ImgContainer>
-
-            {/* {viewBg && (
-              <ImgContainer>
-                <ItemImg
-                  src={Item + viewBg}
-                  ref={selectedBg}
-                  alt={viewBg}
-                ></ItemImg>
-              </ImgContainer>
-            )} */}
           </CharacterWrap>
-          {/* 닉네임 / 닉네임 변경 */}
-          <Grid
-            is_flex
-            // margin="3px"
-            textAlign="center"
-            justifyContent="center"
-            // padding="2% 5%"
-          >
-            {/* 닉네임 수정 */}
-            <Button
-              bg="white"
-              color="black"
-              // _onClick={() => {
-              //   // console.log("onClick!", childRef, childRef.current);
-              //   childRef.current.openModal();
-              // }}
-            >
+          <Grid is_flex textAlign="center" justifyContent="center">
+            <Button bg="white" color="black">
               <Text
                 weight="700"
                 size="2.6vh"
@@ -123,44 +74,10 @@ const Mypage = () => {
                 {nickName}
               </Text>
             </Button>
-
-            {/* <Modal ref={childRef}>
-              <Grid>
-                <Grid is_flex height="50px">
-                  <Input></Input>
-                  <Button width="70px">중복확인</Button>
-                </Grid>
-                <Grid is_flex height="50px" justifyContent="center">
-                  <Button width="70px" padding="3%" margin="3%">
-                    확인
-                  </Button>
-                  <Button
-                    width="70px"
-                    padding="3%"
-                    margin="3%"
-                    _onClick={() => {
-                      childRef.current.closeModal();
-                    }}
-                  >
-                    취소
-                  </Button>
-                </Grid>
-              </Grid>
-            </Modal> */}
           </Grid>
-          {/* 레벨 / 남은 경험치*/}
-          {/* <Grid is_flex textAlign="center">
-            <Text>Lv.1</Text>
-            <Text>다음 레벨까지 100경험치</Text>
-          </Grid> */}
-          {/* 경험치 바 */}
-          {/* <Grid is_flex justifyContent="center" padding="5%">
-            <ProgressBar />
-          </Grid> */}
         </Grid>
       </ContainerGrid>
 
-      {/* 통계치 */}
       <ContainerGrid>
         <UserScore>
           <div>
@@ -172,7 +89,6 @@ const Mypage = () => {
         </UserScore>
       </ContainerGrid>
 
-      {/* 공유하기 배너 */}
       <Grid>
         <ShareBox>
           <Grid margin="0px 21px">
@@ -215,7 +131,6 @@ const Mypage = () => {
         </ShareBox>
       </Grid>
 
-      {/* 하단 메뉴 */}
       <Grid>
         <TestBox
           onClick={() => {
@@ -259,7 +174,6 @@ const Mypage = () => {
       <Grid>
         <TestBox
           onClick={() => {
-            // dispatch(challengeActions.setTab("feed"));
             history.push("/ranking");
           }}
         >
@@ -280,7 +194,6 @@ const Mypage = () => {
       <Grid>
         <TestBox
           onClick={() => {
-            // dispatch(challengeActions.setTab("feed"));
             history.push("/mychallenge/feed");
           }}
         >

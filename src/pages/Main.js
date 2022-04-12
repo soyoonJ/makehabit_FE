@@ -7,7 +7,6 @@ import ButtonNavigation from "../components/ButtonNavigation";
 import Banner1 from "../components/Banner1";
 import CategoryPost from "../components/CategoryPost";
 import MetaTag from "../shared/MetaTag";
-// import Spinner from "../shared/Spinner";
 import Ranking from "../components/Ranking";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -73,13 +72,8 @@ const Main = () => {
 
   return (
     <Container>
-      {/* <MetaTag title="습관삼끼" /> */}
-      {/* {isLoading ? <Spinner /> : ""} */}
-      {/* 스피너테스트 */}
-      {/* <Spinner /> */}
       <Header>
         <ContainerGrid>
-          {/*로고 */}
           <Logo
             src="/logo/logo_text.svg"
             alt="로고"

@@ -1,4 +1,3 @@
-// 아이템 선택창 - 네모박스
 import React from "react";
 import styled from "styled-components";
 import { actionCreators as characterActions } from "../redux/modules/character";
@@ -7,25 +6,18 @@ import { Grid } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import Horizontable from "./Horizontable";
 
-// import { ReactComponent as LockImg } from "../public/images/icon_lock.svg";
-
 const ItemBox = () => {
   const Icons = process.env.PUBLIC_URL + "/images";
 
   const dispatch = useDispatch();
 
   const itemList = useSelector((state) => state.character?.itemList);
-  // console.log("itemList", itemList);
   const category = itemList[0].category;
-  // console.log("아이템리스트", itemList);
-  // console.log("카테고리", category);
 
-  // 현재 장착중인 아이템
   const isEquipAll = useSelector((state) => state.character?.isEquip);
   const isEquip = isEquipAll.find((e) => e.category === category);
-  // 미리보기
+
   const preview = useSelector((state) => state.character);
-  // console.log("미리보기", preview);
   const previewBg = useSelector((state) => state.character?.backgroundItem);
   const previewClothes = useSelector((state) => state.character?.clothesItem);
   const previewAcc = useSelector((state) => state.character?.accItem);
@@ -36,7 +28,7 @@ const ItemBox = () => {
   const Item = process.env.PUBLIC_URL + "/items/small";
   const [item, setItem] = React.useState(null);
 
-  // 카테고리 바뀔 때마다 아이템 세팅
+  // 카테고리 바뀔 때마다 현재 선택된 아이템 세팅
   React.useEffect(() => {
     if (category === "clothes") {
       if (preview.clothesItem === null) {
@@ -68,7 +60,6 @@ const ItemBox = () => {
     }
   }, [category, isReset]);
 
-  // CharacterContainer에 반영하기 위한 작업
   React.useEffect(() => {
     if (category === "background") {
       dispatch(characterActions.backgroundPreview(item));
@@ -79,8 +70,6 @@ const ItemBox = () => {
     } else if (category === "emotion") {
       dispatch(characterActions.emotionPreview(item));
     }
-
-    // console.log("item", item);
   }, [item]);
 
   return (
@@ -90,7 +79,6 @@ const ItemBox = () => {
           {itemList.map((e, i) => (
             <OneItem key={i}>
               <div>
-                {/* 아이템 이미지 박스 */}
                 <div
                   style={{
                     position: "relative",
