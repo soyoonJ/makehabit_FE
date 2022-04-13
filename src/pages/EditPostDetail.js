@@ -1,32 +1,22 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import post, { actionCreators as postActions } from "../redux/modules/post";
-// import { actionCreators as userAction } from "../redux/modules/user";
-// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { Grid } from "../elements";
-// import CategoryModal from "../components/CategoryModal";
 import CategoryModal1 from "../components/CategoryModal1";
-import Upload from "../components/Upload";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
 import Spinner from "../shared/Spinner";
 import { history } from "../redux/configureStore";
 import { debounce, throttle } from "lodash";
 import styled from "styled-components";
-
 import LoginModal from "../components/LoginModal";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-// import { GoCalendar } from "react-icons/go";
-
 import moment from "moment";
-
 import ButtonNavigation from "../components/ButtonNavigation";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
-  //카테고리 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
   const editcategory = useSelector((state) => state.post.post.category);
   let stateCategoryValue = "";
   if (editcategory === "study") {
@@ -44,7 +34,6 @@ const PostWrite = (props) => {
   const [categoryValue, setCategoryValue] = useState(stateCategoryValue);
   const [sendCategory, setSendCategory] = useState(editcategory);
 
-  //모달 리스트
   const modalList = [
     ["study", "공부"],
     ["exercise", "운동/건강"],
@@ -55,22 +44,8 @@ const PostWrite = (props) => {
   const getData = (idx) => {
     setCategoryValue(modalList[idx][1]);
     setSendCategory(modalList[idx][0]);
-    // console.log("하이이이이이이", modalList[idx][0], modalList[idx][1]);
   };
 
-  //카테고리 팝업
-  // let [modalopen, setModalopen] = React.useState(false);
-  //카테고리 팝업 열기
-  // const openModal = () => {
-  //   setModalopen(true);
-  // };
-
-  // //카테고리 팝업 닫기
-  // const closeModal = () => {
-  //   setModalopen(false);
-  // };
-
-  //수정
   const EditpostId = props.match.params.id;
 
   const postdata = useSelector((state) => state.post.post);
@@ -81,17 +56,9 @@ const PostWrite = (props) => {
   const edittitle = useSelector((state) => state.post.post?.title);
   const editdesc = useSelector((state) => state.post.post?.content);
   const editmethod = useSelector((state) => state.post.post?.howtoContent);
-  // const edittitle = React.useRef();
-  // // const editdesc = React.useRef();
-  // const editmethod = React.useRef();
-  //시작일
-  // const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
   const editdate = useSelector((state) => state.post.post?.startAt);
-  // 받아온 값 현지시간으로 변경
-  // const localdate = new Date(editdate);
-  // console.log("현지", localdate);
   const editDay = moment(editdate);
-  // const editDayforamt = editDay.toISOString().split("T")[0];
+
   const editDayforamt = editDay.format("YYYY-MM-DD");
   const edtiEnd = moment(editdate).add(29, "days").format("YYYY년 MM월 DD일");
 
@@ -99,24 +66,13 @@ const PostWrite = (props) => {
     dispatch(postActions.getDetailPostDB(EditpostId));
   }, []);
 
-  //날짜 인풋박스 시작일 선택 제한 (오늘 이전의 날짜 선택 불가하게, 너무 오래된 날짜 선택 불가능하게)
-  // 오늘 날짜 YYYY-MM-DD형식으로 추출
   const offset = new Date().getTimezoneOffset() * 60000;
   let todayDate = new Date(Date.now() - offset).toISOString().split("T")[0];
 
-  //선택한 날짜 가져오기
-
   const [date, setDate] = useState(editDayforamt);
   const onChange = (e) => {
-    // console.log(e.target); //이벤트가 발생한 타겟의 요소를 출력
-    // console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
-    setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
+    setDate(e.target.value);
   };
-  // console.log("날짜", date);
-  // const onReset = () => {
-  //   setDate(null); // onClick함수 발생시 ''으로 {text} 변경
-  // };
-  // 오늘 날짜+30일 YYYY-MM-DD형식으로 추출
 
   const now = new Date(date);
   let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
@@ -174,31 +130,14 @@ const PostWrite = (props) => {
   const uploadRef = React.useRef();
   const fileInput = React.useRef();
 
-  //userId 가져오기
-  // const loginCheck = useSelector((state) => state.user.user);
-  //이미지 여부 확인
   const imgExist = useSelector((state) => state.post.imgExist);
 
   const [isLoading, setLoading] = React.useState(false);
   const isUploaded = useSelector((state) => state.challenge?.isUpload);
-  // console.log("isUploaded", isUploaded);
 
   const confirm = () => {
     const imageForm = new FormData();
     image = editthumbnail;
-    // if (imgExist === true) {
-    //   image = fileInput.current.files[0];
-    // } else {
-    //   image = editthumbnail;
-    // }
-
-    // imageForm.append("image", image);
-    console.log("들어왔나?", date, desc, method, title);
-
-    // if (image === undefined) {
-    //   alert("썸네일 이미지가 없습니다!");
-    //   return;
-    // }
 
     if (title === "") {
       alert("챌린지 제목이 없습니다!");
@@ -222,7 +161,6 @@ const PostWrite = (props) => {
       alert("챌린지 인증 방법을 쓰지 않았습니다");
       return;
     }
-    // setLoading(true);
 
     dispatch(
       postActions.editPostDB(
@@ -239,18 +177,7 @@ const PostWrite = (props) => {
     history.push(`/challenges/${EditpostId}`);
   };
 
-  // const imageForm = new FormData();
-  // console.log("이미지 파일 바뀌었다!", fileInput);
-  // React.useEffect(() => {
-  //   // console.log("이미지 파일 바뀌었다!");
-  //   // image = fileInput.current.files[0];
-  //   // imageForm.append("image", image);
-  // }, [fileInput]);
-
-  //자식 함수 접근하는 Ref
   const childRef = useRef();
-
-  //moment 변환
   const startDay = moment(date);
   const transformDay = startDay.format("YYYY년 MM월 DD일");
 
@@ -260,10 +187,9 @@ const PostWrite = (props) => {
   let min = currentTime.getMinutes();
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
-  //로그인모달창에 접근하는 ref
   const loginModal = React.useRef();
   const is_token = localStorage.getItem("token") ? true : false;
-  // 로그인 상태 아닐 경우 튕겨내기
+
   React.useEffect(() => {
     if (!is_token) {
       loginModal.current.openModal();
@@ -286,14 +212,6 @@ const PostWrite = (props) => {
         <Grid padding="0 1.250rem">
           <Imagethumbmail src={editthumbnail}></Imagethumbmail>
           <Caption>*이미지 수정은 불가합니다*</Caption>
-          {/* <Upload
-            defaultValue={editthumbnail}
-            ref={uploadRef}
-            _ref={fileInput}
-            _onClick={() => {
-              uploadRef.current.upload();
-            }}
-          /> */}
         </Grid>
 
         {/* 제목 */}
@@ -309,8 +227,8 @@ const PostWrite = (props) => {
 
           <LengthText textAlign="right">{titleLength}/20자</LengthText>
         </Grid>
-        {/* 카테고리 선택 */}
 
+        {/* 카테고리 선택 */}
         <CategoryButton
           onClick={() => {
             childRef.current.openModal();
@@ -326,9 +244,6 @@ const PostWrite = (props) => {
               </ToRight>
             </CategoryContainer>
           ) : (
-            // <CategoryTextBox>
-            //   <HeadLine></HeadLine>
-            // </CategoryTextBox>
             <CategoryContainer>
               <ToLeft>
                 <HeadLine>카테고리 선택</HeadLine>
@@ -343,13 +258,11 @@ const PostWrite = (props) => {
         <CategoryModal1 ref={childRef} getData={getData}></CategoryModal1>
 
         {/* 이미지 첨부 */}
-
         <ChallengeStartContainer>
           <ToLeft>
             <ChallengeText>챌린지 시작일</ChallengeText>
           </ToLeft>
           <ToRight>
-            {/* <StartDate>{date ? transformDay : editchallengesStart}</StartDate> */}
             <StartDate>{date ? transformDay : "2022년10월10일"}</StartDate>
             <DateInput
               id="inputCalendar"
@@ -371,8 +284,8 @@ const PostWrite = (props) => {
           <CaptionTextBox>
             <Caption>3일간 10번씩 도전해봐요!</Caption>
           </CaptionTextBox>
-          {/* 예상 종료일 */}
 
+          {/* 예상 종료일 */}
           <ColorBox>
             <EndDateText>
               <ToLeft style={{ margin: "0.813rem" }}>예상 종료일 </ToLeft>
@@ -406,7 +319,6 @@ const PostWrite = (props) => {
             onChange={onChangeDesc}
             maxLength="150"
             defaultValue={editdesc}
-            // ref={editdesc}
           ></Contents>
           <LengthText textAlign="right">{descLength}/150자</LengthText>
         </Grid>
@@ -422,7 +334,6 @@ const PostWrite = (props) => {
             </CaptionTextBox>
           </Grid>
           <Contents
-            // ref={editmethod}
             placeholder="ex) 오늘 날짜가 적힌 메모와 책 페이지를 찍어주세요."
             onChange={onChangeMethod}
             maxLength="150"
@@ -431,7 +342,6 @@ const PostWrite = (props) => {
           <LengthText textAlign="right">{methodLength}/150자</LengthText>
         </MarginBox>
         <MarginBox style={{ margin: "0 0 9.375rem 0" }}>
-          {/* {edittitle && sendCategory && date && editdesc && editmethod ? ( */}
           <CreateBox>
             <CreateButton
               onClick={() => {
@@ -441,9 +351,6 @@ const PostWrite = (props) => {
               <CreateText>챌린지 수정완료</CreateText>
             </CreateButton>
           </CreateBox>
-          {/* ) : (
-            ""
-          )} */}
         </MarginBox>
       </Grid>
       <LoginModal ref={loginModal} in_page />
@@ -452,7 +359,6 @@ const PostWrite = (props) => {
   );
 };
 const Container = styled.div``;
-// 인증하기 텍스트
 const TitleContainer = styled.div`
   text-align: center;
   margin: 1.313em 0 4.7vh 0;
@@ -482,11 +388,6 @@ const TitleInput = styled.input`
   border-radius: 0.313rem;
   margin: 1.125rem 0 0;
   font-size: 1rem;
-  // ::placeholder {
-  //   font-size: 1rem;
-  //   margin-left: 0.625rem;
-  //   opacity: 1; /* 파이어폭스에서 뿌옇게 나오는 현상을 방지하기 위한 css */
-  // }
   padding-left: 1.625rem;
 `;
 
@@ -505,17 +406,10 @@ const BorderBottom = styled.div`
 `;
 
 const CategoryContainer = styled.div`
-  // text-align: center;
-  // margin: 1.313em 0 4.7vh 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  // align-items: center;
-  // justify-content: center;
 `;
 
-const CategoryTextBox = styled.div`
-  margin: 0.625rem 0;
-`;
 const ToLeft = styled.div`
   display: flex;
   margin: 0.625rem 1.25rem;
@@ -596,7 +490,6 @@ const EndDateText = styled.span`
   line-height: 1.5rem;
   display: flex;
   align-items: center;
-  // justify-content: center;
   width: 100%;
   justify-content: space-between;
   color: white;

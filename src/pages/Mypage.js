@@ -32,11 +32,8 @@ const Mypage = () => {
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
-
   const Item = process.env.PUBLIC_URL + "/items/large";
-
   const nickName = useSelector((state) => state.user?.user?.nickname);
-
   const childRef = useRef();
 
   const loginModal = React.useRef();

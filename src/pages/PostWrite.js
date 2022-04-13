@@ -283,6 +283,7 @@ const PostWrite = () => {
           </ToLeft>
           <ToRight>
             <StartDate>{date ? transformDay : "2022년 00월 00일"}</StartDate>
+
             <DateInput
               id="inputCalendar"
               type="date"

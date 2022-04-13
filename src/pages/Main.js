@@ -18,42 +18,25 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import OnBoardModal from "../components/OnBoardModal";
 
 const Main = () => {
-  //메인헤더 검색 키워드를 서버 보내주기 위한 작업
-  //1. dispatch > useRef > 어떤 버튼 클릭시 적용되니깐 그 버튼에 입력값 넣기
-  //ㄴ dispatch(mainActions.getSearchDB(search.current.value))
   const dispatch = useDispatch();
-
-  // const isLoading = useSelector((state) => state.main.isLoading);
-  // const [loading, setLoading] = React.useState(true);
-  // console.log("서치", search.current.value);
-
-  // const categoryId = props.match.params.id;
   const likeList = useSelector((state) => state.post.isLike);
-  // const challengeId = props.match.params.id;
-
   React.useEffect(() => {
-    // console.log("바뀌냐", likeList);
     dispatch(mainActions.RecommendDB(4));
     dispatch(mainActions.mainnewDB(4, "new"));
     dispatch(mainActions.mainstudyDB(4, "exercise"));
-    // dispatch(postActions.getDetailPostDB(challengeId));
   }, [likeList]);
 
   React.useEffect(() => {
     dispatch(rankingActions.getRankingDB(3));
   }, []);
 
-  //추천작심삼일 리스트 가져오기
   const recommend_list = useSelector((state) => state.main.recommend_list);
   const new_list = useSelector((state) => state.main.new_list);
   const study_list = useSelector((state) => state.main.study_list);
-
-  //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking?.ranking_list);
 
-  //검색바
   const search = React.useRef(null);
-  // 엔터키
+
   const handlePress = (e) => {
     if (e.key === "Enter") {
       searchBtn();

@@ -37,8 +37,6 @@ export default handleActions(
     [SET_RANKING]: (state, action) =>
       produce(state, (draft) => {
         draft.my_list = action.payload.ranking_list.me;
-        // draft.ranking_list = action.payload.ranking_list.RankingList;
-        // console.log("확인", draft.my_list, action.payload.ranking_list.me);
         draft.ranking_list = action.payload.ranking_list.RankingList.filter(
           (e) => e.proofCnt > 0
         );
