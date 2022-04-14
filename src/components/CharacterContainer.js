@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
 import { Button } from "../elements";
 
-import ShoppingBasket1 from "../components/ShoppingBasket1";
+import ShoppingBasketModal from "../components/ShoppingBasketModal";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
@@ -161,7 +161,7 @@ const CharacterContainer = () => {
         src={process.env.PUBLIC_URL + "images/restart_img.png"}
         alt="restart_img"
       />
-      <ShoppingBasket1 ref={modalRef} />
+      <ShoppingBasketModal ref={modalRef} />
     </Container>
   );
 };

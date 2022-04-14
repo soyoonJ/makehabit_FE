@@ -7,7 +7,7 @@ import { history } from "../redux/configureStore";
 import { ReactComponent as LeftIcon } from "../img/icon_left.svg";
 import { ReactComponent as RightIcon } from "../img/icon_right.svg";
 
-const Banner1 = () => {
+const Banner = () => {
   // const dispatch = useDispatch();
   //
   // 로컬스토리지에서 유저네임 가져오기
@@ -295,4 +295,4 @@ const IconImg = styled.img`
   width: 18px;
   height: 18px;
 `;
-export default Banner1;
+export default Banner;

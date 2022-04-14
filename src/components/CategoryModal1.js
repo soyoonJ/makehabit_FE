@@ -18,18 +18,13 @@ const Modal = forwardRef((props, ref) => {
     getData(categoryName);
   };
 
-  // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
 
   const closeModal = () => {
     setModalOpen(false);
   };
 
   const outSection = React.useRef();
-  // ----------------------------------------
 
   if (modalOpen) {
     return (
@@ -37,7 +32,6 @@ const Modal = forwardRef((props, ref) => {
         ref={outSection}
         onClick={(e) => {
           if (outSection.current === e.target) {
-            // console.log("close modal!");
             closeModal();
           }
         }}
