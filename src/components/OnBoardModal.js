@@ -1,8 +1,6 @@
 import React from "react";
-// import { Text, Grid } from "../elements";
 import styled from "styled-components";
 import PwaPrompt from "./PwaPrompt";
-// import GridContainer from "../elements/ContainerGrid";
 const OnBoardModal = (props) => {
   const { onClose } = props;
   //배너
@@ -13,11 +11,6 @@ const OnBoardModal = (props) => {
     "/onBoard/onBoarding_02.png",
     "/onBoard/onBoarding_03.png",
   ];
-
-  // 아래 원형 클릭시에도 인덱스를 바꿔줌
-  const clickCircle = (i) => {
-    setBannerIndex(i);
-  };
 
   // 다음 버튼 클릭시 배너의 인덱스를 +1, 인덱스가 마지막이면 처음인 0으로 돌아가기.
   const clickNext = () => {
@@ -41,26 +34,6 @@ const OnBoardModal = (props) => {
               </ContentBox>
             ))}
           </Carousel>
-          {/* <CircleBox>
-            {imgURL.map((e, i) => (
-              <Circle
-                key={i}
-                onClick={() => {
-                  clickCircle(i);
-                }}
-                style={{
-                  // width: i === bannerIndex ? "32px" : null,
-                  // borderRadius: i === bannerIndex ? "12px" : null,
-                  // transition: "width 0.1s",
-                  width: "7px",
-                  height: "7px",
-                  borderRadius: "50%",
-                  background: i === bannerIndex ? "#FF8B37" : "#E0E0E0",
-                  transform: "matrix(1, 0, 0, -1, 0, 0)",
-                }}
-              ></Circle>
-            ))}
-          </CircleBox> */}
         </ModalContent>
         {bannerIndex === imgURL.length - 1 ? (
           <PwaPrompt _onClick={onClose} />
@@ -148,30 +121,6 @@ const Content = styled.div`
   position: relative;
   width: 100%;
   padding: 0px;
-`;
-const TitleTextBox = styled.div``;
-const TitleText = styled.div`
-  font-size: 2.6vh;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 0.75rem;
-`;
-
-const CircleBox = styled.div`
-  width: auto;
-  display: flex;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-const Circle = styled.div`
-  width: 0.8rem;
-  height: 0.8rem;
-  background: #dedede;
-  border-radius: 50%;
-  margin: 0px 12.5px;
-  cursor: pointer;
 `;
 
 const Img = styled.div`

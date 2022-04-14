@@ -4,7 +4,7 @@ import { Text, ContainerGrid } from "../elements";
 import { history } from "../redux/configureStore";
 
 import ButtonNavigation from "../components/ButtonNavigation";
-import Banner1 from "../components/Banner1";
+import Banner from "../components/Banner";
 import CategoryPost from "../components/CategoryPost";
 import MetaTag from "../shared/MetaTag";
 import Ranking from "../components/Ranking";
@@ -83,7 +83,7 @@ const Main = () => {
 
       <MarginTop />
 
-      <Banner1 />
+      <Banner />
 
       <ContainerGrid margin="4.26vh 0 2.37vh 0">
         <Text size="20px" weight="700" borderBox>

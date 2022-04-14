@@ -1,18 +1,11 @@
-import React, {
-  // useRef,
-  forwardRef,
-  useImperativeHandle,
-  useState,
-} from "react";
-// import { Text, Grid } from "../elements";
+import React, { forwardRef, useImperativeHandle, useState } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators as characterActions } from "../redux/modules/character";
-// import GridContainer from "../elements/ContainerGrid";
 
-const ShoppingBasket1 = forwardRef((props, ref) => {
+const ShoppingBasketModal = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     openModal() {
       setModalOpen(true);
@@ -22,14 +15,6 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       setTotalPoint(0);
     },
     account() {
-      // console.log(
-      //   "여기야!",
-      //   shopBg,
-      //   shopColor,
-      //   shopClothes,
-      //   shopAcc,
-      //   shopEmotion
-      // );
       setTotalPoint(0);
       if (shopBg?.price && !shopBg.isOwned && !isNaN(shopBg?.price)) {
         setTotalPoint((totalPoint) => totalPoint + shopBg?.price);
@@ -96,21 +81,10 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const dispatch = useDispatch();
 
   const itemList = useSelector((state) => state.character.itemList);
-  // const category = itemList[0]?.category;
+
   const shopList = useSelector((state) => state.character.shopList);
 
-  // console.log("shopList바스켓", shopList);
-  // const { open, close, getData } = props;
-
-  // const setData = (categoryName) => {
-  //   getData(categoryName);
-  // };
-
-  // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
 
   const closeModal = () => {
     setModalOpen(false);
@@ -119,7 +93,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const currentPoint = useSelector((state) => state.character.currentPoint);
 
   const outSection = React.useRef();
-  // ----------------------------------------
+
   const Item = process.env.PUBLIC_URL + "/items/small";
   // 장착 리스트
   const isEquip = useSelector((state) => state.character?.isEquip);
@@ -150,7 +124,6 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   const [shopEmotion, setEmotion] = useState();
 
   const [totalPoint, setTotalPoint] = useState(0);
-  // const [add, setAdd] = useState(false);
 
   React.useEffect(() => {
     if (itemBg) {
@@ -170,25 +143,11 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     }
   }, [shopList]);
 
-  // React.useEffect(() => {
-  //   setFitBg(equipBg?.itemImgUrl);
-  //   setFitColor(equipColor?.itemImgUrl);
-  //   setFitClothes(equipClothes?.itemImgUrl);
-  //   setFitAcc(equipAcc?.itemImgUrl);
-  //   setFitEmotion(equipEmotion?.itemImgUrl)
-  // }, [equipColor?.itemImgUrl]);
   const account = (item) => {
-    // console.log(
-    //   "accoutn 실행됨?",
-    //   shopList,
-    //   shopBg,
-    //   shopColor,
-    //   shopClothes,
-    //   shopAcc
-    // );
     if (item === "bg") {
       setTotalPoint((totalPoint) => totalPoint - shopBg?.price);
     }
+    // color 전부 무료로 바뀌어서 account에서 빠짐
     // if (item === "color") {
     //   setTotalPoint((totalPoint) => totalPoint - shopColor?.price);
     // }
@@ -202,14 +161,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
       setTotalPoint((totalPoint) => totalPoint - shopEmotion?.price);
     }
   };
-  // console.log(
-  //   "구매리스트",
-  //   shopBg,
-  //   shopColor,
-  //   shopClothes,
-  //   shopAcc,
-  //   shopEmotion
-  // );
+
   const purchase = () => {
     let items = [];
     if (shopBg) {
@@ -245,14 +197,12 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
     }
   };
   const Icon = process.env.PUBLIC_URL + "/images";
-  // const ShoppingList = [shopBg, shopColor, shopClothes, shopAcc, shopEmotion];
   if (modalOpen) {
     return (
       <Container
         ref={outSection}
         onClick={(e) => {
           if (outSection.current === e.target) {
-            // console.log("close modal!");
             closeModal();
           }
         }}
@@ -545,7 +495,7 @@ const ShoppingBasket1 = forwardRef((props, ref) => {
   return null;
 });
 
-ShoppingBasket1.defaultProps = {
+ShoppingBasketModal.defaultProps = {
   children: null,
 };
 
@@ -813,4 +763,4 @@ const MarginBottom = styled.div`
   }
 `;
 
-export default ShoppingBasket1;
+export default ShoppingBasketModal;
