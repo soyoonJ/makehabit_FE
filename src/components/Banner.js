@@ -8,23 +8,8 @@ import { ReactComponent as LeftIcon } from "../img/icon_left.svg";
 import { ReactComponent as RightIcon } from "../img/icon_right.svg";
 
 const Banner = () => {
-  // const dispatch = useDispatch();
-  //
-  // 로컬스토리지에서 유저네임 가져오기
-  // const loginUserName = localStorage.getItem("loginUserName");
-
-  // 배너인덱스를 useState로 관리
   const [bannerIndex, setBannerIndex] = React.useState(0);
 
-  // map돌릴때 쓰일 imgUrl
-  // const imgURL = ["/banner/mainbanner_01.webp", "/banner/mainbanner_02.webp"];
-  // const imgURL = [
-  //   "/banner/mainbanner_01.png",
-  //   "/banner/mainbanner_02.png",
-  //   "/banner/mainbanner_03.png",
-  //   "/banner/mainbanner_04.png",
-  //   "/banner/mainbanner_05.png",
-  // ];
   const imgURL = [
     "/banner/mainbanner_01.webp",
     "/banner/mainbanner_02.webp",
@@ -93,39 +78,6 @@ const Banner = () => {
         {imgURL.map((e, i) => (
           <ContentBox style={{ display: "flex" }} index={i} key={i}>
             <Content style={{ display: "flex" }}>
-              {/* <TextBox>
-                <h2
-                  style={{
-                    width: "100%",
-                    textAlign: "left",
-                    fontFamily: "gmarketBold",
-                    fontSize: "38px",
-                    margin: "60px 0 0 0",
-                    color: i === 1 ? "#fff8ca" : i === 3 ? "white" : "black",
-                  }}
-                >
-                  {bannerMent[i][0]}
-                </h2>
-                <p style={{ fontSize: "20px", margin: " 0px 10px 10px 0px " }}>
-                  {bannerMent[i][1]}
-                </p>
-                <ButtonBox>
-                  <Button
-                    // style={{ position: "absolute", left: "200px" }}
-                    style={{
-                      justifyContent: "center",
-                    }}
-                    width="250px"
-                    _onClick={() => {
-                      // console.log("Click! onclick")
-                      // dispatch(postActions.getPostDB(bannerMent[i][3]));
-                    }}
-                  >
-                    {" "}
-                    {bannerMent[i][2]}
-                  </Button>
-                </ButtonBox>
-              </TextBox> */}
               {i === 0 || i === 1 || i === 3 ? (
                 <Img
                   imgURL={imgURL[i]}
@@ -143,19 +95,6 @@ const Banner = () => {
                   index={i}
                 ></Img>
               )}
-              {/* {i === 0 && (
-                <h1
-                  style={{
-                    fontFamily: "tvnBold",
-                    fontSize: "40px",
-                    color: "#1b35d2",
-                  }}
-                >
-                  {loginUserName
-                    ? `Hi! ${loginUserName} 롷`
-                    : "Let's study Eng 롷"}
-                </h1>
-              )} */}
             </Content>
           </ContentBox>
         ))}
@@ -168,9 +107,6 @@ const Banner = () => {
               clickCircle(i);
             }}
             style={{
-              // width: i === bannerIndex ? "32px" : null,
-              // borderRadius: i === bannerIndex ? "12px" : null,
-              // transition: "width 0.1s",
               width: "4px",
               height: "4px",
               borderRadius: "50%",

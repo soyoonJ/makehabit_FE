@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import post, { actionCreators as postActions } from "../redux/modules/post";
 import { Grid } from "../elements";
-import CategoryModal1 from "../components/CategoryModal1";
+import CategoryModal from "../components/CategoryModal";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
 import Spinner from "../shared/Spinner";
@@ -255,7 +255,7 @@ const PostWrite = (props) => {
           )}
         </CategoryButton>
 
-        <CategoryModal1 ref={childRef} getData={getData}></CategoryModal1>
+        <CategoryModal ref={childRef} getData={getData}></CategoryModal>
 
         {/* 이미지 첨부 */}
         <ChallengeStartContainer>

@@ -1,86 +1,148 @@
-import React from "react";
-// import { Text } from "../elements";
+import React, { forwardRef, useImperativeHandle } from "react";
+import { Grid } from "../elements";
 import styled from "styled-components";
 
-const CategoryModal = (props) => {
-  const { open, close, getData, _onChange } = props;
+const CategoryModal = forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => ({
+    openModal() {
+      setModalOpen(true);
+    },
+    closeModal() {
+      setModalOpen(false);
+    },
+  }));
+
+  const { getData } = props;
 
   const setData = (categoryName) => {
     getData(categoryName);
   };
 
-  //추가내용 (상봉님내용)
   const [modalOpen, setModalOpen] = React.useState(false);
+
   const closeModal = () => {
     setModalOpen(false);
   };
 
   const outSection = React.useRef();
 
-  if (open) {
+  if (modalOpen) {
     return (
-      <OpenModal
+      <Container
         ref={outSection}
         onClick={(e) => {
           if (outSection.current === e.target) {
-            // console.log("close modal!");
             closeModal();
           }
         }}
-        onChange={_onChange}
       >
-        <Section>
-          <ModalHeader>카테고리</ModalHeader>
+        <section>
+          <ModalHeader>
+            <HeaderText>카테고리 선택</HeaderText>
+          </ModalHeader>
           <ModalContent>
-            <Button
-              onClick={() => {
-                close();
-                setData("공부");
-                // console.log(setData);
-              }}
-            >
-              공부
-            </Button>
-            <Button
-              onClick={() => {
-                close();
-                setData("운동");
-              }}
-            >
-              운동
-            </Button>
-            <Button
-              onClick={() => {
-                close();
-                setData("자기계발");
-              }}
-            >
-              자기계발
-            </Button>
-            <Button
-              onClick={() => {
-                close();
-                setData("생활습관");
-              }}
-            >
-              생활습관
-            </Button>
-            <Button
-              onClick={() => {
-                close();
-                setData("에코");
-              }}
-            >
-              에코
-            </Button>
+            <Grid borderBottom="3px solid #f7f7f7" margin="0">
+              <Button
+                onClick={() => {
+                  closeModal();
+                  setData(0);
+                }}
+              >
+                <ContentText>공부</ContentText>
+              </Button>
+            </Grid>
+            <Grid borderBottom="3px solid #f7f7f7">
+              <Button
+                onClick={() => {
+                  closeModal();
+                  setData(1);
+                }}
+              >
+                <ContentText>운동/건강</ContentText>
+              </Button>
+            </Grid>
+
+            <Grid borderBottom="3px solid #f7f7f7">
+              <Button
+                onClick={() => {
+                  closeModal();
+                  setData(2);
+                }}
+              >
+                <ContentText>자기개발/취미</ContentText>
+              </Button>
+            </Grid>
+
+            <Grid borderBottom="3px solid #f7f7f7">
+              <Button
+                onClick={() => {
+                  closeModal();
+                  setData(3);
+                }}
+              >
+                <ContentText>생활습관</ContentText>
+              </Button>
+            </Grid>
+
+            <Grid borderBottom="3px solid #f7f7f7">
+              <Button
+                onClick={() => {
+                  closeModal();
+                  setData(4);
+                }}
+              >
+                <ContentText>에코</ContentText>
+              </Button>
+            </Grid>
           </ModalContent>
-        </Section>
-      </OpenModal>
+        </section>
+      </Container>
     );
   }
   return null;
+});
+
+CategoryModal.defaultProps = {
+  children: null,
 };
 
+const Container = styled.div`
+  position: fixed;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 420px;
+
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 101;
+  display: flex;
+
+  section {
+    position: fixed;
+    max-width: 420px;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent !important;
+  }
+
+  section > div {
+    &:nth-child(1) {
+      cursor: pointer;
+      text-align: right;
+      margin: 20px;
+      font-size: 1.3rem;
+    }
+  }
+
+  section > div > div {
+    &:nth-child(1) {
+      font-weight: bold;
+      // margin-bottom: 20px;
+    }
+    &:nth-child(2) {
+    }
+  }
+`;
 const ModalBox = styled.div`
   display: none;
   position: fixed;
@@ -112,19 +174,25 @@ const ModalBox = styled.div`
 `;
 
 const OpenModal = styled(ModalBox)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   /* 팝업이 스르륵 열리는 효과 */
   animation: modal-bg-show 0.6s;
 `;
 
 const ModalHeader = styled.header`
   position: relative;
-  padding: 16px 64px 16px 16px;
-  background-color: #f1f1f1;
-  font-weight: 700;
+  padding: 16px;
+  background-color: #fff;
+
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+`;
+
+const HeaderText = styled.span`
+  color: #ff8b37;
+  font-size: 1.375rem;
+  font-weight: bold;
+  line-height: 1.813rem;
 `;
 
 const Section = styled.section`
@@ -140,9 +208,14 @@ const Section = styled.section`
 `;
 
 const ModalContent = styled.div`
-  padding: 16px;
+  height: 50%;
   border-bottom: 1px solid #dee2e6;
   border-top: 1px solid #dee2e6;
+`;
+
+const ContentText = styled.span`
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 `;
 
 // const Footer = styled.footer`
@@ -152,14 +225,12 @@ const ModalContent = styled.div`
 
 const Button = styled.button`
   width: 100%;
-  padding: 6px 12px;
-  color: #fff;
-  background-color: #6c757d;
-  border-radius: 5px;
+  height: 50px;
+  color: #000;
+  background-color: white;
   font-size: 13px;
   outline: none;
   cursor: pointer;
   border: 0;
 `;
-
 export default CategoryModal;
