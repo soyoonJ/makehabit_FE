@@ -8,7 +8,7 @@ import { ReactComponent as LeftIcon } from "../img/icon_left.svg";
 import { ReactComponent as RightIcon } from "../img/icon_right.svg";
 
 const Banner = () => {
-  const [bannerIndex, setBannerIndex] = React.useState(0);
+  const [bannerIndex, setBannerIndex] = React.useState(0)<number>;
 
   const imgURL = [
     "/banner/mainbanner_01.webp",
@@ -43,7 +43,7 @@ const Banner = () => {
   };
 
   // 아래 원형 클릭시에도 인덱스를 바꿔줌
-  const clickCircle = (i) => {
+  const clickCircle = (i: number) => {
     setBannerIndex(i);
   };
 
@@ -51,7 +51,7 @@ const Banner = () => {
   React.useEffect(() => {
     const slider = setInterval(
       () =>
-        setBannerIndex((value) =>
+        setBannerIndex((value: number) =>
           value === imgURL.length - 1 ? 0 : value + 1
         ),
       3000
