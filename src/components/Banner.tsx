@@ -8,7 +8,7 @@ import { ReactComponent as LeftIcon } from "../img/icon_left.svg";
 import { ReactComponent as RightIcon } from "../img/icon_right.svg";
 
 const Banner = () => {
-  const [bannerIndex, setBannerIndex] = React.useState(0)<number>;
+  const [bannerIndex, setBannerIndex] = React.useState<number>(0);
 
   const imgURL = [
     "/banner/mainbanner_01.webp",
