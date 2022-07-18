@@ -21,7 +21,6 @@ const RankingPage = () => {
   }
 
   const tomorrow = moment().format("YYYY-MM-DD HH:mm");
-  // console.log(tomorrow);
 
   React.useEffect(() => {
     dispatch(rankingActions.getRankingDB(100));
@@ -32,8 +31,7 @@ const RankingPage = () => {
   const MyRank = useSelector((state) => state.ranking.my_list?.rank);
   const MyCnt = useSelector((state) => state.ranking.my_list?.proofCnt);
 
-  // console.log("MyRank", MyRank);
-
+  //아이템 가져오기
   const isEquip = useSelector((state) => state.ranking.my_list?.equippedItems);
   const equipColor = isEquip?.find((e) => e.category === "color");
   const equipBg = isEquip?.find((e) => e.category === "background");
@@ -41,31 +39,7 @@ const RankingPage = () => {
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  // console.log("isEquip", test);
-
-  //전체 랭킹데이터 가져오기
   const AllRanking = useSelector((state) => state.ranking?.ranking_list);
-  // console.log("랭킹", AllRanking);
-
-  // const AllisEquip = useSelector(
-  //   (state) => state.ranking.ranking_list?.equippedItems
-  // );
-  // const AllequipColor = AllisEquip?.find((e) => e.category === "color");
-  // const AllequipBg = AllisEquip?.find((e) => e.category === "background");
-  // const AllequipClothes = AllisEquip?.find((e) => e.category === "clothes");
-  // const AllequipAcc = AllisEquip?.find((e) => e.category === "acc");
-  // const AllequipEmotion = AllisEquip?.find((e) => e.category === "emotion");
-
-  // console.log(
-  //   "equip확인",
-  //   // AllisEquip,
-  //   AllRanking
-  //   // AllequipBg?.itemImgUrl,
-  //   // AllequipColor?.itemImgUrl,
-  //   // AllequipClothes?.itemImgUrl,
-  //   // AllequipAcc?.itemImgUrl
-  // );
-  // console.log("아이템ㅌ확인", AllRanking[0]?.equippedItems[0]?.itemImgUrl);
 
   return (
     <Container>
@@ -352,22 +326,6 @@ const RankingPage = () => {
       </Wrap>
       <Line />
 
-      {/*4위부터  */}
-      {/* {1 <= MyRank <= 3 ? (
-        <MyMedal
-          src={process.env.PUBLIC_URL + `images/icon_${MyRank}st.png`}
-          alt="Rank_Icon"
-        />
-      ) : (
-        <MyRankNum>{MyRank}</MyRankNum>
-      )} */}
-
-      {/* <ListWrap>
-        {AllRanking?.map((p, idx) => {
-          if (idx > 2) return <Ranking key={p._id} {...p} />;
-        })}
-      </ListWrap> */}
-
       <ListWrap>
         {AllRanking?.map((p, idx) => {
           if (idx > 2) return <Ranking key={p._id} {...p} />;
@@ -404,10 +362,6 @@ const MyRanking = styled.div`
   & > div {
     width: 100%;
     max-width: 420px;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // height: 100%;
     display: grid;
     grid-template-columns: 17.4% 12.8% 1fr 17.4%;
 
@@ -454,7 +408,6 @@ const ItemImg = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
-  /* z-index: 1; */
   border-radius: 5px;
   object-fit: cover;
   margin-left: 4%;
@@ -472,7 +425,6 @@ const RankingWrap = styled.div`
   justify-content: center;
   margin-top: 10px;
   flex-direction: column;
-  /* position: absolute; */
   left: 50%;
 
   & > div {

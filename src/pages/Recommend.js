@@ -15,10 +15,7 @@ import { ReactComponent as BannerImg1 } from "../img/banner_02.png";
 
 const Recommend = (props) => {
   const recommend_list = useSelector((state) => state.main.recommend_list);
-
   const categoryId = props.match.params.id;
-  // console.log("??????????", props.match.params);
-
   const dispatch = useDispatch();
 
   let title = "";
@@ -27,12 +24,10 @@ const Recommend = (props) => {
   React.useEffect(() => {
     if (categoryId === "new") {
       dispatch(mainActions.RecommendDB(10, categoryId));
-      // console.log("들어옸니!!!!!!!!!", categoryId);
     } else if (categoryId === "exercise") {
       dispatch(mainActions.RecommendDB(10, categoryId));
     } else {
       dispatch(mainActions.RecommendDB(10));
-      // console.log("추천");
     }
   }, []);
 
@@ -69,12 +64,9 @@ const Recommend = (props) => {
 
         <Container>
           <Banner src={BannerImg} />
-          {/* <img src="/images/banner_01.png" /> */}
           <div style={{ paddingBottom: "18vh" }}>
             <CardWrap>
-              {/*추천작심삼일 카테고리가 분류가 따로 없어서 length 수정필요 */}
               {recommend_list?.map((p, idx) => {
-                // console.log("피", p);
                 return <CategoryPost key={p._id} {...p} />;
               })}
             </CardWrap>
@@ -93,9 +85,8 @@ const Header = styled.div`
   justify-content: space-around;
   text-align: center;
 `;
-//슬라이드 배너 작업
+
 const Banner = styled.img`
-  /* display: block; */
   margin: 3% auto 7% auto;
   width: 100%;
 `;

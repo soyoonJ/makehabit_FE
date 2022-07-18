@@ -53,34 +53,21 @@ const CategoryBox = styled.div`
   width: 100%;
   max-width: 420px;
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  /* flex-wrap: nowrap; */
-  /* margin-bottom: -10px; */
   overflow-x: hidden;
   white-space: nowrap;
   flex-direction: column;
-  /* border-bottom: 2px gray solid; */
-
-  /* @media only screen and (max-width: 768px) {
-    margin-bottom: 0%;
-    padding-bottom: 0px;
-  } */
-
   div {
     display: inline-block;
   }
 `;
 
 const CategoryCircle = styled.p`
-  /* margin: 2%; */
   margin: 0px;
   font-weight: 400;
   font-size: 17px;
   padding: 5px 9px;
   color: #000;
   background-color: none;
-  /* border-bottom: #ff8b37 solid; */
   display: inline-block;
   flex-direction: column;
   align-items: center;
@@ -89,7 +76,6 @@ const CategoryCircle = styled.p`
   text-align: center;
 
   @media only screen and (max-width: 768px) {
-    /* padding: 9px 9px; */
     font-size: 14px;
   }
   cursor: pointer;
