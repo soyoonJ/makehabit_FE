@@ -23,7 +23,7 @@ const ShoppingList = () => {
   return (
     <Container>
       <Grid borderTop="3px solid #f7f7f7">
-        {itemList?.map((e, i) => (
+        {itemList?.map((e: any, i: number) => (
           <GridContainer key={e._id}>
             <GridBox>
               <ImageContainer style={{ position: "relative" }}>

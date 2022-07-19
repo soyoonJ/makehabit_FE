@@ -6,7 +6,6 @@ import { history } from "../redux/configureStore";
 
 import { ReactComponent as LeftIcon } from "../img/icon_left.svg";
 import { ReactComponent as RightIcon } from "../img/icon_right.svg";
-import { render } from "@testing-library/react";
 
 const Banner = () => {
   const [bannerIndex, setBannerIndex] = React.useState<number>(0);
