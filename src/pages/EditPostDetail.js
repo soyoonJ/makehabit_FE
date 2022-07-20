@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import post, { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as postActions } from "../redux/modules/post";
 import { Grid } from "../elements";
 import CategoryModal from "../components/CategoryModal";
 import PageBack from "../components/PageBack";
@@ -47,8 +47,6 @@ const PostWrite = (props) => {
   };
 
   const EditpostId = props.match.params.id;
-
-  const postdata = useSelector((state) => state.post.post);
 
   const editthumbnail = useSelector((state) => state.post.post?.thumbnail);
   let image = editthumbnail;
@@ -126,17 +124,10 @@ const PostWrite = (props) => {
     MethodLengthKeyPress(e);
   };
 
-  //업로드에 함수 접근하는 Ref
-  const uploadRef = React.useRef();
-  const fileInput = React.useRef();
-
-  const imgExist = useSelector((state) => state.post.imgExist);
-
   const [isLoading, setLoading] = React.useState(false);
   const isUploaded = useSelector((state) => state.challenge?.isUpload);
 
   const confirm = () => {
-    const imageForm = new FormData();
     image = editthumbnail;
 
     if (title === "") {
@@ -167,7 +158,6 @@ const PostWrite = (props) => {
         EditpostId,
         title,
         sendCategory,
-        // imageForm,
         image,
         date,
         desc,
@@ -218,7 +208,6 @@ const PostWrite = (props) => {
         <Grid padding="1.250rem">
           <HeadLine>챌린지 제목</HeadLine>
           <TitleInput
-            // ref={edittitle}
             placeholder="제목을 입력해주세요."
             onChange={onChangeTitle}
             defaultValue={edittitle}
