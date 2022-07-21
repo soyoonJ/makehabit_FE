@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styled from 'styled-components';
 import { Grid } from '../elements';
-// 123
+
 import { actionCreators as characterActions } from '../redux/modules/character';
 import GridContainer from '../elements/ContainerGrid';
 const ShoppingList = () => {
