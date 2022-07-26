@@ -1,13 +1,13 @@
 import React from "react";
 
 import PurchaseCharacter from "../components/PurchaseCharacter";
-import ShoppingBasket1 from "../components/ShoppingBasket1";
+import ShoppingBasketModal from "../components/ShoppingBasketModal";
 
 const ShoppingBasket = () => {
   return (
     <React.Fragment>
       <PurchaseCharacter />
-      <ShoppingBasket1 />
+      <ShoppingBasketModal />
     </React.Fragment>
   );
 };
