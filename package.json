@@ -94,6 +94,7 @@
     "styled-components": "^5.3.3",
     "terser-webpack-plugin": "4.2.3",
     "ts-pnp": "1.2.0",
+    "typescript": "^4.7.4",
     "url-loader": "4.1.1",
     "web-vitals": "^2.1.0",
     "webpack": "4.44.2",
@@ -125,7 +126,8 @@
     ]
   },
   "devDependencies": {
-    "typescript": "^4.7.4",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.25",
     "webpack-pwa-manifest": "^4.3.0",
     "workbox-webpack-plugin": "^6.5.1"
   },
