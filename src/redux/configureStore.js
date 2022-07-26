@@ -26,6 +26,7 @@ const rootReducer = combineReducers({
   // 만든 history랑 라우터를 연결시켜 줌
   router: connectRouter(history),
 });
+// export type RootState = ReturnType<typeof rootReducer>;
 
 // withExtraArgument - 다른 인수를 더 넘겨줄게~ => 히스토리를 만든 히스토리로 넘겨주기
 const middlewares = [thunk.withExtraArgument({ history: history })];
@@ -36,7 +37,7 @@ if (env === "development") {
   const { logger } = require("redux-logger");
   middlewares.push(logger);
 }
-
+// 
 const composeEnhancers =
   // 브라우저 환경일 때만 돌아가도록 함
   // window redux devtools가 깔려있으면 열어준다는 뜻
@@ -51,3 +52,4 @@ const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 let store = (initialStore) => createStore(rootReducer, enhancer);
 
 export default store();
+
