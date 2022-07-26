@@ -23,39 +23,21 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  // console.log("pathname", location.pathname.split("/")[1]);
   const challenges = location.pathname.split("/")[1];
 
   const post = useSelector((state) => state.post.post);
-  // const nickname = useSelector((state) => state.user.user.nickname);
   const challengeId = props.match.params.id;
-  // console.log("POSTDETAIL", post, post?.isLike);
-  // console.log("POSTEDETAIL:", post);
-  //좋아요 버튼 on/off
 
   React.useEffect(() => {
-    // dispatch(userActions.loginCheckDB());
     dispatch(postActions.getDetailPostDB(challengeId));
   }, []);
 
-  // console.log("나오나?", post);
-  // React.useEffect(() => {
-  //   console.log("좋아요가 바뀐다!");
-  //   dispatch(postActions.getDetailPostDB(challengeId));
-  // }, [post?.isLike]);
-  // console.log("POSTDTAIL", post.startAt.subString(0, 10));
-  // console.log(
-  //   moment(post.startAt).utc().format("YYYY.MM.DD"),
-  //   moment(post.startAt).day()
-  // );
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
-  //로그인 체크
   const is_login = useSelector((state) => state.user.is_login);
 
-  //로그인모달창에 접근하는 ref
   const loginModal = React.useRef();
-  //찜하기 (좋아요) 기능
+
   const like = () => {
     if (is_login) {
       dispatch(postActions.likeDB(challengeId));
@@ -63,7 +45,6 @@ const PostDetail = (props) => {
       loginModal.current.openModal();
     }
   };
-  //찜하기 해제 기능
   const disLike = () => {
     if (is_login) {
       dispatch(postActions.dislikeDB(challengeId));
@@ -71,7 +52,6 @@ const PostDetail = (props) => {
       loginModal.current.openModal();
     }
   };
-  //인증하기 기능
   const confirmPage = () => {
     if (is_login) {
       history.push(`/confirm/${challengeId}`);
@@ -80,24 +60,16 @@ const PostDetail = (props) => {
     }
   };
 
-  //인증하기 버튼 방어 코드
   const date = new Date(post?.startAt);
   const koStartAt = date.toLocaleString();
   const todayDate = new Date();
   const today = moment(todayDate, "YYYY-MM-DD").format("YYYY-MM-DD");
   const setDay = moment(koStartAt, "YYYY-MM-DD").format("YYYY-MM-DD");
 
-  // var duration = moment.duration(setDay.diff(today));
-  // var days = duration.asDays();
-  // console.log("koStartAt", koStartAt, today, setDay);
-  // console.log(moment(setDay).diff(today, "days")); // 1
   const diffDay = moment(setDay).diff(today, "days");
   const spiltDate = koStartAt.split(". ");
   const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
-  // console.log("아이디", challengeId);
-  // 버튼 텍스트, 우측 상단 진행상태 텍스트 달기 위한 조건
   const statusText = [
-    // { progress: "진행예정", buttonText: `${koStartAt.slice(0, 11)} 시작` },
     { progress: "진행예정", buttonText: `${stringDate} 시작` },
     { progress: "종료", buttonText: "종료된 챌린지" },
     { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
@@ -117,7 +89,6 @@ const PostDetail = (props) => {
 
   //몇 바퀴인지 표시
   const currentRound = parseInt((post?.proofCount - 1) / 3) + 1;
-  // console.log("바퀴", currentRound, (currentRound - 1) * 3 + 2);
   const Item = process.env.PUBLIC_URL + "/images";
 
   //이미지경로
@@ -125,10 +96,7 @@ const PostDetail = (props) => {
     process.env.PUBLIC_URL + "/images/icon_outline_heart_shadow.png";
   const LikeImg = process.env.PUBLIC_URL + "/images/icon_fill_heart_shadow.png";
 
-  //모달창
-
   const leaveModal = React.useRef();
-  //Like 누를때마다 화면 전환
   const likeList = useSelector((state) => state.post.isLike);
 
   const sharePost = () => {
@@ -230,19 +198,6 @@ const PostDetail = (props) => {
               </ToRight>
             </EndDateText>
           </OrangeBox>
-          {/* <OrangeBox>
-            <EndDateText>
-              예상 종료일 :{" "}
-              {moment(koStartAt, "YYYY.MM.DD")
-                .add(30, "days")
-                .format("YYYY년 MM월 DD일") +
-                " " +
-                dayArray[
-                  moment(koStartAt, "YYYY.MM.DD").add(30, "days").day()
-                ] +
-                "요일"}
-            </EndDateText>
-          </OrangeBox> */}
         </MarginBox>
       </BorderBox>
       {post.isParticipate ? (
@@ -363,14 +318,12 @@ const PostDetail = (props) => {
               ) : (
                 <HeadLine>{statusContent.buttonText} </HeadLine>
               )}
-              {/* <HeadLine>{statusContent.buttonText} </HeadLine> */}
             </ConfirmButton>
           ) : (
             <ConfirmButton
               style={{ backgroundColor: "#FF8B37", color: "white" }}
               onClick={() => {
                 confirmPage();
-                // history.push(`/confirm/${props.challengeId}`);
               }}
             >
               <HeadLine>오늘의 인증하기</HeadLine>
@@ -389,24 +342,6 @@ const PostDetail = (props) => {
             >
               <HeadLine>챌린지 참여하기</HeadLine>
             </JoinButton>
-            {/* <Link
-              to={{
-                pathname: "/completed/participate",
-                state: {
-                  participateStart: post.startAt,
-                  challengeId: challengeId,
-                  title: post.title,
-                },
-              }}
-            >
-              <JoinButton
-                onClick={() => {
-                  dispatch(postActions.joinDB(challengeId));
-                }}
-              >
-                <HeadLine>챌린지 참여하기</HeadLine>
-              </JoinButton>
-            </Link> */}
           </ConfirmBox>
         ) : (
           // 참여 안했을 때 + 로그인 안되어 있을 때
@@ -431,10 +366,6 @@ const Container = styled.div`
   overflow: auto;
   -ms-overflow-style: none;
   max-height: 100vh;
-  // @media screen and (min-width: 420px) {
-  //   max-height: 100vh;
-  //   overflow: auto;
-  // }
   ::-webkit-scrollbar {
     display: none;
   }
@@ -451,7 +382,6 @@ const TitleImage = styled.img`
 `;
 
 const TitleContainer = styled.div`
-  // text-align: center;
   margin: 1.563rem 0 0.875rem 0;
   display: grid;
   grid-template-columns: 5fr 1fr;
@@ -479,11 +409,7 @@ const IconToRight = styled.div`
 `;
 
 const SubtitleContainer = styled.div`
-  // text-align: center;
-  // margin: 1.313em 0 4.7vh 0;
   display: flex;
-  // align-items: center;
-  // justify-content: center;
 `;
 
 const Tag = styled.div`
@@ -574,14 +500,9 @@ const EndDateText = styled.span`
   line-height: 1.5rem;
   display: flex;
   align-items: center;
-  // justify-content: center;
   width: 100%;
   justify-content: space-between;
   color: white;
-
-  @media (max-width: 420px) {
-    // font-size: 0.8rem;
-  }
 `;
 
 const OrangeBox = styled.div`
@@ -643,19 +564,11 @@ const ColorBoxChallenge = styled.div`
   margin: 10px 0;
   box-sizing: border-box;
   display: flex;
-  // justify-content: center;
   align-items: center;
   border-radius: 5px;
   width: 100%;
   padding: 26px 33px;
   background: #fff1e7;
-  // width: 100%;
-  // height: 40px;
-  // background-color: #fff1e7;
-  // border-radius: 5px;
-  // display: flex;
-  // justify-content: center;
-  // text-align: center;
 `;
 
 const JoinContainer = styled.div`
@@ -670,7 +583,6 @@ const JoinBox = styled.div`
   grid-template-rows: 2fr 2fr 1fr 1fr;
   gap: 4%;
   height: 8rem;
-  // margin: 5vh 0;
   padding: 0.5rem 0;
   border-radius: 10px;
   background-color: #f7f7f7;
@@ -684,8 +596,6 @@ const ConfirmContainer = styled.div`
   height: 75px;
   width: 100%;
   max-width: 420px;
-
-  // background: rgba(0, 0, 0, 0.6);
   z-index: 99;
   display: flex;
 `;
@@ -698,7 +608,6 @@ const CancelBox = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 100%;
-  // padding: 26px 33px;
   background: #ddd;
 `;
 

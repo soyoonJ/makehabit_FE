@@ -3,22 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Link } from "react-router-dom";
 
 import { actionCreators as postActions } from "../redux/modules/post";
-// import { actionCreators as userAction } from "../redux/modules/user";
-// import { actionCreators as challengeActions } from "../redux/modules/challenge";
 import { Grid } from "../elements";
-// import CategoryModal from "../components/CategoryModal";
-import CategoryModal1 from "../components/CategoryModal1";
+import CategoryModal from "../components/CategoryModal";
 import Upload from "../components/Upload";
 import PageBack from "../components/PageBack";
 import MetaTag from "../shared/MetaTag";
 import Spinner from "../shared/Spinner";
-// import { history } from "../redux/configureStore";
 import { debounce, throttle } from "lodash";
 import styled from "styled-components";
 
 import LoginModal from "../components/LoginModal";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-// import { GoCalendar } from "react-icons/go";
 
 import moment from "moment";
 
@@ -26,7 +21,6 @@ import ButtonNavigation from "../components/ButtonNavigation";
 
 const PostWrite = () => {
   const dispatch = useDispatch();
-  //카테고리 값 가져오기 (자식(CategoryModal) -> 부모(postWrite))
   const [categoryValue, setCategoryValue] = useState(0);
   const [sendCategory, setSendCategory] = useState(null);
   //모달 리스트
@@ -40,20 +34,7 @@ const PostWrite = () => {
   const getData = (idx) => {
     setCategoryValue(modalList[idx][1]);
     setSendCategory(modalList[idx][0]);
-    // console.log(idx, modalList[idx][0], modalList[idx][1]);
   };
-
-  //카테고리 팝업
-  // let [modalopen, setModalopen] = React.useState(false);
-  //카테고리 팝업 열기
-  // const openModal = () => {
-  //   setModalopen(true);
-  // };
-
-  // //카테고리 팝업 닫기
-  // const closeModal = () => {
-  //   setModalopen(false);
-  // };
 
   //날짜 인풋박스 시작일 선택 제한 (오늘 이전의 날짜 선택 불가하게, 너무 오래된 날짜 선택 불가능하게)
   // 오늘 날짜 YYYY-MM-DD형식으로 추출
@@ -63,17 +44,9 @@ const PostWrite = () => {
   //선택한 날짜 가져오기
   const [date, setDate] = useState(null);
   const onChange = (e) => {
-    // console.log(e.target); //이벤트가 발생한 타겟의 요소를 출력
-    // console.log(e.target.value); //이벤트가 발생한 타겟의 Value를 출력
     setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
   };
 
-  // const onReset = () => {
-  //   setDate(null); // onClick함수 발생시 ''으로 {text} 변경
-  // };
-  // 오늘 날짜+30일 YYYY-MM-DD형식으로 추출
-
-  // console.log(date);
   const now = new Date(date);
   let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
   todayPlus30 = todayPlus30.toISOString().split("T")[0];
@@ -129,20 +102,15 @@ const PostWrite = () => {
   const uploadRef = React.useRef();
   const fileInput = React.useRef();
 
-  //userId 가져오기
-  // const loginCheck = useSelector((state) => state.user.user);
-  //이미지 여부 확인
   const imgExist = useSelector((state) => state.post.imgExist);
 
   const isUploaded = useSelector((state) => state.challenge?.isUpload);
   const isLoading = useSelector((state) => state.challenge?.isLoading);
-  // console.log("isUploaded", isUploaded);
 
   const confirm = () => {
     const imageForm = new FormData();
     let image = fileInput.current.files[0];
     imageForm.append("image", image);
-    // console.log("들어왔나?", date, desc, method);
 
     if (image === undefined) {
       alert("썸네일 이미지가 없습니다!");
@@ -185,7 +153,6 @@ const PostWrite = () => {
     );
   };
 
-  //자식 함수 접근하는 Ref
   const childRef = useRef();
 
   //moment 변환
@@ -201,7 +168,6 @@ const PostWrite = () => {
   //로그인모달창에 접근하는 ref
   const loginModal = React.useRef();
   const is_token = localStorage.getItem("token") ? true : false;
-  // 로그인 상태 아닐 경우 튕겨내기
 
   React.useEffect(() => {
     if (!is_token) {
@@ -259,9 +225,6 @@ const PostWrite = () => {
               </ToRight>
             </CategoryContainer>
           ) : (
-            // <CategoryTextBox>
-            //   <HeadLine></HeadLine>
-            // </CategoryTextBox>
             <CategoryContainer>
               <ToLeft>
                 <HeadLine>카테고리 선택</HeadLine>
@@ -273,7 +236,7 @@ const PostWrite = () => {
           )}
         </CategoryButton>
 
-        <CategoryModal1 ref={childRef} getData={getData}></CategoryModal1>
+        <CategoryModal ref={childRef} getData={getData}></CategoryModal>
 
         {/* 이미지 첨부 */}
 
@@ -283,6 +246,7 @@ const PostWrite = () => {
           </ToLeft>
           <ToRight>
             <StartDate>{date ? transformDay : "2022년 00월 00일"}</StartDate>
+
             <DateInput
               id="inputCalendar"
               type="date"
@@ -368,21 +332,6 @@ const PostWrite = () => {
               >
                 <CreateText>챌린지 개설 완료</CreateText>
               </CreateButton>
-
-              {/* <Link
-                to={{
-                  pathname: "/completed/open",
-                  state: { openStart: transformDay },
-                }}
-              >
-                <CreateButton
-                  onClick={() => {
-                    confirm();
-                  }}
-                >
-                  <CreateText>챌린지 개설 완료</CreateText>
-                </CreateButton>
-              </Link> */}
             </CreateBox>
           ) : (
             <CreateBox>
@@ -403,7 +352,7 @@ const PostWrite = () => {
   );
 };
 const Container = styled.div``;
-// 인증하기 텍스트
+
 const TitleContainer = styled.div`
   text-align: center;
   margin: 1.313em 0 4.7vh 0;

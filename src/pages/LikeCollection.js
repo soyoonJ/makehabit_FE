@@ -8,28 +8,14 @@ import ButtonNavigation from "../components/ButtonNavigation";
 import { useDispatch, useSelector } from "react-redux";
 
 import { history } from "../redux/configureStore";
-// import { useParams } from "react-router-dom";
-import { actionCreators as mainActions } from "../redux/modules/main";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
 const LikeCollection = (props) => {
   const dispatch = useDispatch();
   const like_list = useSelector((state) => state.post.likeCollection);
-  // console.log("LIKECOLLECTION", like_list);
 
-  // 새로고침 해도 현재카테고리를 보여 줄 수 있도록
   const categoryId = props.match.params.id;
-  // console.log(categoryId);
-  //메인페이지 화면 로드 할 때, 바로 카테고리 조회 할 수 있도록
-  //렌더링이 끝나면 무조건 한번은 실행시켜주도록 하는것!
-
-  //Like 누를때마다 화면 전환
-  const likeList = useSelector((state) => state.post.isLike);
-
-  //   React.useEffect(() => {
-  //     dispatch(postActions.getLikeDB(categoryId));
-  //   }, [like_list]);
 
   React.useEffect(() => {
     dispatch(postActions.getLikeDB(categoryId));
@@ -94,7 +80,6 @@ const LikeCollection = (props) => {
           <div>
             <CardWrap>
               {like_list?.map((p, idx) => {
-                // console.log("피", p);
                 return <CategoryPost key={p._id} {...p} />;
               })}
             </CardWrap>
@@ -121,7 +106,6 @@ const CardWrap = styled.div`
   align-items: baseline;
 `;
 
-// 챌린지 없을 때 띄워줌
 const NoChallenge = styled.div`
   text-align: center;
   font-size: 1.5rem;

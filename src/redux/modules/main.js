@@ -43,18 +43,14 @@ const initialState = {
   recommend_list: [],
   new_list: [],
   study_list: [],
-  // isLoading: true,
 };
 
 // 미들웨어
-// 메인-검색기능
 const getSearchDB = (searchWord) => {
   return function (dispatch, getState, { history }) {
-    // console.log("메인이다!!!!!!!!!!!!!!!!!!!!!!", searchWord);
     apis
-      .mainSearch(searchWord) // 메인페이지에서 dispatch 값 데이터
+      .mainSearch(searchWord)
       .then(function (res) {
-        // console.log("검색데이타!!!!", res.data);
         dispatch(getSearch(res.data));
       })
       .catch((error) => {
@@ -68,9 +64,8 @@ const RecommendDB = (recommendLength, categoryId) => {
   return function (dispatch, getState, { history }) {
     if (categoryId) {
       apis
-        .category(categoryId) //
+        .category(categoryId)
         .then(function (res) {
-          // console.log("잘 들어가느냐!!!", res.data);
           dispatch(getRecommend(res.data.challenges));
         })
         .catch((error) => {
@@ -81,7 +76,6 @@ const RecommendDB = (recommendLength, categoryId) => {
       apis
         .mainRecommend(recommendLength)
         .then(function (res) {
-          // console.log("추천삼일모듈", res.data.challenges);
           dispatch(getRecommend(res.data.challenges));
         })
         .catch((error) => {
@@ -97,7 +91,6 @@ const categoryDB = (categoryId) => {
     apis
       .category(categoryId) //
       .then(function (res) {
-        // console.log("잘 들어가느냐!!!", res.data);
         dispatch(getCategory(res.data));
       })
       .catch((error) => {
@@ -113,16 +106,12 @@ const mainnewDB = (recommendLength, categoryId) => {
     apis
       .maincategory(recommendLength, categoryId) //
       .then(function (res) {
-        // console.log("잘 들어가느냐!!!", res.data);
         dispatch(newCategory(res.data));
       })
       .catch((error) => {
         console.log(error);
         return;
       });
-    // .then(function (res) {
-    // history.push(`/category/${categoryId}`);
-    // });
   };
 };
 
@@ -139,28 +128,19 @@ const mainstudyDB = (recommendLength, categoryId) => {
         console.log(error);
         return;
       });
-    // .then(function (res) {
-    // history.push(`/category/${categoryId}`);
-    // });
   };
 };
 
-//reducer (redux에 저장하는 부분)
+//reducer
 export default handleActions(
   {
     [GET_SEARCH]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload);
         draft.searchWord_list = action.payload.searchWord_list.challenges;
       }),
 
-    //카테고리 목록 가져오는 부분
     [GET_CATEGOTY]: (state, action) =>
       produce(state, (draft) => {
-        // console.log("카테고리 목록 조회", action.payload);
-        // draft는 복사본 만드는 느낌
-        //action.payload 는 서버에서 응답 받아온 값
-        // 여기 list.challenges로 적은 이유는 map 돌리는 부분에서 간소화하기위함
         draft.category_list = action.payload.category_list.challenges;
 
         draft.checkLoadAll = action.payload.checkLoadAll;
@@ -168,23 +148,18 @@ export default handleActions(
 
     [GET_RECOMMEND]: (state, action) =>
       produce(state, (draft) => {
-        // console.log("추천!!!목록!!리스트!!!", action.payload.recommend_list);
         draft.recommend_list = action.payload.recommend_list;
-        // draft.isLoading = false;
       }),
 
     [GET_NEW]: (state, action) =>
       produce(state, (draft) => {
-        // console.log("카테고리 목록 조회", action.payload);
         draft.new_list = action.payload.new_list.challenges;
-        // draft.isLoading = false;
       }),
 
     [GET_STUDY]: (state, action) =>
       produce(state, (draft) => {
         // console.log("카테고리 목록 조회", action.payload);
         draft.study_list = action.payload.study_list.challenges;
-        // draft.isLoading = false;
       }),
   },
 

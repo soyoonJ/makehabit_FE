@@ -15,7 +15,6 @@ const LeaveModal = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const { challengeId } = props;
 
-  // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
 
   const closeModal = () => {
@@ -23,7 +22,6 @@ const LeaveModal = forwardRef((props, ref) => {
   };
 
   const outSection = React.useRef();
-  // ----------------------------------------
 
   if (modalOpen) {
     return (
@@ -31,7 +29,6 @@ const LeaveModal = forwardRef((props, ref) => {
         ref={outSection}
         onClick={(e) => {
           if (outSection.current === e.target) {
-            // console.log("close modal!");
             closeModal();
           }
         }}

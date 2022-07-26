@@ -16,22 +16,11 @@ const LoginModal = forwardRef((props, ref) => {
 
   const { in_page } = props;
 
-  // const setData = (categoryName) => {
-  //   getData(categoryName);
-  // };
-
-  // 테스트-------------------------------
   const [modalOpen, setModalOpen] = React.useState(false);
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
 
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  // const outSection = React.useRef();
-  // ----------------------------------------
 
   if (modalOpen) {
     return (
@@ -142,15 +131,5 @@ const Container = styled.div`
   //   }
   // }
 `;
-
-// const XIcon = styled.div`
-//   position: absolute;
-//   right: 0;
-//   top: 0;
-//   cursor: pointer;
-//   text-align: right;
-//   margin: 20px;
-//   font-size: 1.3rem;
-// `;
 
 export default LoginModal;
