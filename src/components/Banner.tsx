@@ -8,7 +8,7 @@ import { ReactComponent as LeftIcon } from "../img/icon_left.svg";
 import { ReactComponent as RightIcon } from "../img/icon_right.svg";
 
 const Banner = () => {
-  const [bannerIndex, setBannerIndex] = React.useState(0);
+  const [bannerIndex, setBannerIndex] = React.useState<number>(0);
 
   const imgURL = [
     "/banner/mainbanner_01.webp",
@@ -43,7 +43,7 @@ const Banner = () => {
   };
 
   // 아래 원형 클릭시에도 인덱스를 바꿔줌
-  const clickCircle = (i) => {
+  const clickCircle = (i: number) => {
     setBannerIndex(i);
   };
 
@@ -51,14 +51,13 @@ const Banner = () => {
   React.useEffect(() => {
     const slider = setInterval(
       () =>
-        setBannerIndex((value) =>
+        setBannerIndex((value: number) =>
           value === imgURL.length - 1 ? 0 : value + 1
         ),
       3000
     );
     return () => clearInterval(slider);
   }, []);
-
   return (
     <Container>
       <LeftIcon
@@ -70,8 +69,8 @@ const Banner = () => {
           zIndex: "3",
         }}
         width="20"
-        heigth="20"
-        alt="left icon"
+        height="20"
+        // alt="left icon"
         fill="#000"
       />
       <Carousel bannerIndex={bannerIndex}>
@@ -126,8 +125,8 @@ const Banner = () => {
           zIndex: "3",
         }}
         width="20"
-        heigth="20"
-        alt="right icon"
+        height="20"
+        // alt="right icon"
         fill="#000"
       />
     </Container>
@@ -152,7 +151,7 @@ const Container = styled.div`
   overflow-x: hidden;
   position: relative;
 `;
-const Carousel = styled.div`
+const Carousel = styled.div<{ bannerIndex: number }>`
   display: flex;
 
   @media only screen and (min-width: 420px) {
@@ -173,7 +172,7 @@ const Carousel = styled.div`
 
   transition: all 0.2s;
 `;
-const ContentBox = styled.div`
+const ContentBox = styled.div<{ index: number }>`
   font-size: 22px;
   height: 175px;
   font-weight: 700;
@@ -209,7 +208,7 @@ const Circle = styled.div`
   cursor: pointer;
 `;
 
-const Img = styled.div`
+const Img = styled.div<{ imgURL?: string; index?: number }>`
   background-image: url(${(props) => props.imgURL});
 
   @media (min-width: 420px) {
@@ -223,12 +222,5 @@ const Img = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   z-index: 2;
-`;
-const IconImg = styled.img`
-  position: absolute;
-  cursor: pointer;
-  z-index: 3;
-  width: 18px;
-  height: 18px;
 `;
 export default Banner;
