@@ -1,17 +1,17 @@
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "esModuleInterop": true,
-    "strict": false,
-    "typeRoots" : ["./@types", "./node_modules/@types"],
-    "outDir": "./dist",
-    "noImplicitAny": true,
-    "module": "ES6",
-    "target": "ES5",
-    "allowJs": true,
-    "checkJs": false,
-    "sourceMap": true,
-    "moduleResolution": "node",    
-  },
-  "include": [ "src", "src/custom.d.ts" ]
+	"compilerOptions": {
+		"jsx": "react",
+		"esModuleInterop": true,
+		"strict": false,
+		"typeRoots": ["./@types", "./node_modules/@types"],
+		"outDir": "./dist",
+		"noImplicitAny": true,
+		"module": "ES6",
+		"target": "ES5",
+		"allowJs": true,
+		"checkJs": false,
+		"sourceMap": true,
+		"moduleResolution": "node"
+	},
+	"include": ["src", "src/custom.d.ts"]
 }
