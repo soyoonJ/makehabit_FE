@@ -43,6 +43,7 @@ const Banner = () => {
   };
 
   // 아래 원형 클릭시에도 인덱스를 바꿔줌
+
   const clickCircle = (i: number) => {
     setBannerIndex(i);
   };
@@ -58,6 +59,7 @@ const Banner = () => {
     );
     return () => clearInterval(slider);
   }, []);
+  
   return (
     <Container>
       <LeftIcon
@@ -69,6 +71,7 @@ const Banner = () => {
           zIndex: "3",
         }}
         width="20"
+
         height="20"
         // alt="left icon"
         fill="#000"
@@ -223,4 +226,5 @@ const Img = styled.div<{ imgURL?: string; index?: number }>`
   background-repeat: no-repeat;
   z-index: 2;
 `;
+
 export default Banner;

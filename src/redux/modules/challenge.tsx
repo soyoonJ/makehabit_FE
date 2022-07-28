@@ -2,38 +2,38 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/Api";
 
-const SET_CHALLENGE = "SET_CHALLENGE";
-const SET_TAB = "SET_TAB";
-const SET_FEED = "SET_FEED";
-const SET_CONFIRM = "SET_CONFIRM";
-const SET_PROOF = "SET_PROOF";
-const SET_COMPLETE = "SET_COMPLETE";
+const SET_CHALLENGE = "SET_CHALLENGE" as const;
+const SET_TAB = "SET_TAB" as const;
+const SET_FEED = "SET_FEED" as const;
+const SET_CONFIRM = "SET_CONFIRM" as const;
+const SET_PROOF = "SET_PROOF" as const;
+const SET_COMPLETE = "SET_COMPLETE" as const;
 
-const setChallenge = createAction(SET_CHALLENGE, (challenge_list) => ({
+const setChallenge = createAction(SET_CHALLENGE, (challenge_list:Array<object>) => ({
   challenge_list,
 }));
-const setProofshots = createAction(SET_PROOF, (proof_list) => ({ proof_list }));
-const setTab = createAction(SET_TAB, (page) => ({ page }));
-const setFeed = createAction(SET_FEED, (feed) => ({ feed }));
-const setConfirm = createAction(SET_CONFIRM, (challenge_info) => ({
+const setProofshots = createAction(SET_PROOF, (proof_list:Array<object>) => ({ proof_list }));
+const setTab = createAction(SET_TAB, (page:string) => ({ page }));
+const setFeed = createAction(SET_FEED, (feed:object) => ({ feed }));
+const setConfirm = createAction(SET_CONFIRM, (challenge_info:object) => ({
   challenge_info,
 }));
-const setComplete = createAction(SET_COMPLETE, (confirm_info) => ({
+const setComplete = createAction(SET_COMPLETE, (confirm_info:object) => ({
   confirm_info,
 }));
 
 const initialState = {
-  challenge_info: null,
-  page: null,
-  challenge_list: null,
-  proof_list: null,
-  feed: null,
-  totalCnt: null,
-  point: null,
+  challenge_info : {},
+  page: '',
+  challenge_list: [],
+  proof_list: [],
+  feed: {},
+  totalCnt: 0,
+  point: 0,
   isUpload: false,
 };
 
-const getConfirmDB = (challengeId) => {
+const getConfirmDB = (challengeId:string) => {
   return function (dispatch, getState, { history }) {
     apis
       .getConfirm(challengeId)
@@ -47,7 +47,7 @@ const getConfirmDB = (challengeId) => {
   };
 };
 
-const confirmDB = (challengeId, imgForm, challengeTitle, comment) => {
+const confirmDB = (challengeId:string, imgForm:string, challengeTitle:string, comment:string) => {
   return function (dispatch, getState, { history }) {
     apis
       .imageUpload(imgForm)
@@ -95,7 +95,7 @@ const myChallengeDB = () => {
   };
 };
 
-const myfeedDB = (proofShotId) => {
+const myfeedDB = (proofShotId: string) => {
   return function (dispatch, getState, { history }) {
     apis
       .oneFeed(proofShotId)
@@ -108,7 +108,7 @@ const myfeedDB = (proofShotId) => {
   };
 };
 
-const changeCommentDB = (proofshotId, comment) => {
+const changeCommentDB = (proofshotId:string, comment:string) => {
   return function (dispatch, getState, { history }) {
     apis
       .changeFeed(proofshotId, comment)

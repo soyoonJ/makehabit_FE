@@ -31,7 +31,17 @@ const Completed = (props) => {
   const partTransformDate = partStartDate.format("YYYY년 MM월 DD일");
   const partTransformDay = dayArray[moment(partStartDate).day()];
 
-  const contents = [
+  interface Content {
+    title?: string;
+    subTitle1?: string;
+    subTitle2?: string;
+    boxTitle?: string;
+    buttonText?: string;
+    moveTo?: string;
+    meta?: string;
+  }
+
+  const contents:Content[] = [
     {
       title: "챌린지 개설을 완료했어요",
       subTitle1: "새로운 습관이 시작되는 곳이군요!",
@@ -61,7 +71,7 @@ const Completed = (props) => {
     },
   ];
 
-  let content = "";
+  let content:Content = {};
 
   if (page === "open") {
     content = contents[0];
