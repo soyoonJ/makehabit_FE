@@ -10,16 +10,16 @@ import { useLocation } from "react-router-dom";
 
 import moment from "moment";
 
-const Completed = (props) => {
+const Completed = (props:any) => {
   const page = props.match.params.id;
-  const totalCnt = useSelector((state) => state.challenge?.totalCnt);
-  const point = useSelector((state) => state.challenge?.point);
+  const totalCnt = useSelector((state:any) => state.challenge?.totalCnt);
+  const point = useSelector((state:any) => state.challenge?.point);
 
   const location = useLocation();
 
-  const openStartAt = location.state?.openStart;
-  const participateStartAt = location.state?.participateStart;
-  const participateTitle = location.state?.title;
+  const openStartAt = (location as any).state?.openStart;
+  const participateStartAt = (location as any).state?.participateStart;
+  const participateTitle = (location as any).state?.title;
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 

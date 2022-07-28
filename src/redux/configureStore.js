@@ -5,7 +5,7 @@ import { connectRouter } from "connected-react-router";
 
 import User from "./modules/user";
 import Post from "./modules/post";
-import Challenge from "./modules/challenge";
+import Challenge from "./modules/challenge.tsx";
 import Main from "./modules/main";
 import Character from "./modules/character";
 import Ranking from "./modules/ranking";

@@ -22,7 +22,7 @@ const setComplete = createAction(SET_COMPLETE, (confirm_info:object) => ({
   confirm_info,
 }));
 
-const initialState = {
+const initialState:object = {
   challenge_info : {},
   page: '',
   challenge_list: [],
