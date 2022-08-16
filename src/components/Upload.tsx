@@ -56,7 +56,7 @@ const Upload = forwardRef((props: any, ref) => {
 					accept=".png, .jpg, .jpeg, .gif, .jfif, .webp, image/*;capture=camera"
 					onChange={saveFileImage}
 					ref={_ref}
-					cursor="pointer"
+					cursor={'pointer'}
 				></ImageInput>
 			</ImageBox>
 		</div>

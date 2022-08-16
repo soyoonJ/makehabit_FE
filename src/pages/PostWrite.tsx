@@ -45,7 +45,8 @@ const PostWrite = () => {
 
 	const now = new Date(date);
 	// ANY 처음에 받아오는 건 Date타입이나, 이후에 사용하는 건 string 타입임...
-	let todayPlus30: any = new Date(now.setDate(now.getDate() + 30));
+	// 제네릭? 유니온?
+	let todayPlus30: Date | string = new Date(now.setDate(now.getDate() + 30));
 	todayPlus30 = todayPlus30.toISOString().split('T')[0];
 
 	//content내용 받아오기
@@ -204,6 +205,7 @@ const PostWrite = () => {
 						onChange={onChangeTitle}
 						maxLength={20}
 					/>
+					{/* QUESTION textAlign 이런식으로 써도 됨? */}
 					<LengthText textAlign={'right'}>{titleLength}/20자</LengthText>
 				</Grid>
 				{/* 카테고리 선택 */}
@@ -463,6 +465,7 @@ const DateInput = styled.input`
 	}
 	cursor: pointer;
 `;
+
 const MarginBox = styled.div`
 	margin: 0.625rem 1.25rem;
 `;
