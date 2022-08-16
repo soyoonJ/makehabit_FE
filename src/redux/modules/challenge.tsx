@@ -22,15 +22,22 @@ const setComplete = createAction(SET_COMPLETE, (confirm_info:object) => ({
   confirm_info,
 }));
 
-const initialState:object = {
+const initialState:{
+  challenge_info:object, page:string,
+  challenge_list:[], proof_list:Array<object>,
+  feed: object, totalCnt: number,
+  point: number, isUpload: boolean,
+  confirm_info: {totalCnt: number, point: number},
+} = {
   challenge_info : {},
   page: '',
   challenge_list: [],
-  proof_list: [],
+  proof_list: [{}],
   feed: {},
   totalCnt: 0,
   point: 0,
   isUpload: false,
+  confirm_info: {totalCnt: 0, point: 0}
 };
 
 const getConfirmDB = (challengeId:string) => {

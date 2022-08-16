@@ -13,19 +13,23 @@ const ConfirmPost = (props) => {
   const now = moment(new Date());
   const day = moment(new Date(startAt));
   const startDate = Math.abs(now.diff(day, "days"));
-  let startHour = "";
+  let startHour:number = null;
   if (startDate === 0) {
     startHour = Math.abs(now.diff(day, "hour"));
   }
 
-  const statusText = [
+  interface StatusType {
+    progress: string;
+    buttonText: string;
+  }
+  const statusText:StatusType[] = [
     { progress: "진행예정", buttonText: `${startDate + 1}일` },
     { progress: "진행예정", buttonText: `${startHour}시간` },
     { progress: "종료", buttonText: "완료된 챌린지입니다." },
     { progress: "", buttonText: "오늘의 인증 성공! 내일도 만나요!" },
   ];
 
-  let statusContent = "";
+  let statusContent:StatusType = {progress:"", buttonText:""};
   //시작전
   if (status === 1) {
     if (startDate !== 0) {
