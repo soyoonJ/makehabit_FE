@@ -19,13 +19,24 @@ import moment from 'moment';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { ReactComponent as ShareIcon } from '../img/icon_share.svg';
 
-const PostDetail = (props) => {
+interface statusProps {
+	progress?: string;
+	buttonText?: string;
+}
+
+interface ModalProps {
+	openModal: () => void;
+	closeModal: () => void;
+}
+
+// ANY
+const PostDetail = (props: any) => {
 	const dispatch = useDispatch();
 	const location = useLocation();
 
 	const challenges = location.pathname.split('/')[1];
-
-	const post = useSelector((state) => state?.post.post);
+	// ANY
+	const post = useSelector((state) => (state as any)?.post.post);
 	const challengeId = props.match.params.id;
 
 	React.useEffect(() => {
@@ -34,10 +45,10 @@ const PostDetail = (props) => {
 
 	const dayArray = ['일', '월', '화', '수', '목', '금', '토'];
 
-	const is_login = useSelector((state) => state.user.is_login);
+	// ANY
+	const is_login = useSelector((state) => (state as any)?.user.is_login);
 
-	const loginModal = React.useRef();
-
+	const loginModal = React.useRef<ModalProps>(null);
 	const like = () => {
 		if (is_login) {
 			dispatch(postActions.likeDB(challengeId));
@@ -60,21 +71,20 @@ const PostDetail = (props) => {
 		}
 	};
 
-	const date = new Date(post?.startAt);
-	const todayDate = new Date();
-	const today = moment(todayDate, 'YYYY-MM-DD').format('YYYY-MM-DD');
-	const setDay = moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
-	console.log('date보자', today, '\n', todayDate, '\n', setDay);
-	const diffDay = moment(setDay).diff(today, 'days');
-	const splitDate = setDay.split('-');
-	const stringDate = `${splitDate[0]}년 ${splitDate[1]}월 ${splitDate[2]}일`;
-	const statusText = [
+	const date: Date = new Date(post?.startAt);
+	const todayDate: Date = new Date();
+	const today: string = moment(todayDate, 'YYYY-MM-DD').format('YYYY-MM-DD');
+	const setDay: string = moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+	const diffDay: number = moment(setDay).diff(today, 'days');
+	const splitDate: object = setDay.split('-');
+	const stringDate: string = `${splitDate[0]}년 ${splitDate[1]}월 ${splitDate[2]}일`;
+	const statusText: object = [
 		{ progress: '진행예정', buttonText: `${stringDate} 시작` },
 		{ progress: '종료', buttonText: '종료된 챌린지' },
 		{ progress: '', buttonText: '오늘의 인증 성공! 내일도 만나요!' },
 	];
 
-	let statusContent = '';
+	let statusContent: statusProps = {};
 	//시작전
 	if (post.status === 1) {
 		statusContent = statusText[0];
@@ -87,16 +97,18 @@ const PostDetail = (props) => {
 	}
 
 	//몇 바퀴인지 표시
-	const currentRound = parseInt((post?.proofCount - 1) / 3) + 1;
-	const Item = process.env.PUBLIC_URL + '/images';
+	const currentRound: number =
+		(post?.proofCount > 1 ? post?.proofCount - 1 : 0) / 3 + 1;
+	const Item: string = process.env.PUBLIC_URL + '/images';
 
 	//이미지경로
-	const DisLikeImg =
+	const DisLikeImg: string =
 		process.env.PUBLIC_URL + '/images/icon_outline_heart_shadow.png';
-	const LikeImg = process.env.PUBLIC_URL + '/images/icon_fill_heart_shadow.png';
+	const LikeImg: string =
+		process.env.PUBLIC_URL + '/images/icon_fill_heart_shadow.png';
 
-	const leaveModal = React.useRef();
-	const likeList = useSelector((state) => state.post.isLike);
+	const leaveModal = React.useRef<ModalProps>();
+	const likeList = useSelector((state) => (state as any).post.isLike);
 
 	const sharePost = () => {
 		if (navigator.share) {
@@ -109,7 +121,22 @@ const PostDetail = (props) => {
 			alert('공유하기가 지원되지 않는 환경 입니다.');
 		}
 	};
-
+	const joinLoginCheck = () => {
+		if (is_login) {
+			dispatch(postActions.joinDB(challengeId));
+		} else {
+			loginModal.current.openModal();
+		}
+	};
+	const openLoginModal = () => {
+		loginModal.current.openModal();
+	};
+	const openLeaveModal = () => {
+		leaveModal.current.openModal();
+	};
+	const naviToEdit = () => {
+		history.push(`/editPostpage/${EditpostId}`);
+	};
 	// 수정
 	const EditpostId = props.match.params.id;
 	React.useEffect(() => {
@@ -136,19 +163,9 @@ const PostDetail = (props) => {
 						/>
 
 						{post.isLike ? (
-							<Like
-								src={LikeImg}
-								onClick={() => {
-									disLike();
-								}}
-							/>
+							<Like src={LikeImg} onClick={disLike} />
 						) : (
-							<Like
-								src={DisLikeImg}
-								onClick={() => {
-									like();
-								}}
-							/>
+							<Like src={DisLikeImg} onClick={like} />
 						)}
 					</IconToRight>
 				</TitleContainer>
@@ -282,7 +299,7 @@ const PostDetail = (props) => {
 			{post.isParticipate && post.status === 1 ? (
 				<MarginBox>
 					<CancelBox style={{ margin: '33px 0 100px 0' }}>
-						<CancelButton onClick={() => leaveModal.current.openModal()}>
+						<CancelButton onClick={openLeaveModal}>
 							챌린지 탈퇴하기
 						</CancelButton>
 					</CancelBox>
@@ -296,21 +313,9 @@ const PostDetail = (props) => {
 				{/* 참여 했을때 */}
 				{post.isParticipate ? (
 					post.status === 1 || post.status === 2 || post.isUpload ? (
-						<ConfirmButton
-							width="100%"
-							bg="#ddd"
-							fontSize="1rem"
-							fontWeight="600"
-							cursor="default"
-						>
+						<ConfirmButton>
 							{post.isChangeable ? (
-								<HeadLine
-									onClick={() => {
-										history.push(`/editPostpage/${EditpostId}`);
-									}}
-								>
-									챌린지 수정하기{' '}
-								</HeadLine>
+								<HeadLine onClick={naviToEdit}>챌린지 수정하기 </HeadLine>
 							) : (
 								<HeadLine>{statusContent.buttonText} </HeadLine>
 							)}
@@ -318,35 +323,21 @@ const PostDetail = (props) => {
 					) : (
 						<ConfirmButton
 							style={{ backgroundColor: '#FF8B37', color: 'white' }}
-							onClick={() => {
-								confirmPage();
-							}}
+							onClick={confirmPage}
 						>
 							<HeadLine>오늘의 인증하기</HeadLine>
 						</ConfirmButton>
 					) // 참여 안했을 때 + 로그인 되어있을 때
 				) : is_login ? (
 					<ConfirmBox>
-						<JoinButton
-							onClick={() => {
-								if (is_login) {
-									dispatch(postActions.joinDB(challengeId));
-								} else {
-									loginModal.current.openModal();
-								}
-							}}
-						>
+						<JoinButton onClick={joinLoginCheck}>
 							<HeadLine>챌린지 참여하기</HeadLine>
 						</JoinButton>
 					</ConfirmBox>
 				) : (
 					// 참여 안했을 때 + 로그인 안되어 있을 때
 					<ConfirmBox>
-						<JoinButton
-							onClick={() => {
-								loginModal.current.openModal();
-							}}
-						>
+						<JoinButton onClick={openLoginModal}>
 							<HeadLine>챌린지 참여하기</HeadLine>
 						</JoinButton>
 					</ConfirmBox>
