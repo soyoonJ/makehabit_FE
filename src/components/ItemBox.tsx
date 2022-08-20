@@ -11,19 +11,19 @@ const ItemBox = () => {
 
   const dispatch = useDispatch();
 
-  const itemList = useSelector((state) => state.character?.itemList);
+  const itemList = useSelector((state:any) => state.character?.itemList);
   const category = itemList[0].category;
 
-  const isEquipAll = useSelector((state) => state.character?.isEquip);
+  const isEquipAll = useSelector((state:any) => state.character?.isEquip);
   const isEquip = isEquipAll.find((e) => e.category === category);
 
-  const preview = useSelector((state) => state.character);
-  const previewBg = useSelector((state) => state.character?.backgroundItem);
-  const previewClothes = useSelector((state) => state.character?.clothesItem);
-  const previewAcc = useSelector((state) => state.character?.accItem);
-  const previewEmotion = useSelector((state) => state.character?.emotionItem);
+  const preview = useSelector((state:any) => state.character);
+  const previewBg = useSelector((state:any) => state.character?.backgroundItem);
+  const previewClothes = useSelector((state:any) => state.character?.clothesItem);
+  const previewAcc = useSelector((state:any) => state.character?.accItem);
+  const previewEmotion = useSelector((state:any) => state.character?.emotionItem);
 
-  const isReset = useSelector((state) => state.character?.isReset);
+  const isReset = useSelector((state:any) => state.character?.isReset);
 
   const Item = process.env.PUBLIC_URL + "/items/small";
   const [item, setItem] = React.useState(null);

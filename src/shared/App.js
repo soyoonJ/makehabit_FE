@@ -21,8 +21,9 @@ const Main = lazy(() => import("../pages/Main"));
 const Login = lazy(() => import("../pages/Login"));
 const Signup = lazy(() => import("../pages/Signup"));
 const Category = lazy(() => import("../pages/Category"));
-const PostDetail = lazy(() => import("../pages/PostDetail"));
-const PostWrite = lazy(() => import("../pages/PostWrite"));
+// TODO js로 바꿔둔 것 tsx로 변경 필요 (오류 해결 위해 임시로 바꿔둔 것)
+const PostDetail = lazy(() => import("../pages/PostDetail.js"));
+const PostWrite = lazy(() => import("../pages/PostWrite.js"));
 const Confirm = lazy(() => import("../pages/Confirm"));
 const MyChallenge = lazy(() => import("../pages/MyChallenge"));
 const Mypage = lazy(() => import("../pages/Mypage"));

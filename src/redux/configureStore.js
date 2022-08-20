@@ -37,7 +37,7 @@ if (env === "development") {
   const { logger } = require("redux-logger");
   middlewares.push(logger);
 }
-// 
+//
 const composeEnhancers =
   // 브라우저 환경일 때만 돌아가도록 함
   // window redux devtools가 깔려있으면 열어준다는 뜻
@@ -52,4 +52,3 @@ const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 let store = (initialStore) => createStore(rootReducer, enhancer);
 
 export default store();
-
