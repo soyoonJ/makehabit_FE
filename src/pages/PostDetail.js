@@ -61,14 +61,13 @@ const PostDetail = (props) => {
 	};
 
 	const date = new Date(post?.startAt);
-	const koStartAt = date.toLocaleString();
 	const todayDate = new Date();
 	const today = moment(todayDate, 'YYYY-MM-DD').format('YYYY-MM-DD');
-	const setDay = moment(koStartAt, 'YYYY-MM-DD').format('YYYY-MM-DD');
-
+	const setDay = moment(date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+	console.log('date보자', today, '\n', todayDate, '\n', setDay);
 	const diffDay = moment(setDay).diff(today, 'days');
-	const spiltDate = koStartAt.split('. ');
-	const stringDate = `${spiltDate[0]}년 ${spiltDate[1]}월 ${spiltDate[2]}일`;
+	const splitDate = setDay.split('-');
+	const stringDate = `${splitDate[0]}년 ${splitDate[1]}월 ${splitDate[2]}일`;
 	const statusText = [
 		{ progress: '진행예정', buttonText: `${stringDate} 시작` },
 		{ progress: '종료', buttonText: '종료된 챌린지' },
@@ -115,7 +114,6 @@ const PostDetail = (props) => {
 	const EditpostId = props.match.params.id;
 	React.useEffect(() => {
 		dispatch(postActions.getDetailPostDB(challengeId));
-		console.log('date', koStartAt);
 	}, [likeList]);
 
 	return (
@@ -175,7 +173,7 @@ const PostDetail = (props) => {
 					</ToLeft>
 					<ToRight>
 						<StartDate>
-							{moment(koStartAt, 'YYYY.MM.DD').format('YYYY년 MM월 DD일')}
+							{moment(setDay, 'YYYY.MM.DD').format('YYYY년 MM월 DD일')}
 						</StartDate>
 					</ToRight>
 				</ChallengeStartContainer>
@@ -187,13 +185,11 @@ const PostDetail = (props) => {
 								예상 종료일{' '}
 							</ToLeft>
 							<ToRight style={{ margin: '0.4rem', fontWeight: '600' }}>
-								{moment(koStartAt, 'YYYY.MM.DD')
+								{moment(setDay, 'YYYY.MM.DD')
 									.add(29, 'days')
 									.format('YYYY년 MM월 DD일') +
 									' ' +
-									dayArray[
-										moment(koStartAt, 'YYYY.MM.DD').add(29, 'days').day()
-									] +
+									dayArray[moment(setDay, 'YYYY.MM.DD').add(29, 'days').day()] +
 									'요일'}
 							</ToRight>
 						</EndDateText>
