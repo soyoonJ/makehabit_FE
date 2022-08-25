@@ -34,6 +34,37 @@ const clothesPreview = createAction(CLOTHES_PREVIEW, (clothesItem) => ({
 const accPreview = createAction(ACC_PREVIEW, (accItem) => ({ accItem }));
 const resetItems = createAction(RESET_ITEMS, () => ({}));
 
+interface ItemsType {
+    isEquip:boolean;
+    category: string;
+  }
+type State = {
+  allList: ItemsType[];
+  itemList: ItemsType[];
+  currentPoint: number;
+  isEquip: ItemsType[];
+  isReset: boolean;
+  backgroundItem: string;
+  selected: boolean;
+  shopList: string[];
+  colorItem: string;
+  emotionItem: string;
+  clothesItem: string;
+  accItem: string;
+}
+
+interface ActionPayload {
+  category: string;
+  itemList: {items:ItemsType[], characterCurrentPoint:number};
+  selected: boolean;
+  backgroundItem: string;
+  colorItem: string;
+  emotionItem: string;
+  clothesItem: string;
+  accItem: string;
+}
+type Action = { type: 'SET_ITEMS'; payload:ActionPayload; }
+
 const initialState = {
   allList: [],
   itemList: [],
@@ -41,7 +72,7 @@ const initialState = {
   selected: null,
   currentPoint: null,
   isEquip: null,
-  shopList: ["color_01.png"],
+  shopList: [],
   backgroundItem: null,
   colorItem: null,
   emotionItem: null,
@@ -49,9 +80,11 @@ const initialState = {
   accItem: null,
 
   isReset: false,
+
+  category:""
 };
 
-const getItemDB = (category) => {
+const getItemDB = (category?: any) => {
   return function (dispatch, getState, { history }) {
     apis
       .GetItemList()
@@ -94,7 +127,7 @@ const mypageCharacterList = () => {
 
 export default handleActions(
   {
-    [SET_ITEMS]: (state, action) =>
+    [SET_ITEMS]: (state:State, action:Action) =>
       produce(state, (draft) => {
         draft.allList = action.payload.itemList.items;
 
@@ -114,12 +147,12 @@ export default handleActions(
           );
         }
       }),
-    [SELECTED_ITEMS]: (state, action) =>
+    [SELECTED_ITEMS]: (state:State, action) =>
       produce(state, (draft) => {
         draft.selected = action.payload.selected;
       }),
 
-    [BACKGROUND_PREVIEW]: (state, action) =>
+    [BACKGROUND_PREVIEW]: (state:State, action) =>
       produce(state, (draft) => {
         draft.isReset = false;
         draft.backgroundItem = action.payload.backgroundItem;
@@ -129,7 +162,7 @@ export default handleActions(
         );
         draft.shopList.push(action.payload.backgroundItem);
       }),
-    [COLOR_PREVIEW]: (state, action) =>
+    [COLOR_PREVIEW]: (state:State, action) =>
       produce(state, (draft) => {
         draft.isReset = false;
         draft.colorItem = action.payload.colorItem;
@@ -137,7 +170,7 @@ export default handleActions(
         draft.shopList = draft.shopList.filter((e) => !e?.includes("color"));
         draft.shopList.push(action.payload.colorItem);
       }),
-    [EMOTION_PREVIEW]: (state, action) =>
+    [EMOTION_PREVIEW]: (state:State, action) =>
       produce(state, (draft) => {
         draft.isReset = false;
         draft.emotionItem = action.payload.emotionItem;
@@ -145,7 +178,7 @@ export default handleActions(
         draft.shopList = draft.shopList.filter((e) => !e?.includes("emotion"));
         draft.shopList.push(action.payload.emotionItem);
       }),
-    [CLOTHES_PREVIEW]: (state, action) =>
+    [CLOTHES_PREVIEW]: (state:State, action) =>
       produce(state, (draft) => {
         draft.isReset = false;
         draft.clothesItem = action.payload.clothesItem;
@@ -153,7 +186,7 @@ export default handleActions(
         draft.shopList = draft.shopList.filter((e) => !e?.includes("clothes"));
         draft.shopList.push(action.payload.clothesItem);
       }),
-    [ACC_PREVIEW]: (state, action) =>
+    [ACC_PREVIEW]: (state:State, action) =>
       produce(state, (draft) => {
         draft.isReset = false;
         draft.accItem = action.payload.accItem;
@@ -161,7 +194,7 @@ export default handleActions(
         draft.shopList = draft.shopList.filter((e) => !e?.includes("acc"));
         draft.shopList.push(action.payload.accItem);
       }),
-    [RESET_ITEMS]: (state, action) =>
+    [RESET_ITEMS]: (state:State, action) =>
       produce(state, (draft) => {
         draft.isReset = true;
       }),

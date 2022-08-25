@@ -13,5 +13,6 @@
 		"sourceMap": true,
 		"moduleResolution": "node"
 	},
-	"include": ["src", "src/custom.d.ts"]
+	"include": ["src", "src/custom.d.ts"],
+	"deno.enablePatterns":"deno/"
 }
