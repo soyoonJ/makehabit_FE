@@ -13,6 +13,16 @@ import LoginModal from '../components/LoginModal';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import moment from 'moment';
 import ButtonNavigation from '../components/ButtonNavigation';
+import { AnyNaptrRecord } from 'dns';
+
+interface uploadProps {
+	upload: () => void;
+}
+
+interface loginModalProps {
+	openModal: () => void;
+	closeModal: () => void;
+}
 
 const PostWrite = () => {
 	const dispatch = useDispatch();
@@ -20,7 +30,7 @@ const PostWrite = () => {
 	const [categoryValue, setCategoryValue] = useState<any>(undefined);
 	const [sendCategory, setSendCategory] = useState(null);
 	//모달 리스트
-	const modalList = [
+	const modalList: object = [
 		['study', '공부'],
 		['exercise', '운동/건강'],
 		['self-development', '자기개발/취미'],
@@ -34,11 +44,13 @@ const PostWrite = () => {
 
 	//날짜 인풋박스 시작일 선택 제한 (오늘 이전의 날짜 선택 불가하게, 너무 오래된 날짜 선택 불가능하게)
 	// 오늘 날짜 YYYY-MM-DD형식으로 추출
-	const offset = new Date().getTimezoneOffset() * 60000;
-	let todayDate = new Date(Date.now() - offset).toISOString().split('T')[0];
+	const offset: number = new Date().getTimezoneOffset() * 60000;
+	let todayDate: string = new Date(Date.now() - offset)
+		.toISOString()
+		.split('T')[0];
 
 	//선택한 날짜 가져오기
-	const [date, setDate] = useState(null);
+	const [date, setDate] = useState<Date>(null);
 	const onChange = (e) => {
 		setDate(e.target.value); //이벤트 발생한 value값으로 {text} 변경
 	};
@@ -97,9 +109,8 @@ const PostWrite = () => {
 	};
 
 	//업로드에 함수 접근하는 Ref
-	const uploadRef = React.useRef<any>();
-	const fileInput = React.useRef<any>();
-	console.log('PostWrite Test', fileInput);
+	const uploadRef = React.useRef<uploadProps>();
+	const fileInput = React.useRef<HTMLInputElement>();
 	const imgExist = useSelector((state) => (state as any).post.imgExist);
 
 	const isUploaded = useSelector((state) => (state as any).challenge?.isUpload);
@@ -165,7 +176,7 @@ const PostWrite = () => {
 
 	//로그인모달창에 접근하는 ref
 	// ANY
-	const loginModal = React.useRef<any>();
+	const loginModal = React.useRef<loginModalProps>();
 	const is_token = localStorage.getItem('token') ? true : false;
 
 	React.useEffect(() => {
@@ -502,7 +513,6 @@ const EndDateText = styled.span`
 	width: 100%;
 	justify-content: space-between;
 	color: white;
-
 	@media (max-width: 420px) {
 		font-size: 0.8rem;
 	}
