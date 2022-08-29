@@ -3,7 +3,7 @@ import { ReactComponent as CloseImg } from "../img/icon_close.svg";
 
 import styled from "styled-components";
 
-const Modal = forwardRef((props, ref) => {
+const Modal = forwardRef((props:any, ref) => {
   useImperativeHandle(ref, () => ({
     openModal() {
       setModalOpen(true);

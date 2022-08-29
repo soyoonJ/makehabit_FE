@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import { ContainerGrid } from "../elements";
 import PageBack from "../components/PageBack";
@@ -17,12 +17,16 @@ import { actionCreators as challengeActions } from "../redux/modules/challenge";
 interface uploadProps {
 	upload: () => void;
 }
+interface modalProps {
+  openModal: () => void;
+  closeModal: () =>void;
+}
 
 const Confirm = (props) => {
   const challengeId = props.match.params.id;
   const challenge_info = useSelector((state:any) => state.challenge.challenge_info);
 
-  const modalRef = React.useRef();
+  const modalRef = React.useRef<modalProps>();
   const uploadRef = React.useRef<uploadProps>();
 
   const fileInput = React.useRef<HTMLInputElement>();
@@ -133,7 +137,7 @@ const Confirm = (props) => {
           </div>
           <Textarea
             onChange={onChange}
-            maxLength="300"
+            maxLength={300}
             placeholder="인증과 함께 소감을 남겨보세요."
           ></Textarea>
           <div
