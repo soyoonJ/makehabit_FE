@@ -20,7 +20,7 @@ const Upload = forwardRef((props: any, ref) => {
 
 	const saveFileImage = (e) => {
 		setPreviewImg(URL.createObjectURL(e.target.files[0]));
-		dispatch(postActions.imgExist(true));
+		dispatch((postActions as any).imgExist(true));
 	};
 
 	const editthumbnail = useSelector(
@@ -36,7 +36,7 @@ const Upload = forwardRef((props: any, ref) => {
 	);
 
 	React.useEffect(() => {
-		dispatch(postActions.imgExist(false));
+		dispatch((postActions as any).imgExist(false));
 		if (location.pathname.includes('/editPostpage')) {
 			setPreviewImg(editthumbnail);
 		}
