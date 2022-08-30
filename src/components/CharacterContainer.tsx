@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
 import { Button } from "../elements";
 
-import ShoppingBasketModal from "../components/ShoppingBasketModal";
+import ShoppingBasketModal from "./ShoppingBasketModal";
 
 const CharacterContainer = () => {
   const dispatch = useDispatch();
