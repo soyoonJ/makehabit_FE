@@ -14,14 +14,22 @@ import styled from "styled-components";
 import { debounce, throttle } from "lodash";
 import { actionCreators as challengeActions } from "../redux/modules/challenge";
 
+interface uploadProps {
+	upload: () => void;
+}
+interface modalProps {
+  openModal: () => void;
+  closeModal: () =>void;
+}
+
 const Confirm = (props) => {
   const challengeId = props.match.params.id;
-  const challenge_info = useSelector((state) => state.challenge.challenge_info);
+  const challenge_info = useSelector((state:any) => state.challenge.challenge_info);
 
-  const modalRef = React.useRef();
-  const uploadRef = React.useRef();
+  const modalRef = React.useRef<modalProps>();
+  const uploadRef = React.useRef<uploadProps>();
 
-  const fileInput = React.useRef();
+  const fileInput = React.useRef<HTMLInputElement>();
   const dispatch = useDispatch();
 
   // 코멘트 값 받아오기
@@ -41,8 +49,8 @@ const Confirm = (props) => {
     lengthKeyPress(e);
   };
 
-  const isLoading = useSelector((state) => state.challenge?.isLoading);
-  const isUploaded = useSelector((state) => state.challenge?.isUpload);
+  const isLoading = useSelector((state:any) => state.challenge?.isLoading);
+  const isUploaded = useSelector((state:any) => state.challenge?.isUpload);
 
   const confirm = () => {
     if (fileInput.current.files[0] === undefined || comment === null) {
@@ -129,7 +137,7 @@ const Confirm = (props) => {
           </div>
           <Textarea
             onChange={onChange}
-            maxLength="300"
+            maxLength={300}
             placeholder="인증과 함께 소감을 남겨보세요."
           ></Textarea>
           <div

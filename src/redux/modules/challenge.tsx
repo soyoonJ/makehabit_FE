@@ -54,7 +54,7 @@ const getConfirmDB = (challengeId:string) => {
   };
 };
 
-const confirmDB = (challengeId:string, imgForm:string, challengeTitle:string, comment:string) => {
+const confirmDB = (challengeId:string, imgForm:FormData, challengeTitle:string, comment:string) => {
   return function (dispatch, getState, { history }) {
     apis
       .imageUpload(imgForm)
