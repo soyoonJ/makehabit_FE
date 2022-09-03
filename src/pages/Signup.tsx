@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Text, ContainerGrid } from '../elements';
-import MetaTag from '../shared/MetaTag';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Grid, Text, ContainerGrid } from "../elements";
+import MetaTag from "../shared/MetaTag";
 
-import styled from 'styled-components';
-import { debounce } from 'lodash';
+import styled from "styled-components";
+import { debounce } from "lodash";
 
-import { actionCreators as userActions } from '../redux/modules/user';
+import { actionCreators as userActions } from "../redux/modules/user";
 
-import { ReactComponent as CheckImg } from '../img/icon_check.svg';
-import { ReactComponent as CloseImg } from '../img/icon_close.svg';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { ReactComponent as CheckImg } from "../img/icon_check.svg";
+import { ReactComponent as CloseImg } from "../img/icon_close.svg";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Signup = () => {
 	const dispatch = useDispatch();
-
-	const [user_email, setEmail] = useState<string>('');
+	const [user_email, setEmail] = useState<string>("");
 	const debounceEmail = debounce((e) => {
 		setEmail(e.target.value);
 	}, 500);
@@ -26,7 +25,7 @@ const Signup = () => {
 
 	const emailCheck = useSelector((state) => (state as any).user.emailCheck);
 
-	const [user_nickname, setNickname] = useState<string>('');
+	const [user_nickname, setNickname] = useState<string>("");
 	const debounceNickname = debounce((e) => {
 		setNickname(e.target.value);
 	}, 500);
@@ -38,7 +37,7 @@ const Signup = () => {
 		(state) => (state as any).user.nicknameCheck
 	);
 
-	const [user_pwd, setPwd] = useState('');
+	const [user_pwd, setPwd] = useState("");
 	const debouncePwd = debounce((e) => {
 		setPwd(e.target.value);
 	}, 500);
@@ -46,7 +45,7 @@ const Signup = () => {
 	const changePwd = (e) => {
 		PwdKeyPress(e);
 	};
-	const [user_pwdcheck, setPwdcheck] = useState('');
+	const [user_pwdcheck, setPwdcheck] = useState("");
 	const debouncePwdcheck = debounce((e) => {
 		setPwdcheck(e.target.value);
 	}, 500);
@@ -56,18 +55,18 @@ const Signup = () => {
 	};
 
 	const signup = () => {
-		if (user_email === '') {
-			window.alert('이메일을 입력해주세요!');
+		if (user_email === "") {
+			window.alert("이메일을 입력해주세요!");
 			return;
 		}
 
-		if (user_nickname === '') {
-			window.alert('아이디를 입력해주세요!');
+		if (user_nickname === "") {
+			window.alert("아이디를 입력해주세요!");
 			return;
 		}
 
-		if (user_pwd !== user_pwdcheck || user_pwd === '' || user_pwdcheck === '') {
-			window.alert('비밀번호와 비밀번호 재입력의 값이 다릅니다!');
+		if (user_pwd !== user_pwdcheck || user_pwd === "" || user_pwdcheck === "") {
+			window.alert("비밀번호와 비밀번호 재입력의 값이 다릅니다!");
 			return;
 		}
 		dispatch(
@@ -76,16 +75,16 @@ const Signup = () => {
 	};
 
 	let [isHidden, setIsHidden] = React.useState<boolean>(true);
-	let [pwdMode, setPwdMode] = React.useState<string>('text');
+	let [pwdMode, setPwdMode] = React.useState<string>("text");
 	let [correct, setCorrect] = React.useState<boolean>(false);
 
 	const [isActive, setActive] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		if (isHidden === false) {
-			setPwdMode('text');
+			setPwdMode("text");
 		} else {
-			setPwdMode('password');
+			setPwdMode("password");
 		}
 
 		if (user_pwd === user_pwdcheck) {
@@ -95,10 +94,10 @@ const Signup = () => {
 		}
 
 		if (
-			user_email !== '' &&
-			user_pwd !== '' &&
-			user_pwdcheck !== '' &&
-			user_nickname !== ''
+			user_email !== "" &&
+			user_pwd !== "" &&
+			user_pwdcheck !== "" &&
+			user_nickname !== ""
 		) {
 			setActive(true);
 		} else {
@@ -122,7 +121,7 @@ const Signup = () => {
 
 			<ContainerGrid>
 				<Grid textAlign="center" padding="2.48vh 0">
-					<p style={{ fontSize: '2.6vh', fontWeight: 'bold', margin: '0' }}>
+					<p style={{ fontSize: "2.6vh", fontWeight: "bold", margin: "0" }}>
 						회원가입
 					</p>
 				</Grid>
@@ -133,12 +132,12 @@ const Signup = () => {
 					fontWeight="700"
 					lineHeight="4.02vh"
 				>
-					<span style={{ color: '#FF8B37', fontWeight: '700' }}>
+					<span style={{ color: "#FF8B37", fontWeight: "700" }}>
 						함께 도전하며,
 					</span>
 					<br />
-					<span style={{ color: '#FF8B37', fontWeight: '700' }}>
-						{' '}
+					<span style={{ color: "#FF8B37", fontWeight: "700" }}>
+						{" "}
 						새로운 습관
 					</span>
 					을 만나보세요.
@@ -153,29 +152,29 @@ const Signup = () => {
 						/>
 						{user_email ? (
 							emailCheck === 1 ? (
-								<CheckResult style={{ color: '#245EF5' }}>
+								<CheckResult style={{ color: "#245EF5" }}>
 									<CheckImg
 										width="1.89vh"
 										height="1.89vh"
-										style={{ fill: '#245EF5' }}
+										style={{ fill: "#245EF5" }}
 									/>
 									<p>사용 가능한 이메일</p>
 								</CheckResult>
 							) : emailCheck === 0 ? (
-								<CheckResult style={{ color: '#E42E2E' }}>
+								<CheckResult style={{ color: "#E42E2E" }}>
 									<CloseImg
 										width="1.89vh"
 										height="1.89vh"
-										style={{ fill: '#E42E2E' }}
+										style={{ fill: "#E42E2E" }}
 									/>
 									<p>이메일 형식을 확인해주세요</p>
 								</CheckResult>
 							) : (
-								<CheckResult style={{ color: '#E42E2E' }}>
+								<CheckResult style={{ color: "#E42E2E" }}>
 									<CloseImg
 										width="1.89vh"
 										height="1.89vh"
-										style={{ fill: '#E42E2E' }}
+										style={{ fill: "#E42E2E" }}
 									/>
 									<p>이미 사용중인 이메일 입니다</p>
 								</CheckResult>
@@ -188,7 +187,7 @@ const Signup = () => {
 
 				<Title
 					style={{
-						marginTop: '7.22vh',
+						marginTop: "7.22vh",
 					}}
 				>
 					비밀번호
@@ -205,20 +204,20 @@ const Signup = () => {
 						<AiFillEye
 							onClick={changeBool}
 							style={{
-								position: 'absolute',
-								top: '0.947vh',
-								right: '10px',
-								cursor: 'pointer',
+								position: "absolute",
+								top: "0.947vh",
+								right: "10px",
+								cursor: "pointer",
 							}}
 						/>
 					) : (
 						<AiFillEyeInvisible
 							onClick={changeBool}
 							style={{
-								position: 'absolute',
-								top: '0.947vh',
-								right: '10px',
-								cursor: 'pointer',
+								position: "absolute",
+								top: "0.947vh",
+								right: "10px",
+								cursor: "pointer",
 							}}
 						/>
 					)}
@@ -226,7 +225,7 @@ const Signup = () => {
 
 				<Title
 					style={{
-						marginTop: '4.26vh',
+						marginTop: "4.26vh",
 					}}
 				>
 					비밀번호 확인
@@ -242,40 +241,40 @@ const Signup = () => {
 						<AiFillEye
 							onClick={changeBool}
 							style={{
-								position: 'absolute',
-								top: '0.947vh',
-								right: '10px',
-								cursor: 'pointer',
+								position: "absolute",
+								top: "0.947vh",
+								right: "10px",
+								cursor: "pointer",
 							}}
 						/>
 					) : (
 						<AiFillEyeInvisible
 							onClick={changeBool}
 							style={{
-								position: 'absolute',
-								top: '0.947vh',
-								right: '10px',
-								cursor: 'pointer',
+								position: "absolute",
+								top: "0.947vh",
+								right: "10px",
+								cursor: "pointer",
 							}}
 						/>
 					)}
 
 					{user_pwdcheck ? (
 						correct ? (
-							<CheckResult style={{ color: '#245EF5' }}>
+							<CheckResult style={{ color: "#245EF5" }}>
 								<CheckImg
 									width="1.89vh"
 									height="1.89vh"
-									style={{ fill: '#245EF5' }}
+									style={{ fill: "#245EF5" }}
 								/>
 								<p>비밀번호가 일치합니다</p>
 							</CheckResult>
 						) : (
-							<CheckResult style={{ color: '#E42E2E' }}>
+							<CheckResult style={{ color: "#E42E2E" }}>
 								<CloseImg
 									width="1.89vh"
 									height="1.89vh"
-									style={{ fill: '#E42E2E' }}
+									style={{ fill: "#E42E2E" }}
 								/>
 								<p>비밀번호가 일치하지 않습니다</p>
 							</CheckResult>
@@ -287,7 +286,7 @@ const Signup = () => {
 
 				<Title
 					style={{
-						marginTop: '7.22vh',
+						marginTop: "7.22vh",
 					}}
 				>
 					마지막으로 닉네임을 알려주세요!
@@ -299,29 +298,29 @@ const Signup = () => {
 					/>
 					{user_nickname ? (
 						nicknameCheck === 1 ? (
-							<CheckResult style={{ color: '#245EF5' }}>
+							<CheckResult style={{ color: "#245EF5" }}>
 								<CheckImg
 									width="1.89vh"
 									height="1.89vh"
-									style={{ fill: '#245EF5' }}
+									style={{ fill: "#245EF5" }}
 								/>
 								<p>사용 가능한 닉네임입니다</p>
 							</CheckResult>
 						) : nicknameCheck === 0 ? (
-							<CheckResult style={{ color: '#E42E2E' }}>
+							<CheckResult style={{ color: "#E42E2E" }}>
 								<CloseImg
 									width="1.89vh"
 									height="1.89vh"
-									style={{ fill: '#E42E2E' }}
+									style={{ fill: "#E42E2E" }}
 								/>
 								<p>닉네임 형식을 확인해주세요</p>
 							</CheckResult>
 						) : (
-							<CheckResult style={{ color: '#E42E2E' }}>
+							<CheckResult style={{ color: "#E42E2E" }}>
 								<CloseImg
 									width="1.89vh"
 									height="1.89vh"
-									style={{ fill: '#E42E2E' }}
+									style={{ fill: "#E42E2E" }}
 								/>
 								<p>이미 사용중인 닉네임 입니다</p>
 							</CheckResult>
@@ -334,7 +333,7 @@ const Signup = () => {
 				<Grid textAlign="center" margin="7.22vh 0 0">
 					<Text size="1.89vh">
 						계정이 있으신가요? &nbsp;
-						<a href={'/login'}>로그인</a>
+						<a href={"/login"}>로그인</a>
 					</Text>
 				</Grid>
 			</ContainerGrid>

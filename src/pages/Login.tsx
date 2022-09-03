@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { ContainerGrid, Button, Input, Text } from '../elements';
-import MetaTag from '../shared/MetaTag';
-import { useDispatch } from 'react-redux';
-import { actionCreators as userActions } from '../redux/modules/user';
-import { history } from '../redux/configureStore';
-import { KAKAO_AUTH_URL } from '../shared/Auth';
-import styled from 'styled-components';
-import { debounce } from 'lodash';
+import React, { useState } from "react";
+import { ContainerGrid, Button, Input, Text } from "../elements";
+import MetaTag from "../shared/MetaTag";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore";
+import { KAKAO_AUTH_URL } from "../shared/Auth";
+import styled from "styled-components";
+import { debounce } from "lodash";
 
 const Login = () => {
 	const dispatch = useDispatch();
 
-	const [user_email, setEmail] = useState<string>('');
+	const [user_email, setEmail] = useState<string>("");
 	const debounceEmail = debounce((e) => {
 		setEmail(e.target.value);
 	}, 500);
@@ -20,7 +20,7 @@ const Login = () => {
 		IdKeyPress(e);
 	};
 
-	const [user_pwd, setPwd] = useState('');
+	const [user_pwd, setPwd] = useState("");
 	const debouncePwd = debounce((e) => {
 		setPwd(e.target.value);
 	}, 500);
@@ -30,14 +30,14 @@ const Login = () => {
 	};
 
 	const handlePress = (e) => {
-		if (e.key === 'Enter') {
+		if (e.key === "Enter") {
 			login();
 		}
 	};
 
 	const login = () => {
-		if (user_email === '' || user_pwd === '') {
-			window.alert('아이디 혹은 비밀번호를 입력해주세요');
+		if (user_email === "" || user_pwd === "") {
+			window.alert("아이디 혹은 비밀번호를 입력해주세요");
 			return;
 		}
 		dispatch(userActions.loginDB(user_email, user_pwd));
@@ -136,7 +136,7 @@ const Login = () => {
 
 				<KakaoImg
 					href={KAKAO_AUTH_URL}
-					src={process.env.PUBLIC_URL + '/images/kakao_login.png'}
+					src={process.env.PUBLIC_URL + "/images/kakao_login.png"}
 					alt="카카오 로그인"
 					onClick={() => {
 						window.location.href = KAKAO_AUTH_URL;
