@@ -12,21 +12,21 @@ const CharacterContainer = () => {
 
   const Item = process.env.PUBLIC_URL + "/items/large";
 
-  const currentPoint = useSelector((state) => state.character.currentPoint);
+  const currentPoint = useSelector((state:any) => state.character.currentPoint);
 
-  const isEquip = useSelector((state) => state.character?.isEquip);
+  const isEquip = useSelector((state:any) => state.character?.isEquip);
   const equipColor = isEquip?.find((e) => e.category === "color");
   const equipBg = isEquip?.find((e) => e.category === "background");
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
 
-  const preview = useSelector((state) => state.character);
-  const previewColor = useSelector((state) => state.character?.colorItem);
-  const previewBg = useSelector((state) => state.character?.backgroundItem);
-  const previewClothes = useSelector((state) => state.character?.clothesItem);
-  const previewAcc = useSelector((state) => state.character?.accItem);
-  const previewEmotion = useSelector((state) => state.character?.emotionItem);
+  const preview = useSelector((state:any) => state.character);
+  const previewColor = useSelector((state:any) => state.character?.colorItem);
+  const previewBg = useSelector((state:any) => state.character?.backgroundItem);
+  const previewClothes = useSelector((state:any) => state.character?.clothesItem);
+  const previewAcc = useSelector((state:any) => state.character?.accItem);
+  const previewEmotion = useSelector((state:any) => state.character?.emotionItem);
 
   const [viewBody, setBody] = useState();
   const [viewBg, setBg] = useState();
@@ -34,7 +34,7 @@ const CharacterContainer = () => {
   const [viewAcc, setAcc] = useState();
   const [viewEmotion, setEmotion] = useState();
 
-  const allList = useSelector((state) => state.character.allList);
+  const allList = useSelector((state:any) => state.character.allList);
 
   const selectedBg = allList.find((e) => e.itemImgUrl === viewBg);
   const selectedBody = allList.find((e) => e.itemImgUrl === viewBody);
@@ -42,7 +42,14 @@ const CharacterContainer = () => {
   const selectedClothes = allList.find((e) => e.itemImgUrl === viewAcc);
   const selectedEmotion = allList.find((e) => e.itemImgUrl === viewEmotion);
 
-  const modalRef = useRef();
+  interface modalProps {
+    openModal: () => void;
+    closeModal: () =>void;
+    account: ()=>void;
+    purchase: ()=>void;
+    reset: ()=>void;
+  } 
+  const modalRef = useRef<modalProps>();
 
   React.useEffect(() => {
     setBody(equipColor?.itemImgUrl);
