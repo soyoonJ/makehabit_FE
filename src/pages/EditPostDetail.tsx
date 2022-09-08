@@ -88,13 +88,6 @@ const PostWrite = (props) => {
 	let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
 	// @ts-ignore
 	todayPlus30 = todayPlus30.toISOString().split('T')[0];
-	console.log(
-		'equal?',
-		todayPlus30,
-		typeof todayPlus30,
-		todayDate,
-		typeof todayDate
-	);
 	//content내용 받아오기
 	const [title, setTitle] = React.useState(edittitle);
 	const [titleLength, setTitleLength] = React.useState(0);
