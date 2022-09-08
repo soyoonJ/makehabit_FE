@@ -85,8 +85,7 @@ const PostWrite = (props) => {
 	};
 
 	const now = new Date(date);
-	let todayPlus30 = new Date(now.setDate(now.getDate() + 30));
-	// @ts-ignore
+	let todayPlus30: Date | string = new Date(now.setDate(now.getDate() + 30));
 	todayPlus30 = todayPlus30.toISOString().split('T')[0];
 	//content내용 받아오기
 	const [title, setTitle] = React.useState(edittitle);
