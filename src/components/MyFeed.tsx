@@ -12,9 +12,17 @@ import { history } from "../redux/configureStore";
 
 import { debounce, throttle } from "lodash";
 
+// route v6부터는 제네릭을 지원하지 않아 as로 타입 지정해야 함
+interface RouteState {
+  state: {
+    length: number;
+    order: number;
+  }
+}
+
 const MyFeed = (props) => {
   const dispatch = useDispatch();
-  const location = useLocation<any>();
+  const location = useLocation() as RouteState;
   const length = location.state.length;
   const order = location.state.order;
 
