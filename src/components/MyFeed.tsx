@@ -35,12 +35,14 @@ const MyFeed = (props) => {
   const debounceComment = debounce((e) => {
     setComment(e.target.value);
   }, 100);
-  const commentKeyPress = React.useCallback(debounceComment, []);
+  
+  // dependency 이슈로 [] 안에 같이 기입 해주어야 함
+  const commentKeyPress = React.useCallback(debounceComment, [debounceComment]);
 
   const throttleLength = throttle((e) => {
     setLength(e.target.value.length);
   }, 100);
-  const lengthKeyPress = React.useCallback(throttleLength, []);
+  const lengthKeyPress = React.useCallback(throttleLength, [throttleLength]);
 
   const onChange = (e) => {
     commentKeyPress(e);
