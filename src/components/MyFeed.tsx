@@ -14,12 +14,12 @@ import { debounce, throttle } from "lodash";
 
 const MyFeed = (props) => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation<any>();
   const length = location.state.length;
   const order = location.state.order;
 
   const proofShotId = props.match.params.id;
-  const feed = useSelector((state) => state.challenge?.feed);
+  const feed = useSelector((state:any) => state.challenge?.feed);
 
   const [comment, setComment] = React.useState(null);
   const [commentLength, setLength] = React.useState(null);
@@ -115,7 +115,7 @@ const MyFeed = (props) => {
               <>
                 <textarea
                   onChange={onChange}
-                  maxLength="300"
+                  maxLength={300}
                   defaultValue={feed.comment}
                   placeholder=""
                 />
