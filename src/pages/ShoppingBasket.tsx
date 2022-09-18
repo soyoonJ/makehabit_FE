@@ -8,8 +8,6 @@ const ShoppingBasket = () => {
 		<React.Fragment>
 			<PurchaseCharacter />
 			<ShoppingBasketModal />
-			<PurchaseCharacter />
-			<ShoppingBasketModal />
 		</React.Fragment>
 	);
 };
