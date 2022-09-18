@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import PwaPrompt from './PwaPrompt';
+import React from "react";
+import styled from "styled-components";
+import PwaPrompt from "./PwaPrompt";
 const OnBoardModal = (props) => {
 	const { onClose } = props;
 	//배너
 	const [bannerIndex, setBannerIndex] = React.useState<number>(0);
 
 	const imgURL = [
-		'/onBoard/onBoarding_01.png',
-		'/onBoard/onBoarding_02.png',
-		'/onBoard/onBoarding_03.png',
+		"/onBoard/onBoarding_01.png",
+		"/onBoard/onBoarding_02.png",
+		"/onBoard/onBoarding_03.png",
 	];
 
 	// 다음 버튼 클릭시 배너의 인덱스를 +1, 인덱스가 마지막이면 처음인 0으로 돌아가기.
@@ -27,8 +27,8 @@ const OnBoardModal = (props) => {
 				<ModalContent>
 					<Carousel bannerIndex={bannerIndex}>
 						{imgURL.map((e, i) => (
-							<ContentBox style={{ display: 'flex' }} index={i} key={i}>
-								<Content style={{ display: 'flex' }}>
+							<ContentBox style={{ display: "flex" }} index={i} key={i}>
+								<Content style={{ display: "flex" }}>
 									<Img imgURL={imgURL[i]} index={i}></Img>
 								</Content>
 							</ContentBox>
@@ -86,7 +86,7 @@ const Carousel = styled.div<{ bannerIndex: number }>`
 	@media only screen and (min-width: 420px) {
 		transform: translate(
 			${(props) => {
-				return -(props.bannerIndex * 420) + 'px';
+				return -(props.bannerIndex * 420) + "px";
 			}}
 		);
 	}
@@ -94,7 +94,7 @@ const Carousel = styled.div<{ bannerIndex: number }>`
 	@media (max-width: 420px) {
 		transform: translate(
 			${(props) => {
-				return -(props.bannerIndex * 100) + 'vw';
+				return -(props.bannerIndex * 100) + "vw";
 			}}
 		);
 	}

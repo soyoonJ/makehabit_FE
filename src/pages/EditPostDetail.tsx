@@ -1,19 +1,19 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { actionCreators as postActions } from '../redux/modules/post';
-import { Grid } from '../elements';
-import CategoryModal from '../components/CategoryModal';
-import PageBack from '../components/PageBack';
-import MetaTag from '../shared/MetaTag';
-import Spinner from '../shared/Spinner';
-import { history } from '../redux/configureStore';
-import { debounce, throttle } from 'lodash';
-import styled from 'styled-components';
-import LoginModal from '../components/LoginModal';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import moment from 'moment';
-import ButtonNavigation from '../components/ButtonNavigation';
+import { actionCreators as postActions } from "../redux/modules/post";
+import { Grid } from "../elements";
+import CategoryModal from "../components/CategoryModal";
+import PageBack from "../components/PageBack";
+import MetaTag from "../shared/MetaTag";
+import Spinner from "../shared/Spinner";
+import { history } from "../redux/configureStore";
+import { debounce, throttle } from "lodash";
+import styled from "styled-components";
+import LoginModal from "../components/LoginModal";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import moment from "moment";
+import ButtonNavigation from "../components/ButtonNavigation";
 interface modalProps {
 	openModal: () => void;
 	closeModal: () => void;
@@ -26,28 +26,28 @@ const PostWrite = (props) => {
 	const editcategory = useSelector(
 		(state) => (state as any).post.post.category
 	);
-	let stateCategoryValue = '';
-	if (editcategory === 'study') {
-		stateCategoryValue = '공부';
-	} else if (editcategory === 'exercise') {
-		stateCategoryValue = '운동/건강';
-	} else if (editcategory === 'self-development') {
-		stateCategoryValue = '자기개발/취미';
-	} else if (editcategory === 'living-habit') {
-		stateCategoryValue = '생활습관';
-	} else if (editcategory === 'eco') {
-		stateCategoryValue = '에코';
+	let stateCategoryValue = "";
+	if (editcategory === "study") {
+		stateCategoryValue = "공부";
+	} else if (editcategory === "exercise") {
+		stateCategoryValue = "운동/건강";
+	} else if (editcategory === "self-development") {
+		stateCategoryValue = "자기개발/취미";
+	} else if (editcategory === "living-habit") {
+		stateCategoryValue = "생활습관";
+	} else if (editcategory === "eco") {
+		stateCategoryValue = "에코";
 	}
 
 	const [categoryValue, setCategoryValue] = useState(stateCategoryValue);
 	const [sendCategory, setSendCategory] = useState(editcategory);
 
 	const modalList = [
-		['study', '공부'],
-		['exercise', '운동/건강'],
-		['self-development', '자기개발/취미'],
-		['living-habit', '생활습관'],
-		['eco', '에코'],
+		["study", "공부"],
+		["exercise", "운동/건강"],
+		["self-development", "자기개발/취미"],
+		["living-habit", "생활습관"],
+		["eco", "에코"],
 	];
 	const getData = (idx) => {
 		setCategoryValue(modalList[idx][1]);
@@ -69,15 +69,15 @@ const PostWrite = (props) => {
 	const editdate = useSelector((state) => (state as any).post.post?.startAt);
 	const editDay = moment(editdate);
 
-	const editDayforamt = editDay.format('YYYY-MM-DD');
-	const edtiEnd = moment(editdate).add(29, 'days').format('YYYY년 MM월 DD일');
+	const editDayforamt = editDay.format("YYYY-MM-DD");
+	const edtiEnd = moment(editdate).add(29, "days").format("YYYY년 MM월 DD일");
 
 	React.useEffect(() => {
 		dispatch(postActions.getDetailPostDB(EditpostId));
 	}, []);
 
 	const offset = new Date().getTimezoneOffset() * 60000;
-	let todayDate = new Date(Date.now() - offset).toISOString().split('T')[0];
+	let todayDate = new Date(Date.now() - offset).toISOString().split("T")[0];
 
 	const [date, setDate] = useState(editDayforamt);
 	const onChange = (e) => {
@@ -86,7 +86,7 @@ const PostWrite = (props) => {
 
 	const now = new Date(date);
 	let todayPlus30: Date | string = new Date(now.setDate(now.getDate() + 30));
-	todayPlus30 = todayPlus30.toISOString().split('T')[0];
+	todayPlus30 = todayPlus30.toISOString().split("T")[0];
 	//content내용 받아오기
 	const [title, setTitle] = React.useState(edittitle);
 	const [titleLength, setTitleLength] = React.useState(0);
@@ -141,26 +141,26 @@ const PostWrite = (props) => {
 	const confirm = () => {
 		image = editthumbnail;
 
-		if (title === '') {
-			alert('챌린지 제목이 없습니다!');
+		if (title === "") {
+			alert("챌린지 제목이 없습니다!");
 			return;
 		}
 
 		if (sendCategory === null) {
-			alert('카테고리를 설정하지 않았습니다!');
+			alert("카테고리를 설정하지 않았습니다!");
 			return;
 		}
 
 		if (date === null) {
-			alert('시작일이 입력되지 않았습니다.');
+			alert("시작일이 입력되지 않았습니다.");
 			return;
 		}
-		if (desc === '') {
-			alert('챌린지 설명을 쓰지 않았습니다.');
+		if (desc === "") {
+			alert("챌린지 설명을 쓰지 않았습니다.");
 			return;
 		}
-		if (method === '') {
-			alert('챌린지 인증 방법을 쓰지 않았습니다');
+		if (method === "") {
+			alert("챌린지 인증 방법을 쓰지 않았습니다");
 			return;
 		}
 
@@ -180,16 +180,16 @@ const PostWrite = (props) => {
 
 	const childRef = useRef<modalProps>();
 	const startDay = moment(date);
-	const transformDay = startDay.format('YYYY년 MM월 DD일');
+	const transformDay = startDay.format("YYYY년 MM월 DD일");
 
 	//현재 시간 받아오기
 	let currentTime = new Date();
 	let hour = currentTime.getHours();
 	let min = currentTime.getMinutes();
-	const dayArray = ['일', '월', '화', '수', '목', '금', '토'];
+	const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
 	const loginModal = React.useRef<modalProps>();
-	const is_token = localStorage.getItem('token') ? true : false;
+	const is_token = localStorage.getItem("token") ? true : false;
 
 	React.useEffect(() => {
 		if (!is_token) {
@@ -200,7 +200,7 @@ const PostWrite = (props) => {
 	return (
 		<Container>
 			<MetaTag title="습관삼끼 | 신규 챌린지 작성" />
-			{isLoading === true && isUploaded === false ? <Spinner /> : ''}
+			{isLoading === true && isUploaded === false ? <Spinner /> : ""}
 
 			<Grid>
 				{/* 타이틀 */}
@@ -263,7 +263,7 @@ const PostWrite = (props) => {
 						<ChallengeText>챌린지 시작일</ChallengeText>
 					</ToLeft>
 					<ToRight>
-						<StartDate>{date ? transformDay : '2022년10월10일'}</StartDate>
+						<StartDate>{date ? transformDay : "2022년10월10일"}</StartDate>
 						<DateInput
 							id="inputCalendar"
 							type="date"
@@ -272,9 +272,9 @@ const PostWrite = (props) => {
 									? todayDate
 									: min <= 50
 									? todayDate
-									: moment(todayDate, 'YYYY-MM-DD')
-											.add(1, 'days')
-											.format('YYYY-MM-DD')
+									: moment(todayDate, "YYYY-MM-DD")
+											.add(1, "days")
+											.format("YYYY-MM-DD")
 							}
 							onChange={onChange}
 						></DateInput>
@@ -288,16 +288,16 @@ const PostWrite = (props) => {
 					{/* 예상 종료일 */}
 					<ColorBox>
 						<EndDateText>
-							<ToLeft style={{ margin: '0.813rem' }}>예상 종료일 </ToLeft>
-							<ToRight style={{ margin: '0.813rem' }}>
+							<ToLeft style={{ margin: "0.813rem" }}>예상 종료일 </ToLeft>
+							<ToRight style={{ margin: "0.813rem" }}>
 								{/* @ts-ignore */}
 								{todayPlus30 > todayDate
-									? moment(date, 'YYYY.MM.DD')
-											.add(29, 'days')
-											.format('YYYY년 MM월 DD일') +
-									  ' ' +
-									  dayArray[moment(date, 'YYYY.MM.DD').add(29, 'days').day()] +
-									  '요일'
+									? moment(date, "YYYY.MM.DD")
+											.add(29, "days")
+											.format("YYYY년 MM월 DD일") +
+									  " " +
+									  dayArray[moment(date, "YYYY.MM.DD").add(29, "days").day()] +
+									  "요일"
 									: edtiEnd}
 							</ToRight>
 						</EndDateText>
@@ -310,7 +310,7 @@ const PostWrite = (props) => {
 					</Grid>
 					<Grid>
 						<CaptionTextBox>
-							<Caption style={{ color: 'black' }}>
+							<Caption style={{ color: "black" }}>
 								무얼 도전해볼까요? 챌린지에 대해 설명해주세요.
 							</Caption>
 						</CaptionTextBox>
@@ -329,7 +329,7 @@ const PostWrite = (props) => {
 					</Grid>
 					<Grid>
 						<CaptionTextBox>
-							<Caption style={{ color: 'black' }}>
+							<Caption style={{ color: "black" }}>
 								달성을 인증할 수 있는 방법에 대해 설명해주세요.
 							</Caption>
 						</CaptionTextBox>
@@ -342,7 +342,7 @@ const PostWrite = (props) => {
 					></Contents>
 					<LengthText textAlign="right">{methodLength}/150자</LengthText>
 				</MarginBox>
-				<MarginBox style={{ margin: '0 0 9.375rem 0' }}>
+				<MarginBox style={{ margin: "0 0 9.375rem 0" }}>
 					<CreateBox>
 						<CreateButton
 							onClick={() => {
