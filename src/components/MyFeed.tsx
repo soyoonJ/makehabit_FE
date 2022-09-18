@@ -12,14 +12,22 @@ import { history } from "../redux/configureStore";
 
 import { debounce, throttle } from "lodash";
 
+// route v6부터는 제네릭을 지원하지 않아 as로 타입 지정해야 함
+interface RouteState {
+  state: {
+    length: number;
+    order: number;
+  }
+}
+
 const MyFeed = (props) => {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation() as RouteState;
   const length = location.state.length;
   const order = location.state.order;
 
   const proofShotId = props.match.params.id;
-  const feed = useSelector((state) => state.challenge?.feed);
+  const feed = useSelector((state:any) => state.challenge?.feed);
 
   const [comment, setComment] = React.useState(null);
   const [commentLength, setLength] = React.useState(null);
@@ -27,12 +35,14 @@ const MyFeed = (props) => {
   const debounceComment = debounce((e) => {
     setComment(e.target.value);
   }, 100);
-  const commentKeyPress = React.useCallback(debounceComment, []);
+  
+  // dependency 이슈로 [] 안에 같이 기입 해주어야 함
+  const commentKeyPress = React.useCallback(debounceComment, [debounceComment]);
 
   const throttleLength = throttle((e) => {
     setLength(e.target.value.length);
   }, 100);
-  const lengthKeyPress = React.useCallback(throttleLength, []);
+  const lengthKeyPress = React.useCallback(throttleLength, [throttleLength]);
 
   const onChange = (e) => {
     commentKeyPress(e);
@@ -115,7 +125,7 @@ const MyFeed = (props) => {
               <>
                 <textarea
                   onChange={onChange}
-                  maxLength="300"
+                  maxLength={300}
                   defaultValue={feed.comment}
                   placeholder=""
                 />
