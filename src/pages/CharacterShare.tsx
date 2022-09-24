@@ -18,7 +18,7 @@ const CharacterShare = () => {
     dispatch(characterActions.getItemDB());
   }, []);
 
-  const isEquip = useSelector((state) => state.character?.isEquip);
+  const isEquip = useSelector((state:any) => state.character?.isEquip);
   const equipColor = isEquip?.find((e) => e.category === "color");
   const equipBg = isEquip?.find((e) => e.category === "background");
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
