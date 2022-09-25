@@ -2,8 +2,8 @@ import React from "react";
 
 import styled from "styled-components";
 
-import ItemBox from "../components/ItemBox";
-import ItemCircle from "../components/ItemCircle";
+import ItemBox from "./ItemBox";
+import ItemCircle from "./ItemCircle";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as characterActions } from "../redux/modules/character";
