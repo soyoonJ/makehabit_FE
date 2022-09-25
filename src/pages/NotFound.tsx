@@ -6,7 +6,7 @@ import { Grid } from "../elements";
 import { ReactComponent as IconLeft } from "../img/icon_left.svg";
 import MetaTag from "../shared/MetaTag";
 
-const NotFound = (props) => {
+const NotFound = (props: any) => {
   return (
     <>
       <MetaTag title="습관삼끼" />
