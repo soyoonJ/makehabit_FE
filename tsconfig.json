@@ -11,8 +11,16 @@
 		"allowJs": true,
 		"checkJs": false,
 		"sourceMap": true,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
 	},
 	"include": ["src", "src/custom.d.ts"],
-	"deno.enablePatterns":"deno/"
+	"deno.enablePatterns":"deno/",
+	"exclude": [
+		"node_modules/*",
+		"node_modules/@types",
+		"babel.config.js",
+		"metro.config.js",
+		"jest.config.js",
+		"prettierrc.js"
+]
 }
