@@ -12,10 +12,6 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { useLocation } from "react-router-dom";
 import QueryString from "qs";
 
-interface searchProps {
-	value?: string;
-}
-
 const Search = (props) => {
 	const dispatch = useDispatch();
 	const location = useLocation();
