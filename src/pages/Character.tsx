@@ -9,7 +9,11 @@ import MetaTag from "../shared/MetaTag";
 import styled from "styled-components";
 
 const Character = () => {
-  const modalRef = React.useRef();
+  interface modalProps {
+    openModal: () => void;
+    closeModal: () => void;
+  }
+  const modalRef = React.useRef<modalProps>();
   const is_token = localStorage.getItem("token") ? true : false;
 
   React.useEffect(() => {
