@@ -16,27 +16,32 @@ import LoginModal from "../components/LoginModal";
 
 import styled from "styled-components";
 
+interface loginModalProps {
+  openModal: () => void;
+  closeModal: () => void;
+}
+
 const Mypage = () => {
   const dispatch = useDispatch();
 
-  const userInfo = useSelector((state) => state.user?.user_info);
+  const userInfo = useSelector((state) => (state as any).user?.user_info);
 
   React.useEffect(() => {
     dispatch(characterActions.getItemDB());
     dispatch(userActions.getInfoDB());
   }, []);
 
-  const isEquip = useSelector((state) => state.character?.isEquip);
+  const isEquip = useSelector((state) => (state as any).character?.isEquip);
   const equipColor = isEquip?.find((e) => e.category === "color");
   const equipBg = isEquip?.find((e) => e.category === "background");
   const equipClothes = isEquip?.find((e) => e.category === "clothes");
   const equipAcc = isEquip?.find((e) => e.category === "acc");
   const equipEmotion = isEquip?.find((e) => e.category === "emotion");
   const Item = process.env.PUBLIC_URL + "/items/large";
-  const nickName = useSelector((state) => state.user?.user?.nickname);
+  const nickName = useSelector((state) => (state as any).user?.user?.nickname);
   const childRef = useRef();
 
-  const loginModal = React.useRef();
+  const loginModal = React.useRef<loginModalProps>();
   const is_token = localStorage.getItem("token") ? true : false;
 
   React.useEffect(() => {
@@ -211,7 +216,7 @@ const Mypage = () => {
         <TestBox
           onClick={() => {
             window.confirm(
-              "로그아웃 하시면 캐릭터 꾸미기나 챌린지 참여가 제한됩니다😢\n정말 로그아웃 하시겠어요?"
+              "로그아웃 하시면 캐릭터 꾸미기나 챌린지 참여가 제한됩니다😢\n정말 로그아웃 하시겠어요?",
             )
               ? dispatch(userActions.logoutDB())
               : console.log("취소");
