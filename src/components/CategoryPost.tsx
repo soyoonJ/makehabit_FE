@@ -17,7 +17,11 @@ const CategoryPost = (props) => {
 
 	const dispatch = useDispatch();
 
-	const loginModal = React.useRef();
+	interface modalProps {
+		openModal:()=>void,
+		closeModal:()=>void
+	}
+	const loginModal = React.useRef<modalProps>();
 	const {
 		thumbnail,
 		title,
@@ -33,7 +37,7 @@ const CategoryPost = (props) => {
 	const LikeImg = process.env.PUBLIC_URL + '/images/icon_fill_heart_shadow.png';
 	const Icon = process.env.PUBLIC_URL + '/images';
 
-	const is_login = useSelector((state) => state.user.is_login);
+	const is_login = useSelector((state:any) => state.user.is_login);
 
 	const like = () => {
 		if (is_login) {
