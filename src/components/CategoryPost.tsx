@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
 
-import LoginModal from '../components/LoginModal';
+import LoginModal from './LoginModal';
 
 import moment from 'moment';
 
