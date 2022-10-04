@@ -15,10 +15,9 @@ import QueryString from "qs";
 const Search = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const queryData = QueryString.parse(location.search, {
+  const queryData: { q?: string } = QueryString.parse(location.search, {
     ignoreQueryPrefix: true,
   });
-  console.log("queryData", queryData.q, typeof queryData.q);
   const search = React.useRef<HTMLInputElement>();
   const searchWord_list = useSelector(
     (state) => (state as any).main.searchWord_list,
@@ -63,6 +62,7 @@ const Search = (props) => {
             <ContainerInput>
               <InputBox
                 ref={search}
+                defaultValue={queryData.q}
                 onKeyPress={handlePress}
                 placeholder="도전하고 싶은 습관을 검색해보세요!"
               ></InputBox>
