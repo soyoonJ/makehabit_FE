@@ -26,7 +26,7 @@ const CategoryBar = (props) => {
       <Horizontable>
         {categoryList.map((e, i) => (
           <CategoryCircle
-            key={e._id}
+            key={e[0]}
             onClick={() => {
               dispatch(mainActions.categoryDB(e[0]));
               history.push(`/category/${e[0]}`);
