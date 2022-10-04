@@ -15,9 +15,13 @@ import { ReactComponent as MypageImg } from "../img/icon_mypage.svg";
 const ButtonNavigation = () => {
   const { pathname } = useLocation();
 
-  const is_login = useSelector((state) => state.user.is_login);
+  const is_login = useSelector((state:any) => state.user.is_login);
 
-  const modalRef = React.useRef();
+  interface modalProps {
+    openModal: ()=>void,
+    closeModal: ()=>void,
+  }
+  const modalRef = React.useRef<modalProps>();
 
   const confirmPage = () => {
     if (is_login) {
@@ -195,7 +199,7 @@ const ButtonIcon = styled.button`
   }
 `;
 
-const IconText = styled.div`
+const IconText = styled.div<{selected: boolean}>`
   color: ${(props) => (props.selected ? "#1D1B1B" : "#9C9C9C")};
   font-weight: ${(props) => (props.selected ? "600" : "#400")};
 `;
