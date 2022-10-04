@@ -8,14 +8,14 @@ import { actionCreators as characterActions } from "../redux/modules/character";
 const ItemCircle = () => {
   const dispatch = useDispatch();
 
-  const itemList = useSelector((state) => state.character.itemList);
+  const itemList = useSelector((state:any) => state.character.itemList);
   const category = itemList[0]?.category;
 
-  const isEquipAll = useSelector((state) => state.character?.isEquip);
+  const isEquipAll = useSelector((state:any) => state.character?.isEquip);
   const isEquip = isEquipAll?.find((e) => e.category === category);
 
-  const previewColor = useSelector((state) => state.character?.colorItem);
-  const isReset = useSelector((state) => state.character.isReset);
+  const previewColor = useSelector((state:any) => state.character?.colorItem);
+  const isReset = useSelector((state:any) => state.character.isReset);
 
   const [item, setItem] = React.useState(null);
 
