@@ -19,11 +19,15 @@ import styled from "styled-components";
 const MyChallenge = (props) => {
   const dispatch = useDispatch();
   const currentPage = props.match.params.id;
-  const challenge_list = useSelector((state) => state.challenge.challenge_list);
-  const isHostList = useSelector((state) =>
-    state.challenge.challenge_list?.filter((e) => e.isHost === true)
+  const challenge_list = useSelector(
+    (state) => (state as any).challenge.challenge_list,
   );
-  const proof_list = useSelector((state) => state.challenge.proof_list);
+  const isHostList = useSelector((state) =>
+    (state as any).challenge.challenge_list?.filter((e) => e.isHost === true),
+  );
+  const proof_list = useSelector(
+    (state) => (state as any).challenge.proof_list,
+  );
 
   const [filter, setFilter] = useState(false);
   const [showMine, setShowMine] = useState(false);

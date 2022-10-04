@@ -19,7 +19,7 @@ import OnBoardModal from "../components/OnBoardModal";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const likeList = useSelector((state) => state.post.isLike);
+  const likeList = useSelector((state) => (state as any).post.isLike);
   React.useEffect(() => {
     dispatch(mainActions.RecommendDB(4));
     dispatch(mainActions.mainnewDB(4, "new"));
@@ -30,10 +30,14 @@ const Main = () => {
     dispatch(rankingActions.getRankingDB(3));
   }, []);
 
-  const recommend_list = useSelector((state) => state.main.recommend_list);
-  const new_list = useSelector((state) => state.main.new_list);
-  const study_list = useSelector((state) => state.main.study_list);
-  const AllRanking = useSelector((state) => state.ranking?.ranking_list);
+  const recommend_list = useSelector(
+    (state) => (state as any).main.recommend_list,
+  );
+  const new_list = useSelector((state) => (state as any).main.new_list);
+  const study_list = useSelector((state) => (state as any).main.study_list);
+  const AllRanking = useSelector(
+    (state) => (state as any).ranking?.ranking_list,
+  );
 
   const search = React.useRef(null);
 
@@ -103,13 +107,12 @@ const Main = () => {
                 }}
               />
             </CategoryIcon>
-            <CategoryText alignCenter>전체보기</CategoryText>
+            <CategoryText>전체보기</CategoryText>
           </Category>
 
           <Category>
             <CategoryIcon>
               <Img
-                alignCenter
                 width="50"
                 height="48.98"
                 alt="인기"
@@ -120,7 +123,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText alignCenter>인기</CategoryText>
+            <CategoryText>인기</CategoryText>
           </Category>
 
           <Category>
@@ -136,7 +139,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText alignCenter>신규</CategoryText>
+            <CategoryText>신규</CategoryText>
           </Category>
 
           <Category>
@@ -152,7 +155,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText alignCenter>공부</CategoryText>
+            <CategoryText>공부</CategoryText>
           </Category>
         </CategoryWrap>
 
@@ -170,7 +173,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText alignCenter>운동</CategoryText>
+            <CategoryText>운동</CategoryText>
           </Category>
 
           <Category>
@@ -186,7 +189,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText alignCenter>자기계발</CategoryText>
+            <CategoryText>자기계발</CategoryText>
           </Category>
 
           <Category>
@@ -202,7 +205,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText alignCenter>생활습관</CategoryText>
+            <CategoryText>생활습관</CategoryText>
           </Category>
 
           <Category>
@@ -218,7 +221,7 @@ const Main = () => {
                 }}
               ></Img>
             </CategoryIcon>
-            <CategoryText alignCenter>에코</CategoryText>
+            <CategoryText>에코</CategoryText>
           </Category>
         </CategoryWrap>
 
