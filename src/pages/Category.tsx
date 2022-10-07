@@ -17,9 +17,11 @@ import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
 const Category = (props) => {
   const dispatch = useDispatch();
-  const category_list = useSelector((state) => state.main.category_list);
+  const category_list = useSelector(
+    (state) => (state as any).main.category_list,
+  );
   const categoryId = props.match.params.id;
-  const likeList = useSelector((state) => state.post.isLike);
+  const likeList = useSelector((state) => (state as any).post.isLike);
 
   React.useEffect(() => {
     dispatch(mainActions.categoryDB(categoryId));

@@ -13,12 +13,12 @@ import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
 const LikeCollection = (props) => {
   const dispatch = useDispatch();
-  const like_list = useSelector((state) => state.post.likeCollection);
+  const like_list = useSelector((state) => (state as any).post.likeCollection);
 
   const categoryId = props.match.params.id;
 
   React.useEffect(() => {
-    dispatch(postActions.getLikeDB(categoryId));
+    dispatch(postActions.getLikeDB());
   }, []);
 
   return (
