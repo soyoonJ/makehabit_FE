@@ -1,33 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Text, ContainerGrid, Button } from "../elements";
 import MetaTag from "../shared/MetaTag";
-
-import Horizontable from "../components/Horizontable";
 
 import CategoryPost from "../components/CategoryPost";
 import ButtonNavigation from "../components/ButtonNavigation";
 import { useDispatch, useSelector } from "react-redux";
 
 import { history } from "../redux/configureStore";
-import { actionCreators as mainActions } from "../redux/modules/main";
 import { actionCreators as postActions } from "../redux/modules/post";
-import CategoryBar from "../components/CategoryBar";
 import { ReactComponent as GoBack } from "../img/icon_left.svg";
 
-const Category = (props) => {
+const LikeCollection = (props) => {
   const dispatch = useDispatch();
-  const category_list = useSelector((state) => state.main.category_list);
+  const like_list = useSelector((state) => (state as any).post.likeCollection);
+
   const categoryId = props.match.params.id;
-  const likeList = useSelector((state) => state.post.isLike);
 
   React.useEffect(() => {
-    dispatch(mainActions.categoryDB(categoryId));
-  }, [likeList]);
+    dispatch(postActions.getLikeDB());
+  }, []);
 
   return (
     <React.Fragment>
-      <MetaTag title="습관삼끼 | 카테고리별 조회" />
+      <MetaTag title="습관삼끼 | 좋아요 모아보기" />
 
       <ContainerGrid>
         <Header>
@@ -41,15 +37,13 @@ const Category = (props) => {
             }}
           />
           <Text alignCenter size="22px" bold>
-            카테고리
+            좋아요 모아보기
           </Text>
         </Header>
       </ContainerGrid>
 
-      <CategoryBar categoryId={categoryId}></CategoryBar>
-
       <ContainerGrid margin="0 0 14.6vh">
-        {category_list?.length === 0 ? (
+        {like_list?.length === 0 ? (
           <NoChallenge>
             <div>
               <img
@@ -85,7 +79,7 @@ const Category = (props) => {
         ) : (
           <div>
             <CardWrap>
-              {category_list?.map((p, idx) => {
+              {like_list?.map((p, idx) => {
                 return <CategoryPost key={p._id} {...p} />;
               })}
             </CardWrap>
@@ -101,12 +95,6 @@ const Header = styled.div`
   display: flex;
   justify-content: space-around;
   text-align: center;
-`;
-
-const CategoryBarWrap = styled.div`
-  margin-top: 5%;
-  display: flex;
-  justify-content: space-around;
 `;
 
 const CardWrap = styled.div`
@@ -125,4 +113,4 @@ const NoChallenge = styled.div`
   margin-top: 60px;
 `;
 
-export default Category;
+export default LikeCollection;
