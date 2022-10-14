@@ -24,13 +24,13 @@ const Image = (props) => {
   };
 
   if (shape === "circle") {
-    return <ImageCircle {...styles}></ImageCircle>;
+    return <ImageCircle style={{ ...styles }}></ImageCircle>;
   }
 
   if (shape === "rectangle") {
     return (
       <AspectOutter onClick={_onClick} onChange={_onChange}>
-        <AspectInner {...styles}></AspectInner>
+        <AspectInner style={{ ...styles }}></AspectInner>
       </AspectOutter>
     );
   }
@@ -38,14 +38,14 @@ const Image = (props) => {
   if (shape === "ConfirmHistory") {
     return (
       <HistoryImage onClick={_onClick}>
-        <AspectInner {...styles}></AspectInner>
+        <AspectInner style={{ ...styles }}></AspectInner>
       </HistoryImage>
     );
   }
 
   return (
     <React.Fragment>
-      <ImageDefault {...styles}></ImageDefault>
+      <ImageDefault style={{ ...styles }}></ImageDefault>
     </React.Fragment>
   );
 };
@@ -61,10 +61,10 @@ Image.defaultProps = {
 };
 
 const ImageDefault = styled.div`
-  --size: ${(props) => props.size}px;
+  --size: ${(props) => (props as any).size}px;
   width: var(--size);
   height: var(--size);
-  background-image: url("${(props) => props.src}");
+  background-image: url("${(props) => (props as any).src}");
   background-size: cover;
 `;
 
@@ -75,30 +75,32 @@ const HistoryImage = styled.div`
 const AspectOutter = styled.div`
   width: 100%;
   min-width: 250px;
-  ${(props) => (props.height ? `height:${props.height};` : "")};
+  ${(props) =>
+    (props as any).height ? `height:${(props as any).height};` : ""};
 `;
 
 const AspectInner = styled.div`
   position: relative;
   padding-top: 75%;
   overflow: hidden;
-  background-image: url("${(props) => props.src}");
+  background-image: url("${(props) => (props as any).src}");
   background-size: cover;
-  ${(props) => (props.width ? `width:${props.width};` : "")};
+  ${(props) => ((props as any).width ? `width:${(props as any).width};` : "")};
 `;
 
 const ImageCircle = styled.div`
-  --size: ${(props) => props.size}px;
+  --size: ${(props) => (props as any).size}px;
   width: var(--size);
   height: var(--size);
   border-radius: var(--size);
 
-  background-image: url("${(props) => props.src}");
+  background-image: url("${(props) => (props as any).src}");
   background-size: cover;
   margin: 4px;
 
-  ${(props) => (props.padding ? `margin:${props.padding};` : "")};
-  ${(props) => (props.src ? `src:${props.src};` : "")};
+  ${(props) =>
+    (props as any).padding ? `margin:${(props as any).padding};` : ""};
+  ${(props) => ((props as any).src ? `src:${(props as any).src};` : "")};
 `;
 
 export default Image;

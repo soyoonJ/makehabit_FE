@@ -63,22 +63,33 @@ Text.defaultProps = {
 };
 
 const P = styled.p`
-  width: ${(props) => props.width};
-  color: ${(props) => props.color};
-  font-size: ${(props) => props.size};
+  width: ${(props) => (props as any).width};
+  color: ${(props) => (props as any).color};
+  font-size: ${(props) => (props as any).size};
   font-weight: ${(props) =>
-    props.bold ? "600" : props.weight ? props.weight : "400"};
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.is_break ? `word-break: break-all;` : "")}
-  ${(props) => (props.alignCenter ? `text-align: center;` : "")}
-  ${(props) => (props.font ? `font-family: ${props.font};` : "")}
-  justify-content: ${(props) => props.justifyContent};
-  ${(props) => (props.alignRight ? `text-align: right;` : "")};
-  ${(props) => (props.borderBox ? `box-sizing: border-box;` : "")};
-  ${(props) => (props.textAlign ? `text-align: ${props.textAlign};` : "")}
-  ${(props) => (props.alignLeft ? `text-align: left;` : "")};
-  ${(props) => (props.lineHeight ? `line-height: ${props.lineHeight};` : "")};
+    (props as any).bold
+      ? "600"
+      : (props as any).weight
+      ? (props as any).weight
+      : "400"};
+  ${(props) =>
+    (props as any).margin ? `margin: ${(props as any).margin};` : ""}
+  ${(props) =>
+    (props as any).padding ? `padding: ${(props as any).padding};` : ""}
+  ${(props) => ((props as any).is_break ? `word-break: break-all;` : "")}
+  ${(props) => ((props as any).alignCenter ? `text-align: center;` : "")}
+  ${(props) =>
+    (props as any).font ? `font-family: ${(props as any).font};` : ""}
+  justify-content: ${(props) => (props as any).justifyContent};
+  ${(props) => ((props as any).alignRight ? `text-align: right;` : "")};
+  ${(props) => ((props as any).borderBox ? `box-sizing: border-box;` : "")};
+  ${(props) =>
+    (props as any).textAlign ? `text-align: ${(props as any).textAlign};` : ""}
+  ${(props) => ((props as any).alignLeft ? `text-align: left;` : "")};
+  ${(props) =>
+    (props as any).lineHeight
+      ? `line-height: ${(props as any).lineHeight};`
+      : ""};
 `;
 
 export default Text;

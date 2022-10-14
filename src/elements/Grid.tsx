@@ -111,65 +111,96 @@ Grid.defaultProps = {
 
 const GridBox = styled.div`
   box-sizing: border-box;
-  ${(props) => (props.pointer ? `cursor: pointer;` : "")}
+  ${(props) => ((props as any).pointer ? `cursor: pointer;` : "")}
 
-  width: ${(props) => props.width};
-  ${(props) => (props.maxWidth ? `max-width: ${props.maxWidth};` : "")}
-  height: ${(props) => props.height};
-  ${(props) => (props.lineHeight ? `line-height: ${props.lineHeight};` : "")}
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+  width: ${(props) => (props as any).width};
   ${(props) =>
-    props.is_flex
+    (props as any).maxWidth ? `max-width: ${(props as any).maxWidth};` : ""}
+  height: ${(props) => (props as any).height};
+  ${(props) =>
+    (props as any).lineHeight
+      ? `line-height: ${(props as any).lineHeight};`
+      : ""}
+  ${(props) =>
+    (props as any).padding ? `padding: ${(props as any).padding};` : ""}
+  ${(props) =>
+    (props as any).margin ? `margin: ${(props as any).margin};` : ""}
+  ${(props) =>
+    (props as any).bg ? `background-color: ${(props as any).bg};` : ""}
+  ${(props) =>
+    (props as any).is_flex
       ? `display: flex; align-items: center; justify-content: space-between; `
       : ""}
   ${(props) =>
-    props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
-    ${(props) => (props.borderTop ? `border-top: ${props.borderTop};` : "")}
-  // ${(props) => (props.justifyCenter ? `justify-content: center` : "")}
-  // ${(props) => (props.justifyRight ? `justify-content: right` : "")}
-  ${(props) => (props.borderRadius ? `border-radius: 10px` : "")}
-  ${(props) => (props.left ? `left: ${props.left}` : "")}
-  ${(props) => (props.top ? `top: ${props.top}` : "")}
-  position: ${(props) => props.position};
-  justify-content: ${(props) => props.justifyContent};
-  boxsizing: ${(props) => props.boxSizing};
-  border-style: ${(props) => props.borderStyle};
-  align-items: ${(props) => props.alignItems};
-  text-align: ${(props) => props.textAlign};
+    (props as any).borderBottom
+      ? `border-bottom: ${(props as any).borderBottom};`
+      : ""}
+    ${(props) =>
+    (props as any).borderTop ? `border-top: ${(props as any).borderTop};` : ""}
+  // ${(props) =>
+    (props as any).justifyCenter ? `justify-content: center` : ""}
+  // ${(props) => ((props as any).justifyRight ? `justify-content: right` : "")}
+  ${(props) => ((props as any).borderRadius ? `border-radius: 10px` : "")}
+  ${(props) => ((props as any).left ? `left: ${(props as any).left}` : "")}
+  ${(props) => ((props as any).top ? `top: ${(props as any).top}` : "")}
+  position: ${(props) => (props as any).position};
+  justify-content: ${(props) => (props as any).justifyContent};
+  boxsizing: ${(props) => (props as any).boxSizing};
+  border-style: ${(props) => (props as any).borderStyle};
+  align-items: ${(props) => (props as any).alignItems};
+  text-align: ${(props) => (props as any).textAlign};
   ${(props) =>
-    props.letterSpacing ? `letter-spacing: ${props.letterSpacing};` : ""}
-  ${(props) => (props.borderTop ? `border-top: ${props.borderTop};` : "")}
+    (props as any).letterSpacing
+      ? `letter-spacing: ${(props as any).letterSpacing};`
+      : ""}
   ${(props) =>
-    props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
-  ${(props) => (props.fontSize ? `font-size: ${props.fontSize};` : "")}
-  ${(props) => (props.fontWeight ? `font-weight: ${props.fontWeight};` : "")}
+    (props as any).borderTop ? `border-top: ${(props as any).borderTop};` : ""}
+  ${(props) =>
+    (props as any).borderBottom
+      ? `border-bottom: ${(props as any).borderBottom};`
+      : ""}
+  ${(props) =>
+    (props as any).fontSize ? `font-size: ${(props as any).fontSize};` : ""}
+  ${(props) =>
+    (props as any).fontWeight
+      ? `font-weight: ${(props as any).fontWeight};`
+      : ""}
 `;
 
 const PostGridBox = styled.div`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
-  ${(props) => (props.is_flex ? `display: flex; align-items: center; ` : "")}
-  ${(props) => (props.flexWrap ? `flex-wrap: ${props.flexWrap};` : "")}
+  width: ${(props) => (props as any).width};
+  height: ${(props) => (props as any).height};
+  ${(props) =>
+    (props as any).padding ? `padding: ${(props as any).padding};` : ""}
+  ${(props) =>
+    (props as any).margin ? `margin: ${(props as any).margin};` : ""}
+  ${(props) =>
+    (props as any).bg ? `background-color: ${(props as any).bg};` : ""}
+  ${(props) =>
+    (props as any).is_flex ? `display: flex; align-items: center; ` : ""}
+  ${(props) =>
+    (props as any).flexWrap ? `flex-wrap: ${(props as any).flexWrap};` : ""}
 `;
 
 const CategoryBox = styled.div`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+  width: ${(props) => (props as any).width};
+  height: ${(props) => (props as any).height};
   ${(props) =>
-    props.is_flex
+    (props as any).padding ? `padding: ${(props as any).padding};` : ""}
+  ${(props) =>
+    (props as any).margin ? `margin: ${(props as any).margin};` : ""}
+  ${(props) =>
+    (props as any).bg ? `background-color: ${(props as any).bg};` : ""}
+  ${(props) =>
+    (props as any).is_flex
       ? `display: flex; align-items: center; justify-content: center; `
       : ""}
-  ${(props) => (props.borderTop ? `border-top: ${props.borderTop};` : "")}
   ${(props) =>
-    props.borderBottom ? `border-bottom: ${props.borderBottom};` : ""}
+    (props as any).borderTop ? `border-top: ${(props as any).borderTop};` : ""}
+  ${(props) =>
+    (props as any).borderBottom
+      ? `border-bottom: ${(props as any).borderBottom};`
+      : ""}
 `;
 
 export default Grid;
