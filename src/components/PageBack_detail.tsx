@@ -28,7 +28,7 @@ PageBack.defaultProps = {
   // padding: "1.912em 5%",
 };
 
-const Back = styled.div`
+const Back = styled.div<{padding:string; left?:string}>`
   cursor: pointer;
   z-index: 10;
   padding: ${(props) => props.padding};

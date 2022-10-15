@@ -35,7 +35,7 @@ PageBack.defaultProps = {
   left: null,
 };
 
-const Back = styled.div`
+const Back = styled.div<{padding:string; left?:string}>`
   cursor: pointer;
   z-index: 10;
   padding: ${(props) => props.padding};
