@@ -108,34 +108,50 @@ Button.defaultProps = {
 
 const ElButton = styled.button`
   box-sizing: border-box;
-  border: ${(props) => props.border};
-  border-radius: ${(props) => props.borderRadius};
-  ${(props) => (props.height ? `height:${props.height};` : "")};
-  ${(props) => (props.lineHeight ? `line-height:${props.lineHeight};` : "")};
-  ${(props) => (props.width ? `width:${props.width};` : "")};
-  ${(props) => (props.maxWidth ? `max-width:${props.maxWidth};` : "")};
-  background-color: ${(props) => props.bg};
-  color: ${(props) => props.color};
-  padding: ${(props) => props.padding};
-  ${(props) => (props.margin ? `margin:${props.margin};` : "")};
-  cursor: ${(props) => props.cursor};
-  position: ${(props) => props.position};
-  ${(props) => (props.bottom ? `bottom:${props.bottom};` : "")};
-  ${(props) => (props.right ? `right:${props.right};` : "")};
-  ${(props) => (props.left ? `left:${props.left};` : "")};
-  ${(props) => (props.fontSize ? `font-size:${props.fontSize};` : "")};
-  ${(props) => (props.fontWeight ? `font-weight:${props.fontWeight};` : "")};
-  align-items: ${(props) => props.alignItems};
-  ${(props) => (props.alignSelf ? `align-self: ${props.alignSelf}; ` : "")}
-  ${(props) => (props.zIndex ? `z-index: ${props.zIndex}; ` : "")}
-  ${(props) => (props.display ? `display: ${props.display}; ` : "")}
+  border: ${(props) => (props as any).border};
+  border-radius: ${(props) => (props as any).borderRadius};
   ${(props) =>
-    props.centerFlex
+    (props as any).height ? `height:${(props as any).height};` : ""};
+  ${(props) =>
+    (props as any).lineHeight
+      ? `line-height:${(props as any).lineHeight};`
+      : ""};
+  ${(props) => ((props as any).width ? `width:${(props as any).width};` : "")};
+  ${(props) =>
+    (props as any).maxWidth ? `max-width:${(props as any).maxWidth};` : ""};
+  background-color: ${(props) => (props as any).bg};
+  color: ${(props) => props.color};
+  padding: ${(props) => (props as any).padding};
+  ${(props) =>
+    (props as any).margin ? `margin:${(props as any).margin};` : ""};
+  cursor: ${(props) => (props as any).cursor};
+  position: ${(props) => (props as any).position};
+  ${(props) =>
+    (props as any).bottom ? `bottom:${(props as any).bottom};` : ""};
+  ${(props) => ((props as any).right ? `right:${(props as any).right};` : "")};
+  ${(props) => ((props as any).left ? `left:${(props as any).left};` : "")};
+  ${(props) =>
+    (props as any).fontSize ? `font-size:${(props as any).fontSize};` : ""};
+  ${(props) =>
+    (props as any).fontWeight
+      ? `font-weight:${(props as any).fontWeight};`
+      : ""};
+  align-items: ${(props) => (props as any).alignItems};
+  ${(props) =>
+    (props as any).alignSelf ? `align-self: ${(props as any).alignSelf}; ` : ""}
+  ${(props) =>
+    (props as any).zIndex ? `z-index: ${(props as any).zIndex}; ` : ""}
+  ${(props) =>
+    (props as any).display ? `display: ${(props as any).display}; ` : ""}
+  ${(props) =>
+    (props as any).centerFlex
       ? `display: flex; justify-content: center; align-items:center `
       : ""}
-  ${(props) => (props.alignLeft ? `text-align: left;` : "")};
+  ${(props) => ((props as any).alignLeft ? `text-align: left;` : "")};
   ${(props) =>
-    props.borderbottom ? ` border-bottom:${props.borderbottom};` : ""};
+    (props as any).borderbottom
+      ? ` border-bottom:${(props as any).borderbottom};`
+      : ""};
 `;
 
 // 동그라미 버튼

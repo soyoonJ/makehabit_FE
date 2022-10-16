@@ -26,12 +26,15 @@ ContainerGrid.defaultProps = {
 };
 
 const GridBox = styled.div`
-  padding: ${(props) => props.padding};
-  ${(props) => (props.margin ? `margin:${props.margin};` : "")}
-  ${(props) => (props.position ? `position:${props.position};` : "")}
-  ${(props) => (props.bg ? `background:${props.bg};` : "")}
-  ${(props) => (props.width ? `width:${props.width};` : "")}
-  ${(props) => (props.height ? `height:${props.height};` : "")}
+  padding: ${(props) => (props as any).padding};
+  ${(props) =>
+    (props as any).margin ? `margin:${(props as any).margin};` : ""}
+  ${(props) =>
+    (props as any).position ? `position:${(props as any).position};` : ""}
+  ${(props) => ((props as any).bg ? `background:${(props as any).bg};` : "")}
+  ${(props) => ((props as any).width ? `width:${(props as any).width};` : "")}
+  ${(props) =>
+    (props as any).height ? `height:${(props as any).height};` : ""}
 `;
 
 export default ContainerGrid;

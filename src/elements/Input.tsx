@@ -75,15 +75,17 @@ Input.defaultProps = {
 };
 
 const ElInput = styled.input`
-  width: ${(props) => props.width};
-  ${(props) => (props.height ? `height: ${props.height};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.color ? `color: ${props.color};` : "")}
-  padding: ${(props) => props.padding};
+  width: ${(props) => (props as any).width};
+  ${(props) =>
+    (props as any).height ? `height: ${(props as any).height};` : ""}
+  ${(props) =>
+    (props as any).margin ? `margin: ${(props as any).margin};` : ""}
+  ${(props) => ((props as any).color ? `color: ${(props as any).color};` : "")}
+  padding: ${(props) => (props as any).padding};
   box-sizing: border-box;
   border: 1px solid #adb5bd;
-  border-radius: ${(props) => props.borderRadius};
-  background-color: ${(props) => props.bg};
-  border-style: ${(props) => props.borderStyle};
+  border-radius: ${(props) => (props as any).borderRadius};
+  background-color: ${(props) => (props as any).bg};
+  border-style: ${(props) => (props as any).borderStyle};
 `;
 export default Input;
