@@ -16,11 +16,13 @@ const nicknameCheck = createAction(NICKNAME_CHECK, (result) => ({ result }));
 const setInfo = createAction(SET_INFO, (user_info) => ({ user_info }));
 
 const initialState = {
-  user: { email: null, nickname: null },
+  user: { email: '', nickname: '' },
   is_login: false,
   emailCheck: 0, //0 = 이메일 형식을 확인해주세요 ,-1 = 이미 가입된 이메일 입니다, 1 =  사용 가능한 이메일
   nicknameCheck: 0, //0 = 닉네임 형식을 확인해주세요 ,-1 = 이미 가입된 닉네임 입니다, 1 =  사용 가능한 닉네임
   user_info: null,
+  result: 0,
+  is_loaded: false
 };
 
 const signupDB = (email, nickname, password, confirmPassword) => {
