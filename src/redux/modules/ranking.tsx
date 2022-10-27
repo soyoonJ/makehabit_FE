@@ -13,7 +13,7 @@ const setRanking = createAction(SET_RANKING, (ranking_list) => ({
 
 // initialState
 const initialState = {
-  ranking_list: [],
+  ranking_list: {me: {}, RankingList:[]},
   my_list: null,
 };
 
@@ -31,10 +31,15 @@ const getRankingDB = (length) => {
   };
 };
 
+
+interface State {
+ my_list:{};
+ ranking_list:{};
+}
 // redux
 export default handleActions(
   {
-    [SET_RANKING]: (state, action) =>
+    [SET_RANKING]: (state:State, action) =>
       produce(state, (draft) => {
         draft.my_list = action.payload.ranking_list.me;
         draft.ranking_list = action.payload.ranking_list.RankingList.filter(
